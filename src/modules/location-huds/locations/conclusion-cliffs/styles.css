@@ -20,8 +20,13 @@
   transform: rotate(45deg) scale(1.5);
 }
 
+.conclusionCliffsView__chapter[data-current="false"][data-is-next-chapter="true"]:hover {
+  z-index: 10;
+  background-color: #0a380a;
+}
+
 .conclusionCliffsView__nextChapterChoice:hover {
-  z-index: 6;
+  z-index: 20;
   filter: drop-shadow(0 1px 1px #000);
   transition: transform 0.2s ease-out;
   transform: scale(1.3);
@@ -38,4 +43,72 @@
 
 .conclusionCliffsView__writeMoreCostThumbnail {
   transform: translate(1px, 1px);
+}
+
+.conclusionCliffsView__chapterReRollButton {
+  transition: 0.2s ease-out;
+}
+
+.conclusionCliffsView__chapterReRollButton:hover {
+  filter: brightness(1.5);
+  background-position-y: 0;
+  transform: rotate(55deg);
+}
+
+.conclusionCliffsView__chapterReRollButton:hover:active {
+  background-position-y: 0;
+  transform: translateY(0.5px) rotate(90deg);
+}
+
+.conclusionCliffsView__nextChapterChoice {
+  transition: 0.3s;
+}
+
+.conclusionCliffsView__nextChapterChoice.short {
+  transform-origin: bottom left;
+}
+
+.conclusionCliffsView__nextChapterChoice.medium {
+  transform-origin: bottom center;
+}
+
+.conclusionCliffsView__nextChapterChoice.long {
+  transform-origin: bottom right;
+}
+
+.conclusionCliffsView__nextChapterChoice,
+.conclusionCliffsView__nextChapterChoiceMarker {
+  z-index: 10;
+}
+
+.conclusionCliffsView__sidePanel[data-choice="short"] .conclusionCliffsView__nextChapterChoice.short:hover,
+.conclusionCliffsView__sidePanel[data-choice="medium"] .conclusionCliffsView__nextChapterChoice.medium:hover,
+.conclusionCliffsView__sidePanel[data-choice="long"] .conclusionCliffsView__nextChapterChoice.long:hover {
+  outline: none;
+}
+
+.conclusionCliffsView__nextChapterChoice::before {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.conclusionCliffsView__nextChapterChoiceText {
+  gap: 1px;
+  font-size: 7px;
+}
+
+.conclusionCliffsView__nextChapterChoiceGenre {
+  font-size: 8px;
+}
+
+.conclusionCliffsView__nextChapterChoice[data-genre="adventure"] .conclusionCliffsView__nextChapterChoiceGenre {
+  font-size: 7px;
+}
+
+.conclusionCliffsView__nextChapterLength {
+  font-size: 13px;
+}
+
+.conclusionCliffsView__sidePanelRegularChapters:hover .conclusionCliffsView__nextChapterChoiceMarker {
+  opacity: 0;
 }
