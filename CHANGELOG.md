@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.97.1
+
+- Fixed 'Show Adventure Book' menu item not opening adventure book
+- Updated some styles for Ronza
+
 ## Version 0.97.0
 
 - Added "HUD: Show random max title text" beta feature that cycles through a variety of fun and silly custom max title texts
