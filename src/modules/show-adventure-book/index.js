@@ -14,7 +14,7 @@ const init = () => {
     label: 'Adventure Book',
     icon: '/images/teams/sigil/book/_11.png',
     class: 'show_adv_book',
-    callback: () => hg.views.AdventureBookView.show(user.quests.QuestAdventureBook.adventure.type),
+    callback: () => hg.views.AdventureBookView.show(user?.quests?.QuestAdventureBook?.adventure?.type || 'complete_town_of_gnawnia_bounties_adv')
   });
 };
 
