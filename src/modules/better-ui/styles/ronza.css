@@ -16,3 +16,10 @@
     animation: none;
   }
 }
+
+.QuestRonzaPopup-container .QuestRonzaPopup-content-text .mousehuntActionButton {
+  width: 90px;
+  padding: 5px 0 !important;
+  margin-right: -20px;
+  margin-left: 0;
+}

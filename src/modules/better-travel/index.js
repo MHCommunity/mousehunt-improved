@@ -255,7 +255,7 @@ const addAlphabetizedList = (regionMenu) => {
 
   const itemCount = sortedLinks.length;
   const rows = Math.ceil(itemCount / 5);
-  const height = 8 + (rows * 29);
+  const height = 14 + (rows * 29);
 
   alphaListContent.style.height = `${height}px`;
 
