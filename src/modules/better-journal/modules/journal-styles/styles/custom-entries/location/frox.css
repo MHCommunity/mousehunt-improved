@@ -3,3 +3,7 @@
   max-height: 120px;
   overflow-y: auto;
 }
+
+.journal .content .entry.fortRox-boss .journaltext b {
+  font-weight: 700;
+}

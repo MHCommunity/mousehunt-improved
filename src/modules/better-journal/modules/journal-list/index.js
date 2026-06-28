@@ -331,6 +331,22 @@ const getItemsFromText = (type, textEl) => {
     }
   }
 
+  // Generic fallback: many entries (e.g. trap-trigger effects like Spotlight
+  // Enchantment, "found an additional", etc.) list their loot as bullet (•)
+  // separated lines with <br>s and already-built item links, but use intro
+  // phrasing we don't have an explicit string for. Rather than chase every
+  // variant, detect the bullet list directly: split at the first bullet into
+  // intro text + item lines.
+  if (list.length === 0 && innerHTML.includes('•')) {
+    const idx = innerHTML.indexOf('•');
+    const intro = innerHTML.slice(0, idx).replace(/\s+$/, '');
+    const candidate = splitText(innerHTML.slice(idx));
+    if (candidate.length > 0) {
+      list = candidate;
+      newText = intro;
+    }
+  }
+
   return { list: list || [], newText: newText || innerHTML };
 };
 
