@@ -17,10 +17,11 @@ a.fortRoxHUD-retreat {
 
 .fortRoxHUD-timeline-phase-name,
 .fortRoxHUD-timeline-phase-marker.active .fortRoxHUD-timeline-phase-name {
+  margin-left: 3px;
   font-size: 13px;
   font-variant: normal;
   text-shadow: 0 0 3px #131313;
-  filter: drop-shadow(0 1px 1px 131313);
+  filter: drop-shadow(0 1px 1px #131313);
 }
 
 .fortRoxHUD-timeline-phase-marker.past .fortRoxHUD-timeline-phase-name {
@@ -97,12 +98,12 @@ a.fortRoxHUD-retreat {
 }
 
 .fortRoxHUD-lairBaitContainer .fortRoxHUD .quantity {
-  padding: 0;
-  font-size: 14px;
+  padding: 1px;
+  font-size: 11px;
 }
 
 .fortRoxHUD-dialog-craftingItem-quantity {
-  top: 5px;
+  top: 6px;
 }
 
 .complete .fortRoxHUD-dialog-upgrade-costContainer {
@@ -213,7 +214,7 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  height: auto;
 }
 
 .fortRoxHUD-dialog-upgrade-status.complete .mousehuntActionButton {
@@ -254,4 +255,23 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
 .fortRoxHUD-itemContainer .fortRoxHUD-item .mousehuntTooltip::before {
   font-style: italic;
   color: #aaa;
+}
+
+.fortRoxHUD .fortRoxHUD-timeline-progress span::after {
+  filter: drop-shadow(1px 3px 3px #000);
+  border-top-color: #7aff53;
+  transition: 0.3s ease;
+}
+
+.fortRoxHUD:hover .fortRoxHUD-timeline-progress span::after {
+  transform: scale(1.5) translateY(-2px);
+  transform-origin: bottom;
+}
+
+.fortRoxHUD-overlayContainer.upgradeFort .fortRoxHUD-dialogContainer {
+  margin-top: -20px;
+}
+
+.fortRoxHUD-baitContainer .fortRoxHUD-item-thumb {
+  border-radius: 6px;
 }
