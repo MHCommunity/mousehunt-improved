@@ -113,21 +113,16 @@ class ImageUpscaler {
   }
 
   /**
-   * Check if the image elements should be skipped.
+   * Build a hash of the current `src` of every image element.
    *
    * @param {NodeList} items The image elements.
    *
-   * @return {boolean} If the update should be skipped.
+   * @return {string} The hash of the image sources.
    */
-  shouldSkipUpdate(items) {
-    const itemHash = [...items]
+  hashImages(items) {
+    return [...items]
       .map((item) => item.getAttribute('src') || '')
       .join(',');
-
-    const shouldSkip = this.lastCheck === itemHash;
-    this.lastCheck = itemHash;
-
-    return shouldSkip;
   }
 
   /**
@@ -169,7 +164,12 @@ class ImageUpscaler {
       return;
     }
 
-    if (this.shouldSkipUpdate(images)) {
+    // Skip if nothing has changed since the last pass. We compare against the
+    // hash left over from the previous *completed* pass (which reflects the
+    // post-upscale srcs), so a DOM that reverts to un-upscaled srcs — e.g. the
+    // game re-rendering a journal entry back to its original image — is
+    // correctly treated as new work rather than a no-op.
+    if (this.lastCheck === this.hashImages(images)) {
       return;
     }
 
@@ -188,6 +188,10 @@ class ImageUpscaler {
         image.setAttribute('src', mappedUrl);
       }
     });
+
+    // Record the post-upscale state so the next pass dedupes against the
+    // swapped srcs, not the originals.
+    this.lastCheck = this.hashImages(images);
   }
 
   /**
