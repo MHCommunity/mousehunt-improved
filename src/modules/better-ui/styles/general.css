@@ -274,6 +274,10 @@ a.inventoryPage-tagDirectory-tag {
   margin-top: 0;
 }
 
+.claimGiftPage__giftDescription {
+  max-height: unset;
+}
+
 .notificationMessageList .message img.profilePic {
   width: 30px;
   height: 30px;
