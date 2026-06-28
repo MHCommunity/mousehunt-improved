@@ -43,6 +43,12 @@
   padding: 5px 0;
 }
 
+.notificationMessageList .tab[data-tab="general"] .message .messageText {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+}
+
 .message.notification.ballot,
 .message.notification.ballot.new {
   display: flex;
@@ -68,23 +74,31 @@
 }
 
 #messengerUINotification .tabs a[data-tab="general"] {
-  order: -500;
+  order: 2000;
+}
+
+#messengerUINotification .tabs a[data-tab="gift_links"] {
+  order: 3000;
 }
 
 #messengerUINotification .tabs a[data-tab="daily_draw"] {
-  order: -400;
+  order: 4000;
 }
 
 #messengerUINotification .tabs a[data-tab="friend_requests"] {
-  order: -300;
+  order: 5000;
 }
 
-#messengerUINotification .tabs a[data-tab="marketplace"] {
-  order: -200;
+#messengerUINotification .tabs a[data-tab="tournaments"] {
+  order: 6000;
+}
+
+#messengerUINotification .tabs a[data-tab="gnawnian_express"] {
+  order: 7000;
 }
 
 #messengerUINotification .tabs a[data-tab="news"] {
-  order: -100;
+  order: 8000;
 }
 
 #messengerUINotification .notificationMessageList .tab {

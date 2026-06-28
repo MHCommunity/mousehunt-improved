@@ -1,0 +1,52 @@
+.notificationMessageList .message.mh-improved-gift-link:hover {
+  background-color: #fdf5bf;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .clear-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-link-image {
+  float: left;
+  margin-right: 8px;
+}
+
+.notificationMessageList .message.mh-improved-gift-link.claimed .messageText b {
+  font-weight: 400;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-meta {
+  padding-bottom: 3px;
+  font-size: 9px;
+  color: #686e8a;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .messageText {
+  padding-top: 0;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-meta .mh-improved-gift-meta-separator {
+  margin: 0 5px;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .actions.mh-improved-gift-link-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .actions.mh-improved-gift-link-actions .mh-improved-gift-claim.busy {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-claim-error {
+  max-width: 160px;
+  font-size: 11px;
+  color: #c00;
+  text-align: right;
+}
