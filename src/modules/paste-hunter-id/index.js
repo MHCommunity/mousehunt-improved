@@ -4,6 +4,21 @@
  * @param {string} text The pasted text.
  */
 const maybeRedirectToHunterProfile = (text) => {
+  text = text.trim();
+
+  // If it's a profile.php?snuid=... link, pull the snuid out and go directly to
+  // that profile. The snuid can be numeric (578354432) or a hashed string
+  // (hg_a07516a70978d1dbaf9e29ce638073d9).
+  const profileMatch = text.match(/mousehuntgame\.com\/profile\.php\?.*\bsnuid=([\w-]+)/i);
+  if (profileMatch) {
+    const snuid = profileMatch[1];
+    if (snuid && hg?.utils?.PageUtil?.showHunterProfile) {
+      hg.utils.PageUtil.showHunterProfile(snuid);
+    }
+
+    return;
+  }
+
   if (text.length > 30) {
     return;
   }
