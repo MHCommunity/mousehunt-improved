@@ -1,0 +1,107 @@
+/* Journal header button — matches the native "Set Theme" / "Randomize" buttons,
+   but left-aligned. It inherits the look and hover-reveal from
+   .journalContainer-selectTheme; we only re-position it to the left. */
+.journalContainer .top .mh-jlt-button {
+  position: absolute;
+  right: auto;
+  left: 10px;
+  padding: 0 8px;
+  background-image: none;
+}
+
+/* Popup */
+.mh-jlt-popup {
+  width: 580px;
+  max-width: 90vw;
+  font-size: 12px;
+  color: #2d2417;
+}
+
+.mh-jlt-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  background-color: #f3f0ff;
+  border: 1px solid #d8d0ec;
+  border-radius: 5px;
+}
+
+.mh-jlt-summary-label {
+  font-weight: 700;
+  color: #4b3a8f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mh-jlt-summary-time {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mh-jlt-summary.is-due .mh-jlt-summary-time {
+  color: #b3402a;
+}
+
+.mh-jlt-summary-sub {
+  flex: 1;
+  color: #6f6757;
+  text-align: right;
+}
+
+/* Body + table */
+.mh-jlt-body {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #cfc8b8;
+}
+
+.mh-jlt-empty {
+  padding: 24px 16px;
+  font-style: italic;
+  color: #7a7060;
+  text-align: center;
+}
+
+.mh-jlt-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+.mh-jlt-table thead th {
+  position: sticky;
+  top: 0;
+  padding: 6px 8px;
+  font-weight: 700;
+  color: #fff;
+  text-align: right;
+  background-color: #8678b5;
+}
+
+.mh-jlt-table thead th:nth-child(1),
+.mh-jlt-table thead th:nth-child(2),
+.mh-jlt-table tbody td:nth-child(1),
+.mh-jlt-table tbody td:nth-child(2) {
+  text-align: left;
+}
+
+.mh-jlt-table tbody td {
+  padding: 4px 8px;
+  text-align: right;
+}
+
+.mh-jlt-table tbody tr:nth-child(odd) td {
+  background-color: #f1ede2;
+}
+
+.mh-jlt-table tbody tr:hover td {
+  background-color: #e7e0ff;
+}
+
+.mh-jlt-open {
+  font-weight: 700;
+  color: #4b3a8f;
+}

@@ -1,6 +1,7 @@
 import { addStyles, addSubmenuItem, createPopup, onEvent } from '@utils';
 
 import { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript } from './exporters/export-favorite-setups-userscript';
+import { exportJournalLogs, hasJournalLogs } from './exporters/export-journal-logs';
 import { exportRankupForecaster, hasRankupForecaster } from './exporters/export-rankup-forecaster';
 
 import exportCrowns from './exporters/export-kings-crowns';
@@ -16,7 +17,7 @@ import styles from './styles.css';
 /**
  * Export the data.
  */
-const exportDataPopup = () => {
+const exportDataPopup = async () => {
   const exporters = [
     {
       id: 'mouse-stats-by-group',
@@ -93,6 +94,14 @@ const exportDataPopup = () => {
       id: 'rankup-forecaster-history',
       name: 'Rankup Forecaster History',
       callback: exportRankupForecaster,
+    });
+  }
+
+  if (await hasJournalLogs()) {
+    exporters.push({
+      id: 'journal-logs',
+      name: 'Journal Logs',
+      callback: exportJournalLogs,
     });
   }
 
