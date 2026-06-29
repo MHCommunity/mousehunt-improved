@@ -351,7 +351,11 @@ const init = async () => {
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
-  await getData('upscaled-images');
+  try {
+    await getData('upscaled-images');
+  } catch (error) {
+    console.error('Failed to preload upscaled images:', error); // eslint-disable-line no-console
+  }
 
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
