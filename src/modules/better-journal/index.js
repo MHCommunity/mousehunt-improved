@@ -1,5 +1,6 @@
 import { addStyles, getSetting } from '@utils';
 
+import fullMiceImagesNoBorder from './modules/full-mice-images-no-border';
 import journalFullMiceImages from './modules/journal-full-mice-images';
 import journalGoldAndPoints from './modules/journal-gold-and-points';
 import journalHistory from './modules/journal-history';
@@ -33,6 +34,7 @@ const init = () => {
     history: getSetting('better-journal.journal-history', true),
     tags: getSetting('better-journal.journal-tags', false),
     fullMiceImages: getSetting('better-journal.full-mice-images', false),
+    fullMiceImagesNoBorder: getSetting('experiments.full-mice-images-no-border', false),
   };
 
   const modules = [
@@ -58,6 +60,7 @@ const init = () => {
     { enabled: enabled.history, load: journalHistory },
     { enabled: enabled.tags, load: journalTags },
     { enabled: enabled.fullMiceImages, load: journalFullMiceImages },
+    { enabled: enabled.fullMiceImagesNoBorder, load: fullMiceImagesNoBorder },
   ];
 
   for (const module of modules) {

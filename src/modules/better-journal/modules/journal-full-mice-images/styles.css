@@ -48,7 +48,7 @@
 
 /**
  * Fixes for some mice. might break depending on other module enabled.
- * When adding, also undo it in experiments/modules/full-mice-images-no-border.
+ * When adding, also undo it in better-journal/modules/full-mice-images-no-border.
  */
 .entry.catchsuccess[data-mouse-type="pirate"] .journalimage img,
 .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage img {

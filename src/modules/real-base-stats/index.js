@@ -95,6 +95,8 @@ const init = () => {
 export default {
   id: 'real-base-stats',
   name: 'Real Base Stats',
+  type: 'feature',
+  default: false,
   description: 'Show the upgraded stats for the Denture and Printing bases when in the trap selector.',
   load: init,
 };

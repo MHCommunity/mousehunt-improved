@@ -75,6 +75,11 @@ export default async () => {
         number: 1,
         options: skipBadGiftOptions,
       }
+    },
+    {
+      id: 'experiments.gift-button-opens-gift-selector',
+      title: 'Gift button opens gift selector',
+      default: false,
     }
   ];
 };

@@ -45,6 +45,11 @@ export default async () => {
       title: 'Trap Selector: Move the codex to the bottom of the trap view',
       default: true,
 
+    },
+    {
+      id: 'experiments.consistent-profile-pics',
+      title: 'Square profile pics',
+      default: false,
     }
   ];
 };

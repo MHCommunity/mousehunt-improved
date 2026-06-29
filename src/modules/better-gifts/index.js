@@ -540,11 +540,39 @@ const main = () => {
 };
 
 /**
+ * Make the top-menu 'Gifts' button open the gift selector directly.
+ */
+const setupGiftButtonOpensGiftSelector = () => {
+  const giftButton = document.querySelector('#hgbar_freegifts');
+  if (! giftButton || giftButton.getAttribute('data-gift-selector')) {
+    return;
+  }
+
+  giftButton.setAttribute('data-gift-selector', true);
+
+  giftButton.addEventListener('click', (e) => {
+    const showGiftSelector = hg?.views?.GiftSelectorView?.show;
+    if (typeof showGiftSelector !== 'function') {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    showGiftSelector.call(hg.views.GiftSelectorView);
+  });
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
   addStyles(styles, 'better-gifts');
   main();
+
+  if (getSetting('experiments.gift-button-opens-gift-selector', false)) {
+    setupGiftButtonOpensGiftSelector();
+  }
 
   onDeactivation('better-gifts', () => {
     const buttons = document.querySelectorAll('.mh-gift-buttons');

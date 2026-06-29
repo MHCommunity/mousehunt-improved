@@ -13,6 +13,7 @@ import maintenance from './modules/maintenance';
 import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
+import squareProfilePics from './modules/square-profile-pics';
 import trapGradientBackground from './modules/trap-gradient-background';
 import userscriptStyles from './modules/userscripts-styles';
 
@@ -45,6 +46,7 @@ const init = () => {
     { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
     { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
     { enabled: getSetting('better-ui.trap-gradient-background', false), load: trapGradientBackground },
+    { enabled: getSetting('experiments.consistent-profile-pics', false), load: squareProfilePics },
   ];
 
   for (const module of modules) {

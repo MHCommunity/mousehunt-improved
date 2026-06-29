@@ -14,9 +14,4 @@ const init = async () => {
   }
 };
 
-export default {
-  id: 'experiments.full-mice-images-no-border',
-  name: 'Better Journal: Full mice images (no border)',
-  description: 'Removes the border and attempts to make the image transparent. May have color issues.',
-  load: init,
-};
+export default init;
