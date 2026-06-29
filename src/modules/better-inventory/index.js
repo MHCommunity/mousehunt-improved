@@ -1,6 +1,7 @@
 import {
   addStyles,
   createPopup,
+  getCurrentLocation,
   getCurrentPage,
   getCurrentSubtab,
   getCurrentTab,
@@ -290,166 +291,241 @@ const replaceInventoryView = () => {
   };
 };
 
-let clickHandlers = [];
-const addTrapSorting = async () => {
-  // Remove any existing sort rows to prevent duplicates.
-  const existing = document.querySelectorAll('.mh-inventory-sort-row');
-  if (existing.length) {
-    existing.forEach((el) => {
-      el.remove();
-    });
+const cheeseEffectValues = {
+  'Uber Fresh': 13,
+  'Ultim. Fresh': 12,
+  'Ultimately Fresh': 12,
+  'Insanely Fresh': 11,
+  'Extrmly. Fresh': 10,
+  'Extremely Fresh': 10,
+  'Very Fresh': 9,
+  Fresh: 8,
+  'No Effect': 7,
+  Stale: 6,
+  'Very Stale': 5,
+  'Extrmly. Stale': 4,
+  'Extremely Stale': 4,
+  'Insanely Stale': 3,
+  'Ultim. Stale': 2,
+  'Uber Stale': 1
+};
+
+/**
+ * Read the displayed quantity from an inventory item element.
+ *
+ * @param {Element} el The inventory item element.
+ *
+ * @return {number} The quantity.
+ */
+const getInventoryItemQuantity = (el) => {
+  const qtyEl = el.querySelector('.quantity');
+  if (! qtyEl) {
+    return 0;
   }
 
-  // Remove any existing click handlers to prevent memory leaks.
-  clickHandlers.forEach((handler) => {
-    if (handler && handler.remove) {
-      handler.remove();
-    } else if (handler && handler.removeEventListener) {
-      document.removeEventListener('click', handler);
-    }
-  });
-  clickHandlers = [];
+  const text = (qtyEl.getAttribute('title') || qtyEl.textContent || '').trim().toLowerCase().replaceAll(',', '');
+  const num = Number.parseFloat(text);
+  if (Number.isNaN(num)) {
+    return 0;
+  }
 
+  if (text.includes('m')) {
+    return num * 1_000_000;
+  }
+
+  if (text.includes('k')) {
+    return num * 1000;
+  }
+
+  return num;
+};
+
+let specialEffectItems = null;
+
+/**
+ * Add sorting and filtering controls to the inventory traps tab.
+ */
+const addTrapSorting = async () => {
   const header = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabHeader-container');
   if (! header) {
     return;
   }
 
+  // Load all data up front (before touching the DOM) so that two concurrent
+  // navigations can't both pass the "remove existing row" check and then each
+  // append a row (which produced the duplicated controls).
   const titles = await getData('titles');
+  if (! specialEffectItems) {
+    specialEffectItems = await getData('trap-special-effects');
+  }
+
+  // An item has a special effect if it always does (`all`) or does in the
+  // current location — matching the trap-selector-special-effects module.
+  const specialTypes = new Set([
+    ...(specialEffectItems?.all || []),
+    ...(specialEffectItems?.[getCurrentLocation()] || []),
+  ]);
+
+  // Remove any existing controls (this also drops their click listeners).
+  document.querySelectorAll('.mh-inventory-sort-row').forEach((el) => el.remove());
+
+  let itemClass = getCurrentSubtab();
+  if ('traps' === itemClass) {
+    itemClass = 'base';
+  }
+
+  const listingSelector = `.inventoryPage-tagContent-listing .inventoryPage-item.${itemClass}`;
+
+  const getEntries = () => [...document.querySelectorAll(listingSelector)].map((el) => {
+    const type = el.getAttribute('data-item-type');
+    return { el, type, item: items.find((i) => i.type === type) };
+  });
+
+  // --- Filters ---
+  const filters = { le: 'all', effects: 'all' };
+
+  const applyFilters = () => {
+    getEntries().forEach(({ el, type, item }) => {
+      const leOk = filters.le === 'all' ||
+        (filters.le === 'le' ? Boolean(item?.is_limited_edition) : ! item?.is_limited_edition);
+      const effectsOk = filters.effects === 'all' ||
+        (filters.effects === 'special' ? specialTypes.has(type) : ! specialTypes.has(type));
+
+      el.classList.toggle('mh-inventory-item-hidden', ! (leOk && effectsOk));
+    });
+  };
+
+  // --- Sorting ---
+  const compare = (a, b, sortType) => {
+    if (sortType === 'name') {
+      return (a.item?.name || '').localeCompare(b.item?.name || '');
+    }
+
+    if (sortType === 'min_title') {
+      const aTitle = titles.find((t) => t.id === a.item?.has_stats?.min_title)?.order || 0;
+      const bTitle = titles.find((t) => t.id === b.item?.has_stats?.min_title)?.order || 0;
+      return aTitle - bTitle;
+    }
+
+    if (sortType === 'cheese_effect') {
+      return (cheeseEffectValues[a.item?.has_stats?.cheese_effect] || 0) - (cheeseEffectValues[b.item?.has_stats?.cheese_effect] || 0);
+    }
+
+    if (sortType === 'quantity') {
+      return getInventoryItemQuantity(a.el) - getInventoryItemQuantity(b.el);
+    }
+
+    const statValue = (entry) => {
+      let value = Number.parseFloat(entry.item?.has_stats?.[sortType] || 0);
+      if (! value || Number.isNaN(value)) {
+        const text = entry.item?.has_stats?.[`${sortType}_formatted`] || '0';
+        value = Number.parseFloat(text.replace('%', '')) || 0;
+      }
+      return value || 0;
+    };
+
+    return statValue(a) - statValue(b);
+  };
+
+  const doSort = (sortType, order) => {
+    const entries = getEntries();
+    if (! entries.length) {
+      return;
+    }
+
+    const container = entries[0].el.parentElement;
+    if (! container) {
+      return;
+    }
+
+    entries.sort((a, b) => {
+      const result = compare(a, b, sortType);
+      return order === 'asc' ? result : -result;
+    });
+
+    entries.forEach(({ el }) => container.append(el));
+  };
+
+  // --- Build the controls ---
+  const sortRow = makeElement('div', 'mh-inventory-sort-row');
+
+  const sortGroup = makeElement('div', 'mh-inventory-control-group', '', sortRow);
+  makeElement('span', 'mh-inventory-control-label', 'Sort', sortGroup);
 
   const sortTypes = [
     { name: 'Name', type: 'name' },
-    { name: 'Title', type: 'min_title' },
     { name: 'Power', type: 'power' },
     { name: 'Power Bonus', type: 'power_bonus' },
     { name: 'Luck', type: 'luck' },
     { name: 'Attraction Bonus', type: 'attraction_bonus' },
+    { name: 'Title', type: 'min_title' },
+    { name: 'Quantity', type: 'quantity' },
     { name: 'Cheese Effect', type: 'cheese_effect' },
   ];
 
-  const cheeseEffectValues = {
-    'Uber Fresh': 13,
-    'Ultim. Fresh': 12,
-    'Ultimately Fresh': 12,
-    'Insanely Fresh': 11,
-    'Extrmly. Fresh': 10,
-    'Extremely Fresh': 10,
-    'Very Fresh': 9,
-    Fresh: 8,
-    'No Effect': 7,
-    Stale: 6,
-    'Very Stale': 5,
-    'Extrmly. Stale': 4,
-    'Extremely Stale': 4,
-    'Insanely Stale': 3,
-    'Ultim. Stale': 2,
-    'Uber Stale': 1
-  };
-
-  const sortRow = makeElement('div', 'mh-inventory-sort-row');
-  for (const type of sortTypes) {
-    // Only weapons have a power type.
-    if ('weapon' !== getCurrentSubtab() && 'power_type' === type.type) {
-      continue;
-    }
-
-    const sortButton = makeMhButton({
-      text: type.name,
+  const sortButtons = [];
+  sortTypes.forEach((sortDef) => {
+    const button = makeMhButton({
+      text: sortDef.name,
       className: ['mh-inventory-sort-button', 'lightBlue'],
-      appendTo: sortRow,
+      appendTo: sortGroup,
     });
+    sortButtons.push(button);
 
-    sortButton.setAttribute('data-sort-type', type.type);
-    sortButton.setAttribute('data-sort-order', 'desc');
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
 
-    const handler = sortButton.addEventListener('click', (e) => {
-      const currentOrder = sortButton.getAttribute('data-sort-order');
-      const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
-      sortButton.setAttribute('data-sort-order', newOrder);
+      const isActive = button.classList.contains('active');
+      const order = isActive && button.getAttribute('data-sort-order') === 'desc' ? 'asc' : 'desc';
 
-      e.preventDefault();
-
-      let currentType = getCurrentSubtab();
-      if ('traps' === currentType) {
-        currentType = 'base';
-      }
-
-      const elsToSort = document.querySelectorAll(`.inventoryPage-tagContent-listing .inventoryPage-item.${currentType}`);
-      if (! elsToSort.length) {
-        return;
-      }
-
-      const container = elsToSort[0].parentElement;
-      if (! container) {
-        return;
-      }
-
-      // Use the global items variable
-      const itemsToSort = [];
-      elsToSort.forEach((el) => {
-        const itemType = el.getAttribute('data-item-type');
-        if (itemType) {
-          const theItem = items.find((i) => i.type === itemType);
-          if (theItem) {
-            itemsToSort.push(theItem);
-          }
+      sortButtons.forEach((other) => {
+        other.classList.toggle('active', other === button);
+        if (other !== button) {
+          other.removeAttribute('data-sort-order');
         }
       });
+      button.setAttribute('data-sort-order', order);
 
-      const sortType = sortButton.getAttribute('data-sort-type');
-
-      const sortedItems = [...itemsToSort].sort((a, b) => {
-        let result = 0;
-
-        if (sortType === 'name') {
-          result = (a?.name || '').localeCompare(b?.name || '');
-        } else if (sortType === 'min_title') {
-          const aTitle = titles.find((t) => t.id === a?.has_stats?.min_title)?.order || 0;
-          const bTitle = titles.find((t) => t.id === b?.has_stats?.min_title)?.order || 0;
-
-          result = aTitle - bTitle;
-        } else if (sortType === 'power_type') {
-          result = (a?.power_type || '').localeCompare(b?.power_type || '');
-        } else if (sortType === 'cheese_effect') {
-          const aEffect = cheeseEffectValues[a?.has_stats?.cheese_effect] || 0;
-          const bEffect = cheeseEffectValues[b?.has_stats?.cheese_effect] || 0;
-
-          result = aEffect - bEffect;
-        } else {
-          let aValue = Number.parseFloat(a?.has_stats?.[sortType] || 0);
-          let bValue = Number.parseFloat(b?.has_stats?.[sortType] || 0);
-
-          if (! aValue || Number.isNaN(aValue)) {
-            const atext = a?.has_stats?.[`${sortType}_formatted`] || '0';
-            aValue = Number.parseFloat(atext.replace('%', '')) || 0;
-          }
-
-          if (! bValue || Number.isNaN(bValue)) {
-            const btext = b?.has_stats?.[`${sortType}_formatted`] || '0';
-            bValue = Number.parseFloat(btext.replace('%', '')) || 0;
-          }
-
-          aValue = aValue || 0;
-          bValue = bValue || 0;
-
-          result = aValue - bValue;
-        }
-
-        return newOrder === 'asc' ? result : -result;
-      });
-
-      clickHandlers.push(handler);
-
-      // Move the sorted items in the DOM
-      sortedItems.forEach((item) => {
-        const itemType = item.type;
-        const itemEl = container.querySelector(`.inventoryPage-item[data-item-type="${itemType}"]`);
-        if (itemEl) {
-          container.append(itemEl);
-        }
-      });
+      doSort(sortDef.type, order);
     });
-  }
+  });
+
+  const filterGroup = makeElement('div', 'mh-inventory-control-group', '', sortRow);
+  makeElement('span', 'mh-inventory-control-label', 'Filter', filterGroup);
+
+  const filterDefs = [
+    { group: 'le', value: 'le', name: 'LE' },
+    { group: 'le', value: 'non-le', name: 'Non-LE' },
+    { group: 'effects', value: 'special', name: 'Special' },
+    { group: 'effects', value: 'normal', name: 'Normal' },
+  ];
+
+  const filterButtons = [];
+  filterDefs.forEach((filterDef) => {
+    const button = makeMhButton({
+      text: filterDef.name,
+      className: ['mh-inventory-filter-button', 'lightBlue'],
+      appendTo: filterGroup,
+    });
+    button.setAttribute('data-filter-group', filterDef.group);
+    button.setAttribute('data-filter-value', filterDef.value);
+    filterButtons.push(button);
+
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      // Toggle: clicking the active value clears the group; otherwise select it.
+      filters[filterDef.group] = filters[filterDef.group] === filterDef.value ? 'all' : filterDef.value;
+
+      filterButtons.forEach((other) => {
+        if (other.getAttribute('data-filter-group') === filterDef.group) {
+          other.classList.toggle('active', other.getAttribute('data-filter-value') === filters[filterDef.group]);
+        }
+      });
+
+      applyFilters();
+    });
+  });
 
   header.append(sortRow);
 };

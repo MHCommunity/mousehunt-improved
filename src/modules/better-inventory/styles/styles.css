@@ -697,8 +697,43 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .mh-inventory-sort-row {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 6px 18px;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 6px;
+}
+
+.mh-inventory-control-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.mh-inventory-control-label {
+  margin-right: 3px;
+  font-weight: 700;
+}
+
+a.mh-inventory-sort-button.mousehuntActionButton,
+a.mh-inventory-filter-button.mousehuntActionButton {
+  margin: 0;
+}
+
+.mh-inventory-sort-button.active,
+.mh-inventory-filter-button.active {
+  box-shadow: 0 0 0 2px #2b6cb0;
+}
+
+.mh-inventory-sort-button.active[data-sort-order="desc"] span::after {
+  content: " ▼";
+}
+
+.mh-inventory-sort-button.active[data-sort-order="asc"] span::after {
+  content: " ▲";
+}
+
+.inventoryPage-item.mh-inventory-item-hidden {
+  display: none;
 }
