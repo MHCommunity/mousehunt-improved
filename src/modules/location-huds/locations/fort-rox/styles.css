@@ -302,8 +302,8 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
   border-radius: 6px;
 }
 
-.fortRoxHUD-baitContainer .fortRoxHUD-item.mh-frox-bait-clickable,
-.fortRoxHUD-baitContainer .fortRoxHUD-item.mh-frox-bait-clickable .fortRoxHUD-item-thumb,
-.fortRoxHUD-baitContainer .fortRoxHUD-item.mh-frox-bait-clickable .fortRoxHUD-item-boundingBox {
+.fortRoxHUD-baitContainer .fortRoxHUD-item,
+.fortRoxHUD-baitContainer .fortRoxHUD-item .fortRoxHUD-item-thumb,
+.fortRoxHUD-baitContainer .fortRoxHUD-item .fortRoxHUD-item-boundingBox {
   cursor: pointer;
 }
