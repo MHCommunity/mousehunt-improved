@@ -9,7 +9,29 @@ const database = async (databaseName) => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(`mh-improved-${databaseName}`, 7);
 
-    request.onerror = (event) => reject(event.target.error);
+    request.onerror = (event) => {
+      const error = event.target.error;
+
+      // A VersionError means a newer build (in another tab or a stale worker)
+      // already upgraded this database to a higher version than we requested.
+      // Resolve to null so callers degrade gracefully (return defaults) instead
+      // of throwing an unhandled exception during boot.
+      if (error && 'VersionError' === error.name) {
+        console.warn(`Skipping IndexedDB "${databaseName}": ${error.message}`); // eslint-disable-line no-console
+        resolve(null);
+        return;
+      }
+
+      reject(error);
+    };
+
+    // Another connection is blocking the upgrade (e.g. an older tab still open).
+    // Resolve to null rather than hanging or surfacing an error.
+    request.onblocked = () => {
+      console.warn(`IndexedDB "${databaseName}" upgrade blocked by another connection.`); // eslint-disable-line no-console
+      resolve(null);
+    };
+
     request.onsuccess = (event) => resolve(event.target.result);
 
     /**
@@ -54,18 +76,11 @@ const databaseDelete = async (databaseName) => {
  */
 const dbGet = async (databaseName, id) => {
   const db = await database(databaseName);
+  if (! db) {
+    return;
+  }
 
   const transaction = db.transaction(databaseName, 'readonly');
-
-  /**
-   * On error event.
-   *
-   * @param {Event} event The event object.
-   */
-  transaction.onerror = (event) => {
-    throw new Error(event.target.error);
-  };
-
   const objectStore = transaction.objectStore(databaseName);
   const request = objectStore.get(id);
 
@@ -75,7 +90,12 @@ const dbGet = async (databaseName, id) => {
       resolve(event.target.result);
     };
 
+    // Reject (rather than throw) on transaction-level failures so callers can
+    // handle them. Throwing inside an IndexedDB event handler escapes to the
+    // event loop as an unhandled exception instead of rejecting this promise.
     request.onerror = (event) => reject(event.target.error);
+    transaction.onerror = (event) => reject(event.target.error);
+    transaction.onabort = (event) => reject(event.target.error);
   });
 };
 
@@ -89,6 +109,9 @@ const dbGet = async (databaseName, id) => {
  */
 const dbSet = async (databaseName, data) => {
   const db = await database(databaseName);
+  if (! db) {
+    return;
+  }
 
   const transaction = db.transaction(databaseName, 'readwrite');
   const objectStore = transaction.objectStore(databaseName);
@@ -117,6 +140,9 @@ const dbSet = async (databaseName, data) => {
  */
 const dbDelete = async (databaseName, id) => {
   const db = await database(databaseName);
+  if (! db) {
+    return;
+  }
 
   const transaction = db.transaction(databaseName, 'readwrite');
   const objectStore = transaction.objectStore(databaseName);
@@ -139,6 +165,9 @@ const dbDelete = async (databaseName, id) => {
  */
 const dbGetAll = async (databaseName) => {
   const db = await database(databaseName);
+  if (! db) {
+    return [];
+  }
 
   const transaction = db.transaction(databaseName, 'readonly');
   const objectStore = transaction.objectStore(databaseName);
@@ -161,6 +190,10 @@ const dbGetAll = async (databaseName) => {
  */
 const dbGetCount = async (databaseName) => {
   const db = await database(databaseName);
+  if (! db) {
+    return 0;
+  }
+
   const transaction = db.transaction(databaseName, 'readonly');
   const objectStore = transaction.objectStore(databaseName);
   const request = objectStore.count();
@@ -181,6 +214,9 @@ const dbGetCount = async (databaseName) => {
  */
 const dbDeleteAll = async (databaseName) => {
   const db = await database(databaseName);
+  if (! db) {
+    return;
+  }
 
   const transaction = db.transaction(databaseName, 'readwrite');
   const objectStore = transaction.objectStore(databaseName);
