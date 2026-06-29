@@ -1,0 +1,119 @@
+/* Kept in the layout (so switching tabs doesn't shift things) but hidden. */
+.mhui-hidden {
+  visibility: hidden;
+}
+
+.mhui-marketplace-total-value {
+  padding-top: 4px;
+  font-weight: 600;
+  color: #333;
+  white-space: pre-line;
+}
+
+/* Browse filters — grouped to the right of the existing checkboxes. */
+.mhui-marketplace-filters {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  vertical-align: bottom;
+}
+
+.mhui-marketplace-filters .mhui-marketplace-filter {
+  order: 1;
+}
+
+.mhui-marketplace-filters .mhui-marketplace-trap-filter {
+  order: 2;
+}
+
+select.mhui-marketplace-trap-filter {
+  max-width: 135px;
+  margin-right: -25px;
+}
+
+/* On the Skins tab, shrink the listings filter so the trap filter fits. */
+.mhui-marketplace-filters.mhui-has-trap-filter .mhui-marketplace-filter {
+  width: 140px;
+}
+
+.marketplaceView-table tr.mhui-trap-hidden {
+  display: none;
+}
+
+/* Last viewed item highlight */
+.marketplaceView-table tr.mhui-marketplace-last-viewed,
+.marketplaceView-table tr.mhui-marketplace-last-viewed:nth-child(odd) {
+  background-color: #d6eba1;
+}
+
+/* Quick price links — label on its own row, then aligned step : price columns. */
+.mhui-marketplace-price-links {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1px 5px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.mhui-marketplace-price-links-label {
+  grid-column: 1 / -1;
+  margin-bottom: 2px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* The link is a layout pass-through so its two spans become the grid cells,
+   keeping the steps and prices in tidy aligned columns. */
+a.mhui-marketplace-price-link {
+  display: contents;
+  cursor: pointer;
+}
+
+.mhui-marketplace-price-step,
+.mhui-marketplace-price-value {
+  color: #156fb5;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mhui-marketplace-price-step {
+  text-align: right;
+}
+
+.mhui-marketplace-price-value {
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+a.mhui-marketplace-price-link:hover .mhui-marketplace-price-step,
+a.mhui-marketplace-price-link:hover .mhui-marketplace-price-value {
+  text-decoration: underline;
+}
+
+/* Quick quantity buttons under the quantity input. */
+.mhui-marketplace-quantity-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+a.mhui-marketplace-quantity-link.mousehuntActionButton {
+  margin: 0;
+}
+
+/* The "All" quick button replaces the game's "Sell All" suggestion. */
+.marketplaceView-item-input.quantity .marketplaceView-item-state.sell .marketplaceView-item-input-suggested > a {
+  display: none;
+}
+
+/* The quantity cell is clickable to set the order quantity. */
+.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity {
+  cursor: pointer;
+}
+
+/* Hide the listings "Info" (10% tariff) button — the tariff is shown inline. */
+.marketplaceHome-block-viewAll.mousehuntTooltipParent {
+  display: none;
+}

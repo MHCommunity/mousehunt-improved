@@ -4,13 +4,14 @@
   gap: 6px;
   align-items: center;
   justify-content: center;
-  width: 180px;
+  width: 155px;
   max-width: 200px;
   padding: 10px;
   margin: 10px 0;
   background-color: #e9e1c6;
   border: 1px solid #b0a97a;
   border-radius: 5px;
+  position: absolute;
 }
 
 input.mhui-marketplace-quick-sell-quantity {

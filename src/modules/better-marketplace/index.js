@@ -11,8 +11,11 @@ import {
   waitForElement
 } from '@utils';
 
+import { enhanceBrowseTable, ensureFilterWrapper } from './browse';
+import { enhanceItemView } from './listing';
 import settings from './settings';
 
+import extras from './styles/extras.css';
 import quickSellStyles from './styles/quick-sell.css';
 import smallImages from './styles/small-images.css';
 import styles from './styles/styles.css';
@@ -178,7 +181,7 @@ const autocloseClaim = (resp) => {
     return;
   }
 
-  const journalEntry = resp?.journal_markup[0]?.render_data?.css_class;
+  const journalEntry = resp?.journal_markup?.[0]?.render_data?.css_class;
   if (! journalEntry || journalEntry === '') {
     return;
   }
@@ -226,16 +229,20 @@ const overloadShowItem = () => {
    * @param {boolean} force                      Whether to force the action.
    */
   hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
-    // allow toggling of buy/sell
+    _originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
+
+    // Allow toggling buy/sell by clicking the type indicator. Bind after the
+    // render (so the element exists), once per rendered button, and route
+    // through the wrapped showItem so our enhancements refresh for the new
+    // action type.
     const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
-    if (actionButton) {
+    if (actionButton && ! actionButton.dataset.mhuiToggleBound) {
+      actionButton.dataset.mhuiToggleBound = 'true';
       actionButton.addEventListener('click', () => {
         const actionType = actionButton.classList.contains('buy') ? 'sell' : 'buy';
-        _originalShowItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, force);
+        hg.views.MarketplaceView.showItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, true);
       });
     }
-
-    _originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
 
     const actions = document.querySelector('.marketplaceView-item-titleActions');
     if (! actions) {
@@ -256,49 +263,37 @@ const overloadShowItem = () => {
     if (getSetting('better-marketplace.quick-sell')) {
       addQuickSellButton(itemId);
     }
+
+    enhanceItemView(itemId);
   };
 };
 
 /**
- * Wait for the footer to be ready before modifying it.
- *
- * @param {number} attempts The number of attempts made.
+ * Make each listing's quantity cell set the order quantity when clicked.
  */
-const waitForFooterReady = (attempts = 0) => {
-  const opts = document.querySelectorAll('.marketplaceView-table-listing-quantity');
-  let timeoutPending = false;
-
-  // if there are no options, try again
-  if (! (opts && opts.length > 0)) {
-    if (attempts < 10) {
-      timeoutPending = setTimeout(() => updateQuantityButtons(attempts + 1), 300);
-    }
+const addListingQuantityClicks = async () => {
+  const cells = await waitForElement('.marketplaceView-table-listing-quantity', { single: false });
+  if (! cells) {
     return;
   }
 
-  // if we have a timeout pending, clear it
-  if (timeoutPending) {
-    clearTimeout(timeoutPending);
-  }
+  cells.forEach((order) => {
+    if (order.dataset.mhuiQuantityClick) {
+      return;
+    }
+    order.dataset.mhuiQuantityClick = 'true';
 
-  // wait another 300ms to make sure it's ready
-  setTimeout(() => {
-    opts.forEach((order) => {
-      order.addEventListener('click', () => {
-        let quantity = order.innerHTML;
+    order.addEventListener('click', () => {
+      // Other features may append extra lines to the cell; use the first one.
+      const [first] = order.textContent.split('\n');
+      const quantity = Number.parseInt(first.replaceAll(',', ''), 10);
+      if (! quantity || Number.isNaN(quantity)) {
+        return;
+      }
 
-        // Marketplace tweaks adds content to the element so we need to remove it.
-        const brIndex = quantity.indexOf('<br>');
-        quantity = brIndex === -1 ? quantity.trim() : quantity.slice(0, Math.max(0, brIndex)).trim();
-        quantity = Number.parseInt(quantity.replaceAll(',', ''), 10);
-        if (! quantity || Number.isNaN(quantity)) {
-          return;
-        }
-
-        hg.views.MarketplaceView.setOrderQuantity(quantity);
-      });
+      hg.views.MarketplaceView.setOrderQuantity(quantity);
     });
-  }, 300);
+  });
 };
 
 /**
@@ -353,7 +348,11 @@ const replaceShowBrowseCategory = () => {
       addChartToCategories();
     }
 
-    filterListings();
+    enhanceBrowseTable();
+
+    if (getSetting('better-marketplace.filter-listings', true)) {
+      filterListings();
+    }
   };
 
   _showBrowser = hg.views.MarketplaceView.showBrowser;
@@ -370,6 +369,8 @@ const replaceShowBrowseCategory = () => {
       addChartToCategories();
     }
 
+    enhanceBrowseTable();
+
     if (getSetting('better-marketplace.filter-listings', true)) {
       filterListings();
     }
@@ -377,8 +378,8 @@ const replaceShowBrowseCategory = () => {
 };
 
 const filterListings = async () => {
-  const filterContainer = document.querySelector('.marketplaceView-browse-filterContainer');
-  if (! filterContainer) {
+  const wrapper = ensureFilterWrapper();
+  if (! wrapper) {
     return;
   }
 
@@ -405,7 +406,12 @@ const filterListings = async () => {
         return;
       }
 
-      const nameText = name.textContent.replace('SUPER|brie+', 'sb SUPER|brie+').toLowerCase();
+      let nameText = name.textContent.replace('SUPER|brie+', 'sb SUPER|brie+').toLowerCase();
+
+      // Include the base trap name so skins can be filtered by their trap.
+      if (item.dataset.mhuiTrap) {
+        nameText += ` ${item.dataset.mhuiTrap}`;
+      }
 
       if (nameText.includes(filterValue)) {
         item.classList.remove('hidden');
@@ -417,7 +423,7 @@ const filterListings = async () => {
     });
   }, 300));
 
-  filterContainer.prepend(filter);
+  wrapper.append(filter);
 };
 
 let _showMyListings = null;
@@ -450,7 +456,7 @@ const getBestSellPrice = () => {
     return 0;
   }
 
-  return priceEl ? Number.parseInt(priceEl.textContent.replaceAll(',', '')) : 0;
+  return Number.parseInt(priceEl.textContent.replaceAll(',', ''), 10);
 };
 
 const getBestSellQuantity = () => {
@@ -464,7 +470,7 @@ const getBestSellQuantity = () => {
     return 0;
   }
 
-  return quantityEl ? Number.parseInt(quantityEl.textContent.replaceAll(',', '')) : 0;
+  return Number.parseInt(quantityEl.textContent.replaceAll(',', ''), 10);
 };
 
 const addQuickSellButton = async (itemId) => {
@@ -480,15 +486,13 @@ const addQuickSellButton = async (itemId) => {
 
   await waitForElement('.marketplaceView-table .bestPrice');
 
-  // if (#infoboxPrice)
+  // The left block has an "Average price:" and a "You own:" block; find the
+  // latter by its label rather than a positional selector (which breaks when
+  // the markethunt userscript injects extra nodes).
+  const ownBlock = [...document.querySelectorAll('.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice')]
+    .find((el) => el.textContent.includes('You own'));
 
-  let quantitySelector = '.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(3) span';
-  const hasMarkethuntScript = document.querySelector('#chartArea');
-  if (hasMarkethuntScript) {
-    quantitySelector = '.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(2) span';
-  }
-
-  const maxQuantityEl = document.querySelector(quantitySelector);
+  const maxQuantityEl = ownBlock?.querySelector('span');
   if (! maxQuantityEl) {
     return;
   }
@@ -626,6 +630,7 @@ let marketplaceData;
 const init = () => {
   addStyles([
     styles,
+    extras,
     getSetting('better-marketplace.small-images') ? smallImages : '',
     getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
     getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
@@ -652,7 +657,7 @@ const init = () => {
     }
   });
   onRequest('users/marketplace.php', autocloseClaim);
-  onRequest('users/marketplace.php', waitForFooterReady, true);
+  onRequest('users/marketplace.php', () => addListingQuantityClicks(), true);
 };
 
 /**

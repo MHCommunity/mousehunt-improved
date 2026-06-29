@@ -40,12 +40,6 @@ const init = () => {
       load: () => {}
     },
     {
-      id: 'better-marketplace.quick-sell',
-      name: 'Better Marketplace: Quick sell',
-      description: 'Add a quick sell input and button to marketplace item views for faster selling.',
-      load: () => {}
-    },
-    {
       id: 'better-inventory.add-trap-sorting',
       name: 'Better Inventory: Add trap sorting',
       description: 'Add sorting options for traps in the inventory.',
