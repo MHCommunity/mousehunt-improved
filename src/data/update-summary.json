@@ -1,47 +1,48 @@
 {
-  "summary": "This update adds new Fabled HUD max title beta features, an Explore Map mode for Better Travel, expanded Folklore Forest map sorting and Ultimate Checkmark data, and a batch of UI improvements, bug fixes, and reliability updates.",
+  "summary": "This update adds a new \"Gifts in Inbox\" feature that collects recently discovered gift links into a dedicated inbox tab, a batch of Better Marketplace tools (value & trap columns, quick price links, and tariff info), improvements to Paste Hunter ID and Better Journal loot parsing, and a batch of style and reliability fixes.",
   "details": [
     {
-      "title": "Fabled HUD Max Title Beta Features",
+      "title": "Gifts in Inbox",
       "items": [
-        "Added a \"HUD: Show random max title text\" beta feature that cycles through a variety of fun and silly custom max title texts",
-        "Added a \"HUD: Show custom max title text\" beta feature that allows you to set your own custom max title text",
-        "Added a \"HUD: Show progress bar at max title\" beta feature that keeps the progress bar visible at max title instead of replacing it with the max title text",
-        "Added a \"fake-fabled\" feature flag that enables the Fabled HUD beta features and replaces the progress bar with max title text for all ranks"
+        "Added a new feature that adds recently discovered MouseHunt gift links to a \"Gift Links\" tab in the inbox for easy claiming",
+        "Tracks which links you've claimed or hidden so the list stays manageable"
       ]
     },
     {
-      "title": "Better Travel",
+      "title": "Better Marketplace",
       "items": [
-        "Added an \"Explore Map\" beta feature that hides location markers and travel details, as well as resets certain areas to the base map until you hover over them",
-        "Added Folklore Forest Grand Tour and Folklore Forest Finale sorting data for maps",
-        "Fixed travel menu handling when the current location is not present in the menu"
+        "Added a sortable \"Value\" column (owned × average price) and a total estimated value readout when browsing a category",
+        "Added a \"Filter by trap\" dropdown to the Skins category so you can narrow skins to a single base trap",
+        "Added quick \"Undercut\"/\"Overbid\" price links, quick quantity buttons, and a \"Sell All But One\" link to the item listing view",
+        "Added a raw/tax breakdown to order rows and highlighting of the last item you viewed in each category"
       ]
     },
     {
-      "title": "Ultimate Checkmark",
+      "title": "Paste Hunter ID",
       "items": [
-        "Added Folklore Forest Grand Tour and Folklore Forest Finale treasure chests",
-        "Added Folklore Motif-Index: Hydro, Law, and Tactical codexes",
-        "Added Dragon's Eye, Kalor'ignis Rib, Fort Rox Portal Console & Core, Idea Germ, Pearl of Wisdom, Rainbow Nib, Warpath Portal Console & Core to Currency",
-        "Good luck!"
+        "Added support for pasting a full \"profile.php?snuid=\" link to go directly to that hunter's profile",
+        "Works with both numeric and hashed snuid values"
       ]
     },
     {
-      "title": "Location HUDs",
+      "title": "Better Journal",
       "items": [
-        "Updated Conclusion Cliffs styles",
-        "Updated Floating Islands styles",
-        "Updated Fort Rox styles",
-        "Updated Iceberg styles",
-        "Updated a few other Location HUD styles and edge cases"
+        "Added a generic loot list fallback to parse bullet-separated loot entries, such as Spotlight Enchantment and \"found an additional\" entries"
+      ]
+    },
+    {
+      "title": "Better UI",
+      "items": [
+        "Added the new \"Gift Links\" tab to the inbox and reordered the inbox tabs",
+        "Updated gift claim and inbox styles"
       ]
     },
     {
       "title": "Other",
       "items": [
-        "Improved performance, memory usage, and reliability across various modules and utilities",
-        "Miscellaneous UI improvements and bug fixes across various modules"
+        "Image Upscaling & Transparency: Fixed images not being re-upscaled when the game re-renders an entry back to its original image",
+        "Location HUDs - Fort Rox: Updated styles",
+        "Miscellaneous UI improvements and bug fixes"
       ]
     }
   ]

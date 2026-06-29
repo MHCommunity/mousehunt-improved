@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 0.98.0
+
+- Added "Gifts in Inbox" feature that adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming
+- Better Marketplace: Added a sortable "Value" column (owned × average price) and a total estimated value readout when browsing a category
+- Better Marketplace: Added a "Filter by trap" dropdown to the Skins category so you can narrow skins to a single base trap
+- Better Marketplace: Added quick "Undercut"/"Overbid" price links and quick quantity buttons (1, 10, 100, and 10%/All when selling) to the item listing view
+- Better Marketplace: Added a raw/tax breakdown to order rows, shown on hover
+- Better Marketplace: Added highlighting and auto-scroll to the last item you viewed in each category
+- Better Marketplace: Fixed the buy/sell toggle not refreshing the listing view and an error on non-claim responses, and improved reliability and selector robustness
+- Better Inventory: Reworked trap sorting with active sort indicators, added "LE/Non-LE" and "Special/Normal" filters, and fixed the sort controls being added twice
+- Better Maps: Fixed map updates not detecting goal changes, so the sidebar and related views refresh correctly
+- Moved several beta features to normal settings: Better Marketplace "Quick sell", Better Journal "Full mice images (no border)", Better UI "Square profile pics", Better Gifts "Gift button opens gift selector", and "Real Base Stats"
+- Paste Hunter ID: Added support for pasting a full `profile.php?snuid=` link to go directly to that hunter's profile
+- Better Journal: Added a generic loot list fallback to parse bullet-separated loot entries (such as Spotlight Enchantment and "found an additional" entries)
+- Image Upscaling & Transparency: Fixed images not being re-upscaled when the game re-renders an entry back to its original image
+- Better UI: Added the new "Gift Links" tab to the inbox, reordered inbox tabs, and updated gift claim and inbox styles
+- Location HUDs - Fort Rox: Added per-phase hunt counts to the night timeline, made the bait cheeses clickable to equip/unequip, and updated styles
+
 ## Version 0.97.1
 
 - Fixed 'Show Adventure Book' menu item not opening adventure book
