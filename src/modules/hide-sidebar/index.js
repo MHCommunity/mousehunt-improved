@@ -1,4 +1,10 @@
-import { addBodyClass, addStyles, onDeactivation, removeBodyClass } from '@utils';
+import {
+  addBodyClass,
+  addStyles,
+  makeElement,
+  onDeactivation,
+  removeBodyClass
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -11,10 +17,7 @@ const moveSidebar = () => {
   }
 
   // Create menu tab.
-  const menuTab = document.createElement('div');
-  menuTab.classList.add('menuItem');
-  menuTab.classList.add('dropdown');
-  menuTab.classList.add('sidebar');
+  const menuTab = makeElement('div', ['menuItem', 'dropdown', 'sidebar']);
 
   // Register click event listener.
   menuTab.addEventListener('click', () => {
@@ -26,12 +29,10 @@ const moveSidebar = () => {
   menuTabTitle.innerText = 'Sidebar';
 
   // Make arrow div.
-  const menuTabArrow = document.createElement('div');
-  menuTabArrow.classList.add('arrow');
+  const menuTabArrow = makeElement('div', 'arrow');
 
   // Create menu tab dropdown.
-  const dropdownContent = document.createElement('div');
-  dropdownContent.classList.add('dropdownContent');
+  const dropdownContent = makeElement('div', 'dropdownContent');
 
   // Grab sidebar content.
   const sidebarUser = document.querySelector('.pageSidebarView-user');
@@ -43,8 +44,7 @@ const moveSidebar = () => {
 
   const scoreBoardRankings = document.querySelectorAll('.scoreboardRelativeRankingTableView-table');
   if (scoreBoardRankings) {
-    const scoreBoardRankingWrapper = document.createElement('div');
-    scoreBoardRankingWrapper.classList.add('scoreboardRankingsWrapper');
+    const scoreBoardRankingWrapper = makeElement('div', 'scoreboardRankingsWrapper');
 
     // for each scoreBoardRanking in scoreBoardRankings, append
     scoreBoardRankings.forEach((scoreBoardRanking) => {

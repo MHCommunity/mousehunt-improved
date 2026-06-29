@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation } from '@utils';
+import { addHudStyles, getCurrentLocation, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -26,8 +26,7 @@ const updateClosingTime = () => {
     timeLeftText = `${hours}h ${minutes}m remaining`;
   }
 
-  const timeLeftEl = document.createElement('div');
-  timeLeftEl.classList.add('forbiddenGroveHUD-grovebar-timeLeft');
+  const timeLeftEl = makeElement('div', 'forbiddenGroveHUD-grovebar-timeLeft');
   timeLeftEl.innerText = timeLeftText;
 
   return timeLeftEl;

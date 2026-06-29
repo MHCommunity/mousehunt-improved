@@ -54,8 +54,7 @@ const addLinks = (id) => {
     currentLinks.remove();
   }
 
-  const div = document.createElement('div');
-  div.classList.add('mh-ui-mouse-links');
+  const div = makeElement('div', 'mh-ui-mouse-links');
   div.innerHTML = getLinkMarkup(title.innerText, id);
   title.parentNode.insertBefore(div, title);
 

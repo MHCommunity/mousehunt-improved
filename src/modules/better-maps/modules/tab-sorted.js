@@ -300,8 +300,7 @@ const makeSortedMiceList = async () => {
       // if there are items in addToSubCat for this subcategory, then add them
       if (addToSubCat[subcategory.id] && addToSubCat[subcategory.id].length > 0) {
         // make a subcategory wrapper
-        const subcategoryWrapper = document.createElement('div');
-        subcategoryWrapper.classList.add('mouse-subcategory-wrapper', `mouse-subcategory-${subcategory.id}`);
+        const subcategoryWrapper = makeElement('div', ['mouse-subcategory-wrapper', `mouse-subcategory-${subcategory.id}`]);
 
         if (subcategory.color) {
           subcategoryWrapper.style.backgroundColor = subcategory.color;

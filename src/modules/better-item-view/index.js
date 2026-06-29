@@ -46,8 +46,7 @@ const addLinks = (itemId) => {
     currentLinks.remove();
   }
 
-  const div = document.createElement('div');
-  div.classList.add('mh-item-links');
+  const div = makeElement('div', 'mh-item-links');
   div.innerHTML = getLinkMarkup(title.innerText, itemId);
   title.append(div);
 

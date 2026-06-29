@@ -126,8 +126,7 @@ const addLanternReminder = () => {
 
       const labyHud = document.querySelector('.labyrinthHUD-intersection');
       if (labyHud) {
-        const lanternReminder = document.createElement('div');
-        lanternReminder.classList.add('mh-ui-labyrinth-lantern-reminder');
+        const lanternReminder = makeElement('div', 'mh-ui-labyrinth-lantern-reminder');
         labyHud.append(lanternReminder);
       }
     }, 500);

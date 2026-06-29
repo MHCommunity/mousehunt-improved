@@ -63,19 +63,17 @@ const buildMouseMarkup = (mouseData) => {
     num_catches: 0,
   }, mouseData);
 
-  const mouseEl = document.createElement('a');
-  mouseEl.classList.add('mh-catch-stats');
+  const mouseEl = makeElement('a', 'mh-catch-stats');
 
   mouseEl.title = mouse.name;
   mouseEl.addEventListener('click', () => {
-    if ('undefined' !== hg?.views?.MouseView?.show) {
+    if (hg?.views?.MouseView?.show) {
       hg.views.MouseView.show(mouse.type);
     }
   });
 
   // Create the image element.
-  const image = document.createElement('div');
-  image.classList.add('mh-catch-stats-image');
+  const image = makeElement('div', 'mh-catch-stats-image');
   if (mouse.num_catches <= 0) {
     image.classList.add('mh-catch-stats-no-catches');
   }
@@ -84,8 +82,7 @@ const buildMouseMarkup = (mouseData) => {
 
   // If the mouse has a crown, add it.
   if (mouse.crown && 'none' !== mouse.crown) {
-    const crown = document.createElement('div');
-    crown.classList.add('mh-catch-stats-crown');
+    const crown = makeElement('div', 'mh-catch-stats-crown');
     crown.style.backgroundImage = `url('https://www.mousehuntgame.com/images/ui/crowns/crown_${mouse.crown}.png')`;
     image.append(crown);
 
@@ -95,8 +92,7 @@ const buildMouseMarkup = (mouseData) => {
   }
 
   // Create the name element.
-  const name = document.createElement('div');
-  name.classList.add('mh-catch-stats-name');
+  const name = makeElement('div', 'mh-catch-stats-name');
   name.textContent = mouse.name;
 
   // Create a wrapper for the name and image.
@@ -106,8 +102,7 @@ const buildMouseMarkup = (mouseData) => {
   mouseEl.append(imageNameContainer);
 
   // Create the catches element.
-  const catches = document.createElement('div');
-  catches.classList.add('mh-catch-stats-catches');
+  const catches = makeElement('div', 'mh-catch-stats-catches');
 
   catches.textContent = mouse.num_catches;
   if (showMisses) {
@@ -137,12 +132,10 @@ const showModal = async () => {
   modalWrapper.id = 'mh-catch-stats';
 
   // Create the wrapper.
-  const modal = document.createElement('div');
-  modal.classList.add('mh-catch-stats-wrapper');
+  const modal = makeElement('div', 'mh-catch-stats-wrapper');
 
   // Create the header.
-  const header = document.createElement('div');
-  header.classList.add('mh-catch-stats-header');
+  const header = makeElement('div', 'mh-catch-stats-header');
 
   // Add the title;
   const title = document.createElement('h1');
@@ -176,8 +169,7 @@ const showModal = async () => {
   modal.append(header);
 
   // Make the mouse stats table.
-  const mouseBody = document.createElement('div');
-  mouseBody.classList.add('mh-catch-stats-body');
+  const mouseBody = makeElement('div', 'mh-catch-stats-body');
 
   // Get the mouse stats.
   const mouseStats = await getMouseStats();

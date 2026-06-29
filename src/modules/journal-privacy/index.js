@@ -3,6 +3,7 @@ import {
   addIconToMenu,
   addStyles,
   getSetting,
+  makeElement,
   onActivation,
   onDeactivation,
   onRequest,
@@ -44,8 +45,7 @@ const applyClassToNames = () => {
     const match = entry.textContent.match(/(.*)( has joined the | has left the | used Rare Map Dust |, the map owner, has )/);
     if (match && match[1]) {
       // Wrap the match in a span.
-      const span = document.createElement('span');
-      span.classList.add('mh-journal-privacy-name');
+      const span = makeElement('span', 'mh-journal-privacy-name');
       span.textContent = match[1];
 
       entry.setAttribute('data-original', match[1]);

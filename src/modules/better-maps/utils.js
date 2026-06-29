@@ -1,16 +1,18 @@
 import { doEvent, doRequest, sessionGet, setMapData } from '@utils';
 
 /**
- * Get the completed goals.
+ * Get the remaining (uncompleted) goals.
  *
  * @param {Object} mapData The map data.
  *
- * @return {Array} The completed goals.
+ * @return {Object} The goal `type` ('item' or 'mouse') and the remaining `goals`.
  */
 const getCompletedGoals = (mapData) => {
+  const type = mapData?.is_scavenger_hunt ? 'item' : 'mouse';
+
   let goals = mapData?.is_scavenger_hunt ? mapData?.goals?.item : mapData?.goals?.mouse;
   if (! goals) {
-    return [];
+    return { type, goals: [] };
   }
 
   const completedGoals = [];
@@ -26,10 +28,7 @@ const getCompletedGoals = (mapData) => {
   // filter out completed goals and sort by name
   goals = goals.filter((goal) => ! completedGoals.includes(goal.unique_id)).sort((a, b) => a.name.localeCompare(b.name));
 
-  return {
-    type: mapData.is_scavenger_hunt ? 'item' : 'mouse',
-    goals,
-  };
+  return { type, goals };
 };
 
 /**
@@ -65,7 +64,7 @@ const refreshMap = async () => {
   if (currentMapData && newMapData && newMapData.treasure_map) {
     const currentGoals = getCompletedGoals(currentMapData);
     const newGoals = getCompletedGoals(newMapData.treasure_map);
-    if (currentGoals.length !== newGoals.length) {
+    if (currentGoals.goals.length !== newGoals.goals.length) {
       doEvent('mh-improved-map-refreshed');
     }
   } else {

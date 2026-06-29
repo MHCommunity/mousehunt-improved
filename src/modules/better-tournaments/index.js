@@ -42,8 +42,7 @@ const updateTournamentHud = async () => {
   if (tourneyData.page?.is_active) {
     const rank = document.querySelector('.tournamentStatusHud .rank');
     if (rank) {
-      const scoreHover = document.createElement('div');
-      scoreHover.classList.add('scoreHover');
+      const scoreHover = makeElement('div', 'scoreHover');
 
       tourneyData.page.scoreboard.rows.forEach((scoreboard) => {
         const scoreRow = makeElement('div', 'scoreRow');
@@ -83,8 +82,7 @@ const updateTournamentHud = async () => {
 
     const points = document.querySelector('.tournamentStatusHud .score');
     if (points) {
-      const pointsHover = document.createElement('div');
-      pointsHover.classList.add('pointsHover');
+      const pointsHover = makeElement('div', 'pointsHover');
 
       // reverse the tourneyData.mouse_groups array and loop through it.
       tourneyData.page.mouse_groups.reverse().forEach((mouseGroup) => {
@@ -92,8 +90,7 @@ const updateTournamentHud = async () => {
 
         makeElement('div', 'pointsTotal', mouseGroup.name, pointsRow);
 
-        const groupMice = document.createElement('div');
-        groupMice.classList.add('pointsMice');
+        const groupMice = makeElement('div', 'pointsMice');
 
         mouseGroup.mice.forEach((mouse) => {
           const mouseWrapper = makeElement('div', 'pointsMouseWrapper');

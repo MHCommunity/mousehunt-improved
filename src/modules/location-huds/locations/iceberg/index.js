@@ -349,8 +349,7 @@ const hud = async () => {
   // If we're in icewing's lair, don't show the stage distance.
   if (! quest.isLair) {
     // Create the stage distance element.
-    const remainingStageDistance = document.createElement('div');
-    remainingStageDistance.classList.add('remaining-stage-distance');
+    const remainingStageDistance = makeElement('div', 'remaining-stage-distance');
     const destination = quest.isDeep ? 'Hidden Depths' : 'next stage';
     if (quest.stage !== quest.total) {
       let feet = quest.stage;

@@ -24,17 +24,14 @@ const addItemToQuickLinks = (link, appendTo, filter, inputs) => {
     existing.remove();
   }
 
-  const item = document.createElement('div');
-  item.classList.add('campPage-trap-itemBrowser-favorite-item', 'quicklinks-filter', `quicklinks-filter-${filter}-${link.id}`);
+  const item = makeElement('div', ['campPage-trap-itemBrowser-favorite-item', 'quicklinks-filter', `quicklinks-filter-${filter}-${link.id}`]);
 
-  const itemAnchor = document.createElement('a');
-  itemAnchor.classList.add('campPage-trap-itemBrowser-favorite-item-image');
+  const itemAnchor = makeElement('a', 'campPage-trap-itemBrowser-favorite-item-image');
   itemAnchor.setAttribute('href', '#');
   itemAnchor.setAttribute('title', filter === 'sortBy' ? `Sort by ${link.name}` : `Filter by ${link.name}`);
   itemAnchor.style.backgroundImage = `url(${link.image})`;
 
-  const frame = document.createElement('div');
-  frame.classList.add('campPage-trap-itemBrowser-favorite-item-image-frame');
+  const frame = makeElement('div', 'campPage-trap-itemBrowser-favorite-item-image-frame');
 
   itemAnchor.append(frame);
 
@@ -131,8 +128,7 @@ const addQuickLinksToTrap = async () => {
     existingPower.remove();
   }
 
-  const quickLinks = document.createElement('div');
-  quickLinks.classList.add('campPage-trap-itemBrowser-quickLinks');
+  const quickLinks = makeElement('div', 'campPage-trap-itemBrowser-quickLinks');
 
   makeElement('div', 'campPage-trap-itemBrowser-quickLinks-header', 'Sort', quickLinks);
 
@@ -180,8 +176,7 @@ const addQuickLinksToTrap = async () => {
   favorites.parentNode.insertBefore(quickLinks, favorites.nextSibling);
 
   if ('weapon' === type) {
-    const powerQuickLinks = document.createElement('div');
-    powerQuickLinks.classList.add('campPage-trap-itemBrowser-quickLinks', 'campPage-trap-itemBrowser-quickLinks-power');
+    const powerQuickLinks = makeElement('div', ['campPage-trap-itemBrowser-quickLinks', 'campPage-trap-itemBrowser-quickLinks-power']);
 
     makeElement('div', ['campPage-trap-itemBrowser-quickLinks-header', 'filter-header'], 'Filter', powerQuickLinks);
 

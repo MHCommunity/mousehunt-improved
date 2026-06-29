@@ -88,8 +88,7 @@ const addCrownsToTEM = async (panel) => {
 
     const crownWrapper = makeElement('div', 'mh-ui-tem-crown-wrapper');
 
-    const crown = document.createElement('span');
-    crown.classList.add('mh-ui-tem-crown', 'mousebox');
+    const crown = makeElement('span', ['mh-ui-tem-crown', 'mousebox']);
 
     const crownIcon = document.createElement('img');
     crownIcon.classList.add('mh-ui-tem-crown-icon');

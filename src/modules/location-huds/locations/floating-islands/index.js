@@ -82,8 +82,7 @@ const addBossCountdown = async () => {
 
   const huntsRemaining = atts.enemy_encounter_hunts_remaining || 0;
 
-  const bossCountdown = document.createElement('div');
-  bossCountdown.classList.add('mh-ui-fi-enemy-countdown');
+  const bossCountdown = makeElement('div', 'mh-ui-fi-enemy-countdown');
   makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);

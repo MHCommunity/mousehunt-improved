@@ -427,8 +427,7 @@ const getDashboardContents = async () => {
 
   debuglog('location-dashboard', 'quests', quests);
 
-  const contentsWrapper = document.createElement('div');
-  contentsWrapper.classList.add('dashboardContents');
+  const contentsWrapper = makeElement('div', 'dashboardContents');
 
   const burroughs = document.createElement('div');
   makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs, quests);
