@@ -474,7 +474,7 @@ const addQuickInvite = async (mapData) => {
       if (getFriendData?.success && getFriendData?.friend?.sn_user_id) {
         snuid = getFriendData?.friend?.sn_user_id;
         const maps = getFriendData?.friend.user_interactions?.actions?.send_map_invite?.maps;
-        const canAccept = maps.length > 0 && maps[0]?.is_allowed;
+        const canAccept = maps && maps.length > 0 && maps[0]?.is_allowed;
 
         friendData[hunterId] = {
           snuid: snuid || false,
