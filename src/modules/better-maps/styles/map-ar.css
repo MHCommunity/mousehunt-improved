@@ -14,7 +14,16 @@
   color: #000;
   user-select: none;
   border: 1px solid #000;
-  border-radius: 4px;
+  border-radius: 3px;
+}
+
+.mh-ui-ar.mh-ui-no-ar {
+  border-color: #aaa;
+  opacity: 0.5;
+}
+
+.treasureMapView-goals-group-goal:hover .mh-ui-ar.mh-ui-no-ar {
+  opacity: 1;
 }
 
 .poster .mh-ui-ar {
