@@ -1,4 +1,4 @@
-import { addStyles, onJournalEntry } from '@utils';
+import { addStyles, formatNumber, onJournalEntry, parseNumber } from '@utils';
 
 import styles from './styles.css';
 
@@ -372,8 +372,7 @@ const updateKingsReward = (entry) => {
     return;
   }
 
-  const goldAmount = match[1].replaceAll(',', '');
-  const formattedGoldAmount = Number.parseInt(goldAmount, 10).toLocaleString();
+  const formattedGoldAmount = formatNumber(parseNumber(match[1]));
   const newText = `I claimed a King's Reward worth <span class="mh-ui-gold">${formattedGoldAmount}</span> gold.`;
   element.innerHTML = element.innerHTML.replace(regex, newText);
 };

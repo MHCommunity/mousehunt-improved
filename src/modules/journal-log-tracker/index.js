@@ -3,13 +3,16 @@ import {
   createPopup,
   dbGetAll,
   dbSet,
+  formatNumber,
   getCurrentPage,
   getSetting,
+  lsGet,
   makeElement,
   onDeactivation,
   onNavigation,
   onRequest,
   onTurn,
+  parseNumber,
   saveSetting
 } from '@utils';
 
@@ -141,7 +144,7 @@ const parseEntry = (entry) => {
         return;
       }
 
-      const value = Number.parseInt(next.innerHTML.replaceAll(',', ''), 10);
+      const value = parseNumber(next.innerHTML);
       const isLeft = cell.classList.contains('leftSide');
 
       if (cell.innerHTML.includes('Catches:')) {
@@ -407,7 +410,7 @@ const makeCell = (value) => {
  * @return {string} The cell markup.
  */
 const makeNumberCell = (value) => {
-  return `<td>${(null === value || undefined === value) ? '-' : value.toLocaleString()}</td>`;
+  return `<td>${(null === value || undefined === value) ? '-' : formatNumber(value)}</td>`;
 };
 
 /**
@@ -540,23 +543,10 @@ const migrateFromUserscript = async () => {
     return;
   }
 
-  let raw;
-  try {
-    raw = localStorage.getItem(USERSCRIPT_KEY);
-  } catch {
-    return;
-  }
+  const parsed = lsGet(USERSCRIPT_KEY, null);
 
   // Mark as migrated even when there's nothing to import, so we don't keep checking.
-  if (! raw) {
-    saveSetting(`${MODULE_ID}.migrated`, true);
-    return;
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch {
+  if (! parsed) {
     saveSetting(`${MODULE_ID}.migrated`, true);
     return;
   }

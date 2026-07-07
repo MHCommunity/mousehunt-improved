@@ -5,6 +5,7 @@ import {
   getUserSetupDetails,
   onEvent,
   onRequest,
+  parseNumber,
   updateTrapStatsDisplay
 } from '@utils';
 
@@ -184,7 +185,7 @@ const savePbStats = () => {
     }
 
     // parse the value, remove commas and convert to a number
-    let parsedValue = Number.parseInt(value.innerText.replaceAll(',', ''), 10);
+    let parsedValue = parseNumber(value.innerText);
 
     // get the type of stat it is by looking at the great grandparent
     const type = row.parentElement.parentElement;

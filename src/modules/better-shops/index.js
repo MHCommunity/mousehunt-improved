@@ -1,5 +1,6 @@
 import {
   addStyles,
+  formatGold,
   getCurrentPage,
   getSetting,
   onNavigation,
@@ -107,7 +108,7 @@ const main = () => {
         if (container) {
           const goldCost = container.getAttribute('data-gold-cost');
           if (goldCost) {
-            gold.textContent = `${Number.parseInt(goldCost, 10).toLocaleString()} gold`;
+            gold.textContent = formatGold(Number.parseInt(goldCost, 10));
           }
         }
       }

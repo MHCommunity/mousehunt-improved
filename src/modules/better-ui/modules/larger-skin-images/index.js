@@ -3,6 +3,7 @@ import {
   dbGet,
   dbSet,
   debounce,
+  fetchMouseRip,
   makeElement,
   onEvent,
   onNavigation,
@@ -70,7 +71,7 @@ const addSkinImages = async (panel, force = false) => {
       if (cachedData && cachedData.data && cachedData.data.skin) {
         skin = cachedData.data.skin;
       } else {
-        const itemData = await fetch(`https://api.mouse.rip/item/${id}`).then((res) => res.json());
+        const itemData = await fetchMouseRip(`item/${id}`);
 
         if (! (itemData && itemData.images.trap)) {
           return;

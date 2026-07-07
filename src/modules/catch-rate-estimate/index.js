@@ -11,7 +11,8 @@ import {
   makeElement,
   onNavigation,
   onRequest,
-  onTravel
+  onTravel,
+  parseNumber
 } from '@utils';
 
 import {
@@ -48,7 +49,7 @@ const updateStats = () => {
       return;
     }
 
-    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || '0', 10);
+    const value = parseNumber(row.textContent.replace('%', ''));
     if (! value) {
       return;
     }

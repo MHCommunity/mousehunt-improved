@@ -2,6 +2,7 @@ import {
   addStyles,
   dataGet,
   dataSet,
+  formatNumber,
   getSetting,
   getUserItems,
   isLegacyHUD,
@@ -68,7 +69,7 @@ const getWisdom = async () => {
  */
 const getWisdomFormatted = async () => {
   const wisdom = await getWisdom();
-  return wisdom.toLocaleString();
+  return formatNumber(wisdom);
 };
 
 /**

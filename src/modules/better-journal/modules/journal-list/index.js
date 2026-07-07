@@ -1,5 +1,6 @@
 import {
   addStyles,
+  formatNumber,
   getData,
   makeElement,
   onJournalEntry,
@@ -141,7 +142,7 @@ const convertTextToItemLink = (textLike) => {
   });
 
   return {
-    quantity: Number.parseInt(m[1], 10).toLocaleString(),
+    quantity: formatNumber(Number.parseInt(m[1], 10)),
     link,
   };
 };

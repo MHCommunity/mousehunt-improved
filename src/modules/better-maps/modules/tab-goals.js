@@ -8,9 +8,11 @@ import {
   makeElement,
   makeLink,
   makeMhButton,
+  mhctRedirectUrl,
   sessionGet,
   sessionSet,
-  showErrorMessage
+  showErrorMessage,
+  wikiUrl
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
@@ -41,8 +43,8 @@ const getLinkMarkup = (name, mouseType) => {
       .replaceAll(' ', '_');
   }
 
-  return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${mouseType}`) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
+  return makeLink('MHCT AR', mhctRedirectUrl(mouseType)) +
+    makeLink('Wiki', wikiUrl(name, false));
 };
 
 /**
@@ -54,8 +56,8 @@ const getLinkMarkup = (name, mouseType) => {
  */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
-  return makeLink('MHCT DR', `https://api.mouse.rip/mhct-redirect-item/${name}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name.replaceAll(' ', '_')}`, true);
+  return makeLink('MHCT DR', mhctRedirectUrl(name, { item: true }), true) +
+    makeLink('Wiki', wikiUrl(name, false), true);
 };
 
 /**

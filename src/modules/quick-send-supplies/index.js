@@ -1,5 +1,6 @@
 import {
   addStyles,
+  clamp,
   getSetting,
   getTradableItems,
   makeElement,
@@ -31,10 +32,6 @@ const buildItems = async () => {
   return opts
     .map((type) => tradables.find((t) => t.type === type))
     .filter(Boolean);
-};
-
-const clamp = (val, min, max) => {
-  return Math.max(min, Math.min(max, val));
 };
 
 const positionPanel = (panel, anchor) => {

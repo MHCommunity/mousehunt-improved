@@ -1,6 +1,7 @@
 import {
   addStyles,
   debug,
+  fetchMouseRip,
   makeElement,
   onNavigation,
   sessionGet,
@@ -74,12 +75,10 @@ const highlightUsers = async () => {
   let data = sessionGet(`mh-improved-user-highlighting-${userId}`);
   if (! data) {
     try {
-      const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
-      if (! userHighlighting.ok) {
-        throw new Error(`Unexpected user highlighting response: ${userHighlighting.status}`);
+      data = await fetchMouseRip(`highlight-user/${userId}`);
+      if (! data) {
+        throw new Error('Unexpected user highlighting response');
       }
-
-      data = await userHighlighting.json();
 
       debug(`Retrieved user highlighting data for ${userId}`, data);
 

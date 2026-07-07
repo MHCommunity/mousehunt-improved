@@ -4,7 +4,8 @@ import {
   doRequest,
   getSetting,
   makeElement,
-  makeElementDraggable
+  makeElementDraggable,
+  parseNumber
 } from '@utils';
 
 import crownColoredRowsStyles from './crown-colored-rows.css';
@@ -13,7 +14,7 @@ import styles from './styles.css';
 import settings from './settings';
 
 const normalize = (value) => {
-  return Number.parseInt(value.toString().replaceAll(',', ''), 10);
+  return parseNumber(value);
 };
 
 /**

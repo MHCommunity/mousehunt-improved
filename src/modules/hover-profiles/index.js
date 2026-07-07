@@ -1,5 +1,6 @@
 import {
   addStyles,
+  clamp,
   doEvent,
   doRequest,
   getSetting,
@@ -238,8 +239,6 @@ const hide = () => {
   }
   anchor = null;
 };
-
-const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
 const reposition = () => {
   if (! panel || ! anchor) {

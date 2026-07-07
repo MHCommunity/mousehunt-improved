@@ -1,4 +1,10 @@
-import { addStyles, getSetting, onNavigation, waitForElement } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  onNavigation,
+  parseNumber,
+  waitForElement
+} from '@utils';
 
 import settings from './settings';
 
@@ -24,7 +30,7 @@ const useConvertible = async (element, type) => {
   const quantityEl = await waitForElement('.itemView-action-convertForm');
   let maxQuantity = 1;
   if (quantityEl && quantityEl.innerText.includes('/')) {
-    maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].replaceAll(',', '').trim(), 10);
+    maxQuantity = parseNumber(quantityEl.innerText.split('/')[1]);
   }
 
   let quantity = 1;
