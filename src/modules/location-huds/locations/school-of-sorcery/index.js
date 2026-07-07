@@ -4,7 +4,8 @@ import {
   makeElement,
   onRequest,
   onTurn,
-  showHornMessage
+  showHornMessage,
+  uppercaseFirstLetter
 } from '@utils';
 
 import cleanChalkboard from './clean-chalkboard.css';
@@ -77,7 +78,7 @@ const showPowerTypeReminder = () => {
 
   showHornMessage({
     title: 'Power Type Reminder',
-    text: `The recommended power type for this course is ${powerType.charAt(0).toUpperCase() + powerType.slice(1)}.`,
+    text: `The recommended power type for this course is ${uppercaseFirstLetter(powerType)}.`,
     image: `https://www.mousehuntgame.com/images/powertypes/${powerType}.png`,
     type: 'error',
     button: 'Switch',

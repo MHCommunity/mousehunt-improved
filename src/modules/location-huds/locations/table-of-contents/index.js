@@ -1,6 +1,8 @@
 import {
   addHudStyles,
   createPopup,
+  fetchMouseRip,
+  formatNumber,
   getSetting,
   makeElement,
   onDialogShow,
@@ -135,7 +137,7 @@ const displayResults = (results, timeTaken) => {
 
   const bait = `${options.WritingSession.M1KMode ? 'Thousandth' : 'Final'} Draft Derby`;
   text += '</ol></div></div>';
-  text += `<div class="info">Simulated ${options.TotalSimulations.toLocaleString()} writing sessions with ${bait} equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
+  text += `<div class="info">Simulated ${formatNumber(options.TotalSimulations)} writing sessions with ${bait} equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
 
   return {
     text,
@@ -345,7 +347,7 @@ const updateBlankPage = async () => {
     return;
   }
 
-  const scramblesQuote = await fetch(`https://api.mouse.rip/consult-scrambles?t=${Date.now()}`).then((res) => res.text()).catch(() => '');
+  const scramblesQuote = await fetchMouseRip(`consult-scrambles?t=${Date.now()}`, { json: false });
   if (! scramblesQuote) {
     return;
   }

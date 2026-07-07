@@ -9,7 +9,8 @@ import {
   makeMhButton,
   onDialogShow,
   onEvent,
-  onRequest
+  onRequest,
+  parseNumber
 } from '@utils';
 
 import styles from './styles.css';
@@ -225,11 +226,11 @@ const showPossibleSnowballShowdownDustCount = () => {
 
   const snowballEl = showdownItems.querySelector('.campHudSnowballShowdownView__snowball');
   const snowballQtyEl = snowballEl.querySelector('.campHudSnowballShowdownView__quantity');
-  const snowballQty = snowballQtyEl ? Number.parseInt(snowballQtyEl.textContent.replaceAll(',', ''), 10) : 0;
+  const snowballQty = snowballQtyEl ? parseNumber(snowballQtyEl.textContent) : 0;
 
   const dustEl = showdownItems.querySelector('.campHudSnowballShowdownView__dust');
   const currentDustQtyEl = dustEl.querySelector('.campHudSnowballShowdownView__quantity');
-  const currentDustQty = currentDustQtyEl ? Number.parseInt(currentDustQtyEl.textContent.replaceAll(',', ''), 10) : 0;
+  const currentDustQty = currentDustQtyEl ? parseNumber(currentDustQtyEl.textContent) : 0;
 
   const possibleDustQty = Math.floor(snowballQty / 175);
   const snowballText = snowballQty - (possibleDustQty * 175);

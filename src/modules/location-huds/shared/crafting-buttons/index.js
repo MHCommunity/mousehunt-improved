@@ -1,4 +1,10 @@
-import { addStyles, doRequest, makeElement, makeMhButton } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  formatNumber,
+  makeElement,
+  makeMhButton
+} from '@utils';
 import styles from './styles.css';
 
 /**
@@ -51,7 +57,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
       if (baitQuantity) {
         const baitType = baitQuantity.getAttribute('data-item-type');
         if (baitType && updatedQuantities[baitType]) {
-          baitQuantity.innerText = updatedQuantities[baitType].toLocaleString();
+          baitQuantity.innerText = formatNumber(updatedQuantities[baitType]);
         }
       }
 
@@ -59,7 +65,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
       if (craftQuantity) {
         const craftType = craftQuantity.getAttribute('data-item-type');
         if (craftType && updatedQuantities[craftType]) {
-          craftQuantity.innerText = updatedQuantities[craftType].toLocaleString();
+          craftQuantity.innerText = formatNumber(updatedQuantities[craftType]);
         }
       }
 

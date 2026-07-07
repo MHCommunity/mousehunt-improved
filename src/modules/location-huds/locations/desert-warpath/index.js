@@ -5,7 +5,8 @@ import {
   onRequest,
   onTrapChange,
   onTurn,
-  showHornMessage
+  showHornMessage,
+  uppercaseFirstLetter
 } from '@utils';
 import { getFieryWarpathWave } from '@utils/shared/fiery-warpath';
 
@@ -176,7 +177,7 @@ const addPowerTypeReminders = () => {
   if (needsReminder) {
     reminder = showHornMessage({
       title: 'Power Type Reminder',
-      text: `The power type for these mice is ${powerTypeToRemind.charAt(0).toUpperCase() + powerTypeToRemind.slice(1)}.`,
+      text: `The power type for these mice is ${uppercaseFirstLetter(powerTypeToRemind)}.`,
       image: `https://www.mousehuntgame.com/images/powertypes/${powerTypeToRemind}.png`,
       type: 'error',
       button: 'Switch',

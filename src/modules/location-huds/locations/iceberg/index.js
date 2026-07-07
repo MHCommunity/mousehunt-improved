@@ -1,11 +1,13 @@
 import {
   addHudStyles,
+  formatNumber,
   getCurrentLocation,
   getSetting,
   getUserItems,
   makeElement,
   onRequest,
   onTurn,
+  replaceOrAppend,
   saveSetting
 } from '@utils';
 
@@ -319,12 +321,7 @@ const addDeepWarning = async () => {
   warning.append(warningIcon);
   warning.append(warningText);
 
-  const existingWarning = appendTo.querySelector('.deep-warning');
-  if (existingWarning) {
-    existingWarning.replaceWith(warning);
-  } else {
-    appendTo.append(warning);
-  }
+  replaceOrAppend(appendTo, '.deep-warning', warning);
 };
 
 /**
@@ -356,7 +353,7 @@ const hud = async () => {
       if (quest.isDeep) {
         feet = feet - 100;
       }
-      feet = feet.toLocaleString();
+      feet = formatNumber(feet);
 
       if (! quest.isDeep) {
         remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
@@ -384,7 +381,7 @@ const hud = async () => {
     if (quest.total === 0) {
       remainingDistance.innerHTML = '';
     } else {
-      const feet = quest.total.toLocaleString();
+      const feet = formatNumber(quest.total);
       remainingDistance.innerHTML = `<strong>${feet}</strong> feet until Icewing's Lair`;
       if (quest.totalHunts > 0) {
         remainingDistance.innerHTML += `(~${quest.totalHunts} hunts)`;
@@ -412,16 +409,11 @@ const hud = async () => {
 
   const tooltipContent = getTooltipText(quest);
 
-  const existingTooltip = huntInfo.querySelector('.icebergStatusTooltip');
   tooltip.append(tooltipContent);
 
   makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);
 
-  if (existingTooltip) {
-    existingTooltip.replaceWith(tooltip);
-  } else {
-    huntInfo.append(tooltip);
-  }
+  replaceOrAppend(huntInfo, '.icebergStatusTooltip', tooltip);
 
   if (quest.isLair) {
     addDeepWarning();

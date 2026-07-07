@@ -1,4 +1,10 @@
-import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
+import {
+  addHudStyles,
+  formatNumber,
+  makeElement,
+  onRequest,
+  onTurn
+} from '@utils';
 
 import folkloreForest from '../../shared/folklore-forest';
 
@@ -74,7 +80,7 @@ const updateBoostButton = (response) => {
   }
 
   const boostWrapper = makeElement('div', 'mh-improved-boost-cost-wrapper');
-  makeElement('span', 'mh-improved-boost-cost-text', boostCost.toLocaleString(), boostWrapper);
+  makeElement('span', 'mh-improved-boost-cost-text', formatNumber(boostCost), boostWrapper);
   makeElement('span', 'mh-improved-boost-cost-label', 'Planks', boostWrapper);
   boostButton.append(boostWrapper);
 };

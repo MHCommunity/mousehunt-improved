@@ -1,6 +1,7 @@
 import {
   addHudStyles,
   doRequest,
+  formatNumber,
   getSetting,
   makeElement,
   onRequest,
@@ -149,7 +150,7 @@ const updateLootText = async () => {
 const addCommaToNoiseMeter = async () => {
   const noise = document.querySelector('.bountifulBeanstalkCastleView__noiseLevel');
   if (noise && noise.innerText && Number.parseInt(noise.innerText) > 999) {
-    noise.innerText = Number.parseInt(noise.innerText).toLocaleString();
+    noise.innerText = formatNumber(Number.parseInt(noise.innerText));
   }
 };
 

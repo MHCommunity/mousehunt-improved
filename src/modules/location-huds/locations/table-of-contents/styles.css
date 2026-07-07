@@ -382,7 +382,7 @@ a.folkloreForestRegionView-bait-image {
   background-size: cover;
 }
 
-..tableOfContentsView-bookContainer.encyclopedia .tableOfContentsView-bookImage-goldFoil.active {
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsView-bookImage-goldFoil.active {
   background-image: url(https://i.mouse.rip/app/toc_book_writing_gold_foil.png);
   background-size: 340px;
 }

@@ -1,5 +1,6 @@
 import {
   doEvent,
+  formatNumber,
   getCurrentLocation,
   getUserItems,
   makeElement,
@@ -37,7 +38,7 @@ const makeCheeseSelectorElement = async (cheesesToUse) => {
     cheeseContainer.append(cheeseImage);
 
     makeElement('div', ['townOfGnawniaHUD-bait-name', 'quantity'], cheese.name.replace(' Cheese', ''), cheeseContainer);
-    makeElement('div', ['townOfGnawniaHUD-bait-quantity', 'quantity'], cheese.quantity.toLocaleString(), cheeseContainer);
+    makeElement('div', ['townOfGnawniaHUD-bait-quantity', 'quantity'], formatNumber(cheese.quantity), cheeseContainer);
 
     cheesesContainer.append(cheeseContainer);
   }

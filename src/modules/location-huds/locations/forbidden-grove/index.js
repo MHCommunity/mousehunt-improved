@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, makeElement } from '@utils';
+import { addHudStyles, getCurrentLocation, makeElement, replaceOrAppend } from '@utils';
 
 import styles from './styles.css';
 
@@ -47,12 +47,7 @@ const hud = () => {
 
   const timeLeftEl = updateClosingTime();
 
-  const existing = document.querySelector('.forbiddenGroveHUD-grovebar-timeLeft');
-  if (existing) {
-    existing.replaceWith(timeLeftEl);
-  } else {
-    hudBar.append(timeLeftEl);
-  }
+  replaceOrAppend(hudBar, '.forbiddenGroveHUD-grovebar-timeLeft', timeLeftEl);
 };
 
 /**

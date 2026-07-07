@@ -8,9 +8,11 @@ import {
   onEvent,
   onRequest,
   onTravel,
+  parseNumber,
   saveSetting,
   setMultipleTimeout,
-  showHornMessage
+  showHornMessage,
+  waitForElement
 } from '@utils';
 
 import styles from './styles.css';
@@ -99,21 +101,10 @@ const addBossCountdown = async () => {
   }
 
   // if we can't find the goal container, try again every second up to 10 times
-  let tries = 0;
-  const maxTries = 10;
-
-  const interval = setInterval(() => {
-    goalContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
-    if (goalContainer) {
-      goalContainer.append(bossCountdown);
-      clearInterval(interval);
-    }
-
-    tries += 1;
-    if (tries >= maxTries) {
-      clearInterval(interval);
-    }
-  }, 1000);
+  goalContainer = await waitForElement('.floatingIslandsHUD-goalContainer', { maxAttempts: 10, delay: 1000 });
+  if (goalContainer) {
+    goalContainer.append(bossCountdown);
+  }
 };
 
 /**
@@ -224,7 +215,7 @@ const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
   const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
   const bw = user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity || '0';
-  const hasBw = Number.parseInt(bw.toString().replaceAll(',', ''), 10) >= 50;
+  const hasBw = parseNumber(bw) >= 50;
 
   if (isStart && bwOff && hasBw) {
     showHornMessage({

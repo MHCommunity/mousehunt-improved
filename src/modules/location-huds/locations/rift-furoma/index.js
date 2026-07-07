@@ -1,4 +1,11 @@
-import { addHudStyles, makeElement, onTurn } from '@utils';
+import {
+  addHudStyles,
+  formatNumber,
+  makeElement,
+  onTurn,
+  parseNumber,
+  replaceOrAppend
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -8,10 +15,10 @@ import styles from './styles.css';
  * @return {Object} The stats.
  */
 const getEnergyStats = () => {
-  const droid = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.remaining_energy || 0}`.replaceAll(',', ''));
-  const lost = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.energy_lost || 0}`.replaceAll(',', ''));
+  const droid = parseNumber(user?.quests?.QuestRiftFuroma?.droid?.remaining_energy || 0);
+  const lost = parseNumber(user?.quests?.QuestRiftFuroma?.droid?.energy_lost || 0);
   const recall = Math.floor((droid - lost) / 2);
-  const energy = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.items?.combat_energy_stat_item?.quantity || 0}`.replaceAll(',', ''));
+  const energy = parseNumber(user?.quests?.QuestRiftFuroma?.items?.combat_energy_stat_item?.quantity || 0);
 
   return {
     droid,
@@ -46,7 +53,7 @@ const addRecallCaclulation = () => {
     }
 
     makeElement('div', 'riftFuromaHUD-chargeLevel-stat-label', 'After Recall', afterRecallEl);
-    makeElement('div', 'riftFuromaHUD-chargeLevel-stat-value', afterRecall.toLocaleString(), afterRecallEl);
+    makeElement('div', 'riftFuromaHUD-chargeLevel-stat-value', formatNumber(afterRecall), afterRecallEl);
 
     if (existingRecall) {
       existingRecall.replaceWith(afterRecallEl);
@@ -57,14 +64,9 @@ const addRecallCaclulation = () => {
 
   const leave = document.querySelector('.riftFuromaHUD-leavePagoda');
   if (leave) {
-    const existing = document.querySelector('.mh-improved-riftFuromaHUD-leavePagoda-amount');
-    const amountEl = makeElement('div', 'mh-improved-riftFuromaHUD-leavePagoda-amount', `+ ${recall.toLocaleString()}`);
+    const amountEl = makeElement('div', 'mh-improved-riftFuromaHUD-leavePagoda-amount', `+ ${formatNumber(recall)}`);
 
-    if (existing) {
-      existing.replaceWith(amountEl);
-    } else {
-      leave.append(amountEl);
-    }
+    replaceOrAppend(leave, '.mh-improved-riftFuromaHUD-leavePagoda-amount', amountEl);
   }
 };
 

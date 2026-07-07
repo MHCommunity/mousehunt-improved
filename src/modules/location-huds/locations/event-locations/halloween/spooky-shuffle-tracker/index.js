@@ -1,14 +1,20 @@
-import { addStyles, makeElement, onRequest } from '@utils';
+import {
+  addStyles,
+  lsGet,
+  lsSet,
+  makeElement,
+  onRequest
+} from '@utils';
 
 import styles from './styles.css';
 
 const getSavedCards = () => {
-  return JSON.parse(localStorage.getItem('mh-spooky-shuffle-cards')) || [];
+  return lsGet('mh-spooky-shuffle-cards', []);
 };
 
 const saveCard = (card, savedCards) => {
   savedCards[card.id] = card;
-  localStorage.setItem('mh-spooky-shuffle-cards', JSON.stringify(savedCards));
+  lsSet('mh-spooky-shuffle-cards', savedCards);
 
   return savedCards;
 };
