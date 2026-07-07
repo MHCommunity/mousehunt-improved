@@ -160,7 +160,18 @@ const addJournalEventListener = () => {
 
     for (const { callback } of callbacks) {
       try {
-        const entry = document.querySelector(`.journalEntries .entry[data-entry-id="${entryId}"]`);
+        // Re-query the entry so a callback that replaced the entry's markup
+        // doesn't hand a stale element to the next callback. Match all the
+        // journal containers (camp, hunter profiles, single-entry popups),
+        // falling back to the dispatched element if it's still in the DOM.
+        let entry = entryId
+          ? document.querySelector(`.journalEntries .entry[data-entry-id="${entryId}"], .journal .entry[data-entry-id="${entryId}"], .jsingle .entry[data-entry-id="${entryId}"]`)
+          : null;
+
+        if (! entry && e.detail?.isConnected) {
+          entry = e.detail;
+        }
+
         await callback(entry);
       } catch (error) {
         console.error('Error in journal callback:', error); // eslint-disable-line no-console
