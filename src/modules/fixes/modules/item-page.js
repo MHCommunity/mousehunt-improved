@@ -1,4 +1,10 @@
-import { getCurrentPage, onDialogShow, onNavigation, setMultipleTimeout } from '@utils';
+import {
+  getCurrentPage,
+  onDialogHide,
+  onDialogShow,
+  onNavigation,
+  setMultipleTimeout
+} from '@utils';
 
 /**
  * Fix the item page.
@@ -83,6 +89,62 @@ const fixItemPageReceiver = () => {
   }
 };
 
+let previousUrl = null;
+
+/**
+ * While the item dialog is open, set the URL to the item's permalink.
+ */
+const updateUrlForItemDialog = () => {
+  const originalUrl = window.location.href;
+
+  setMultipleTimeout(() => {
+    const itemView = document.querySelector('.itemViewContainer');
+    if (! itemView) {
+      return;
+    }
+
+    const itemType = itemView.getAttribute('data-item-type');
+    const itemId = itemView.getAttribute('data-item-id');
+
+    let url;
+    if (itemType) {
+      url = `https://www.mousehuntgame.com/item.php?item_type=${itemType}`;
+    } else if (itemId) {
+      url = `https://www.mousehuntgame.com/i.php?id=${itemId}`;
+    } else {
+      return;
+    }
+
+    if (window.location.href === url) {
+      return;
+    }
+
+    // Only save the original URL on the first item view, so opening another
+    // item from within the dialog doesn't overwrite it with an item permalink.
+    if (null === previousUrl) {
+      previousUrl = originalUrl;
+    }
+
+    window.history.replaceState(null, '', url);
+  }, [10, 100, 500]);
+};
+
+/**
+ * When the item dialog closes, restore the URL it replaced.
+ */
+const restoreUrlAfterItemDialog = () => {
+  if (null === previousUrl) {
+    return;
+  }
+
+  const currentHref = window.location.href;
+  if (currentHref.includes('item.php?item_type=') || currentHref.includes('i.php?id=')) {
+    window.history.replaceState(null, '', previousUrl);
+  }
+
+  previousUrl = null;
+};
+
 /**
  * Initialize the item page fixes.
  */
@@ -103,13 +165,6 @@ export default async () => {
     onLoad: true,
   });
 
-  onDialogShow('item', () => {
-    const currentHref = window.location.href;
-
-    setMultipleTimeout(() => {
-      if (currentHref !== window.location.href) {
-        window.history.replaceState(null, '', currentHref);
-      }
-    }, [10, 100, 500, 1000]);
-  });
+  onDialogShow('item', updateUrlForItemDialog);
+  onDialogHide(restoreUrlAfterItemDialog);
 };
