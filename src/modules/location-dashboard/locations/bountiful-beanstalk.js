@@ -1,3 +1,5 @@
+import { formatNumber } from '@utils';
+
 /**
  * Dashboard output.
  *
@@ -35,7 +37,7 @@ export default (quests) => {
     .replace(`${roomQuality.charAt(0).toUpperCase() + roomQuality.slice(1).toLowerCase()} `, '')
     .trim();
 
-  const noiseString = isBoss ? 'Boss' : (isChase ? 'Chase' : `♪ ${noise.toLocaleString()}/${maxNoise.toLocaleString()}`);
+  const noiseString = isBoss ? 'Boss' : (isChase ? 'Chase' : `♪ ${formatNumber(noise)}/${formatNumber(maxNoise)}`);
 
   const embellishmentsText = quests?.QuestBountifulBeanstalk?.embellishments
     .filter((item) => item.is_active)

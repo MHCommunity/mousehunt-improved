@@ -1,3 +1,5 @@
+import { formatNumber } from '@utils';
+
 /**
  * Dashboard output.
  *
@@ -14,5 +16,5 @@ export default (quests) => {
   const refined = quests.QuestPollutionOutbreak?.items?.refined_pollutinum_stat_item?.quantity || 0;
   const max = quests.QuestPollutionOutbreak?.max_pollutinum || 0;
 
-  return `${crude.toLocaleString()}/${max} Pollutinum<div class="stats">${refined.toLocaleString()} Refined Pollutinum</div>`;
+  return `${formatNumber(crude)}/${max} Pollutinum<div class="stats">${formatNumber(refined)} Refined Pollutinum</div>`;
 };

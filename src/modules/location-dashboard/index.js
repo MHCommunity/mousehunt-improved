@@ -26,6 +26,7 @@ import getAfterwordAcresText from './locations/afterword-acres';
 import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
 import getBristleWoodsRiftText from './locations/rift-bristle-woods';
 import getBurroughsRiftText from './locations/rift-burroughs';
+import getConclusionCliffsText from './locations/conclusion-cliffs';
 import getDraconicDepthsText from './locations/draconic-depths';
 import getEpilogueFallsText from './locations/epilogue-falls';
 import getFloatingIslandsText from './locations/floating-islands';
@@ -47,6 +48,82 @@ import getToxicSpillText from './locations/pollution-outbreak';
 import getValourRiftText from './locations/rift-valour';
 import getWhiskerWoodsRiftText from './locations/whisker-woods-rift';
 import getZokorText from './locations/ancient-city';
+
+/**
+ * The dashboard locations, grouped by region. Locations with a condition are
+ * only shown when it returns true for the cached quest data.
+ */
+const dashboardLocations = [
+  {
+    region: 'Burroughs',
+    locations: [
+      { id: 'mousoleum', name: 'Mousoleum', getText: getMousoleumText },
+      { id: 'pollution_outbreak', name: 'Toxic Spill', getText: getToxicSpillText },
+    ],
+  },
+  {
+    region: 'Varmint Valley',
+    locations: [
+      { id: 'fort_rox', name: 'Fort Rox', getText: getFortRoxText },
+    ],
+  },
+  {
+    region: 'Sandtail Desert',
+    locations: [
+      { id: 'desert_warpath', name: 'Fiery Warpath', getText: getFieryWarpathText },
+      { id: 'desert_oasis', name: 'Living Garden', getText: getLivingGardenText },
+      { id: 'lost_city', name: 'Lost City', getText: getLostCityText },
+      { id: 'sand_dunes', name: 'Sand Dunes', getText: getSandDunesText },
+    ],
+  },
+  {
+    region: 'Rodentia',
+    locations: [
+      { id: 'zugzwang_tower', name: 'Zugzwang\'s Tower', getText: getZugzwangTowerText, condition: (quests) => quests?.QuestZugzwangTower?.amp >= 1 },
+      { id: 'seasonal_garden', name: 'Seasonal Garden', getText: getSeasonalGardenText, condition: (quests) => ! (quests?.QuestZugzwangTower?.amp >= 1) },
+      { id: 'iceberg', name: 'Iceberg', getText: getIcebergText },
+      { id: 'sunken_city', name: 'Sunken City', getText: getSunkenCityText },
+    ],
+  },
+  {
+    region: 'Queso Canyon',
+    locations: [
+      { id: 'queso_geyser', name: 'Queso Geyser', getText: getQuesoGeyserText },
+    ],
+  },
+  {
+    region: 'Hollow Heights',
+    locations: [
+      { id: 'labyrinth', name: 'Labyrinth', getText: getLabyrinthText },
+      { id: 'ancient_city', name: 'Zokor', getText: getZokorText },
+      { id: 'moussu_picchu', name: 'Moussu Picchu', getText: getMoussuPicchuText },
+      { id: 'floating_islands', name: 'Floating Islands', getText: getFloatingIslandsText },
+    ],
+  },
+  {
+    region: 'Folklore Forest',
+    locations: [
+      { id: 'bountiful_beanstalk', name: 'Bountiful Beanstalk', getText: getBountifulBeanstalkText },
+      { id: 'foreword_farm', name: 'Foreword Farm', getText: getForewordFarmText },
+      { id: 'table_of_contents', name: 'Table of Contents', getText: getTableOfContentsText },
+      { id: 'school_of_sorcery', name: 'School of Sorcery', getText: getSchoolOfSorceryText },
+      { id: 'draconic_depths', name: 'Draconic Depths', getText: getDraconicDepthsText },
+      { id: 'afterword_acres', name: 'Afterword Acres', getText: getAfterwordAcresText },
+      { id: 'epilogue_falls', name: 'Epilogue Falls', getText: getEpilogueFallsText },
+      { id: 'conclusion_cliffs', name: 'Conclusion Cliffs', getText: getConclusionCliffsText },
+    ],
+  },
+  {
+    region: 'Rift',
+    locations: [
+      { id: 'rift_burroughs', name: 'Burroughs Rift', getText: getBurroughsRiftText },
+      { id: 'rift_whisker_woods', name: 'Whisker Woods Rift', getText: getWhiskerWoodsRiftText },
+      { id: 'rift_furoma', name: 'Furoma Rift', getText: getFuromaRiftText },
+      { id: 'rift_bristle_woods', name: 'Bristle Woods Rift', getText: getBristleWoodsRiftText },
+      { id: 'rift_valour', name: 'Valour Rift', getText: getValourRiftText },
+    ],
+  },
+];
 
 /**
  * Cache the location data for the current location.
@@ -78,8 +155,16 @@ const cacheLocationData = async () => {
   // Get the current cached quests.
   const questsCached = await dataGet('quests', {});
 
-  // Combine the cached quests with the current quests.
+  // Combine the cached quests with the current quests. The game reports
+  // quests for other locations as false or empty once you've left, so keep
+  // the last-known cached data instead of letting those wipe it.
   const questsCombined = Object.assign({}, questsCached, user.quests);
+  for (const [questKey, questValue] of Object.entries(user.quests)) {
+    const isEmpty = ! questValue || (typeof questValue === 'object' && Object.keys(questValue).length === 0);
+    if (isEmpty && questsCached[questKey]) {
+      questsCombined[questKey] = questsCached[questKey];
+    }
+  }
 
   if (user.environment_type === 'labyrinth') {
     questsCombined.QuestAncientCity = {};
@@ -93,7 +178,7 @@ const cacheLocationData = async () => {
 
   // Save the combined data to localStorage.
   try {
-    dataSet('quests', questsCombined);
+    await dataSet('quests', questsCombined);
   } catch (error) {
     debug('Error saving dashboard data.', error);
   }
@@ -130,34 +215,7 @@ const waitForTravel = async (environment) => {
 const doLocationRefresh = async () => {
   const locationProgress = [];
 
-  const environmentsToUse = new Set([
-    'ancient_city',
-    'bountiful_beanstalk',
-    'desert_warpath',
-    'draconic_depths',
-    'floating_islands',
-    'foreword_farm',
-    'fort_rox',
-    'iceberg',
-    'labyrinth',
-    'desert_oasis',
-    'lost_city',
-    'mousoleum',
-    'moussu_picchu',
-    'pollution_outbreak',
-    'queso_geyser',
-    'rift_bristle_woods',
-    'rift_burroughs',
-    'rift_furoma',
-    'rift_valour',
-    'rift_whisker_woods',
-    'sand_dunes',
-    'school_of_sorcery',
-    'seasonal_garden',
-    'sunken_city',
-    'table_of_contents',
-    'zugzwang_tower',
-  ]);
+  const environmentsToUse = new Set(dashboardLocations.flatMap((region) => region.locations.map((location) => location.id)));
 
   const environmentsToTravel = environments.filter((env) => {
     return (environmentsToUse.has(env.id) && isUserTitleAtLeast(env.title));
@@ -284,7 +342,10 @@ const makeDashboardTab = () => {
         setTimeout(async () => {
           await cacheLocationData();
           const newRefreshedContents = await getDashboardContents();
-          existing.replaceWith(newRefreshedContents);
+          const currentContents = document.querySelector('.dashboardContents');
+          if (currentContents) {
+            currentContents.replaceWith(newRefreshedContents);
+          }
         }, 0);
       } else {
         // First time opening - show cached data immediately
@@ -429,71 +490,26 @@ const getDashboardContents = async () => {
 
   const contentsWrapper = makeElement('div', 'dashboardContents');
 
-  const burroughs = document.createElement('div');
-  makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs, quests);
-  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs, quests);
-  makeRegionMarkup('Burroughs', burroughs, contentsWrapper);
+  let hasContent = false;
+  for (const region of dashboardLocations) {
+    const regionContents = document.createElement('div');
 
-  const varmintValley = document.createElement('div');
-  makeLocationMarkup('fort_rox', 'Fort Rox', getFortRoxText, varmintValley, quests);
-  makeRegionMarkup('Varmint Valley', varmintValley, contentsWrapper);
+    for (const location of region.locations) {
+      if (location.condition && ! location.condition(quests)) {
+        continue;
+      }
 
-  const sandtailDesert = document.createElement('div');
-  makeLocationMarkup('desert_warpath', 'Fiery Warpath', getFieryWarpathText, sandtailDesert, quests);
-  makeLocationMarkup('desert_oasis', 'Living Garden', getLivingGardenText, sandtailDesert, quests);
-  makeLocationMarkup('lost_city', 'Lost City', getLostCityText, sandtailDesert, quests);
-  makeLocationMarkup('sand_dunes', 'Sand Dunes', getSandDunesText, sandtailDesert, quests);
-  makeRegionMarkup('Sandtail Desert', sandtailDesert, contentsWrapper);
+      makeLocationMarkup(location.id, location.name, location.getText, regionContents, quests);
+    }
 
-  const rodentia = document.createElement('div');
-  if (quests?.QuestZugzwangTower?.amp && quests?.QuestZugzwangTower?.amp >= 1) {
-    makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia, quests);
-  } else {
-    makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia, quests);
+    if (regionContents.children.length > 0) {
+      hasContent = true;
+    }
+
+    makeRegionMarkup(region.region, regionContents, contentsWrapper);
   }
-  makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia, quests);
-  makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia, quests);
-  makeRegionMarkup('Rodentia', rodentia, contentsWrapper);
 
-  const quesoCanyon = document.createElement('div');
-  makeLocationMarkup('queso_geyser', 'Queso Geyser', getQuesoGeyserText, quesoCanyon, quests);
-  makeRegionMarkup('Queso Canyon', quesoCanyon, contentsWrapper);
-
-  const hollowHeights = document.createElement('div');
-  makeLocationMarkup('labyrinth', 'Labyrinth', getLabyrinthText, hollowHeights, quests);
-  makeLocationMarkup('ancient_city', 'Zokor', getZokorText, hollowHeights, quests);
-  makeLocationMarkup('moussu_picchu', 'Moussu Picchu', getMoussuPicchuText, hollowHeights, quests);
-  makeLocationMarkup('floating_islands', 'Floating Islands', getFloatingIslandsText, hollowHeights, quests);
-  makeRegionMarkup('Hollow Heights', hollowHeights, contentsWrapper);
-
-  const folkloreForest = document.createElement('div');
-  makeLocationMarkup('bountiful_beanstalk', 'Bountiful Beanstalk', getBountifulBeanstalkText, folkloreForest, quests);
-  makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
-  makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
-  makeLocationMarkup('school_of_sorcery', 'School of Sorcery', getSchoolOfSorceryText, folkloreForest, quests);
-  makeLocationMarkup('draconic_depths', 'Draconic Depths', getDraconicDepthsText, folkloreForest, quests);
-  makeLocationMarkup('afterword_acres', 'Afterward Acres', getAfterwordAcresText, folkloreForest, quests);
-  makeLocationMarkup('epilogue_falls', 'Epilogue Falls', getEpilogueFallsText, folkloreForest, quests);
-  makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
-
-  const rift = document.createElement('div');
-  makeLocationMarkup('rift_burroughs', 'Burroughs Rift', getBurroughsRiftText, rift, quests);
-  makeLocationMarkup('rift_whisker_woods', 'Whisker Woods Rift', getWhiskerWoodsRiftText, rift, quests);
-  makeLocationMarkup('rift_furoma', 'Furoma Rift', getFuromaRiftText, rift, quests);
-  makeLocationMarkup('rift_bristle_woods', 'Bristle Woods Rift', getBristleWoodsRiftText, rift, quests);
-  makeLocationMarkup('rift_valour', 'Valour Rift', getValourRiftText, rift, quests);
-  makeRegionMarkup('Rift', rift, contentsWrapper);
-
-  if (
-    burroughs.children.length === 0 &&
-    varmintValley.children.length === 0 &&
-    sandtailDesert.children.length === 0 &&
-    rodentia.children.length === 0 &&
-    quesoCanyon.children.length === 0 &&
-    hollowHeights.children.length === 0 &&
-    folkloreForest.children.length === 0 &&
-    rift.children.length === 0
-  ) {
+  if (! hasContent) {
     const noLocation = makeElement('div', 'noLocationDataWrapper');
     makeElement('div', 'noLocationData', 'No location data found. Refresh data to populate the dashboard.', noLocation);
     contentsWrapper.append(noLocation);
