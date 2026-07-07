@@ -1,4 +1,4 @@
-import { doRequest } from '@utils';
+import { doRequest, formatNumber } from '@utils';
 
 import { exportPopup, recursiveFetch } from '../utils';
 
@@ -58,7 +58,7 @@ const getData = async (classification) => {
 
     items.push(itemData);
     if (totalItemsEl) {
-      totalItemsEl.textContent = items.length.toLocaleString();
+      totalItemsEl.textContent = formatNumber(items.length);
     }
   });
 

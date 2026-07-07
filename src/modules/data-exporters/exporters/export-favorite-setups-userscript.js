@@ -1,3 +1,5 @@
+import { formatNumber, lsGet } from '@utils';
+
 import { exportPopup } from '../utils';
 
 /**
@@ -15,7 +17,7 @@ const hasFavoriteSetupsUserscript = () => {
  * @return {Array} The favorite setups.
  */
 const fetch = async () => {
-  const setups = JSON.parse(localStorage.getItem('favorite-setups-saved'));
+  const setups = lsGet('favorite-setups-saved', null);
 
   const flattenedSetups = [];
 
@@ -43,7 +45,7 @@ const fetch = async () => {
  */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  totalItemsEl.textContent = data.length.toLocaleString();
+  totalItemsEl.textContent = formatNumber(data.length);
 };
 
 /**

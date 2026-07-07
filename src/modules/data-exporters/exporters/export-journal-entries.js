@@ -1,4 +1,4 @@
-import { dbGetAll } from '@utils';
+import { dbGetAll, formatNumber } from '@utils';
 import { exportPopup } from '../utils';
 
 /**
@@ -31,7 +31,7 @@ const fetch = async () => {
  */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  totalItemsEl.textContent = data.length.toLocaleString();
+  totalItemsEl.textContent = formatNumber(data.length);
 };
 
 /**

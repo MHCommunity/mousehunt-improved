@@ -1,4 +1,10 @@
-import { doRequest, getData, sessionGet, sessionSet } from '@utils';
+import {
+  doRequest,
+  formatNumber,
+  getData,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 import { exportPopup } from '../utils';
 
@@ -73,7 +79,7 @@ const fetchTransactions = async () => {
     sessionSet('export-marketplace-page', page);
     sessionSet('export-marketplace-transactions', transactions);
 
-    totalItemsEl.textContent = transactions.length.toLocaleString();
+    totalItemsEl.textContent = formatNumber(transactions.length);
   } while (response.length > 0);
 
   return transactions;

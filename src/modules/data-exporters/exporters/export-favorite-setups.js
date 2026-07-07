@@ -1,5 +1,6 @@
+import { formatNumber, getSetting } from '@utils';
+
 import { exportPopup } from '../utils';
-import { getSetting } from '@utils';
 
 /**
  * Fetch the favorite setups.
@@ -31,7 +32,7 @@ const fetch = async () => {
  */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  totalItemsEl.textContent = data.length.toLocaleString();
+  totalItemsEl.textContent = formatNumber(data.length);
 };
 
 /**

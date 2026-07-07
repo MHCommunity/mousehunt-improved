@@ -1,4 +1,4 @@
-import { doRequest, getData } from '@utils';
+import { doRequest, formatNumber, getData } from '@utils';
 
 import { exportPopup, recursiveFetch } from '../utils';
 
@@ -49,7 +49,7 @@ const getWeightFormatted = (weight) => {
   const weightOzRemainder = weightOz % 16;
 
   if (weightLbs > 0) {
-    return `${weightLbs.toLocaleString()} lb. ${weightOzRemainder} oz.`;
+    return `${formatNumber(weightLbs)} lb. ${weightOzRemainder} oz.`;
   }
 
   return `${weightOzRemainder} oz.`;
@@ -143,14 +143,14 @@ const getDataForRegion = async (region) => {
     weights.push(mouseWeight);
 
     miceCaughtEl.textContent = `${miceData.mouse_list_category.caught}/${miceData.mouse_list_category.total}`;
-    const totalCatchesFormatted = totalCatches.toLocaleString();
+    const totalCatchesFormatted = formatNumber(totalCatches);
     totalCatchesEl.textContent = totalCatchesFormatted;
 
     // convert the total weight to lbs and oz
     const totalWeightLbs = Math.floor(totalWeight / 16);
     const totalWeightOz = totalWeight % 16;
 
-    const totalWeightLbsFormatted = totalWeightLbs.toLocaleString();
+    const totalWeightLbsFormatted = formatNumber(totalWeightLbs);
 
     totalWeightEl.textContent = totalWeightLbs > 0 ? `${totalWeightLbsFormatted} lb. ${totalWeightOz} oz` : `${totalWeightOz} oz`;
   });
@@ -198,7 +198,7 @@ const processWeights = (results) => {
   });
 
   totalUniqueMiceEl.textContent = `${totals.caughtMice}/${totals.uniqueMice}`;
-  totalCatchesEl.textContent = totals.totalCatches.toLocaleString();
+  totalCatchesEl.textContent = formatNumber(totals.totalCatches);
 
   totalWeightEl.textContent = getWeightFormatted(totals.totalWeight);
 };

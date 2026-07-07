@@ -1,4 +1,4 @@
-import { doRequest, getData } from '@utils';
+import { doRequest, formatNumber, getData } from '@utils';
 
 import { exportPopup, recursiveFetch } from '../utils';
 
@@ -51,7 +51,7 @@ const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly =
   const rankSuffix = response.scoreboard_page.viewer_row.rank_formatted.replaceAll(/[\d\s]+/g, '');
 
   if (totalItemsEl) {
-    totalItemsEl.textContent = `${entry.rank.toLocaleString()}${rankSuffix}`;
+    totalItemsEl.textContent = `${formatNumber(entry.rank)}${rankSuffix}`;
   }
 
   // resolve the promise with the data

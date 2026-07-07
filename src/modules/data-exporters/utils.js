@@ -1,4 +1,4 @@
-import { createPopup, doEvent } from '@utils';
+import { createPopup, doEvent, formatNumber } from '@utils';
 
 /**
  * Fetch data recursively.
@@ -232,7 +232,7 @@ const updateSingleTotalEl = (results) => {
     return acc + items.length;
   }, 0);
 
-  totalItemsEl.textContent = totalItems.toLocaleString();
+  totalItemsEl.textContent = formatNumber(totalItems);
 };
 
 /**

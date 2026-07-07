@@ -1,3 +1,5 @@
+import { formatNumber, lsGet } from '@utils';
+
 import { exportPopup } from '../utils';
 
 /**
@@ -15,7 +17,7 @@ const hasRankupForecaster = () => {
  * @return {Array} The data.
  */
 const fetch = async () => {
-  return JSON.parse(localStorage.getItem('Chro-forecaster-time'));
+  return lsGet('Chro-forecaster-time', null);
 };
 
 /**
@@ -25,7 +27,7 @@ const fetch = async () => {
  */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  totalItemsEl.textContent = data.length.toLocaleString();
+  totalItemsEl.textContent = formatNumber(data.length);
 };
 
 /**

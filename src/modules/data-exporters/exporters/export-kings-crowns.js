@@ -1,4 +1,4 @@
-import { doRequest, isAppleOS } from '@utils';
+import { doRequest, formatNumber, isAppleOS } from '@utils';
 import { exportPopup } from '../utils';
 
 let crowns = 0;
@@ -49,7 +49,7 @@ const afterFetch = () => {
     return;
   }
 
-  totalItemsEl.textContent = crowns.toLocaleString();
+  totalItemsEl.textContent = formatNumber(crowns);
 };
 
 /**
