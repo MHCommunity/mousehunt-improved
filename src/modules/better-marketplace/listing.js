@@ -1,6 +1,15 @@
-import { getSetting, makeElement, makeMhButton, waitForElement } from '@utils';
-
-import { parseGold } from './utils';
+import {
+  abbreviateNumber,
+  formatGold,
+  formatNumber,
+  getSetting,
+  makeElement,
+  makeMathButtons,
+  makeMhButton,
+  parseGold,
+  parseNumber,
+  waitForElement
+} from '@utils';
 
 /**
  * Maximum number of quick price links to show, to avoid clutter.
@@ -24,25 +33,6 @@ const roundToSignificant = (num, sig = 2) => {
   const magnitude = Math.floor(Math.log10(num));
   const factor = 10 ** (magnitude - sig + 1);
   return Math.round(num / factor) * factor;
-};
-
-/**
- * Compactly abbreviate a step amount for the link label (1,100 -> 1.1k).
- *
- * @param {number} num The amount.
- *
- * @return {string} The abbreviated amount.
- */
-const abbreviateAmount = (num) => {
-  if (num >= 1000000) {
-    return `${+(num / 1000000).toFixed(1)}m`;
-  }
-
-  if (num >= 1000) {
-    return `${+(num / 1000).toFixed(1)}k`;
-  }
-
-  return String(num);
 };
 
 /**
@@ -186,9 +176,9 @@ const makePriceLink = (stepLabel, price) => {
   // (which stopped the click from registering).
   const link = makeElement('a', 'mhui-marketplace-price-link');
   link.href = '#';
-  link.title = `Set price to ${price.toLocaleString()} gold`;
+  link.title = `Set price to ${formatGold(price)}`;
   makeElement('span', 'mhui-marketplace-price-step', stepLabel, link);
-  makeElement('span', 'mhui-marketplace-price-value', price.toLocaleString(), link);
+  makeElement('span', 'mhui-marketplace-price-value', formatNumber(price), link);
   link.addEventListener('click', (event) => {
     event.preventDefault();
     setOrderPrice(price);
@@ -210,7 +200,7 @@ const makeQuantityLink = (label, quantity) => {
     text: label,
     size: 'tiny',
     className: ['mhui-marketplace-quantity-link', 'lightBlue'],
-    title: `Set quantity to ${quantity.toLocaleString()}`,
+    title: `Set quantity to ${formatNumber(quantity)}`,
     callback: (event) => {
       event.preventDefault();
       setOrderQuantity(quantity);
@@ -270,7 +260,7 @@ const addQuickPriceLinks = (type, itemId) => {
 
     // e.g. "+840k (10%):" in one column, the price (tabular) in the next.
     const noteText = note ? ` (${note})` : '';
-    wrapper.append(makePriceLink(`${sign}${abbreviateAmount(amount)}${noteText}:`, price));
+    wrapper.append(makePriceLink(`${sign}${abbreviateNumber(amount)}${noteText}:`, price));
   });
 
   // Only show the group if at least one price link was added (label + 1+).
@@ -292,8 +282,19 @@ const getOwnedQuantity = () => {
 };
 
 /**
- * Add quick quantity buttons (1, 10, 100, plus 10%-of-owned and All when
- * selling) under the quantity input.
+ * Get the current value of the order quantity input.
+ *
+ * @return {number} The current quantity, or 0.
+ */
+const getCurrentQuantity = () => {
+  const input = document.querySelector('.marketplaceView-item-input.quantity input');
+  return input ? parseNumber(input.value) : 0;
+};
+
+/**
+ * Add quick quantity buttons under the quantity input: a row of +1/+10/+100
+ * math buttons (hold Shift to subtract), and a second row with 10%-of-owned
+ * and All when selling.
  *
  * @param {string} type The current action type.
  */
@@ -314,18 +315,23 @@ const addQuantityButtons = (type) => {
     wrapper.append(host);
   }
 
+  const owned = type === 'sell' ? getOwnedQuantity() : 0;
+
   const list = makeElement('div', 'mhui-marketplace-quantity-links');
 
-  [1, 10, 100].forEach((quantity) => {
-    list.append(makeQuantityLink(quantity.toLocaleString(), quantity));
+  const numbersRow = makeElement('div', 'mhui-marketplace-quantity-row', '', list);
+  makeMathButtons([1, 10, 100], {
+    appendTo: numbersRow,
+    maxQty: type === 'sell' && owned > 0 ? owned : Number.MAX_SAFE_INTEGER,
+    classNames: ['tiny', 'lightBlue', 'mhui-marketplace-quantity-link'],
+    getValue: getCurrentQuantity,
+    setValue: setOrderQuantity,
   });
 
-  if (type === 'sell') {
-    const owned = getOwnedQuantity();
-    if (owned > 0) {
-      list.append(makeQuantityLink('10%', Math.max(1, Math.round(owned * 0.1))));
-      list.append(makeQuantityLink('All', owned));
-    }
+  if (type === 'sell' && owned > 0) {
+    const percentsRow = makeElement('div', 'mhui-marketplace-quantity-row', '', list);
+    percentsRow.append(makeQuantityLink('10%', Math.max(1, Math.round(owned * 0.1))));
+    percentsRow.append(makeQuantityLink('All', owned));
   }
 
   host.append(list);
@@ -351,7 +357,7 @@ const addTariffInfo = () => {
 
     const tax = Math.ceil(value / 11);
     const raw = value - tax;
-    const info = `${raw.toLocaleString()} (Raw)\n${tax.toLocaleString()} (Tax)`;
+    const info = `${formatNumber(raw)} (Raw)\n${formatNumber(tax)} (Tax)`;
 
     quantityEl.dataset.mhuiTariff = 'true';
     row.title = info;

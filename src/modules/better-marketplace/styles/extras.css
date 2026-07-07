@@ -53,6 +53,7 @@ select.mhui-marketplace-trap-filter {
   gap: 1px 5px;
   justify-content: center;
   margin-top: 4px;
+  margin-left: -20px;
 }
 
 .mhui-marketplace-price-links-label {
@@ -90,13 +91,20 @@ a.mhui-marketplace-price-link:hover .mhui-marketplace-price-value {
   text-decoration: underline;
 }
 
-/* Quick quantity buttons under the quantity input. */
+/* Quick quantity buttons under the quantity input: a row of +1/+10/+100 math
+   buttons, then a row of percent/all buttons when selling. */
 .mhui-marketplace-quantity-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mhui-marketplace-quantity-row {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   justify-content: center;
-  margin-top: 4px;
 }
 
 a.mhui-marketplace-quantity-link.mousehuntActionButton {
