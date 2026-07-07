@@ -506,6 +506,11 @@ a.reset-link {
   color: #f30000;
 }
 
+a.update-data-link.updating {
+  color: #888;
+  pointer-events: none;
+}
+
 .PagePreferences__settingNameText[data-setting="experiments"] {
   display: none;
 }

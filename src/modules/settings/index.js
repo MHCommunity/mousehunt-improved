@@ -13,12 +13,14 @@ import {
   getSettings,
   makeElement,
   makeMhButton,
+  markCachesAsExpired,
   onEvent,
   parseEncodedValue,
   saveSetting,
   setPage,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
+  updateCaches
 } from '@utils';
 
 import settingsSettings from './settings';
@@ -330,6 +332,25 @@ const addAdvancedSettingsButtons = () => {
   }
 
   const buttonsWrapper = makeElement('div', 'mousehunt-improved-advanced-buttons');
+
+  const updateGameDataLink = makeElement('a', 'update-data-link', 'Update Data');
+  updateGameDataLink.href = '#';
+  updateGameDataLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    if (updateGameDataLink.classList.contains('updating')) {
+      return;
+    }
+
+    updateGameDataLink.classList.add('updating');
+    updateGameDataLink.textContent = 'Updating Data…';
+
+    await markCachesAsExpired();
+    await updateCaches();
+
+    window.location.reload();
+  });
+  buttonsWrapper.append(updateGameDataLink);
 
   const clearCachedDataLink = makeElement('a', 'clear-cache-link', 'Clear Cached Data');
   clearCachedDataLink.href = '#';
