@@ -181,6 +181,36 @@ const fetchData = async (key, retries = 0) => {
 };
 
 /**
+ * Fetch a resource from the api.mouse.rip API, applying the standard headers.
+ *
+ * Use this for per-id lookups that aren't whitelisted data files (which should
+ * go through getData instead).
+ *
+ * @param {string}  path        The path to fetch, without the leading slash.
+ * @param {Object}  [opts]      The options.
+ * @param {boolean} [opts.json] Whether to parse the response as JSON (default true).
+ *
+ * @return {Promise<Object|string|null>} The parsed response, or null on failure.
+ */
+const fetchMouseRip = async (path, { json = true } = {}) => {
+  try {
+    const response = await fetch(`https://api.mouse.rip/${path}`, {
+      method: 'GET',
+      headers: getHeaders(),
+    });
+
+    if (! response.ok) {
+      return null;
+    }
+
+    return json ? await response.json() : await response.text();
+  } catch (error) {
+    console.error(`Error fetching ${path} from mouse.rip:`, error); // eslint-disable-line no-console
+    return null;
+  }
+};
+
+/**
  * Get the data for the given key.
  *
  * @param {string}  key   Key to get the data for.
@@ -400,6 +430,39 @@ const sessionsDelete = (prefix) => {
 };
 
 /**
+ * Get a value from localStorage, safely JSON-parsing it.
+ *
+ * Use this for reading raw localStorage keys (e.g. Keys written by third-party
+ * userscripts). For in-house caching, prefer cacheGet/sessionGet..
+ *
+ * @template T
+ * @param {string} key            Key to get the value for.
+ * @param {T}      [defaultValue] Default value if the key is missing or invalid.
+ *
+ * @return {T} The parsed value, or the default.
+ */
+const lsGet = (key, defaultValue = null) => {
+  const value = localStorage.getItem(key);
+  if (null === value) {
+    return defaultValue;
+  }
+
+  return safeJsonParse(value, defaultValue, (error) => {
+    console.error(`Error parsing localStorage for ${key}:`, error); // eslint-disable-line no-console
+  });
+};
+
+/**
+ * Set a value in localStorage, JSON-stringifying it.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ */
+const lsSet = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+/**
  * Set a cache value.
  *
  * @param {string} key               Key to set the value for.
@@ -549,6 +612,9 @@ export {
   cacheSetNoExpiration,
   clearCaches,
   getData,
+  fetchMouseRip,
+  lsGet,
+  lsSet,
   getHeaders,
   updateCaches,
   markCachesAsExpired,

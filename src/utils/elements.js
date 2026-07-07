@@ -46,6 +46,23 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
 };
 
 /**
+ * Replace an existing element (matched within a container) with a new element,
+ * or append the new element to the container if no match exists.
+ *
+ * @param {HTMLElement} container The container to search within and append to.
+ * @param {string}      selector  The selector for the element to replace.
+ * @param {HTMLElement} element   The new element.
+ */
+const replaceOrAppend = (container, selector, element) => {
+  const existing = container.querySelector(selector);
+  if (existing) {
+    existing.replaceWith(element);
+  } else {
+    container.append(element);
+  }
+};
+
+/**
  * Return an anchor element with the given text and href.
  *
  * @param {string}  text            Text to use for link.
@@ -384,6 +401,8 @@ const makePage = (content) => {
  * @param {HTMLElement} [opts.input]      The input to update.
  * @param {number}      [opts.maxQty]     The maximum quantity for the input.
  * @param {Array}       [opts.classNames] The class names to add to the button.
+ * @param {Function}    [opts.getValue]   Custom getter for the current value, instead of reading the input.
+ * @param {Function}    [opts.setValue]   Custom setter for the new value, instead of writing to the input.
  *
  * @return {HTMLElement} The created button.
  */
@@ -393,6 +412,8 @@ const makeMathButton = (amount, opts) => {
     input = null,
     maxQty = 0,
     classNames = [],
+    getValue = null,
+    setValue = null,
   } = opts;
 
   const button = makeElement('a', ['mousehuntActionButton', 'mh-improved-math-button', `mh-improved-math-button-${amount}`, ...classNames]);
@@ -425,20 +446,29 @@ const makeMathButton = (amount, opts) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let current = Number.parseInt(input.value.replaceAll(',', '').trim(), 10) || 0;
+    const rawValue = getValue ? getValue() : input.value;
+    let current = Number.parseInt(String(rawValue).replaceAll(',', '').trim(), 10) || 0;
     if (Number.isNaN(current)) {
       current = 0;
     }
 
     const tempAmount = e.shiftKey ? -amount : amount;
 
+    let newValue;
     if (current + tempAmount >= maxQty) {
-      input.value = maxQty;
+      newValue = maxQty;
     } else if (current + tempAmount <= 0) {
-      input.value = 0;
+      newValue = 0;
     } else {
-      input.value = current + tempAmount;
+      newValue = current + tempAmount;
     }
+
+    if (setValue) {
+      setValue(newValue);
+      return;
+    }
+
+    input.value = newValue;
 
     const event = new Event('keyup');
     input.dispatchEvent(event);
@@ -636,6 +666,7 @@ export {
   createPopup,
   makeButton,
   makeElement,
+  replaceOrAppend,
   makeLink,
   makeFavoriteButton,
   makeTooltip,

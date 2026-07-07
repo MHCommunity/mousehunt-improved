@@ -397,6 +397,95 @@ const uppercaseFirstLetter = (string) => {
 };
 
 /**
+ * Parse a number from text, stripping thousands separators (e.g. "12,345" -> 12345).
+ *
+ * @param {string|number} text The text to parse.
+ *
+ * @return {number} The parsed number, or 0 if it could not be parsed.
+ */
+const parseNumber = (text) => {
+  if (text === null || text === undefined || '' === text) {
+    return 0;
+  }
+
+  const value = Number.parseInt(String(text).replaceAll(',', ''), 10);
+  return Number.isNaN(value) ? 0 : value;
+};
+
+/**
+ * Parse a gold value from text, stripping commas and any trailing label
+ * (e.g. "12,345 Gold" -> 12345).
+ *
+ * @param {string|number} text The text to parse.
+ *
+ * @return {number} The parsed number, or 0 if it could not be parsed.
+ */
+const parseGold = (text) => {
+  if (! text) {
+    return 0;
+  }
+
+  const value = Number.parseInt(String(text).split('Gold')[0].replaceAll(',', '').trim(), 10);
+  return Number.isNaN(value) ? 0 : value;
+};
+
+/**
+ * Format a number with thousands separators (e.g. 12345 -> "12,345").
+ *
+ * @param {string|number} value The value to format.
+ *
+ * @return {string} The formatted number.
+ */
+const formatNumber = (value) => {
+  return Number(value || 0).toLocaleString();
+};
+
+/**
+ * Format a gold value with thousands separators and a "gold" suffix
+ * (e.g. 12345 -> "12,345 gold").
+ *
+ * @param {string|number} value The value to format.
+ *
+ * @return {string} The formatted gold string.
+ */
+const formatGold = (value) => {
+  return `${formatNumber(value)} gold`;
+};
+
+/**
+ * Abbreviate a large number to one decimal place (1,200 -> "1.2k", 3,400,000 -> "3.4m").
+ *
+ * @param {number} num        The number to abbreviate.
+ * @param {number} [decimals] The number of decimal places to keep.
+ *
+ * @return {string} The abbreviated number.
+ */
+const abbreviateNumber = (num, decimals = 1) => {
+  if (num >= 1000000) {
+    return `${Number((num / 1000000).toFixed(decimals))}m`;
+  }
+
+  if (num >= 1000) {
+    return `${Number((num / 1000).toFixed(decimals))}k`;
+  }
+
+  return String(num);
+};
+
+/**
+ * Clamp a value between a minimum and maximum.
+ *
+ * @param {number} value The value to clamp.
+ * @param {number} min   The minimum value.
+ * @param {number} max   The maximum value.
+ *
+ * @return {number} The clamped value.
+ */
+const clamp = (value, min, max) => {
+  return Math.max(min, Math.min(max, value));
+};
+
+/**
  * Set multiple timeouts.
  *
  * @param {Function}     fn The function to run.
@@ -526,6 +615,12 @@ export {
   hasMiniCRE,
   sleep,
   uppercaseFirstLetter,
+  parseNumber,
+  parseGold,
+  formatNumber,
+  formatGold,
+  abbreviateNumber,
+  clamp,
   setMultipleTimeout,
   refreshPage,
   debounce,

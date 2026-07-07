@@ -9,6 +9,7 @@ export * from './event-registry';
 export * from './flags';
 export * from './global';
 export * from './horn';
+export * from './hover-card';
 export * from './humanizer';
 export * from './json';
 export * from './journal';

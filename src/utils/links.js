@@ -1,4 +1,59 @@
-import { makeElement } from './elements';
+import { makeElement, makeLink } from './elements';
+
+/**
+ * Build the MH Wiki URL for a given name.
+ *
+ * @param {string}  name          The name to link to.
+ * @param {boolean} [encode=true] Whether to URL-encode the name. Pass false when the name is already normalized.
+ *
+ * @return {string} The wiki URL.
+ */
+const wikiUrl = (name, encode = true) => {
+  const slug = encode
+    ? encodeURIComponent(name.replaceAll(' ', '_'))
+    : name.replaceAll(' ', '_');
+
+  return `https://mhwiki.hitgrab.com/wiki/index.php/${slug}`;
+};
+
+/**
+ * Build the MHCT redirect URL for a mouse or item.
+ *
+ * @param {string|number} id          The mouse type / item id to redirect to.
+ * @param {Object}        [opts]      The options.
+ * @param {boolean}       [opts.item] Whether this is an item (uses the item redirect).
+ *
+ * @return {string} The MHCT redirect URL.
+ */
+const mhctRedirectUrl = (id, { item = false } = {}) => {
+  return `https://api.mouse.rip/mhct-redirect${item ? '-item' : ''}/${id}`;
+};
+
+/**
+ * Build the MHCT (Attraction Rate) + Wiki link markup for a mouse.
+ *
+ * @param {string}        name The mouse name.
+ * @param {string|number} id   The mouse type / id.
+ *
+ * @return {string} The link markup.
+ */
+const getMouseLinks = (name, id) => {
+  return makeLink('MHCT AR', mhctRedirectUrl(id)) +
+    makeLink('Wiki', wikiUrl(name), true);
+};
+
+/**
+ * Build the MHCT + Wiki link markup for an item.
+ *
+ * @param {string}        name The item name.
+ * @param {string|number} id   The item id.
+ *
+ * @return {string} The link markup.
+ */
+const getItemLinks = (name, id) => {
+  return makeLink('MHCT', mhctRedirectUrl(id, { item: true }), true) +
+    makeLink('Wiki', wikiUrl(name), true);
+};
 
 /**
  * Add an item to the top 'Hunters Online' menu.
@@ -331,6 +386,10 @@ const getExtensionLinkText = () => {
 };
 
 export {
+  wikiUrl,
+  mhctRedirectUrl,
+  getMouseLinks,
+  getItemLinks,
   addItemToGameInfoBar,
   addSubmenuItem,
   addSubmenuDivider,
