@@ -1,13 +1,16 @@
 import {
   addStyles,
   debounce,
+  formatGold,
+  formatNumber,
   getData,
+  getItemLinks,
   getSetting,
   makeElement,
-  makeLink,
   makeMhButton,
   onOverlayChange,
   onRequest,
+  parseNumber,
   waitForElement
 } from '@utils';
 
@@ -195,19 +198,6 @@ const autocloseClaim = (resp) => {
   }
 };
 
-/**
- * Get the markup for the mouse links.
- *
- * @param {string} name The name of the mouse.
- * @param {string} id   The ID of the mouse.
- *
- * @return {string} The markup for the mouse links.
- */
-const getLinkMarkup = (name, id) => {
-  return makeLink('MHCT', `https://api.mouse.rip/mhct-redirect-item/${id}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
-};
-
 let _originalShowItem = null;
 /**
  * Replace the showItem function to add additional functionality.
@@ -257,7 +247,7 @@ const overloadShowItem = () => {
     let itemName = document.querySelector('.marketplaceView-item-titleName');
     itemName = itemName ? itemName.textContent.trim() : '';
 
-    const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getLinkMarkup(itemName, itemId));
+    const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getItemLinks(itemName, itemId));
     actions.insertBefore(buttons, actions.firstChild);
 
     if (getSetting('better-marketplace.quick-sell')) {
@@ -286,8 +276,8 @@ const addListingQuantityClicks = async () => {
     order.addEventListener('click', () => {
       // Other features may append extra lines to the cell; use the first one.
       const [first] = order.textContent.split('\n');
-      const quantity = Number.parseInt(first.replaceAll(',', ''), 10);
-      if (! quantity || Number.isNaN(quantity)) {
+      const quantity = parseNumber(first);
+      if (! quantity) {
         return;
       }
 
@@ -456,7 +446,7 @@ const getBestSellPrice = () => {
     return 0;
   }
 
-  return Number.parseInt(priceEl.textContent.replaceAll(',', ''), 10);
+  return parseNumber(priceEl.textContent);
 };
 
 const getBestSellQuantity = () => {
@@ -470,7 +460,7 @@ const getBestSellQuantity = () => {
     return 0;
   }
 
-  return Number.parseInt(quantityEl.textContent.replaceAll(',', ''), 10);
+  return parseNumber(quantityEl.textContent);
 };
 
 const addQuickSellButton = async (itemId) => {
@@ -505,7 +495,7 @@ const addQuickSellButton = async (itemId) => {
   const bestSellPrice = getBestSellPrice();
 
   const maxQuantity = Math.min(
-    maxQuantityEl ? Number.parseInt(maxQuantityEl.textContent.replaceAll(',', ''), 10) : 0,
+    maxQuantityEl ? parseNumber(maxQuantityEl.textContent) : 0,
     bestSellQuantity
   );
 
@@ -552,13 +542,13 @@ const addQuickSellButton = async (itemId) => {
   });
 
   const infoRow = makeElement('div', 'mhui-marketplace-quick-sell-info');
-  infoRow.textContent = `${maxQuantity.toLocaleString()} at ${bestSellPrice.toLocaleString()} gold, ${(bestSellPrice * maxQuantity).toLocaleString()} total`;
+  infoRow.textContent = `${formatNumber(maxQuantity)} at ${formatGold(bestSellPrice)}, ${formatNumber(bestSellPrice * maxQuantity)} total`;
   quickSellWrapper.append(infoRow);
 
   quickSellInput.addEventListener('input', () => {
     const quantity = Math.min(Number.parseInt(quickSellInput.value, 10) || 0, bestSellQuantity);
 
-    infoRow.textContent = `${quantity.toLocaleString()} at ${bestSellPrice.toLocaleString()} gold, ${(bestSellPrice * quantity).toLocaleString()} total`;
+    infoRow.textContent = `${formatNumber(quantity)} at ${formatGold(bestSellPrice)}, ${formatNumber(bestSellPrice * quantity)} total`;
   });
 
   actions.append(quickSellWrapper);

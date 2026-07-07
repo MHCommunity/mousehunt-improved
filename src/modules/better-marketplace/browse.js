@@ -1,27 +1,16 @@
-import { getData, getSetting, makeElement, waitForElement } from '@utils';
-
-import { parseGold } from './utils';
+import {
+  abbreviateNumber,
+  formatGold,
+  getData,
+  getSetting,
+  lsGet,
+  lsSet,
+  makeElement,
+  parseGold,
+  waitForElement
+} from '@utils';
 
 const LAST_VIEWED_KEY = 'mh-improved-marketplace-last-viewed';
-
-/**
- * Abbreviate a large number to one decimal place (1.2k, 3.4m).
- *
- * @param {number} num The number to abbreviate.
- *
- * @return {string} The abbreviated number.
- */
-const abbreviate = (num) => {
-  if (num <= 999) {
-    return String(num);
-  }
-
-  if (num <= 999999) {
-    return `${(num / 1000).toFixed(1)}k`;
-  }
-
-  return `${(num / 1000000).toFixed(1)}m`;
-};
 
 /**
  * Get the classification of the currently active browse category (e.g.
@@ -181,8 +170,8 @@ const addTotalsReadout = (totalBuy, totalSell) => {
   }
 
   if (totalBuy > 0) {
-    total.title = `${totalBuy.toLocaleString()} gold (Buy)\n${totalSell.toLocaleString()} gold (Sell)`;
-    total.textContent = `Estimated value of owned items: ${totalBuy.toLocaleString()} gold`;
+    total.title = `${formatGold(totalBuy)} (Buy)\n${formatGold(totalSell)} (Sell)`;
+    total.textContent = `Estimated value of owned items: ${formatGold(totalBuy)}`;
     total.classList.remove('mhui-hidden');
   } else {
     total.classList.add('mhui-hidden');
@@ -223,7 +212,7 @@ const addValueColumn = (table, rows) => {
     const price = getAveragePrice(row);
     const buyValue = owned * price;
 
-    let display = abbreviate(buyValue);
+    let display = abbreviateNumber(buyValue);
     if (price === 0) {
       // Average price is unavailable, but the value isn't necessarily 0.
       display = 'N/A';
@@ -234,7 +223,7 @@ const addValueColumn = (table, rows) => {
       totalBuy += buyValue;
       totalSell += sellValue;
       row.dataset.mhuiValue = String(buyValue);
-      row.title = `${buyValue.toLocaleString()} gold (Buy)\n${sellValue.toLocaleString()} gold (Sell)`;
+      row.title = `${formatGold(buyValue)} (Buy)\n${formatGold(sellValue)} (Sell)`;
     } else {
       row.dataset.mhuiValue = '0';
     }
@@ -318,11 +307,7 @@ const addTrapFilter = async (rows) => {
  * @return {Object} The map of category name to item ID.
  */
 const getLastViewed = () => {
-  try {
-    return JSON.parse(localStorage.getItem(LAST_VIEWED_KEY) || '{}');
-  } catch {
-    return {};
-  }
+  return lsGet(LAST_VIEWED_KEY, {});
 };
 
 /**
@@ -334,7 +319,7 @@ const getLastViewed = () => {
 const setLastViewed = (category, itemId) => {
   const map = getLastViewed();
   map[category] = itemId;
-  localStorage.setItem(LAST_VIEWED_KEY, JSON.stringify(map));
+  lsSet(LAST_VIEWED_KEY, map);
 };
 
 /**
