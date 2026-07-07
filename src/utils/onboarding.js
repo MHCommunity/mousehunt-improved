@@ -57,9 +57,11 @@ const addOnboardingMessage = async (options) => {
     onCloseCallback = () => {},
     showOverlay = true,
     delay = 100,
+    disabled = false,
   } = options;
 
   if (
+    disabled ||
     hasAddedOnboardingStep ||
     hasSeenOnboardingStep(step) ||
     (page && page !== getCurrentPage()) ||
