@@ -6,6 +6,27 @@ import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import yargs from 'yargs';
 
+const SVGDataUriPlugin = {
+  name: 'SVGDataUriPlugin',
+  /**
+   * Setup the plugin.
+   *
+   * @param {Object} build The build object.
+   */
+  setup(build) {
+    build.onLoad({ filter: /\.svg$/ }, async (args) => {
+      const svg = await readFile(args.path, 'utf8');
+      return {
+        contents: svg
+          .replaceAll(/\s+/g, ' ')
+          .replaceAll('> <', '><')
+          .trim(),
+        loader: 'dataurl',
+      };
+    });
+  },
+};
+
 const CSSMinifyTextPlugin = {
   name: 'CSSMinifyTextPlugin',
   /**
@@ -15,14 +36,19 @@ const CSSMinifyTextPlugin = {
    */
   setup(build) {
     build.onLoad({ filter: /\.css$/ }, async (args) => {
-      const f = await readFile(args.path);
-      const css = await esbuild.transform(f, {
-        loader: 'css',
+      const css = await esbuild.build({
+        entryPoints: [args.path],
+        bundle: true,
         minify: true,
+        write: false,
+        loader: {
+          '.png': 'dataurl',
+        },
+        plugins: [SVGDataUriPlugin],
       });
       return {
         loader: 'text',
-        contents: css.code,
+        contents: css.outputFiles[0].text,
       };
     });
   }
@@ -130,6 +156,7 @@ export {
   CSSMinifyTextPlugin,
   JSONMinifyPlugin,
   ImportGlobPlugin,
+  SVGDataUriPlugin,
   parseArgs,
   minifyAllJsonFiles
 };

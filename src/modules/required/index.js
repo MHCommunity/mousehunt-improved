@@ -14,6 +14,9 @@ import {
   setMultipleTimeout
 } from '@utils';
 
+import chromeIcon from '@images/chrome.svg';
+import firefoxIcon from '@images/firefox.svg';
+
 import globalUtils from './global-utils';
 
 let hasAddedHornCountdownEvents = false;
@@ -187,10 +190,10 @@ const addUserscriptConfirmation = () => {
     </p>
       <div class="mh-improved-userscript-popup-actions">
         <a href="https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/" title="View on Firefox Add-ons">
-          <img src="https://i.mouse.rip/firefox.svg" alt="View on Firefox Add-ons" />
+          <img src="${firefoxIcon}" alt="View on Firefox Add-ons" />
         </a>
         <a href="https://chrome.google.com/webstore/detail/mousehunt-improved/mbkpejkkhmebmdjokdplhkljgkcfhjol" title="View on Chrome Web Store">
-          <img src="https://i.mouse.rip/chrome.svg" alt="View on Chrome Web Store" />
+          <img src="${chromeIcon}" alt="View on Chrome Web Store" />
         </a>
       </div>
       <button class="mh-improved-userscript-popup-confirm mousehuntActionButton small gray"><span>

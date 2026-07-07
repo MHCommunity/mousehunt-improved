@@ -1,12 +1,17 @@
 import { onTurn, setMultipleTimeout } from '@utils';
 
+import appleTouchIcon from '@images/mh-icons/apple-touch-icon.png';
+import favicon16 from '@images/mh-icons/favicon-16x16.png';
+import favicon32 from '@images/mh-icons/favicon-32x32.png';
+import safariPinnedTabIcon from '@images/mh-icons/safari-pinned-tab.svg';
+
 /**
  * Replace the favicon.
  */
 const replace = () => {
   const favicon = document.querySelector('#favicon');
   if (favicon) {
-    favicon.href = 'https://i.mouse.rip/mh-icons/favicon.ico';
+    favicon.href = favicon32;
   }
 };
 
@@ -15,10 +20,10 @@ const replace = () => {
  */
 const add = () => {
   const icons = [
-    { rel: 'apple-touch-icon', sizes: '180x180', href: 'https://i.mouse.rip/mh-icons/apple-touch-icon.png' },
-    { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'https://i.mouse.rip/mh-icons/favicon-32x32.png' },
-    { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'https://i.mouse.rip/mh-icons/favicon-16x16.png' },
-    { rel: 'mask-icon', href: 'https://i.mouse.rip/mh-icons/safari-pinned-tab.svg', color: '#cfae00' },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: appleTouchIcon },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: favicon32 },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: favicon16 },
+    { rel: 'mask-icon', href: safariPinnedTabIcon, color: '#cfae00' },
   ];
 
   icons.forEach((icon) => {

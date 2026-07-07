@@ -57,7 +57,7 @@
     "import/no-unresolved": [
       "error",
       {
-        "ignore": ["^@/", "@data", "@utils"]
+        "ignore": ["^@/", "@data", "@images", "@utils"]
       }
     ],
     "import/no-useless-path-segments": "error",

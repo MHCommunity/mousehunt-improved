@@ -1,8 +1,15 @@
 import * as esbuild from 'esbuild';
+import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { CSSMinifyTextPlugin, ImportGlobPlugin, JSONMinifyPlugin, minifyAllJsonFiles } from './shared.mjs';
+import {
+  CSSMinifyTextPlugin,
+  ImportGlobPlugin,
+  JSONMinifyPlugin,
+  SVGDataUriPlugin,
+  minifyAllJsonFiles
+} from './shared.mjs';
 
 await minifyAllJsonFiles();
 
@@ -24,11 +31,16 @@ await esbuild.build({
   plugins: [
     ImportGlobPlugin,
     CSSMinifyTextPlugin,
-    JSONMinifyPlugin
+    JSONMinifyPlugin,
+    SVGDataUriPlugin
   ],
   outfile: 'dist/mousehunt-improved.user.js',
   alias: {
     '@data': path.resolve(process.cwd(), 'dist/data'),
+    '@images': path.resolve(process.cwd(), 'src/images'),
+  },
+  loader: {
+    '.png': 'dataurl',
   },
   dropLabels: ['excludeFromUserscript'],
   banner: {
@@ -71,3 +83,11 @@ cleaned = cleaned
 
 // write the cleaned file back to disk
 fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), cleaned);
+
+const greasyForkLimit = 2097152; // 2MB
+
+if (cleaned.length >= greasyForkLimit) { // GreasyFork limit.
+  console.warn(`${chalk.yellow('⚠')} The userscript is too large for GreasyFork. Reduce the size by ${cleaned.length - greasyForkLimit} bytes.`); // eslint-disable-line no-console
+} else {
+  console.log(`Userscript size is ${cleaned.length} bytes, ${greasyForkLimit - cleaned.length} bytes under the GreasyFork limit.`); // eslint-disable-line no-console
+}

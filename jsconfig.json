@@ -9,7 +9,8 @@
       "@utils/*": ["./src/utils/"],
       "@utils/shared/*": ["./src/utils/shared/*"],
       "@utils": ["./src/utils/index.js"],
-      "@data/*": ["./src/data/*"]
+      "@data/*": ["./src/data/*"],
+      "@images/*": ["./src/images/*"]
     }
   },
   "include": ["src/**/*"],

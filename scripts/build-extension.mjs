@@ -7,6 +7,7 @@ import {
   CSSMinifyTextPlugin,
   ImportGlobPlugin,
   JSONMinifyPlugin,
+  SVGDataUriPlugin,
   minifyAllJsonFiles,
   parseArgs
 } from './shared.mjs';
@@ -55,6 +56,10 @@ const buildExtension = async (platform, watch = false) => {
     ],
     alias: {
       '@data': path.resolve(process.cwd(), 'dist/data'),
+      '@images': path.resolve(process.cwd(), 'src/images'),
+    },
+    loader: {
+      '.png': 'dataurl',
     },
     dropLabels: ['excludeFromExtension'],
     outfile: `dist/${platform}/main.js`,
@@ -62,6 +67,7 @@ const buildExtension = async (platform, watch = false) => {
       ImportGlobPlugin,
       CSSMinifyTextPlugin,
       JSONMinifyPlugin,
+      SVGDataUriPlugin,
       copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
         src: 'src/extension',
         dest: `dist/${platform}`,
