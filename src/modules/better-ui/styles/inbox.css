@@ -44,8 +44,6 @@
 }
 
 .notificationMessageList .tab[data-tab="general"] .message .messageText {
-  display: inline-flex;
-  align-items: center;
   padding: 0;
 }
 

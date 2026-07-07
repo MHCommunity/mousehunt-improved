@@ -2,6 +2,8 @@ import {
   addStyles,
   debug,
   humanizeTime,
+  lsGet,
+  lsSet,
   makeElement,
   onDeactivation,
   waitForElement
@@ -25,7 +27,7 @@ let cacheTime = 0;
  */
 const getState = () => {
   try {
-    const state = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
+    const state = lsGet(STATE_KEY, {});
     return {
       claimed: state.claimed || {},
       hidden: state.hidden || {},
@@ -42,7 +44,7 @@ const getState = () => {
  * @param {Object} state The state to save.
  */
 const saveState = (state) => {
-  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+  lsSet(STATE_KEY, state);
 };
 
 /**
@@ -291,6 +293,8 @@ const buildMessage = (link) => {
   if (claimed) {
     message.classList.add('claimed');
     claim.classList.add('disabled', 'small');
+    claim.target = '_blank';
+    claim.rel = 'noopener';
   } else {
     claim.classList.add('readNewsPost');
   }
@@ -317,7 +321,9 @@ const buildMessage = (link) => {
 };
 
 /**
- * Update a gift link message to reflect its claimed state.
+ * Update a gift link message to reflect its claimed state. The button stays a
+ * working link to the gift page so it can be claimed manually if something
+ * went wrong.
  *
  * @param {HTMLElement} message     The gift link message element.
  * @param {HTMLElement} claimButton The claim button element.
@@ -331,6 +337,13 @@ const showClaimed = (message, claimButton) => {
   claimButton.classList.remove('busy', 'readNewsPost');
   claimButton.classList.add('disabled', 'small');
 
+  const manualUrl = claimButton.dataset.mhiGiftManualUrl;
+  if (manualUrl) {
+    claimButton.href = manualUrl;
+  }
+  claimButton.target = '_blank';
+  claimButton.rel = 'noopener';
+
   if (message) {
     message.classList.remove('new');
     message.classList.add('claimed');
@@ -338,8 +351,9 @@ const showClaimed = (message, claimButton) => {
 };
 
 /**
- * Show a claim error below the claim button and turn the button into a manual
- * claim link.
+ * Show a claim error below the claim button, turn the button into a manual
+ * claim link, and offer a "Mark as claimed" link for gifts that were already
+ * claimed elsewhere.
  *
  * @param {HTMLElement} message     The gift link message element.
  * @param {HTMLElement} claimButton The claim button element.
@@ -373,6 +387,16 @@ const showClaimError = (message, claimButton, errorText) => {
 
   error.textContent = errorText;
   error.hidden = false;
+
+  let markClaimed = actions.querySelector('.mh-improved-gift-mark-claimed');
+  if (! markClaimed) {
+    markClaimed = makeElement('a', 'mh-improved-gift-mark-claimed', 'Mark as claimed');
+    markClaimed.href = '#';
+    markClaimed.setAttribute('data-mhi-gift-mark-claimed', claimButton.dataset.mhiGiftClaim);
+    actions.append(markClaimed);
+  }
+
+  markClaimed.hidden = false;
 };
 
 /**
@@ -388,9 +412,15 @@ const claimGiftInPlace = (claimButton) => {
     return false;
   }
 
-  // Already claimed or a claim is in progress.
-  if (claimButton.classList.contains('busy') || claimButton.classList.contains('disabled')) {
+  // A claim is in progress.
+  if (claimButton.classList.contains('busy')) {
     return true;
+  }
+
+  // Already claimed: let the button act as a link to the gift page in case
+  // something went wrong with the in-place claim.
+  if (claimButton.classList.contains('disabled')) {
+    return false;
   }
 
   const code = claimButton.dataset.mhiGiftClaim;
@@ -573,6 +603,31 @@ const bindClickTracking = () => {
       if (claimGiftInPlace(claim)) {
         event.preventDefault();
       }
+
+      return;
+    }
+
+    const markClaimed = event.target.closest?.('[data-mhi-gift-mark-claimed]');
+    if (markClaimed) {
+      event.preventDefault();
+
+      const message = markClaimed.closest('.message.mh-improved-gift-link');
+      const claimButton = message?.querySelector('[data-mhi-gift-claim]');
+
+      markState(markClaimed.dataset.mhiGiftMarkClaimed, 'claimed');
+
+      if (claimButton) {
+        claimButton.removeAttribute('data-mhi-gift-claim-state');
+        showClaimed(message, claimButton);
+      }
+
+      const error = message?.querySelector('.mh-improved-gift-claim-error');
+      if (error) {
+        error.hidden = true;
+      }
+
+      markClaimed.hidden = true;
+      refreshGiftTabState();
 
       return;
     }

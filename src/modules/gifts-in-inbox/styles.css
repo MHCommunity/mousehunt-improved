@@ -44,9 +44,21 @@
   opacity: 0.7;
 }
 
+.notificationMessageList .message.mh-improved-gift-link .actions.mh-improved-gift-link-actions .mh-improved-gift-claim.disabled:not(.busy) {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-claim-error {
   max-width: 160px;
   font-size: 11px;
   color: #c00;
   text-align: right;
+}
+
+.notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-mark-claimed {
+  font-size: 11px;
+  color: #686e8a;
+  text-align: right;
+  text-decoration: underline;
 }
