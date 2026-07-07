@@ -2,9 +2,9 @@ import {
   addStyles,
   getArForMouse,
   getData,
+  getItemLinks,
   getSetting,
   makeElement,
-  makeLink,
   makeMathButtons,
   makeMhButton,
   makeTooltip,
@@ -16,19 +16,6 @@ import {
 import hoverItem from './modules/hover-item';
 import settings from './settings';
 import styles from './styles.css';
-
-/**
- * Get the markup for the mouse links.
- *
- * @param {string} name The name of the mouse.
- * @param {string} id   The ID of the mouse.
- *
- * @return {string} The markup for the mouse links.
- */
-const getLinkMarkup = (name, id) => {
-  return makeLink('MHCT', `https://api.mouse.rip/mhct-redirect-item/${id}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
-};
 
 /**
  * Add links to the mouse overlay.
@@ -47,7 +34,7 @@ const addLinks = (itemId) => {
   }
 
   const div = makeElement('div', 'mh-item-links');
-  div.innerHTML = getLinkMarkup(title.innerText, itemId);
+  div.innerHTML = getItemLinks(title.innerText, itemId);
   title.append(div);
 
   // Move the values into the main text.

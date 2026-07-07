@@ -5,11 +5,11 @@ import {
   getArForMouse,
   getData,
   getFlag,
+  getMouseLinks,
   getRelicHunterLocation,
   getSetting,
   makeElement,
   makeFavoriteButton,
-  makeLink,
   makeMhButton,
   makeTooltip,
   onNavigation,
@@ -24,19 +24,6 @@ import settings from './settings';
 import sidebar from './modules/sidebar';
 
 import styles from './styles.css';
-
-/**
- * Get the markup for the mouse links.
- *
- * @param {string} name The name of the mouse.
- * @param {string} id   The ID of the mouse.
- *
- * @return {string} The markup for the mouse links.
- */
-const getLinkMarkup = (name, id) => {
-  return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${id}`) +
-  makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
-};
 
 /**
  * Add links to the mouse overlay.
@@ -55,7 +42,7 @@ const addLinks = (id) => {
   }
 
   const div = makeElement('div', 'mh-ui-mouse-links');
-  div.innerHTML = getLinkMarkup(title.innerText, id);
+  div.innerHTML = getMouseLinks(title.innerText, id);
   title.parentNode.insertBefore(div, title);
 
   // Move the values into the main text.

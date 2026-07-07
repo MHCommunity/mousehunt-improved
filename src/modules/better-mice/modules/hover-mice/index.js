@@ -1,5 +1,6 @@
 import {
   addStyles,
+  createHoverCard,
   doRequest,
   makeElement,
   onEvent,
@@ -100,100 +101,12 @@ const makeMouseMarkup = (mouse) => {
   return mouseData;
 };
 
-/**
- * Create the loading markup.
- *
- * @param {Event} e The event.
- *
- * @return {HTMLElement} The loading markup.
- */
-const makeLoadingMarkup = (e) => {
-  if (mouseDataWrapper) {
-    mouseDataWrapper.remove();
-  }
-
-  mouseDataWrapper = makeElement('div', 'mouse-data-wrapper');
-  mouseDataWrapper.id = 'mouse-data-wrapper';
-  mouseDataWrapper.innerHTML = '<span class="mouse-data-wrapper-loading">Loading...</span>';
-
-  document.body.append(mouseDataWrapper);
-
-  const rect = e.target.getBoundingClientRect();
-  const top = rect.top + window.scrollY;
-  const left = rect.left + window.scrollX;
-
-  let tooltipTop = top - mouseDataWrapper.offsetHeight - 10;
-  if (tooltipTop < 0) {
-    tooltipTop = top + rect.height + 10;
-  }
-
-  mouseDataWrapper.style.top = `${tooltipTop}px`;
-  mouseDataWrapper.style.left = `${left - (mouseDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
-
-  return mouseDataWrapper;
-};
-
-let mouseDataWrapper;
-
-const listeners = {};
-
-const addHoverListener = (link) => {
-  let timeoutId = null;
-  let isMouseOver = false;
-
-  if (listeners[link]) {
-    link.removeEventListener('mouseenter', listeners[link].mouseenter);
-    link.removeEventListener('mouseleave', listeners[link].mouseleave);
-  }
-
-  const enter = link.addEventListener('mouseenter', async (e) => {
-    isMouseOver = true;
-
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    timeoutId = setTimeout(async () => {
-      if (! isMouseOver) {
-        return;
-      }
-
-      makeLoadingMarkup(e);
-      let match;
-      if (link.getAttribute('onclick')) {
-        match = link.getAttribute('onclick').match(/'([^']+)'/);
-      } else if (link.getAttribute('href')) {
-        match = link.getAttribute('href').match(/mouse_type=([^&]+)/);
-      }
-
-      if (! match || match.length < 2) {
-        return;
-      }
-
-      const mouseType = match[1];
-
-      const mouseData = await fetchMouseData(mouseType);
-      if (mouseData && mouseDataWrapper && isMouseOver) {
-        const markup = makeMouseMarkup(mouseData);
-        mouseDataWrapper.innerHTML = markup.outerHTML;
-      }
-    }, 500);
-  });
-
-  const leave = link.addEventListener('mouseleave', () => {
-    isMouseOver = false;
-
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    if (mouseDataWrapper) {
-      mouseDataWrapper.remove();
-    }
-  });
-
-  listeners[link] = { mouseenter: enter, mouseleave: leave };
-};
+const hoverCard = createHoverCard({
+  wrapperId: 'mouse-data-wrapper',
+  hrefParam: 'mouse_type',
+  fetchData: fetchMouseData,
+  render: makeMouseMarkup,
+});
 
 /**
  * The main function.
@@ -218,7 +131,7 @@ const main = (element = null) => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    addHoverListener(link);
+    hoverCard.attach(link);
   });
 };
 
