@@ -350,10 +350,10 @@
   padding-bottom: 5px;
 }
 
-#sorted-mice-container .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
+#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
   display: block;
   padding: 5px 10px;
   font-size: 11px;
-  text-align: right;
+  text-align: center;
   border-top: 1px solid #ccc;
 }
