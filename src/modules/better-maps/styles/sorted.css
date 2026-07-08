@@ -350,10 +350,14 @@
   padding-bottom: 5px;
 }
 
-#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
-  display: block;
+#sorted-mice-container .mouse-mhct-link {
+  display: none;
   padding: 5px 10px;
   font-size: 11px;
   text-align: center;
   border-top: 1px solid #ccc;
+}
+
+#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
+  display: block;
 }
