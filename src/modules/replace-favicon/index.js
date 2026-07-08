@@ -1,9 +1,9 @@
 import { onTurn, setMultipleTimeout } from '@utils';
 
-import appleTouchIcon from '@images/mh-icons/apple-touch-icon.png';
-import favicon16 from '@images/mh-icons/favicon-16x16.png';
-import favicon32 from '@images/mh-icons/favicon-32x32.png';
-import safariPinnedTabIcon from '@images/mh-icons/safari-pinned-tab.svg';
+import appleTouchIcon from '@images/icons/apple-touch-icon.png';
+import favicon16 from '@images/icons/favicon-16x16.png';
+import favicon32 from '@images/icons/favicon-32x32.png';
+import safariPinnedTabIcon from '@images/icons/safari-pinned-tab.svg';
 
 /**
  * Replace the favicon.
