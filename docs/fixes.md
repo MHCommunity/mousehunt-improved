@@ -11,13 +11,11 @@ Fixes a variety of bugs and issues in the game, including:
 - Removes 'Combine 12 items while crafting' on the ranks page from the ranks that already have it.
 - Fixes the rank underline color for the current rank.
 - Fixes environment names being truncated in the HUD.
-- Fixes the item classification link when viewing an item page.
-- Fixes the width of the map link text box.
 - Fixes the 'Classification' link on the item page.
+- Fixes the width of the map link text box.
 - Fixes Whisker Woods Rift rage meter font sizes.
 - Fixes the tutorial overlay shadow.
 - Fixes the price being set incorrectly on the first click of the Best price in the Marketplace.
-- Fixes the smash assignment button to go to the correct page.
 - Removes the text clipping from the 'Collectibles' tab text.
 - Fixes issues when directly loading an item page.
 - Fixes the Larry's Gift quantity background color.
@@ -30,3 +28,8 @@ Fixes a variety of bugs and issues in the game, including:
 - Fixes various colors and styles that had typos in the stylesheets.
 - Fixes event backgrounds changing to a solid color on narrow screens.
 - Fixes the volume button images in Bountiful Beanstalk.
+- Fixes the quantity and button alignment in the convertible open dialog.
+- Fixes empty map slots and the map invite checkmark display on maps.
+- Fixes the alignment of page sub-tabs.
+- Fixes various display issues when Facebook or Discord embeds are blocked by an adblocker.
+- Fixes assorted styling issues in Labyrinth, Zokor, Queso Geyser, and School of Sorcery HUDs, the Trap Effectiveness Meter, the account preferences form, and the Ronza window.

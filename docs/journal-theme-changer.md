@@ -1,6 +1,6 @@
 # [Journal Theme Changer](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-journal-changer)
 
-Change your journal theme to a random one or based on your location.
+Randomize your journal theme, randomize it daily, or change it based on your location.
 
 ## Features
 

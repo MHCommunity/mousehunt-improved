@@ -7,3 +7,7 @@ See your estimated catch rate and the minluck (guaranteed catch if your luck is 
 - Shows the minluck for each mouse available with your current bait.
 - Displays your estimated catch rate for each mouse based on your current trap setup.
 - Helps you optimize your setup and plan your hunts more effectively.
+
+## Options
+
+- **Show catch rate indicator above trap view**: Adds a catch rate summary bar above the trap view.

@@ -6,6 +6,7 @@ Enhances the item view popup with more information and helpful links, making it 
 
 - **Quick Links**: Adds direct links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) from the item popup, so you can quickly look up item details and drop information.
 - **Drop Rates**: Shows drop rates from MHCT directly in the item view, helping you see where and how often items drop.
+- **Quick Quantity Buttons**: Adds 1/3/5/10 quantity buttons to the item open/convert form.
 
 ## Options
 

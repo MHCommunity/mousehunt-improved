@@ -64,4 +64,5 @@ Personalize the marbled HUD background with your choice of colors, patterns, or 
 - Skyline Whisper
 - Soft Metal
 - Spectral Summer
+- Spring Bricks
 - Warm Glow

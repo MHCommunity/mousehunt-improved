@@ -9,7 +9,8 @@ Press `?` at any time to see the full list of available shortcuts.
 | Description | Default Key |
 | --- | --- |
 |Show the list of available shortcuts|`?`|
-
+|Close the current popup|`Escape`|
+|Sound the Hunter's Horn|`h`|
 |Go to the Travel page|`t`|
 |Go to the Camp page|`j`|
 |Go to the Friends page|`f`|

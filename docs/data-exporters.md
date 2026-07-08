@@ -7,6 +7,7 @@ Currently, the following data exporters are available:
 - Mouse Stats by Group
 - Mouse Stats by Region
 - Mouse Stats by Location
+- Mouse Stats by Crowns
 - Inventory
 - Marketplace Transactions
 - Scoreboard Rankings
@@ -14,6 +15,7 @@ Currently, the following data exporters are available:
 - Scoreboard Rankings (Friends)
 - Scoreboard Rankings (Weekly, Friends)
 - Journal Entries
+- Journal Logs (when the Journal Progress Log Tracker has saved logs)
 - Favorite Setups
 
 If you have [MH - Rank-up Forecaster (v2.0)](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0) installed, you can also export that data.

@@ -15,6 +15,7 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 - **Consistent Popup Buttons**: Updates popup buttons to match the rest of the UI.
 - **Full Name on Hover**: Hovering over your Cheese, Charm, or Map name shows the full name.
 - **Adventure Book Task Styling**: Makes the current adventure book task look nicer.
+- **Random Skin Button**: Adds a button to the trap skin selector to equip a random skin.
 - **Userscript Styling**: Updates the look and readability of many popular userscripts.
 - **Improved Styles**: Refines the appearance of search/filter dropdowns, Send Supplies, Journal Tabs, Daily Draw, Larry's Tips, King's Calibrator, crafting/recipe pages, trap/base/charm/cheese selectors, hunter profile, corkboard, and team pages.
 
@@ -28,3 +29,4 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 - **Trap Selector: Show unowned trap skins in the trap selector**
 - **Trap Selector: Show larger codex images in the trap selector**
 - **Trap Selector: Move the codex to the bottom of the trap view**
+- **Square profile pics**: Makes profile pictures square in more places for consistency.

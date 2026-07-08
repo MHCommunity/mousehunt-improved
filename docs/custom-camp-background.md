@@ -7,7 +7,7 @@ Set a custom background for the Camp page.
 ### Base Backgrounds
 
 - Default
-- Blueprint
+- Blueprint (the default choice)
 - Marble
 - Wood
 
@@ -22,8 +22,6 @@ Set a custom background for the Camp page.
 - Red
 - White
 - Faded
-
-### Other
 
 ### Other
 
@@ -70,4 +68,5 @@ Set a custom background for the Camp page.
 - Skyline Whisper
 - Soft Metal
 - Spectral Summer
+- Spring Bricks
 - Warm Glow

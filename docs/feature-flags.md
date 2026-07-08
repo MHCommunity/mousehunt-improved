@@ -10,7 +10,10 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |---|---|
 |`disable-requests`|Disables sending requests to the MouseHunt servers.|
 |`fake-fabled`|Enables the modules locked to Fabled rank and replaces the progress bar with the Max Title text.|
-|`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
+|`legacy-hud`|Treats the HUD as the legacy HUD for styling purposes.|
+|`rankup-forecaster`|Disables the import/export buttons added for the Rank-up Forecaster userscript's data.|
+|`settings-table-of-contents`|Adds a table of contents to the top of the settings page.|
+|`social-noop` (or `twitter`)|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
 
 ### Module Flags
@@ -30,20 +33,35 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |`better-travel-no-reminder-bottled-wind`|Disables the reminder about Bottled Wind.|
 |`better-travel-no-reminder-condensed-creativity`|Disables the reminder about Condensed Creativity.|
 |`better-travel-no-reminder-festive-spirit`|Disables the reminder about Festive Spirit.|
+|`no-travel-menu-hiding`|Disables the travel dropdown menu hiding styles.|
+
+#### Catch Rate Estimator & Minlucks
+
+|Flag|Description|
+|---|---|
+|`catch-rate-estimate-more-refresh`|Refreshes the estimates after more requests, rather than just trap changes.|
+
+#### Image Upscaling & Transparency
+
+|Flag|Description|
+|---|---|
+|`no-image-upscaling-journal-themes`|Skips loading the upscaled journal theme images.|
 
 #### Better UI Userscript Integrations
 
 |Userscript|Flag|Required Module|
 |---|---|--|
 |All|`no-userscript-styles`|[Better UI](./better-ui.md)|
-|[Profile+](https://greasyfork.org/en/scripts/381389-mh-profile)|`userscript-styles-no-profile-plus-styles`|[Better UI](./better-ui.md)|
+|Any Trap Any Skin|`userscript-styles-no-any-trap-any-skin-styles`|[Better UI](./better-ui.md)|
 |[Favorite Setups](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups)|`userscript-styles-no-favorite-setups-styles`|[Better UI](./better-ui.md)|
 |[Journal Historian](https://greasyfork.org/en/scripts/454968-mousehunt-journal-historian)|`userscript-styles-no-journal-historian-styles`|[Better UI](./better-ui.md)|
 |[LGS Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)|`userscript-styles-no-lgs-reminder-styles`|[Better UI](./better-ui.md)|
 |[Location Catch Stats](https://greasyfork.org/en/scripts/381438-mousehunt-location-catch-stats)|`userscript-styles-no-tsitu-location-catch-stats-styles`|[Better UI](./better-ui.md)|
+|[Profile+](https://greasyfork.org/en/scripts/381389-mh-profile)|`userscript-styles-no-profile-plus-styles`|[Better UI](./better-ui.md)|
 |[QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)|`userscript-styles-no-tsitu-qol-styles`|[Better UI](./better-ui.md)|
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
-|[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
+|Spring Egg Hunt Helper|`userscript-styles-no-spring-egg-hunt-helper-styles`|[Better UI](./better-ui.md)|
+|[Tsitu's Autoloader](https://github.com/tsitu/MH-Tools)|`userscript-styles-no-tsitu-autoloader-styles`|[Better UI](./better-ui.md)|
 
 ### Debug Logging
 

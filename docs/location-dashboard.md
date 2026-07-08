@@ -4,6 +4,8 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
 
 ## Supported Locations
 
+- Afterword Acres
+  - Blight level and multiplier
 - Bountiful Beanstalk
   - Current room type
   - Embellishments
@@ -15,6 +17,15 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
   - Total Time Sand
 - Burroughs Rift
   - Mist level
+- Conclusion Cliffs
+  - Current chapter or postscript
+  - Catches or hunts remaining
+- Draconic Depths
+  - Current cavern and crucibles
+  - Hunts remaining and loot tier
+- Epilogue Falls
+  - Current zone and grotto status
+  - Barrel health
 - Fiery Warpath
   - Current wave
   - Current streak

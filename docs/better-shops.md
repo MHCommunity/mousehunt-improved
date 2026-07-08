@@ -12,4 +12,4 @@ Modernizes the Shops page for a cleaner look and easier shopping experience.
 ## Options
 
 - **Hide items when you've reached the maximum owned**: Hide items you already have the maximum quantity of.
-- **Show quantity & max buttons**: Adds buttons to quickly increment the quantity or set it to the maximum allowed.
+- **Show quantity buttons**: Adds buttons to quickly increment the quantity or set it to the maximum allowed. (Enabled by default)

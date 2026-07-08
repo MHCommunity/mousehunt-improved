@@ -11,6 +11,9 @@ Enhances your inventory with a modern look and several quality-of-life improveme
 - **Recipe List Improvements**: One-off recipes are moved to the bottom of the list and minimized, so you can focus on recipes you use more often.
 - **Special Action Indicators**: Collectible items with special actions are clearly marked, so you never miss an interactive collectible.
 - **Easier-to-Read Crafting Table**: The crafting table is resized and restyled for better readability and usability.
+- **Trap Sorting & Filtering**: Adds sorting and filtering controls (including LE/Non-LE and Special/Normal filters) to the trap inventory pages.
+- **Arm Charms Directly**: Adds an arm button to charms in your inventory.
+- **Skin Previews**: Preview trap skins right from your inventory.
 
 ## Options
 

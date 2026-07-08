@@ -28,7 +28,6 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Travel](docs/better-travel.md)**: Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.
 - **[Big Timer](docs/big-timer.md)**: Click the timer to toggle between sizes.
 - **[Catch Rate Estimator & Minlucks](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
-- **[Codex at Bottom](docs/codex-at-bottom.md)**: Move the codex to the bottom of the trap view.
 - **[Copy ID Button](docs/copy-id-button.md)**: Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" button.
 - **[Dark Mode](docs/dark-mode.md)**: Enable the dark mode.
 - **[Dark Mode Updates & Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
@@ -39,17 +38,16 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Favorite Setups](docs/favorite-setups.md)**: Save your favorite setups and arm them with a single click.
 - **[Fixes](docs/fixes.md)**: Fix various bugs and issues in the game.
 - **[FLRT Helper](docs/flrt-helper.md)**: Add a "Return to Maptain" button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.
+- **[Gifts in Inbox](docs/gifts-in-inbox.md)**: Add recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming.
+- **[Highlight Special Effects in Trap Selector](docs/trap-selector-special-effects.md)**: Add an indicator to items in the trap selector that have special effects.
 - **[Hover Profiles](docs/hover-profiles.md)**: Hover over a name to see a mini profile popup.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
 - **[Inline Wiki](docs/inline-wiki.md)**: Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.
 - **[Inventory - Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
-- **[Inventory - Open All](docs/inventory-open-all.md)**: Adds an "Open All" button to convertible items in your inventory.
-- **[Inventory - Only Open Multiple](docs/inventory-only-open-multiple.md)**: Lock opening items unless you have more than one.
-- **[Inventory - Open All but One](docs/inventory-open-all-but-one.md)**: Adds an "Open All But One" button to convertible items in your inventory.
+- **[Inventory - Open Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
+- **[Journal Progress Log Tracker](docs/journal-progress-log-tracker.md)**: Track when your next journal log summary is due and get quick access to your past logs.
 - **[Journal Theme Changer](docs/journal-theme-changer.md)**: Randomize your journal theme, randomize it daily, or change it based on your location.
 - **[Keyboard Shortcuts](docs/keyboard-shortcuts.md)**: Press "?" to see and edit keyboard shortcuts.
-- **[Larger Codices](docs/larger-codices.md)**: Show larger codex images in the trap selector.
-- **[Larger Skin Images](docs/larger-skin-images.md)**: Show larger skin images in the trap selector.
 - **[Legacy HUD](docs/legacy-hud.md)**: Enable the legacy HUD or make tweaks to it.
 - **[Location Catch Stats](docs/location-catch-stats.md)**: Add a "Location Catch Stats" option to the Mice menu to see your catch stats for the current location.
 - **[Location Dashboard](docs/location-dashboard.md)**: View location HUD information in a dashboard available in the top dropdown menu.
@@ -91,11 +89,11 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Hide News Ticker](docs/hide-news-ticker.md)**: Hide the news ticker in the header.
 - **[Hide Share Buttons](docs/hide-share-buttons.md)**: Hide the share buttons.
 - **[Hide Sidebar](docs/hide-sidebar.md)**: Hide the sidebar and add a "Sidebar" dropdown in the top menu.
+- **[Hide Trap Selector Tooltips](docs/hide-trap-selector-tooltips.md)**: Hide the item description tooltips in the trap selector, which can get stuck open and in the way on mobile.
 - **[Journal Privacy](docs/journal-privacy.md)**: Hide player names in the journal. Good for screenshots that maintain privacy.
 
 ### 📍 Location HUDs
 
-- Event Locations
 - Acolyte Realm
 - Afterword Acres
 - Balack's Cove
@@ -106,6 +104,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - Calm Clearing
 - Cape Clawed
 - Catacombs
+- Cerulean Skyport
 - Claw Shot City
 - Conclusion Cliffs
 - Derr Dunes
@@ -161,7 +160,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 ## 🗑️ Uninstalling Userscripts
 
-Refer to [Superseded Userscripts](https://github.com/MHCommunity/mousehunt-improved/wiki/Superseded-Userscripts) on the GitHub Wiki for a list of userscripts you no longer need after installing MouseHunt Improved.
+Refer to [Superseded Userscripts](https://github.com/MHCommunity/mousehunt-improved/wiki/Superseded-Userscripts) for a list of userscripts you no longer need after installing MouseHunt Improved.
 
 ## 📝 Changelog
 

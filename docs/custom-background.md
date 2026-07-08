@@ -9,6 +9,7 @@ Personalize your game by changing the page background to a festive event, a soli
 - Birthday
 - Great Winter Hunt
 - Halloween
+- King's Giveaway
 - Lunar New Year
 - Spring Egg Hunt
 - Valentine's
@@ -68,4 +69,5 @@ Personalize your game by changing the page background to a festive event, a soli
 - Skyline Whisper
 - Soft Metal
 - Spectral Summer
+- Spring Bricks
 - Warm Glow

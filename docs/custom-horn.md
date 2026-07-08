@@ -15,6 +15,7 @@ Customize the look of your Hunter's Horn to match your favorite event or color.
 - Great Winter Hunt
 - Halloween
 - Lunar New Year
+- Spring Egg Hunt
 
 ### Color
 

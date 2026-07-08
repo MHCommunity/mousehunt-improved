@@ -4,11 +4,11 @@ Try out beta features and experimental options that may not be fully tested or f
 
 ## Available Experiments
 
-- **Better Marketplace: Price History Charts**: Show sales price history charts on category pages
-- **Better Inventory: Add Trap Sorting**: Adds sorting options to the trap inventory pages (base, charms, and weapons)
-- **Gift button opens gift selector**: Clicking the gift button will directly open the gift selector instead of the normal gift dialog
-- **Real Base Stats**: Shows the upgraded stats for the Denture and Printing bases when in the trap selector
-- **Settings: Columns**: Changes the settings page to have two columns.
-- **Square Profile Pics**: Makes profile pictures square in more places for consistency
-- **Trap Background**: Adds background gradient to trap
-- **Troll mode**: lol
+- **Better Inventory: Add trap sorting**: Add sorting options for traps in the inventory
+- **Better Maps: Draggable highlight**: Allows you to drag and reposition the sticky highlight
+- **Daily Draw: Reverse Order**: Reverse the order of the Daily Draw inbox entries so that the most recent is at the top
+- **Floating Islands: Airship Randomizer**: Equip a random airship hull, sail, and balloon each time you start an island or vault
+- **Memory Matching Game**: A memory matching game, found under the Camp submenu
+- **HUD: Show custom max title text**: Show a custom max title text (requires the Fabled title)
+- **HUD: Show progress bar at max title**: Show the completed title progress bar instead of the max title text (requires the Fabled title)
+- **HUD: Show random max title text**: Show a random max title text instead of the default max title text (requires the Fabled title)

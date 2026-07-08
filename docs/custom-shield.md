@@ -6,6 +6,9 @@ Change your shield to match events, your title, your favorite color, or just for
 
 - Default
 - Default (normal resolution)
+- Default (no LGS)
+- Simple Golden
+- Starry
 
 ### Events
 
@@ -20,14 +23,15 @@ Change your shield to match events, your title, your favorite color, or just for
 - Birthday (Year 17)
 - Great Winter Hunt
 - Halloween
+- Halloween (Pumpkins)
 - Larry's Football Challenge
-- Pride
+- Pride (LGS required)
 - Remembrance Day
-- Spring Egg Hunt
-- Spring Egg Hunt Alternate
+- Spring Egg Hunt (LGS required)
+- Spring Egg Hunt Alt (LGS required)
 - Valentine's
 
-### Color
+### Color (LGS required)
 
 - Blue
 - Cyan
@@ -46,7 +50,7 @@ Change your shield to match events, your title, your favorite color, or just for
 - Red with matching timer
 - Rainbow with matching timer
 
-### Title
+### Title Shields
 
 - Current Title
 - Novice
@@ -70,8 +74,18 @@ Change your shield to match events, your title, your favorite color, or just for
 - Sage
 - Fabled
 
-### Silly
+### Mice
 
-- Scrambles
-- Jerry
+- Glazy
+- Leprechaun
+- Mythweaver
 - Romeno
+- Romeo
+
+### Other
+
+- Drawing
+- Droid
+- Jerry
+- Moustachio
+- Scrambles

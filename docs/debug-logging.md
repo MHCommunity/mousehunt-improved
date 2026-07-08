@@ -14,8 +14,7 @@ Enables debug logging for various parts of MouseHunt.
 - **Log remote requests and responses**
 - **Set Sentry to debug mode**
 - **Prevent hover popups from closing**: Prevents the Better Mice, Better Item, and Hover Profile popups from closing when the mouse leaves the popup.
-- **Disable caching**,
-- [Log events](#logging-events) - refer to the [feature flags](./feature-flags.md) for more conf
+- **Disable caching of data and settings**
 
 ### Logging events
 

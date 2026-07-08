@@ -6,5 +6,11 @@ When saving a setup, it will default to the name of the current location. Clicki
 
 The "Favorite Setups" button will also show the current setup name if you have it equipped.
 
+## Options
+
+- **Include mobile favorites**: Also show the favorites saved in the mobile app.
+- **Highlight setups for current location at the top**: Shows setups saved for your current location first. (Enabled by default)
+- **Use generated names for setups**: Names new setups based on their components and location via an AI model. (Enabled by default)
+
 > [!TIP]
 > If you're looking for more features for favorite setups, check out the [Favorite Setups+](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups) userscript.

@@ -4,12 +4,20 @@ Enhances the map interface with additional functionality and improved organizati
 
 ## Features
 
-- **Default to Sorted tab**: Automatically selects the Sorted tab when opening the map for better organization.
-- **Map Goals in Sidebar**: Displays your current map objectives in a convenient sidebar panel.
 - **Improved Layout**: Cleaner and more intuitive organization of map information.
 - **Quick Filters**: Easily filter and find specific maps with the enhanced search functionality.
 - **Progress Tracking**: Better visualization of map completion status and objectives.
 - **Automatic Categorization**: Mice are automatically sorted into meaningful categories based on the map type.
+- **Attraction Rates**: Shows attraction rate badges for map mice, loading in the background so the map stays fast.
+- **Map Solver Links**: Adds MHCT Map Helper and Tsitu's Map Solver links to the Goals tab.
+
+## Options
+
+- **Default to Sorted tab**: Automatically selects the Sorted tab when opening a map.
+- **Show map goals in sidebar**: Displays your current map objectives in a convenient sidebar panel. (Enabled by default)
+- **Show map solver links**: Adds the map solver links to the map. (Enabled by default)
+- **Show map join & catch dates**: Shows the approximate date you started/joined a map and when each mouse was caught.
+- **Hide old & inactive Community Maps**: Cleans up the Community Maps listing. (Enabled by default)
 
 ## Sorted Tab Features
 
@@ -19,11 +27,12 @@ The Sorted tab provides an organized view of your map objectives with the follow
 - **Subcategories**: Some maps include subcategories for more granular organization (e.g., "High Altitude Island" in Floating Islands maps).
 - **Visual Indicators**: Each category has a distinctive icon and color for easy identification.
 - **Progress Tracking**: See at a glance which categories have remaining objectives.
+- **Fast Loading**: Mice with known attraction rates show immediately, with the rest loading in the background and re-sorting once they arrive.
+- **Sort by Location**: On maps without custom categories, sort mice by attraction rate or by location — each mouse is listed under every location it can be found in, with travel links.
 - **Click for Details**: Click on any mouse to see additional information, including:
   - Mouse image and name
   - Location information with direct travel links
-  - Catch statistics and requirements
-  - Any special notes or requirements
+  - Attraction rates from MHCT with a "View on MHCT" link
 
 ## Supported Map Types with Special Categorization
 
