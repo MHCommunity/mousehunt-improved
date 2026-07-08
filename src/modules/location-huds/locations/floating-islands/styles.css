@@ -130,7 +130,6 @@ span.floatingIslandsHUD-huntsRemaining {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
   height: 15px;
   font-size: 11px;
   text-shadow: none;
@@ -789,4 +788,13 @@ a.floatingIslandsHUD-bait-image:hover {
 
 .floatingIslandsHUD-modPanelTooltipContainer.active {
   z-index: 17;
+}
+
+.launch_pad_island .floatingIslandsHUD-jetstream .trapImageView-trapAura.active {
+  opacity: 0.9;
+  transform: translate(34px, -3px);
+}
+
+.floatingIslandsWorkshop-parts-content {
+  justify-content: space-evenly;
 }

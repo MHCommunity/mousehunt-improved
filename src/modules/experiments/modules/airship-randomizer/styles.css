@@ -1,0 +1,10 @@
+.floatingIslandsWorkshop-tab.customize .mh-improved-airship-randomizer {
+  position: absolute;
+  top: 195px;
+  right: 565px;
+  z-index: 5;
+  background: #faefa8;
+  border: 1px solid #994a21;
+  border-radius: 5px;
+  box-shadow: none;
+}

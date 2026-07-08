@@ -15,6 +15,7 @@ import {
   waitForElement
 } from '@utils';
 
+import fullWidthAirshipStyles from './full-width-airship.css';
 import styles from './styles.css';
 
 /**
@@ -537,6 +538,6 @@ const hud = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles(styles);
+  addHudStyles([styles, fullWidthAirshipStyles], 'floating-islands');
   hud();
 };

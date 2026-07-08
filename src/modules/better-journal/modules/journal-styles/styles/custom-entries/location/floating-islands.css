@@ -2,11 +2,10 @@
 .journal .entry.floatingIslands.dirigibleTravel {
   max-height: 103px;
   overflow-y: auto;
+  cursor: pointer;
 }
 
-.journal .entry.floatingIslands.skyPalaceTravel:active,
-.journal .entry.floatingIslands.skyPalaceTravel:focus,
-.journal .entry.floatingIslands.dirigibleTravel:active,
-.journal .entry.floatingIslands.dirigibleTravel:focus {
+.journal .entry.floatingIslands.skyPalaceTravel.better-journal-travel-expanded,
+.journal .entry.floatingIslands.dirigibleTravel.better-journal-travel-expanded {
   max-height: unset;
 }

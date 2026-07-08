@@ -1,0 +1,29 @@
+.floatingIslandsWorkshop-partsContainer {
+  left: 43px;
+  width: 673px;
+}
+
+.floatingIslandsWorkshop-part {
+  width: 24%;
+}
+
+.floatingIslandsWorkshop-partsContainer::after {
+  bottom: -4px;
+  width: 674px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.floatingIslandsWorkshop-partsContainer::before {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  width: 674px;
+  height: 30px;
+  content: "";
+  background-image: url(https://i.mouse.rip/fi-airships-bottom-2.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  transform: rotateX(180deg);
+}
