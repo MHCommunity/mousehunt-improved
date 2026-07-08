@@ -77,7 +77,7 @@ export default async () => {
       }
     },
     {
-      id: 'experiments.gift-button-opens-gift-selector',
+      id: 'better-gifts.gift-button-opens-gift-selector',
       title: 'Gift button opens gift selector',
       default: false,
     }

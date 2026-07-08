@@ -570,7 +570,7 @@ const init = () => {
   addStyles(styles, 'better-gifts');
   main();
 
-  if (getSetting('experiments.gift-button-opens-gift-selector', false)) {
+  if (getSetting('better-gifts.gift-button-opens-gift-selector', false)) {
     setupGiftButtonOpensGiftSelector();
   }
 

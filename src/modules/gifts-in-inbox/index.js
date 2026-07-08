@@ -9,6 +9,8 @@ import {
   waitForElement
 } from '@utils';
 
+import fallbackGiftImage from '@images/icons/icon-64.png';
+
 import styles from './styles.css';
 
 const STATE_KEY = 'mh-improved-gift-links-in-inbox-state-v1';
@@ -269,7 +271,7 @@ const buildMessage = (link) => {
   imageLink.rel = 'noopener';
 
   const image = makeElement('img', 'item');
-  image.src = link.giftImage || 'https://i.mouse.rip/mh-improved/icon-128.png';
+  image.src = link.giftImage || fallbackGiftImage;
   image.alt = getGiftName(link);
   imageLink.append(image);
   message.append(imageLink);
