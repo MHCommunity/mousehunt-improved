@@ -507,7 +507,7 @@ const init = () => {
     sidebar();
   }
 
-  if (getSetting('better-maps.catch-dates')) {
+  if (getSetting('better-maps.catch-dates', false)) {
     catchDates();
   }
 

@@ -98,7 +98,7 @@ const setMapData = async (mapId, theMapData) => {
   await cacheSet(`map-${mapId}`, theMapData);
   await cacheSet('map-last', theMapData);
 
-  if (getSetting('better-maps.catch-dates')) {
+  if (getSetting('better-maps.catch-dates', true)) { // default to true even though the setting is false by default, so that enabling it will toggle the display, we still want to cache the data.
     await setExtraMapData(mapId, theMapData);
   }
 };

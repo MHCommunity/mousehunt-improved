@@ -12,6 +12,7 @@ export default async () => {
     {
       id: 'better-maps.show-sidebar-goals',
       title: 'Show map goals in sidebar',
+      default: true,
     },
     {
       id: 'better-maps.show-map-solver-links',
@@ -20,8 +21,9 @@ export default async () => {
     },
     {
       id: 'better-maps.catch-dates',
-      name: 'Show map join & catch dates',
+      title: 'Show map join & catch dates',
       description: 'Shows the approximate date you started/joined a map and when each mouse was caught.',
+      default: false,
     },
     {
       id: 'better-maps.community',
