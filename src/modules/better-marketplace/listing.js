@@ -293,8 +293,8 @@ const getCurrentQuantity = () => {
 
 /**
  * Add quick quantity buttons under the quantity input: a row of +1/+10/+100
- * math buttons (hold Shift to subtract), and a second row with 10%-of-owned
- * and All when selling.
+ * math buttons (hold Shift to subtract), and a second row with 10%-of-owned,
+ * All But One, and All when selling.
  *
  * @param {string} type The current action type.
  */
@@ -331,6 +331,9 @@ const addQuantityButtons = (type) => {
   if (type === 'sell' && owned > 0) {
     const percentsRow = makeElement('div', 'mhui-marketplace-quantity-row', '', list);
     percentsRow.append(makeQuantityLink('10%', Math.max(1, Math.round(owned * 0.1))));
+    if (owned > 1) {
+      percentsRow.append(makeQuantityLink('All But One', owned - 1));
+    }
     percentsRow.append(makeQuantityLink('All', owned));
   }
 
@@ -389,9 +392,7 @@ const enhanceItemView = async (itemId) => {
     addQuantityButtons(type);
   }
 
-  if (getSetting('better-marketplace.tariff-info', true)) {
-    addTariffInfo();
-  }
+  addTariffInfo();
 };
 
 export {

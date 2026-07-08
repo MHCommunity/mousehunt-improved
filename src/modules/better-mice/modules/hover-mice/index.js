@@ -127,6 +127,12 @@ const main = (element = null) => {
     allMiceLinks = [...allMiceLinks, ...creMiceLinks];
   }
 
+  // Mouse links in the quests panel, e.g. the M400 helper.
+  const questsMiceLinks = document.querySelectorAll('.campPage-quests-container a[onclick*="MouseView.show"]');
+  if (questsMiceLinks) {
+    allMiceLinks = [...allMiceLinks, ...questsMiceLinks];
+  }
+
   allMiceLinks.forEach((link) => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);

@@ -1,3 +1,16 @@
+/* The game sizes the profile tabs for its own two, so our added Scoreboards
+   tab overflows the block. Flex the row so all three share the width. */
+.hunterInfoView-achievementsBlock[data-added-scoreboard] .mousehuntTabHeaderContainer {
+  display: flex;
+}
+
+.hunterInfoView-achievementsBlock[data-added-scoreboard] .mousehuntTabHeaderContainer .mousehuntTabHeader {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
 .mh-improved-scoreboard-dropdown,
 .mousehuntPage-content select.mh-improved-scoreboard-dropdown {
   width: 100%;

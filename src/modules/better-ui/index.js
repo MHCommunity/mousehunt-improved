@@ -46,7 +46,7 @@ const init = () => {
     { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
     { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
     { enabled: getSetting('better-ui.trap-gradient-background', false), load: trapGradientBackground },
-    { enabled: getSetting('experiments.consistent-profile-pics', false), load: squareProfilePics },
+    { enabled: getSetting('better-ui.square-profile-pics', false), load: squareProfilePics },
   ];
 
   for (const module of modules) {

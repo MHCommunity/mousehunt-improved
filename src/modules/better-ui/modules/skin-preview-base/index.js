@@ -7,7 +7,7 @@ const run = async () => {
     return;
   }
 
-  if (getSetting('experiments.trap-background', false)) {
+  if (getSetting('better-ui.trap-gradient-background', false)) {
     addModuleStyles(`.itembrowser-skin-image-wrapper {
       background-image: ${baseEl.style.backgroundImage}, linear-gradient(0deg, #eee2b4 0%, #b1e0d1 100%);
     }`, id, true);

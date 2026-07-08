@@ -16,6 +16,11 @@ export default async () => {
       default: false,
     },
     {
+      id: 'better-marketplace.trend-numbers',
+      title: 'Show percentage next to price trend arrows',
+      default: true,
+    },
+    {
       id: 'better-marketplace.filter-listings',
       title: 'Add filter to listings',
       default: true,
@@ -26,13 +31,18 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-marketplace.skin-trap-filter',
+      title: 'Add a "Filter by trap" dropdown to the Skins category',
+      default: true,
+    },
+    {
       id: 'better-marketplace.quick-price-links',
-      title: 'Add quick undercut/overbid and Sell All But One links',
+      title: 'Add quick undercut/overbid price links',
       default: true,
     },
     {
       id: 'better-marketplace.quick-quantity-buttons',
-      title: 'Add quick quantity buttons (1, 10, 100, 10%, All) to the order form',
+      title: 'Add quick quantity buttons (1, 10, 100, 10%, All But One, All) to the order form',
       default: true,
     },
     {

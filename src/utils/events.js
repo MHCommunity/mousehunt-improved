@@ -311,10 +311,8 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       .replaceAll(' ', '.')
       .trim();
 
-    // if theres a trailing period, remove it.
-    if (dialogType.endsWith('.')) {
-      dialogType = dialogType.slice(0, -1);
-    }
+    // Remove any leading or trailing periods left over from removed classes.
+    dialogType = dialogType.replaceAll(/^\.+|\.+$/g, '');
 
     window.mhutils = window.mhutils ? { ...window.mhutils, lastDialog: { overlay: dialogType } } : { lastDialog: { overlay: dialogType } };
     lastDialog = dialogType;
@@ -325,7 +323,14 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
 
     const dialogMapping = getDialogMapping();
 
-    if ('function' === typeof callback && (overlay === dialogType || overlay === dialogMapping[dialogType])) {
+    // Match the full dialog type, its mapped name, or any single class of a
+    // compound type, so 'floatingIslandsWorkshop' matches a dialog type like
+    // 'floatingIslandsWorkshop.floatingIslandsDialog'.
+    const isMatch = overlay === dialogType ||
+      overlay === dialogMapping[dialogType] ||
+      dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
+
+    if ('function' === typeof callback && isMatch) {
       return callback();
     }
   }, null, once, 0, identifier);

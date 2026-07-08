@@ -1,10 +1,58 @@
 import {
+  doEvent,
   getCurrentLocation,
   getData,
   makeMhButton,
   onNavigation,
   travelTo
 } from '@utils';
+
+/**
+ * Link the mice named in the quest objectives, so they get hover cards and
+ * open the mouse view when clicked.
+ */
+const linkMiceInObjectives = async () => {
+  const tasks = document.querySelectorAll('.mh-m400-quest .campPage-quests-objective-task');
+  if (! tasks.length) {
+    return;
+  }
+
+  const allMice = await getData('mice');
+  if (! allMice) {
+    return;
+  }
+
+  let added = false;
+  tasks.forEach((task) => {
+    if (task.getAttribute('data-mh-m400-mouse-linked')) {
+      return;
+    }
+
+    const match = task.innerText.match(/from (.+?) Mice/);
+    if (! match) {
+      return;
+    }
+
+    const mouse = allMice.find((m) => m.abbreviated_name === match[1] || m.name === `${match[1]} Mouse`);
+    if (! mouse) {
+      return;
+    }
+
+    const linkText = `${match[1]} Mice`;
+    task.innerHTML = task.innerHTML.replace(
+      linkText,
+      `<a href="https://www.mousehuntgame.com/adversaries.php?mouse_type=${mouse.type}" class="mh-m400-mouse-link" onclick="hg.views.MouseView.show('${mouse.type}'); return false;">${linkText}</a>`
+    );
+
+    task.setAttribute('data-mh-m400-mouse-linked', 'true');
+    added = true;
+  });
+
+  if (added) {
+    // Let the mouse hover cards attach to the new links.
+    doEvent('journal-mouse-link-modified');
+  }
+};
 
 /**
  * Add a button to travel to the next step in the M400 quest.
@@ -82,9 +130,14 @@ const main = async () => {
   if (taskNames) {
     taskNames.forEach((task) => {
       const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect Intel');
-      task.innerText = newText;
+      // Only write when something changed, so the mouse links don't get wiped.
+      if (newText !== task.innerText) {
+        task.innerText = newText;
+      }
     });
   }
+
+  await linkMiceInObjectives();
 
   // get the last task that doesn't have the 'locked' or 'complete' class.
   const last = [...allTasks].reverse().find((task) => {

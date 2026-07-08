@@ -47,7 +47,7 @@ export default async () => {
 
     },
     {
-      id: 'experiments.consistent-profile-pics',
+      id: 'better-ui.square-profile-pics',
       title: 'Square profile pics',
       default: false,
     }
