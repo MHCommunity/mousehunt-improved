@@ -54,9 +54,9 @@ const getAirshipParts = async () => {
 
   const response = await doRequest('managers/ajax/environment/floating_islands.php', {
     action: 'get_workshop',
-  });
+  }, true);
 
-  return cacheAirshipParts(response?.airship_parts);
+  return cacheAirshipParts(response?.workshop?.airship_parts);
 };
 
 /**
