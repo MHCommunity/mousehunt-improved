@@ -89,6 +89,7 @@ jobs:
             dist/mousehunt-improved-firefox.zip
             dist/firefox
             dist/mousehunt-improved.user.js
+            dist/mousehunt-improved.min.js
             dist/archive.zip
 
 
@@ -188,10 +189,45 @@ jobs:
           FIREFOX_API_KEY: ${{ secrets.FIREFOX_API_KEY }}
           FIREFOX_API_SECRET: ${{ secrets.FIREFOX_API_SECRET }}
 
+  npm-publish:
+    name: Publish userscript payload to npm
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Publish to npm
+        run: |
+          test -f dist/mousehunt-improved.min.js
+
+          if npm view "mousehunt-improved@$VERSION" version > /dev/null 2>&1; then
+            echo "v$VERSION already on npm, skipping publish."
+            exit 0
+          fi
+          npm publish
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+
   userscript-upload:
     name: Upload Userscript
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, npm-publish]
 
     steps:
       - name: Checkout code

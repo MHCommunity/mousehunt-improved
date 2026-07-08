@@ -68,9 +68,8 @@ const ImportGlobPlugin = {
       const matches = contents.match(/import \* as imported from '(.*)';/);
       if (matches) {
         const globPattern = path.resolve(path.dirname(args.path), matches[1]).replaceAll('\\', '/');
-        const files = (
-          await FastGlob(globPattern)
-        );
+        const files = await FastGlob(globPattern);
+        files.sort();
 
         let importStatements = '';
         const importNames = [];
@@ -111,6 +110,47 @@ const JSONMinifyPlugin = {
     });
   },
 };
+
+/**
+ * Get the base esbuild options shared by the extension and userscript builds.
+ *
+ * @param {string} platform The platform to build for.
+ *
+ * @return {Object} The esbuild options.
+ */
+const getBaseBuildOptions = (platform) => ({
+  entryPoints: ['src/index.js'],
+  platform: 'browser',
+  format: 'iife',
+  globalName: 'mhui',
+  bundle: true,
+  minify: true,
+  target: [
+    'es6',
+    'chrome58',
+    'firefox57'
+  ],
+  plugins: [
+    ImportGlobPlugin,
+    CSSMinifyTextPlugin,
+    JSONMinifyPlugin,
+    SVGDataUriPlugin
+  ],
+  alias: {
+    '@data': path.resolve(process.cwd(), 'dist/data'),
+    '@images': path.resolve(process.cwd(), 'src/images'),
+  },
+  loader: {
+    '.png': 'dataurl',
+  },
+  dropLabels: ['userscript' === platform ? 'excludeFromUserscript' : 'excludeFromExtension'],
+  banner: {
+    js: [
+      `const mhImprovedVersion = '${process.env.npm_package_version}';`,
+      `const mhImprovedPlatform = '${platform}';`,
+    ].join('\n'),
+  },
+});
 
 /**
  * Minify JSON files in the data folder and write them to data/dist.
@@ -157,6 +197,7 @@ export {
   JSONMinifyPlugin,
   ImportGlobPlugin,
   SVGDataUriPlugin,
+  getBaseBuildOptions,
   parseArgs,
   minifyAllJsonFiles
 };

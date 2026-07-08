@@ -1,93 +1,42 @@
 import * as esbuild from 'esbuild';
-import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import {
-  CSSMinifyTextPlugin,
-  ImportGlobPlugin,
-  JSONMinifyPlugin,
-  SVGDataUriPlugin,
-  minifyAllJsonFiles
-} from './shared.mjs';
+import { getBaseBuildOptions, minifyAllJsonFiles } from './shared.mjs';
+
+const version = process.env.npm_package_version;
 
 await minifyAllJsonFiles();
 
+// Build the payload that gets published to npm. The version constants live in
+// its banner rather than in the loader because @require'd code runs before
+// the userscript body.
 await esbuild.build({
-  entryPoints: ['src/index.js'],
-  platform: 'browser',
-  format: 'iife',
-  globalName: 'mhui',
-  bundle: true,
-  minify: false,
-  minifySyntax: true,
-  sourcemap: false,
-  sourcesContent: false,
-  target: [
-    'es6',
-    'chrome58',
-    'firefox57'
-  ],
-  plugins: [
-    ImportGlobPlugin,
-    CSSMinifyTextPlugin,
-    JSONMinifyPlugin,
-    SVGDataUriPlugin
-  ],
-  outfile: 'dist/mousehunt-improved.user.js',
-  alias: {
-    '@data': path.resolve(process.cwd(), 'dist/data'),
-    '@images': path.resolve(process.cwd(), 'src/images'),
-  },
-  loader: {
-    '.png': 'dataurl',
-  },
-  dropLabels: ['excludeFromUserscript'],
-  banner: {
-    js: [
-      '// ==UserScript==',
-      '// @name        🐭️ MouseHunt Improved',
-      '// @description Improve your MouseHunt experience. Please only use this when the extension is not available.',
-      `// @version     ${process.env.npm_package_version}`,
-      '// @license     MIT',
-      '// @author      bradp',
-      '// @namespace   bradp',
-      '// @match       https://www.mousehuntgame.com/*',
-      '// @icon        https://i.mouse.rip/mh-improved/icon-64.png',
-      '// @run-at      document-end',
-      '// @grant       none',
-      '// ==/UserScript==',
-      `const mhImprovedVersion = '${process.env.npm_package_version}';`,
-      'const mhImprovedPlatform = \'userscript\';',
-    ].join('\n'),
-  }
+  ...getBaseBuildOptions('userscript'),
+  outfile: 'dist/mousehunt-improved.min.js',
 });
 
-const file = fs.readFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), 'utf8');
+// The userscript itself is just a loader: the code comes from the pinned
+// @require URL, which unpkg serves from the matching npm release.
+const loader = [
+  '// ==UserScript==',
+  '// @name        🐭️ MouseHunt Improved',
+  '// @description Improve your MouseHunt experience. Please only use this when the extension is not available.',
+  `// @version     ${version}`,
+  '// @license     MIT',
+  '// @author      bradp',
+  '// @namespace   bradp',
+  '// @match       https://www.mousehuntgame.com/*',
+  '// @icon        https://i.mouse.rip/mh-improved/icon-64.png',
+  '// @run-at      document-end',
+  '// @grant       none',
+  `// @require     https://unpkg.com/mousehunt-improved@${version}/dist/mousehunt-improved.min.js`,
+  '// ==/UserScript==',
+  '//',
+  'if (\'undefined\' === typeof mhui) {',
+  '  console.error(\'MouseHunt Improved failed to load. Check that unpkg.com is not being blocked, or reinstall from https://greasyfork.org/en/scripts/465139-mousehunt-improved\');',
+  '}',
+  '',
+].join('\n');
 
-// Remove any comment lines that start with `// node_modules` or `// src` (they may start with a space or tab).
-let cleaned = file
-  .replaceAll(/\s*\/\/\s*(node_modules|src).*/g, '')
-  .replaceAll(/^\s+/gm, '');
-
-// remove any lines that start with '// ' except for the banner
-cleaned = cleaned
-  .split('\n')
-  .filter((line, index) => {
-    if (index < 12) {
-      return true;
-    } // keep the banner
-    return ! line.trim().startsWith('//');
-  })
-  .join('\n');
-
-// write the cleaned file back to disk
-fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), cleaned);
-
-const greasyForkLimit = 2097152; // 2MB
-
-if (cleaned.length >= greasyForkLimit) { // GreasyFork limit.
-  console.warn(`${chalk.yellow('⚠')} The userscript is too large for GreasyFork. Reduce the size by ${cleaned.length - greasyForkLimit} bytes.`); // eslint-disable-line no-console
-} else {
-  console.log(`Userscript size is ${cleaned.length} bytes, ${greasyForkLimit - cleaned.length} bytes under the GreasyFork limit.`); // eslint-disable-line no-console
-}
+fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), loader);

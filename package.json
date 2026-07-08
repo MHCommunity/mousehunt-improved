@@ -22,6 +22,10 @@
   "engines": {
     "node": ">=16"
   },
+  "main": "dist/mousehunt-improved.min.js",
+  "files": [
+    "dist/mousehunt-improved.min.js"
+  ],
   "scripts": {
     "build:archive": "bun run scripts/build.mjs archive",
     "build:css": "bun run scripts/build.mjs css",

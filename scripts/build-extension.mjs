@@ -3,14 +3,7 @@ import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line
 import fs from 'node:fs';
 import path from 'node:path';
 
-import {
-  CSSMinifyTextPlugin,
-  ImportGlobPlugin,
-  JSONMinifyPlugin,
-  SVGDataUriPlugin,
-  minifyAllJsonFiles,
-  parseArgs
-} from './shared.mjs';
+import { getBaseBuildOptions, minifyAllJsonFiles, parseArgs } from './shared.mjs';
 
 const argv = await parseArgs(process.argv);
 
@@ -38,36 +31,17 @@ const buildExtension = async (platform, watch = false) => {
     }, null, 2)
   );
 
-  minifyAllJsonFiles();
+  await minifyAllJsonFiles();
+
+  const baseOptions = getBaseBuildOptions(platform);
 
   const opts = {
-    entryPoints: ['src/index.js'],
-    platform: 'browser',
-    format: 'iife',
-    globalName: 'mhui',
-    bundle: true,
-    minify: true,
+    ...baseOptions,
     metafile: true,
     sourcemap: true,
-    target: [
-      'es6',
-      'chrome58',
-      'firefox57'
-    ],
-    alias: {
-      '@data': path.resolve(process.cwd(), 'dist/data'),
-      '@images': path.resolve(process.cwd(), 'src/images'),
-    },
-    loader: {
-      '.png': 'dataurl',
-    },
-    dropLabels: ['excludeFromExtension'],
     outfile: `dist/${platform}/main.js`,
     plugins: [
-      ImportGlobPlugin,
-      CSSMinifyTextPlugin,
-      JSONMinifyPlugin,
-      SVGDataUriPlugin,
+      ...baseOptions.plugins,
       copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
         src: 'src/extension',
         dest: `dist/${platform}`,
@@ -89,12 +63,6 @@ const buildExtension = async (platform, watch = false) => {
         }
       }),
     ],
-    banner: {
-      js: [
-        `const mhImprovedVersion = '${process.env.npm_package_version}';`,
-        `const mhImprovedPlatform = '${platform}';`,
-      ].join('\n'),
-    }
   };
 
   if (watch) {
