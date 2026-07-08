@@ -64,6 +64,9 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   };
 };
 
+// Background AR fetches for the current sorted page, so we can re-sort when they're all done.
+let pendingArFills = [];
+
 /**
  * Generate the markup for a mouse.
  *
@@ -91,10 +94,25 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
 
   makeElement('div', 'mouse-name', mouse.name, mouseData);
 
-  const mouseAr = await getArEl(mouse.type ?? mouse.unique_id, type);
-  if (mouseAr) {
-    mouseData.append(mouseAr);
-  }
+  // Show a placeholder right away and fill in the AR in the background so an
+  // uncached rate doesn't block the page from rendering.
+  const arPlaceholder = makeElement('div', ['mh-ui-ar', 'mh-ui-ar-loading'], '?');
+  mouseData.append(arPlaceholder);
+
+  const fillAr = async () => {
+    try {
+      const mouseAr = await getArEl(mouse.type ?? mouse.unique_id, type);
+      if (mouseAr) {
+        arPlaceholder.replaceWith(mouseAr);
+      } else {
+        arPlaceholder.remove();
+      }
+    } catch {
+      arPlaceholder.remove();
+    }
+  };
+
+  pendingArFills.push(fillAr());
 
   // Mouse header close.
   mouseDiv.append(mouseData);
@@ -674,11 +692,30 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
     target.prepend(toggleWrapper);
   }
 
-  target.setAttribute('data-scavenger-sorted-by', 'location');
+  // The mice are already appended in (cached) AR order, so just mark the page
+  // as AR-sorted instead of blocking on a location sort pass.
+  target.setAttribute('data-scavenger-sorted-by', 'none');
   target.setAttribute('data-scavenger-sort-direction', 'descending');
 
-  await sortMiceIntoLocations('descending');
-  await toggleSortType();
+  // Once the background AR fetches finish, re-sort with the full data.
+  const resortWhenArsArrive = async () => {
+    await Promise.allSettled(pendingArFills);
+
+    if (! target.isConnected) {
+      return;
+    }
+
+    const sortBy = target.getAttribute('data-scavenger-sorted-by');
+    const direction = target.getAttribute('data-scavenger-sort-direction');
+
+    if ('location' === sortBy) {
+      await sortMiceIntoLocations(direction);
+    } else {
+      sortMice(direction);
+    }
+  };
+
+  resortWhenArsArrive();
 };
 
 /**
@@ -700,10 +737,12 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
 
   const { unsortedMice } = getMouseDataForMap(currentMapData, type);
 
-  // Sort from highest to lowest AR via the async getHighestArForMouse function.
+  // Sort from highest to lowest AR using only cached rates, so the page can
+  // render right away. Uncached mice sort to the bottom, get their rates
+  // fetched in the background, and the list re-sorts once they've all arrived.
   const sortedUnsorted = await Promise.all(
     unsortedMice.map(async (mouse) => {
-      const ar = await getHighestArForMouse(mouse.type ?? mouse.unique_id, type);
+      const ar = await getHighestArForMouse(mouse.type ?? mouse.unique_id, type, { cacheOnly: true });
       return {
         ...mouse,
         ar,
@@ -808,6 +847,9 @@ const processSortedTabClick = async () => {
   const sortedPage = makeSortedPageWrapper();
   sortedMiceContainer.append(sortedPage);
   mapContainer.append(sortedMiceContainer);
+
+  // Start a fresh batch of background AR fetches for this page.
+  pendingArFills = [];
 
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
