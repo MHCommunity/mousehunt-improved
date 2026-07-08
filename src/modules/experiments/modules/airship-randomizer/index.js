@@ -61,14 +61,6 @@ const getAirshipParts = async () => {
 };
 
 /**
- * Equip a single airship part, going through the workshop view when the
- * dialog is open so the game updates the dirigible preview, and falling back
- * to a direct request otherwise.
- *
- * @param {string} partType The part type being equipped (hull, sail, balloon).
- * @param {string} itemType The item type to equip.
- */
-/**
  * Get the parts tab that's currently active in the workshop.
  *
  * @return {string|null} The active part type, or null.
@@ -78,13 +70,19 @@ const getActivePartsTab = () => {
   return activeTab ? activeTab.getAttribute('data-parts') : null;
 };
 
+/**
+ * Equip a single airship part, going through the workshop view when the
+ * dialog is open so the game updates the dirigible preview, and falling back
+ * to a direct request otherwise.
+ *
+ * @param {string} partType The part type being equipped (hull, sail, balloon).
+ * @param {string} itemType The item type to equip.
+ */
 const equipAirshipPart = async (partType, itemType) => {
   const view = hg?.views?.FloatingIslandsWorkshopView;
   const inWorkshop = !! document.querySelector('.floatingIslandsWorkshop-tab.customize');
 
   if (inWorkshop && view?.equipCosmeticItem) {
-    // The active tab has its part buttons rendered, so preview the choice
-    // there before equipping it.
     if (getActivePartsTab() === partType && view.previewCosmeticItem) {
       const previewButton = document.querySelector(`.floatingIslandsWorkshop-part-state.default a[data-category="${partType}"][data-type="${itemType}"]`);
       if (previewButton) {
@@ -93,9 +91,6 @@ const equipAirshipPart = async (partType, itemType) => {
       }
     }
 
-    // Equip through the view so the game updates the airship and parts list.
-    // Inactive tabs don't have their buttons rendered, so hand the view an
-    // element carrying the data attributes it reads.
     const equipButton = document.querySelector(`.floatingIslandsWorkshop-part-state.previewed a[data-category="${partType}"][data-type="${itemType}"]`);
     let trigger = equipButton;
     if (! trigger) {
@@ -106,7 +101,6 @@ const equipAirshipPart = async (partType, itemType) => {
 
     view.equipCosmeticItem(trigger);
 
-    // The view equips asynchronously, so give it a beat before the next part.
     await sleep(300);
     return;
   }
@@ -201,7 +195,10 @@ const init = () => {
     }
 
     // Equip a random look for every island.
-    if ('launch' === data?.action) {
+    if (
+      'launch' === data?.action ||
+      'launch_vault' === data?.action
+    ) {
       randomizeAirship();
     }
   }, true);
