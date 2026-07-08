@@ -34,12 +34,6 @@ const init = () => {
       load: () => {}
     },
     {
-      id: 'better-marketplace.show-chart-images',
-      name: 'Better Marketplace: Price history charts',
-      description: 'Show sales price history charts on category pages.',
-      load: () => {}
-    },
-    {
       id: 'better-inventory.add-trap-sorting',
       name: 'Better Inventory: Add trap sorting',
       description: 'Add sorting options for traps in the inventory.',

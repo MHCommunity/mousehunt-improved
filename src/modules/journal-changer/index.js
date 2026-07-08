@@ -295,7 +295,7 @@ const init = async () => {
     changeJournalDaily();
   }
 
-  if (getSetting('journal-changer.change-location', true)) {
+  if (getSetting('journal-changer.change-location', false)) {
     changeForLocation();
     onEvent('travel_complete', changeForLocation);
   }

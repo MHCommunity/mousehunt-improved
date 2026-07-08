@@ -26,6 +26,11 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-marketplace.show-chart-images',
+      title: 'Show price history charts on category pages',
+      default: false,
+    },
+    {
       id: 'better-marketplace.value-column',
       title: 'Show estimated value column when browsing',
       default: true,
