@@ -135,3 +135,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   max-height: unset;
   overflow-x: hidden;
 }
+
+.treasureMapDialogView.wide.hideActions {
+  top: 30vh;
+}

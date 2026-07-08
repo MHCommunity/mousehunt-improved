@@ -48,3 +48,12 @@ a.mh-ui-invite-refresh-button.loading::after {
 .treasureMapPopup-mapInvite .treasureMapView-hunter {
   height: 42px;
 }
+
+.treasureMapDialogView-userSelector.canDeleteInviteRequests .userSelectorView-user.disabled .treasureMapDialogView-deleteInviteRequest {
+  background-color: #c7c7c7;
+}
+
+.treasureMapDialogView-userSelector.canDeleteInviteRequests .userSelectorView-user.disabled .treasureMapDialogView-deleteInviteRequest:hover {
+  cursor: pointer;
+  background-color: #909090;
+}
