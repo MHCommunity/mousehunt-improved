@@ -6,5 +6,6 @@ export default {
     migrateSetting('experiments.full-mice-images-no-border', 'better-journal.full-mice-images-no-border');
     migrateSetting('experiments.consistent-profile-pics', 'better-ui.square-profile-pics');
     migrateSetting('experiments.gift-button-opens-gift-selector', 'better-gifts.gift-button-opens-gift-selector');
+    migrateSetting('better-shop.qty-buttons', 'better-shops.qty-buttons');
   }
 };

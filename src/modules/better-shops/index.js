@@ -26,7 +26,7 @@ const updateInputField = async () => {
     return;
   }
 
-  const addQuantityButtons = getSetting('better-shops.show-qty-buttons', true);
+  const addQuantityButtons = getSetting('better-shops.qty-buttons', true);
 
   purchaseBlocks.forEach((block) => {
     const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
@@ -208,7 +208,7 @@ const init = () => {
     stylesToAdd.push(maxOwnedHide);
   }
 
-  if (getSetting('better-shops.show-qty-buttons', true)) {
+  if (getSetting('better-shops.qty-buttons', true)) {
     stylesToAdd.push(qtyButtonsStyles);
   }
 

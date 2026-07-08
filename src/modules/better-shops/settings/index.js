@@ -11,7 +11,7 @@ export default async () => {
       default: false,
     },
     {
-      id: 'better-shop.qty-buttons',
+      id: 'better-shops.qty-buttons',
       title: 'Show quantity buttons',
       default: true,
     }
