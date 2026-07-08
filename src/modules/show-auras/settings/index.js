@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'show-auras.list',
-      title: 'Show auras as a horizontal list',
+      title: 'Show auras as a vertical list',
       default: false,
     },
     {

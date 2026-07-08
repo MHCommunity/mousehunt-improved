@@ -30,7 +30,7 @@ export default {
   id: 'delayed-tooltips',
   name: 'Delayed Tooltips',
   type: 'feature',
-  default: false,
+  default: true,
   description: 'Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.',
   load: init,
 };

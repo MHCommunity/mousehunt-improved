@@ -29,7 +29,7 @@ const addCampBackground = () => {
   camp.classList.remove(...campBackgroundClasses);
   camp.style.removeProperty('background');
 
-  const background = getSetting('custom-camp-background-0', 'background-wood');
+  const background = getSetting('custom-camp-background-0', 'background-blueprint');
   if ('default' === background) {
     return;
   }

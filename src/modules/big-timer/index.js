@@ -36,7 +36,7 @@ export default {
   id: 'big-timer',
   name: 'Big Timer',
   type: 'feature',
-  default: false,
+  default: true,
   description: 'Click the timer to toggle between sizes.',
   load: init,
 };

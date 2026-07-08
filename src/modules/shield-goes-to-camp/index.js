@@ -25,7 +25,7 @@ export default {
   id: 'shield-goes-to-camp',
   name: 'Shield Goes to Camp',
   type: 'feature',
-  default: false,
+  default: true,
   description: 'Click the shield to go to the Camp page if you’re not already there, otherwise, it will take you to your Hunter Profile.',
   load: init,
 };

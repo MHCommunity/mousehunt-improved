@@ -23,10 +23,12 @@ export default async () => {
     {
       id: 'better-journal.list',
       title: 'Loot as list',
+      default: true
     },
     {
       id: 'better-journal.icons',
       title: 'Loot icons',
+      default: true
     },
     {
       id: 'better-journal.icons-minimal',
