@@ -615,7 +615,8 @@ a.floatingIslandsHUD-bait-image:hover {
 .floatingIslandsHUD-modPanelTooltip-islandEffects.complete .floatingIslandsHUD-modPanelTooltip-effectContainer.specialEffect::after,
 .floatingIslandsHUD-modPanelTooltip-islandEffects.complete .floatingIslandsHUD-modPanelTooltip-effectContainer.reward::after,
 .floatingIslandsHUD-modPanelTooltip-islandEffects.complete .floatingIslandsHUD-modPanelTooltip-effectContainer.oneTimeReward::after {
-  bottom: 3px;
+  right: -2px;
+  bottom: -10px;
 }
 
 .floatingIslandsHUD-modPanelTooltip-effect {

@@ -18,7 +18,7 @@
 }
 
 .mh-ui-ar.mh-ui-no-ar {
-  border-color: #aaa;
+  border-color: rgb(0 0 0 / 50%);
   opacity: 0.5;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .mh-ui-ar.mh-ui-ar-loading {
-  border-color: #aaa;
+  border-color: rgb(0 0 0 / 50%);
   opacity: 0.5;
   animation: mh-ui-ar-loading-pulse 1s ease-in-out infinite alternate;
 }
