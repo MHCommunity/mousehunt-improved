@@ -15,6 +15,8 @@ import {
   waitForElement
 } from '@utils';
 
+import { addAirshipRandomizer } from '../../shared/airship-randomizer';
+
 import fullWidthAirshipStyles from './full-width-airship.css';
 import styles from './styles.css';
 
@@ -539,5 +541,6 @@ const hud = () => {
  */
 export default async () => {
   addHudStyles([styles, fullWidthAirshipStyles], 'floating-islands');
+  addAirshipRandomizer();
   hud();
 };

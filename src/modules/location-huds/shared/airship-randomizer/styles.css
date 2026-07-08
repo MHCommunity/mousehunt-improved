@@ -1,4 +1,5 @@
-.floatingIslandsWorkshop-tab.customize .mh-improved-airship-randomizer {
+.floatingIslandsWorkshop-tab.customize .mh-improved-airship-randomizer,
+.floatingIslandsWorkshop-tab.skyport .mh-improved-airship-randomizer {
   position: absolute;
   top: 250px;
   left: 470px;
