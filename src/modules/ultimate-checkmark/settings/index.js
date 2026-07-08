@@ -1,4 +1,4 @@
-import { getData, getSetting } from '@utils';
+import { getSetting } from '@utils';
 
 /**
  * Add settings for the module.
@@ -8,16 +8,14 @@ import { getData, getSetting } from '@utils';
 export default async () => {
   const options = [];
 
-  const categories = await getData('ultimate-checkmark');
-
-  // sort the categories by name
-  categories.sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-
-    return 1;
-  });
+  const categories = [
+    { id: 'airships', name: 'Airships' },
+    { id: 'codex', name: 'Codex' },
+    { id: 'currency', name: 'Currency' },
+    { id: 'equipment', name: 'Equipment' },
+    { id: 'plankrun', name: 'Plankrun Pages' },
+    { id: 'treasure_chests', name: 'Treasure Chests' },
+  ];
 
   categories.forEach((category) => {
     options.push({
