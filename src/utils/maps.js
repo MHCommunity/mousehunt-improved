@@ -263,7 +263,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     return;
   }
 
-  const mhctJson = await getArForMouse(mouse.unique_id, type);
+  // Prefer the type slug over the numeric ID so the API can cache the response.
+  const mhctJson = await getArForMouse(mouse.type ?? mouse.unique_id, type);
 
   const mhctDiv = makeElement('div', 'mhct-data');
   mhctDiv.id = `mhct-${mouse.unique_id}-${type}`;
@@ -283,7 +284,12 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   header.append(mhctLink);
   mhctDiv.append(header);
 
-  if (! mhctJson || mhctJson.length === 0) {
+  if (! mhctJson || mhctJson.length === 0 || mhctJson.error) {
+    const mhctRow = makeElement('div', 'mhct-row');
+    makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
+    mhctDiv.append(mhctRow);
+    appendTo.append(mhctDiv);
+
     return;
   }
 
@@ -357,13 +363,6 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 
     mhctDiv.append(mhctRow);
   });
-
-  // if the rows were empty, then add a message
-  if (0 === mhctJson.length) {
-    const mhctRow = makeElement('div', 'mhct-row');
-    makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
-    mhctDiv.append(mhctRow);
-  }
 
   appendTo.append(mhctDiv);
 };
@@ -598,6 +597,49 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
 };
 
 /**
+ * Get all the locations the given mouse can be found in, best rate first.
+ *
+ * @param {Object} mouse Mouse to get the locations for.
+ * @param {string} type  Type of mouse, either 'mouse' or 'item'.
+ *
+ * @return {Array} Location objects, empty if none were found.
+ */
+const getLocationsForMouse = async (mouse, type = 'mouse') => {
+  // Get the rates for the mouse and match each location name against the
+  // environments data to get the environment for it.
+  const environments = await getData('environments');
+  const rates = await getArForMouse(mouse, type);
+
+  if (! rates || rates.length === 0) {
+    return [];
+  }
+
+  const twistedMap = {
+    'Twisted Garden': 'Living Garden',
+    'Sand Crypts': 'Sand Dunes',
+    'Cursed City': 'Lost City',
+  };
+
+  const locations = new Map();
+  for (const rate of rates) {
+    const originalName = rate.location;
+    const lookupName = twistedMap[originalName] || originalName;
+
+    const environment = environments.find((env) => {
+      return env.name === lookupName;
+    });
+
+    if (environment && ! locations.has(environment.id)) {
+      // Return a copy with the original (e.g. twisted) name, so we don't
+      // modify the shared environments data.
+      locations.set(environment.id, { ...environment, name: originalName });
+    }
+  }
+
+  return [...locations.values()];
+};
+
+/**
  * Get the best AR location for the given mouse.
  *
  * @param {Object} mouse Mouse to get the location for.
@@ -606,44 +648,8 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
  * @return {Object|boolean} Location object or false if not found.
  */
 const getLocationForMouse = async (mouse, type = 'mouse') => {
-  // get the AR for the mouse and then grab the location property from the highest AR.
-  // compare that to the name string of the environments and return the environment ID.
-  const environments = await getData('environments');
-  const rates = await getArForMouse(mouse, type);
-
-  if (! rates || rates.length === 0) {
-    return false;
-  }
-
-  const rate = rates[0];
-
-  if (! rate) {
-    return false;
-  }
-
-  const originalName = rate.location;
-
-  const twistedMap = {
-    'Twisted Garden': 'Living Garden',
-    'Sand Crypts': 'Sand Dunes',
-    'Cursed City': 'Lost City',
-  };
-
-  if (twistedMap[rate.location]) {
-    rate.location = twistedMap[rate.location];
-  }
-
-  const environment = environments.find((env) => {
-    return env.name === rate.location;
-  });
-
-  if (! environment) {
-    return false;
-  }
-
-  environment.name = originalName;
-
-  return environment;
+  const locations = await getLocationsForMouse(mouse, type);
+  return locations.length ? locations[0] : false;
 };
 
 let _showMapPreviewDialog;
@@ -694,6 +700,7 @@ export {
   setLastMaptain,
   cacheFinishedMap,
   getLocationForMouse,
+  getLocationsForMouse,
   showTravelConfirmationNoDetails,
   addMapPreviewListeners
 };

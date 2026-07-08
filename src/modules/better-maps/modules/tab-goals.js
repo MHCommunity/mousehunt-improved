@@ -340,8 +340,16 @@ const addClassesToGroups = (mapData) => {
 
 /**
  * Move the leave map button to the actions group.
+ *
+ * @param {Object} mapData The map data.
  */
-const moveLeaveButton = async () => {
+const moveLeaveButton = async (mapData) => {
+  // The leave button already exists at the bottom of the map view, so don't
+  // also add it to the top actions menu for the map captain.
+  if (mapData?.is_owner) {
+    return;
+  }
+
   const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
   if (! leaveButton) {
     return;
@@ -789,7 +797,7 @@ const showGoalsTab = async (mapData) => {
   addMouseLinksToMap();
   addConsolationPrizes();
   addClassesToGroups(mapData);
-  moveLeaveButton();
+  moveLeaveButton(mapData);
   addQuickInvite(mapData);
   addSidebarToggle();
   addPreviewClass();

@@ -3,7 +3,7 @@ import {
   getArEl,
   getData,
   getHighestArForMouse,
-  getLocationForMouse,
+  getLocationsForMouse,
   getMapData,
   makeElement,
   makeMhButton,
@@ -91,7 +91,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
 
   makeElement('div', 'mouse-name', mouse.name, mouseData);
 
-  const mouseAr = await getArEl(mouse.unique_id, type);
+  const mouseAr = await getArEl(mouse.type ?? mouse.unique_id, type);
   if (mouseAr) {
     mouseData.append(mouseAr);
   }
@@ -135,7 +135,49 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
 
   // Mouse extra info close.
   mouseExtraInfoWrapper.append(mouseExtraInfo);
+
+  // Link to MHCT at the bottom of the popup, like the mouse and item popups have.
+  const mhctLink = makeElement('a', 'mouse-mhct-link', 'View on MHCT →');
+  mhctLink.href = `https://api.mouse.rip/mhct-redirect${'item' === type ? '-item' : ''}/${mouse.unique_id}`;
+  mhctLink.target = '_blank';
+  mhctLink.addEventListener('click', (event) => {
+    // Don't toggle the popup closed when clicking the link.
+    event.stopPropagation();
+  });
+  mouseExtraInfoWrapper.append(mhctLink);
+
   mouseDiv.append(mouseExtraInfoWrapper);
+
+  /**
+   * Position the extra info popup near the mouse, keeping it on screen.
+   */
+  const positionExtraInfo = () => {
+    const rect = mouseDiv.getBoundingClientRect();
+    let top = rect.top + 50;
+    let left = rect.left;
+
+    mouseExtraInfoWrapper.style.top = `${top}px`;
+    mouseExtraInfoWrapper.style.left = `${left}px`;
+
+    // Measure where it actually ended up and nudge it back into the viewport.
+    const popupRect = mouseExtraInfoWrapper.getBoundingClientRect();
+    const margin = 10;
+
+    if (popupRect.right > window.innerWidth - margin) {
+      left -= popupRect.right - (window.innerWidth - margin);
+    }
+
+    if (popupRect.left < margin) {
+      left += margin - popupRect.left;
+    }
+
+    if (popupRect.bottom > window.innerHeight - margin) {
+      top = Math.max(margin, rect.top - popupRect.height - 5);
+    }
+
+    mouseExtraInfoWrapper.style.top = `${top}px`;
+    mouseExtraInfoWrapper.style.left = `${left}px`;
+  };
 
   // Click handler.
   mouseDiv.addEventListener('click', async () => {
@@ -145,13 +187,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
       return;
     }
 
-    // Append MHCT data.
-    addMHCTData(mouse, mouseExtraInfo, type);
-
     // Only allow one mouse to be selected at a time.
-    const addClass = ! mouseDiv.classList.contains('mouse-container-selected');
-
-    // Clear all selected.
     const allSelected = document.querySelectorAll('.mouse-container-selected');
     if (allSelected) {
       allSelected.forEach((selected) => {
@@ -159,15 +195,12 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
       });
     }
 
-    // Position the mouseExtraInfoWrapper div so that its positioned absolute to the mouseDiv
-    const rect = mouseDiv.getBoundingClientRect();
-    mouseExtraInfoWrapper.style.top = `${rect.top + 50}px`;
-    mouseExtraInfoWrapper.style.left = `${rect.left}px`;
+    mouseDiv.classList.add('mouse-container-selected');
+    positionExtraInfo();
 
-    // Except this one if it's not selected.
-    if (addClass) {
-      mouseDiv.classList.add('mouse-container-selected');
-    }
+    // Append MHCT data, then reposition since the popup size changed.
+    await addMHCTData(mouse, mouseExtraInfo, type);
+    positionExtraInfo();
   });
 
   return mouseDiv;
@@ -368,8 +401,9 @@ const makeSortedMiceList = async () => {
  *
  * @param {boolean}     isNormal Is this a normal map?
  * @param {HTMLElement} target   The target element.
+ * @param {Array}       allMice  The mice data for the map.
  */
-const makeScavengerSortedPage = async (isNormal, target) => {
+const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
   target.classList.add('scavenger-sorted-page');
   target.classList.add('treasureMapView-block');
 
@@ -392,8 +426,15 @@ const makeScavengerSortedPage = async (isNormal, target) => {
       return;
     }
 
-    // sort the mice by the value in the data-ar attribute on the mh-ui-ar element
-    const miceArray = [...mice];
+    // Remove any copies made by the location sort so each mouse only shows once.
+    const miceArray = [...mice].filter((mouse) => {
+      if (mouse.classList.contains('mouse-container-duplicate')) {
+        mouse.remove();
+        return false;
+      }
+
+      return true;
+    });
     miceArray.sort((a, b) => {
       let aAr = 0;
       let bAr = 0;
@@ -452,26 +493,55 @@ const makeScavengerSortedPage = async (isNormal, target) => {
       return;
     }
 
-    // for each mouse, call getLocationForMouse and then separate them into their respective locations
+    const type = isNormal ? 'mouse' : 'item';
+
+    // Remove any copies from a previous location sort so we start from unique mice.
+    const uniqueMice = [...mice].filter((mouse) => {
+      if (mouse.classList.contains('mouse-container-duplicate')) {
+        mouse.remove();
+        return false;
+      }
+
+      return true;
+    });
+
+    // For each mouse, get every location it can be found in and add it to each
+    // of them, falling back to an "Other" group when there's no data.
     const miceByLocation = {};
     const locations = {};
 
-    for (const mouse of mice) {
-      const mouseId = mouse.getAttribute('data-mouse-id');
-      const location = await getLocationForMouse(mouseId, isNormal ? 'mouse' : 'item');
-      locations[location.id] = location;
+    for (const mouse of uniqueMice) {
+      const mouseType = mouse.getAttribute('data-mouse-type');
+      let mouseLocations = await getLocationsForMouse(mouseType, type);
 
-      const locationId = location.id;
-
-      if (! miceByLocation[locationId]) {
-        miceByLocation[locationId] = [];
+      if (! mouseLocations.length) {
+        mouseLocations = [{ id: 'other', name: 'Other' }];
       }
 
-      miceByLocation[locationId].push(mouse);
+      for (const [index, location] of mouseLocations.entries()) {
+        locations[location.id] = location;
+
+        if (! miceByLocation[location.id]) {
+          miceByLocation[location.id] = [];
+        }
+
+        if (0 === index) {
+          miceByLocation[location.id].push(mouse);
+          continue;
+        }
+
+        // The mouse is in multiple locations, so make a copy for each extra one.
+        const mouseData = allMice.find((m) => m.type === mouseType);
+        if (mouseData) {
+          const duplicate = await makeMouseDiv(mouseData, type);
+          duplicate.classList.add('mouse-container-duplicate');
+          miceByLocation[location.id].push(duplicate);
+        }
+      }
     }
 
     // move all the mice to the container
-    mice.forEach((mouse) => {
+    uniqueMice.forEach((mouse) => {
       mouse.remove();
     });
 
@@ -494,33 +564,31 @@ const makeScavengerSortedPage = async (isNormal, target) => {
       const header = makeElement('div', ['treasureMapView-block-content-heading', 'scavenger-location-header']);
       const locationContent = makeElement('div', 'scavenger-location-content');
 
-      // get the environment name and icon
+      // Get the environment name and icon, falling back to the location data
+      // itself (e.g. the "Other" group or an unknown environment).
       const environment = environments.find((env) => env.id === location);
+      const locationData = locations[location] || {};
 
-      // Handle the whole twisted garden thing.
-      if (locations[environment?.id]) {
-        environment.name = locations[environment.id].name;
+      const name = locationData.name || environment?.name || 'Other';
+      const image = locationData.image || environment?.image || '';
+
+      if (image) {
+        const headerImage = makeElement('div', ['treasureMapView-block-content-heading-image', 'scavenger-location-icon']);
+        headerImage.style.backgroundImage = `url(${image})`;
+        header.append(headerImage);
       }
 
+      const envLink = makeElement('span', 'scavenger-location-name', name);
       if (environment) {
-        if (environment.image) {
-          const headerImage = makeElement('div', ['treasureMapView-block-content-heading-image', 'scavenger-location-icon']);
-          headerImage.style.backgroundImage = `url(${environment.image})`;
-          header.append(headerImage);
-        }
-
-        if (environment.name) {
-          const envLink = makeElement('span', 'scavenger-location-name', environment.name);
-          envLink.title = `Travel to ${environment.name}`;
-          envLink.setAttribute('data-environment-id', location);
-          envLink.addEventListener('click', () => {
-            showTravelConfirmation(environment, mapModel());
-          });
-
-          header.append(envLink);
-          makeElement('span', 'scavenger-location-count', ` (${miceByLocation[location].length})`, header);
-        }
+        envLink.title = `Travel to ${name}`;
+        envLink.setAttribute('data-environment-id', location);
+        envLink.addEventListener('click', () => {
+          showTravelConfirmation(environment, mapModel());
+        });
       }
+
+      header.append(envLink);
+      makeElement('span', 'scavenger-location-count', ` (${miceByLocation[location].length})`, header);
 
       locationWrapper.append(header);
 
@@ -635,7 +703,7 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
   // Sort from highest to lowest AR via the async getHighestArForMouse function.
   const sortedUnsorted = await Promise.all(
     unsortedMice.map(async (mouse) => {
-      const ar = await getHighestArForMouse(mouse.unique_id, type);
+      const ar = await getHighestArForMouse(mouse.type ?? mouse.unique_id, type);
       return {
         ...mouse,
         ar,
@@ -656,7 +724,7 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
     target.append(mouseDiv);
   }
 
-  await makeScavengerSortedPage(isNormal, sortedPage);
+  await makeScavengerSortedPage(isNormal, sortedPage, sortedUnsorted);
 };
 
 /**

@@ -349,3 +349,11 @@
 #sorted-mice-container .mhct-data {
   padding-bottom: 5px;
 }
+
+#sorted-mice-container .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
+  display: block;
+  padding: 5px 10px;
+  font-size: 11px;
+  text-align: right;
+  border-top: 1px solid #ccc;
+}

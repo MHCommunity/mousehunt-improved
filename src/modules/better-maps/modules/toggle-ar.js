@@ -56,7 +56,7 @@ const addArDataToMap = async (mapData) => {
       });
     }
 
-    const arEl = await getArEl(mouse.unique_id, type);
+    const arEl = await getArEl(mouse.type ?? mouse.unique_id, type);
     if (! arEl) {
       return;
     }
