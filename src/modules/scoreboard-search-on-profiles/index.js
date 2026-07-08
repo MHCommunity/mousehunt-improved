@@ -73,10 +73,22 @@ const main = async () => {
   startingOpt.setAttribute('selected', true);
   scoreboardDropdown.append(startingOpt);
 
+  const groups = {};
   for (const scoreboard of scoreboards) {
-    const option = makeElement('option', '', scoreboard.name);
+    let parent = scoreboardDropdown;
+    if (scoreboard.group) {
+      if (! groups[scoreboard.group]) {
+        groups[scoreboard.group] = makeElement('optgroup');
+        groups[scoreboard.group].label = scoreboard.group;
+        scoreboardDropdown.append(groups[scoreboard.group]);
+      }
+
+      parent = groups[scoreboard.group];
+    }
+
+    const option = makeElement('option', '', scoreboard.group ? `&nbsp;&nbsp;${scoreboard.name}` : scoreboard.name);
     option.value = scoreboard.id;
-    scoreboardDropdown.append(option);
+    parent.append(option);
   }
 
   tabContent.append(scoreboardDropdown);
