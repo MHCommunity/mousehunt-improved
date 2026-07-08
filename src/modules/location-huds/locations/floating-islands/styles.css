@@ -786,6 +786,10 @@ a.floatingIslandsHUD-bait-image:hover {
   background-position-y: -1%;
 }
 
+.floatingIslandsHUD-enemyContainer .mousehuntTooltip {
+  z-index: 15;
+}
+
 .floatingIslandsHUD-modPanelTooltipContainer.active {
   z-index: 17;
 }
