@@ -3,7 +3,6 @@ import {
   debuglog,
   doRequest,
   makeElement,
-  makeMhButton,
   onDialogShow,
   onRequest,
   sessionGet,
@@ -112,24 +111,33 @@ const equipAirshipPart = async (partType, itemType) => {
 };
 
 /**
- * Equip a random equippable hull, sail, and balloon.
+ * Equip a random equippable item for a single part type.
+ *
+ * @param {string} partType The part type to randomize (hull, sail, balloon).
  */
-const randomizeAirship = async () => {
+const randomizeAirshipPart = async (partType) => {
   const parts = await getAirshipParts();
   if (! parts) {
     return;
   }
 
+  const options = parts[partType] || [];
+  if (! options.length) {
+    return;
+  }
+
+  const choice = options[Math.floor(Math.random() * options.length)];
+  await equipAirshipPart(partType, choice);
+};
+
+/**
+ * Equip a random equippable hull, sail, and balloon.
+ */
+const randomizeAirship = async () => {
   const inWorkshop = !! document.querySelector('.floatingIslandsWorkshop-tab.customize');
 
   for (const partType of airshipPartTypes) {
-    const options = parts[partType] || [];
-    if (! options.length) {
-      continue;
-    }
-
-    const choice = options[Math.floor(Math.random() * options.length)];
-    await equipAirshipPart(partType, choice);
+    await randomizeAirshipPart(partType);
   }
 
   // Outside the workshop dialog we've just started an island, so wait a
@@ -149,35 +157,180 @@ const randomizeAirship = async () => {
 };
 
 /**
- * Add the randomize button to the workshop's customize tab.
+ * Make a randomize button styled like the game's "Stabilize airship" label.
+ *
+ * @param {Object}   options          The button options.
+ * @param {string}   options.text     The button text.
+ * @param {string}   options.title    The button title attribute.
+ * @param {Function} options.callback Called when the button is clicked.
+ *
+ * @return {HTMLElement} The button element.
  */
-const addAirshipRandomizerButton = async () => {
+const makeRandomizeButton = ({ text, title, callback }) => {
+  const button = makeElement('a', 'mh-improved-airship-randomizer-button');
+  button.href = '#';
+  button.title = title;
+
+  const icon = makeElement('img', 'mh-improved-airship-randomizer-icon');
+  icon.src = 'https://i.mouse.rip/mh-improved/journal-random.png';
+  icon.alt = '';
+  button.append(icon);
+
+  button.append(document.createTextNode(text));
+
+  button.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    if (button.classList.contains('busy')) {
+      return;
+    }
+
+    button.classList.add('busy');
+    await callback();
+    button.classList.remove('busy');
+  });
+
+  return button;
+};
+
+/**
+ * Add the randomize buttons to the workshop's customize tab.
+ */
+const addAirshipRandomizerButtons = async () => {
   const customizeTab = await waitForElement('.floatingIslandsWorkshop-tab.customize', { maxAttempts: 5, delay: 200 });
   if (! customizeTab || customizeTab.querySelector('.mh-improved-airship-randomizer')) {
     return;
   }
 
-  makeMhButton({
+  const wrapper = makeElement('div', 'mh-improved-airship-randomizer');
+
+  wrapper.append(makeRandomizeButton({
     text: 'Randomize',
-    size: 'tiny',
-    className: 'mh-improved-airship-randomizer',
-    title: 'Equip a random hull, sail, and balloon',
-    appendTo: customizeTab,
+    title: 'Equip a random part for the selected slot',
     /**
-     * Randomize the airship, disabling the button while it runs.
-     *
-     * @param {Event} event The click event.
+     * Randomize the part type that's selected in the workshop.
      */
-    callback: async (event) => {
-      const button = event.currentTarget;
-      if (button.classList.contains('disabled')) {
+    callback: async () => {
+      await randomizeAirshipPart(getActivePartsTab() || 'balloon');
+    },
+  }));
+
+  wrapper.append(makeRandomizeButton({
+    text: 'Randomize all',
+    title: 'Equip a random hull, sail, and balloon',
+    /**
+     * Randomize every part type.
+     */
+    callback: randomizeAirship,
+  }));
+
+  customizeTab.append(wrapper);
+};
+
+let hoverPreviewTimeout = null;
+let hoverPreviewPart = null;
+
+/**
+ * Cancel any pending hover preview and revert an active one, restoring the
+ * equipped airship in the dirigible preview.
+ */
+const clearHoverPreview = () => {
+  clearTimeout(hoverPreviewTimeout);
+
+  const previewedPart = document.querySelector('.floatingIslandsWorkshop-part.previewed');
+  if (! previewedPart) {
+    return;
+  }
+
+  previewedPart.classList.remove('previewed');
+  previewedPart.classList.add('default');
+
+  hg?.views?.FloatingIslandsWorkshopView?.hideCosmeticPreview?.();
+};
+
+/**
+ * Preview a part when hovering over it, debounced so quickly moving across
+ * the list only previews the part the cursor settles on.
+ */
+const addHoverPreview = async () => {
+  const container = await waitForElement('.floatingIslandsWorkshop-container', { maxAttempts: 5, delay: 200 });
+  if (! container || container.getAttribute('data-mh-improved-hover-preview')) {
+    return;
+  }
+
+  container.setAttribute('data-mh-improved-hover-preview', 'true');
+
+  container.addEventListener('mouseover', (event) => {
+    const part = event.target.closest('.floatingIslandsWorkshop-part');
+
+    // Moving between elements inside the same part shouldn't restart the delay.
+    if (part && part === hoverPreviewPart) {
+      return;
+    }
+
+    // Left the previous part, so revert its preview to the equipped airship.
+    clearHoverPreview();
+    hoverPreviewPart = part;
+
+    if (! part || part.classList.contains('previewed') || part.classList.contains('active')) {
+      return;
+    }
+
+    const previewButton = part.querySelector('.floatingIslandsWorkshop-part-state.default a[data-category][data-type]');
+    if (! previewButton) {
+      return;
+    }
+
+    hoverPreviewTimeout = setTimeout(() => {
+      // Skip if the part got previewed or equipped while we were waiting.
+      if (! previewButton.isConnected || ! part.classList.contains('default')) {
         return;
       }
 
-      button.classList.add('disabled');
-      await randomizeAirship();
-      button.classList.remove('disabled');
-    },
+      hg?.views?.FloatingIslandsWorkshopView?.previewCosmeticItem?.(previewButton);
+    }, 350);
+  });
+
+  container.addEventListener('mouseleave', () => {
+    clearHoverPreview();
+    hoverPreviewPart = null;
+  });
+};
+
+/**
+ * Make clicking anywhere on the "Stabilize airship" label toggle the checkbox
+ * and the airship animation, rather than just clicks on the checkbox.
+ */
+const fixStabilizerLabel = async () => {
+  await waitForElement('.floatingIslandsWorkshop-stabilizer label', { maxAttempts: 5, delay: 200 });
+
+  const labels = document.querySelectorAll('.floatingIslandsWorkshop-stabilizer label');
+  labels.forEach((label) => {
+    if (label.getAttribute('data-mh-improved-stabilizer')) {
+      return;
+    }
+
+    label.setAttribute('data-mh-improved-stabilizer', 'true');
+
+    // Remove the game's inline handler so the toggle doesn't fire twice.
+    label.removeAttribute('onclick');
+
+    label.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (label.classList.contains('busy')) {
+        return;
+      }
+
+      const checkbox = label.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.checked = ! checkbox.checked;
+      }
+
+      // Passing the label lets the game show its busy spinner on it while the
+      // toggle request runs.
+      hg?.views?.FloatingIslandsWorkshopView?.toggleAirshipAnimation?.(label);
+    });
   });
 };
 
@@ -187,7 +340,11 @@ const addAirshipRandomizerButton = async () => {
 const init = () => {
   addStyles(styles, 'airship-randomizer');
 
-  onDialogShow('floatingIslandsWorkshop', addAirshipRandomizerButton);
+  onDialogShow('floatingIslandsWorkshop', () => {
+    addAirshipRandomizerButtons();
+    fixStabilizerLabel();
+    addHoverPreview();
+  });
 
   onRequest('environment/floating_islands.php', (response, data) => {
     if (response?.workshop?.airship_parts) {
@@ -211,6 +368,6 @@ export default {
   id: 'experiments.airship-randomizer',
   name: 'Floating Islands: Airship Randomizer',
   default: false,
-  description: 'Equip a random airship hull, sail, and balloon each time you start an island, plus a "Randomize" button in the airship customization workshop.',
+  description: 'Equip a random airship hull, sail, and balloon each time you start an island, plus "Randomize" and "Randomize all" buttons in the airship customization workshop.',
   load: init,
 };
