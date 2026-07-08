@@ -56,6 +56,27 @@ const isOwnJournal = () => {
 };
 
 /**
+ * Whether the journal is showing its first (most recent) page.
+ *
+ * Entry timestamps are reconstructed from the visible time-of-day, which is
+ * only valid for entries posted within the last day — older pages would be
+ * stored with today's date.
+ *
+ * @return {boolean} True if the first page (or no pager) is shown.
+ */
+const isFirstJournalPage = () => {
+  // The current section renders "Page N of M", so read just the N span —
+  // parsing the whole section's text would mash the two numbers together.
+  const current = document.querySelector('#journalContainer .pagerView-section-currentPage');
+  if (! current) {
+    return true;
+  }
+
+  const page = Number.parseInt(current.textContent.replaceAll(/\D/g, ''), 10);
+  return Number.isNaN(page) || page <= 1;
+};
+
+/**
  * Refresh the in-memory cache of logs from the database, newest first.
  *
  * @return {Promise<Array>} The cached logs.
@@ -132,7 +153,7 @@ const parseEntry = (entry) => {
 
   const subtitle = entry.querySelector('.reportSubtitle');
   if (subtitle) {
-    log.duration = subtitle.innerHTML.replace('Last ', '').trim();
+    log.duration = subtitle.textContent.replace('Last ', '').trim();
   }
 
   const tableBody = entry.querySelector('.journalbody .journaltext table tbody');
@@ -179,7 +200,7 @@ const parseEntry = (entry) => {
  * @return {Promise<boolean>} Whether any new logs were stored.
  */
 const scrapeJournal = async () => {
-  if (! isOwnJournal()) {
+  if (! isOwnJournal() || ! isFirstJournalPage()) {
     return false;
   }
 
@@ -392,6 +413,22 @@ const makeSummaryMarkup = () => {
 };
 
 /**
+ * Escape a value for safe interpolation into HTML markup. Stored values can
+ * come from imported userscript data, so they can't be trusted as markup.
+ *
+ * @param {*} value The value to escape.
+ *
+ * @return {string} The escaped string.
+ */
+const escapeHtml = (value) => {
+  return `${value}`
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+};
+
+/**
  * Render a plain table cell, showing a dash for missing values.
  *
  * @param {*} value The cell value.
@@ -399,7 +436,7 @@ const makeSummaryMarkup = () => {
  * @return {string} The cell markup.
  */
 const makeCell = (value) => {
-  return `<td>${(null === value || undefined === value) ? '-' : value}</td>`;
+  return `<td>${(null === value || undefined === value) ? '-' : escapeHtml(value)}</td>`;
 };
 
 /**
@@ -603,7 +640,7 @@ const init = async () => {
 
 export default {
   id: MODULE_ID,
-  name: 'Journal Log Tracker',
+  name: 'Journal Progress Log Tracker',
   type: 'feature',
   default: false,
   description: 'Tracks when your next journal log summary is due and gives you quick access to your past logs.',

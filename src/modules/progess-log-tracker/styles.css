@@ -1,20 +1,9 @@
-/* Journal header button — matches the native "Set Theme" / "Randomize" buttons,
-   but left-aligned. It inherits the look and hover-reveal from
-   .journalContainer-selectTheme; we only re-position it to the left. */
 .journalContainer .top .mh-jlt-button {
   position: absolute;
   right: auto;
   left: 10px;
   padding: 0 8px;
   background-image: none;
-}
-
-/* Popup */
-.mh-jlt-popup {
-  width: 580px;
-  max-width: 90vw;
-  font-size: 12px;
-  color: #2d2417;
 }
 
 .mh-jlt-summary {
