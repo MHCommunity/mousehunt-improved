@@ -72,6 +72,36 @@ const updateRankUpIcon = (entry) => {
 };
 
 /**
+ * Toggle the expanded state of collapsed travel entries on click.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
+const addTravelEntryToggle = (entry) => {
+  if (! entry || ! entry.classList || ! entry.classList.contains('floatingIslands')) {
+    return;
+  }
+
+  if (! (entry.classList.contains('skyPalaceTravel') || entry.classList.contains('dirigibleTravel'))) {
+    return;
+  }
+
+  if (entry.getAttribute('data-travel-toggle-added')) {
+    return;
+  }
+
+  entry.setAttribute('data-travel-toggle-added', 'true');
+
+  entry.addEventListener('click', (event) => {
+    // Don't toggle when clicking a link in the entry.
+    if (event.target.closest('a')) {
+      return;
+    }
+
+    entry.classList.toggle('better-journal-travel-expanded');
+  });
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
@@ -85,5 +115,10 @@ export default async () => {
   onJournalEntry(updateRankUpIcon, {
     id: 'better-journal-styles-rankup',
     weight: 6000,
+  });
+
+  onJournalEntry(addTravelEntryToggle, {
+    id: 'better-journal-styles-travel-toggle',
+    weight: 7000,
   });
 };

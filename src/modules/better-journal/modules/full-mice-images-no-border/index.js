@@ -7,7 +7,7 @@ import styles from './styles.css';
  */
 const init = async () => {
   if (
-    getSetting('experiments.full-mice-images-no-border', false) &&
+    getSetting('better-journal.full-mice-images-no-border', false) &&
     ! getSetting('native-dark-mode', false) // Doesn't work well with native dark mode.
   ) {
     addStyles(styles, 'full-mice-images-no-border');

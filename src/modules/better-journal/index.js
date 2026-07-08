@@ -34,7 +34,7 @@ const init = () => {
     history: getSetting('better-journal.journal-history', true),
     tags: getSetting('better-journal.journal-tags', false),
     fullMiceImages: getSetting('better-journal.full-mice-images', false),
-    fullMiceImagesNoBorder: getSetting('experiments.full-mice-images-no-border', false),
+    fullMiceImagesNoBorder: getSetting('better-journal.full-mice-images-no-border', false),
   };
 
   const modules = [

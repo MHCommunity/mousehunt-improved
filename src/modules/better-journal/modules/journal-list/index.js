@@ -65,6 +65,45 @@ const classesToSkip = new Set([
   'harbour',
 ]);
 
+/**
+ * Entries that mention items only in prose: link the items so they get our
+ * icons and hover cards, but don't reformat the entry as a list.
+ */
+const linkifyOnlySelectors = [
+  '.dirigibleTravel',
+  '.short.craft.item',
+  '.short.hammer',
+];
+
+/**
+ * Entries that mention items in prose but should also be formatted as a list.
+ */
+const linkifyAndListSelectors = [
+  '[class*="refractorBaseEffect"]',
+];
+
+/**
+ * Whether the entry should only have its items linked, not be list-ified.
+ *
+ * @param {HTMLElement} entry The journal entry element.
+ *
+ * @return {boolean} Whether to only link the items.
+ */
+const shouldOnlyLinkItems = (entry) => {
+  return linkifyOnlySelectors.some((selector) => entry.matches(selector));
+};
+
+/**
+ * Whether the entry should have its items linked and be formatted as a list.
+ *
+ * @param {HTMLElement} entry The journal entry element.
+ *
+ * @return {boolean} Whether to link the items and make a list.
+ */
+const shouldLinkAndList = (entry) => {
+  return linkifyAndListSelectors.some((selector) => entry.matches(selector));
+};
+
 let allItems = null;
 let itemLookup = null; // { lowerName: item, singularLowerName: item }
 
@@ -133,6 +172,21 @@ const convertTextToItemLink = (textLike) => {
     return false;
   }
 
+  return {
+    quantity: formatNumber(Number.parseInt(m[1], 10)),
+    link: makeItemLink(item, name),
+  };
+};
+
+/**
+ * Make a loot link for an item.
+ *
+ * @param {Object} item The item data.
+ * @param {string} name The text for the link.
+ *
+ * @return {HTMLElement} The link element.
+ */
+const makeItemLink = (item, name) => {
   const link = makeElement('a', 'loot', name);
   link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
   link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
@@ -141,10 +195,117 @@ const convertTextToItemLink = (textLike) => {
     hg.views.ItemView.show(item.type);
   });
 
-  return {
-    quantity: formatNumber(Number.parseInt(m[1], 10)),
-    link,
-  };
+  return link;
+};
+
+/**
+ * Find known item names in a text string.
+ *
+ * Starting at each capitalized word, greedily match the longest phrase that
+ * resolves to a known item. Single-word matches only count when they follow a
+ * quantity, so common words that happen to be item names (Gold, Points, Gift)
+ * aren't linked in regular prose.
+ *
+ * @param {string} text The text to search.
+ *
+ * @return {Array} Matches as `{ start, name, item }`, in order.
+ */
+const findItemsInText = (text) => {
+  const matches = [];
+  const wordStart = /[A-Z][\w'+|’-]*/g;
+
+  let m;
+  while ((m = wordStart.exec(text)) !== null) {
+    const start = m.index;
+    const words = text.slice(start).split(/(\s+)/);
+
+    let best = null;
+    let phrase = '';
+    let wordCount = 0;
+
+    for (const part of words) {
+      phrase += part;
+      if (! part.trim()) {
+        continue;
+      }
+
+      wordCount++;
+      if (wordCount > 6) {
+        break;
+      }
+
+      const cleaned = phrase.replace(/[!,.:;]+$/, '');
+      const item = itemLookup[cleaned.toLowerCase()] || itemLookup[unpluralize(cleaned).toLowerCase()];
+      if (item) {
+        best = { start, name: cleaned, item, words: wordCount };
+      }
+    }
+
+    if (! best) {
+      continue;
+    }
+
+    // Only link single words when they directly follow a quantity.
+    const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
+    if (best.words > 1 || precededByQuantity) {
+      matches.push(best);
+      wordStart.lastIndex = start + best.name.length;
+    }
+  }
+
+  return matches;
+};
+
+/**
+ * Wrap known item names in loot links within an element's text, so entries
+ * that only mention items in prose still get icons and hover cards.
+ *
+ * @param {HTMLElement} textEl The text element.
+ */
+const linkifyItemsInText = (textEl) => {
+  const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT, {
+    /**
+     * Skip text that's already inside a link.
+     *
+     * @param {Node} node The text node.
+     *
+     * @return {number} Whether to accept the node.
+     */
+    acceptNode: (node) => {
+      return node.parentElement?.closest('a') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+    },
+  });
+
+  const textNodes = [];
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  for (const node of textNodes) {
+    const text = node.textContent;
+    const found = findItemsInText(text);
+    if (! found.length) {
+      continue;
+    }
+
+    const fragment = document.createDocumentFragment();
+    let lastIndex = 0;
+
+    for (const { start, name, item } of found) {
+      if (start > lastIndex) {
+        fragment.append(document.createTextNode(text.slice(lastIndex, start)));
+      }
+
+      fragment.append(makeItemLink(item, name));
+      lastIndex = start + name.length;
+    }
+
+    if (lastIndex < text.length) {
+      fragment.append(document.createTextNode(text.slice(lastIndex)));
+    }
+
+    node.replaceWith(fragment);
+  }
 };
 
 /**
@@ -177,6 +338,49 @@ const makeListItems = (itemList) => {
   }
   list.append(frag);
   return list;
+};
+
+/**
+ * Format the items that follow the intro's colon as a list (for entries like
+ * the refractor base effect, where the loot is listed inline after a colon).
+ *
+ * @param {HTMLElement} textEl The text element.
+ */
+const listifyAfterColon = (textEl) => {
+  // Find the colon in the entry's text — searching the HTML instead would
+  // match the "https:" inside link attributes and mangle the markup.
+  const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT);
+
+  let colonNode = null;
+  while (walker.nextNode()) {
+    if (walker.currentNode.textContent.includes(':')) {
+      colonNode = walker.currentNode;
+      break;
+    }
+  }
+
+  if (! colonNode) {
+    return;
+  }
+
+  // Everything after the colon is the item list.
+  const range = document.createRange();
+  range.setStart(colonNode, colonNode.textContent.indexOf(':') + 1);
+  range.setEnd(textEl, textEl.childNodes.length);
+
+  const rest = makeElement('div');
+  rest.append(range.cloneContents());
+
+  const list = splitText(rest.innerHTML)
+    .map((fragment) => fragment.replace(/[!.]+$/, '').trim())
+    .filter(Boolean);
+
+  if (! list.length) {
+    return;
+  }
+
+  range.deleteContents();
+  textEl.append(makeListItems(list));
 };
 
 const addClassesToLiAndUl = (root) => {
@@ -365,6 +569,23 @@ const formatAsList = async (entry) => {
 
   const processed = entry.getAttribute('data-better-journal-processed');
   if (processed) {
+    return;
+  }
+
+  // Entries with items in prose get links (and thereby icons), and some of
+  // them also get formatted as a list.
+  const linkAndList = shouldLinkAndList(entry);
+  if (linkAndList || shouldOnlyLinkItems(entry)) {
+    const linkifyTextEl = entry.querySelector('.journalbody .journaltext');
+    if (linkifyTextEl) {
+      linkifyItemsInText(linkifyTextEl);
+
+      if (linkAndList) {
+        listifyAfterColon(linkifyTextEl);
+      }
+    }
+
+    entry.setAttribute('data-better-journal-processed', 'true');
     return;
   }
 
