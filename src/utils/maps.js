@@ -433,24 +433,19 @@ const getHighestArText = async (id, type = 'mouse') => {
   return highest ?? false;
 };
 
+const inflightArRequests = new Map();
+
 /**
- * Get the attraction rate for the given mouse or item.
+ * Fetch the attraction rates for the given mouse or item from the API and cache them.
  *
- * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
- * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ * @param {string} id       ID to fetch the attraction rates for, either mouse or item ID.
+ * @param {string} type     Type of attraction rate to fetch, either 'mouse' or 'item'.
+ * @param {string} cacheKey Cache key to store the rates under.
  *
- * @return {Array|boolean} Array of attraction rates or false if not found.
+ * @return {Array} Array of attraction rates, empty if none were found.
  */
-const getArForMouse = async (id, type = 'mouse') => {
+const fetchArForMouse = async (id, type, cacheKey) => {
   let mhctJson = [];
-
-  const cacheKey = `${type}-${id}`;
-
-  // check if the attraction rates are cached
-  const cachedAr = await cacheGet(cacheKey);
-  if (cachedAr) {
-    return cachedAr;
-  }
 
   const isItem = 'item' === type;
   const mhctPath = isItem ? 'mhct-item' : 'mhct';
@@ -540,6 +535,39 @@ const getArForMouse = async (id, type = 'mouse') => {
 };
 
 /**
+ * Get the attraction rate for the given mouse or item.
+ *
+ * @param {string}  id                ID to get the attraction rate for, either mouse or item ID.
+ * @param {string}  type              Type of attraction rate to get, either 'mouse' or 'item'.
+ * @param {Object}  options           Options.
+ * @param {boolean} options.cacheOnly Only return cached rates, don't fetch missing ones.
+ *
+ * @return {Array|boolean} Array of attraction rates or false if not found.
+ */
+const getArForMouse = async (id, type = 'mouse', options = {}) => {
+  const cacheKey = `${type}-${id}`;
+
+  // check if the attraction rates are cached
+  const cachedAr = await cacheGet(cacheKey);
+  if (cachedAr) {
+    return cachedAr;
+  }
+
+  if (options.cacheOnly) {
+    return false;
+  }
+
+  // Share a single request when multiple callers ask for the same mouse at once.
+  if (! inflightArRequests.has(cacheKey)) {
+    inflightArRequests.set(cacheKey, fetchArForMouse(id, type, cacheKey).finally(() => {
+      inflightArRequests.delete(cacheKey);
+    }));
+  }
+
+  return inflightArRequests.get(cacheKey);
+};
+
+/**
  * Get the attraction rate text for the given mouse or item.
  *
  * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
@@ -564,13 +592,15 @@ const getArText = async (id, type = 'mouse') => {
 /**
  * Get the highest attraction rate for the given mouse or item.
  *
- * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
- * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ * @param {string}  id                ID to get the attraction rate for, either mouse or item ID.
+ * @param {string}  type              Type of attraction rate to get, either 'mouse' or 'item'.
+ * @param {Object}  options           Options.
+ * @param {boolean} options.cacheOnly Only use cached rates, don't fetch missing ones.
  *
  * @return {string|boolean} Attraction rate text or false if not found.
  */
-const getHighestArForMouse = async (id, type = 'mouse') => {
-  const rates = await getArForMouse(id, type);
+const getHighestArForMouse = async (id, type = 'mouse', options = {}) => {
+  const rates = await getArForMouse(id, type, options);
   if (! rates || rates.length === 0) {
     return 0;
   }
