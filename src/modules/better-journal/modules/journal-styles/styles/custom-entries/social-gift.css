@@ -11,8 +11,11 @@
   box-shadow: inset 0 -20px 15px -16px #999;
 }
 
-.journal .entry.socialGift.socialGift-send:active .journalbody .journaltext,
-.journal .entry.socialGift.socialGift-send:focus .journalbody .journaltext {
+.journal .entry.socialGift.socialGift-send {
+  cursor: pointer;
+}
+
+.journal .entry.socialGift.socialGift-send.better-journal-gift-expanded .journalbody .journaltext {
   max-height: unset;
   box-shadow: none;
 }

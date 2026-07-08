@@ -29,6 +29,10 @@
   outline: 1px solid #5b5b5b;
 }
 
+.journal .content .entry.socialGift.socialGift-send:not(.highlight) {
+  margin-bottom: -5px;
+}
+
 .mh-dark .journal .content .entry:not(.highlight) {
   outline-color: var(--d-border);
 }

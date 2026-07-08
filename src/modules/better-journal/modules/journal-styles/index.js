@@ -102,6 +102,32 @@ const addTravelEntryToggle = (entry) => {
 };
 
 /**
+ * Toggle the expanded state of collapsed gift entries on click.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
+const addGiftEntryToggle = (entry) => {
+  if (! entry || ! entry.classList || ! entry.classList.contains('socialGift-send')) {
+    return;
+  }
+
+  if (entry.getAttribute('data-gift-toggle-added')) {
+    return;
+  }
+
+  entry.setAttribute('data-gift-toggle-added', 'true');
+
+  entry.addEventListener('click', (event) => {
+    // Don't toggle when clicking a link in the entry.
+    if (event.target.closest('a')) {
+      return;
+    }
+
+    entry.classList.toggle('better-journal-gift-expanded');
+  });
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
@@ -120,5 +146,10 @@ export default async () => {
   onJournalEntry(addTravelEntryToggle, {
     id: 'better-journal-styles-travel-toggle',
     weight: 7000,
+  });
+
+  onJournalEntry(addGiftEntryToggle, {
+    id: 'better-journal-styles-gift-toggle',
+    weight: 8000,
   });
 };

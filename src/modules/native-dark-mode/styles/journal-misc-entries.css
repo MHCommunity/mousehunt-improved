@@ -85,7 +85,7 @@
   background-color: var(--d-blue-darker);
 }
 
-.mh-dark .journal .entry.socialGift.socialGift-send .journalbody .journaltext {
+.mh-dark .journal .entry.socialGift.socialGift-send:not(.better-journal-gift-expanded) .journalbody .journaltext {
   box-shadow: inset 0 -20px 15px -16px #151515;
 }
 
