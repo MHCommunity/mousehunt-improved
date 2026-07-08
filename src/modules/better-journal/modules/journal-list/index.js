@@ -1,5 +1,6 @@
 import {
   addStyles,
+  debuglog,
   formatNumber,
   getData,
   makeElement,
@@ -106,6 +107,12 @@ const shouldLinkAndList = (entry) => {
 
 let allItems = null;
 let itemLookup = null; // { lowerName: item, singularLowerName: item }
+
+/**
+ * Item classifications that shouldn't be linked in prose. Weapons and bases
+ * mentioned in extra entries (like the refractor base) are trap setup, not loot.
+ */
+const skipLinkClassifications = new Set(['weapon', 'base']);
 
 /**
  * Build lookup maps for quick item resolution.
@@ -248,7 +255,12 @@ const findItemsInText = (text) => {
     // Only link single words when they directly follow a quantity.
     const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
     if (best.words > 1 || precededByQuantity) {
-      matches.push(best);
+      if (! skipLinkClassifications.has(best.item.classification)) {
+        matches.push(best);
+      }
+
+      // Advance past the phrase even when skipped so words inside a skipped
+      // item's name can't match as separate items.
       wordStart.lastIndex = start + best.name.length;
     }
   }
@@ -477,7 +489,10 @@ const getItemsFromText = (type, textEl) => {
         if (parts.length >= 2) {
           const right = parts[1];
           list = splitText(right);
-          newText = `${parts[0]}${chk.replaceAll(/<\/?b>/g, '')}`;
+          newText = `${parts[0]}${chk.replaceAll(/<\/?b>/g, '')}`.trimEnd();
+          if (! newText.endsWith(':')) {
+            newText += ':';
+          }
           break;
         }
       }
@@ -567,6 +582,12 @@ const formatAsList = async (entry) => {
     return;
   }
 
+  // Don't process (or mark as processed) until the item data has loaded;
+  // unprocessed entries get picked up again on a later processing pass.
+  if (! itemLookup) {
+    return;
+  }
+
   const processed = entry.getAttribute('data-better-journal-processed');
   if (processed) {
     return;
@@ -635,11 +656,19 @@ const formatAsList = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-list');
 
-  allItems = await getData('items');
-  itemLookup = buildItemLookup(allItems);
-
+  // Register before waiting on the item data so a slow or failed fetch
+  // can't leave the journal without list formatting.
   onJournalEntry(formatAsList, {
     id: 'better-journal-list-format',
     weight: 3000,
   });
+
+  try {
+    allItems = await getData('items');
+  } catch (error) {
+    debuglog('better-journal', 'Failed to fetch item data for journal list', error);
+    allItems = [];
+  }
+
+  itemLookup = buildItemLookup(allItems);
 };

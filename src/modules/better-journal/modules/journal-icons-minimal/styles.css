@@ -76,3 +76,12 @@
 .journal .entry.unstable_charm_trigger .journaltext a {
   padding-left: unset;
 }
+
+/* Add this class to an item link to hide its icon */
+.journal .entry .journaltext a.better-journal-no-icon {
+  padding-left: unset;
+}
+
+.journal .entry .journaltext a.better-journal-no-icon::before {
+  display: none;
+}
