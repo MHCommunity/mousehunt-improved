@@ -269,6 +269,11 @@ const updateMouseImageLinks = (entry) => {
   entry.setAttribute('data-mouse-image-updated', 'true');
 };
 
+// Items that should show as plain text in the journal rather than links.
+const excludedItemTypes = new Set([
+  'oculus_stat_item',
+]);
+
 /**
  * Update the item links.
  *
@@ -296,6 +301,11 @@ const updateItemLinks = (entry) => {
 
       const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
       if (itemType && itemType.length === 2) {
+        if (excludedItemTypes.has(itemType[1])) {
+          link.replaceWith(...link.childNodes);
+          return;
+        }
+
         link.addEventListener('click', (e) => {
           e.preventDefault();
           hg.views.ItemView.show(itemType[1]);
@@ -318,6 +328,11 @@ const updateItemLinks = (entry) => {
 
       const itemType = link.getAttribute('onclick').match(/hg\.views\.ItemView\.show\('(\w+)'\)/);
       if (itemType && itemType.length === 2) {
+        if (excludedItemTypes.has(itemType[1])) {
+          link.replaceWith(...link.childNodes);
+          return;
+        }
+
         link.setAttribute('href', `https://www.mousehuntgame.com/item.php?item_type=${itemType[1]}`);
         link.dataset.mhImprovedItemLink = 'true';
       }
