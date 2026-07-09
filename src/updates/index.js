@@ -63,8 +63,7 @@ const getVersionUpdates = () => {
  * @param {Array} updates The updates to run.
  */
 const doVersionUpdates = async (updates) => {
-  for (const version of Object.keys(updates)) {
-    const update = versionUpdates[version];
+  for (const update of updates) {
     const updateCompleted = getSetting('updates-completed', []).includes(update.version);
     if (updateCompleted) {
       continue;

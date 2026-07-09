@@ -1,4 +1,4 @@
-import { migrateSetting } from '@utils';
+import { migrateFlag, migrateSetting } from '@utils';
 
 export default {
   version: '0.98.0',
