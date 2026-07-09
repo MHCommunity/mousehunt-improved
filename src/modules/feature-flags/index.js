@@ -1,4 +1,4 @@
-import { getFlag } from '@utils';
+import { getFlag, getSetting, onSettingsChange, saveSetting } from '@utils';
 
 import rankupForecaster from './modules/rank-up-forecaster';
 import showFabledProgressBarText from './modules/fake-fabled';
@@ -21,6 +21,19 @@ const init = () => {
   if (getFlag('fake-fabled')) {
     showFabledProgressBarText();
   }
+
+  onSettingsChange('override-flags', () => {
+    const overrideFlags = getSetting('override-flags', '');
+    const newOverrideFlags = overrideFlags.toLowerCase().replaceAll(' ', '');
+    if (newOverrideFlags !== overrideFlags) {
+      saveSetting('override-flags', newOverrideFlags);
+    }
+
+    const flagInput = document.querySelector('#setting-override-flags');
+    if (flagInput) {
+      flagInput.value = newOverrideFlags;
+    }
+  });
 };
 
 /**
