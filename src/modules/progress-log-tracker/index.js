@@ -13,7 +13,8 @@ import {
   onRequest,
   onTurn,
   parseNumber,
-  saveSetting
+  saveSetting,
+  setMultipleTimeout
 } from '@utils';
 
 import settings from './settings';
@@ -35,10 +36,35 @@ const USERSCRIPT_KEY = 'mh-journal-log-tracker';
  * The game posts a new "Hunter's Journal Summary" entry every 36 hours.
  */
 const LOG_INTERVAL_HOURS = 36;
+const LOG_INTERVAL_MS = LOG_INTERVAL_HOURS * 60 * 60 * 1000;
+
+/**
+ * How many exact entry timestamps to keep in memory at once.
+ */
+const EXACT_TIMESTAMP_LIMIT = 250;
 
 let cachedLogs = [];
 let buttonInterval = null;
 let currentPopup = null;
+
+/**
+ * Exact entry timestamps, keyed by entry id.
+ *
+ * The rendered journal only shows a time of day, but turn responses include an
+ * `entry_timestamp` for every entry they add. We keep those so entries seen
+ * this session can be dated precisely instead of reconstructed.
+ *
+ * @type {Map<number, number>}
+ */
+const exactTimestamps = new Map();
+
+/**
+ * The last (oldest) entry timestamp derived for each journal page, keyed by
+ * page number, so paging backwards can anchor each page to the one before it.
+ *
+ * @type {Map<number, {timestamp: number, anchored: boolean}>}
+ */
+const pageAnchors = new Map();
 
 /**
  * Whether the journal currently shown belongs to the logged-in user.
@@ -56,24 +82,102 @@ const isOwnJournal = () => {
 };
 
 /**
- * Whether the journal is showing its first (most recent) page.
+ * The journal page currently being shown.
  *
- * Entry timestamps are reconstructed from the visible time-of-day, which is
- * only valid for entries posted within the last day — older pages would be
- * stored with today's date.
- *
- * @return {boolean} True if the first page (or no pager) is shown.
+ * @return {number|null} The 1-indexed page number, or null when there's no
+ * pager — the camp journal, which shows only the newest a few entries.
  */
-const isFirstJournalPage = () => {
+const getJournalPage = () => {
   // The current section renders "Page N of M", so read just the N span —
   // parsing the whole section's text would mash the two numbers together.
   const current = document.querySelector('#journalContainer .pagerView-section-currentPage');
   if (! current) {
-    return true;
+    return null;
   }
 
   const page = Number.parseInt(current.textContent.replaceAll(/\D/g, ''), 10);
-  return Number.isNaN(page) || page <= 1;
+  return (Number.isNaN(page) || page < 1) ? 1 : page;
+};
+
+/**
+ * Record the exact timestamps the game sends along with new journal entries.
+ *
+ * @param {Object} data The request response.
+ */
+const captureExactTimestamps = (data) => {
+  if (! data?.journal_markup?.length) {
+    return;
+  }
+
+  for (const markup of data.journal_markup) {
+    const id = Number.parseInt(markup?.render_data?.entry_id, 10);
+    const timestamp = Number.parseInt(markup?.render_data?.entry_timestamp, 10);
+    if (! id || ! timestamp) {
+      continue;
+    }
+
+    // The game sends seconds; anything smaller than a year-2100 millisecond
+    // value is therefore a second-precision timestamp.
+    exactTimestamps.set(id, timestamp < 100_000_000_000 ? timestamp * 1000 : timestamp);
+  }
+
+  while (exactTimestamps.size > EXACT_TIMESTAMP_LIMIT) {
+    exactTimestamps.delete(exactTimestamps.keys().next().value);
+  }
+};
+
+/**
+ * Read the time of day shown on a journal entry.
+ *
+ * @param {HTMLElement} entry The `.entry` element.
+ *
+ * @return {Object|null} `{ hours, minutes }` in 24-hour time, or null.
+ */
+const parseTimeOfDay = (entry) => {
+  const dateEl = entry.querySelector('.journaldate');
+  if (! dateEl) {
+    return null;
+  }
+
+  const text = dateEl.textContent.split('-')[0].trim().toLowerCase().replaceAll(' ', '');
+  const parts = /^(\d{1,2}):(\d{2})(am|pm)$/.exec(text);
+  if (! parts) {
+    return null;
+  }
+
+  let hours = Number.parseInt(parts[1], 10);
+  if (12 === hours) {
+    hours = 0;
+  }
+
+  if ('pm' === parts[3]) {
+    hours += 12;
+  }
+
+  return { hours, minutes: Number.parseInt(parts[2], 10) };
+};
+
+/**
+ * Place a time of day on the most recent day that doesn't run past a bound.
+ *
+ * Journal entries are listed newest first, so walking down the list with the
+ * previous entry's timestamp as the bound moves the date back a day each time
+ * the entries cross midnight.
+ *
+ * @param {Object} time       The time of day, as `{ hours, minutes }`.
+ * @param {number} upperBound The timestamp the result must not exceed.
+ *
+ * @return {number} The resulting timestamp.
+ */
+const timestampAtOrBefore = (time, upperBound) => {
+  const date = new Date(upperBound);
+  date.setHours(time.hours, time.minutes, 0, 0);
+
+  if (date.getTime() > upperBound) {
+    date.setDate(date.getDate() - 1);
+  }
+
+  return date.getTime();
 };
 
 /**
@@ -95,53 +199,22 @@ const refreshLogsCache = async () => {
 /**
  * Parse a single journal log-summary entry into a stored log object.
  *
- * @param {HTMLElement} entry The `.entry.log_summary` element.
+ * @param {HTMLElement} entry     The `.entry.log_summary` element.
+ * @param {number}      timestamp The timestamp derived for the entry.
+ * @param {boolean}     estimated Whether that timestamp is only an estimate.
  *
  * @return {Object|null} The parsed log, or null if it couldn't be parsed.
  */
-const parseEntry = (entry) => {
+const parseEntry = (entry, timestamp, estimated) => {
   const id = Number.parseInt(entry.dataset.entryId, 10);
   if (! id) {
-    return null;
-  }
-
-  const dateEl = entry.querySelector('.journaldate');
-  if (! dateEl) {
-    return null;
-  }
-
-  let timestamp;
-  try {
-    const dateString = dateEl.innerHTML.split('-')[0].trim().replaceAll(' ', '');
-    const hours = dateString.split(':')[0];
-    const minutes = dateString.split(':')[1].replace('am', '').replace('pm', '');
-    const period = dateString.split(':')[1].includes('am') ? 'am' : 'pm';
-
-    const date = new Date();
-    date.setMilliseconds(0);
-    date.setSeconds(0);
-    date.setHours(Number.parseInt(hours, 10));
-    date.setMinutes(Number.parseInt(minutes, 10));
-
-    if (12 !== date.getHours() && 'pm' === period) {
-      date.setHours(date.getHours() + 12);
-    } else if (12 === date.getHours() && 'am' === period) {
-      date.setHours(date.getHours() - 12);
-    }
-
-    // The journal only shows a time, so a future time means it was yesterday.
-    if (date.getTime() > Date.now()) {
-      date.setDate(date.getDate() - 1);
-    }
-
-    timestamp = date.getTime();
-  } catch {
     return null;
   }
 
   const log = {
     id,
     timestamp,
+    estimated,
     duration: '',
     catches: null,
     ftc: null,
@@ -197,29 +270,82 @@ const parseEntry = (entry) => {
 /**
  * Scrape the journal for any new log-summary entries and store them.
  *
- * @return {Promise<boolean>} Whether any new logs were stored.
+ * Entries only show a time of day, so each page is walked from newest to
+ * oldest, moving a cursor back a day whenever the times cross midnight. The
+ * cursor starts at "now" on the first page, and otherwise at the oldest entry
+ * of the page before it, so paging backwards keeps dating entries accurately.
+ * Exact timestamps from turn responses re-anchor the cursor whenever we have
+ * one. A log that can't be anchored, or that lands further back than a single
+ * log interval, is still stored but flagged as estimated.
+ *
+ * @return {Promise<boolean>} Whether any logs were stored or updated.
  */
 const scrapeJournal = async () => {
-  if (! isOwnJournal() || ! isFirstJournalPage()) {
+  const container = document.querySelector('#journalContainer');
+  if (! container || ! isOwnJournal()) {
     return false;
   }
 
-  const known = new Set(cachedLogs.map((log) => log.id));
-  const entries = document.querySelectorAll('.entry.log_summary');
+  // The camp journal holds only the newest few entries, so its oldest entry is
+  // nowhere near the bottom of the real first page and must never be stored as
+  // that page's anchor. It's still safe to scrape, anchored at "now".
+  const pagedPage = getJournalPage();
+  const page = pagedPage ?? 1;
+  const previous = pageAnchors.get(page - 1);
+
+  let cursor = previous?.timestamp ?? Date.now();
+  let anchored = 1 === page || Boolean(previous?.anchored);
+
+  const known = new Map(cachedLogs.map((log) => [log.id, log]));
+  const entries = container.querySelectorAll('.entry[data-entry-id]');
 
   let added = false;
   for (const entry of entries) {
     const id = Number.parseInt(entry.dataset.entryId, 10);
-    if (! id || known.has(id)) {
+    if (! id) {
       continue;
     }
 
-    const log = parseEntry(entry);
+    const exact = exactTimestamps.get(id);
+    const existing = known.get(id);
+
+    if (exact) {
+      cursor = exact;
+      anchored = true;
+    } else if (existing && ! existing.estimated) {
+      cursor = existing.timestamp;
+      anchored = true;
+    } else {
+      const time = parseTimeOfDay(entry);
+      if (time) {
+        cursor = timestampAtOrBefore(time, cursor);
+      }
+    }
+
+    if (! entry.classList.contains('log_summary')) {
+      continue;
+    }
+
+    // Without an anchor the walk can only ever under-count the days it spans,
+    // and reconstruction past one log interval needs entries dense enough to
+    // show every midnight. Neither is something we can verify here.
+    const estimated = ! exact && (! anchored || (Date.now() - cursor) > LOG_INTERVAL_MS);
+
+    // Never downgrade a log we already dated confidently.
+    if (existing && (! existing.estimated || estimated)) {
+      continue;
+    }
+
+    const log = parseEntry(entry, cursor, estimated);
     if (log) {
       await dbSet(DB_STORE, log);
-      known.add(id);
+      known.set(id, log);
       added = true;
     }
+  }
+
+  if (null !== pagedPage) {
+    pageAnchors.set(page, { timestamp: cursor, anchored });
   }
 
   if (added) {
@@ -234,11 +360,14 @@ const scrapeJournal = async () => {
 /**
  * Work out when the next log is due based on the most recent stored log.
  *
+ * Estimated logs are skipped — an uncertain date would give a countdown that's
+ * confidently wrong.
+ *
  * @return {Object|null} `{ nextTimestamp, msUntil, isDue }` or null if no logs.
  */
 const getNextLogInfo = () => {
-  const latest = cachedLogs[0];
-  if (! latest || ! latest.timestamp) {
+  const latest = cachedLogs.find((log) => log.timestamp && ! log.estimated);
+  if (! latest) {
     return null;
   }
 
@@ -398,7 +527,7 @@ const showButton = () => {
 const makeSummaryMarkup = () => {
   const info = getNextLogInfo();
   if (! info) {
-    return '';
+    return cachedLogs.length ? '<div class="mh-jlt-summary is-unknown"><div class="mh-jlt-summary-sub">The next log time is unknown until a new log summary is tracked.</div></div>' : '';
   }
 
   const time = info.isDue ? 'Due now' : formatCountdown(info.msUntil, false);
@@ -463,8 +592,11 @@ const makeTableMarkup = () => {
   const headerCells = headings.map((heading) => `<th>${heading}</th>`).join('');
 
   const rows = cachedLogs.map((log) => {
+    const dateClass = log.estimated ? 'mh-jlt-open mh-jlt-estimated' : 'mh-jlt-open';
+    const dateTitle = log.estimated ? ' title="This date is an estimate — the journal only shows a time of day."' : '';
+
     let row = '<tr>';
-    row += `<td><a href="#" class="mh-jlt-open" data-log-id="${log.id}">${formatDate(log.timestamp)}</a></td>`;
+    row += `<td><a href="#" class="${dateClass}" data-log-id="${log.id}"${dateTitle}>${formatDate(log.timestamp)}</a></td>`;
     row += makeCell(log.duration || '-');
     row += makeCell(log.catches);
     row += makeCell(log.ftc);
@@ -555,6 +687,7 @@ const normalizeImportedLog = (id, log) => {
   return {
     id,
     timestamp: log.timestamp ?? log.Timestamp ?? 0,
+    estimated: false,
     duration: log.duration ?? log.Duration ?? '',
     catches: log.catches ?? log.Catches ?? null,
     ftc: log.ftc ?? log.Ftc ?? null,
@@ -619,7 +752,14 @@ const init = async () => {
   showButton();
   scrapeJournal();
 
-  onRequest('pages/journal.php', scrapeJournal);
+  // Registered first, and with `skipSuccess`, so the exact timestamps a turn
+  // response carries are available before anything scrapes the entries it adds.
+  onRequest('*', captureExactTimestamps, true);
+
+  // The journal page request resolves before the game swaps the new entries in,
+  // so wait for the DOM to catch up before reading the pager and the entries.
+  onRequest('pages/journal.php', () => setMultipleTimeout(scrapeJournal, [100, 500, 1000]));
+
   onNavigation(() => {
     showButton();
     scrapeJournal();
