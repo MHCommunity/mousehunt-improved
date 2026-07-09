@@ -18,6 +18,8 @@
 - Enabled several settings by default: **Better Journal** "Loot as list" and
   "Loot icons", **Better Tournaments** "Show localized times inline", and the
   **Blueprint** camp background
+- Added the new **Base Item Counters** module and enabled it by default to
+  show toothlet and printing paper counts for supported bases
 - Promoted several beta options to normal settings, including
   **Better Marketplace** quick sell and price charts, **Better Journal** full
   mice images without borders, **Better Gifts** gift button opens selector,

@@ -12,7 +12,7 @@
     {
       "title": "New Module Sections",
       "items": [
-        "The settings screen now groups modules by what they affect: Appearance, Hunting & Setup, Inventory & Economy, Location HUDs, Locations, Maps, Travel, Journal, Progress, Stats, Social & Profiles, Navigation & Utilities, Hide & Simplify, Beta & Experiments, and Advanced",
+        "The settings screen now groups modules by what they affect: Appearance, Hunting & Setup, Inventory & Economy, Location HUDs, Locations/Maps/Travel, Journal/Progress/Stats, Social & Profiles, Navigation & Utilities, Hide & Simplify, Beta & Experiments, and Advanced",
         "These sections replace the older broad categories so related features are easier to find"
       ]
     },
@@ -20,6 +20,7 @@
       "title": "Defaults and Settings",
       "items": [
         "Several useful modules and settings are now enabled by default or promoted out of beta, including Better Journal loot display improvements, Better Tournaments localized times, Better Marketplace quick actions, Better Gifts gift selection, Better UI square profile pics, and Real Base Stats",
+        "The new Base Item Counters module is enabled by default to show toothlet and printing paper counts for supported bases",
         "Advanced Settings now includes an \"Update Game Data\" link for refreshing bundled game data when needed",
         "Custom preview pickers and several settings controls were cleaned up for a smoother configuration experience"
       ]

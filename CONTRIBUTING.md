@@ -97,11 +97,16 @@ export default {
   id: 'my-module',
   name: 'My Module',
   description: 'This is my module description.',
-  type: 'feature', // or 'element-hiding', 'advanced', or 'beta'.
+  type: 'appearance', // Or another category from src/index.js, such as 'hunting-setup', 'inventory-economy', 'beta', or 'advanced'.
   default: false, // Whether the module should be enabled by default.
   load: init
 };
 ```
+
+Valid module categories are `required`, `appearance`, `hunting-setup`,
+`inventory-economy`, `location-hud`, `locations-maps-travel`,
+`journal-progress-stats`, `social-profiles`, `navigation-utilities`,
+`hide-simplify`, `beta`, and `advanced`.
 
 ### Importing utilities
 
@@ -134,7 +139,7 @@ export default {
   id: 'my-module',
   name: 'My Module',
   description: 'This is my module description.',
-  type: 'feature',
+  type: 'appearance',
   default: false,
   load: init,
   settings
@@ -142,6 +147,7 @@ export default {
 ```
 
 There are a variety of different setting types available, such as text inputs, dropdowns, and more. Check out the existing modules for examples of how to use these.
+If you rename a shipped module, keep its existing `id` and setting prefixes unless you also add a migration so existing saved settings and stored data keep working.
 
 ## Code Style
 
