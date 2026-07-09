@@ -39,7 +39,7 @@ const CSSMinifyTextPlugin = {
       const css = await esbuild.build({
         entryPoints: [args.path],
         bundle: true,
-        minify: true,
+        minify: false,
         write: false,
         loader: {
           '.png': 'dataurl',
@@ -124,7 +124,7 @@ const getBaseBuildOptions = (platform) => ({
   format: 'iife',
   globalName: 'mhui',
   bundle: true,
-  minify: true,
+  minify: false,
   target: [
     'es6',
     'chrome58',
