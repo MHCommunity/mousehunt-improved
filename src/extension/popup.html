@@ -1,50 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
   <title>MouseHunt Improved</title>
   <style>
+    :root {
+      --background: #f6f3eb;
+      --background-alt: #efe9db;
+      --border: #dcd2bc;
+      --text: #4e300b;
+      --text-muted: #94805f;
+      --accent: #7d5a2f;
+      --accent-text: #fdfbf5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #262019;
+        --background-alt: #302821;
+        --border: #453a2d;
+        --text: #e8ddc9;
+        --text-muted: #a3947a;
+        --accent: #b08d55;
+        --accent-text: #262019;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      width: 175px;
-      margin: 1em 1em 0 1em;
-      font-size: 1em;
-      color: #4e300b;
-      background-color: #f6f3eb;
+      width: 250px;
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background-color: var(--background);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header img {
+      width: 32px;
+      height: 32px;
     }
 
     h1 {
-      font-size: 1em;
-      text-align: center;
       margin: 0;
+      font-size: 15px;
+      line-height: 1.2;
     }
 
-    ul {
-      padding: 1em;
+    .version {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    main {
+      padding: 15px 20px 10px;
+    }
+
+    .settings-button {
+      display: block;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--accent-text);
+      text-align: center;
+      text-decoration: none;
+      background-color: var(--accent);
+      border-radius: 6px;
+    }
+
+    .settings-button:hover,
+    .settings-button:focus {
+      filter: brightness(1.1);
+    }
+
+    nav ul {
+      padding: 0;
       margin: 0;
-      line-height: 1.5;
       list-style: none;
     }
 
-    a {
-      color: #4e300b;
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 10px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 6px;
     }
 
-    a:hover,
-    a:focus {
-      color: #a98c69;
+    nav a:hover,
+    nav a:focus {
+      background-color: var(--background-alt);
+    }
+
+    nav svg {
+      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      color: var(--text-muted);
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>MouseHunt Improved</h1>
+    <img src="icon-64.png" alt="">
+    <div>
+      <h1>MouseHunt Improved</h1>
+      <div class="version" id="version"></div>
+    </div>
   </header>
   <main>
-    <ul>
-      <li><a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings" target="_blank" rel="noreferrer">Settings</a></li>
-      <li><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noreferrer">Changelog</a></li>
-      <li><a href="https://github.com/MHCommunity/mousehunt-improved" target="_blank" rel="noreferrer">GitHub</a></li>
-      <li><a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">Report an issue</a></li>
-    </ul>
+    <a class="settings-button" href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings" target="_blank" rel="noreferrer">Open Settings</a>
+    <nav>
+      <ul>
+        <li>
+          <a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2.5h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zM5.5 5.5h5M5.5 8h5M5.5 10.5h3"/></svg>
+            What's new
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5M8 11h.01"/></svg>
+            Report an issue
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/MHCommunity/mousehunt-improved" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .8a7.2 7.2 0 0 0-2.28 14.03c.36.07.5-.15.5-.34l-.01-1.34c-2 .43-2.43-.85-2.43-.85-.32-.83-.8-1.05-.8-1.05-.65-.45.05-.44.05-.44.73.05 1.11.74 1.11.74.64 1.1 1.68.78 2.1.6.06-.47.25-.79.45-.97-1.6-.18-3.28-.8-3.28-3.56 0-.79.28-1.43.74-1.94-.07-.18-.32-.91.07-1.9 0 0 .6-.2 1.98.74a6.9 6.9 0 0 1 3.6 0c1.38-.94 1.98-.74 1.98-.74.4.99.15 1.72.07 1.9.46.5.74 1.15.74 1.94 0 2.77-1.69 3.38-3.3 3.56.26.22.49.66.49 1.33l-.01 1.98c0 .19.13.42.5.34A7.2 7.2 0 0 0 8 .8z"/></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://mouse.rip" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2a9.2 9.2 0 0 1 0 12M8 2a9.2 9.2 0 0 0 0 12"/></svg>
+            mouse.rip
+          </a>
+        </li>
+      </ul>
+    </nav>
   </main>
+  <script src="popup.js"></script>
 </body>
+</html>
