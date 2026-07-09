@@ -8,6 +8,7 @@ import {
   unpluralize
 } from '@utils';
 
+import { shouldSkipJournalItemLink } from '../../shared/item-linking';
 import styles from './styles.css';
 
 const classTypeMap = Object.entries({
@@ -107,12 +108,6 @@ const shouldLinkAndList = (entry) => {
 
 let allItems = null;
 let itemLookup = null; // { lowerName: item, singularLowerName: item }
-
-/**
- * Item classifications that shouldn't be linked in prose. Weapons and bases
- * mentioned in extra entries (like the refractor base) are trap setup, not loot.
- */
-const skipLinkClassifications = new Set(['weapon', 'base']);
 
 /**
  * Build lookup maps for quick item resolution.
@@ -255,7 +250,7 @@ const findItemsInText = (text) => {
     // Only link single words when they directly follow a quantity.
     const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
     if (best.words > 1 || precededByQuantity) {
-      if (! skipLinkClassifications.has(best.item.classification)) {
+      if (! shouldSkipJournalItemLink(best.item)) {
         matches.push(best);
       }
 

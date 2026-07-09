@@ -1,5 +1,6 @@
 import { addStyles, formatNumber, onJournalEntry, parseNumber } from '@utils';
 
+import { excludedItemTypes } from '../../shared/item-linking';
 import styles from './styles.css';
 
 const replacements = [
@@ -268,11 +269,6 @@ const updateMouseImageLinks = (entry) => {
   mouseImageLink.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
   entry.setAttribute('data-mouse-image-updated', 'true');
 };
-
-// Items that should show as plain text in the journal rather than links.
-const excludedItemTypes = new Set([
-  'oculus_stat_item',
-]);
 
 /**
  * Update the item links.
