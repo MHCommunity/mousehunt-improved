@@ -121,12 +121,12 @@ const randomizeAirshipPart = async (partType) => {
     return;
   }
 
-  const options = parts[partType] || [];
+  const options = parts[partType].items || [];
   if (! options.length) {
     return;
   }
 
-  const choice = options[Math.floor(Math.random() * options.length)];
+  const choice = options[Math.floor(Math.random() * options.length)]?.type;
   await equipAirshipPart(partType, choice);
 };
 
