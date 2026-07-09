@@ -34,6 +34,9 @@
 .journal .content .entry.schoolOfSorcery-wandUsed .journalbody .journalenvdate,
 .journal .content .entry.short.gift_wrapped_charm_trigger .journalbody .journalenvdate,
 .journal .content .entry.short.afterwordAcres-droidActivity .journalbody .journalenvdate,
+.journal .content .entry.ceruleanSkyport-shipmentStarted .journalbody .journalenvdate,
+.journal .content .entry.ceruleanSkyport-shipmentFinished .journalbody .journalenvdate,
+.journal .content .entry.ceruleanSkyport-cannonballLoot .journalbody .journalenvdate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journalenvdate {
   display: none;
 }

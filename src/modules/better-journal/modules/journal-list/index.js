@@ -57,6 +57,7 @@ const otherStrings = [
   'My golem returned from |*| with',
   'scared up an additional:',
   'the following bonus loot:',
+  'knocked loose additional loot from the Sky Raiders\' airships:',
 ];
 
 const classesToSkip = new Set([
