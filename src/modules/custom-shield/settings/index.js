@@ -144,9 +144,8 @@ export default async () => {
 
   return [{
     id: 'custom-shield',
-    title: 'Custom Shield <a class="mh-improved-custom-shield-preview">Preview choices</a>',
+    title: 'Custom Shield <span class="mhui-setting-title-links"><a class="mh-improved-custom-shield-preview">Preview choices</a></span>',
     default: [options[0]],
-    description: 'Change the shield to an event shield, color, title shield, or silly shield.',
     settings: {
       type: 'multi-select',
       number: 1,

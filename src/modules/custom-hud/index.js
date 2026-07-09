@@ -1,4 +1,10 @@
-import { addSettingPreview, getSetting, onNavigation, setMultipleTimeout } from '@utils';
+import {
+  addSettingPreview,
+  flattenSettingOptions,
+  getSetting,
+  onEvent,
+  onNavigation
+} from '@utils';
 
 import settings from './settings';
 
@@ -8,12 +14,6 @@ import blueprint from './styles/blueprint.css';
 import groovyGreen from './styles/groovy-green.css';
 import midnight from './styles/midnight.css';
 import suede from './styles/suede.css';
-
-let preferenceInput = null;
-
-const handlePreferenceChange = () => {
-  addStyleEl();
-};
 
 /**
  * Add the custom HUD style element.
@@ -66,24 +66,22 @@ const addStyleEl = (selectedPreview = false) => {
 };
 
 /**
- * Watch for preference changes.
+ * Get every HUD background choice as a preview item.
+ *
+ * @return {Promise<Array>} The preview items.
  */
-const listenForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-design-custom-hud select');
-  if (! input) {
-    return;
-  }
+const getPreviewItems = async () => {
+  const theSettings = await settings();
 
-  if (preferenceInput && preferenceInput !== input) {
-    preferenceInput.removeEventListener('change', handlePreferenceChange);
-  }
+  return flattenSettingOptions(theSettings[0].settings.options).map((option) => {
+    const gradient = gradients.find((g) => g.id === option.value);
 
-  if (preferenceInput === input) {
-    return;
-  }
-
-  preferenceInput = input;
-  preferenceInput.addEventListener('change', handlePreferenceChange);
+    return {
+      id: option.value,
+      name: option.name,
+      css: gradient ? gradient.css : `url(https://i.mouse.rip/mh-improved/custom-hud/${option.value}.png) repeat top center`,
+    };
+  });
 };
 
 /**
@@ -91,19 +89,24 @@ const listenForPreferenceChanges = () => {
  */
 const persistBackground = () => {
   addStyleEl();
-  onNavigation(listenForPreferenceChanges, {
-    page: 'preferences',
-    onLoad: true,
+
+  onEvent('mh-improved-settings-changed', ({ key }) => {
+    if ('custom-hud-0' === key) {
+      addStyleEl();
+    }
   });
 
   onNavigation(() => {
-    setMultipleTimeout(listenForPreferenceChanges, [250, 500, 1000, 2000, 5000]);
-    addSettingPreview({
-      id: 'custom-hud',
-      selector: '.mh-improved-custom-hud-preview',
-      inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
-      items: gradients,
-      previewCallback: (selected) => addStyleEl(selected),
+    getPreviewItems().then((items) => {
+      addSettingPreview({
+        id: 'custom-hud',
+        selector: '.mh-improved-custom-hud-preview',
+        inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
+        items,
+        previewCallback: (selected) => addStyleEl(selected),
+      });
+    }).catch(() => {
+      /* Failed to load HUD settings values */
     });
   }, {
     page: 'preferences',

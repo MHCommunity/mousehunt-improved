@@ -40,9 +40,8 @@ export default async () => {
 
   return [{
     id: 'custom-camp-background',
-    title: 'Custom Camp Background <a class="mh-improved-custom-camp-bg-preview hidden">Preview choices</a>',
-    default: [options[1]],
-    description: 'Set a custom background for the Camp page.',
+    title: 'Custom Camp Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-camp-bg-preview">Preview choices</a></span>',
+    default: [options[0]],
     settings: {
       type: 'multi-select',
       number: 1,

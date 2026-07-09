@@ -70,23 +70,6 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
 }
 
 /* Settings & Preview */
-#mousehunt-improved-settings-feature-custom-hud .PagePreferences__settingLabel,
-#mousehunt-improved-settings-feature-custom-background .PagePreferences__settingLabel {
-  position: relative;
-}
-
-.mh-improved-custom-hud-preview,
-.mh-improved-custom-camp-bg-preview,
-.mh-improved-custom-bg-preview {
-  position: absolute;
-  top: 0;
-  right: 225px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-
 .mh-improved-custom-background-gradient-preview {
   display: grid;
   grid-template-columns: 1fr 1fr;

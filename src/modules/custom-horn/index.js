@@ -1,6 +1,7 @@
 import {
   addSettingPreview,
   addStyles,
+  flattenSettingOptions,
   getSetting,
   onNavigation,
   setMultipleTimeout
@@ -180,24 +181,12 @@ const hornPreview = (horn) => {
 
 const getHornSettingsValues = async () => {
   const settingsValues = await settings();
-  const horns = settingsValues[0].settings.options.reduce((acc, option) => {
-    if (option.options && Array.isArray(option.options)) {
-      return [...acc, ...option.options];
-    }
 
-    if (option.value && option.name) {
-      return [...acc, option];
-    }
-
-    return acc;
-  }, []).map((option) => {
-    return {
-      id: option.value,
-      name: option.name,
-    };
-  });
-
-  return horns;
+  // 'default' is kept so that the preview offers a way back to the stock horn.
+  return flattenSettingOptions(settingsValues[0].settings.options, []).map((option) => ({
+    id: option.value,
+    name: option.name,
+  }));
 };
 
 /**

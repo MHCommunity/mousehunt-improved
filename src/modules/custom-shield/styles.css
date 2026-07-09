@@ -367,16 +367,6 @@
   }
 }
 
-.mh-improved-custom-shield-preview {
-  position: absolute;
-  top: 0;
-  right: 225px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-
 .custom-shield.custom-preview {
   position: relative;
 }

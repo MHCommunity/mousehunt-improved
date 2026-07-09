@@ -48,9 +48,8 @@ export default async () => {
 
   return [{
     id: 'custom-background',
-    title: 'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview choices</a>',
+    title: 'Custom Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-bg-preview">Preview choices</a></span>',
     default: [options[0]],
-    description: 'Change the background to an event background, color, or gradient.',
     settings: {
       type: 'multi-select',
       number: 1,
