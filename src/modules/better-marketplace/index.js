@@ -256,7 +256,7 @@ const overloadShowItem = () => {
       addQuickSellButton(itemId);
     }
 
-    if (getSetting('better-marketplace.price-history-chart', true)) {
+    if (getSetting('better-marketplace.price-history-chart', false)) {
       addPriceChart(itemId);
     }
 
