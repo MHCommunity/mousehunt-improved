@@ -39,6 +39,15 @@
   text-align: right;
 }
 
+.mh-jlt-summary.is-unknown .mh-jlt-summary-sub {
+  text-align: left;
+}
+
+.mh-jlt-open.mh-jlt-estimated {
+  color: #7a7266;
+  text-decoration: underline dotted;
+}
+
 /* Body + table */
 .mh-jlt-body {
   max-height: 320px;
