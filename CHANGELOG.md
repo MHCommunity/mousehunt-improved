@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.98.1
+
+- Better UI: Updated Inbox tab order
+- Better Maps: Updated map sorting groups for Cerulean Skyport and Corsair maps
+- Journal Progress Log Tracker: Progress logs are now tracked when on pages beyond the first page
+
 ## Version 0.98.0
 
 ### New Features

@@ -1,4 +1,5 @@
 {
+  "version": "0.98.0",
   "summary": "This update makes MouseHunt Improved easier to browse, configure, and use. The settings screen now organizes modules into clearer sections, several popular options have better defaults, and new features like Gifts in Inbox and Journal Progress Log Tracker are now available. It also includes broad fixes, performance improvements, and polish across maps, journals, HUDs, inventory, marketplace tools, and more. Please take a quick look through settings after updating in case a new default is not your preference. Happy hunting!",
   "details": [
     {

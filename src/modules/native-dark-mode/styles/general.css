@@ -97,7 +97,8 @@ body.mh-dark {
   background-color: transparent;
 }
 
-.mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content h2 {
+.mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content h2,
+.mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content h3 {
   color: #000;
 }
 

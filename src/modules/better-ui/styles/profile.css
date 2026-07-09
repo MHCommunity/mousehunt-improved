@@ -2,6 +2,10 @@
   display: none;
 }
 
+.PageHunterProfile .journalContainer-selectTheme {
+  display: none;
+}
+
 .PageHunterProfile .campPage-trap-trapStat.cheese_effect .value span {
   width: 10px;
   font-size: 11px;
