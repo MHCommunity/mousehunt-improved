@@ -11,8 +11,8 @@ import {
 } from '@utils';
 
 const customTitleSettingKey = 'experiments.fabled-custom-title-text';
-const customTitleRowId = 'mousehunt-improved-settings-beta-experiments-fabled-custom-title';
-const customTitleInputRowId = 'mousehunt-improved-settings-beta-experiments-fabled-custom-title-text';
+const customTitleRowId = 'mousehunt-improved-settings-experiments-fabled-custom-title';
+const customTitleInputRowId = 'mousehunt-improved-settings-experiments-fabled-custom-title-text';
 
 /**
  * Update the max title text and progress bar.

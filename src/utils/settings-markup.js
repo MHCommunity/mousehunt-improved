@@ -499,15 +499,14 @@ const makeSettingMultiToggle = ({ key, tab, settingSettings }) => {
 /**
  * Helper function to make a blank setting on the settings page.
  *
- * @param {Object} options         The options for the blank setting.
- * @param {Object} options.section The section settings.
- * @param {string} options.key     The setting key.
+ * @param {Object} options           The options for the blank setting.
+ * @param {string} options.settingId The id of the setting row.
  *
  * @return {Object} The blank setting.
  */
-const makeSettingBlank = ({ section, key }) => {
+const makeSettingBlank = ({ settingId }) => {
   const action = makeElement('div', ['blank', 'blankSetting'], '');
-  action.id = `${section.id}-${key}-blank`;
+  action.id = `${settingId}-blank`;
 
   return action;
 };
@@ -584,15 +583,19 @@ const addSettingOnce = (options) => {
 
   const keySafe = key.replaceAll('.', '-');
 
+  // Setting rows are identified by their key alone, not by the section they happen to be rendered
+  // in, so that recategorizing a module doesn't change its id, anchor link, or styles.
+  const settingId = `${tab}-${keySafe}`;
+
   // If we already have a setting visible for our key, bail.
-  const settingExists = document.querySelector(`#${section.id}-${keySafe}`);
+  const settingExists = document.querySelector(`#${settingId}`);
   if (settingExists) {
     return settingExists;
   }
 
   // Create the markup for the setting row.
   const settings = makeElement('div', ['PagePreferences__settingsList']);
-  settings.id = `${section.id}-${keySafe}`;
+  settings.id = settingId;
 
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
@@ -610,7 +613,7 @@ const addSettingOnce = (options) => {
   const settingName = makeElement('div', 'PagePreferences__settingName');
 
   const settingNameText = makeElement('a', 'PagePreferences__settingNameText', name);
-  settingNameText.href = `#${section.id}-${keySafe}`;
+  settingNameText.href = `#${settingId}`;
   settingNameText.setAttribute('data-setting', key);
   settingNameText.setAttribute('data-tab', tab);
   settingNameText.setAttribute('data-default', JSON.stringify(defaultValue));
@@ -619,7 +622,7 @@ const addSettingOnce = (options) => {
   if (! section.subSetting) {
     settingNameText.addEventListener('click', (event) => {
       event.preventDefault();
-      navigator.clipboard.writeText(`${window.location.href}#${section.id}-${keySafe}`);
+      navigator.clipboard.writeText(`${window.location.href}#${settingId}`);
 
       showSuccessMessage({
         message: 'Copied link to clipboard',
@@ -669,7 +672,7 @@ const addSettingOnce = (options) => {
     } else if (settingSettings.type === 'multi-toggle') {
       settingRowAction.append(makeSettingMultiToggle({ key, tab, settingSettings }));
     } else if (settingSettings.type === 'blank') {
-      settingRowAction.append(makeSettingBlank({ section, key }));
+      settingRowAction.append(makeSettingBlank({ settingId }));
     } else {
       settingRowAction.append(makeSettingToggle({ key, defaultValue, tab, settings }));
     }

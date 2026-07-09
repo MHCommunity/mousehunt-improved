@@ -16,7 +16,7 @@ const init = async () => {
       step: 'mh-improved-onboarding-2',
       disabled: true,
       page: 'preferences',
-      highlightSelector: '#mousehunt-improved-settings-better',
+      highlightSelector: '.mhui-settings-main',
       content: 'Here you can toggle features and customize things to your liking.',
       direction: 'top',
       showOverlay: true,

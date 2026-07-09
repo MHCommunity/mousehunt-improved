@@ -4,6 +4,7 @@ import {
   addSettingForModule,
   debug,
   debuglog,
+  deleteSetting,
   doEvent,
   doInternalEvent,
   getAnonymousUserHash,
@@ -15,6 +16,7 @@ import {
   isiFrame,
   maybeDoMaintenance,
   onNavigation,
+  saveSetting,
   setGlobal,
   showLoadingError
 } from '@utils';
@@ -30,14 +32,36 @@ const categories = [
   { id: 'hunting-setup', name: 'Hunting & Setup' },
   { id: 'inventory-economy', name: 'Inventory & Economy' },
   { id: 'location-hud', name: 'Location HUDs' },
-  { id: 'locations-maps-travel', name: 'Locations, Maps & Travel' },
-  { id: 'journal-progress-stats', name: 'Journal, Progress & Stats' },
+  { id: 'locations-maps-travel', name: 'Locations, Maps, Travel' },
+  { id: 'journal-progress-stats', name: 'Journal, Progress, Stats' },
   { id: 'social-profiles', name: 'Social & Profiles' },
   { id: 'navigation-utilities', name: 'Navigation & Utilities' },
   { id: 'hide-simplify', name: 'Hide & Simplify' },
-  { id: 'beta', name: 'Beta Features / Experiments' },
+  { id: 'beta', name: 'Beta & Experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
+
+/**
+ * Migrate the legacy counter modules into the merged base item counter module.
+ */
+const migrateBaseItemCountersSetting = () => {
+  const newSettingId = 'base-item-counters';
+  const legacySettingIds = ['printing-press-paper-counter', 'ssdb-teeth-counter'];
+  const currentSetting = getSetting(newSettingId, null);
+
+  if (null === currentSetting) {
+    const legacySettings = legacySettingIds.map((settingId) => getSetting(settingId, null));
+    const hasLegacySetting = legacySettings.some((setting) => null !== setting);
+
+    saveSetting(newSettingId, hasLegacySetting ? legacySettings.some(Boolean) : true);
+  }
+
+  legacySettingIds.forEach((settingId) => {
+    if (null !== getSetting(settingId, null)) {
+      deleteSetting(settingId);
+    }
+  });
+};
 
 /**
  * Validate a module's metadata.
@@ -221,6 +245,8 @@ const init = async () => {
   if (previousVersion !== mhImprovedVersion) {
     await update(previousVersion, mhImprovedVersion);
   }
+
+  migrateBaseItemCountersSetting();
 
   // Time to load the modules.
   try {

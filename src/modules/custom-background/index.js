@@ -147,7 +147,7 @@ const addPreview = () => {
     addSettingPreview({
       id: 'custom-background',
       selector: '.mh-improved-custom-bg-preview',
-      inputSelector: '#mousehunt-improved-settings-design-custom-background select',
+      inputSelector: '#mousehunt-improved-settings-custom-background select',
       items,
       previewCallback: (selected) => addBodyClass(selected),
     });

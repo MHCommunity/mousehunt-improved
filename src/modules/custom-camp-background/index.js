@@ -109,7 +109,7 @@ const init = () => {
       addSettingPreview({
         id: 'custom-camp-background',
         selector: '.mh-improved-custom-camp-bg-preview',
-        inputSelector: '#mousehunt-improved-settings-design-custom-camp-background select',
+        inputSelector: '#mousehunt-improved-settings-custom-camp-background select',
         preview: false,
         items,
       });

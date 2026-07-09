@@ -235,11 +235,6 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
-#mousehunt-improved-settings-design-custom-background,
-#mousehunt-improved-settings-design-custom-hud,
-#mousehunt-improved-settings-design-custom-horn,
-#mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show,
 .mousehunt-improved-settings .PagePreferences__settingsList {
   position: relative;
   gap: 0;
@@ -259,28 +254,6 @@
   border-color: var(--mhui-settings-accent);
   box-shadow: 0 0 8px var(--mhui-settings-accent);
   transition: box-shadow 0.3s;
-}
-
-/* Module icons (Better and Features sections) */
-#mousehunt-improved-settings-better .PagePreferences__settingsList:not(.PagePreferences__subSetting)::before,
-#mousehunt-improved-settings-feature .PagePreferences__settingsList:not(.PagePreferences__subSetting)::before,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 26px;
-  height: 26px;
-  content: "";
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 24px;
-  opacity: 0.7;
-}
-
-#mousehunt-improved-settings-better .PagePreferences__settingsList:not(.PagePreferences__subSetting) > .PagePreferences__setting,
-#mousehunt-improved-settings-feature .PagePreferences__settingsList:not(.PagePreferences__subSetting) > .PagePreferences__setting,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show > .PagePreferences__setting {
-  padding-left: 44px;
 }
 
 /* Setting rows */
@@ -333,9 +306,10 @@
 
 .mousehunt-improved-settings .PagePreferences__settingAction-hasLinks {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   gap: 4px;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .mousehunt-improved-settings .mhui-setting-title-links {
@@ -418,7 +392,7 @@
 }
 
 .mousehunt-improved-settings .PagePreferences__settingAction textarea {
-  min-height: 45px;
+  min-height: 75px;
 }
 
 .mousehunt-improved-settings .inputBoxContainer.multiSelect {
@@ -429,8 +403,8 @@
 }
 
 .mousehunt-improved-settings .inputBox.multiSelect {
-  margin-right: 4px;
-  margin-bottom: 4px;
+  width: 200px;
+  margin-right: 0;
   font-size: 11px;
 }
 
@@ -440,6 +414,21 @@
 
 #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect {
   max-width: 330px;
+}
+
+#mousehunt-improved-settings-better-send-supplies-pinned-items .inputBox.multiSelect,
+#mousehunt-improved-settings-quick-send-supplies-items .inputBox.multiSelect {
+  width: 120px;
+  margin: 4px;
+}
+
+#mousehunt-improved-settings-quick-send-supplies-items .inputBox.multiSelect {
+  width: 170px;
+}
+
+#mousehunt-improved-settings-better-send-supplies-pinned-items .inputBoxContainer.multiSelect,
+#mousehunt-improved-settings-quick-send-supplies-items .inputBoxContainer.multiSelect {
+  width: 390px;
 }
 
 #mousehunt-improved-settings-design .inputBox.multiSelect {

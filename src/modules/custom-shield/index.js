@@ -165,7 +165,7 @@ const changeShield = () => {
  * Listen for preference changes to update the shield.
  */
 const watchForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-design-custom-shield select');
+  const input = document.querySelector('#mousehunt-improved-settings-custom-shield select');
   if (! input) {
     return;
   }
@@ -241,7 +241,7 @@ const init = () => {
       addSettingPreview({
         id: 'custom-shield',
         selector: '.mh-improved-custom-shield-preview',
-        inputSelector: '#mousehunt-improved-settings-design-custom-shield select',
+        inputSelector: '#mousehunt-improved-settings-custom-shield select',
         preview: false,
         items: shields,
         itemPreviewCallback: shieldPreview,

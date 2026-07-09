@@ -9,26 +9,15 @@
 }
 
 .mh-dark .PagePreferences__separator,
-.mh-dark #mousehunt-improved-settings-design-custom-background,
-.mh-dark #mousehunt-improved-settings-design-custom-hud,
-.mh-dark #mousehunt-improved-settings-design-custom-horn,
-.mh-dark #mousehunt-improved-settings-design-custom-shield,
-.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-categories,
-.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-show,
+.mh-dark #mousehunt-improved-settings-custom-background,
+.mh-dark #mousehunt-improved-settings-custom-hud,
+.mh-dark #mousehunt-improved-settings-custom-horn,
+.mh-dark #mousehunt-improved-settings-custom-shield,
+.mh-dark #mousehunt-improved-settings-ultimate-checkmark-categories,
+.mh-dark #mousehunt-improved-settings-ultimate-checkmark-show,
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList,
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
   border-color: var(--d-border);
-}
-
-.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better::before,
-.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature::before,
-.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta::before,
-.mh-dark #mousehunt-improved-settings-design-custom-background::before,
-.mh-dark #mousehunt-improved-settings-design-custom-horn::before,
-.mh-dark #mousehunt-improved-settings-design-custom-hud::before,
-.mh-dark #mousehunt-improved-settings-design-custom-shield::before,
-.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
-  filter: invert(1);
 }
 
 .mh-dark h3.PagePreferences__titleText {
@@ -42,10 +31,6 @@
 
 .mh-dark .PagePreferences__settingDescription {
   color: var(--d-text-muted);
-}
-
-.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator {
-  border-color: var(--d-border);
 }
 
 .mh-dark .mousehuntSettingSlider {

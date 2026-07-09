@@ -19,7 +19,6 @@ import {
   updateCaches
 } from '@utils';
 
-import icons from './icons.css';
 import styles from './styles.css';
 
 /**
@@ -396,7 +395,7 @@ const addAdvancedSettingsButtons = () => {
  * Highlight the current location in the location hud settings.
  */
 const highlightLocationHud = () => {
-  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
+  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-huds-enabled-${getCurrentLocation()}`);
   if (locationHudSettings) {
     locationHudSettings.classList.add('highlight');
   }
@@ -755,10 +754,7 @@ const addMhImprovedIconToMenu = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    styles,
-    icons,
-  ], 'mousehunt-improved-settings');
+  addStyles(styles, 'mousehunt-improved-settings');
 
   addMhImprovedIconToMenu();
 

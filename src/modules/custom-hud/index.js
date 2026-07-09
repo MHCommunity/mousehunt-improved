@@ -101,7 +101,7 @@ const persistBackground = () => {
       addSettingPreview({
         id: 'custom-hud',
         selector: '.mh-improved-custom-hud-preview',
-        inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
+        inputSelector: '#mousehunt-improved-settings-custom-hud select',
         items,
         previewCallback: (selected) => addStyleEl(selected),
       });

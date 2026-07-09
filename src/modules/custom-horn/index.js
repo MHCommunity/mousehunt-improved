@@ -67,7 +67,7 @@ const addHornClass = (preview = false) => {
  * Listen for changes to the preference.
  */
 const listenForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-design-custom-horn select');
+  const input = document.querySelector('#mousehunt-improved-settings-custom-horn select');
   if (! input) {
     return;
   }
@@ -207,7 +207,7 @@ const init = () => {
       addSettingPreview({
         id: 'custom-horn',
         selector: '.mh-improved-custom-horn-preview',
-        inputSelector: '#mousehunt-improved-settings-design-custom-horn select',
+        inputSelector: '#mousehunt-improved-settings-custom-horn select',
         preview: false,
         items: horns,
         itemPreviewCallback: hornPreview,
