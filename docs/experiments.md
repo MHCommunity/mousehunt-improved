@@ -8,6 +8,8 @@ Try out beta features and experimental options that may not be fully tested or f
 - **Better Maps: Draggable highlight**: Allows you to drag and reposition the sticky highlight
 - **Daily Draw: Reverse Order**: Reverse the order of the Daily Draw inbox entries so that the most recent is at the top
 - **Floating Islands: Airship Randomizer**: Equip a random airship hull, sail, and balloon each time you start an island or vault
+- **Rank-Up Forecaster**: Track your wisdom history and estimate when you'll
+  reach your next rank
 - **Memory Matching Game**: A memory matching game, found under the Camp submenu
 - **HUD: Show custom max title text**: Show a custom max title text (requires the Fabled title)
 - **HUD: Show progress bar at max title**: Show the completed title progress bar instead of the max title text (requires the Fabled title)

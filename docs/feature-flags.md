@@ -61,7 +61,7 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
 |Spring Egg Hunt Helper|`userscript-styles-no-spring-egg-hunt-helper-styles`|[Better UI](./better-ui.md)|
 |[Tsitu's Autoloader](https://github.com/tsitu/MH-Tools)|`userscript-styles-no-tsitu-autoloader-styles`|[Better UI](./better-ui.md)|
-|[Rank-up Forecaster](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0)|`userscript-styles-no-rankup-forecaster`||
+|[Rank-Up Forecaster](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0)|`userscript-styles-no-rankup-forecaster`|[Rank-Up Forecaster](./rank-up-forecaster.md)|
 
 ### Debug Logging
 

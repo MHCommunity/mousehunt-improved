@@ -6,7 +6,10 @@ Enhances the quests and assignments system with more information and shortcuts f
 
 - **Anywhere Library Assignments**: Lets you open the Library Assignments popup from anywhere by clicking the quests tab (when you don't have a current assignment).
 - **Assignment Details**: Shows the cost, reward, and a direct link to [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) for each assignment.
-- **M400 Helper**: Adds a helper tool to quickly travel to the next location for the M400 assignment.
+- **M400 Helper**: Adds a helper tool to quickly travel to the next location for
+  the M400 assignment.
+- **Linked M400 Objectives**: Mice named in M400 assignment goals get hover
+  cards and open the mouse view when clicked.
 - **Concise Progress Display**: Makes task progress displays shorter and easier to read.
 
 ## Options

@@ -9,6 +9,11 @@ Enhances the map interface with additional functionality and improved organizati
 - **Progress Tracking**: Better visualization of map completion status and objectives.
 - **Automatic Categorization**: Mice are automatically sorted into meaningful categories based on the map type.
 - **Attraction Rates**: Shows attraction rate badges for map mice, loading in the background so the map stays fast.
+- **Better Mouse Details**: Mouse popups stay on screen, include a direct
+  **View on MHCT** link, and show a clearer empty state when attraction data is
+  unavailable.
+- **Bundled Map Data**: Ships map sorting data with the extension and adds
+  support for newer maps such as Corsair Chaser.
 - **Map Solver Links**: Adds MHCT Map Helper and Tsitu's Map Solver links to the Goals tab.
 
 ## Options
@@ -16,7 +21,9 @@ Enhances the map interface with additional functionality and improved organizati
 - **Default to Sorted tab**: Automatically selects the Sorted tab when opening a map.
 - **Show map goals in sidebar**: Displays your current map objectives in a convenient sidebar panel. (Enabled by default)
 - **Show map solver links**: Adds the map solver links to the map. (Enabled by default)
-- **Show map join & catch dates**: Shows the approximate date you started/joined a map and when each mouse was caught.
+- **Show map join & catch dates**: Shows the approximate date you started/joined
+  a map and when each mouse was caught. This is off by default, but the data is
+  still cached for when you need it.
 - **Hide old & inactive Community Maps**: Cleans up the Community Maps listing. (Enabled by default)
 
 ## Sorted Tab Features

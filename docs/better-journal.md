@@ -6,11 +6,19 @@ Gives your journal a modern, streamlined look and adds powerful options to make 
 
 - **Modern Journal UI**: Transforms the journal into a cleaner, more visually appealing timeline of your hunts and events.
 - **Condensed Date & Time**: Makes date and time smaller and attaches them to relevant entries (like tournament points, unstable charm procs, etc.) for a less cluttered look.
-- **Collapsible Entries**: Gift claim/return entries and Floating Islands travel entries are collapsed, and clicking them toggles them expanded.
+- **Collapsible Entries**: Gift claim/return entries, sent-gift entries, and
+  Floating Islands travel entries are collapsed, and clicking them toggles them
+  expanded.
 - **Improved Colors**: Refines the colors for various journal entries to make important information stand out.
 - **Condensed Progress Log**: Progress logs are displayed in a more compact, readable format.
 - **Simplified Entries**: Rewrites and simplifies many journal entries for clarity and ease of reading.
-- **More Item Links**: Items mentioned in plain text in refractor base, dirigible travel, crafting, and hammer entries get item links, icons, and hover cards.
+- **Smarter Loot Lists**: More entries support loot-as-list formatting,
+  including generic bullet-separated loot blocks and refractor base loot.
+- **More Item Links**: Items mentioned in plain text in refractor base,
+  dirigible travel, crafting, and hammer entries get item links, icons, and
+  hover cards.
+- **Better Cross-Profile Support**: Journal enhancements like gold and points
+  icons also apply when viewing another hunter's profile.
 - **Clickable Mouse Images**: Clicking a mouse image in the journal now opens the full mouse view, not just the image.
 
 ## Options
