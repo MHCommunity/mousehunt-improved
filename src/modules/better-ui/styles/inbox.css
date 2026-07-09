@@ -72,10 +72,14 @@
 }
 
 #messengerUINotification .tabs a[data-tab="general"] {
+  order: 1000;
+}
+
+#messengerUINotification .tabs a[data-tab="messages"] {
   order: 2000;
 }
 
-#messengerUINotification .tabs a[data-tab="gift_links"] {
+#messengerUINotification .tabs a[data-tab="marketplace"] {
   order: 3000;
 }
 
@@ -83,20 +87,28 @@
   order: 4000;
 }
 
-#messengerUINotification .tabs a[data-tab="friend_requests"] {
+#messengerUINotification .tabs a[data-tab="gift_links"] {
   order: 5000;
 }
 
-#messengerUINotification .tabs a[data-tab="tournaments"] {
+#messengerUINotification .tabs a[data-tab="team"] {
   order: 6000;
 }
 
-#messengerUINotification .tabs a[data-tab="gnawnian_express"] {
+#messengerUINotification .tabs a[data-tab="tournaments"] {
   order: 7000;
 }
 
-#messengerUINotification .tabs a[data-tab="news"] {
+#messengerUINotification .tabs a[data-tab="gnawnian_express"] {
+  order: 7500;
+}
+
+#messengerUINotification .tabs a[data-tab="friend_requests"] {
   order: 8000;
+}
+
+#messengerUINotification .tabs a[data-tab="news"] {
+  order: 9000;
 }
 
 #messengerUINotification .notificationMessageList .tab {
