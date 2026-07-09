@@ -53,14 +53,7 @@ select.mhui-marketplace-trap-filter {
   gap: 1px 5px;
   justify-content: center;
   margin-top: 4px;
-  margin-left: -20px;
-}
-
-.mhui-marketplace-price-links-label {
-  grid-column: 1 / -1;
-  margin-bottom: 2px;
-  font-weight: 700;
-  text-align: center;
+  margin-right: 60px;
 }
 
 /* The link is a layout pass-through so its two spans become the grid cells,

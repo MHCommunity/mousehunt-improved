@@ -339,10 +339,7 @@ const replaceShowBrowseCategory = () => {
     }
 
     enhanceBrowseTable();
-
-    if (getSetting('better-marketplace.filter-listings', true)) {
-      filterListings();
-    }
+    filterListings();
   };
 
   _showBrowser = hg.views.MarketplaceView.showBrowser;
@@ -360,10 +357,7 @@ const replaceShowBrowseCategory = () => {
     }
 
     enhanceBrowseTable();
-
-    if (getSetting('better-marketplace.filter-listings', true)) {
-      filterListings();
-    }
+    filterListings();
   };
 };
 
