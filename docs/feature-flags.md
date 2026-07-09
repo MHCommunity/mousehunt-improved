@@ -100,7 +100,7 @@ Some modules have been deprecated and are no longer available in the settings un
 Add these query parameters to the MouseHunt URL to temporarily change behavior for that page load. These are not persisted and only apply to the current page.
 
 | Parameter | Description |
-|---|---|
+| --- | --- |
 | `?safe-mode` | Loads with default settings. Useful for troubleshooting issues caused by settings. Your current settings are not overwritten and will be restored on the next normal page load. |
 | `?no-custom-styles` | Skips loading any custom CSS added via the [Custom Styles](./custom-styles.md) module. |
 | `?no-image-upscaling` | Disables [Image Upscaling & Transparency](./image-upscaling-and-transparency.md) for the current page load. |
