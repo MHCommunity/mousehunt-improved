@@ -1,4 +1,5 @@
 import settings from './settings';
+
 /**
  * Initialize the module.
  */
@@ -7,5 +8,5 @@ export default {
   type: 'locations-maps-travel',
   alwaysLoad: true,
   settings,
-  load: init,
+  load: () => {}
 };
