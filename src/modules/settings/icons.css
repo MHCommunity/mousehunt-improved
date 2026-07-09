@@ -200,6 +200,10 @@
   background-image: url(../../images/settings/send-horizontal.svg);
 }
 
+#mousehunt-improved-settings-feature-rank-up-forecaster::before {
+  background-image: url(../../images/settings/trending-up.svg);
+}
+
 #mousehunt-improved-settings-feature-replace-favicon::before {
   background-image: url(../../images/settings/dock.svg);
 }
