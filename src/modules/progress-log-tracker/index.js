@@ -255,7 +255,7 @@ const getNextLogInfo = () => {
 /**
  * Format a millisecond duration as a short countdown string.
  *
- * @param {number} ms Milliseconds remaining.
+ * @param {number}  ms    Milliseconds remaining.
  * @param {boolean} short Whether to use a short format (e.g. "5h 23m") or long (e.g. "5 hours 23 minutes").
  *
  * @return {string} A string like "5h 23m" or "12m".
