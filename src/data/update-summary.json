@@ -1,11 +1,29 @@
 {
-  "summary": "This update adds a new \"Gifts in Inbox\" feature that collects recently discovered gift links into a dedicated inbox tab, a batch of Better Marketplace tools (value & trap columns, quick price links, and tariff info), improvements to Paste Hunter ID and Better Journal loot parsing, and a batch of style and reliability fixes.",
+  "summary": "Lots of changes in this update! Default modules and settings have been updated, so please check the settings screen if something isn't the way you prefer. There are also a few new features, like \"Gifts in Inbox\", \"Journal Progress Log Tracker\", and beta version of \"Rank-Up Forecaster\" as well as an integrated Markethunt chart for Better Marketplace. There are also a ton of fixes, improvements, and optimizations across the board. Happy hunting!",
   "details": [
     {
-      "title": "Gifts in Inbox",
+      "title": "Settings & Defaults",
       "items": [
-        "Added a new feature that adds recently discovered MouseHunt gift links to a \"Gift Links\" tab in the inbox for easy claiming",
-        "Tracks which links you've claimed or hidden so the list stays manageable"
+        "Settings screen has been redesigned to be more organized and easier to navigate",
+        "These settings are now on by default: Better Journal's \"Loot as list\" and \"Loot icons\", Better Tournaments' \"Show localized times inline\"",
+        "Several beta features are now normal settings — Better Marketplace \"Quick sell\" and \"Price history charts\", Better Journal \"Full mice images (no border)\", Better UI \"Square profile pics\", Better Gifts \"Gift button opens gift selector\", and \"Real Base Stats\" ",
+        "Fixed an issue where Custom Background, Custom Camp Background, Custom Horn, Custom Shield, and Custom HUD previews did not show every available option",
+        "Location HUDs settings moved into their own section rather than being under the location list",
+        "There is now an \"Update Game Data\" link in Advanced Settings to update mouse, item, and other data without having to update the extension or clear all cached data"
+      ]
+    },
+    {
+      "title": "New Features",
+      "items": [
+        "Added a new \"Gifts in Inbox\" feature that adds recently discovered MouseHunt gift links to a \"Gift Links\" tab in the inbox for easy claiming",
+        "Added a new \"Journal Progress Log Tracker\" feature that tracks when your next journal log summary is due and gives quick access to your past logs"
+      ]
+    },
+    {
+      "title": "Better Maps",
+      "items": [
+        "Added an initial draft of Corsair Chaser map groups",
+        "Minor style updates and performance improvements."
       ]
     },
     {
@@ -13,35 +31,54 @@
       "items": [
         "Added a sortable \"Value\" column (owned × average price) and a total estimated value readout when browsing a category",
         "Added a \"Filter by trap\" dropdown to the Skins category so you can narrow skins to a single base trap",
-        "Added quick \"Undercut\"/\"Overbid\" price links, quick quantity buttons, and a \"Sell All But One\" link to the item listing view",
-        "Added a raw/tax breakdown to order rows and highlighting of the last item you viewed in each category"
-      ]
-    },
-    {
-      "title": "Paste Hunter ID",
-      "items": [
-        "Added support for pasting a full \"profile.php?snuid=\" link to go directly to that hunter's profile",
-        "Works with both numeric and hashed snuid values"
+        "Added quick \"Undercut\"/\"Overbid\" price links and +1/+10/+100 quantity buttons to the item listing view",
+        "Added a beta feature for a price history chart on the item view, powered by Markethunt data",
+        "Minor style updates and performance improvements."
       ]
     },
     {
       "title": "Better Journal",
       "items": [
-        "Added a generic loot list fallback to parse bullet-separated loot entries, such as Spotlight Enchantment and \"found an additional\" entries"
+        "More journal entries now link items and show icons",
+        "Updated the \"Loot as list\" feature to include more journal entries",
+        "Updated default settings to have \"Loot as list\" and \"Loot icons\" enabled"
       ]
     },
     {
-      "title": "Better UI",
+      "title": "Location HUDs - Floating Islands",
       "items": [
-        "Added the new \"Gift Links\" tab to the inbox and reordered the inbox tabs",
-        "Updated gift claim and inbox styles"
+        "Added \"Randomize\" and \"Randomize all\" buttons when editing your airship",
+        "You can now hover over a part in the workshop to preview it on your airship, rather than having to click the Preview button",
+        "New beta feature: \"Airship Randomizer\" will randomize all your airship parts every new island"
+      ]
+    },
+    {
+      "title": "Location Dashboard",
+      "items": [
+        "Added Conclusion Cliffs to the dashboard",
+        "Fixed cached location data being lost when the game reports empty quest data after leaving a location",
+        "Fixed an error when refreshing the dashboard while it's open"
+      ]
+    },
+    {
+      "title": "Paste Hunter ID",
+      "items": [
+        "Added support for pasting a full \"profile.php?snuid=\" link to go directly to that hunter's profile"
       ]
     },
     {
       "title": "Other",
       "items": [
+        "Better Inventory: Reworked trap sorting with clearer sort indicators and new \"LE/Non-LE\" and \"Special/Normal\" filters",
+        "Better Quests: The mice named in M400 assignment objectives are now linked, with hover cards",
+        "New \"Journal Progress Log Tracker\" feature that tracks when your next journal log summary is due and gives quick access to your past logs",
+        "Added a \"Hide Trap Selector Tooltips\" setting to hide the trap selector item tooltips that can get stuck open and in the way on mobile",
+        "Scoreboard search on profiles now groups the scoreboards into sections in the dropdown",
+        "Location HUDs - Fort Rox: Added per-phase hunt counts to the night timeline, made the bait cheeses clickable to equip/unequip, and updated styles",
         "Image Upscaling & Transparency: Fixed images not being re-upscaled when the game re-renders an entry back to its original image",
-        "Location HUDs - Fort Rox: Updated styles",
+        "Item dialogs now set the page URL to the item's permalink while open, so you can copy or share a link to the item",
+        "Bundled all icons, images, and map sorting data into the extension instead of loading them remotely, for faster and more reliable loading",
+        "Numbers are now formatted consistently across all modules",
         "Miscellaneous UI improvements and bug fixes"
       ]
     }

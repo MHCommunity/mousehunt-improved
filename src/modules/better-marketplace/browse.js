@@ -302,31 +302,6 @@ const addTrapFilter = async (rows) => {
       row.classList.toggle('mhui-trap-hidden', ! matches);
     });
   });
-
-  // how we used select2 somewhere else:
-  // searchInputDOM = $('.marketplaceView-header-search');
-  // searchInputDOM
-  //   .select2({
-  //     formatResult: hg.views.MarketplaceView.formatSelect2Result,
-  //     formatSelection: hg.views.MarketplaceView.formatSelect2Result,
-  //     dropdownAutoWidth: false,
-  //     placeholder: 'Search for items…',
-  //     minimumInputLength: 0,
-  //     dropdownCssClass: 'marketplaceView-header-search-dropdown',
-  //     width: 'resolve',
-  //   })
-  //   .on('change', () => {
-  //     if (! searchInputDOM.prop('disabled') && searchInputDOM.val()) {
-  //       hg.views.MarketplaceView.showItem(
-  //         searchInputDOM.val(),
-  //         'view',
-  //         false,
-  //         false,
-  //         true
-  //       );
-  //     }
-  //   });
-  // TODO: add select2 to this trap filter, as there are a lot of traps.
 };
 
 /**
