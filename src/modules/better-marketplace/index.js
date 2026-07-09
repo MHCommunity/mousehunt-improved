@@ -15,10 +15,12 @@ import {
 } from '@utils';
 
 import { enhanceBrowseTable, ensureFilterWrapper } from './browse';
+import { addPriceChart } from './price-chart';
 import { enhanceItemView } from './listing';
 import settings from './settings';
 
 import extras from './styles/extras.css';
+import priceChartStyles from './styles/price-chart.css';
 import quickSellStyles from './styles/quick-sell.css';
 import smallImages from './styles/small-images.css';
 import styles from './styles/styles.css';
@@ -252,6 +254,10 @@ const overloadShowItem = () => {
 
     if (getSetting('better-marketplace.quick-sell')) {
       addQuickSellButton(itemId);
+    }
+
+    if (getSetting('better-marketplace.price-history-chart', true)) {
+      addPriceChart(itemId);
     }
 
     enhanceItemView(itemId);
@@ -618,6 +624,7 @@ const init = () => {
     getSetting('better-marketplace.small-images') ? smallImages : '',
     getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
     getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
+    getSetting('better-marketplace.price-history-chart', true) ? priceChartStyles : '',
   ], 'better-marketplace');
 
   onOverlayChange({

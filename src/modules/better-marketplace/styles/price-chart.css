@@ -1,0 +1,108 @@
+.mhui-marketplace-chart {
+  padding: 0 20px 6px;
+}
+
+.mhui-marketplace-chart-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #dfe3e8;
+}
+
+.mhui-marketplace-chart-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.mhui-marketplace-chart-tabs a {
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7580;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.mhui-marketplace-chart-tabs a:hover {
+  color: #2b3238;
+  background-color: #f2f6fa;
+}
+
+.mhui-marketplace-chart-tabs a.active {
+  color: #2f80d8;
+  border-bottom-color: #2f80d8;
+}
+
+.mhui-marketplace-chart-source {
+  padding-bottom: 5px;
+  font-size: 10px;
+  color: #98a1aa;
+  text-decoration: none;
+}
+
+.mhui-marketplace-chart-source:hover {
+  color: #2f80d8;
+  text-decoration: underline;
+}
+
+.mhui-marketplace-chart-charts {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: 8px;
+}
+
+.mhui-marketplace-chart-price,
+.mhui-marketplace-chart-stock {
+  width: 100%;
+  height: 100%;
+}
+
+.mhui-marketplace-chart-stock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.mhui-marketplace-chart-show-stock .mhui-marketplace-chart-price {
+  visibility: hidden;
+}
+
+.mhui-marketplace-chart-show-stock .mhui-marketplace-chart-stock {
+  display: block;
+}
+
+.mhui-marketplace-chart-loading {
+  padding-top: 130px;
+  color: #98a1aa;
+  text-align: center;
+}
+
+.mhui-marketplace-chart-darkmode .mhui-marketplace-chart-toolbar {
+  border-bottom-color: #3f3f3f;
+}
+
+.mhui-marketplace-chart-darkmode .mhui-marketplace-chart-tabs a {
+  color: #949494;
+}
+
+.mhui-marketplace-chart-darkmode .mhui-marketplace-chart-tabs a:hover {
+  color: #dcdcdc;
+  background-color: #333;
+}
+
+.mhui-marketplace-chart-darkmode .mhui-marketplace-chart-tabs a.active {
+  color: #6ca8ea;
+  border-bottom-color: #6ca8ea;
+}
+
+.marketplaceView-item-descriptionContainer {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.marketplaceView-item-footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

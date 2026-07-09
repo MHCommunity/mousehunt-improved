@@ -251,6 +251,9 @@ const addTrapFilter = async (rows) => {
   // Insert the select synchronously, before awaiting the item data, so a
   // second (concurrent) call sees it and bails instead of adding a duplicate.
   const select = makeElement('select', 'mhui-marketplace-trap-filter');
+  select.setAttribute('aria-label', 'Filter by trap');
+  select.setAttribute('title', 'Filter by trap');
+  select.setAttribute('id', 'mhui-marketplace-trap-filter');
   const allOption = makeElement('option');
   allOption.value = '';
   allOption.textContent = 'Filter by trap…';
@@ -299,6 +302,31 @@ const addTrapFilter = async (rows) => {
       row.classList.toggle('mhui-trap-hidden', ! matches);
     });
   });
+
+  // how we used select2 somewhere else:
+  // searchInputDOM = $('.marketplaceView-header-search');
+  // searchInputDOM
+  //   .select2({
+  //     formatResult: hg.views.MarketplaceView.formatSelect2Result,
+  //     formatSelection: hg.views.MarketplaceView.formatSelect2Result,
+  //     dropdownAutoWidth: false,
+  //     placeholder: 'Search for items…',
+  //     minimumInputLength: 0,
+  //     dropdownCssClass: 'marketplaceView-header-search-dropdown',
+  //     width: 'resolve',
+  //   })
+  //   .on('change', () => {
+  //     if (! searchInputDOM.prop('disabled') && searchInputDOM.val()) {
+  //       hg.views.MarketplaceView.showItem(
+  //         searchInputDOM.val(),
+  //         'view',
+  //         false,
+  //         false,
+  //         true
+  //       );
+  //     }
+  //   });
+  // TODO: add select2 to this trap filter, as there are a lot of traps.
 };
 
 /**

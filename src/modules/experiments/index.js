@@ -5,6 +5,15 @@ const modules = imported;
 const loadedExperimentModules = new Set();
 
 /**
+ * Get the display title for an experiment module.
+ *
+ * @param {Object} module The experiment module.
+ *
+ * @return {string} The module title.
+ */
+const getModuleTitle = (module) => module.title || module.name || module.id || '';
+
+/**
  * Load a single experiment module.
  *
  * @param {Object} module The experiment module to load.
@@ -29,12 +38,17 @@ const init = () => {
   const onlySettings = [
     {
       id: 'better-maps.draggable-highlight',
-      name: 'Better Maps: Draggable highlight',
+      title: 'Better Maps: Draggable highlight',
+      load: () => {}
+    },
+    {
+      id: 'better-marketplace.price-history-chart',
+      title: 'Better Marketplace: Show Markethunt price history chart when viewing an item',
       load: () => {}
     },
     {
       id: 'better-inventory.add-trap-sorting',
-      name: 'Better Inventory: Add trap sorting',
+      title: 'Better Inventory: Add trap sorting',
       load: () => {}
     }
   ];
@@ -45,8 +59,10 @@ const init = () => {
 
   // Sort by name, but put all the ones that have a ":" in the name before the ones that don't.
   modules.sort((a, b) => {
-    const aHasColon = a.name.includes(':');
-    const bHasColon = b.name.includes(':');
+    const aTitle = getModuleTitle(a);
+    const bTitle = getModuleTitle(b);
+    const aHasColon = aTitle.includes(':');
+    const bHasColon = bTitle.includes(':');
 
     if (aHasColon && ! bHasColon) {
       return -1;
@@ -56,11 +72,11 @@ const init = () => {
       return 1;
     }
 
-    if (a.name < b.name) {
+    if (aTitle < bTitle) {
       return -1;
     }
 
-    if (a.name > b.name) {
+    if (aTitle > bTitle) {
       return 1;
     }
 
@@ -107,8 +123,8 @@ export default {
       const settings = module.settings ? await module.settings() : null;
 
       moduleSettings.push({
-        id: module.id || module.name,
-        title: module.name || module.id,
+        id: module.id || getModuleTitle(module),
+        title: getModuleTitle(module),
         description: module.description || '',
         default: module.default || false,
         children: settings || [],
