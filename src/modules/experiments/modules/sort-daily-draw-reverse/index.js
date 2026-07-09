@@ -63,6 +63,5 @@ export default {
   id: 'reverse-daily-draw-order',
   name: 'Daily Draw: Reverse Order',
   default: false,
-  description: 'Reverse the order of the Daily Draw inbox entries so that the most recent is at the top.',
   load: init,
 };

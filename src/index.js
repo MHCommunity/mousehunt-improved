@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extraneous-dependencies
+import * as Sentry from '@sentry/browser';
 
 import {
   addSettingForModule,
@@ -26,11 +26,12 @@ const modules = imported;
 
 const categories = [
   { id: 'required', name: 'Always Loaded' },
-  { id: 'better', name: 'Better MouseHunt' },
-  { id: 'feature', name: 'Features' },
+  { id: 'better', name: 'General' },
+  { id: 'feature', name: 'Other Features' },
   { id: 'design', name: 'Design' },
-  { id: 'element-hiding', name: 'Hide Page Elements' },
+  { id: 'element-hiding', name: 'Hide Elements' },
   { id: 'location-hud', name: 'Location HUDs' },
+  { id: 'location-huds-settings', name: 'Location HUDs Settings' },
   { id: 'beta', name: 'Beta Features / Experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
