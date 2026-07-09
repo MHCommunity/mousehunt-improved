@@ -11,7 +11,6 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |`disable-requests`|Disables sending requests to the MouseHunt servers.|
 |`fake-fabled`|Enables the modules locked to Fabled rank and replaces the progress bar with the Max Title text.|
 |`legacy-hud`|Treats the HUD as the legacy HUD for styling purposes.|
-|`rankup-forecaster`|Disables the import/export buttons added for the Rank-up Forecaster userscript's data.|
 |`settings-table-of-contents`|Adds a table of contents to the top of the settings page.|
 |`social-noop` (or `twitter`)|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
@@ -62,6 +61,7 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
 |Spring Egg Hunt Helper|`userscript-styles-no-spring-egg-hunt-helper-styles`|[Better UI](./better-ui.md)|
 |[Tsitu's Autoloader](https://github.com/tsitu/MH-Tools)|`userscript-styles-no-tsitu-autoloader-styles`|[Better UI](./better-ui.md)|
+|[Rank-up Forecaster](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0)|`userscript-styles-no-rankup-forecaster`||
 
 ### Debug Logging
 

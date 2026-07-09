@@ -204,6 +204,12 @@ const deleteSetting = (key) => {
   localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
 };
 
+/**
+ * Migrate a setting from an old key to a new key.
+ *
+ * @param {string} oldKey The old key.
+ * @param {string} newKey The new key.
+ */
 const migrateSetting = (oldKey, newKey) => {
   const oldValue = getSetting(oldKey, null);
   if (null !== oldValue) {

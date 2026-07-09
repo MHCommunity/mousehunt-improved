@@ -8,5 +8,7 @@ export default {
     migrateSetting('experiments.gift-button-opens-gift-selector', 'better-gifts.gift-button-opens-gift-selector');
     migrateSetting('better-shop.qty-buttons', 'better-shops.qty-buttons');
     migrateSetting('wisdom-in-stat-bar-auto-refresh', 'wisdom-in-stat-bar.auto-refresh');
+
+    migrateFlag('rankup-forecaster', 'userscript-styles-no-rankup-forecaster');
   }
 };
