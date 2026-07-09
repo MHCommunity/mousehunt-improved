@@ -256,10 +256,11 @@ const getNextLogInfo = () => {
  * Format a millisecond duration as a short countdown string.
  *
  * @param {number} ms Milliseconds remaining.
+ * @param {boolean} short Whether to use a short format (e.g. "5h 23m") or long (e.g. "5 hours 23 minutes").
  *
  * @return {string} A string like "5h 23m" or "12m".
  */
-const formatCountdown = (ms) => {
+const formatCountdown = (ms, short = true) => {
   const totalMinutes = Math.round(ms / 1000 / 60);
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
@@ -270,11 +271,11 @@ const formatCountdown = (ms) => {
 
   const parts = [];
   if (hours > 0) {
-    parts.push(`${hours}h`);
+    parts.push(short ? `${hours}h` : `${hours} hours`);
   }
 
   if (minutes > 0) {
-    parts.push(`${minutes}m`);
+    parts.push(short ? `${minutes}m` : `${minutes} minutes`);
   }
 
   return parts.join(' ');
@@ -400,13 +401,11 @@ const makeSummaryMarkup = () => {
     return '';
   }
 
-  const time = info.isDue ? 'Due now' : formatCountdown(info.msUntil);
-  const sub = info.isDue
-    ? 'Your next log summary should appear soon.'
-    : `Estimated ${formatDate(info.nextTimestamp)}`;
+  const time = info.isDue ? 'Due now' : formatCountdown(info.msUntil, false);
+  const sub = info.isDue ? 'Soon!' : `${formatDate(info.nextTimestamp)}`;
 
   return `<div class="mh-jlt-summary${info.isDue ? ' is-due' : ''}">
-    <div class="mh-jlt-summary-label">Next log</div>
+    <div class="mh-jlt-summary-label">Next log in about </div>
     <div class="mh-jlt-summary-time">${time}</div>
     <div class="mh-jlt-summary-sub">${sub}</div>
   </div>`;
@@ -460,12 +459,11 @@ const makeTableMarkup = () => {
     return '<div class="mh-jlt-empty">No journal logs tracked yet. Visit your journal to start tracking your log summaries.</div>';
   }
 
-  const headings = ['#', 'Date & Time', 'Duration', 'Catches', 'FTC', 'FTA', 'Gold', 'Points'];
+  const headings = ['Date & Time', 'Duration', 'Catches', 'FTC', 'FTA', 'Gold', 'Points'];
   const headerCells = headings.map((heading) => `<th>${heading}</th>`).join('');
 
-  const rows = cachedLogs.map((log, index) => {
+  const rows = cachedLogs.map((log) => {
     let row = '<tr>';
-    row += `<td>${index + 1}</td>`;
     row += `<td><a href="#" class="mh-jlt-open" data-log-id="${log.id}">${formatDate(log.timestamp)}</a></td>`;
     row += makeCell(log.duration || '-');
     row += makeCell(log.catches);

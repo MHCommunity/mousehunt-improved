@@ -13,15 +13,14 @@
   align-items: baseline;
   padding: 10px 12px;
   margin-bottom: 12px;
-  background-color: #f3f0ff;
-  border: 1px solid #d8d0ec;
+  background: linear-gradient(#f6f3eb 40%, #f0eddf 100%);
+  border: 1px solid #cabfb7;
   border-radius: 5px;
 }
 
 .mh-jlt-summary-label {
   font-weight: 700;
-  color: #4b3a8f;
-  text-transform: uppercase;
+  color: #424242;
   letter-spacing: 0.04em;
 }
 
@@ -36,7 +35,7 @@
 
 .mh-jlt-summary-sub {
   flex: 1;
-  color: #6f6757;
+  color: #424242;
   text-align: right;
 }
 
@@ -64,10 +63,10 @@
   position: sticky;
   top: 0;
   padding: 6px 8px;
-  font-weight: 700;
-  color: #fff;
+  color: #000;
   text-align: right;
-  background-color: #8678b5;
+  background-color: #eee;
+  border-bottom: 1px solid #cfc8b8;
 }
 
 .mh-jlt-table thead th:nth-child(1),
@@ -82,15 +81,6 @@
   text-align: right;
 }
 
-.mh-jlt-table tbody tr:nth-child(odd) td {
+.mh-jlt-table tbody tr:nth-child(even) td {
   background-color: #f1ede2;
-}
-
-.mh-jlt-table tbody tr:hover td {
-  background-color: #e7e0ff;
-}
-
-.mh-jlt-open {
-  font-weight: 700;
-  color: #4b3a8f;
 }
