@@ -2,21 +2,113 @@
 
 ## Version 0.98.0
 
-- Added "Gifts in Inbox" feature that adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming
-- Better Marketplace: Added a sortable "Value" column (owned × average price) and a total estimated value readout when browsing a category
-- Better Marketplace: Added a "Filter by trap" dropdown to the Skins category so you can narrow skins to a single base trap
-- Better Marketplace: Added quick "Undercut"/"Overbid" price links and quick quantity buttons (1, 10, 100, and 10%/All when selling) to the item listing view
-- Better Marketplace: Added a raw/tax breakdown to order rows, shown on hover
-- Better Marketplace: Added highlighting and auto-scroll to the last item you viewed in each category
-- Better Marketplace: Fixed the buy/sell toggle not refreshing the listing view and an error on non-claim responses, and improved reliability and selector robustness
-- Better Inventory: Reworked trap sorting with active sort indicators, added "LE/Non-LE" and "Special/Normal" filters, and fixed the sort controls being added twice
-- Better Maps: Fixed map updates not detecting goal changes, so the sidebar and related views refresh correctly
-- Moved several beta features to normal settings: Better Marketplace "Quick sell", Better Journal "Full mice images (no border)", Better UI "Square profile pics", Better Gifts "Gift button opens gift selector", and "Real Base Stats"
-- Paste Hunter ID: Added support for pasting a full `profile.php?snuid=` link to go directly to that hunter's profile
-- Better Journal: Added a generic loot list fallback to parse bullet-separated loot entries (such as Spotlight Enchantment and "found an additional" entries)
-- Image Upscaling & Transparency: Fixed images not being re-upscaled when the game re-renders an entry back to its original image
-- Better UI: Added the new "Gift Links" tab to the inbox, reordered inbox tabs, and updated gift claim and inbox styles
-- Location HUDs - Fort Rox: Added per-phase hunt counts to the night timeline, made the bait cheeses clickable to equip/unequip, and updated styles
+### New Features
+
+- Added **Gifts in Inbox** for collecting recent gift links from a dedicated inbox tab
+- Added **Journal Progress Log Tracker** for saving your progress logs and showing
+  when the next one is due
+
+### New Default Modules and Settings
+
+- Redesigned the settings screen with a category sidebar, better search behavior,
+  hash linking, and a dedicated **Location HUDs** section
+- Enabled several modules by default: **Big Timer**, **Delayed Menus**,
+  **Delayed Tooltips**, **Real Base Stats**, **Replace Favicon**,
+  **Shield Goes to Camp**, and **Show Auras**
+- Enabled several settings by default: **Better Journal** "Loot as list" and
+  "Loot icons", **Better Tournaments** "Show localized times inline", and the
+  **Blueprint** camp background
+- Promoted several beta options to normal settings, including
+  **Better Marketplace** quick sell and price charts, **Better Journal** full
+  mice images without borders, **Better Gifts** gift button opens selector,
+  **Better UI** square profile pics, and **Real Base Stats**
+- Added an **Update Game Data** link in Advanced settings and improved preview
+  swatches for the custom background, camp background, horn, shield, and HUD
+  pickers
+
+### New Beta Features
+
+- Added the first beta version of **Rank-Up Forecaster** with wisdom history,
+  ETA forecasting, charts, and legacy userscript data import
+- Added the **Floating Islands Airship Randomizer** beta feature
+
+### Better Marketplace
+
+- Added value browsing tools, skin filtering, quick pricing links, quick
+  quantity buttons, last-viewed highlighting, and richer order details
+- Added interactive Markethunt-powered price history charts and improved buy/sell
+  reliability and selector behavior
+
+### Better Journal
+
+- Expanded loot list support and item linking across more entry types, including
+  refractor base, dirigible travel, crafting, and hammer entries
+- Improved collapsible travel and sent-gift entries, loot display, and support
+  when viewing another hunter's profile
+
+### Better Maps
+
+- Improved Sorted tab loading, cached attraction-rate handling, location-based
+  grouping, and map goal refresh behavior
+- Updated the mouse popup, bundled map sorting data into the extension, and added
+  Corsair Chaser support
+
+### Better Inventory
+
+- Reworked trap sorting with clearer indicators and new **LE/Non-LE** and
+  **Special/Normal** filters
+
+### Better Quests
+
+- M400 assignment objective mice now link to hover cards and open the mouse view
+  on click
+
+### Better UI
+
+- Refreshed inbox styles, added the **Gift Links** inbox tab integration, and
+  grouped scoreboard search results into sections
+
+### Location HUDs
+
+- Floating Islands and Cerulean Skyport got better airship workshop controls,
+  previews, and randomization tools
+- Fort Rox gained per-phase hunt counts, clickable bait cheeses, and style
+  updates
+- Fixed the Table of Contents encyclopedia gold foil styling
+
+### Location Dashboard
+
+- Added **Conclusion Cliffs** and improved dashboard refresh and cached quest-data
+  reliability
+
+### Paste Hunter ID
+
+- Added support for full `profile.php?snuid=` links
+
+### Gifts in Inbox
+
+- Claimed gifts stay clickable, and failed claims can now be marked as claimed
+
+### Better Shops
+
+- Fixed the quantity-buttons setting ID and migrated the old setting
+
+### Image Upscaling & Transparency
+
+- Fixed images not being re-upscaled after the game rerenders them
+
+### General Improvements
+
+- Added the **Hide Trap Selector Tooltips** option for mobile-friendly trap
+  selector browsing
+- Item dialogs now update the page URL while open so item links are easier to
+  copy and share
+- Bundled more icons, images, map sorting data, and Ultimate Checkmark category
+  data into the extension for faster and more reliable loading
+- Improved number formatting and shared utility handling across the extension
+- Removed the onboarding tour step that pointed to the preferences page
+- Added a userscript size check, switched the userscript release to a small
+  loader, and published releases to npm
 
 ## Version 0.97.1
 
