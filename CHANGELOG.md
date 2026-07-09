@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.98.2
+
+- Better Journal: Added loot list and date styling support for the new Cerulean Skyport journal entries
+- Redesigned the extension popup and made its settings button reuse an open MouseHunt tab
+- Extension and userscript builds are no longer minified
+
 ## Version 0.98.1
 
 - Better UI: Updated Inbox tab order

@@ -1,0 +1,13 @@
+{
+  "version": "0.98.2",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Journal: Added loot list and date styling support for the new Cerulean Skyport journal entries",
+        "Redesigned the extension popup and made its settings button reuse an open MouseHunt tab"
+      ]
+    }
+  ]
+}
