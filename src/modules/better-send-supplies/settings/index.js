@@ -35,7 +35,7 @@ export default async () => {
         value: 'Sap-filled Thorns',
       },
     ],
-    description: 'Pin items at the top of the Send Supplies page.',
+    description: '',
     settings: {
       type: 'multi-select',
       number: 5,

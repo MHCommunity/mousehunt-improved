@@ -30,13 +30,11 @@ const init = () => {
     {
       id: 'better-maps.draggable-highlight',
       name: 'Better Maps: Draggable highlight',
-      description: 'Allows you to drag and reposition the sticky highlight',
       load: () => {}
     },
     {
       id: 'better-inventory.add-trap-sorting',
       name: 'Better Inventory: Add trap sorting',
-      description: 'Add sorting options for traps in the inventory.',
       load: () => {}
     }
   ];

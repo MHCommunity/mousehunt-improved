@@ -386,7 +386,7 @@ const enhanceBrowseTable = async () => {
     addValueColumn(table, rows);
   }
 
-  if (getSetting('better-marketplace.skin-trap-filter', true) && category === 'skins') {
+  if (category === 'skins') {
     await addTrapFilter(rows);
   }
 

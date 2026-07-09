@@ -165,7 +165,6 @@ export default {
   name: 'Wisdom in Stat Bar',
   type: 'feature',
   default: false,
-  description: 'Show wisdom in the stat bar.',
   load: init,
   settings,
 };

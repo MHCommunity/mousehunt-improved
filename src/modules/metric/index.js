@@ -109,6 +109,5 @@ export default {
   name: 'Metric Units',
   type: 'feature',
   default: false,
-  description: 'Use metric units instead of imperial units.',
   load: init,
 };

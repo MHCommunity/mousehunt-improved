@@ -213,7 +213,7 @@ export default {
   name: 'Journal Privacy',
   type: 'element-hiding',
   default: false,
-  description: 'Hide player names in the journal. Good for screenshots that maintain privacy.',
+  description: 'Hide player names in the journal.',
   load: init,
   settings,
 };

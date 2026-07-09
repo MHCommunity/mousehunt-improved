@@ -151,6 +151,5 @@ export default {
   name: 'Data Exporters',
   type: 'feature',
   default: true,
-  description: 'Export data from the game.',
   load: init,
 };

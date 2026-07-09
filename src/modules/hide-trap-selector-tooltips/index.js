@@ -17,6 +17,6 @@ export default {
   name: 'Hide Trap Selector Tooltips',
   type: 'element-hiding',
   default: false,
-  description: 'Hide the item description tooltips in the trap selector. Useful on mobile, where a tapped tooltip can get stuck open and in the way.',
+  description: 'Hide the item description tooltips in the trap selector.',
   load: init,
 };

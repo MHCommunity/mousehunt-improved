@@ -27,7 +27,6 @@ export default {
   id: 'fixes',
   name: 'Fixes',
   type: 'feature',
-  description: 'Fix various bugs and issues in the game.',
   default: true,
   load: init,
 };

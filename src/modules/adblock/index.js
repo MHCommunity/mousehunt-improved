@@ -17,6 +17,6 @@ export default {
   name: 'Adblock',
   type: 'element-hiding',
   default: false,
-  description: 'Hide advertisements for Feedback Friday, mobile apps, news ticker, etc.',
+  description: 'Hide advertisements for Feedback Friday, mobile apps, etc.',
   load: init,
 };

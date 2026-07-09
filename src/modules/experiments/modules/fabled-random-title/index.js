@@ -808,7 +808,6 @@ const init = async () => {
 export default {
   id: 'experiments.fabled-random-title',
   name: 'HUD: Show random max title text',
-  description: 'Show a random max title text instead of the default max title text.',
   showIf: () => isUserTitleAtLeast('fabled') || getFlag('fake-fabled'),
   load: init,
 };

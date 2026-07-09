@@ -136,7 +136,6 @@ const settings = async () => {
 export default {
   id: 'experiments.fabled-custom-title',
   name: 'HUD: Show custom max title text',
-  description: 'Show a custom max title text.',
   showIf: () => isUserTitleAtLeast('fabled') || getFlag('fake-fabled'),
   load: init,
   settings,

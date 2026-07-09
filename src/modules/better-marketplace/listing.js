@@ -238,13 +238,8 @@ const addQuickPriceLinks = (type, itemId) => {
     return;
   }
 
-  const verb = type === 'sell' ? 'Undercut' : 'Overbid';
   const sign = type === 'sell' ? '-' : '+';
   const wrapper = makeElement('div', 'mhui-marketplace-price-links');
-
-  // A single leading label, on its own line above the list, keeps each chip
-  // compact (no repeated "Overbid by").
-  makeElement('span', 'mhui-marketplace-price-links-label', `${verb}:`, wrapper);
 
   steps.forEach(({ amount, note }) => {
     const price = type === 'sell' ? best - amount : best + amount;
@@ -319,7 +314,7 @@ const addQuantityButtons = (type) => {
 
   const list = makeElement('div', 'mhui-marketplace-quantity-links');
 
-  const numbersRow = makeElement('div', 'mhui-marketplace-quantity-row', '', list);
+  const numbersRow = makeElement('div', 'mhui-marketplace-quantity-row', '');
   makeMathButtons([1, 10, 100], {
     appendTo: numbersRow,
     maxQty: type === 'sell' && owned > 0 ? owned : Number.MAX_SAFE_INTEGER,
@@ -327,14 +322,16 @@ const addQuantityButtons = (type) => {
     getValue: getCurrentQuantity,
     setValue: setOrderQuantity,
   });
+  list.append(numbersRow);
 
   if (type === 'sell' && owned > 0) {
-    const percentsRow = makeElement('div', 'mhui-marketplace-quantity-row', '', list);
+    const percentsRow = makeElement('div', 'mhui-marketplace-quantity-row', '');
     percentsRow.append(makeQuantityLink('10%', Math.max(1, Math.round(owned * 0.1))));
     if (owned > 1) {
       percentsRow.append(makeQuantityLink('All But One', owned - 1));
     }
     percentsRow.append(makeQuantityLink('All', owned));
+    list.append(percentsRow);
   }
 
   host.append(list);
@@ -388,9 +385,7 @@ const enhanceItemView = async (itemId) => {
     addQuickPriceLinks(type, itemId);
   }
 
-  if (getSetting('better-marketplace.quick-quantity-buttons', true)) {
-    addQuantityButtons(type);
-  }
+  addQuantityButtons(type);
 
   addTariffInfo();
 };

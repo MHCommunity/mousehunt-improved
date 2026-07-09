@@ -52,6 +52,5 @@ export default {
   name: 'Hide Daily Reward Popup',
   type: 'element-hiding',
   default: false,
-  description: 'Automatically hide the daily reward popup.',
   load: init,
 };

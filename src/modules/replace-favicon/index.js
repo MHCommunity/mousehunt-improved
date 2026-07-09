@@ -51,6 +51,5 @@ export default {
   name: 'Replace Favicon',
   type: 'feature',
   default: true,
-  description: 'Replace the favicon with a more fitting one.',
   load: init,
 };

@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'better-ui.hud-changes',
-      title: 'Menu & HUD: Kingdom link goes to News, shows full title percent on hover, etc.',
+      title: 'Menu & HUD tweaks',
       default: true,
     },
     {

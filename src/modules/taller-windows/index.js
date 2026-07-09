@@ -17,6 +17,5 @@ export default {
   name: 'Taller Windows',
   type: 'feature',
   default: true,
-  description: 'Make popup and dialog windows taller.',
   load: init,
 };
