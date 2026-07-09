@@ -38,10 +38,11 @@ const getState = () => {
     return {
       claimed: state.claimed || {},
       hidden: state.hidden || {},
+      seen: state.seen || {},
     };
   } catch (error) {
     debug('Unable to parse gift links inbox state', error);
-    return { claimed: {}, hidden: {} };
+    return { claimed: {}, hidden: {}, seen: {} };
   }
 };
 
@@ -95,6 +96,20 @@ const isNewGift = (link) => {
   }
 
   return ! link.timestamp || (Date.now() - link.timestamp) <= NEW_GIFT_MAX_AGE;
+};
+
+/**
+ * Whether a gift link should count toward the tab counter: new and not yet
+ * seen. Viewing the gift links tab marks links as seen, so the counter clears
+ * like the game's own inbox counters instead of persisting until every link
+ * is claimed.
+ *
+ * @param {Object} link The gift link.
+ *
+ * @return {boolean} Whether the link counts as unseen.
+ */
+const isUnseenGift = (link) => {
+  return isNewGift(link) && ! isInState(link.code, 'seen');
 };
 
 /**
@@ -282,7 +297,7 @@ const buildMessage = (link) => {
   const claimed = isInState(link.code, 'claimed');
 
   const message = makeElement('div', ['message', 'notification', 'mh-improved-gift-link']);
-  if (isNewGift(link)) {
+  if (isUnseenGift(link)) {
     message.classList.add('new');
   }
 
@@ -494,6 +509,36 @@ const claimGiftInPlace = (claimButton) => {
 };
 
 /**
+ * Mark every rendered gift link as seen, so the tab counter clears once the
+ * tab has been viewed.
+ */
+const markGiftsSeen = () => {
+  const panel = document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`);
+  if (! panel) {
+    return;
+  }
+
+  const state = getState();
+  let changed = false;
+
+  panel.querySelectorAll('.message.mh-improved-gift-link').forEach((message) => {
+    const code = message.getAttribute('data-mhi-gift-code');
+    if (code && ! state.seen[code]) {
+      state.seen[code] = new Date().toISOString();
+      changed = true;
+    }
+
+    message.classList.remove('new');
+  });
+
+  if (changed) {
+    saveState(state);
+  }
+
+  refreshGiftTabState();
+};
+
+/**
  * Show the gift links tab, hiding the other tabs.
  */
 const showGiftTab = () => {
@@ -507,6 +552,8 @@ const showGiftTab = () => {
 
   document.querySelector(`#messengerUINotification .tabs a[data-tab="${TAB_TYPE}"]`)?.classList.add('active');
   document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`)?.classList.add('active');
+
+  markGiftsSeen();
 };
 
 /**
@@ -556,7 +603,7 @@ const refreshGiftTabState = () => {
 /**
  * Render the gift links tab and its messages into the open inbox.
  *
- * @return {Promise<number>} The number of new gift links rendered.
+ * @return {Promise<number>} The number of unseen gift links rendered.
  */
 const renderGiftTab = async () => {
   const tabsBar = document.querySelector('#messengerUINotification .notificationHeader .tabs');
@@ -609,7 +656,7 @@ const renderGiftTab = async () => {
 
   refreshGiftTabState();
 
-  return links.filter((link) => isNewGift(link)).length;
+  return links.filter((link) => isUnseenGift(link)).length;
 };
 
 /**
@@ -687,12 +734,13 @@ const hookInbox = () => {
         return found;
       }
 
-      const unclaimedCount = await renderGiftTab();
+      const unseenCount = await renderGiftTab();
 
-      // If there are new, unclaimed gift links and nothing unread in any of the
+      // If there are new, unseen gift links and nothing unread in any of the
       // game's own tabs, jump straight to the gift links tab.
-      if (unclaimedCount > 0 && ! hasOtherUnreadMessages()) {
+      if (unseenCount > 0 && ! hasOtherUnreadMessages()) {
         messenger.UI.notification.showTab(TAB_TYPE);
+        markGiftsSeen();
       }
 
       return found;
