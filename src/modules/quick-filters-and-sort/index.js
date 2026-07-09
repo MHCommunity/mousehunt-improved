@@ -268,7 +268,7 @@ const init = async () => {
 export default {
   id: 'quick-filters-and-sort',
   name: 'Quick Filters and Sort',
-  type: 'feature',
+  type: 'hunting-setup',
   default: true,
   description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.',
   load: init,

@@ -544,7 +544,7 @@ const init = async () => {
 export default {
   id: 'location-dashboard',
   name: 'Location Dashboard',
-  type: 'feature',
+  type: 'locations-maps-travel',
   default: true,
   description: 'View location HUD information in a dashboard available in the top dropdown menu.',
   load: init,

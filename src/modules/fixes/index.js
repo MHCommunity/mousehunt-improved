@@ -26,7 +26,7 @@ const init = () => {
 export default {
   id: 'fixes',
   name: 'Fixes',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: true,
   load: init,
 };

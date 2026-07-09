@@ -68,8 +68,7 @@ const init = async () => {
 export default {
   id: 'trap-selector-special-effects',
   name: 'Highlight Special Effects in Trap Selector',
-  type: 'feature',
+  type: 'hunting-setup',
   default: true,
-  description: 'Add an indicator to items in the trap selector that have special effects.',
   load: init
 };

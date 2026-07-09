@@ -376,7 +376,7 @@ const init = async () => {
 export default {
   id: 'image-upscaling',
   name: 'Image Upscaling & Transparency',
-  type: 'feature',
+  type: 'appearance',
   default: true,
   description: 'Update all images to use higher resolution versions with transparent backgrounds.',
   load: init,

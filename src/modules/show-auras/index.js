@@ -244,7 +244,7 @@ const init = async () => {
 export default {
   id: 'show-auras',
   name: 'Show Auras',
-  type: 'feature',
+  type: 'hunting-setup',
   default: true,
   description: 'Show auras and their expiry time below the trap stats.',
   load: init,

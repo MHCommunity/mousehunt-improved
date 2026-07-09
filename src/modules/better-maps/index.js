@@ -549,7 +549,7 @@ const init = () => {
 export default {
   id: 'better-maps',
   name: 'Better Maps',
-  type: 'better',
+  type: 'locations-maps-travel',
   default: true,
   description: 'Add features to maps such as updated styles, attraction rates, a sorted tab categorizing various maps, and displaying more information on the various tabs.',
   load: init,

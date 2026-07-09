@@ -139,7 +139,7 @@ const init = () => {
 export default {
   id: 'hide-daily-draw',
   name: 'Hide Daily Draw',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: false,
   description: 'Hide the Daily Draw inbox tab and notifications.',
   load: init,

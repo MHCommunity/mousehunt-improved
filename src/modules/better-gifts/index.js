@@ -588,7 +588,7 @@ const init = () => {
 export default {
   id: 'better-gifts',
   name: 'Better Gifts',
-  type: 'better',
+  type: 'social-profiles',
   default: true,
   description: 'Quickly accept and return all your gifts, and pick random friends to send to.',
   load: init,

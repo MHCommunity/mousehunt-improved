@@ -90,7 +90,7 @@ const init = async () => {
 export default {
   id: 'paste-hunter-id',
   name: 'Paste Hunter ID',
-  type: 'feature',
+  type: 'social-profiles',
   default: true,
   description: 'Copy a Hunter ID to your clipboard and press Ctrl/Cmd+V anywhere to go directly to that hunter’s profile.',
   load: init,

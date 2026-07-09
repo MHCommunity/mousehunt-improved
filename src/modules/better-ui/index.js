@@ -64,7 +64,7 @@ const init = () => {
 export default {
   id: 'better-ui',
   name: 'Better UI',
-  type: 'better',
+  type: 'appearance',
   default: true,
   description: 'Update the interface with UI and style changes.',
   order: -1,

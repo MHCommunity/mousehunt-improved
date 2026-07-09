@@ -24,7 +24,7 @@ const init = () => {
 export default {
   id: 'show-adventure-book',
   name: 'Show Adventure Book',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: false,
   description: 'Add an Adventure Book button to the Kingdom dropdown menu.',
   load: init,

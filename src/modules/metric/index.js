@@ -107,7 +107,7 @@ const init = async () => {
 export default {
   id: 'metric',
   name: 'Metric Units',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: false,
   load: init,
 };

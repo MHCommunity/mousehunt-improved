@@ -17,7 +17,7 @@ const init = async () => {
 export default {
   id: 'ssdb-teeth-counter',
   name: 'SSDB Toothlet Counter',
-  type: 'feature',
+  type: 'hunting-setup',
   default: true,
   description: 'Show the number of toothlets you have when SSDB is equipped.',
   load: init,

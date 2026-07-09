@@ -223,7 +223,7 @@ const init = async () => {
 export default {
   id: 'flrt-helper',
   name: 'FLRT Helper',
-  type: 'feature',
+  type: 'locations-maps-travel',
   default: false,
   description: 'Add a “Return to Maptain” button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.',
   load: init,

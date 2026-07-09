@@ -590,7 +590,7 @@ const init = () => {
 export default {
   id: 'better-inventory',
   name: 'Better Inventory',
-  type: 'better',
+  type: 'inventory-economy',
   default: true,
   description: 'Update the inventory layout and styling.',
   load: init,

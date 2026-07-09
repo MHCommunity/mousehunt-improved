@@ -17,7 +17,7 @@ const init = async () => {
 export default {
   id: 'printing-press-paper-counter',
   name: 'Printing Press Paper Counter',
-  type: 'feature',
+  type: 'inventory-economy',
   default: true,
   description: 'Show the number of Prolific Printing Papers you have for the Printing Press bases.',
   load: init,

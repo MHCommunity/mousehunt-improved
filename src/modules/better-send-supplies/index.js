@@ -353,7 +353,7 @@ const init = () => {
 export default {
   id: 'better-send-supplies',
   name: 'Better Send Supplies',
-  type: 'better',
+  type: 'inventory-economy',
   default: true,
   description: 'Add pinned items, search, and sorting to the Send Supplies page.',
   load: init,

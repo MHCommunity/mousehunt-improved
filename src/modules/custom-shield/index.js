@@ -260,7 +260,7 @@ const init = () => {
  */
 export default {
   id: 'custom-shield',
-  type: 'design',
+  type: 'appearance',
   alwaysLoad: true,
   load: init,
   settings,

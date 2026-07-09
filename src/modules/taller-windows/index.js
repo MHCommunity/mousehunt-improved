@@ -15,7 +15,7 @@ const init = async () => {
 export default {
   id: 'taller-windows',
   name: 'Taller Windows',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: true,
   load: init,
 };

@@ -71,7 +71,7 @@ const init = async () => {
 export default {
   id: 'native-dark-mode',
   name: 'Dark Mode',
-  type: 'feature',
+  type: 'appearance',
   default: false,
   load: init,
   settings,

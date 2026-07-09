@@ -219,7 +219,7 @@ const init = async () => {
 export default {
   id: 'location-catch-stats',
   name: 'Location Catch Stats',
-  type: 'feature',
+  type: 'locations-maps-travel',
   default: true,
   description: 'Add a “Location Catch Stats” option to the Mice menu to see your catch stats for the current location.',
   load: init,

@@ -347,7 +347,7 @@ const init = () => {
 export default {
   id: 'quick-send-supplies',
   name: 'Quick Send Supplies',
-  type: 'feature',
+  type: 'inventory-economy',
   default: true,
   description: 'Hover or click on Send Supplies to quickly send any quantity of a configured item.',
   load: init,

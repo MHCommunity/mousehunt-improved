@@ -149,7 +149,7 @@ const init = () => {
 export default {
   id: 'data-exporters',
   name: 'Data Exporters',
-  type: 'feature',
+  type: 'journal-progress-stats',
   default: true,
   load: init,
 };

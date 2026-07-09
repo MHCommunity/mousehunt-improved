@@ -15,7 +15,7 @@ const init = () => {
 export default {
   id: 'hide-codices',
   name: 'Hide Codices',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: false,
   load: init,
 };

@@ -197,7 +197,7 @@ const init = () => {
  */
 export default {
   id: 'custom-background',
-  type: 'design',
+  type: 'appearance',
   alwaysLoad: true,
   load: init,
   settings,

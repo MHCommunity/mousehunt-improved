@@ -860,7 +860,7 @@ const init = () => {
 export default {
   id: 'better-travel',
   name: 'Better Travel',
-  type: 'better',
+  type: 'locations-maps-travel',
   default: true,
   description: 'Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
   load: init,

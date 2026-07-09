@@ -432,7 +432,7 @@ const init = () => {
 export default {
   id: 'better-item-view',
   name: 'Better Items',
-  type: 'better',
+  type: 'inventory-economy',
   default: true,
   description: 'Update the styles, show drop rates and links.',
   load: init,

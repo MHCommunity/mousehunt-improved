@@ -76,7 +76,7 @@ const init = () => {
 export default {
   id: 'better-journal',
   name: 'Better Journal',
-  type: 'better',
+  type: 'journal-progress-stats',
   default: true,
   description: 'Modify the journal text, layout, and styling.',
   load: init,

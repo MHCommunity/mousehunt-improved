@@ -657,7 +657,7 @@ const init = () => {
 export default {
   id: 'better-marketplace',
   name: 'Better Marketplace',
-  type: 'better',
+  type: 'inventory-economy',
   default: true,
   description: 'Update the styles, and add small features like toggling between "Buying" and "Selling" by clicking the text.',
   load: init,

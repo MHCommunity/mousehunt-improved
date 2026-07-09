@@ -15,7 +15,7 @@ const init = () => {
 export default {
   id: 'hide-trap-selector-tooltips',
   name: 'Hide Trap Selector Tooltips',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: false,
   description: 'Hide the item description tooltips in the trap selector.',
   load: init,

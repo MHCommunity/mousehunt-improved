@@ -104,7 +104,7 @@ const init = () => {
 export default {
   id: 'inline-wiki',
   name: 'Inline Wiki',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: true,
   description: 'Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.',
   load: init,

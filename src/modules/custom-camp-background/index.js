@@ -127,7 +127,7 @@ const init = () => {
  */
 export default {
   id: 'custom-camp-background',
-  type: 'design',
+  type: 'appearance',
   alwaysLoad: true,
   load: init,
   settings,

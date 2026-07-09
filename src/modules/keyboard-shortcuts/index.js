@@ -514,7 +514,7 @@ const init = async () => {
 export default {
   id: 'keyboard-shortcuts',
   name: 'Keyboard Shortcuts',
-  type: 'feature',
+  type: 'navigation-utilities',
   default: true,
   description: 'Press “?” to see and edit keyboard shortcuts. You can also edit them [here](#).',
   load: init,

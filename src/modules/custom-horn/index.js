@@ -226,7 +226,7 @@ const init = () => {
  */
 export default {
   id: 'custom-horn',
-  type: 'design',
+  type: 'appearance',
   alwaysLoad: true,
   load: init,
   settings,

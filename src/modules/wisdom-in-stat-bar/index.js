@@ -163,7 +163,7 @@ const init = async () => {
 export default {
   id: 'wisdom-in-stat-bar',
   name: 'Wisdom in Stat Bar',
-  type: 'feature',
+  type: 'hunting-setup',
   default: false,
   load: init,
   settings,

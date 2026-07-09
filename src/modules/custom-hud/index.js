@@ -126,7 +126,7 @@ const init = () => {
  */
 export default {
   id: 'custom-hud',
-  type: 'design',
+  type: 'appearance',
   alwaysLoad: true,
   load: init,
   settings,

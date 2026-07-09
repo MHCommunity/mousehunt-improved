@@ -30,7 +30,7 @@ const init = () => {
 export default {
   id: 'no-footer',
   name: 'Hide Footer',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: false,
   load: init,
 };

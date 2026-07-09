@@ -35,7 +35,7 @@ const init = () => {
 export default {
   id: 'big-timer',
   name: 'Big Timer',
-  type: 'feature',
+  type: 'hunting-setup',
   default: true,
   description: 'Click the timer to toggle between sizes.',
   load: init,

@@ -26,12 +26,15 @@ const modules = imported;
 
 const categories = [
   { id: 'required', name: 'Always Loaded' },
-  { id: 'better', name: 'General' },
-  { id: 'feature', name: 'Other Features' },
-  { id: 'design', name: 'Design' },
-  { id: 'element-hiding', name: 'Hide Elements' },
+  { id: 'appearance', name: 'Appearance' },
+  { id: 'hunting-setup', name: 'Hunting & Setup' },
+  { id: 'inventory-economy', name: 'Inventory & Economy' },
   { id: 'location-hud', name: 'Location HUDs' },
-  { id: 'location-huds-settings', name: 'Location HUDs Settings' },
+  { id: 'locations-maps-travel', name: 'Locations, Maps & Travel' },
+  { id: 'journal-progress-stats', name: 'Journal, Progress & Stats' },
+  { id: 'social-profiles', name: 'Social & Profiles' },
+  { id: 'navigation-utilities', name: 'Navigation & Utilities' },
+  { id: 'hide-simplify', name: 'Hide & Simplify' },
   { id: 'beta', name: 'Beta Features / Experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];

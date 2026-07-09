@@ -707,7 +707,7 @@ const init = () => {
 export default {
   id: 'gifts-in-inbox',
   name: 'Gifts in Inbox',
-  type: 'feature',
+  type: 'social-profiles',
   default: true,
   description: 'Adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming.',
   load: init,

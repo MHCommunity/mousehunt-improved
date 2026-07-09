@@ -14,7 +14,7 @@ const init = () => {
 export default {
   id: 'hide-news-ticker',
   name: 'Hide News Ticker',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: true,
   load: init,
 };

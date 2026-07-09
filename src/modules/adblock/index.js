@@ -15,7 +15,7 @@ const init = () => {
 export default {
   id: 'adblock',
   name: 'Adblock',
-  type: 'element-hiding',
+  type: 'hide-simplify',
   default: false,
   description: 'Hide advertisements for Feedback Friday, mobile apps, etc.',
   load: init,

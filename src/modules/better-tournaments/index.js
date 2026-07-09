@@ -271,7 +271,7 @@ const init = () => {
 export default {
   id: 'better-tournaments',
   name: 'Better Tournaments',
-  type: 'better',
+  type: 'locations-maps-travel',
   default: true,
   description: 'Update the Tournaments UI to show information on hover and make various small interface tweaks.',
   load: init,

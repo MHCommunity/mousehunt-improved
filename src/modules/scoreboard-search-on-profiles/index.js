@@ -166,7 +166,7 @@ const init = async () => {
 export default {
   id: 'profile-scoreboard-search',
   name: 'Scoreboard Search on Profiles',
-  type: 'feature',
+  type: 'social-profiles',
   default: true,
   description: 'Easily search for a friend on the scoreboard from their profile.',
   load: init,
