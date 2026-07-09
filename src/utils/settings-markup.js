@@ -359,6 +359,8 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
   const settingRowInput = makeElement('div', ['settingRow-action-inputContainer', 'inputText']);
 
   const settingRowInputText = makeElement('input', 'inputBox');
+  settingRowInputText.type = 'text';
+  settingRowInputText.id = `setting-${key}`;
   settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
 
   const inputSaveButton = makeMhButton({
