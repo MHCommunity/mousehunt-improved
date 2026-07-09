@@ -1,0 +1,12 @@
+{
+  "version": "0.98.3",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Fix Better Marketplace: Show Markethunt price history chart when viewing an item defaulting to enabled"
+      ]
+    }
+  ]
+}

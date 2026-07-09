@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.98.3
+
+- Fix Better Marketplace: Show Markethunt price history chart when viewing an item defaulting to enabled
+
 ## Version 0.98.2
 
 - Better Journal: Added loot list and date styling support for the new Cerulean Skyport journal entries
