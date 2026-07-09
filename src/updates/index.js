@@ -124,8 +124,14 @@ const update = async (previousVersion, newVersion) => {
 
     saveSetting('mh-improved-version', newVersion);
 
-    await markCachesAsExpired();
-    await updateCaches();
+    // Cache priming is only a warm-up — data is refetched on demand — so a
+    // failure here (e.g. unavailable IndexedDB) shouldn't abort the update.
+    try {
+      await markCachesAsExpired();
+      await updateCaches();
+    } catch (error) {
+      debuglog('update-migration', 'Error priming caches during update', error);
+    }
 
     if (isFreshInstall) {
       return;
@@ -139,8 +145,11 @@ const update = async (previousVersion, newVersion) => {
       doEvent('mh-improved-updated', previousVersion);
     }, true);
   } catch (error) {
-    // If something goes wrong, restore the settings from the backup
+    // If something goes wrong, restore the settings from the backup, but keep
+    // the new version number — the backup contains the old one, and restoring
+    // it would re-run this update (and re-show this error) on every page load.
     restoreSettingsBackup();
+    saveSetting('mh-improved-version', newVersion);
 
     // Show the error to the user.
     showLoadingPopup('Error updating MouseHunt Improved. Please try refreshing the page.');
