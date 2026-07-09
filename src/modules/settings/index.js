@@ -8,22 +8,16 @@ import {
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
-  getFlag,
-  getSetting,
   getSettings,
   makeElement,
-  makeMhButton,
   markCachesAsExpired,
   onEvent,
   parseEncodedValue,
-  saveSetting,
   setPage,
   showErrorMessage,
   showSuccessMessage,
   updateCaches
 } from '@utils';
-
-import settingsSettings from './settings';
 
 import icons from './icons.css';
 import styles from './styles.css';
@@ -84,7 +78,7 @@ const addExportSettings = (append) => {
     existing.remove();
   }
 
-  const exportSettings = makeElement('div', ['mousehunt-improved-export-settings', 'mousehuntActionButton', 'tiny']);
+  const exportSettings = makeElement('div', ['mousehunt-improved-export-settings', 'mousehuntActionButton', 'small']);
   makeElement('span', '', 'Import / Export Settings', exportSettings);
 
   exportSettings.addEventListener('click', (e) => {
@@ -316,11 +310,6 @@ const addExportSettings = (append) => {
  * Add the advanced settings buttons.
  */
 const addAdvancedSettingsButtons = () => {
-  const settingInput = document.querySelector('#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting');
-  if (settingInput) {
-    addExportSettings(settingInput);
-  }
-
   const settingWrapper = document.querySelector('#mousehunt-improved-settings-advanced-wrapper');
   if (! settingWrapper) {
     return;
@@ -333,6 +322,9 @@ const addAdvancedSettingsButtons = () => {
 
   const buttonsWrapper = makeElement('div', 'mousehunt-improved-advanced-buttons');
 
+  addExportSettings(buttonsWrapper);
+
+  const linkWrapper = makeElement('div', 'mousehunt-improved-advanced-links');
   const updateGameDataLink = makeElement('a', 'update-data-link', 'Update Data');
   updateGameDataLink.href = '#';
   updateGameDataLink.addEventListener('click', async (e) => {
@@ -350,7 +342,7 @@ const addAdvancedSettingsButtons = () => {
 
     window.location.reload();
   });
-  buttonsWrapper.append(updateGameDataLink);
+  linkWrapper.append(updateGameDataLink);
 
   const clearCachedDataLink = makeElement('a', 'clear-cache-link', 'Clear Cached Data');
   clearCachedDataLink.href = '#';
@@ -372,7 +364,7 @@ const addAdvancedSettingsButtons = () => {
       window.location.reload();
     }
   });
-  buttonsWrapper.append(clearCachedDataLink);
+  linkWrapper.append(clearCachedDataLink);
 
   const resetJournalLink = makeElement('a', 'reset-link', 'Reset Journal History');
   resetJournalLink.href = '#';
@@ -383,7 +375,7 @@ const addAdvancedSettingsButtons = () => {
       window.location.reload();
     }
   });
-  buttonsWrapper.append(resetJournalLink);
+  linkWrapper.append(resetJournalLink);
 
   const resetDashboardLink = makeElement('a', 'reset-link', 'Reset Location Dashboard');
   resetDashboardLink.href = '#';
@@ -394,7 +386,8 @@ const addAdvancedSettingsButtons = () => {
       window.location.reload();
     }
   });
-  buttonsWrapper.append(resetDashboardLink);
+  linkWrapper.append(resetDashboardLink);
+  buttonsWrapper.append(linkWrapper);
 
   settingWrapper.append(buttonsWrapper);
 };
@@ -407,71 +400,6 @@ const highlightLocationHud = () => {
   if (locationHudSettings) {
     locationHudSettings.classList.add('highlight');
   }
-};
-
-/**
- * Add toggles to the settings page headers.
- */
-const addTogglesToSettings = () => {
-  const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section');
-  if (! settingsPage) {
-    return;
-  }
-
-  const toggles = document.querySelectorAll('.mhui-setting-toggle');
-  toggles.forEach((toggle) => {
-    toggle.remove();
-  });
-
-  // Beta section is default hidden.
-  let toggledSections = getSetting('settings.toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
-
-  settingsPage.forEach((setting) => {
-    // Append an svg to toggle the class
-    const toggle = makeElement('div', 'mhui-setting-toggle');
-    const titleText = setting.querySelector('.PagePreferences__titleText');
-    if (titleText.childNodes.length > 1) {
-      titleText.insertBefore(toggle, titleText.childNodes[1]);
-    } else {
-      titleText.append(toggle);
-    }
-
-    // add the event listener to toggle the class
-    titleText.addEventListener('click', (event) => {
-      if (event.target.tagName === 'A') {
-        return;
-      }
-
-      event.preventDefault();
-
-      toggledSections = getSetting('settings.toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
-
-      const toggled = setting.classList.contains('toggled');
-      if (toggled) {
-        setting.classList.remove('toggled');
-        toggle.classList.remove('toggled');
-
-        // save to session storage
-        toggledSections = toggledSections.filter((section) => section !== setting.id);
-      } else {
-        setting.classList.add('toggled');
-        toggle.classList.add('toggled');
-
-        // save to session storage
-        toggledSections.push(setting.id);
-      }
-
-      saveSetting('settings.toggled-sections', toggledSections);
-    });
-
-    if (toggledSections.includes(setting.id)) {
-      setting.classList.add('toggled');
-      toggle.classList.add('toggled');
-    } else {
-      setting.classList.remove('toggled');
-      toggle.classList.remove('toggled');
-    }
-  });
 };
 
 /**
@@ -491,6 +419,282 @@ const moveTabToEnd = () => {
   userscriptTab.after(mhImprovedTab);
 };
 
+/**
+ * Get the title text for a settings section.
+ *
+ * @param {HTMLElement} section The section element.
+ *
+ * @return {string} The title text.
+ */
+const getSectionTitleText = (section) => {
+  const sectionTitle = section.querySelector('.PagePreferences__titleText');
+
+  return sectionTitle ? sectionTitle.textContent.trim() : '';
+};
+
+/**
+ * Get the description text for a settings section.
+ *
+ * @param {HTMLElement} section The section element.
+ *
+ * @return {string} The description text.
+ */
+const getSectionDescription = (section) => {
+  const nextElement = section.nextElementSibling;
+  if (nextElement?.classList?.contains('settings-subheader')) {
+    return nextElement.textContent.trim();
+  }
+
+  return '';
+};
+
+/**
+ * Get the top-level settings in a section.
+ *
+ * @param {HTMLElement} section The section element.
+ *
+ * @return {Array} The setting elements.
+ */
+const getSectionSettings = (section) => {
+  return [...section.querySelectorAll('.PagePreferences__sectionWrapper > .PagePreferences__settingsList')];
+};
+
+/**
+ * Get the searchable text for a setting, ignoring input values.
+ *
+ * @param {HTMLElement} setting The setting element.
+ *
+ * @return {string} The searchable text, lowercased.
+ */
+const getSettingSearchText = (setting) => {
+  const clonedSetting = setting.cloneNode(true);
+  clonedSetting.querySelectorAll('select, input, textarea, .multiSelect').forEach((element) => element.remove());
+
+  return clonedSetting.textContent.toLowerCase();
+};
+
+/**
+ * Show a section and mark its sidebar item as active.
+ *
+ * @param {HTMLElement} settingsPage The settings page element.
+ * @param {string}      sectionId    The ID of the section to show.
+ */
+const setActiveSettingsSection = (settingsPage, sectionId) => {
+  const sections = settingsPage.querySelectorAll('.mhui-settings-main > .PagePreferences__section');
+  const navItems = settingsPage.querySelectorAll('.mhui-settings-nav-item');
+
+  settingsPage.dataset.activeSection = sectionId;
+
+  sections.forEach((section) => {
+    section.classList.toggle('mhui-settings-section-active', section.id === sectionId);
+  });
+
+  navItems.forEach((navItem) => {
+    navItem.classList.toggle('active', navItem.dataset.sectionId === sectionId);
+  });
+};
+
+/**
+ * Add (or return the existing) empty state element for search results.
+ *
+ * @param {HTMLElement} settingsPage The settings page element.
+ *
+ * @return {HTMLElement} The empty state element.
+ */
+const addSearchEmptyState = (settingsPage) => {
+  let emptyState = settingsPage.querySelector('.mhui-settings-search-empty');
+  if (emptyState) {
+    return emptyState;
+  }
+
+  emptyState = makeElement('div', 'mhui-settings-search-empty');
+  makeElement('div', 'mhui-settings-search-empty-title', 'No matching settings', emptyState);
+  makeElement('div', 'mhui-settings-search-empty-copy', 'Try a module name, setting name, or a word from the description.', emptyState);
+
+  const main = settingsPage.querySelector('.mhui-settings-main');
+  if (main) {
+    main.prepend(emptyState);
+  }
+
+  return emptyState;
+};
+
+/**
+ * Filter the visible settings to those matching the search term.
+ *
+ * @param {HTMLElement} settingsPage The settings page element.
+ * @param {string}      searchTerm   The search term.
+ */
+const applySettingsSearch = (settingsPage, searchTerm) => {
+  const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+  const sections = settingsPage.querySelectorAll('.mhui-settings-main > .PagePreferences__section');
+  const navItems = settingsPage.querySelectorAll('.mhui-settings-nav-item');
+  const emptyState = addSearchEmptyState(settingsPage);
+  let matchingSections = 0;
+
+  settingsPage.classList.toggle('mhui-settings-search-active', Boolean(normalizedSearchTerm));
+
+  if (! normalizedSearchTerm) {
+    sections.forEach((section) => {
+      getSectionSettings(section).forEach((setting) => {
+        setting.style.display = '';
+      });
+    });
+    navItems.forEach((navItem) => navItem.classList.remove('search-match'));
+    emptyState.classList.remove('active');
+    setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection || sections[0]?.id);
+    return;
+  }
+
+  sections.forEach((section) => {
+    const sectionTitleMatches = getSectionTitleText(section).toLowerCase().includes(normalizedSearchTerm);
+    const sectionDescriptionMatches = getSectionDescription(section).toLowerCase().includes(normalizedSearchTerm);
+    let sectionMatches = sectionTitleMatches || sectionDescriptionMatches;
+
+    getSectionSettings(section).forEach((setting) => {
+      const settingMatches = sectionMatches || getSettingSearchText(setting).includes(normalizedSearchTerm);
+      setting.style.display = settingMatches ? '' : 'none';
+      sectionMatches = sectionMatches || settingMatches;
+    });
+
+    section.classList.toggle('mhui-settings-section-active', sectionMatches);
+    if (sectionMatches) {
+      matchingSections++;
+    }
+  });
+
+  navItems.forEach((navItem) => {
+    const section = settingsPage.querySelector(`#${navItem.dataset.sectionId}`);
+    navItem.classList.toggle('search-match', section?.classList?.contains('mhui-settings-section-active'));
+    navItem.classList.remove('active');
+  });
+
+  emptyState.classList.toggle('active', matchingSections === 0);
+};
+
+/**
+ * Reveal the section and setting referenced by the URL hash, if any.
+ *
+ * @param {HTMLElement} settingsPage The settings page element.
+ */
+const showSettingFromHash = (settingsPage) => {
+  const hash = window.location.hash.slice(1);
+  if (! hash) {
+    return;
+  }
+
+  const target = settingsPage.querySelector(`#${CSS.escape(hash)}`);
+  if (! target) {
+    return;
+  }
+
+  const section = target.closest('.mhui-settings-main > .PagePreferences__section');
+  if (! section) {
+    return;
+  }
+
+  setActiveSettingsSection(settingsPage, section.id);
+
+  if (target !== section) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.classList.add('mhui-settings-hash-target');
+    setTimeout(() => target.classList.remove('mhui-settings-hash-target'), 2000);
+  }
+};
+
+/**
+ * Wrap the settings sections in a sidebar-navigation browser layout.
+ */
+const createSettingsBrowser = () => {
+  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
+  if (! settingsPage || settingsPage.querySelector('.mhui-settings-browser')) {
+    return;
+  }
+
+  const sections = [...settingsPage.querySelectorAll('.PagePreferences__section')];
+  if (! sections.length) {
+    return;
+  }
+
+  const browser = makeElement('div', 'mhui-settings-browser');
+  const sidebar = makeElement('nav', 'mhui-settings-sidebar');
+  const sidebarTitle = makeElement('div', 'mhui-settings-sidebar-title', 'Categories');
+  const navList = makeElement('div', 'mhui-settings-nav-list');
+  const main = makeElement('div', 'mhui-settings-main');
+
+  sidebar.append(sidebarTitle);
+  sidebar.append(navList);
+  browser.append(sidebar);
+  browser.append(main);
+
+  sections.forEach((section, index) => {
+    const sectionDescription = getSectionDescription(section);
+    const nextElement = section.nextElementSibling;
+    if (nextElement?.classList?.contains('settings-subheader')) {
+      nextElement.remove();
+    }
+
+    const sectionTitle = getSectionTitleText(section);
+
+    section.classList.add('mhui-settings-browser-section');
+
+    const sectionIntro = section.querySelector('.mhui-settings-section-intro');
+    if (! sectionIntro) {
+      const newIntro = makeElement('div', 'mhui-settings-section-intro');
+      if (sectionDescription) {
+        makeElement('div', 'mhui-settings-section-description', sectionDescription, newIntro);
+      }
+
+      const wrapper = section.querySelector('.PagePreferences__sectionWrapper');
+      if (wrapper) {
+        wrapper.before(newIntro);
+      }
+    }
+
+    const navItem = makeElement('button', 'mhui-settings-nav-item');
+    navItem.type = 'button';
+    navItem.dataset.sectionId = section.id;
+    makeElement('span', 'mhui-settings-nav-label', sectionTitle, navItem);
+    navItem.addEventListener('click', () => {
+      const searchField = settingsPage.querySelector('.mhui-settings-header-search');
+      if (searchField) {
+        searchField.value = '';
+      }
+
+      applySettingsSearch(settingsPage, '');
+      setActiveSettingsSection(settingsPage, section.id);
+    });
+    navList.append(navItem);
+
+    main.append(section);
+
+    if (index === 0) {
+      settingsPage.dataset.activeSection = section.id;
+    }
+  });
+
+  const header = settingsPage.querySelector('.mhui-settings-header');
+  if (header) {
+    header.after(browser);
+  } else {
+    settingsPage.prepend(browser);
+  }
+
+  setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection);
+  showSettingFromHash(settingsPage);
+};
+
+/**
+ * Reveal the settings once the layout has been built, so the sections don't flash unstyled.
+ */
+const markSettingsReady = () => {
+  const settingsPages = document.querySelectorAll('.mousehuntHud-page-tabContent.mousehunt-improved-settings');
+  settingsPages.forEach((settingsPage) => settingsPage.classList.add('mhui-settings-ready'));
+};
+
+/**
+ * Add the header with the title, version, and search field.
+ */
 const addHeaderToSettings = () => {
   const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
   if (! settingsPage) {
@@ -508,106 +712,19 @@ const addHeaderToSettings = () => {
 
   const searchWrapper = makeElement('div', 'mhui-settings-header-wrapper');
 
-  const searchLabel = makeElement('label', 'mhui-settings-header-search-label', 'Search:');
-  searchWrapper.append(searchLabel);
-
   const searchField = makeElement('input', 'mhui-settings-header-search');
   searchField.type = 'text';
-  searchField.placeholder = 'Search settings…';
+  searchField.placeholder = 'Search settings, modules, descriptions…';
   searchField.autocomplete = 'off';
   searchField.autofocus = true;
   searchField.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-
-    if (searchTerm) {
-      settingsPage.classList.add('mhui-settings-search-active');
-    } else {
-      settingsPage.classList.remove('mhui-settings-search-active');
-    }
-
-    const settingSections = settingsPage.querySelectorAll('.PagePreferences__section');
-    settingSections.forEach((section) => {
-      const sectionTitle = section.querySelector('.PagePreferences__titleText').textContent.toLowerCase();
-      let sectionMatches = sectionTitle.includes(searchTerm);
-
-      const settings = section.querySelectorAll('.PagePreferences__sectionWrapper > .PagePreferences__settingsList');
-      settings.forEach((setting) => {
-        let settingText = setting.textContent.toLowerCase();
-        const settingTextInInput = setting.querySelectorAll('.multiSelect');
-        if (settingTextInInput && settingTextInInput.length) {
-          settingTextInInput.forEach((inputEl) => {
-            settingText = settingText.replace(inputEl.textContent.toLowerCase(), '');
-          });
-        }
-        const settingMatches = settingText.includes(searchTerm);
-
-        if (settingMatches) {
-          setting.style.display = '';
-          sectionMatches = true;
-        } else {
-          setting.style.display = 'none';
-        }
-      });
-
-      section.style.display = sectionMatches ? '' : 'none';
-    });
+    applySettingsSearch(settingsPage, e.target.value);
   });
   searchWrapper.append(searchField);
+
   header.append(searchWrapper);
 
   settingsPage.prepend(header);
-};
-
-const addTableOfContents = () => {
-  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
-  if (! settingsPage) {
-    return;
-  }
-
-  const existingToc = document.querySelector('.mhui-settings-toc-wrapper');
-  if (existingToc) {
-    return;
-  }
-
-  const tocWrapper = makeElement('div', 'mhui-settings-toc-wrapper');
-
-  const tocText = makeElement('div', 'mhui-settings-toc-text', 'Jump to:');
-  tocWrapper.append(tocText);
-
-  const tocList = makeElement('ul', 'mhui-settings-toc-list');
-
-  const sections = settingsPage.querySelectorAll('.PagePreferences__section');
-  sections.forEach((section) => {
-    const sectionId = section.id;
-    const sectionTitleEl = section.querySelector('.PagePreferences__titleText');
-    if (sectionId && sectionTitleEl) {
-      const sectionTitle = sectionTitleEl.textContent.trim();
-      const tocItem = makeElement('li', 'mhui-settings-toc-item');
-      makeMhButton({
-        text: sectionTitle,
-        className: 'mhui-settings-toc-link',
-        href: `#${sectionId}`,
-        callback: (e) => {
-          const targetSection = document.querySelector(`#${sectionId}`);
-          if (targetSection) {
-            e.preventDefault();
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        },
-        appendTo: tocItem,
-      });
-      tocList.append(tocItem);
-    }
-  });
-
-  tocWrapper.append(tocList);
-
-  const header = document.querySelector('.mhui-settings-header');
-  if (header) {
-    header.after(tocWrapper);
-  } else {
-    settingsPage.prepend(tocWrapper);
-  }
 };
 
 /**
@@ -651,13 +768,10 @@ const init = async () => {
   onEvent('mh-improved-setting-added-to-page', (module) => {
     // this is the last setting added, so we can run our final setup.
     if (module?.key === 'error-reporting') {
-      if (getFlag('settings-table-of-contents')) {
-        addTableOfContents();
-      }
-
+      createSettingsBrowser();
       highlightLocationHud();
       addAdvancedSettingsButtons();
-      addTogglesToSettings();
+      markSettingsReady();
     }
   });
 };
@@ -670,5 +784,4 @@ export default {
   type: 'advanced',
   alwaysLoad: true,
   load: init,
-  settings: settingsSettings,
 };

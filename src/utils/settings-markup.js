@@ -537,11 +537,9 @@ const addSettingOnce = (options) => {
   const description = options.description || '';
   const tab = 'mousehunt-improved-settings';
   const settingSettings = options.subSettings || null;
-  const moduleType = options.moduleType || null;
 
   // Make sure we have the container for our settings.
-  let container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
-  const originalContainer = container;
+  const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
   if (! container) {
     return false;
   }
@@ -552,39 +550,6 @@ const addSettingOnce = (options) => {
     description: options.module.description || '',
     subSetting: options.module.subSetting || false,
   };
-
-  let leftSide = container.querySelector('.PagePreferences__settingsLeft');
-  if (! leftSide) {
-    leftSide = makeElement('div', 'PagePreferences__settingsLeft');
-    container.append(leftSide);
-    container.classList.add('two-column');
-  }
-
-  let rightSide = container.querySelector('.PagePreferences__settingsRight');
-  if (! rightSide) {
-    rightSide = makeElement('div', 'PagePreferences__settingsRight');
-    container.append(rightSide);
-    container.classList.add('two-column');
-  }
-
-  if (moduleType && getSetting('experiments.new-settings-styles-columns', false)) {
-    switch (moduleType) {
-    case 'better':
-    case 'design':
-    case 'element-hiding':
-    case 'advanced':
-    case 'beta':
-      container = leftSide;
-      break;
-    case 'feature':
-    case 'location-hud':
-      container = rightSide;
-      break;
-    default:
-      container = originalContainer;
-      break;
-    }
-  }
 
   section.id = `${tab}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
 
@@ -687,6 +652,13 @@ const addSettingOnce = (options) => {
 
   const settingRowAction = makeElement('div', 'PagePreferences__settingAction');
 
+  // Titles can embed a links wrapper, which the browser parses into the title anchor. Move it into
+  // the action column so it sits below the control rather than nested inside another anchor.
+  const titleLinks = settingNameText.querySelector('.mhui-setting-title-links');
+  if (titleLinks) {
+    titleLinks.remove();
+  }
+
   if (settingSettings) {
     if (settingSettings.type === 'select' || settingSettings.type === 'multi-select') {
       settingRowAction.append(makeSettingRowSelect({ key, tab, defaultValue, settingSettings }));
@@ -703,6 +675,11 @@ const addSettingOnce = (options) => {
     }
   } else {
     settingRowAction.append(makeSettingToggle({ key, defaultValue, tab, settings }));
+  }
+
+  if (titleLinks) {
+    settingRowAction.classList.add('PagePreferences__settingAction-hasLinks');
+    settingRowAction.append(titleLinks);
   }
 
   settingRow.append(settingRowLabel);
@@ -779,7 +756,6 @@ const addSettingForModule = async (module) => {
       ! (submodule.hiddenUnlessEnabled && ! getSetting(submodule.id, false) && ! getFlag('show-deprecated-modules'))
     ) {
       moduleSettingRow = await addSetting({
-        moduleType: module.id,
         name: submodule.name,
         id: submodule.id,
         group: submodule.group,
@@ -797,7 +773,6 @@ const addSettingForModule = async (module) => {
 
       for (const subSettings of subSettingsGroup) {
         const subSettingRow = await addSetting({
-          moduleType: module.id,
           name: subSettings.title,
           id: subSettings.id,
           group: submodule.group || false,
@@ -818,6 +793,29 @@ const addSettingForModule = async (module) => {
 
     doEvent('mh-improved-settings-added', { module });
   }
+};
+
+/**
+ * Flatten a multi-select setting's options, pulling the options out of any groups, so that they can
+ * be used as preview items.
+ *
+ * @param {Array} options The options for the setting.
+ * @param {Array} exclude The option values to leave out.
+ *
+ * @return {Array} The flattened options.
+ */
+const flattenSettingOptions = (options, exclude = ['default']) => {
+  return options.reduce((acc, option) => {
+    if (Array.isArray(option.options)) {
+      return [...acc, ...option.options];
+    }
+
+    if (option.value && option.name) {
+      return [...acc, option];
+    }
+
+    return acc;
+  }, []).filter((option) => ! exclude.includes(option.value));
 };
 
 const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview = true, previewCallback = () => {}, itemPreviewCallback = null }) => {
@@ -844,8 +842,8 @@ const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview 
         <div class="name">${gradient.name}</div>
         ${hasItemPreview ? itemPreviewCallback(gradient) : ''}
         <div class="controls">
-          ${preview ? `<div class="mousehuntActionButton lightBlue mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>` : ''}
-          <div class="mousehuntActionButton mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Select</span></div>
+          ${preview ? `<div class="mousehuntActionButton lightBlue small mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>` : ''}
+          <div class="mousehuntActionButton small mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Select</span></div>
         </div>
       </div>
     `).join('');
@@ -903,5 +901,6 @@ export {
   addSettingForModule,
   addSetting,
   addSettingsTab,
-  addSettingPreview
+  addSettingPreview,
+  flattenSettingOptions
 };
