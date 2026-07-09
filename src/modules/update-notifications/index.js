@@ -93,11 +93,10 @@ const makeVersionMarkup = (summary, showVersion) => {
  * @param {boolean} force Whether to force the popup to show.
  */
 const showUpdateSummary = async (from = '0.0.0', force = false) => {
-  const isMinor = from.split('.').slice(0, 2).join('.') === mhImprovedVersion.split('.').slice(0, 2).join('.');
-
   // When forced, show everything we ship rather than nothing.
   const summaries = getSummariesSince(force ? '0.0.0' : from);
-  if ((isMinor || ! summaries.length) && ! force) {
+
+  if (! summaries.length && ! force) {
     return;
   }
 
@@ -148,6 +147,9 @@ const init = async () => {
 
   onEvent('mh-improved-updated', showUpdateSummary);
   onEvent('mh-improved-update-summary', () => showUpdateSummary('0.0.0', true));
+
+  window.mhuiDebug = window.mhuiDebug || {};
+  window.mhuiDebug.showUpdateSummary = showUpdateSummary;
 };
 
 /**

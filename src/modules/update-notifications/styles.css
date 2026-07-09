@@ -112,10 +112,6 @@ a.mhui-update-banner-button {
   font-weight: 700;
   color: #693312;
   text-align: center;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: #c1915a;
-  text-underline-offset: 10px;
 }
 
 .mh-improved-update-summary h2 {
@@ -137,7 +133,6 @@ a.mhui-update-banner-button {
 .mh-improved-update-summary-version + .mh-improved-update-summary-version {
   padding-top: 15px;
   margin-top: 15px;
-  border-top: 1px solid #c1915a;
 }
 
 .mh-improved-update-summary-version-title {

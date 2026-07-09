@@ -62,3 +62,7 @@
   text-align: right;
   text-decoration: underline;
 }
+
+.message.notification.mh-improved-gift-link {
+  padding-bottom: 3px;
+}

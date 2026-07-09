@@ -17,6 +17,11 @@ const STATE_KEY = 'mh-improved-gift-links-in-inbox-state-v1';
 const TAB_TYPE = 'gift_links';
 const TAB_NAME = 'Gift Links';
 
+/**
+ * How old a gift link can be and still count as new.
+ */
+const NEW_GIFT_MAX_AGE = 5 * 24 * 60 * 60 * 1000;
+
 let _togglePopup = null;
 let didBindClicks = false;
 let cachedLinks = [];
@@ -72,6 +77,24 @@ const markState = (code, bucket, value) => {
  */
 const isInState = (code, bucket) => {
   return Boolean(getState()[bucket]?.[code]);
+};
+
+/**
+ * Whether a gift link should count as new: unclaimed, and recent enough to be
+ * worth badging the inbox tab for.
+ *
+ * A link with no timestamp can't be aged, so it's treated as recent.
+ *
+ * @param {Object} link The gift link.
+ *
+ * @return {boolean} Whether the link counts as new.
+ */
+const isNewGift = (link) => {
+  if (isInState(link.code, 'claimed')) {
+    return false;
+  }
+
+  return ! link.timestamp || (Date.now() - link.timestamp) <= NEW_GIFT_MAX_AGE;
 };
 
 /**
@@ -259,7 +282,7 @@ const buildMessage = (link) => {
   const claimed = isInState(link.code, 'claimed');
 
   const message = makeElement('div', ['message', 'notification', 'mh-improved-gift-link']);
-  if (! claimed) {
+  if (isNewGift(link)) {
     message.classList.add('new');
   }
 
@@ -533,7 +556,7 @@ const refreshGiftTabState = () => {
 /**
  * Render the gift links tab and its messages into the open inbox.
  *
- * @return {Promise<number>} The number of new, unclaimed gift links rendered.
+ * @return {Promise<number>} The number of new gift links rendered.
  */
 const renderGiftTab = async () => {
   const tabsBar = document.querySelector('#messengerUINotification .notificationHeader .tabs');
@@ -586,7 +609,7 @@ const renderGiftTab = async () => {
 
   refreshGiftTabState();
 
-  return links.filter((link) => ! isInState(link.code, 'claimed')).length;
+  return links.filter((link) => isNewGift(link)).length;
 };
 
 /**

@@ -5,6 +5,8 @@
 - Better UI: Updated Inbox tab order
 - Better Maps: Updated map sorting groups for Cerulean Skyport and Corsair maps
 - Journal Progress Log Tracker: Progress logs are now tracked when on pages beyond the first page
+- Gifts in Inbox: Gift links more than five days old no longer count toward the tab's unread badge
+- Minor style tweaks
 
 ## Version 0.98.0
 
