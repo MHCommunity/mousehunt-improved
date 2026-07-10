@@ -19,16 +19,15 @@
   color: var(--d-text-muted);
   background-color: var(--d-bg);
   border-color: var(--d-border);
-  border-right: none;
 }
 
 .mh-dark #messengerUINotification .tabs a:hover,
 .mh-dark #messengerUINotification .tabs a.active {
-  background-color: var(--d-alt);
+  background-color: var(--d-action);
 }
 
 .mh-dark #messengerUINotification .tabs a.active .arrow {
-  border-left-color: var(--d-alt);
+  border-left-color: var(--d-action);
 }
 
 .mh-dark .notificationMessageList .message:nth-child(even) {
@@ -37,7 +36,7 @@
 }
 
 .mh-dark .notificationMessageList .message:nth-child(odd) {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-alt);
   border-color: var(--d-border);
 }
 
@@ -82,4 +81,13 @@
 
 .mh-dark .notificationMessageList .news.message .messageText {
   color: var(--d-text);
+}
+
+.mh-dark .notificationMessageList .empty {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .notificationMessageList .message {
+  border-left: none;
 }

@@ -256,7 +256,7 @@
 }
 
 .mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:hover,
-.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
+.mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
   background: linear-gradient(#dcf7ff 45%, #8adff1 55%);
 }
 
@@ -270,10 +270,11 @@
   box-shadow: 0 10px 30px #cdb495 inset;
 }
 
-.mh-dark .hunterInfoView-treasureMaps-left-currentMap-content-title {
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-treasureMaps-left-currentMap-content-title {
   color: #615d5d;
 }
 
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail,
 .mh-dark-mode .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail {
   color: #8e5d8b;
 }

@@ -82,3 +82,7 @@
 .message.notification.mh-improved-gift-link {
   padding-bottom: 3px;
 }
+
+#messengerUINotification .tabs a[data-tab="gift_links"].empty {
+  text-decoration: none;
+}

@@ -84,7 +84,7 @@
 }
 
 .mh-dark #friend-data-wrapper .friendsPage-friendRow-titleBar-name {
-  color: var(--d-text);
+  color: var(--d-text-dark);
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {

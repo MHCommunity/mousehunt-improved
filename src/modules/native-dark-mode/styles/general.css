@@ -202,6 +202,10 @@ body.mh-dark {
   border-color: var(--d-yellow-dark);
 }
 
+.mh-dark .mousehuntPage-content .hunterInfoView-wrapper textarea:hover {
+  border-color: var(--d);
+}
+
 .mh-dark .mousehunt-improved-error p {
   color: var(--d-red-dark);
 }

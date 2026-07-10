@@ -269,3 +269,11 @@
 .mh-dark .inventoryPage-confirmPopup-itemRow-description {
   color: var(--d-text);
 }
+
+.mh-dark .inventoryPage-item.small .tooltip .tooltipContent {
+  color: var(--d-text);
+}
+
+.mh-dark .inventoryPage-item.small:hover .tooltip .description {
+  color: var(--d-text-muted);
+}
