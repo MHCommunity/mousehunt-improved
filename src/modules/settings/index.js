@@ -680,7 +680,28 @@ const createSettingsBrowser = () => {
  */
 const markSettingsReady = () => {
   const settingsPages = document.querySelectorAll('.mousehuntHud-page-tabContent.mousehunt-improved-settings');
-  settingsPages.forEach((settingsPage) => settingsPage.classList.add('mhui-settings-ready'));
+  settingsPages.forEach((settingsPage) => {
+    settingsPage.classList.add('mhui-settings-ready');
+    settingsPage.querySelector('.mhui-settings-loading')?.remove();
+  });
+};
+
+/**
+ * Add a loading indicator while settings are registering.
+ */
+const addSettingsLoadingIndicator = () => {
+  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
+  if (! settingsPage || settingsPage.querySelector('.mhui-settings-loading')) {
+    return;
+  }
+
+  const loading = makeElement('div', 'mhui-settings-loading');
+  const image = makeElement('img', 'mhui-settings-loading-image');
+  image.src = 'https://i.mouse.rip/mouse-loading.gif';
+  image.alt = 'Loading settings';
+  loading.append(image);
+
+  settingsPage.prepend(loading);
 };
 
 /**
@@ -751,6 +772,7 @@ const init = async () => {
   addMhImprovedIconToMenu();
 
   moveTabToEnd();
+  addSettingsLoadingIndicator();
   addHeaderToSettings();
 
   onEvent('mh-improved-setting-added-to-page', (module) => {

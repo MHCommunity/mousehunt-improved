@@ -19,6 +19,18 @@
   padding: 0;
 }
 
+/* Loading state */
+.mhui-settings-loading {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+}
+
+.mhui-settings-loading-image {
+  display: block;
+  max-width: 100%;
+}
+
 /* Header */
 .mhui-settings-header {
   display: grid;
