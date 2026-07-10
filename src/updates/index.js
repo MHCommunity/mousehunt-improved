@@ -1,5 +1,7 @@
 import {
   addBodyClass,
+  addStyles,
+  createPopup,
   debuglog,
   doEvent,
   getSetting,
@@ -10,6 +12,8 @@ import {
   showLoadingPopup,
   updateCaches
 } from '@utils';
+
+import errorPopupStyles from './error-popup.css';
 
 import * as imported from './versions/*.js'; // eslint-disable-line import/no-unresolved
 const versionUpdates = imported;
@@ -91,10 +95,76 @@ const doVersionUpdates = async (updates) => {
 };
 
 /**
+ * Show the update error popup with the error details and recovery actions.
+ *
+ * @param {Error}  error           The error that occurred.
+ * @param {string} previousVersion The version being updated from.
+ * @param {string} newVersion      The version being updated to.
+ * @param {Array}  updates         The version updates that were pending.
+ */
+const showUpdateError = (error, previousVersion, newVersion, updates) => {
+  const details = (error?.message || String(error))
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+
+  const popup = createPopup({
+    title: `Error updating MouseHunt Improved to v${newVersion}`,
+    content: `<div class="mh-improved-update-error">
+      <p>Something went wrong while updating. You can retry the update, or skip it and continue with the new version.</p>
+      <pre>${details}</pre>
+      <div class="mh-improved-update-error-buttons">
+        <a href="#" id="mh-improved-update-retry" class="mousehuntActionButton"><span>Retry update</span></a>
+        <a href="#" id="mh-improved-update-skip" class="mousehuntActionButton lightBlue"><span>Skip update</span></a>
+      </div>
+      <p class="mh-improved-update-error-help">If this keeps happening, please <a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">report it on GitHub</a>.</p>
+    </div>`,
+    className: 'mh-improved-update-error-popup',
+    hasCloseButton: true,
+  });
+
+  if (! popup) {
+    showLoadingPopup(`Error updating MouseHunt Improved to v${newVersion}. Please try refreshing the page.`);
+    return;
+  }
+
+  addStyles(errorPopupStyles, 'mh-improved-update-error-styles');
+
+  const retryButton = document.querySelector('#mh-improved-update-retry');
+  retryButton?.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Revert the saved version so the update re-runs on the reload.
+    saveSetting('mh-improved-version', previousVersion);
+    window.location.reload();
+  });
+
+  const skipButton = document.querySelector('#mh-improved-update-skip');
+  skipButton?.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Mark the pending migrations as completed so they aren't retried on the
+    // next release either.
+    const updatesCompleted = getSetting('updates-completed', []);
+    for (const pendingUpdate of updates) {
+      if (! updatesCompleted.includes(pendingUpdate.version)) {
+        updatesCompleted.push(pendingUpdate.version);
+      }
+    }
+
+    saveSetting('updates-completed', updatesCompleted);
+    saveSetting('mh-improved-version', newVersion);
+    window.location.reload();
+  });
+};
+
+/**
  * Run the update migration.
  *
  * @param {string} previousVersion The previous version.
  * @param {string} newVersion      The new version.
+ *
+ * @return {Promise<boolean>} Whether the update completed successfully.
  */
 const update = async (previousVersion, newVersion) => {
   debuglog('update-migration', `Updating from ${previousVersion} to ${newVersion}`);
@@ -134,7 +204,7 @@ const update = async (previousVersion, newVersion) => {
     }
 
     if (isFreshInstall) {
-      return;
+      return true;
     }
 
     popup = showLoadingPopup(`MouseHunt Improved has been updated to v${newVersion}!`);
@@ -151,14 +221,17 @@ const update = async (previousVersion, newVersion) => {
     restoreSettingsBackup();
     saveSetting('mh-improved-version', newVersion);
 
-    // Show the error to the user.
-    showLoadingPopup('Error updating MouseHunt Improved. Please try refreshing the page.');
+    popup?.hide?.();
+    showUpdateError(error, previousVersion, newVersion, updates);
+    setGlobal('mh-improved-updating', false);
 
-    throw error;
+    return false;
   }
 
   setGlobal('mh-improved-updating', false);
   console.log(`Updated MouseHunt Improved to v${newVersion}`); // eslint-disable-line no-console
+
+  return true;
 };
 
 /**
@@ -166,11 +239,20 @@ const update = async (previousVersion, newVersion) => {
  *
  * @param {string} previousVersion The previous version.
  * @param {string} newVersion      The new version.
+ *
+ * @return {Promise<boolean>} Whether the update completed successfully.
  */
 export default async (previousVersion, newVersion) => {
   if (previousVersion !== newVersion) {
     debuglog('update-migration', `Previous version: ${previousVersion}`);
-    await update(previousVersion, newVersion);
+
+    const updated = await update(previousVersion, newVersion);
+    if (! updated) {
+      return false;
+    }
+
     doEvent('mh-improved-updated', newVersion);
   }
+
+  return true;
 };

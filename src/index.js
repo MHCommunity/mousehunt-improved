@@ -238,12 +238,34 @@ const init = async () => {
         extensionBaseUrl.hostname,
       ],
     });
+
+    // The IndexedDB layer recovers from errors instead of throwing, so report
+    // its repairs and final failures as warnings to keep visibility into how
+    // often they happen. Deduped per page load per database and error type.
+    const reportedDatabaseIssues = new Set();
+    window.addEventListener('mh-improved-db-issue', (event) => {
+      const { context, databaseName, errorName, errorMessage } = event?.detail || {};
+
+      const key = `${context}:${databaseName}:${errorName}`;
+      if (reportedDatabaseIssues.has(key)) {
+        return;
+      }
+
+      reportedDatabaseIssues.add(key);
+      Sentry.captureMessage(
+        `IndexedDB ${context} for "${databaseName}"${errorName ? `: ${errorName}` : ''}${errorMessage ? `: ${errorMessage}` : ''}`,
+        'warning'
+      );
+    });
   }
 
   // If we're updating, do the update before loading the modules.
   const previousVersion = getSetting('mh-improved-version', '0.0.0');
   if (previousVersion !== mhImprovedVersion) {
-    await update(previousVersion, mhImprovedVersion);
+    const updated = await update(previousVersion, mhImprovedVersion);
+    if (! updated) {
+      return;
+    }
   }
 
   migrateBaseItemCountersSetting();
