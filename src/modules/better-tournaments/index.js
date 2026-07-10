@@ -8,8 +8,34 @@ import {
   onRequest
 } from '@utils';
 
+import {
+  applyCachedTournamentName,
+  getTournamentId,
+  getTournamentListingDates,
+  parseTournamentMinutes,
+  parseTournamentRank
+} from './helpers';
 import settings from './settings';
 import styles from './styles.css';
+
+let scoreboardObserver = null;
+let tournamentListObserver = null;
+const tournamentNames = new Map();
+
+const tournamentRowSelector = '.tournamentPage-tournamentRow.tournamentPage-tournamentData';
+
+/**
+ * Restore the full tournament name after the game renders its short name.
+ */
+const restoreTournamentName = () => {
+  const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
+  const hud = activeTourney?.closest('#tournamentStatusHud');
+  if (! activeTourney || ! hud || hud.classList.contains('trainStationHUD')) {
+    return;
+  }
+
+  applyCachedTournamentName(activeTourney, tournamentNames);
+};
 
 /**
  * Update the tournament HUD.
@@ -20,11 +46,19 @@ const updateTournamentHud = async () => {
     return;
   }
 
-  // Get the ID from the href.
-  const tourneyId = activeTourney.href.split('=')[1];
+  const hud = activeTourney.closest('#tournamentStatusHud');
+  if (! hud || hud.classList.contains('trainStationHUD')) {
+    return;
+  }
+
+  const tourneyId = getTournamentId(activeTourney.href);
   if (! tourneyId) {
     return;
   }
+
+  // If the game has just rendered its short name, restore the cached full name
+  // synchronously while the rest of the tournament data refreshes.
+  applyCachedTournamentName(activeTourney, tournamentNames);
 
   const tourneyData = await doRequest('managers/ajax/pages/page.php', {
     page_class: 'Tournament',
@@ -35,16 +69,31 @@ const updateTournamentHud = async () => {
     return;
   }
 
-  if (tourneyData?.page?.name) {
-    activeTourney.innerText = tourneyData?.page?.name;
+  if (tourneyData.page.name) {
+    tournamentNames.set(tourneyId, tourneyData.page.name);
   }
 
+  // The request can finish after the game has replaced the HUD or moved the
+  // player into a different tournament. Never update that newer HUD with stale data.
+  const currentTourney = document.querySelector('#tournamentStatusHud > a.name');
+  if (
+    currentTourney !== activeTourney ||
+    ! activeTourney.isConnected ||
+    getTournamentId(currentTourney?.href) !== tourneyId
+  ) {
+    return;
+  }
+
+  applyCachedTournamentName(activeTourney, tournamentNames);
+
   if (tourneyData.page?.is_active) {
-    const rank = document.querySelector('.tournamentStatusHud .rank');
-    if (rank) {
+    const rank = hud.querySelector(':scope > .rank');
+    const scoreboardRows = tourneyData.page.scoreboard?.rows ?? [];
+    if (rank && scoreboardRows.length) {
+      rank.querySelector(':scope > .scoreHover')?.remove();
       const scoreHover = makeElement('div', 'scoreHover');
 
-      tourneyData.page.scoreboard.rows.forEach((scoreboard) => {
+      scoreboardRows.forEach((scoreboard) => {
         const scoreRow = makeElement('div', 'scoreRow');
 
         makeElement('div', 'scoreRank', scoreboard.rank, scoreRow);
@@ -54,17 +103,11 @@ const updateTournamentHud = async () => {
 
         const icon = makeElement('div', 'scoreIcon');
 
-        const iconLayer1 = makeElement('div', 'scoreIconLayer1');
-        iconLayer1.style.backgroundImage = `url(${scoreboard.emblem.layers[0].image})`;
-        icon.append(iconLayer1);
-
-        const iconLayer2 = makeElement('div', 'scoreIconLayer2');
-        iconLayer2.style.backgroundImage = `url(${scoreboard.emblem.layers[1].image})`;
-        icon.append(iconLayer2);
-
-        const iconLayer3 = makeElement('div', 'scoreIconLayer3');
-        iconLayer3.style.backgroundImage = `url(${scoreboard.emblem.layers[2].image})`;
-        icon.append(iconLayer3);
+        (scoreboard.emblem?.layers ?? []).forEach((layer, index) => {
+          const iconLayer = makeElement('div', `scoreIconLayer${index + 1}`);
+          iconLayer.style.backgroundImage = `url(${layer.image})`;
+          icon.append(iconLayer);
+        });
 
         teamWrapper.append(icon);
 
@@ -80,12 +123,13 @@ const updateTournamentHud = async () => {
       rank.append(scoreHover);
     }
 
-    const points = document.querySelector('.tournamentStatusHud .score');
-    if (points) {
+    const points = hud.querySelector(':scope > .score');
+    const mouseGroups = tourneyData.page.mouse_groups ?? [];
+    if (points && mouseGroups.length) {
+      points.querySelector(':scope > .pointsHover')?.remove();
       const pointsHover = makeElement('div', 'pointsHover');
 
-      // reverse the tourneyData.mouse_groups array and loop through it.
-      tourneyData.page.mouse_groups.reverse().forEach((mouseGroup) => {
+      [...mouseGroups].reverse().forEach((mouseGroup) => {
         const pointsRow = makeElement('div', 'pointsRow');
 
         makeElement('div', 'pointsTotal', mouseGroup.name, pointsRow);
@@ -112,11 +156,13 @@ const updateTournamentHud = async () => {
       points.append(pointsHover);
     }
   } else {
-    const members = document.querySelector('.tournamentStatusHud a.teamMembers');
-    if (members) {
+    const members = hud.querySelector(':scope > a.teamMembers');
+    const tournamentMembers = tourneyData.page.members ?? [];
+    if (members && tournamentMembers.length) {
+      members.querySelector(':scope > .memberHover')?.remove();
       const memberHover = makeElement('div', 'memberHover');
 
-      tourneyData.page.members.forEach((member) => {
+      tournamentMembers.forEach((member) => {
         const memberRow = makeElement('div', 'memberRow');
 
         if (member.is_empty) {
@@ -141,19 +187,11 @@ const updateTournamentHud = async () => {
 /**
  * Update the tournament list.
  */
-const updateTournamentList = async () => {
-  const beginsRows = document.querySelectorAll('.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(3)');
-  if (! beginsRows.length) {
+const updateTournamentList = () => {
+  const tournamentRows = document.querySelectorAll(tournamentRowSelector);
+  if (! tournamentRows.length) {
     return;
   }
-
-  const durationRows = document.querySelectorAll('.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(4)');
-  if (! durationRows.length) {
-    return;
-  }
-
-  // For each beginsRow, we want to grab the innerText, convert it from '1 hour 54 minutes' to a number of minutes, then add that to the current date and output it as the date in a child element,
-  // and then take the durationRow and add it to the matching beginsRow's date and output it as the date in a child element.
 
   const now = new Date();
   const nowTime = now.getTime();
@@ -166,56 +204,70 @@ const updateTournamentList = async () => {
     minute: 'numeric',
   };
 
-  beginsRows.forEach((beginsRow, i) => {
-    const beginsText = beginsRow.innerText;
-    const beginsParts = beginsText.split(' ');
-    const beginsMinutes = beginsParts.reduce((acc, part) => {
-      if (part === 'minutes' || part === 'minute') {
-        return acc + Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10);
-      }
+  tournamentRows.forEach((row) => {
+    const valueColumns = row.querySelectorAll(':scope > .tournamentPage-tournament-column.value');
+    const statusColumn = valueColumns[0];
+    const durationColumn = valueColumns[1];
+    if (! statusColumn || ! durationColumn) {
+      return;
+    }
 
-      if (part === 'hours' || part === 'hour') {
-        return acc + (Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 60);
-      }
+    // Make repeated navigation/list refresh callbacks idempotent and parse only
+    // the relative time supplied by the game.
+    statusColumn.querySelector(':scope > .tournament-normal-time')?.remove();
+    durationColumn.querySelector(':scope > .tournament-normal-time')?.remove();
 
-      if (part === 'days' || part === 'day') {
-        return acc + (Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 1440);
-      }
-
-      return acc;
-    }, 0);
+    const countdownMinutes = parseTournamentMinutes(row.dataset.timer ?? statusColumn.textContent);
+    const durationHours = Number.parseFloat(row.dataset.duration);
+    const durationMinutes = Number.isFinite(durationHours) ? durationHours * 60 : parseTournamentMinutes(durationColumn.textContent);
+    const dates = getTournamentListingDates(row.dataset.status, nowTime, countdownMinutes, durationMinutes);
+    if (! dates) {
+      return;
+    }
 
     const inlineOrHover = getSetting('better-tournaments.time-inline', true) ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
 
-    const beginsDate = new Date(nowTime + (beginsMinutes * 60000));
-    const beginsDateString = beginsDate.toLocaleString('en-US', dateOptions);
+    const statusDateClass = 'pending' === row.dataset.status ? 'tournament-begins-date' : 'tournament-end-date';
+    const statusDateEl = makeElement('div', ['tournament-normal-time', statusDateClass, inlineOrHover], dates.statusDate.toLocaleString('en-US', dateOptions));
+    statusColumn.append(statusDateEl);
 
-    const beginsDateEl = makeElement('div', ['tournament-normal-time', 'tournament-begins-date', inlineOrHover], beginsDateString);
-    beginsRow.append(beginsDateEl);
+    if (dates.durationDate) {
+      const durationDateClass = 'pending' === row.dataset.status ? 'tournament-end-date' : 'tournament-begins-date';
+      const durationDateEl = makeElement('div', ['tournament-normal-time', durationDateClass, inlineOrHover], dates.durationDate.toLocaleString('en-US', dateOptions));
+      durationColumn.append(durationDateEl);
+    }
+  });
+};
 
-    const durationText = durationRows[i].innerText;
-    const durationParts = durationText.split(' ');
-    const durationMinutes = durationParts.reduce((acc, part) => {
-      if (part === 'minutes' || part === 'minute') {
-        return acc + Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10);
-      }
+/**
+ * Watch tournament listings because individual tabs can render after the
+ * initial page navigation and replace their rows without another navigation.
+ */
+const observeTournamentList = () => {
+  tournamentListObserver?.disconnect();
+  tournamentListObserver = null;
 
-      if (part === 'hours' || part === 'hour') {
-        return acc + (Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 60);
-      }
+  const listing = document.querySelector('.tournamentPage-viewState.listing');
+  if (! listing) {
+    return;
+  }
 
-      if (part === 'days' || part === 'day') {
-        return acc + (Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 1440);
-      }
+  updateTournamentList();
 
-      return acc;
-    }, 0);
+  tournamentListObserver = new MutationObserver((mutations) => {
+    const hasNewRows = mutations.some((mutation) => {
+      return [...mutation.addedNodes].some((node) => {
+        return node.matches?.(tournamentRowSelector) || node.querySelector?.(tournamentRowSelector);
+      });
+    });
 
-    const durationDate = new Date(beginsDate.getTime() + (durationMinutes * 60000));
-    const durationDateString = durationDate.toLocaleString('en-US', dateOptions);
-
-    const durationDateEl = makeElement('div', ['tournament-normal-time', 'tournament-end-date', inlineOrHover], durationDateString);
-    durationRows[i].append(durationDateEl);
+    if (hasNewRows) {
+      updateTournamentList();
+    }
+  });
+  tournamentListObserver.observe(listing, {
+    childList: true,
+    subtree: true,
   });
 };
 
@@ -223,26 +275,44 @@ const updateTournamentList = async () => {
  * Update the scoreboard.
  */
 const updateScoreboard = () => {
-  const getRanks = document.querySelectorAll('.tournament-team-rank:not(.updated)');
+  const getRanks = document.querySelectorAll('.scoreboardTableView[data-category="tournament"] .tournament-team-rank:not(.updated)');
   getRanks.forEach((rank) => {
-    rank.classList.add('updated');
-
-    // rank.innerText is something like 2314th or 2nd or 323rd, so we want to regex out the number, add commas, and then add the suffix back on.
-    const rankParts = rank.innerText.split(/(\d+)/);
-    if (rankParts.length !== 3) {
+    const parsedRank = parseTournamentRank(rank.innerText);
+    if (! parsedRank) {
       return;
     }
 
-    const rankNum = Number.parseInt(rankParts[1], 10);
+    rank.classList.add('updated');
 
-    if (rankNum <= 25) {
+    if (parsedRank.rank <= 25) {
       rank.classList.add('rank-first-page');
     }
 
-    rank.setAttribute('data-rank', rankNum);
-    rank.setAttribute('data-rank-page', Math.ceil(rankNum / 25));
+    rank.setAttribute('data-rank', parsedRank.rank);
+    rank.setAttribute('data-rank-page', Math.ceil(parsedRank.rank / 25));
 
-    rank.innerText = rankNum.toLocaleString('en-US') + rankParts[2];
+    rank.innerText = parsedRank.rank.toLocaleString('en-US') + parsedRank.suffix;
+  });
+};
+
+/**
+ * Watch the tournament scoreboard because the game can replace cached pages
+ * without making another request.
+ */
+const observeScoreboard = () => {
+  scoreboardObserver?.disconnect();
+  scoreboardObserver = null;
+
+  const scoreboard = document.querySelector('.scoreboardTableView[data-category="tournament"]');
+  if (! scoreboard) {
+    return;
+  }
+
+  updateScoreboard();
+  scoreboardObserver = new MutationObserver(updateScoreboard);
+  scoreboardObserver.observe(scoreboard, {
+    childList: true,
+    subtree: true,
   });
 };
 
@@ -253,16 +323,24 @@ const init = () => {
   addStyles(styles, 'better-tournaments');
   setTimeout(updateTournamentHud, 1000);
 
+  onEvent('ajax_response', restoreTournamentName);
   onEvent('tournament_status_change', updateTournamentHud);
-  onNavigation(updateTournamentList, {
+  onNavigation(restoreTournamentName);
+  onNavigation(observeTournamentList, {
     page: 'tournament',
   });
 
-  onNavigation(updateScoreboard, {
+  onNavigation(observeScoreboard, {
     page: 'scoreboards',
   });
 
-  onRequest('pages/scoreboards.php', updateScoreboard);
+  onRequest('users/tournament.php', (_response, request) => {
+    if ('get_tournament_listing' === request?.action) {
+      setTimeout(observeTournamentList);
+    }
+  });
+
+  onRequest('pages/scoreboards.php', () => setTimeout(updateScoreboard));
 };
 
 /**
