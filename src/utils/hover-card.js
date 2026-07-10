@@ -1,4 +1,5 @@
 import { makeElement } from './elements';
+import { onNavigation } from './events';
 
 /**
  * Extract the type/id encoded in a journal link, from either its `onclick`
@@ -87,6 +88,10 @@ const createHoverCard = ({
       wrapper.remove();
     }
   };
+
+  // The card is normally removed on mouseleave, but if the page changes while
+  // it's open, the link is gone and the card would be orphaned.
+  onNavigation(hide, { onLoad: false });
 
   /**
    * Attach the hover behavior to a link.
