@@ -10,6 +10,7 @@
     "theme_birthday_fifteen",
     "theme_birthday_sixteen",
     "theme_birthday_seventeen",
+    "theme_birthday_eighteen",
     "theme_party_charm",
     "theme_super_brie_factory"
   ],
@@ -25,7 +26,8 @@
     "theme_winter_hunt_2020",
     "theme_winter_hunt_2021",
     "theme_winter_hunt_2022",
-    "theme_winter_hunt_2024"
+    "theme_winter_hunt_2024",
+    "theme_winter_hunt_2025"
   ],
   "halloween": [
     "theme_admirals_ship",
@@ -46,7 +48,9 @@
     "theme_lny_2021",
     "theme_lny_2022",
     "theme_lny_2023",
-    "theme_lny_2024"
+    "theme_lny_2024",
+    "theme_lny_2025",
+    "theme_lny_2026"
   ],
   "spring_egg_hunt": [
     "theme_spring_hunt_2021"
