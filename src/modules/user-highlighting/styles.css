@@ -32,3 +32,21 @@
 .mh-improved-highlight-user #tipButton {
   right: 155px;
 }
+
+.mh-improved-discord-ban-warning {
+  margin: 10px 0;
+}
+
+.mh-improved-discord-ban-warning-note {
+  margin-top: 5px;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.hunterInfoView-wrapper.mh-improved-discord-banned .friendsProfileView-container {
+  opacity: 0.5;
+}
+
+.hunterInfoView-wrapper.mh-improved-discord-banned .friendsProfileView-container:hover {
+  opacity: 1;
+}

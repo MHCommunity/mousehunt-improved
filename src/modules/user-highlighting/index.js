@@ -30,6 +30,9 @@ const getUserHighlightingShield = (type) => {
   case 'supporter':
     text = 'MH Improved Supporter';
     break;
+  case 'banned':
+    text = 'Banned User';
+    break;
   }
 
   const wrapper = makeElement('div', ['blackTooltip', 'mh-improved-user-shield']);
@@ -37,6 +40,34 @@ const getUserHighlightingShield = (type) => {
   makeElement('span', 'blackTooltiptext hunterInfoView-verifiedUser', text, wrapper);
 
   return wrapper;
+};
+
+/**
+ * Add a warning to the profile of a user banned from the MouseHunt Discord server.
+ *
+ * @param {string} reason The reason for the ban.
+ */
+const addDiscordBanWarning = (reason) => {
+  const existingWarning = document.querySelector('.mh-improved-discord-ban-warning');
+  if (existingWarning) {
+    existingWarning.remove();
+  }
+
+  const idCardBlock = document.querySelector('.hunterInfoView-left .hunterInfoView-idCardBlock');
+  if (! idCardBlock) {
+    return;
+  }
+
+  const warning = makeElement('div', ['hunterInfoView-accountStatusWarning', 'mh-improved-discord-ban-warning'],
+    `This hunter has the following restrictions:<ul><li>${reason || 'Banned'}</li></ul>`);
+  makeElement('div', 'mh-improved-discord-ban-warning-note', 'This is a ban from the community-run MouseHunt Discord server.', warning);
+
+  idCardBlock.after(warning);
+
+  const wrapper = document.querySelector('.hunterInfoView-wrapper');
+  if (wrapper) {
+    wrapper.classList.add('mh-improved-discord-banned');
+  }
 };
 
 /**
@@ -87,6 +118,10 @@ const highlightUsers = async () => {
       console.error('Error fetching user highlighting data', error); // eslint-disable-line no-console
       return;
     }
+  }
+
+  if (data?.banned) {
+    addDiscordBanWarning(data.reason);
   }
 
   if (! data || ! data?.highlighted) {
