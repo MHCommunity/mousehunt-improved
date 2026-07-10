@@ -115,7 +115,7 @@ const getGeneratedName = async (setup) => {
     };
   }
 
-  const response = await fetch('https://setup-namer.mouse.rip', {
+  const response = await fetch('https://api.mouse.rip/setup-namer', {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({

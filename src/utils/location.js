@@ -2,7 +2,7 @@ import { getHeaders, sessionGet, sessionSet } from './data';
 import { makeElement } from './elements';
 
 /**
- * Ping https://rh-api.mouse.rip/ to get the current location of the Relic Hunter.
+ * Ping https://api.mouse.rip/relic-hunter to get the current location of the Relic Hunter.
  *
  * @return {Object} Relic Hunter location data.
  */
