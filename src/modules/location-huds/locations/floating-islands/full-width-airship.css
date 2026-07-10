@@ -1,20 +1,20 @@
-.floatingIslandsWorkshop-partsContainer {
+.floatingIslandsWorkshop-partsContainer.floatingIslandsWorkshop-partsContainer {
   left: 43px;
   width: 673px;
 }
 
-.floatingIslandsWorkshop-part {
+.floatingIslandsWorkshop-part.floatingIslandsWorkshop-part {
   width: 24%;
 }
 
-.floatingIslandsWorkshop-partsContainer::after {
+.floatingIslandsWorkshop-partsContainer.floatingIslandsWorkshop-partsContainer::after {
   bottom: -4px;
   width: 674px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.floatingIslandsWorkshop-partsContainer::before {
+.floatingIslandsWorkshop-partsContainer.floatingIslandsWorkshop-partsContainer::before {
   position: absolute;
   top: -26px;
   left: 0;
