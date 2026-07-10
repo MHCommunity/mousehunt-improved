@@ -1,11 +1,11 @@
-.entry.short.tournamentpointswithloot,
-.entry.short.tournamentpoints {
+.journal .content .entry.short.tournamentpointswithloot,
+.journal .content .entry.short.tournamentpoints {
   padding: 2px;
   background: #dbd1b4;
 }
 
-.entry.short.tournamentpointswithloot .journalbody,
-.entry.short.tournamentpoints .journalbody {
+.journal .content .entry.short.tournamentpointswithloot .journalbody,
+.journal .content .entry.short.tournamentpoints .journalbody {
   display: flex;
   align-items: center;
   justify-content: flex-start;

@@ -10,7 +10,9 @@ import summaryStyles from './summary.css';
 import settings from './settings';
 
 /**
- * Show the configured catch stats view.
+ * Show the modal for the Location Catch Stats.
+ *
+ * @return {Promise<void>} Resolves when the modal has finished loading.
  */
 const showModal = () => {
   if (getSetting('location-catch-stats.simplified-view', false)) {
