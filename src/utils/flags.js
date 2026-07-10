@@ -26,9 +26,24 @@ const getFlag = (flag) => {
  * @return {Array} List of enabled flags.
  */
 const getFlags = () => {
-  if (! flags) {
-    flags = getSetting('override-flags', '').toLowerCase().replaceAll(' ', '').split(',');
+  if (flags) {
+    return flags;
   }
+
+  flags = getSetting('override-flags', '').toLowerCase().replaceAll(' ', '').split(',');
+
+  // add on any query string flags, these are temporary and will not be saved to settings and
+  // have the format of &flag=flagname or &flag=flagname1,flagname2
+  const queryString = window.location.search;
+  if (queryString) {
+    const urlParams = new URLSearchParams(queryString);
+    const queryFlags = urlParams.get('flag');
+    if (queryFlags) {
+      flags.push(...queryFlags.toLowerCase().replaceAll(' ', '').split(','));
+    }
+  }
+
+  flags = [...new Set(flags)].filter(Boolean);
 
   return flags;
 };
