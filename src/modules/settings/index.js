@@ -527,7 +527,6 @@ const addSearchEmptyState = (settingsPage) => {
 const applySettingsSearch = (settingsPage, searchTerm) => {
   const normalizedSearchTerm = searchTerm.trim().toLowerCase();
   const sections = settingsPage.querySelectorAll('.mhui-settings-main > .PagePreferences__section');
-  const navItems = settingsPage.querySelectorAll('.mhui-settings-nav-item');
   const emptyState = addSearchEmptyState(settingsPage);
   let matchingSections = 0;
 
@@ -539,7 +538,6 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
         setting.style.display = '';
       });
     });
-    navItems.forEach((navItem) => navItem.classList.remove('search-match'));
     emptyState.classList.remove('active');
     setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection || sections[0]?.id);
     return;
@@ -560,12 +558,6 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
     if (sectionMatches) {
       matchingSections++;
     }
-  });
-
-  navItems.forEach((navItem) => {
-    const section = settingsPage.querySelector(`#${navItem.dataset.sectionId}`);
-    navItem.classList.toggle('search-match', section?.classList?.contains('mhui-settings-section-active'));
-    navItem.classList.remove('active');
   });
 
   emptyState.classList.toggle('active', matchingSections === 0);
