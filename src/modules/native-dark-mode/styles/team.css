@@ -73,3 +73,7 @@
 .mh-dark .tournamentStatusHud.active.boost {
   background-image: url(https://i.mouse.rip/tournament/tournament_boost_bg.png);
 }
+
+.mh-dark td.teamPage-memberRow-activeTournament a {
+  color: var(--d-link);
+}
