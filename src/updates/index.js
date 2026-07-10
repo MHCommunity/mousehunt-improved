@@ -112,13 +112,13 @@ const showUpdateError = (error, previousVersion, newVersion, updates) => {
   const popup = createPopup({
     title: `Error updating MouseHunt Improved to v${newVersion}`,
     content: `<div class="mh-improved-update-error">
-      <p>Something went wrong while updating. You can retry the update, or skip it and continue with the new version.</p>
+      <p>Something went wrong while updating. You can retry, or continue with the new version without re-running the update steps.</p>
+      <p>If this keeps happening, please <a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">report it on GitHub</a>.</p>
       <pre>${details}</pre>
       <div class="mh-improved-update-error-buttons">
         <a href="#" id="mh-improved-update-retry" class="mousehuntActionButton"><span>Retry update</span></a>
-        <a href="#" id="mh-improved-update-skip" class="mousehuntActionButton lightBlue"><span>Skip update</span></a>
+        <a href="#" id="mh-improved-update-continue" class="mousehuntActionButton lightBlue"><span>Continue anyway</span></a>
       </div>
-      <p class="mh-improved-update-error-help">If this keeps happening, please <a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">report it on GitHub</a>.</p>
     </div>`,
     className: 'mh-improved-update-error-popup',
     hasCloseButton: false,
@@ -140,8 +140,8 @@ const showUpdateError = (error, previousVersion, newVersion, updates) => {
     window.location.reload();
   });
 
-  const skipButton = document.querySelector('#mh-improved-update-skip');
-  skipButton?.addEventListener('click', (event) => {
+  const continueButton = document.querySelector('#mh-improved-update-continue');
+  continueButton?.addEventListener('click', (event) => {
     event.preventDefault();
 
     // Mark the pending migrations as completed so they aren't retried on the
