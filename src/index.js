@@ -147,7 +147,8 @@ const loadModules = async (categoriesWithModules = getCategoriesWithModules()) =
       if (
         module.alwaysLoad ||
         'required' === category.id ||
-        getSetting(module.id, module.default)
+        getSetting(module.id, module.default) ||
+        getFlag(`load-${module.id}`)
       ) {
         load.push(Promise.resolve()
           .then(() => module.load())
