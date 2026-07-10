@@ -386,6 +386,7 @@ const makeDashboardTab = () => {
     text: 'Refresh',
     element: 'button',
     className: ['dashboardRefresh'],
+    size: 'small',
     callback: doLocationRefresh,
     appendTo: refreshWrapper,
   });
