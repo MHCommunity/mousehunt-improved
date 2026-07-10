@@ -75,12 +75,20 @@
   border-radius: 4px;
 }
 
+.mh-dark .mh-improved-cre-highlight::before {
+  background-color: var(--d-action);
+}
+
 .mh-improved-cre-data-good {
   color: #118011;
 }
 
 .mh-improved-cre-highlight-good::before {
   background-color: #118011;
+}
+
+.mh-dark .mh-improved-cre-highlight-good::before {
+  background-color: var(--d-green);
 }
 
 .mh-dark-mode .mh-improved-cre-data-good {
@@ -101,6 +109,10 @@
 
 .mh-improved-cre-highlight-bad::before {
   background-color: #bb4646;
+}
+
+.mh-dark .mh-improved-cre-highlight-bad::before {
+  background-color: var(--d-red);
 }
 
 .mh-dark-mode .mh-improved-cre-data-bad {

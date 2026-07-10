@@ -35,6 +35,10 @@
   background-color: rgb(255 255 255 / 50%);
 }
 
+.mh-dark .mhui-inventory-lock-and-hide-item-controls {
+  background-color: var(--d-transparent-50);
+}
+
 .mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls {
   z-index: 2;
   display: flex;

@@ -2,6 +2,10 @@
   background-color: #9df327;
 }
 
+.mh-dark .journal .content .entry.spookyAuraActivated {
+  background-color: var(--d-green-dark);
+}
+
 .entry.short.misc.custom.anniversaryAuraActivated i {
   font-size: 10px;
 }

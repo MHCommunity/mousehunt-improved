@@ -206,6 +206,10 @@ a.itemPurchaseView-content-skin-link {
   box-shadow: none;
 }
 
+.mh-dark .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
+  color: var(--d-text);
+}
+
 .mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
   color: #fff;
   background-color: #242424;
@@ -243,6 +247,10 @@ a.itemPurchaseView-content-skin-link {
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title {
   color: #3b5998;
+}
+
+.mh-dark .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a {
+  color: var(--d-link);
 }
 
 span.itemPurchaseView-action-confirm-refund.noRefund {
@@ -337,6 +345,10 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 
 .itemPurchaseView-image-container .itemViewStatBlock-stat.title.error {
   background-color: #ffc9c9;
+}
+
+.mh-dark .itemPurchaseView-image-container .itemViewStatBlock-stat.title.error {
+  background-color: var(--d-red-darker);
 }
 
 .itemPurchaseView-image-container .itemViewStatBlock-stat-icon {
@@ -444,6 +456,11 @@ a.shopsPage-kingsCalibratorPromo {
   position: absolute;
   color: #000;
   background-color: #e6e6e6;
+}
+
+.mh-dark .shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
 }
 
 .shopCustomization .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-value {
@@ -636,6 +653,10 @@ a.itemPurchaseView-action-buySuperBrie {
   z-index: 1;
   color: #3b3b3b;
   content: "(Limit " attr(data-max-inventory-quantity) ")";
+}
+
+.mh-dark .itemPurchaseView-container[data-max-inventory-quantity="1"]::after {
+  color: var(--d-text-muted);
 }
 
 .itemPurchaseView-action-buySuperBrie {

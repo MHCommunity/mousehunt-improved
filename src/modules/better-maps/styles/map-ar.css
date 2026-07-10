@@ -32,6 +32,11 @@
   animation: mh-ui-ar-loading-pulse 1s ease-in-out infinite alternate;
 }
 
+.mh-dark .mh-ui-ar.mh-ui-ar-loading {
+  color: var(--d-text-muted);
+  border-color: var(--d-text-muted);
+}
+
 @keyframes mh-ui-ar-loading-pulse {
   from {
     opacity: 0.5;

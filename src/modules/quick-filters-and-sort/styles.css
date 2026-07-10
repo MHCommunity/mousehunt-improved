@@ -137,6 +137,11 @@
   background-color: #f2f2f2;
 }
 
+.mh-dark .quicklinks-filter-sortBy-name a,
+.mh-dark .quicklinks-filter-sortBy-quantity a {
+  background-color: var(--d-white);
+}
+
 .trapSelectorView__browserStateParent--items[data-blueprint-type="skin"] .campPage-trap-itemBrowser-quickLinks {
   display: none;
 }

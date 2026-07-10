@@ -2,6 +2,10 @@
   background-color: #f1f1f1;
 }
 
+.mh-dark .journalEntries {
+  background-color: var(--d-bg-alt);
+}
+
 .journal .content {
   padding: 0 5px;
 }
@@ -30,7 +34,7 @@
 }
 
 .journal .content .entry.socialGift.socialGift-send:not(.highlight) {
-  margin-bottom: -5px;
+  padding-bottom: 0;
 }
 
 .mh-dark .journal .content .entry:not(.highlight) {
@@ -165,6 +169,10 @@ a.journal-detailLink.full::after {
   border-left: none;
 }
 
+.mh-dark .journalContainer .pagerView-container {
+  border-color: var(--d-border);
+}
+
 .journal .content .entry a:focus img,
 .journal .content .entry a:hover img {
   margin: 1px;
@@ -231,6 +239,10 @@ p.mhi-x-entry {
   background-color: #bd7f89;
 }
 
+.mh-dark .journal .content .entry.out_of_candles {
+  background-color: var(--d-red-darker);
+}
+
 .journal .content .entry.desert_heater_base_trigger.fail {
   background-image: url(https://i.mouse.rip/upscaled/flameshard_crafting_item.png);
   background-blend-mode: luminosity;
@@ -257,10 +269,18 @@ p.mhi-x-entry {
   background: #4fa9e6;
 }
 
+.mh-dark .journal .content .entry.pirate_sleigh_trigger {
+  background: var(--d-blue-dark);
+}
+
 .journal .content .entry.queso_cannonstorm_base_trigger.fail {
   background-color: #f9d99a;
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/fe36041df0bec6dcc887ce67feefc4c8.png);
   background-blend-mode: luminosity;
+}
+
+.mh-dark .journal .content .entry.queso_cannonstorm_base_trigger.fail {
+  background-color: var(--d-yellow-dark);
 }
 
 /* stylelint-disable-next-line */
@@ -293,6 +313,7 @@ p.mhi-x-entry {
 }
 
 .journal .content .entry.vending_machine_purchase {
+  background-repeat: no-repeat, no-repeat, repeat;
   background-position: top, bottom, center;
   background-size: contain;
 }

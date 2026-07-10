@@ -3,3 +3,7 @@
   background-color: #ffb752;
   outline: 2px solid #000;
 }
+
+.mh-dark .journal .content .entry[data-mouse-type="black_widow"] {
+  background-color: var(--d-orange-darker);
+}

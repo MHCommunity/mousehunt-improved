@@ -2,8 +2,16 @@
   background-color: #e0e0e0;
 }
 
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-none {
+  background-color: var(--d-bg);
+}
+
 .mh-catch-stats.mh-catch-stats-crown-none:nth-child(odd) {
   background-color: #d0d0d0;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-none:nth-child(odd) {
+  background-color: var(--d-bg-alt);
 }
 
 .mh-catch-stats.mh-catch-stats-crown-bronze {

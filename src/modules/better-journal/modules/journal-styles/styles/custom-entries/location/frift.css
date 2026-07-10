@@ -32,6 +32,10 @@
   background-color: #f4c3b2;
 }
 
+.mh-dark .journal .content .entry.riftFuroma-retreat {
+  background-color: var(--d-red-darker);
+}
+
 .journal .content .entry.riftFuroma-energyLost {
   min-height: 60px;
 }
@@ -41,6 +45,15 @@
   background-color: #f3b782;
 }
 
+.mh-dark .journal .content .entry.riftFuroma-enterPagoda,
+.mh-dark .journal .content .entry.riftFuroma-unlockBattery {
+  background-color: var(--d-orange-darker);
+}
+
 .journal .content .entry.riftFuroma-exitPagoda {
   background-color: #e3bfb4;
+}
+
+.mh-dark .journal .content .entry.riftFuroma-exitPagoda {
+  background-color: var(--d-yellow-dark);
 }

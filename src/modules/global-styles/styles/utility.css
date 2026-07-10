@@ -6,6 +6,10 @@
   color: #000;
 }
 
+.mh-dark .text-black {
+  color: var(--d-text);
+}
+
 .hidden {
   display: none;
 }

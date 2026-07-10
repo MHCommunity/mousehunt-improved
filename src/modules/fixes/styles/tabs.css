@@ -11,6 +11,10 @@ a.mousehuntHud-page-tabHeader.collectibles span {
   border-color: transparent transparent transparent #eee;
 }
 
+.mh-dark #messengerUINotification .tabs a:hover .arrow {
+  border-color: transparent transparent transparent var(--d-alt);
+}
+
 /* Make page sub tabs align correctly */
 .mousehuntHud-page-tabHeader-container {
   margin-bottom: -1px;

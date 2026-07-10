@@ -24,6 +24,14 @@
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
+.mh-dark .campPage-trap-baseQuantity {
+  color: var(--d-text);
+  text-shadow: none;
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: -1px -1px 1px var(--d-bg) inset;
+}
+
 .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baseQuantity,
 .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baseQuantity {
   padding: 3px;
@@ -42,4 +50,8 @@
 
 .campPage-trap-itemBrowser-favorite-item-image-quantity.base-quantity {
   background-color: rgb(255 255 255 / 75%);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity.base-quantity {
+  background-color: var(--d-bg);
 }

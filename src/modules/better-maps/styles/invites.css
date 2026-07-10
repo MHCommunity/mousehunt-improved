@@ -53,7 +53,15 @@ a.mh-ui-invite-refresh-button.loading::after {
   background-color: #c7c7c7;
 }
 
+.mh-dark .treasureMapDialogView-userSelector.canDeleteInviteRequests .userSelectorView-user.disabled .treasureMapDialogView-deleteInviteRequest {
+  background-color: var(--d-action);
+}
+
 .treasureMapDialogView-userSelector.canDeleteInviteRequests .userSelectorView-user.disabled .treasureMapDialogView-deleteInviteRequest:hover {
   cursor: pointer;
   background-color: #909090;
+}
+
+.mh-dark .treasureMapDialogView-userSelector.canDeleteInviteRequests .userSelectorView-user.disabled .treasureMapDialogView-deleteInviteRequest:hover {
+  background-color: var(--d);
 }

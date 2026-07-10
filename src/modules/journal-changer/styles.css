@@ -10,6 +10,10 @@
   background-color: #e6e6e6;
 }
 
+.mh-dark .journalContainer-selectTheme {
+  background-color: var(--d-action);
+}
+
 .mh-improved-random-journal {
   background-image: url(https://i.mouse.rip/mh-improved/journal-random.png);
 }
@@ -18,4 +22,9 @@
   margin-right: 85px;
   background: #e6e6e6;
   border: 1px solid #333;
+}
+
+.mh-dark #journalContainer .journal__privacy-button {
+  background: var(--d-action);
+  border-color: var(--d-border);
 }

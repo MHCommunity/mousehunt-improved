@@ -21,6 +21,12 @@
   background: #a4cafc;
 }
 
+.mh-dark .travelPage-regionMenu-environmentLink.active,
+.mh-dark .travelPage-regionMenu-environmentLink.current {
+  color: var(--d-text);
+  background: var(--d-blue);
+}
+
 .travelPage-regionMenu-stats {
   color: #4d4d4d;
   background-color: #d8d8d8;
@@ -142,6 +148,11 @@
 #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
 #mh-simple-travel-page .travelPage-regionMenu-environmentLink.current {
   color: #4e6081;
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink.current {
+  color: var(--d-text-muted);
 }
 
 #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,

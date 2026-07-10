@@ -10,6 +10,10 @@
     1px 3px 5px #6a6969;
 }
 
+.mh-dark #mht-bookmarklet-loader {
+  background: var(--d-bg) !important;
+}
+
 #mht-bookmarklet-loader button:first-of-type {
   position: absolute;
   top: 7px;
@@ -30,6 +34,12 @@
   background-color: #eee;
   border-radius: 50%;
   outline: 1px solid #ccc;
+}
+
+.mh-dark #mht-bookmarklet-loader button:first-of-type:hover {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  outline-color: var(--d-border);
 }
 
 #mht-bookmarklet-loader br + br,
@@ -72,6 +82,10 @@
 
 #mht-bookmarklet-loader span {
   color: #000;
+}
+
+.mh-dark #mht-bookmarklet-loader span {
+  color: var(--d-text);
 }
 
 #mht-bookmarklet-loader span:nth-of-type(2) {

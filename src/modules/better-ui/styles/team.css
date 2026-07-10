@@ -56,6 +56,10 @@
   content: "\2715";
 }
 
+.mh-dark .teamPageConfirm-dialog a.userSelectorView-filter-clear.active::after {
+  color: var(--d-red-light);
+}
+
 .teamPage-memberJournal-empty {
   line-height: 30px;
   color: #575757;
@@ -118,6 +122,11 @@
   text-shadow: 1px 1px 1px #eee;
   opacity: 0;
   transition: 0.2s ease-in;
+}
+
+.mh-dark .teamPage-profile-awardContainerInfo {
+  color: var(--d-text);
+  text-shadow: none;
 }
 
 .teamPage-profile-awardContainer-awardList:hover .teamPage-profile-awardContainerInfo {

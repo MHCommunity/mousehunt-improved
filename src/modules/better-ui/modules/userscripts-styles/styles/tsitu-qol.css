@@ -14,6 +14,11 @@
   border-radius: 3px !important;
 }
 
+.mh-dark #tsitu-hunter-id-nav-ui button {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
 #tsitu-hunter-id-nav-ui {
   display: inline-flex !important;
   align-items: center;

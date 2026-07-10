@@ -453,6 +453,11 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   animation: 0.4s mh-improved-shake-light 0.7s 1;
 }
 
+.mh-dark .mhui-craft-warning-tooltip {
+  background: var(--d-red-darker);
+  border-color: var(--d-red-dark);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mhui-craft-warning-tooltip {
     animation: none;
@@ -571,6 +576,12 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   box-shadow: 0 1px 2px -2px #1f1f1f;
 }
 
+.mh-dark .inventoryPage-item.small:hover .inventoryPage-item-margin,
+.mh-dark .inventoryPage-item.small:focus .inventoryPage-item-margin {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
   display: none;
 }
@@ -614,6 +625,10 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 .inventoryPage-item-recipeOptions li.inactive {
   background: #ededed;
   opacity: 0.5;
+}
+
+.mh-dark .inventoryPage-item-recipeOptions li.inactive {
+  background: var(--d-alt);
 }
 
 .inventoryPage-item-recipeOptions li.inactive:hover {

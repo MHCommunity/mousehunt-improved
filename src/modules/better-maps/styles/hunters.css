@@ -44,11 +44,22 @@
   border-radius: 50%;
 }
 
+.mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
 .treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover,
 .treasureMapDialogView-deleteInviteRequest.reject-invite-request:focus,
 .treasureMapDialogView-deleteInviteRequest.reject-invite-request:active {
   text-decoration: none;
   background-color: #a3a3a3;
+}
+
+.mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover,
+.mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:focus,
+.mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:active {
+  background-color: var(--d);
 }
 
 .treasureMapView-allyRow:last-child .treasureMapView-allyCell.hunters-last-slot {

@@ -52,6 +52,7 @@
   color: var(--d-text);
 }
 
+.mh-dark .adventureBookPopup-adventure-details-powerTypeLabel,
 .mh-dark .adventureBookPopup-titleDirectory,
 .mh-dark a.adventureBookPopup-title.active {
   border-color: var(--d-border);

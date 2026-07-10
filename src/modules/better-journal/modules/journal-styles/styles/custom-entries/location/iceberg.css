@@ -16,6 +16,10 @@
   background-position: 10px;
 }
 
+.mh-dark .journal .content .iceberg_advance_prevented.general {
+  background-color: var(--d-blue-darker);
+}
+
 .journal .content .iceberg_advance,
 .journal .content .iceberg_advance_prevented,
 .journal .content .iceberg_pushback,

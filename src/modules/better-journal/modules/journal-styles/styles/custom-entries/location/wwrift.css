@@ -20,12 +20,24 @@
   background-color: #fac75f;
 }
 
+.mh-dark .journal .content .entry.rift-whisker-woods-catch-boss {
+  background-color: var(--d-orange-darker);
+}
+
 .journal .content .entry.rift-whisker-woods-increase-high {
   background-color: #e3d981;
 }
 
+.mh-dark .journal .content .entry.rift-whisker-woods-increase-high {
+  background-color: var(--d-yellow-dark);
+}
+
 .journal .content .entry.rift-whisker-woods-increase-miniboss {
   background-color: #ffba4e;
+}
+
+.mh-dark .journal .content .entry.rift-whisker-woods-increase-miniboss {
+  background-color: var(--d-orange-darker);
 }
 
 .journal .content .entry.short.rift-whisker-woods-increase .journaltext b {

@@ -155,6 +155,10 @@
   background-color: #b9ffb9;
 }
 
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.flash {
+  background-color: var(--d-green-dark);
+}
+
 .mh-improved-favorite-setups-blueprint-container .controls input {
   width: 165px;
   padding: 3px;
@@ -175,8 +179,17 @@
   border-radius: 5px;
 }
 
+.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item::after {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
 .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
   background-color: #ccc;
+}
+
+.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
+  background-color: var(--d-alt);
 }
 
 .mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-favorite-item:hover .campPage-trap-itemBrowser-favorite-item-image {
@@ -192,6 +205,11 @@
 .mh-improved-favorite-setups-component-picker .prefix,
 .mh-improved-favorite-setups-component-picker .content {
   background-color: #f6f3eb;
+}
+
+.mh-dark .mh-improved-favorite-setups-component-picker .prefix,
+.mh-dark .mh-improved-favorite-setups-component-picker .content {
+  background-color: var(--d-bg);
 }
 
 .mh-improved-favorite-setups-component-picker .content .content {
@@ -242,8 +260,16 @@ a.random-title::after {
   border-radius: 20%;
 }
 
+.mh-dark a.random-title::after {
+  background-color: var(--d-action);
+}
+
 a.random-title:hover::after {
   background-color: #ddd;
+}
+
+.mh-dark a.random-title:hover::after {
+  background-color: var(--d-alt);
 }
 
 a.random-title.loading::after {
@@ -412,6 +438,10 @@ a.random-title.loading::after {
   background-color: #d1ebed;
 }
 
+.mh-dark .row.mobile-setup {
+  background-color: var(--d-cyan-dark);
+}
+
 .row.mobile-setup .edit-setup {
   display: none;
 }
@@ -442,6 +472,10 @@ a.random-title.loading::after {
   transform: translateY(-50%);
 }
 
+.mh-dark .mh-improved-favorite-setups-blueprint-container .drag-handle {
+  color: var(--d-text-muted);
+}
+
 .mh-improved-favorite-setups-blueprint-container .row.editing .drag-handle {
   display: none;
 }
@@ -463,6 +497,16 @@ a.random-title.loading::after {
     linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
   background-size: 10px 10px;
   border: 2px dashed #ccc;
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .placeholder {
+  background:
+    linear-gradient(45deg, var(--d-alt) 25%, transparent 25%) center,
+    linear-gradient(-45deg, var(--d-alt) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--d-alt) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--d-alt) 75%);
+  background-size: 10px 10px;
+  border-color: var(--d-action);
 }
 
 .mh-improved-favorite-setups-blueprint-container .placeholder-text {

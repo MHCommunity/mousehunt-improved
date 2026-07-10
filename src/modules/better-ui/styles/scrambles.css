@@ -8,6 +8,10 @@
     0.9s bannerSoundNew 1 0.2s;
 }
 
+.mh-dark #overlayPopup.spring_chick_message_item {
+  background: var(--d-bg);
+}
+
 #overlayPopup.spring_chick_message_item .jsDialog.top,
 #overlayPopup.spring_chick_message_item .jsDialog.bottom,
 #overlayPopup.spring_chick_message_item .jsDialogContainer .prefix,

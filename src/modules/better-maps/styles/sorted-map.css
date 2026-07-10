@@ -9,3 +9,7 @@
 #sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-sp {
   background-color: rgb(175 203 255 / 75%);
 }
+
+.mh-dark #sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-sp {
+  background-color: var(--d-blue-darker);
+}

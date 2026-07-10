@@ -72,6 +72,11 @@
   color: #424242;
 }
 
+.mh-dark .newsPage-container .newsPage-archiveButton,
+.mh-dark .newsPage-container .newsPage-post-item-postedBy .text {
+  color: var(--d-text-muted);
+}
+
 .newsPage-header,
 .newsPage-container .newsPage-list-side-header {
   text-decoration: none;
@@ -117,8 +122,16 @@
   background-color: #e8f8ee;
 }
 
+.mh-dark .newsPostBody #news-post-responsive .gwhShutdownNotice:nth-of-type(2n) {
+  background-color: var(--d-green-darker);
+}
+
 .newsPostBody #news-post-responsive .gwhShutdownNotice {
   background-color: #fceeed;
+}
+
+.mh-dark .newsPostBody #news-post-responsive .gwhShutdownNotice {
+  background-color: var(--d-red-darker);
 }
 
 .newsPostBody #news-post-responsive .festiveSpiritItems .festiveSpiritItemImage.festiveSpiritItemImage {

@@ -9,6 +9,10 @@
   border-bottom: 1px solid #dfe3e8;
 }
 
+.mh-dark .mhui-marketplace-chart-toolbar {
+  border-bottom-color: var(--d-border);
+}
+
 .mhui-marketplace-chart-tabs {
   display: flex;
   gap: 2px;
@@ -23,14 +27,28 @@
   border-bottom: 2px solid transparent;
 }
 
+.mh-dark .mhui-marketplace-chart-tabs a {
+  color: var(--d-text-muted);
+}
+
 .mhui-marketplace-chart-tabs a:hover {
   color: #2b3238;
   background-color: #f2f6fa;
 }
 
+.mh-dark .mhui-marketplace-chart-tabs a:hover {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+}
+
 .mhui-marketplace-chart-tabs a.active {
   color: #2f80d8;
   border-bottom-color: #2f80d8;
+}
+
+.mh-dark .mhui-marketplace-chart-tabs a.active {
+  color: var(--d-link);
+  border-bottom-color: var(--d-link);
 }
 
 .mhui-marketplace-chart-source {
@@ -40,9 +58,17 @@
   text-decoration: none;
 }
 
+.mh-dark .mhui-marketplace-chart-source {
+  color: var(--d-text-muted);
+}
+
 .mhui-marketplace-chart-source:hover {
   color: #2f80d8;
   text-decoration: underline;
+}
+
+.mh-dark .mhui-marketplace-chart-source:hover {
+  color: var(--d-link);
 }
 
 .mhui-marketplace-chart-charts {
@@ -77,6 +103,10 @@
   padding-top: 130px;
   color: #98a1aa;
   text-align: center;
+}
+
+.mh-dark .mhui-marketplace-chart-loading {
+  color: var(--d-text-muted);
 }
 
 .mhui-marketplace-chart-darkmode .mhui-marketplace-chart-toolbar {

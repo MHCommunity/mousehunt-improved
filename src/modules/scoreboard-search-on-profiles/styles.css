@@ -20,6 +20,12 @@
   border-radius: 3px;
 }
 
+.mh-dark .mh-improved-scoreboard-dropdown,
+.mh-dark .mousehuntPage-content select.mh-improved-scoreboard-dropdown {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
 .mh-improved-scoreboard-results {
   margin-top: 10px;
 }

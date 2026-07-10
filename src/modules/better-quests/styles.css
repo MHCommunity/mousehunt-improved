@@ -52,6 +52,10 @@
   color: #da1717;
 }
 
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .errorText {
+  color: var(--d-red-light);
+}
+
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image {
   display: flex;
   flex-direction: column;
@@ -190,11 +194,20 @@
   color: #000;
 }
 
+.mh-dark .mh-ui-assignment-details-summary {
+  color: var(--d-text);
+}
+
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover {
   cursor: pointer;
   background-color: #dfdfdf;
   border-radius: 6px;
   box-shadow: -1px 1px 0 3px #dfdfdf;
+}
+
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover {
+  background-color: var(--d-alt);
+  box-shadow: -1px 1px 0 3px var(--d-alt);
 }
 
 h4.mh-ui-assignment-details-title {

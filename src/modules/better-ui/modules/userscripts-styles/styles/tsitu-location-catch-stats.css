@@ -10,6 +10,10 @@
     1px 3px 5px #6a6969 !important;
 }
 
+.mh-dark #tsitu-location-stats {
+  background: var(--d-bg) !important;
+}
+
 #tsitu-location-stats span[style="font-weight: bold; font-size: 18px; text-decoration: underline; padding-left: 20px;"] {
   display: flex;
   align-items: center;
@@ -41,6 +45,11 @@
   background-color: #eee;
   border-radius: 50%;
   outline: 1px solid #8e6642;
+}
+
+.mh-dark #tsitu-location-stats button[style="float: right; font-size: 8px;"]:hover {
+  color: var(--d-text);
+  background-color: var(--d-action);
 }
 
 #tsitu-location-stats > div br {
@@ -114,6 +123,10 @@
   background-color: #e8e3d7;
 }
 
+.mh-dark #tsitu-location-stats details details:nth-child(even) {
+  background-color: var(--d-alt);
+}
+
 #tsitu-location-stats details[style="font-size: 16px;"] {
   margin: 0.25em 0;
   border-top: 1px solid #8e6642;
@@ -136,6 +149,11 @@
   text-align: right;
 }
 
+.mh-dark .tsitu-complete-box-label,
+.mh-dark .tsitu-incomplete-box-label {
+  color: var(--d-text-muted);
+}
+
 #tsitu-location-stats details[style="font-size: 16px;"] > summary {
   margin: 0.5em 0;
 }
@@ -150,6 +168,10 @@
   font-size: 10px !important;
   line-height: 2;
   color: #7b6b47;
+}
+
+.mh-dark #tsitu-location-stats span[style="font-style: italic; font-size: 12px;"] {
+  color: var(--d-text-muted);
 }
 
 .tsitu-current-detail > br:first-of-type,

@@ -49,6 +49,10 @@
   color: #848484;
 }
 
+.mh-dark .mh-utils-settings-subheader {
+  color: var(--d-text-muted);
+}
+
 .settingRow-action-inputContainer.inputText {
   display: flex;
   gap: 5px;

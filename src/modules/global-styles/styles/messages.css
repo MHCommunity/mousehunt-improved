@@ -15,6 +15,18 @@
   border: 1px solid #3e803e;
 }
 
+.mh-dark .mh-ui-error-message,
+.mh-dark .mh-ui-success-message {
+  color: var(--d-text);
+  background-color: var(--d-red-darker);
+  border-color: var(--d-red-dark);
+}
+
+.mh-dark .mh-ui-success-message {
+  background-color: var(--d-green-dark);
+  border-color: var(--d-green);
+}
+
 .mh-improved-darkmode-conflict-popup .content,
 .mh-improved-userscript-popup .content {
   text-align: center;
@@ -24,6 +36,12 @@
 .mh-improved-userscript-popup .jsDialogContainer {
   color: #160404;
   background-color: #f5b9b9;
+}
+
+.mh-dark .mh-improved-darkmode-conflict-popup .jsDialogContainer,
+.mh-dark .mh-improved-userscript-popup .jsDialogContainer {
+  color: var(--d-text);
+  background-color: var(--d-red-darker);
 }
 
 .mh-improved-userscript-popup .mh-improved-userscript-popup-actions {

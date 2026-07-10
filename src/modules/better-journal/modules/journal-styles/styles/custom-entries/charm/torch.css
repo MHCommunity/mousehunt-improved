@@ -8,6 +8,10 @@
   background-color: #dcf7ff;
 }
 
+.mh-dark .entry.short.misc.custom.torch_charm_event {
+  background-color: var(--d-blue-darker);
+}
+
 .entry.short.misc.custom.torch_charm_event .journalimage {
   width: 55px;
 }

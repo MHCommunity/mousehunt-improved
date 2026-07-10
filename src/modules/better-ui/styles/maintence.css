@@ -6,6 +6,11 @@
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
+.mh-dark .maintenance-banner {
+  background-color: var(--d-alt) !important;
+  border-color: var(--d-border) !important;
+}
+
 .maintenance-banner .close {
   position: absolute;
   top: -5px;
@@ -28,6 +33,11 @@
   border-color: #d1d0cf;
   border-radius: 20px;
   box-shadow: inset 0 0 3px -1px #d1d0cf;
+}
+
+.mh-dark .maintenance-banner .close {
+  background: var(--d-bg);
+  border-color: var(--d-border);
 }
 
 .maintenance-banner .close:hover {

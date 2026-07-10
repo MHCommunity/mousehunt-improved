@@ -3,12 +3,27 @@
   background-blend-mode: darken;
 }
 
+.mh-dark .journal .content .entry.minigame_start.yellow_drops {
+  background-color: var(--d-yellow-dark);
+  background-blend-mode: normal;
+}
+
 .journal .content .entry.minigame_start.red_drops {
   background-color: #ffaf98;
   background-blend-mode: darken;
 }
 
+.mh-dark .journal .content .entry.minigame_start.red_drops {
+  background-color: var(--d-red-darker);
+  background-blend-mode: normal;
+}
+
 .journal .content .entry.minigame_start.orange_drops {
   background-color: #ffde97;
   background-blend-mode: darken;
+}
+
+.mh-dark .journal .content .entry.minigame_start.orange_drops {
+  background-color: var(--d-orange-darker);
+  background-blend-mode: normal;
 }

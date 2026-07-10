@@ -90,6 +90,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+.mh-dark .mhui-supply-search {
+  border-bottom-color: var(--d-border);
+}
+
 #supplytransfer .drawer .tabContent .searchContainer {
   position: absolute;
   top: -5px;
@@ -135,9 +139,19 @@
   box-shadow: 2px 2px 3px #cdc9c6 inset;
 }
 
+.mh-dark .mhui-supply-sort-wrapper a {
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px var(--d-border) inset;
+}
+
 .mhui-supply-sort-wrapper a:hover,
 .mhui-supply-sort-wrapper a.focus {
   background-color: #cac0b2;
+}
+
+.mh-dark .mhui-supply-sort-wrapper a:hover,
+.mh-dark .mhui-supply-sort-wrapper a.focus {
+  background-color: var(--d-action);
 }
 
 #supplytransfer .listContainer a.element.item.pinned {
@@ -174,6 +188,11 @@
   content: "";
 }
 
+.mh-dark #supplytransfer .tabs .tab.recipient .image.empty::after,
+.mh-dark #supplytransfer .tabs .tab.item .image.empty::after {
+  color: var(--d-link);
+}
+
 #supplytransfer .tabs .tab.recipient .image.empty::after {
   content: "Select Friend";
 }
@@ -200,6 +219,11 @@
 #supplytransfer .tabs .tab .image {
   background: #ccc;
   border: 1px solid #eee;
+}
+
+.mh-dark #supplytransfer .tabs .tab .image {
+  background: var(--d-alt);
+  border-color: var(--d-border);
 }
 
 .PageSupplyTransfer .flexibleDialogWarmBrown {
@@ -237,6 +261,12 @@
   background-color: #eee;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.mh-dark #supplytransfer .tabs .tab .image,
+.mh-dark #supplytransfer .tabs .tab .image.empty {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
 }
 
 #supplytransfer .drawer .listContainer {

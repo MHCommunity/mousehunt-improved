@@ -126,6 +126,10 @@
   background-color: #c8d2f2;
 }
 
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade.unlocked {
+  background-color: var(--d-blue-darker);
+}
+
 .kingsGiveawayCalibratorPopup-tabHeaderContainer {
   margin: 0 1px;
 }
@@ -139,6 +143,10 @@
   margin-top: 10px;
   font-size: 14px;
   border-bottom: 1px solid #ccc;
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade-day-name {
+  border-bottom-color: var(--d-border);
 }
 
 .kingsGiveawayCalibratorPopup-upgrade-day-itemContainer::after {
@@ -194,6 +202,10 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
   background-size: 18px;
   box-shadow: none;
   opacity: 0.9;
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade-action-kingsCredits {
+  background-color: var(--d-bg);
 }
 
 .kingsGiveawayCalibratorPopup-upgrade.locked .kingsGiveawayCalibratorPopup-upgrade-action.locked {

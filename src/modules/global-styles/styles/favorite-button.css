@@ -21,6 +21,11 @@
   outline: 2px solid #ccc;
 }
 
+.mh-dark .custom-favorite-button:hover {
+  background-color: var(--d-bg);
+  outline-color: var(--d-border);
+}
+
 .custom-favorite-button.active {
   background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png);
 }

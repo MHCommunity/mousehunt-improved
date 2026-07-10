@@ -29,3 +29,38 @@
   background-color: var(--d-action);
   outline-color: var(--d-border);
 }
+
+.mh-catch-stats-summary-meta,
+.mh-catch-stats-summary-group > summary,
+.mh-catch-stats-summary-location > summary,
+.mh-catch-stats-summary-location-body,
+.mh-catch-stats-list-header {
+  border-color: var(--d-border);
+}
+
+.mh-catch-stats-summary-progress {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-catch-stats-summary-progress-fill {
+  background-color: var(--d-green);
+}
+
+.mh-catch-stats-summary-locations-complete {
+  color: var(--d-text-muted);
+}
+
+.mh-catch-stats-summary-group > summary,
+.mh-catch-stats-summary-location-current > summary {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-catch-stats-summary-updated,
+.mh-catch-stats-summary-loading-text,
+.mh-catch-stats-summary-error {
+  color: var(--d-text-muted);
+}
+
+.mh-catch-stats-summary-location-complete .mh-catch-stats-summary-location-count {
+  color: var(--d-green);
+}

@@ -19,6 +19,10 @@
   border-bottom: 1px solid #dedede;
 }
 
+.mh-dark .mhct-title {
+  border-bottom-color: var(--d-border);
+}
+
 .mhct-row {
   display: grid;
   grid-template-columns: 3fr 3fr 1fr;
@@ -37,6 +41,11 @@
   cursor: pointer;
   background-color: #eee7e2;
   box-shadow: 0 0 4px #d3cecb inset;
+}
+
+.mh-dark .mh-ui-mouse-links-map-ars .mhct-row[data-environment]:hover {
+  background-color: var(--d-bg-alt);
+  box-shadow: none;
 }
 
 .mhct-location {

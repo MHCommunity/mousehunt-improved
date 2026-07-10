@@ -10,11 +10,19 @@
   border-left: 6px solid transparent;
 }
 
+.mh-dark .sort-button {
+  border-top-color: var(--d-text-muted);
+}
+
 .sort-button.reverse {
   border-top: 0;
   border-right: 6px solid transparent;
   border-bottom: 9px solid #777;
   border-left: 6px solid transparent;
+}
+
+.mh-dark .sort-button.reverse {
+  border-bottom-color: var(--d-text-muted);
 }
 
 .sort-button.unsorted {

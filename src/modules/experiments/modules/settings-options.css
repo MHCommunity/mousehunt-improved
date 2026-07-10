@@ -26,6 +26,10 @@
   background: linear-gradient(180deg, transparent 0, #fff 100%);
 }
 
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__setting + .PagePreferences__subSetting::before {
+  background: linear-gradient(180deg, transparent 0, var(--d-alt) 100%);
+}
+
 .mousehunt-improved-settings .PagePreferences__settingsList.active:hover .PagePreferences__setting + .PagePreferences__subSetting::before {
   background: transparent;
 }

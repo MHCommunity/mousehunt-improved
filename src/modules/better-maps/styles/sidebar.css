@@ -17,6 +17,10 @@
   border: 1px solid #ddedff;
 }
 
+.mh-dark .mh-improved-map-sidebar {
+  border-color: var(--d-border);
+}
+
 .mh-improved-map-sidebar-title {
   position: relative;
   display: flex;
@@ -26,6 +30,10 @@
   font-size: 11px;
   text-align: center;
   background-color: #ddedff;
+}
+
+.mh-dark .mh-improved-map-sidebar-title {
+  background-color: var(--d-alt);
 }
 
 .mh-improved-map-sidebar-title:hover {
@@ -66,8 +74,16 @@
   background-color: #eee;
 }
 
+.mh-dark .mh-improved-map-sidebar-goal:hover {
+  background-color: var(--d-alt);
+}
+
 .mh-improved-map-sidebar-goal-active {
   background-color: #fdfbcc;
+}
+
+.mh-dark .mh-improved-map-sidebar-goal-active {
+  background-color: var(--d-yellow-dark);
 }
 
 .mh-improved-map-sidebar-title::after {

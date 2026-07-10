@@ -577,10 +577,11 @@
 }
 
 .mh-dark .treasureMapView-hunter-miceCaught,
+.mh-dark .treasureMapView-hunter-miceCaught.active,
 .mh-dark .treasureMapRootView-quantity {
   color: var(--d-text);
   background-color: var(--d-action);
-  border-color: var(--d-bg-alt);
+  border-color: var(--d-border);
 }
 
 .mh-dark .treasureMapView-allyTable a.treasureMapDialogView-deleteInviteRequest.reject-invite-request {

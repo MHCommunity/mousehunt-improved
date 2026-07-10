@@ -19,9 +19,20 @@
   box-shadow: -1px 1px 3px #d3cecb inset;
 }
 
+.mh-dark .buttonstyle {
+  color: var(--d-text);
+  background-color: var(--d-alt) !important;
+  border-color: var(--d-border);
+}
+
 .buttonstyle:hover {
   color: #8e6642;
   background-color: #fdfaf2 !important;
+}
+
+.mh-dark .buttonstyle:hover {
+  color: var(--d-text);
+  background-color: var(--d-action) !important;
 }
 
 /* activated button */

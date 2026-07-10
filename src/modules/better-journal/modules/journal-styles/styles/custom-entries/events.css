@@ -17,6 +17,20 @@
   background-color: #e7cdaa;
 }
 
+.mh-dark .entry.short.misc.custom.chocolateshop_reward_claimed {
+  background-color: var(--d-yellow-dark);
+}
+
+/* Restore the game's per-layer values (Lady Laura gif, tint gradient, brick pattern). */
+.journal .entry.chocolateshop_reward_claimed {
+  background-repeat: no-repeat, repeat, repeat;
+  background-position:
+    8px 8px,
+    center,
+    0;
+  background-size: auto, auto, 21%;
+}
+
 .spring_hunt_charge_trinket_effect .journalimage img {
   width: 30px;
 }
@@ -34,6 +48,8 @@
 
 .journal .entry.chocolateshop_item_purchased {
   background-repeat: repeat;
+  background-position: 0 0;
+  background-size: 21%;
 }
 
 .journal .entry.folkloreForest-farmToTable {

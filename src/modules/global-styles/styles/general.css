@@ -33,6 +33,11 @@ code {
   box-shadow: -1px -1px 1px #ccc inset;
 }
 
+.mh-dark .support-link {
+  background: var(--d-green-dark);
+  box-shadow: -1px -1px 1px var(--d-border) inset;
+}
+
 .support-link p {
   margin-top: 0;
   font-size: 14px;

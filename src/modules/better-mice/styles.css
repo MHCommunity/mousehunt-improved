@@ -136,6 +136,10 @@
   background-color: #e7e7e7;
 }
 
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: var(--d-bg);
+}
+
 .mouseview-has-mhct .mouseView-description {
   line-height: 1.5;
 }
@@ -143,6 +147,10 @@
 .mh-ui-mouse-links-map-name {
   color: #3b5998;
   cursor: pointer;
+}
+
+.mh-dark .mh-ui-mouse-links-map-name {
+  color: var(--d-link);
 }
 
 .treasureMapView-highlight-name {
@@ -205,6 +213,11 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   background-size: contain;
   border: 1px solid #929292;
   border-radius: 50%;
+}
+
+.mh-dark .crown .mouseListView-categoryContent-subgroup-mouse-thumb::after {
+  background-color: var(--d-black);
+  border-color: var(--d-border);
 }
 
 .crown.bronze .mouseListView-categoryContent-subgroup-mouse-thumb::after {
@@ -337,6 +350,10 @@ ul.minluck-list {
   border-radius: 10px;
 }
 
+.mh-dark .mouseview-relicHunter {
+  background-color: var(--d-purple-dark);
+}
+
 .mouseListView-categoryContent-subgroup-mouse-stats.catches,
 .mouseListView-categoryContent-subgroup-mouse-stats.misses {
   width: 13%;
@@ -398,6 +415,10 @@ ul.minluck-list {
 .mouseListView-subcategory,
 .mouseListView-subcategory:last-child {
   border-color: #ccc;
+}
+
+.mh-dark .mouseListView-subcategory:last-child {
+  border-color: var(--d-border);
 }
 
 .mouseListView-categoryContent-subgroup-mouse-numCatches.bronze::before,

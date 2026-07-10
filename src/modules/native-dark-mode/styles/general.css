@@ -230,3 +230,26 @@ body.mh-dark {
 .mh-dark .mh-improved-travel-window-search-label {
   color: var(--d-text-muted);
 }
+
+.mh-dark #OnboardArrow.onboardPopup.celebrationPopup .introPopupContent,
+.mh-dark #OnboardArrow.onboardPopup.celebrationPopup .introPopupImage,
+.mh-dark #OnboardArrow.onboardPopup .introPopupContent h2 {
+  color: var(--d-text);
+}
+
+.mh-dark #OnboardArrow.onboardPopup.left {
+  background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_left.png);
+}
+
+.mh-dark #OnboardArrow.onboardPopup.right {
+  background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_right.png);
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+.mh-dark #OnboardArrow.onboardPopup.top {
+  background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_top.png);
+}
+
+.mh-dark #OnboardArrow.onboardPopup.bottom {
+  background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_bottom.png);
+}

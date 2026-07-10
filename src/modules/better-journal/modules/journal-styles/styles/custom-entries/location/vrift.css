@@ -10,3 +10,7 @@
 .journal .entry.rift_valour.moved_forward {
   background-color: #8fe5ff;
 }
+
+.mh-dark .journal .entry.rift_valour.moved_forward {
+  background-color: var(--d-blue-dark);
+}

@@ -68,3 +68,9 @@ button.mousehuntActionButton.tiny.tsitu-mapping {
   background-color: #636363;
   border: 1px solid #2c2c2c;
 }
+
+.mh-dark input[name="tsitu-mapping-id-input"] {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border: 1px solid var(--d-border);
+}

@@ -13,6 +13,10 @@
   color: #000;
 }
 
+.mh-dark.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) #friend-data-wrapper a[href*="profile.php"] {
+  color: var(--d-text);
+}
+
 .mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:hover,
 .mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:focus,
 .mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a:hover,

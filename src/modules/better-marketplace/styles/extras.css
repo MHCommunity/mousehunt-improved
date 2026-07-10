@@ -10,6 +10,10 @@
   white-space: pre-line;
 }
 
+.mh-dark .mhui-marketplace-total-value {
+  color: var(--d-text);
+}
+
 /* Browse filters — grouped to the right of the existing checkboxes. */
 .mhui-marketplace-filters {
   display: inline-flex;
@@ -46,6 +50,11 @@ select.mhui-marketplace-trap-filter {
   background-color: #d6eba1;
 }
 
+.mh-dark .marketplaceView-table tr.mhui-marketplace-last-viewed,
+.mh-dark .marketplaceView-table tr.mhui-marketplace-last-viewed:nth-child(odd) {
+  background-color: var(--d-green-dark);
+}
+
 /* Quick price links — label on its own row, then aligned step : price columns. */
 .mhui-marketplace-price-links {
   display: grid;
@@ -68,6 +77,11 @@ a.mhui-marketplace-price-link {
   color: #156fb5;
   white-space: nowrap;
   cursor: pointer;
+}
+
+.mh-dark .mhui-marketplace-price-step,
+.mh-dark .mhui-marketplace-price-value {
+  color: var(--d-link);
 }
 
 .mhui-marketplace-price-step {

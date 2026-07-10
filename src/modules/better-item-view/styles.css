@@ -71,6 +71,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+.mh-dark .itemView-has-mhct .ar-header {
+  border-bottom-color: var(--d-border);
+}
+
 .itemView-has-mhct .ar-link {
   font-size: 9px;
 }
@@ -81,6 +85,10 @@
 
 .itemView-has-mhct .mouse-ar-wrapper:nth-child(odd) {
   background-color: #e7e7e7;
+}
+
+.mh-dark .itemView-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: var(--d-bg);
 }
 
 .itemView-has-mhct .itemView-description {
@@ -391,6 +399,10 @@ ul.mh-improved-scroll-to-map-multiple-list {
 .mh-improved-scroll-to-map-title-text {
   font-size: 12px;
   border-bottom: 1px solid #ccc;
+}
+
+.mh-dark .mh-improved-scroll-to-map-title-text {
+  border-bottom-color: var(--d-border);
 }
 
 .mh-improved-scroll-to-map .PreferencesPage__blackTooltip.mh-improved-tooltip {

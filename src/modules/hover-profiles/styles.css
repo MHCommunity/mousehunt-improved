@@ -83,6 +83,10 @@
   vertical-align: middle;
 }
 
+.mh-dark #friend-data-wrapper .friendsPage-friendRow-titleBar-name {
+  color: var(--d-text);
+}
+
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
   width: 27px;
   height: 27px;
@@ -232,10 +236,20 @@
   border: 2px solid #7b7b7b;
 }
 
+.mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-titleBar-icon::after {
+  background: var(--d-action);
+  border-color: var(--d-border);
+}
+
 .friendsPage-friendRow.loading .friendsPage-friendRow-image,
 .friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon {
   background: #eee;
   box-shadow: none;
+}
+
+.mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-image,
+.mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon {
+  background: var(--d-action);
 }
 
 .friendsPage-friendRow.loading .friendsPage-friendRow-image {

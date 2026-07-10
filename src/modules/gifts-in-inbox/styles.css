@@ -2,6 +2,10 @@
   background-color: #fdf5bf;
 }
 
+.mh-dark .notificationMessageList .message.mh-improved-gift-link:hover {
+  background-color: var(--d-yellow-dark);
+}
+
 .notificationMessageList .message.mh-improved-gift-link .clear-block {
   display: flex;
   flex-direction: column;
@@ -21,6 +25,10 @@
   padding-bottom: 3px;
   font-size: 9px;
   color: #686e8a;
+}
+
+.mh-dark .notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-meta {
+  color: var(--d-text-muted);
 }
 
 .notificationMessageList .message.mh-improved-gift-link .messageText {
@@ -56,11 +64,19 @@
   text-align: right;
 }
 
+.mh-dark .notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-claim-error {
+  color: var(--d-red-light);
+}
+
 .notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-mark-claimed {
   font-size: 11px;
   color: #686e8a;
   text-align: right;
   text-decoration: underline;
+}
+
+.mh-dark .notificationMessageList .message.mh-improved-gift-link .mh-improved-gift-mark-claimed {
+  color: var(--d-text-muted);
 }
 
 .message.notification.mh-improved-gift-link {

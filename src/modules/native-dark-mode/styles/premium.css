@@ -5,3 +5,8 @@
 .mh-dark #overlayPopup.MHCheckout .jsDialogContainer .content {
   color: #000;
 }
+
+.mh-dark .MHCheckout-goldenShield-tiny {
+  color: var(--d-text-dark);
+  border-color: var(--d-border);
+}
