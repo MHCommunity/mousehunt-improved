@@ -14,6 +14,7 @@ import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
 import squareProfilePics from './modules/square-profile-pics';
+import tournamentTrophies from './modules/tournament-trophies';
 import trapGradientBackground from './modules/trap-gradient-background';
 import userscriptStyles from './modules/userscripts-styles';
 
@@ -37,6 +38,7 @@ const init = () => {
   userscriptStyles();
   randomSkinButton();
   skinPreviewBase();
+  tournamentTrophies();
 
   const modules = [
     { enabled: getSetting('better-ui.codex-at-bottom', true), load: codexAtBottom },
