@@ -10,14 +10,9 @@
   font-size: 11px;
   text-align: left;
   white-space: pre-wrap;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: #ffc8c8;
+  border: 1px solid #872727;
   border-radius: 4px;
-}
-
-.mh-dark .mh-improved-update-error pre {
-  background: var(--d-alt);
-  border-color: var(--d-border);
 }
 
 .mh-improved-update-error-buttons {

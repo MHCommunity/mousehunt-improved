@@ -4,6 +4,7 @@ import {
   createPopup,
   debuglog,
   doEvent,
+  getFlag,
   getSetting,
   markCachesAsExpired,
   onEvent,
@@ -120,7 +121,7 @@ const showUpdateError = (error, previousVersion, newVersion, updates) => {
       <p class="mh-improved-update-error-help">If this keeps happening, please <a href="https://github.com/MHCommunity/mousehunt-improved/issues" target="_blank" rel="noreferrer">report it on GitHub</a>.</p>
     </div>`,
     className: 'mh-improved-update-error-popup',
-    hasCloseButton: true,
+    hasCloseButton: false,
   });
 
   if (! popup) {
@@ -187,6 +188,11 @@ const update = async (previousVersion, newVersion) => {
   }
 
   try {
+    // Allow testing the update-failed popup by setting the 'test-update-error' flag.
+    if (! isFreshInstall && getFlag('test-update-error')) {
+      throw new Error('Simulated update failure via the "test-update-error" flag.');
+    }
+
     if (! isFreshInstall && needsToRunUpdate) {
       debuglog('update-migration', 'Running version updates:', updates);
       await doVersionUpdates(updates);
