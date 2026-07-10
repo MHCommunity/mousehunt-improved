@@ -24,8 +24,17 @@ const replaceInboxOpen = () => {
 
   /**
    * Show the notification popup.
+   *
+   * @param {...*} args Arguments passed to the existing inbox toggle.
+   *
+   * @return {*} The existing inbox toggle's return value.
    */
-  messenger.UI.notification.togglePopup = () => {
+  messenger.UI.notification.togglePopup = function (...args) {
+    // Preserve wrappers installed by other inbox modules, such as Gift Links.
+    // Hide Daily Draw should only change the selected tab, not replace the
+    // rest of the inbox-opening lifecycle.
+    const result = _togglePopup.apply(this, args);
+
     messenger.UI.notification.showPopup();
 
     messenger.UI.notification.setActiveTab('general');
@@ -35,6 +44,8 @@ const replaceInboxOpen = () => {
         messenger.UI.notification.showTab('general');
       }, [10, 100]);
     }, true);
+
+    return result;
   };
 };
 
