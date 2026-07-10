@@ -615,6 +615,10 @@ img.pointsMouseIcon {
   text-align: center;
 }
 
+.tournamentStatusHud .timer.active {
+  top: 1px;
+}
+
 .tournamentStatusHud .title {
   display: none;
 }

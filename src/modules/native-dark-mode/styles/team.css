@@ -56,3 +56,20 @@
 .mh-dark .teamPage-memberJournal-list {
   border-color: var(--d-border);
 }
+
+.mh-dark .tournamentStatusHud.pending {
+  background-image: url(https://i.mouse.rip/tournament/tournament_pending_bg.png);
+}
+
+.mh-dark .tournamentStatusHud.active,
+.mh-dark .tournamentStatusHud.active.basic {
+  background-image: url(https://i.mouse.rip/tournament/tournament_status_bg.png);
+}
+
+.mh-dark .tournamentStatusHud.active.endurance {
+  background-image: url(https://i.mouse.rip/tournament/tournament_endurance_bg.png);
+}
+
+.mh-dark .tournamentStatusHud.active.boost {
+  background-image: url(https://i.mouse.rip/tournament/tournament_boost_bg.png);
+}
