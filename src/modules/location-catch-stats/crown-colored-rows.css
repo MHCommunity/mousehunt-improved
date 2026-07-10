@@ -53,3 +53,74 @@
 .mh-catch-stats.mh-catch-stats-crown-diamond:nth-child(odd) {
   background-color: #e8bfe8;
 }
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze {
+  background-color: #5f4537;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze:nth-child(odd) {
+  background-color: #6b4d3d;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver {
+  background-color: #464d58;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver:nth-child(odd) {
+  background-color: #505865;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold {
+  background-color: #5a5134;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold:nth-child(odd) {
+  background-color: #665c3a;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum {
+  background-color: #3d5557;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum:nth-child(odd) {
+  background-color: #466163;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond {
+  background-color: #563f56;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond:nth-child(odd) {
+  background-color: #624862;
+}
+
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze:hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze:nth-child(odd):hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver:hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver:nth-child(odd):hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold:hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold:nth-child(odd):hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum:hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum:nth-child(odd):hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond:hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond:nth-child(odd):hover,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze:focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-bronze:nth-child(odd):focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver:focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-silver:nth-child(odd):focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold:focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-gold:nth-child(odd):focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum:focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-platinum:nth-child(odd):focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond:focus,
+.mh-dark .mh-catch-stats.mh-catch-stats-crown-diamond:nth-child(odd):focus {
+  background-color: var(--d-action);
+}

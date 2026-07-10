@@ -1,199 +1,24 @@
-import {
-  addStyles,
-  addSubmenuItem,
-  doRequest,
-  getSetting,
-  makeElement,
-  makeElementDraggable,
-  parseNumber
-} from '@utils';
+import { addStyles, addSubmenuItem, getSetting } from '@utils';
+
+import { showSimplifiedModal } from './stats';
+import { showSummaryModal } from './summary';
 
 import crownColoredRowsStyles from './crown-colored-rows.css';
 import styles from './styles.css';
+import summaryStyles from './summary.css';
 
 import settings from './settings';
 
-const normalize = (value) => {
-  return parseNumber(value);
-};
-
 /**
- * Get the mouse stats.
- *
- * @return {Object} The mouse stats.
+ * Show the configured catch stats view.
  */
-const getMouseStats = async () => {
-  const data = await doRequest('managers/ajax/mice/mouse_list.php', {
-    action: 'get_environment',
-    category: user.environment_type,
-    user_id: user.user_id,
-    display_mode: 'stats',
-    view: 'ViewMouseListEnvironments',
-  });
-
-  // Grab the data from the response.
-  const mouseData = data?.mouse_list_category?.subgroups[0]?.mice;
-
-  if (! mouseData) {
-    return [];
+const showModal = () => {
+  if (getSetting('location-catch-stats.simplified-view', false)) {
+    return showSimplifiedModal();
   }
 
-  // Reorder by the num_catches key.
-  mouseData.sort((a, b) => {
-    return normalize(b.num_catches) - normalize(a.num_catches);
-  });
-
-  // Return the data.
-  return mouseData ?? [];
+  return showSummaryModal();
 };
-
-/**
- * Build the markup for the stats.
- *
- * @param {Object} mouseData The mouse data.
- *
- * @return {Node} The node to append.
- */
-const buildMouseMarkup = (mouseData) => {
-  // Fallbacks for mouse data.
-  const mouse = Object.assign({}, {
-    name: '',
-    type: '',
-    image: '',
-    crown: 'none',
-    num_catches: 0,
-  }, mouseData);
-
-  const mouseEl = makeElement('a', 'mh-catch-stats');
-
-  mouseEl.title = mouse.name;
-  mouseEl.addEventListener('click', () => {
-    if (hg?.views?.MouseView?.show) {
-      hg.views.MouseView.show(mouse.type);
-    }
-  });
-
-  // Create the image element.
-  const image = makeElement('div', 'mh-catch-stats-image');
-  if (mouse.num_catches <= 0) {
-    image.classList.add('mh-catch-stats-no-catches');
-  }
-
-  image.style.backgroundImage = `url('${mouse.image}')`;
-
-  // If the mouse has a crown, add it.
-  if (mouse.crown && 'none' !== mouse.crown) {
-    const crown = makeElement('div', 'mh-catch-stats-crown');
-    crown.style.backgroundImage = `url('https://www.mousehuntgame.com/images/ui/crowns/crown_${mouse.crown}.png')`;
-    image.append(crown);
-
-    mouseEl.classList.add(`mh-catch-stats-crown-${mouse.crown}`);
-  } else {
-    mouseEl.classList.add('mh-catch-stats-crown-none');
-  }
-
-  // Create the name element.
-  const name = makeElement('div', 'mh-catch-stats-name');
-  name.textContent = mouse.name;
-
-  // Create a wrapper for the name and image.
-  const imageNameContainer = document.createElement('div');
-  imageNameContainer.append(image);
-  imageNameContainer.append(name);
-  mouseEl.append(imageNameContainer);
-
-  // Create the catches element.
-  const catches = makeElement('div', 'mh-catch-stats-catches');
-
-  catches.textContent = mouse.num_catches;
-  if (showMisses) {
-    makeElement('span', 'mh-catch-stats-separator', '/', catches);
-    makeElement('span', 'mh-catch-stats-misses', mouse.num_misses, catches);
-  }
-
-  mouseEl.append(catches);
-
-  return mouseEl;
-};
-
-/**
- * Show the stat modal.
- */
-const showModal = async () => {
-  showMisses = getSetting('location-catch-stats.show-misses', false);
-
-  // Remove the existing modal.
-  const existing = document.querySelector('#mh-catch-stats');
-  if (existing) {
-    existing.remove();
-  }
-
-  // Create the modal.
-  const modalWrapper = document.createElement('div');
-  modalWrapper.id = 'mh-catch-stats';
-
-  // Create the wrapper.
-  const modal = makeElement('div', 'mh-catch-stats-wrapper');
-
-  // Create the header.
-  const header = makeElement('div', 'mh-catch-stats-header');
-
-  // Add the title;
-  const title = document.createElement('h1');
-  title.textContent = 'Location Catch Stats';
-  header.append(title);
-
-  // Create a close button icon.
-  const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  closeIcon.classList.add('mh-catch-stats-close');
-  closeIcon.setAttribute('viewBox', '0 0 24 24');
-  closeIcon.setAttribute('width', '18');
-  closeIcon.setAttribute('height', '18');
-  closeIcon.setAttribute('fill', 'none');
-  closeIcon.setAttribute('stroke', 'currentColor');
-  closeIcon.setAttribute('stroke-width', '1.5');
-
-  // Create the path.
-  const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.append(closePath);
-
-  // Close the modal when the icon is clicked.
-  closeIcon.addEventListener('click', () => {
-    modalWrapper.remove();
-  });
-
-  // Append the button.
-  header.append(closeIcon);
-
-  // Add the header to the modal.
-  modal.append(header);
-
-  // Make the mouse stats table.
-  const mouseBody = makeElement('div', 'mh-catch-stats-body');
-
-  // Get the mouse stats.
-  const mouseStats = await getMouseStats();
-
-  // Loop through the stats and add them to the modal.
-  mouseStats.forEach((mouseData) => {
-    mouseBody.append(buildMouseMarkup(mouseData, mouseBody));
-  });
-
-  // Add the mouse stats to the modal.
-  modal.append(mouseBody);
-
-  // Add the modal to the wrapper.
-  modalWrapper.append(modal);
-
-  // Add the wrapper to the body.
-  document.body.append(modalWrapper);
-
-  // Make the modal draggable.
-  makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25);
-};
-
-let showMisses = false;
 
 /**
  * Initialize the module.
@@ -201,6 +26,7 @@ let showMisses = false;
 const init = async () => {
   addStyles([
     styles,
+    summaryStyles,
     getSetting('location-catch-stats.crown-colored-rows', false) ? crownColoredRowsStyles : null
   ]
   , 'location-catch-stats');
@@ -221,7 +47,7 @@ export default {
   name: 'Location Catch Stats',
   type: 'locations-maps-travel',
   default: true,
-  description: 'Add a “Location Catch Stats” option to the Mice menu to see your catch stats for the current location.',
+  description: 'Add a “Location Catch Stats” option to the Mice menu to see your catch stats for the current location and every other location.',
   load: init,
   settings,
 };

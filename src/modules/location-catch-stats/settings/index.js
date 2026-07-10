@@ -6,6 +6,10 @@
 export default async () => {
   return [
     {
+      id: 'location-catch-stats.simplified-view',
+      title: 'Use simplified view',
+    },
+    {
       id: 'location-catch-stats.crown-colored-rows',
       title: 'Color rows based on crown',
     },
