@@ -1,3 +1,53 @@
 .headsUpDisplayCeruleanSkyportView__logDialogItemContainer .quantity {
   padding: 1px 0;
 }
+
+.headsUpDisplayCeruleanSkyportView .headsUpDisplayCeruleanSkyportView__frame {
+  transition: 0.5s ease;
+}
+
+.ceruleanSkyportInventoryView__inventoryBlockImage {
+  width: 33px;
+  height: 34px;
+}
+
+.headsUpDisplayCeruleanSkyportView__basicBaitContainer .headsUpDisplayCeruleanSkyportView__basicBait,
+.headsUpDisplayCeruleanSkyportView__baitCraftableContainer {
+  transform: scale(1.1);
+}
+
+button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
+  left: 98px;
+}
+
+.headsUpDisplayCeruleanSkyportView__upsellContainer .upsellItemActionView-cost-image {
+  box-shadow: none;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidCostContainer {
+  right: 5px;
+}
+
+.ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon {
+  animation: mh-improved-shake 0.5s infinite;
+}
+
+.headsUpDisplayCeruleanSkyportView__airship .floatingIslandsAirship.animate,
+.ceruleanSkyportShippingView__currentShipmentDirigible {
+  animation: dirigibleFloat 4s ease-in-out infinite;
+}
+
+.ceruleanSkyportShippingView__currentShipmentDirigible {
+  animation-duration: 6s;
+}
+
+.headsUpDisplayCeruleanSkyportView__airship .floatingIslandsAirship.animate {
+  animation-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon,
+  .ceruleanSkyportShippingView__currentShipmentDirigible {
+    animation: none;
+  }
+}
