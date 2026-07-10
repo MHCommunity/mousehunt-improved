@@ -667,4 +667,11 @@ export default async () => {
   }
 
   itemLookup = buildItemLookup(allItems);
+
+  // Entries rendered before the item data arrived were skipped, and the next
+  // journal processing pass only happens on the next request, so process the
+  // entries that are already on the page now.
+  document.querySelectorAll('.journal .entry, .jsingle .entry').forEach((entry) => {
+    formatAsList(entry);
+  });
 };

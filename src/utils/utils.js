@@ -573,7 +573,9 @@ const unpluralizeMap = {
   pearls: 'pearl',
 };
 const unpluralizeRules = Object.entries(unpluralizeMap).map(([plural, singular]) => ({
-  regex: new RegExp(plural, 'gi'),
+  // Escape the plural so names like "SUPER|tokens+" match literally instead
+  // of being read as regex alternation/quantifiers.
+  regex: new RegExp(plural.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'), 'gi'),
   singular,
 }));
 

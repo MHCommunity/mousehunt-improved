@@ -38,7 +38,7 @@
   filter: sepia(1) contrast(1.4);
 }
 
-.floatingIslandsWorkshop-stabilizer {
+.floatingIslandsWorkshop-stabilizer.floatingIslandsWorkshop-stabilizer {
   left: 360px;
 }
 

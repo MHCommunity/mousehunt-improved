@@ -1,0 +1,37 @@
+.mh-improved-update-error {
+  text-align: center;
+}
+
+.mh-improved-update-error pre {
+  max-height: 150px;
+  padding: 10px;
+  margin: 10px 0;
+  overflow: auto;
+  font-size: 11px;
+  text-align: left;
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mh-dark .mh-improved-update-error pre {
+  background: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-improved-update-error-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px 0 10px;
+}
+
+.mh-improved-update-error-help {
+  font-size: 11px;
+  color: #4d4d4d;
+}
+
+.mh-dark .mh-improved-update-error-help {
+  color: var(--d-text-muted);
+}

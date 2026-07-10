@@ -5,10 +5,17 @@
   padding-right: 10px;
   padding-left: 80px;
   margin-right: -2px;
-  margin-bottom: -4px;
+  margin-bottom: 0;
   margin-left: -75px;
   overflow-y: auto;
   box-shadow: inset 0 -20px 15px -16px #999;
+}
+
+/* The scroll shadow sits at the bottom edge of the scroller, so keep that
+   edge flush with the entry's bottom: no margins below the scroller and no
+   bottom padding on the entry. */
+.journal .content .entry.socialGift.socialGift-send .journalbody {
+  margin-bottom: 0;
 }
 
 .journal .entry.socialGift.socialGift-send {
@@ -18,6 +25,12 @@
 .journal .entry.socialGift.socialGift-send.better-journal-gift-expanded .journalbody .journaltext {
   max-height: unset;
   box-shadow: none;
+}
+
+/* When expanded there's no scroll shadow, so restore the normal breathing
+   room below the text. */
+.journal .content .entry.socialGift.socialGift-send.better-journal-gift-expanded:not(.highlight) {
+  padding-bottom: 6px;
 }
 
 /* hide the friends popup for gifts as it nests and breaks the layout */
