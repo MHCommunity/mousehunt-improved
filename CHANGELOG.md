@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 0.98.4
+
+- Location Catch Stats: Redesigned the stats view with per-location summaries, crown counts, and sortable columns, plus a "Use simplified view" setting to keep the old layout
+- Native Dark Mode: Expanded dark mode coverage across nearly every module, including maps, marketplace, tournaments, shops, inbox, journal themes, and more
+- Better Tournaments: Improved reliability of the tournament HUD and pages — full tournament names no longer revert to shortened ones, hover scoreboards and localized listing times survive page refreshes, and scoreboard ranks stay formatted
+- Better UI: Tournament trophies and badges on hunter profiles are now clickable to view the item
+- Location HUDs: Added Cerulean Skyport HUD styling
+- User Highlighting: Profiles of hunters banned from the community MouseHunt Discord server now show a warning (these are Discord-only bans from the community-run server, not in-game bans)
+- Gifts in Inbox: Viewing the gift links tab now marks gifts as seen and clears the unread counter
+- Settings: Added a loading indicator while the settings screen builds and fixed search matches highlighting the section menu
+- Feature Flags: Added a `?flag=<flag>` URL parameter to temporarily enable feature flags for a single page load, and a `load-<module-id>` flag to temporarily load a module without enabling it
+- Improved recovery from database errors, with graceful fallbacks and a clearer error message when an update fails
+- Fixed Hide Daily Draw hiding gift messages in the inbox
+- Fixed hover cards lingering after navigating to another page
+- Fixed the full-width airship setting in Floating Islands
+- Better Journal: Fixed journal reprocessing and style edge cases
+- Minor style tweaks
+
 ## Version 0.98.3
 
 - Fix Better Marketplace: Show Markethunt price history chart when viewing an item defaulting to enabled

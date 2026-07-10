@@ -4,6 +4,8 @@ Enable hidden features and other advanced options.
 
 Add any of the following flags, comma-separated, to the feature flags option to enable them.
 
+You can also temporarily enable any flag for a single page load with the `?flag=<flag>` [URL query parameter](#url-query-parameters).
+
 ## Flags
 
 |Flag|Description|
@@ -91,6 +93,10 @@ You can force-disable modules using the `no-<module-id>` feature flag. This is t
 |`no-update-migration`|Disables migrating settings from old options to new options on update. _Warning: This may cause issues with other modules._|
 |`no-update-notifications`|Disables update notifications.|
 
+### Load Modules
+
+You can force a module to load using the `load-<module-id>` feature flag, regardless of whether it's enabled in the options. Combined with the `?flag=` query parameter, this is useful for temporarily trying out a module without changing your settings, e.g. `?flag=load-lgs-reminder`.
+
 ### Enable Deprecated Modules
 
 Some modules have been deprecated and are no longer available in the settings unless they are already enabled. You can show them in the settings by enabling the `show-deprecated-modules` feature flag.
@@ -104,5 +110,6 @@ Add these query parameters to the MouseHunt URL to temporarily change behavior f
 | `?safe-mode` | Loads with default settings. Useful for troubleshooting issues caused by settings. Your current settings are not overwritten and will be restored on the next normal page load. |
 | `?no-custom-styles` | Skips loading any custom CSS added via the [Custom Styles](./custom-styles.md) module. |
 | `?no-image-upscaling` | Disables [Image Upscaling & Transparency](./image-upscaling-and-transparency.md) for the current page load. |
+| `?flag=<flag>` | Temporarily enables one or more feature flags for the current page load without saving them to your settings. Separate multiple flags with commas, e.g. `?flag=legacy-hud,no-links`. |
 
 Multiple parameters can be combined, e.g., `https://www.mousehuntgame.com/?safe-mode&no-custom-styles`.
