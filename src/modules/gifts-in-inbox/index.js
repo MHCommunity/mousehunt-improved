@@ -266,7 +266,7 @@ const fetchRewardLinks = async (force = false) => {
   }
 
   try {
-    const response = await fetch('https://api.mouse.rip/gift-links/links', {
+    const response = await fetch('https://api.mouse.rip/gift-links', {
       credentials: 'omit',
       cache: 'no-store'
     });
