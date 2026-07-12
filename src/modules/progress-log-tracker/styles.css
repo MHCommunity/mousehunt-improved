@@ -93,3 +93,57 @@
 .mh-jlt-table tbody tr:nth-child(even) td {
   background-color: #f1ede2;
 }
+
+/* ── Dark mode ─────────────────────────────────────── */
+
+.mh-dark .mh-jlt-summary {
+  background: linear-gradient(var(--d-alt) 40%, var(--d-bg-alt) 100%);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-jlt-summary-label,
+.mh-dark .mh-jlt-summary-sub {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-jlt-summary.is-due .mh-jlt-summary-time {
+  color: var(--d-red-light);
+}
+
+.mh-dark .mh-jlt-open.mh-jlt-estimated {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-jlt-body {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-jlt-empty {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-jlt-table thead th {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .mh-jlt-table tbody tr:nth-child(even) td {
+  background-color: var(--d-transparent-10);
+}
+
+.mh-dark #overlayPopup.mh-jlt-overlay .content {
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-jlt-overlay .prefix h2 {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-jlt-open {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-jlt-table tbody td {
+  color: var(--d-text-muted);
+}

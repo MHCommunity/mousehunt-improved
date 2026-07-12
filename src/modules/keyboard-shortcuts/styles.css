@@ -108,3 +108,75 @@
 .mh-ui-keyboard-shortcuts-popup-content-category-list {
   border-top: 1px solid #929292;
 }
+
+/* ── Dark mode ─────────────────────────────────────── */
+
+.mh-dark .mh-ui-keyboard-shortcut {
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .mh-ui-keyboard-shortcut kbd {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+  box-shadow:
+    0 1px rgb(0 0 0 / 20%),
+    0 0 0 2px var(--d-transparent-10) inset;
+}
+
+.mh-dark .mh-ui-keyboard-shortcut.saved kbd {
+  background-color: var(--d-green-dark);
+  box-shadow:
+    0 1px rgb(0 0 0 / 20%),
+    0 0 0 2px var(--d-green-darker) inset;
+}
+
+.mh-dark .mh-ui-keyboard-shortcut.error kbd {
+  background-color: var(--d-red-dark);
+  box-shadow:
+    0 1px rgb(0 0 0 / 20%),
+    0 0 0 2px var(--d-red-darker) inset;
+}
+
+.mh-dark .mh-ui-keyboard-shortcut.editing kbd {
+  background-color: var(--d-blue-dark);
+  box-shadow:
+    0 1px rgb(0 0 0 / 20%),
+    0 0 0 2px var(--d-blue-darker) inset;
+}
+
+.mh-dark .mh-ui-keyboard-shortcut.editing .description {
+  color: var(--d-white);
+}
+
+.mh-dark .mh-ui-keyboard-shortcut.editing {
+  background-color: var(--d-blue-darker);
+}
+
+.mh-dark .mh-ui-keyboard-shortcuts-popup-content-category summary {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .mh-ui-keyboard-shortcuts-popup-content-category {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-ui-keyboard-shortcut:nth-child(even) {
+  background-color: var(--d-transparent-10);
+}
+
+.mh-dark .mh-ui-keyboard-shortcuts-popup-content-category-list {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark #overlayPopup.mh-ui-keyboard-shortcuts-popup .content {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-ui-keyboard-shortcuts-popup h2 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.mh-ui-keyboard-shortcuts-popup .content .edit-controls a {
+  color: var(--d-link);
+}
