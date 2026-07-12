@@ -6,6 +6,7 @@ import { safeJsonParse } from './json';
 const validDataFiles = new Set([
   'brift-mice-per-mist-level',
   'community-map-data',
+  'cre-mice-groups',
   'effs',
   'environments-events',
   'environments',
@@ -21,6 +22,8 @@ const validDataFiles = new Set([
   'mice-regions',
   'mice-thumbnails',
   'mice',
+  'journals-environment-mapping',
+  'journals-events',
   'minlucks',
   'relic-hunter-hints',
   'scoreboards',
@@ -33,20 +36,16 @@ const validDataFiles = new Set([
 ]);
 
 const dataFilesToPreload = [
-  'effs',
   'environments-events',
   'environments',
   'item-thumbnails',
-  'items-tradable',
   'items',
   'map-groups',
   'mice-groups',
   'mice-regions',
   'mice-thumbnails',
   'mice',
-  'minlucks',
   'upscaled-images',
-  'wisdom',
 ];
 
 /**

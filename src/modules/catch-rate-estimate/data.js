@@ -1,10 +1,9 @@
 import { doRequest, getCurrentLocation, getData } from '@utils';
 
-import miceGroups from '@data/cre-mice-groups.json';
-
 let miceEffs;
 let hasGottenEffs = false;
 let items = null;
+let miceGroups = null;
 
 /**
  * Get the mice eff values.
@@ -208,6 +207,10 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     items = await getData('items');
   }
 
+  if (! miceGroups) {
+    miceGroups = await getData('cre-mice-groups');
+  }
+
   let {
     mouseType,
     mousePower,
@@ -249,12 +252,12 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     break;
   case 'desert_warpath':
     if (
-      (miceGroups.fiery_warpath.archers.includes(mouseType) && 'super_flame_march_archer_trinket' === charm) ||
-      (miceGroups.fiery_warpath.cavalry.includes(mouseType) && 'super_flame_march_cavalry_trinket' === charm) ||
-      (miceGroups.fiery_warpath.mages.includes(mouseType) && 'super_flame_march_mage_trinket' === charm) ||
-      (miceGroups.fiery_warpath.scouts.includes(mouseType) && 'super_flame_march_scout_trinket' === charm) ||
-      (miceGroups.fiery_warpath.warriors.includes(mouseType) && 'super_flame_march_warrior_trinket' === charm) ||
-      (miceGroups.fiery_warpath.commanders.includes(mouseType) && 'super_flame_march_commander_trinket' === charm)
+      (miceGroups.fiery_warpath?.archers.includes(mouseType) && 'super_flame_march_archer_trinket' === charm) ||
+      (miceGroups.fiery_warpath?.cavalry.includes(mouseType) && 'super_flame_march_cavalry_trinket' === charm) ||
+      (miceGroups.fiery_warpath?.mages.includes(mouseType) && 'super_flame_march_mage_trinket' === charm) ||
+      (miceGroups.fiery_warpath?.scouts.includes(mouseType) && 'super_flame_march_scout_trinket' === charm) ||
+      (miceGroups.fiery_warpath?.warriors.includes(mouseType) && 'super_flame_march_warrior_trinket' === charm) ||
+      (miceGroups.fiery_warpath?.commanders.includes(mouseType) && 'super_flame_march_commander_trinket' === charm)
     ) {
       trapPowerBonus += 50;
     }
@@ -271,8 +274,8 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   case 'fort_rox':
     // By default the values in the sheet we use are set to balista level 1, so we want to reset them.
     if (
-      (miceGroups.fort_rox.weremice.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 0) ||
-      (miceGroups.fort_rox.cosmic.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 0)
+      (miceGroups.fort_rox?.weremice.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 0) ||
+      (miceGroups.fort_rox?.cosmic.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 0)
     ) {
       mousePower *= 2;
     } else if (
@@ -298,7 +301,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     }
     break;
   case 'sand_dunes': // Calculate power when salted in the Sand Crypts.
-    if (miceGroups.sand_dunes.includes(mouseType) && ! user?.quests?.QuestSandDunes?.is_normal) {
+    if (miceGroups.sand_dunes?.includes(mouseType) && ! user?.quests?.QuestSandDunes?.is_normal) {
       mousePower = calculatePowerWhenSalted(mousePower, user?.quests?.QuestSandDunes?.minigame?.salt_charms_used || 0, mouseType);
     }
 
@@ -313,14 +316,14 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   case 'zugzwang_tower': // Chess pieces.
     // Obvious Ambush & Blackstone Pass - each give +1800 Power on corresponding side, -2400 Power on opposite side.
     if (
-      ('obvious_ambush_weapon' === weapon && miceGroups.zugzwang_tower.technic.includes(mouseType)) ||
-      ('blackstone_pass_weapon' === weapon && miceGroups.zugzwang_tower.mystic.includes(mouseType))
+      ('obvious_ambush_weapon' === weapon && miceGroups.zugzwang_tower?.technic.includes(mouseType)) ||
+      ('blackstone_pass_weapon' === weapon && miceGroups.zugzwang_tower?.mystic.includes(mouseType))
     ) {
       trapPower += 1800;
       trapLuck += 6;
     } else if (
-      ('obvious_ambush_weapon' === weapon && miceGroups.zugzwang_tower.mystic.includes(mouseType)) ||
-      ('blackstone_pass_weapon' === weapon && miceGroups.zugzwang_tower.technic.includes(mouseType))
+      ('obvious_ambush_weapon' === weapon && miceGroups.zugzwang_tower?.mystic.includes(mouseType)) ||
+      ('blackstone_pass_weapon' === weapon && miceGroups.zugzwang_tower?.technic.includes(mouseType))
     ) {
       trapPower -= 2400;
       trapLuck -= 9;
@@ -339,7 +342,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
       trapLuck -= 0.05;
     }
     // Rook Crumble Charm.
-    if ('rook_crumble_trinket' === charm && miceGroups.zugzwang_tower.rooks.includes(mouseType)) {
+    if ('rook_crumble_trinket' === charm && miceGroups.zugzwang_tower?.rooks.includes(mouseType)) {
       trapPowerBonus += 300;
     }
 
@@ -347,7 +350,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   }
 
   // Dragon bane trinkets.
-  if (miceGroups.dragon.includes(mouseType)) {
+  if (miceGroups.dragon?.includes(mouseType)) {
     if (trapAuras.includes('QuestDragonsMightAura')) {
       trapPowerBonus += 300;
     }
@@ -388,12 +391,12 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     catchRate += (1 - catchRate) * 0.1;
   } else if (('fort_rox' === location) && (
     // Weremice get a 50% auto catch with Ballista 2 or 3.
-    (miceGroups.fort_rox.weremice.includes(mouseType) && (
+    (miceGroups.fort_rox?.weremice.includes(mouseType) && (
       Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level === 2) ||
       Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level === 3)
     )) ||
     // Cosmic Critters get a 50% auto catch with Cannon 2 or 3.
-    (miceGroups.fort_rox.cosmic.includes(mouseType) && (
+    (miceGroups.fort_rox?.cosmic.includes(mouseType) && (
       Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level === 2) ||
       Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level === 3)
     ))

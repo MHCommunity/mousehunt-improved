@@ -1,17 +1,3 @@
-.inventoryPage-item.full.recipe.known.reordered {
-  max-height: 38px;
-  overflow: hidden;
-  border-bottom: 1px solid #ccc;
-}
-
-.mh-dark .inventoryPage-item.full.recipe.known.reordered {
-  border-color: var(--d-border);
-}
-
-.inventoryPage-item.full.recipe.known.reordered:hover {
-  max-height: 500px;
-}
-
 .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
   position: relative;
 }

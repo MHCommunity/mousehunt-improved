@@ -5,6 +5,7 @@ import {
   doRequest,
   getCurrentLocation,
   getCurrentPage,
+  getData,
   getSetting,
   makeElement,
   onEvent,
@@ -13,11 +14,10 @@ import {
   saveSetting
 } from '@utils';
 
-import journals from '@data/journals-environment-mapping.json';
-
 import settings from './settings';
 import styles from './styles.css';
 
+let journals = {};
 let themes = [];
 
 /**
@@ -290,6 +290,8 @@ const onThemeSelectorChange = () => {
  */
 const init = async () => {
   addStyles(styles, 'journal-changer');
+
+  journals = await getData('journals-environment-mapping');
 
   if (getSetting('journal-changer.change-daily', false)) {
     changeJournalDaily();

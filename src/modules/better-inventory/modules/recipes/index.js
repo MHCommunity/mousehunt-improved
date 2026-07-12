@@ -12,41 +12,298 @@ import {
 
 import styles from './styles.css';
 
-import recipesMeConversion from '@data/magic-essence-potions.json';
-import recipesToReorder from '@data/crafting-recipe-mapping.json';
+/**
+ * Recipe families that should remain together.
+ *
+ * Groups are positioned alphabetically using their label. Items within each
+ * group follow the order of the `items` array.
+ *
+ * Values should match an item's `data-produced-item` value.
+ */
+const recipeGroups = [
+  {
+    label: 'Dragon Slayer Cannon',
+    items: [
+      'draconic_geyser_chassis_crafting_item',
+      'draconic_geyser_chassis_i_crafting_item',
+      'geyser_draconic_weapon',
+    ],
+  },
+  {
+    label: 'S.S. Huntington',
+    items: [
+      'unchristened_ship_craft_item',
+      'huntington_map_piece',
+    ],
+  },
+];
+
+const recipesMeConversion = {
+  no: [
+    'abominable_asiago_cheese_magic',
+    'ancient_cheese_6_pieces',
+    'ancient_cheese_potion',
+    'cherry_potion',
+    'corrupted_radioactive_blue_cheese_potion',
+    'gnarled_cheese_potion',
+    'greater_radioactive_blue_cheese_potion',
+    'limelight_cheese_6',
+    'radioactive_blue_cheese_potion',
+    'runic_cheese_2_pieces',
+    'runic_cheese_potion'
+  ],
+  maybe: [
+    'ancient_string_cheese_potion',
+    'crimson_cheese_magic_essence_recipe',
+    'gauntlet_potion_2',
+    'gauntlet_potion_3',
+    'gauntlet_potion_4',
+    'glowing_gruyere_cheese_5_pieces',
+    'greater_wicked_gnarly_potion',
+    'rain_cheese_potion',
+    'vengeful_vanilla_stilton_magic_essence',
+    'wicked_gnarly_potion',
+    'wind_cheese_potion'
+  ]
+};
 
 /**
- * Clean up the recipe book.
+ * Normalize text for sorting.
+ *
+ * @param {string} value The value to normalize.
+ *
+ * @return {string} The normalized value.
+ */
+const normalizeSortValue = (value) => {
+  return `${value || ''}`
+    .trim()
+    .replaceAll(/\s+/g, ' ')
+    .toLocaleLowerCase();
+};
+
+/**
+ * Get the displayed name of a recipe.
+ *
+ * @param {HTMLElement} recipe The recipe element.
+ *
+ * @return {string} The recipe name.
+ */
+const getRecipeName = (recipe) => {
+  const name = recipe.querySelector('.inventoryPage-item-content-name span, .inventoryPage-item-content-name');
+  return name?.textContent?.trim() || '';
+};
+
+/**
+ * Get all item types produced by a recipe.
+ *
+ * Some recipes may contain more than one comma-separated produced item.
+ *
+ * @param {HTMLElement} recipe The recipe element.
+ *
+ * @return {Array<string>} The produced item types.
+ */
+const getProducedItemTypes = (recipe) => {
+  const producedItems = recipe.getAttribute('data-produced-item');
+  if (! producedItems) {
+    return [];
+  }
+
+  return producedItems
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+};
+
+/**
+ * Get the configured group for a recipe.
+ *
+ * @param {HTMLElement} recipe The recipe element.
+ *
+ * @return {Object|null} The matching group.
+ */
+const getRecipeGroup = (recipe) => {
+  const producedItems = getProducedItemTypes(recipe);
+
+  return recipeGroups.find((group) => {
+    return group.items.some((item) => producedItems.includes(item));
+  }) || null;
+};
+
+/**
+ * Get a recipe's position within its configured group.
+ *
+ * @param {HTMLElement} recipe The recipe element.
+ * @param {Object}      group  The recipe group.
+ *
+ * @return {number} The recipe's group position.
+ */
+const getRecipeGroupPosition = (recipe, group) => {
+  const producedItems = getProducedItemTypes(recipe);
+  const positions = producedItems
+    .map((item) => group.items.indexOf(item))
+    .filter((position) => -1 !== position);
+
+  return positions.length ? Math.min(...positions) : Number.MAX_SAFE_INTEGER;
+};
+
+/**
+ * Build the values used to sort a recipe.
+ *
+ * Ungrouped recipes sort by their displayed name. Grouped recipes sort by the
+ * group's label, keeping the group in the normal alphabetical list.
+ *
+ * @param {HTMLElement} recipe The recipe element.
+ *
+ * @return {Object} The sorting values.
+ */
+const getRecipeSortData = (recipe) => {
+  const name = getRecipeName(recipe);
+  const group = getRecipeGroup(recipe);
+
+  return {
+    name: normalizeSortValue(name),
+    section: normalizeSortValue(group?.label || name),
+    group,
+    groupPosition: group ? getRecipeGroupPosition(recipe, group) : Number.MAX_SAFE_INTEGER,
+  };
+};
+
+/**
+ * Compare two recipe elements.
+ *
+ * @param {HTMLElement} recipeA The first recipe.
+ * @param {HTMLElement} recipeB The second recipe.
+ *
+ * @return {number} The sort result.
+ */
+const compareRecipes = (recipeA, recipeB) => {
+  const a = getRecipeSortData(recipeA);
+  const b = getRecipeSortData(recipeB);
+
+  const sectionComparison = a.section.localeCompare(b.section, undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+
+  if (0 !== sectionComparison) {
+    return sectionComparison;
+  }
+
+  if (a.group && b.group && a.group === b.group) {
+    const positionComparison = a.groupPosition - b.groupPosition;
+    if (0 !== positionComparison) {
+      return positionComparison;
+    }
+  }
+
+  return a.name.localeCompare(b.name, undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+};
+
+/**
+ * Find a recipe group container by its tag.
+ *
+ * This avoids using CSS.escape() and handles any unusual tag values.
+ *
+ * @param {string} tag The recipe category tag.
+ *
+ * @return {HTMLElement|null} The matching container.
+ */
+const getRecipeContainer = (tag) => {
+  const containers = document.querySelectorAll('.inventoryPage-tagContent-tagGroup');
+
+  return [...containers].find((container) => {
+    return container.getAttribute('data-tag') === tag;
+  }) || null;
+};
+
+/**
+ * Sort the recipes in a category.
+ *
+ * @param {string} tag The recipe category tag.
+ */
+const updateRecipesOnPage = (tag) => {
+  if (! tag || 'recommended' === tag) {
+    return;
+  }
+
+  const recipesContainer = getRecipeContainer(tag);
+  if (! recipesContainer) {
+    return;
+  }
+
+  const recipes = [...recipesContainer.querySelectorAll(':scope > .inventoryPage-item.recipe')];
+  if (recipes.length < 2) {
+    return;
+  }
+
+  recipes.sort(compareRecipes);
+
+  const fragment = document.createDocumentFragment();
+  recipes.forEach((recipe) => {
+    fragment.append(recipe);
+  });
+
+  recipesContainer.append(fragment);
+};
+
+/**
+ * Sort a category after MouseHunt has finished displaying it.
+ *
+ * @param {string} tag The recipe category tag.
+ */
+const scheduleRecipeUpdate = (tag) => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      updateRecipesOnPage(tag);
+    });
+  });
+};
+
+/**
+ * Clean up and sort the recipe book.
  */
 const cleanUpRecipeBook = () => {
+  const recipeBook = document.querySelector('.mousehuntHud-page-subTabContent.recipe');
+  if (! recipeBook) {
+    return;
+  }
+
   // Re-add the 'All' tab.
-  const allTab = document.querySelector('.inventoryPage-tagDirectory-tag.all.hidden');
+  const allTab = recipeBook.querySelector('.inventoryPage-tagDirectory-tag.all.hidden');
   if (allTab) {
     allTab.classList.remove('hidden');
   }
 
-  // get all the inventoryPage-tagDirectory-tag links and attach new onclick events to them
-  const tagLinks = document.querySelectorAll('.mousehuntHud-page-subTabContent.recipe a.inventoryPage-tagDirectory-tag');
+  const tagLinks = recipeBook.querySelectorAll('a.inventoryPage-tagDirectory-tag');
   tagLinks.forEach((tagLink) => {
-    // get the data-tag attribute
     const tag = tagLink.getAttribute('data-tag');
+    if (! tag) {
+      return;
+    }
 
-    // remove the old onclick event
     tagLink.removeAttribute('onclick');
 
-    // Add the new onclick event
-    tagLink.addEventListener('click', (e) => {
-      // showTagGroup(e.target);
-      app.pages.InventoryPage.showTagGroup(e.target);
+    // Navigation can run more than once, so avoid attaching duplicate handlers.
+    if ('true' === tagLink.dataset.mhuiRecipeHandler) {
+      return;
+    }
 
-      // Update the recipes on the page.
-      const hasBeenUpdated = tagLink.classList.contains('updated');
-      if (! hasBeenUpdated) {
-        updateRecipesOnPage(tag);
-        tagLink.classList.add('updated');
-      }
+    tagLink.dataset.mhuiRecipeHandler = 'true';
+    tagLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      app.pages.InventoryPage.showTagGroup(tagLink);
+      scheduleRecipeUpdate(tag);
     });
   });
+
+  // Sort the category that is already visible when the page opens.
+  const activeGroup = recipeBook.querySelector('.inventoryPage-tagContent-tagGroup.active');
+  if (activeGroup) {
+    scheduleRecipeUpdate(activeGroup.getAttribute('data-tag'));
+  }
 };
 
 /**
@@ -223,74 +480,6 @@ const modifySmashableTooltip = async () => {
 
       item.classList.remove('new-tooltip-loading');
     });
-  });
-};
-
-/**
- * Move the recipe to the bottom of the list.
- *
- * @param {string}      type             The type of recipe.
- * @param {HTMLElement} recipesContainer The container for the recipes.
- */
-const moveRecipe = (type, recipesContainer) => {
-  const recipeEl = document.querySelector(`.inventoryPage-item.recipe[data-produced-item="${type}"]`);
-  if (recipeEl) {
-    // move it to the bottom of the list
-    recipeEl.classList.add('reordered');
-    recipesContainer.append(recipeEl);
-  }
-};
-
-/**
- * Update the recipes on the page.
- *
- * @param {string} type The type of recipe.
- */
-const updateRecipesOnPage = async (type) => {
-  if (! recipesToReorder[type] || 'recommended' === type) {
-    return;
-  }
-
-  const recipesContainer = document.querySelector(`.inventoryPage-tagContent-tagGroup[data-tag="${type}"]`);
-  if (! recipesContainer) {
-    return;
-  }
-
-  const recipesModifying = [];
-
-  const knownRecipes = document.querySelectorAll('.inventoryPage-tagContent-tagGroup.active .inventoryPage-item.recipe.known');
-  knownRecipes.forEach((recipe) => {
-    const recipeId = recipe.getAttribute('data-item-type');
-    recipesModifying.push(recipeId);
-  });
-
-  // if there are no recipes to modify, then we can stop here.
-  if (recipesModifying.length === 0) {
-    return;
-  }
-
-  const itemTypes = recipesModifying.map((recipe) => {
-    return recipesToReorder[type][recipe];
-  }).filter(Boolean);
-
-  // if we're on the crafting items tab, then also check for dragon slayer cannon and then we can remove all the dragon slayer cannon recipes.
-  if (type === 'crafting_item') {
-    itemTypes.push('geyser_draconic_weapon');
-  }
-
-  const ownedItems = await getUserItems(itemTypes);
-  ownedItems.forEach((item) => {
-    if (! item.quantity || item.quantity < 1) {
-      return;
-    }
-
-    if ('geyser_draconic_weapon' === item.type) {
-      // if we have the dragon slayer cannon, then we can remove all the dragon slayer cannon recipes.
-      moveRecipe('draconic_geyser_chassis_crafting_item', recipesContainer);
-      moveRecipe('draconic_geyser_chassis_i_crafting_item', recipesContainer);
-    } else {
-      moveRecipe(item.type, recipesContainer);
-    }
   });
 };
 
