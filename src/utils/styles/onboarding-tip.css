@@ -1,0 +1,120 @@
+.mh-improved-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 290px;
+  padding: 8px 32px 8px 10px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #263f56;
+  background: #edf7ff;
+  border: 1px solid #72a9d3;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+}
+
+.mh-improved-tip::before,
+.mh-improved-tip::after {
+  position: absolute;
+  left: var(--mh-improved-tip-arrow);
+  width: 0;
+  height: 0;
+  margin-left: -6px;
+  content: "";
+  border: 6px solid transparent;
+}
+
+.mh-improved-tip::before {
+  bottom: 100%;
+  border-bottom-color: #72a9d3;
+}
+
+.mh-improved-tip::after {
+  bottom: calc(100% - 1px);
+  border-bottom-color: #edf7ff;
+}
+
+.mh-improved-tip-above::before {
+  top: 100%;
+  bottom: auto;
+  border-top-color: #72a9d3;
+  border-bottom-color: transparent;
+}
+
+.mh-improved-tip-above::after {
+  top: calc(100% - 1px);
+  bottom: auto;
+  border-top-color: #edf7ff;
+  border-bottom-color: transparent;
+}
+
+.mh-improved-tip-title,
+.mh-improved-tip-content {
+  display: block;
+}
+
+.mh-improved-tip-title {
+  font-weight: 700;
+}
+
+.mh-improved-tip-dismiss {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 0 4px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #4a7698;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.mh-improved-tip-dismiss:hover,
+.mh-improved-tip-dismiss:focus {
+  color: #152b3e;
+}
+
+.mh-improved-tip-dismiss:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 1px;
+}
+
+.mh-dark .mh-improved-tip {
+  color: #d8eafa;
+  background: #263743;
+  border-color: #527d9d;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+}
+
+.mh-dark .mh-improved-tip::after {
+  border-bottom-color: #263743;
+}
+
+.mh-dark .mh-improved-tip::before {
+  border-bottom-color: #527d9d;
+}
+
+.mh-dark .mh-improved-tip-above::before {
+  border-top-color: #527d9d;
+  border-bottom-color: transparent;
+}
+
+.mh-dark .mh-improved-tip-above::after {
+  border-top-color: #263743;
+  border-bottom-color: transparent;
+}
+
+.mh-dark .mh-improved-tip-dismiss {
+  color: #9dc3de;
+}
+
+.mh-dark .mh-improved-tip-dismiss:hover,
+.mh-dark .mh-improved-tip-dismiss:focus {
+  color: #eaf4fc;
+}

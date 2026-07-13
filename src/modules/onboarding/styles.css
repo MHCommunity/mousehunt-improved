@@ -1,13 +1,137 @@
-.mh-improved-onboarding-1 {
-  margin-top: 45px;
-  margin-left: -65px;
+.mh-improved-welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 105px 24px 135px;
+  overflow: auto;
+  background: rgb(13 20 24 / 72%);
 }
 
-.mh-improved-onboarding-2 {
-  margin-top: -50px;
-  margin-left: -30px;
+.mh-improved-welcome-popup {
+  position: relative;
+  box-sizing: border-box;
+  width: min(580px, calc(100vw - 48px));
+  padding: 0 54px 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #47290f;
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_border.png);
+  filter: drop-shadow(0 10px 9px rgb(0 0 0 / 45%));
+  background-repeat: repeat-y;
+  background-size: 100%;
+  isolation: isolate;
+  border: 0;
 }
 
-.mh-improved-onboarding strong {
-  font-weight: 900;
+.mh-improved-welcome-popup::before,
+.mh-improved-welcome-popup::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.mh-improved-welcome-popup::before {
+  top: -70px;
+  height: 90px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_header.png);
+}
+
+.mh-improved-welcome-popup::after {
+  top: calc(100% - 1px);
+  height: 112px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_footer.png);
+}
+
+.mh-improved-welcome-popup h2 {
+  padding: 0 28px 9px;
+  margin: -28px 0 13px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.15;
+  color: #693312;
+  text-align: center;
+  text-shadow: 0 1px rgb(255 248 215 / 80%);
+}
+
+.mh-improved-welcome-close {
+  position: absolute;
+  top: -43px;
+  right: 37px;
+  z-index: 2;
+  padding: 0 5px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #70401e;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.mh-improved-welcome-close:hover,
+.mh-improved-welcome-close:focus-visible {
+  color: #2e1608;
+  outline: 2px solid currentcolor;
+  outline-offset: 1px;
+}
+
+.mh-improved-welcome {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #47290f;
+}
+
+.mh-improved-welcome p {
+  margin: 0;
+}
+
+.mh-improved-welcome-icon {
+  width: 25px;
+  padding: 0 3px;
+  margin: -3px 2px 0;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 4px;
+  outline: 1px solid #ccc;
+}
+
+.mh-improved-welcome-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.mh-improved-welcome-buttons .mousehuntActionButton:focus-visible {
+  outline: 2px solid #47290f;
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .mh-improved-welcome-overlay {
+    align-items: flex-start;
+    padding: 95px 10px 125px;
+  }
+
+  .mh-improved-welcome-popup {
+    width: calc(100vw - 20px);
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+
+  .mh-improved-welcome-popup h2 {
+    font-size: 21px;
+  }
+
+  .mh-improved-welcome-close {
+    right: 27px;
+  }
 }
