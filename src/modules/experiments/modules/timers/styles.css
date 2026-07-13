@@ -1,0 +1,81 @@
+.mh-timers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  place-items: stretch;
+  padding: 5px 0;
+}
+
+.mh-timers-location {
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.mh-timers-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  background-color: #f4f2ee;
+  border-bottom: 1px solid #ddd;
+}
+
+.mh-timers-image {
+  width: 42px;
+  height: 42px;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mh-timers-title {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.mh-timers-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #442c22;
+}
+
+.mh-timers-current {
+  font-size: 12px;
+  color: #7a6a5f;
+}
+
+.mh-timers-stages {
+  display: flex;
+  flex-direction: column;
+}
+
+.mh-timers-stage {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #f0eeea;
+}
+
+.mh-timers-stage:last-child {
+  border-bottom: 0;
+}
+
+.mh-timers-stage-time {
+  font-variant-numeric: tabular-nums;
+  color: #442c22;
+}
+
+.mh-timers-note {
+  font-size: 11px;
+  color: #9a8a7f;
+}
