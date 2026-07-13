@@ -34,7 +34,7 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
 
 .headsUpDisplayCeruleanSkyportView__airship .floatingIslandsAirship.animate,
 .ceruleanSkyportShippingView__currentShipmentDirigible {
-  animation: dirigibleFloat 4s ease-in-out infinite;
+  animation: dirigibleFloat 7s ease-in-out infinite;
 }
 
 .ceruleanSkyportShippingView__currentShipmentDirigible {
@@ -53,13 +53,147 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
   transform: translateY(5px);
 }
 
+.headsUpDisplayCeruleanSkyportView__logDialogHeaderDirigible {
+  animation: dirigibleFloat 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogHeaderColonelAirship {
+  animation: dirigibleFloat 4s ease-in-out infinite;
+}
+
+.ceruleanSkyportRaidView {
+  overflow: hidden;
+}
+
+/* The cabin is the camera: it bobs and rolls, the terrain below drifts more
+slowly, and wisps of cloud blow past the windows. */
+.ceruleanSkyportRaidView__raidForeground {
+  animation: mh-improved-skyport-raid-cabin 7s ease-in-out infinite;
+}
+
+.ceruleanSkyportRaidView__raidBackground {
+  animation: mh-improved-skyport-raid-terrain 19s ease-in-out infinite;
+}
+
+.ceruleanSkyportRaidView__raidBackground::before,
+.ceruleanSkyportRaidView__raidBackground::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  content: "";
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+}
+
+.ceruleanSkyportRaidView__raidBackground::before {
+  animation: mh-improved-skyport-raid-clouds 24s linear infinite;
+}
+
+.ceruleanSkyportRaidView__raidBackground::after {
+  animation: mh-improved-skyport-raid-clouds 47s linear infinite;
+}
+
+@keyframes mh-improved-skyport-raid-cabin {
+  0%,
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0) rotate(-0.15deg);
+  }
+
+  50% {
+    transform: scale(1.02) translate3d(1px, 3px, 0) rotate(0.15deg);
+  }
+}
+
+@keyframes mh-improved-skyport-raid-terrain {
+  0%,
+  100% {
+    transform: scale(1.04) translate3d(-3px, -1px, 0);
+  }
+
+  50% {
+    transform: scale(1.06) translate3d(3px, 1px, 0);
+  }
+}
+
+@keyframes mh-improved-skyport-raid-clouds {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon,
-  .ceruleanSkyportShippingView__currentShipmentDirigible {
+  .headsUpDisplayCeruleanSkyportView__logDialogHeaderColonelAirship,
+  .headsUpDisplayCeruleanSkyportView__logDialogHeaderDirigible,
+  .ceruleanSkyportShippingView__currentShipmentDirigible,
+  .ceruleanSkyportRaidView__raidForeground,
+  .ceruleanSkyportRaidView__raidBackground,
+  .ceruleanSkyportRaidView__raidBackground::before,
+  .ceruleanSkyportRaidView__raidBackground::after {
     animation: none;
   }
 
   .headsUpDisplayCeruleanSkyportView__childView:hover .ceruleanSkyportShippingView__foreground {
     transform: none;
   }
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogLootContainer {
+  max-width: 115px;
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogLootName.name {
+  width: auto;
+  max-width: 85px;
+  padding: 0 2px;
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogPointsImageThumbnail,
+.headsUpDisplayCeruleanSkyportView__logDialogGoldImageThumbnail,
+.headsUpDisplayCeruleanSkyportView__logDialogLootImageThumbnail {
+  position: relative;
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogGoldContainer .quantity,
+.headsUpDisplayCeruleanSkyportView__logDialogPointsContainer .quantity,
+.headsUpDisplayCeruleanSkyportView__logDialogItemContainer .quantity {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  min-width: 5px;
+  padding: 3px;
+  font-weight: 700;
+  line-height: 11px;
+  text-align: right;
+}
+
+.headsUpDisplayCeruleanSkyportView__raidInfoContainer .headsUpDisplayCeruleanSkyportView__currentRaidThumbnail {
+  width: 40px;
+  height: 40px;
+}
+
+.headsUpDisplayCeruleanSkyportView__header {
+  top: 0;
+}
+
+.headsUpDisplayCeruleanSkyportView__headerTitle {
+  top: 1px;
+  left: 268px;
+  width: 226px;
+  border: 3px solid #717c8b;
+  border-bottom: none;
+  border-radius: 5% 5% 8px 12px;
+  box-shadow: 0 -3px 1px -1px #323c47;
+}
+
+.headsUpDisplayCeruleanSkyportView__logButton:hover {
+  filter: brightness(1.2);
 }
