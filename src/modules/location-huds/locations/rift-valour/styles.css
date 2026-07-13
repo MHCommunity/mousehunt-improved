@@ -52,6 +52,16 @@
   border-radius: 5px;
 }
 
+.mh-vrift-sim-results .note {
+  grid-column: 1 / -1;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #eaeaea;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 5px;
+}
+
 .mh-vrift-sim-results .eclipses {
   padding: 10px;
   margin-bottom: 2em;
@@ -285,6 +295,11 @@ span.valourRiftHUD-stepsTaken-value {
 
 .bottom.mh-vrift-floor-tooltip .mousehuntTooltip-arrow {
   display: none;
+}
+
+/* Undo the game's bolding, which our copy picks up via .valourRiftHUD-stepsRemaining. */
+.mh-vrift-steps-remaining {
+  font-weight: 400;
 }
 
 .valourRiftHUD-stepsTaken .mousehuntTooltip {

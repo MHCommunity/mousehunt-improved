@@ -7,6 +7,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-var */
 /* eslint-disable jsdoc/require-jsdoc */
+import getQuestData from './quest-data';
+
 // This is all borrowed from the original sim script while it's being rewritten.
 // Sets the display for the percentages
 // Set to true or false depending on which display you want
@@ -208,7 +210,10 @@ const mouseStats = [[3300, 1],
   [818250, 75],
   [1e30, 1]];
 
+// Rift Hailstone Singularity Base: +1 step per catch, but it consumes every loot
+// drop while climbing the tower.
 const HAILSTONE_BASE_ID = 3954;
+const lootProfileKeys = ['sg', 'sgi', 'sc', 'sci', 'gold', 'cf'];
 
 function getCacheLoot(floor) {
   let idx = floor > 1 ? (floor - 1) : 0;
@@ -228,23 +233,25 @@ function convertToCR(power, luck, stats) {
 function simulate(shouldDisplay = true) {
   const time = Date.now() / 1000;
 
-  const lvSpeed = window.user.enviroment_atts.power_up_data.long_stride.current_value;
-  const lvSync = window.user.enviroment_atts.power_up_data.hunt_limit.current_level + 1;
-  const lvSiphon = window.user.enviroment_atts.power_up_data.boss_extension.current_level + 1;
-  let siphon = window.user.enviroment_atts.power_up_data.boss_extension.current_value;
-  const sync = window.user.enviroment_atts.hunts_remaining;
-  const steps = window.user.enviroment_atts.current_step;
-  const torchState = window.user.enviroment_atts.is_fuel_enabled;
+  const questData = getQuestData();
+
+  const lvSpeed = questData.power_up_data.long_stride.current_value;
+  const lvSync = questData.power_up_data.hunt_limit.current_level + 1;
+  const lvSiphon = questData.power_up_data.boss_extension.current_level + 1;
+  let siphon = questData.power_up_data.boss_extension.current_value;
+  const sync = questData.hunts_remaining;
+  const steps = questData.current_step;
+  const torchState = questData.is_fuel_enabled;
   const torchEclipse = true;
-  const umbra = window.user.enviroment_atts.active_augmentations.tu;
-  const superSiphon = window.user.enviroment_atts.active_augmentations.ss;
-  const strStep = window.user.enviroment_atts.active_augmentations.sste;
-  const curFloor = window.user.enviroment_atts.floor;
-  const sh = window.user.enviroment_atts.active_augmentations.hr;
-  const sr = window.user.enviroment_atts.active_augmentations.sr;
+  const umbra = questData.active_augmentations.tu;
+  const superSiphon = questData.active_augmentations.ss;
+  const strStep = questData.active_augmentations.sste;
+  const curFloor = questData.floor;
+  const sh = questData.active_augmentations.hr;
+  const sr = questData.active_augmentations.sr;
   const bail = 999; // this is only here so I don't have to maintain two versions of this code :^)
 
-  const hasHailstoneBase = window.user.base_item_id === HAILSTONE_BASE_ID;
+  const hasHailstoneBase = Number.parseInt(window.user.base_item_id, 10) === HAILSTONE_BASE_ID;
   let power = window.user.trap_power;
   let luck = (window.user.trinket_name == 'Ultimate Charm') ? 100000 : window.user.trap_luck;
 
@@ -305,6 +312,13 @@ function simulate(shouldDisplay = true) {
     });
     catchProfile.kb[j] = 1 - catchProfile.ta[j] - catchProfile.bkb[j] - catchProfile.push[j];
   }
+
+  if (hasHailstoneBase) {
+    lootProfileKeys.forEach((key) => {
+      catchProfile[key] = catchProfile[key].map(() => 0);
+    });
+  }
+
   console.log(catchProfile);
 
   let speed = torchState ? Number(lvSpeed) + 1 : lvSpeed;
@@ -540,6 +554,7 @@ function simulate(shouldDisplay = true) {
       avgHunts: Math.round(totalHunts),
       lootSigils: Math.round(sigils),
       lootSecrets: Math.round(secrets),
+      lootConsumed: hasHailstoneBase,
       cacheSigils: deltaCache[0],
       cacheSecrets: deltaCache[1],
       eclipses,

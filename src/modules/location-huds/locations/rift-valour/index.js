@@ -9,6 +9,7 @@ import {
 import flippedAvatarStyles from './flipped-avatar.css';
 import styles from './styles.css';
 
+import getQuestData from './quest-data';
 import simulate from './simulator';
 
 /**
@@ -62,6 +63,7 @@ const displayResults = (results) => {
         <div class="label">Secrets (Cache)</div>
         <div class="value">${results.cacheSecrets}</div>
       </div>
+      ${results.lootConsumed ? '<div class="note">Your Rift Hailstone Singularity Base consumes all loot dropped while climbing the tower, so only the end-of-run cache is counted.</div>' : ''}
     </div>
 
     <div class="eclipses">
@@ -112,7 +114,7 @@ const addUIComponents = () => {
 
   const floor = document.querySelector('.valourRiftHUD-currentFloor');
   if (floor) {
-    const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
+    const floorName = makeElement('div', 'valourRiftHUD-floorName', getQuestData().floor_name);
     floorName.id = 'mh-vrift-floor-name';
     floor.append(floorName);
   }
@@ -145,7 +147,10 @@ const addUIComponents = () => {
     stepsExisting.remove();
   }
 
-  makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
+  // Keep the game's class on our copy: this module only runs on navigation, but the game's HUD
+  // render sets the text of every .valourRiftHUD-stepsRemaining on each turn, so tagging our copy
+  // keeps it in sync instead of freezing at whatever it read when the page loaded.
+  makeElement('div', ['mh-vrift-steps-remaining', 'valourRiftHUD-stepsRemaining'], stepsRemaining.textContent, floorBar);
 };
 
 /**
