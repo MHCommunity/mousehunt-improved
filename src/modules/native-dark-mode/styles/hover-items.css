@@ -4,7 +4,7 @@
 .mh-dark #mouse-data-wrapper,
 .mh-dark #item-data-wrapper {
   color: var(--d-text);
-  background: var(--d);
+  background: var(--d-bg);
   border: var(--d-black);
   box-shadow: 0 1px 5px -1px var(--d-action);
 }

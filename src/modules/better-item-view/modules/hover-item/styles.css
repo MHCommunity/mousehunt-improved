@@ -33,8 +33,6 @@
 #item-data-wrapper .item-image {
   height: 80px;
   margin-left: 10px;
-  background-color: #fff;
-  border: 1px solid #25211e;
   border-radius: 5px;
 }
 
@@ -50,8 +48,4 @@
   width: 160px;
   font-size: 12px;
   font-weight: 900;
-}
-
-.mh-dark #item-data-wrapper .item-image {
-  background-color: var(--d-bg);
 }
