@@ -6,7 +6,6 @@ import {
   doEvent,
   getFlag,
   getSetting,
-  markCachesAsExpired,
   onEvent,
   saveSetting,
   setGlobal,
@@ -200,10 +199,13 @@ const update = async (previousVersion, newVersion) => {
 
     saveSetting('mh-improved-version', newVersion);
 
+    if (isFreshInstall) {
+      saveSetting('onboarding.fresh-install', true);
+    }
+
     // Cache priming is only a warm-up — data is refetched on demand — so a
     // failure here (e.g. unavailable IndexedDB) shouldn't abort the update.
     try {
-      await markCachesAsExpired();
       await updateCaches();
     } catch (error) {
       debuglog('update-migration', 'Error priming caches during update', error);

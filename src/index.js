@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser';
 
 import {
   addSettingForModule,
+  checkForDataUpdates,
   debug,
   debuglog,
   deleteSetting,
@@ -270,6 +271,15 @@ const init = async () => {
   }
 
   migrateBaseItemCountersSetting();
+
+  // Check the small version map before modules read cached data. This runs at
+  // most once every three hours and downloads datasets only when they changed.
+  try {
+    await checkForDataUpdates();
+  } catch (error) {
+    // Data freshness checks must never prevent the extension from loading.
+    debuglog('utils-data', 'Unable to check for updated data files', error);
+  }
 
   // Time to load the modules.
   try {

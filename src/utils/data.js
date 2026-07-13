@@ -18,6 +18,7 @@ const validDataFiles = new Set([
   'm400-locations',
   'marketplace-hidden-items',
   'mhct-convertibles',
+  'mhct-mapper',
   'mice-groups',
   'mice-regions',
   'mice-thumbnails',
@@ -105,7 +106,7 @@ const getCacheExpiration = async (key = null) => {
  * Set the cache expiration for the given key.
  *
  * @param {string} key         Key to set the expiration for.
- * @param {number} [time=null] Time in milliseconds since epoch. If null, defaults to 7 days from now.
+ * @param {number} [time=null] Time in milliseconds since epoch. If null, defaults to 3-6 days from now.
  *
  * @return {Promise<void>} Resolves when the expiration is set.
  */
@@ -114,7 +115,7 @@ const cacheSetExpiration = async (key, time = null) => {
     return await dbSet('cache', { id: `expiration-${key}`, value: Date.now() + time });
   }
 
-  const expirationTime = Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000);
+  const expirationTime = Date.now() + ((Math.floor(Math.random() * 4) + 3) * 24 * 60 * 60 * 1000);
   return await dbSet('cache', { id: `expiration-${key}`, value: expirationTime });
 };
 
@@ -210,14 +211,56 @@ const fetchMouseRip = async (path, { json = true } = {}) => {
 };
 
 /**
+ * Check that fetched or cached data is a non-empty object or array.
+ *
+ * @param {Object|Array} data Data to check.
+ *
+ * @return {boolean} Whether the data is valid.
+ */
+const hasValidData = (data) => {
+  if (Array.isArray(data)) {
+    return data.length > 0;
+  }
+
+  return Boolean(data && typeof data === 'object' && Object.keys(data).length > 0);
+};
+
+/**
+ * Fetch the content versions for all extension data files.
+ *
+ * @return {Promise<Object|null>} The version map, or null on failure.
+ */
+const fetchDataVersions = async () => {
+  const versions = await fetchMouseRip('versions');
+  if (! versions || typeof versions !== 'object' || Array.isArray(versions)) {
+    return null;
+  }
+
+  return versions;
+};
+
+/**
+ * Get the version stored atomically with a cached dataset.
+ *
+ * @param {string} key Data-file key.
+ *
+ * @return {Promise<string|null>} The stored version.
+ */
+const getCachedDataVersion = async (key) => {
+  const cached = await dbGet('cache', key);
+  return cached?.data?.version || null;
+};
+
+/**
  * Get the data for the given key.
  *
- * @param {string}  key   Key to get the data for.
- * @param {boolean} force Whether to force fetching the data.
+ * @param {string}  key             Key to get the data for.
+ * @param {boolean} force           Whether to force fetching the data.
+ * @param {string}  expectedVersion Version expected after a successful fetch.
  *
  * @return {Object} The data.
  */
-const getData = async (key, force = false) => {
+const getData = async (key, force = false, expectedVersion = null) => {
   if (! isValidDataFile(key)) {
     console.error(`Invalid data file requested: ${key}`); // eslint-disable-line no-console
     return {};
@@ -225,13 +268,7 @@ const getData = async (key, force = false) => {
 
   if (! force) {
     const cachedData = await cacheGet(key, false);
-    if (
-      cachedData &&
-      (
-        (typeof cachedData === 'object' && ! Array.isArray(cachedData) && Object.keys(cachedData).length > 0) ||
-        (Array.isArray(cachedData) && cachedData.length > 0)
-      )
-    ) {
+    if (hasValidData(cachedData)) {
       return cachedData;
     }
   }
@@ -240,14 +277,13 @@ const getData = async (key, force = false) => {
   const data = await fetchData(key);
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
-  if (
-    data &&
-    (
-      (typeof data === 'object' && ! Array.isArray(data) && Object.keys(data).length > 0) ||
-      (Array.isArray(data) && data.length > 0)
-    )
-  ) {
-    await cacheSet(key, data);
+  if (hasValidData(data)) {
+    if (! expectedVersion) {
+      const versions = await cacheGetNoExpiration('data-versions', {});
+      expectedVersion = versions[key] || null;
+    }
+
+    await cacheSet(key, data, null, expectedVersion);
 
     return data;
   }
@@ -256,14 +292,13 @@ const getData = async (key, force = false) => {
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   const retryData = await fetchData(key);
-  if (
-    retryData &&
-    (
-      (typeof retryData === 'object' && ! Array.isArray(retryData) && Object.keys(retryData).length > 0) ||
-      (Array.isArray(retryData) && retryData.length > 0)
-    )
-  ) {
-    await cacheSet(key, retryData);
+  if (hasValidData(retryData)) {
+    if (! expectedVersion) {
+      const versions = await cacheGetNoExpiration('data-versions', {});
+      expectedVersion = versions[key] || null;
+    }
+
+    await cacheSet(key, retryData, null, expectedVersion);
     return retryData;
   }
 
@@ -305,23 +340,76 @@ const clearCaches = async () => {
 /**
  * Prime the caches.
  *
- * @param {boolean} all Whether to update all data files.
+ * @param {boolean} all                      Whether to update all data files.
+ * @param {boolean} downloadOnVersionFailure Whether to use the legacy full-download fallback.
  *
- * @return {Promise<void>} Resolves when the caches are updated.
+ * @return {Promise<boolean>} Whether the version check succeeded.
  */
-const updateCaches = async (all = false) => {
+const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
   const filesToUpdate = all ? validDataFiles : dataFilesToPreload;
+  const versions = await fetchDataVersions();
+
+  if (! versions && ! downloadOnVersionFailure) {
+    return false;
+  }
+
+  if (versions) {
+    await cacheSetNoExpiration('data-versions', versions);
+  }
+
+  const changedFiles = new Set();
+
+  for (const file of validDataFiles) {
+    const cachedData = await cacheGetNoExpiration(file, null);
+    const cachedVersion = await getCachedDataVersion(file);
+    const serverVersion = versions?.[file];
+
+    if (serverVersion && cachedVersion === serverVersion && hasValidData(cachedData)) {
+      await cacheSetExpiration(file);
+      continue;
+    }
+
+    await cacheExpire(file);
+    changedFiles.add(file);
+  }
 
   for (const file of filesToUpdate) {
-    await getData(file, true);
+    if (versions && ! changedFiles.has(file)) {
+      continue;
+    }
+
+    await getData(file, true, versions?.[file] || null);
 
     await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+
+  if (versions) {
+    await cacheSetNoExpiration('data-versions-last-checked', Date.now());
   }
 
   // Clear CRE caches to force refresh.
   cacheDelete('cre-location');
   cacheDelete('cre-stats');
   cacheDelete('cre-effectiveness');
+
+  return Boolean(versions);
+};
+
+/**
+ * Check for data updates at most once every three hours.
+ *
+ * @return {Promise<boolean>} Whether a version check was performed successfully.
+ */
+const checkForDataUpdates = async () => {
+  const lastChecked = await cacheGetNoExpiration('data-versions-last-checked', 0);
+  if (Date.now() - lastChecked < 3 * 60 * 60 * 1000) { // 3 hours.
+    return false;
+  }
+
+  // A background check should keep existing data when the versions endpoint
+  // is temporarily unavailable. Explicit update flows retain the legacy
+  // full-download fallback through updateCaches' default argument.
+  return await updateCaches(false, false);
 };
 
 /**
@@ -329,7 +417,7 @@ const updateCaches = async (all = false) => {
  */
 const markCachesAsExpired = async () => {
   for (const file of validDataFiles) {
-    await cacheSetExpiration(file, Date.now() - 1000);
+    await cacheExpire(file);
   }
 };
 
@@ -466,13 +554,14 @@ const lsSet = (key, value) => {
  *
  * @param {string} key               Key to set the value for.
  * @param {Object} value             Value to set.
- * @param {number} [expiration=null] Expiration time in milliseconds since epoch. If null, defaults to 7 days.
+ * @param {number} [expiration=null] Expiration time in milliseconds since epoch. If null, defaults to 3-6 days.
+ * @param {string} [version=null]    Content version stored with this dataset.
  *
  * @return {Promise<Object>} The value that was set.
  */
-const cacheSet = async (key, value, expiration = null) => {
+const cacheSet = async (key, value, expiration = null, version = null) => {
   await Promise.all([
-    dbSet('cache', { id: key, value }),
+    dbSet('cache', { id: key, value, version }),
     cacheSetExpiration(key, expiration),
   ]);
 
@@ -609,6 +698,7 @@ export {
   cacheSetExpiration,
   cacheExpire,
   cacheSetNoExpiration,
+  checkForDataUpdates,
   clearCaches,
   getData,
   fetchMouseRip,
