@@ -1,5 +1,6 @@
 import {
   addEvent,
+  addOnboardingTip,
   addStyles,
   dbGet,
   dbGetAll,
@@ -218,6 +219,13 @@ const addPageSelector = () => {
   }
 
   current.classList.add('page-selector');
+
+  addOnboardingTip({
+    step: 'better-journal-page-selector',
+    anchor: current,
+    title: 'Jump to any journal page',
+    content: 'Click the current page number to pick a page instead of clicking through them one at a time.',
+  });
 
   let isShowing = false;
   current.addEventListener('click', (event) => {

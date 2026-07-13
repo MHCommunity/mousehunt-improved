@@ -37,6 +37,8 @@
 .journal .content .entry.ceruleanSkyport-shipmentStarted .journalbody .journalenvdate,
 .journal .content .entry.ceruleanSkyport-shipmentFinished .journalbody .journalenvdate,
 .journal .content .entry.ceruleanSkyport-cannonballLoot .journalbody .journalenvdate,
+.journal .content .entry.baitkeep_popped .journalbody .journalenvdate,
+.journal .content .entry.baitkeep_idle .journalbody .journalenvdate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journalenvdate {
   display: none;
 }
