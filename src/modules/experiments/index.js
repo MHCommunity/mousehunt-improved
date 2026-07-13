@@ -43,7 +43,7 @@ const init = () => {
     },
     {
       id: 'better-marketplace.price-history-chart',
-      title: 'Better Marketplace: Show Markethunt price history chart when viewing an item',
+      title: 'Better Marketplace: Show Markethunt price history charts',
       load: () => {}
     },
     {

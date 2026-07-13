@@ -259,3 +259,20 @@ td.marketplaceView-table-name {
 .marketplaceView-listingType {
   line-height: 15px;
 }
+
+.marketplaceView-item-actionType .marketplaceView-listingType[data-mhui-target-action] {
+  cursor: pointer;
+}
+
+.marketplaceView-item-actionType .marketplaceView-listingType[data-mhui-target-action]:hover {
+  filter: brightness(1.12);
+}
+
+.marketplaceView-item-actionType .marketplaceView-listingType[data-mhui-target-action]:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
+}
+
+.mh-dark .marketplaceView-item-actionType .marketplaceView-listingType[data-mhui-target-action]:focus-visible {
+  outline-color: #fff;
+}

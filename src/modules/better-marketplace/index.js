@@ -1,4 +1,5 @@
 import {
+  addOnboardingTip,
   addStyles,
   debounce,
   formatGold,
@@ -11,6 +12,7 @@ import {
   onOverlayChange,
   onRequest,
   parseNumber,
+  saveOnboardingStep,
   waitForElement
 } from '@utils';
 
@@ -25,6 +27,8 @@ import quickSellStyles from './styles/quick-sell.css';
 import smallImages from './styles/small-images.css';
 import styles from './styles/styles.css';
 import trendNumbers from './styles/trend-numbers.css';
+
+const BUY_SELL_TOGGLE_STEP = 'better-marketplace-buy-sell-toggle';
 
 /**
  * Update the quantity buttons.
@@ -223,17 +227,68 @@ const overloadShowItem = () => {
   hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
     _originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
 
-    // Allow toggling buy/sell by clicking the type indicator. Bind after the
-    // render (so the element exists), once per rendered button, and route
-    // through the wrapped showItem so our enhancements refresh for the new
-    // action type.
+    // Allow toggling buy/sell by clicking the type indicator. The game reuses
+    // this element while changing action states, so refresh its metadata on
+    // every showItem call and bind the generic handlers only once.
     const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
-    if (actionButton && ! actionButton.dataset.mhuiToggleBound) {
-      actionButton.dataset.mhuiToggleBound = 'true';
-      actionButton.addEventListener('click', () => {
-        const actionType = actionButton.classList.contains('buy') ? 'sell' : 'buy';
-        hg.views.MarketplaceView.showItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, true);
+    const currentAction = actionButton?.classList.contains('buy')
+      ? 'buy'
+      : (actionButton?.classList.contains('sell') ? 'sell' : null);
+    const targetAction = 'buy' === currentAction ? 'sell' : 'buy';
+    const targetLabel = 'sell' === targetAction ? 'Selling' : 'Buying';
+    const targetAllowed = [...document.querySelectorAll('.marketplaceView-item-viewActions > a.mousehuntActionButton:not(.disabled)')]
+      .some((button) => button.textContent.trim().toLowerCase() === targetAction);
+
+    if (actionButton && currentAction && targetAllowed) {
+      actionButton.dataset.mhuiTargetAction = targetAction;
+      actionButton.dataset.mhuiItemId = itemId;
+      actionButton.title = `Click to switch to ${targetLabel}`;
+      actionButton.tabIndex = 0;
+      actionButton.setAttribute('role', 'button');
+      actionButton.setAttribute('aria-label', `Switch to ${targetLabel}`);
+
+      if (! actionButton.dataset.mhuiToggleBound) {
+        actionButton.dataset.mhuiToggleBound = 'true';
+
+        const toggleActionType = () => {
+          const nextAction = actionButton.dataset.mhuiTargetAction;
+          const nextItemId = actionButton.dataset.mhuiItemId;
+          if (! nextAction || ! nextItemId) {
+            return;
+          }
+
+          saveOnboardingStep(BUY_SELL_TOGGLE_STEP);
+          const quantityInput = document.querySelector('.marketplaceView-item-quantity');
+          const priceInput = document.querySelector('.marketplaceView-item-unitPriceWithTariff');
+          const quantity = quantityInput?.value ? parseNumber(quantityInput.value) : 0;
+          const unitPrice = priceInput?.value ? parseNumber(priceInput.value) : 0;
+          hg.views.MarketplaceView.showItem(nextItemId, nextAction, quantity, unitPrice, true);
+        };
+
+        actionButton.addEventListener('click', toggleActionType);
+        actionButton.addEventListener('keydown', (event) => {
+          if ('Enter' !== event.key && ' ' !== event.key) {
+            return;
+          }
+
+          event.preventDefault();
+          toggleActionType();
+        });
+      }
+
+      addOnboardingTip({
+        step: BUY_SELL_TOGGLE_STEP,
+        anchor: actionButton,
+        title: 'Quickly switch order type',
+        content: `Click ${actionButton.classList.contains('buy') ? 'Buying' : 'Selling'} to switch to ${targetLabel} without going back.`,
       });
+    } else if (actionButton) {
+      delete actionButton.dataset.mhuiTargetAction;
+      delete actionButton.dataset.mhuiItemId;
+      actionButton.removeAttribute('title');
+      actionButton.removeAttribute('tabindex');
+      actionButton.removeAttribute('role');
+      actionButton.removeAttribute('aria-label');
     }
 
     const actions = document.querySelector('.marketplaceView-item-titleActions');

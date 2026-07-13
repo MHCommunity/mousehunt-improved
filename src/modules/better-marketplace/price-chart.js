@@ -5,6 +5,7 @@ import {
   cacheGet,
   cacheSet,
   debuglog,
+  getSetting,
   isDarkMode,
   makeElement
 } from '@utils';
@@ -81,7 +82,10 @@ const getEvents = async () => {
  * @return {Object} The colors.
  */
 const getColors = () => {
-  const dark = isDarkMode();
+  // Highcharts paints the chart itself, so this is one of the few things that can't be handled with
+  // a '.mh-dark' rule. isDarkMode() only covers a third-party dark mode, so our own has to be
+  // checked separately.
+  const dark = getSetting('native-dark-mode', false) || isDarkMode();
 
   return {
     text: dark ? '#c7c7c7' : '#3d444b',
