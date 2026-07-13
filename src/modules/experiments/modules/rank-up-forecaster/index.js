@@ -307,7 +307,7 @@ const addMenuItem = () => {
     id: 'rank-up-forecaster',
     menu: 'kingdom',
     label: 'Rank-Up Forecaster',
-    icon: 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/cf1dfc99fde5f6fdcfe935e345f126db.png',
+    icon: 'https://i.mouse.rip/icons/up.png',
     class: 'rank-up-forecaster-submenu-item',
     callback: () => showForecasterPopup(),
   });
