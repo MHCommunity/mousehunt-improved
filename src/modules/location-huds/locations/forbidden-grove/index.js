@@ -1,4 +1,5 @@
 import { addHudStyles, getCurrentLocation, makeElement, replaceOrAppend } from '@utils';
+import { formatRotationTime, getLocationRotation } from '@utils/shared/location-rotations';
 
 import styles from './styles.css';
 
@@ -10,24 +11,10 @@ import addCheeseSelector from '../../shared/cheese-selectors';
  * @return {HTMLDivElement} The time left element.
  */
 const updateClosingTime = () => {
-  let timeLeftText = '';
-
-  // Props Warden Slayer & Timers+ for the math and logic.
-  const today = new Date();
-  const rotationLength = 20;
-  const rotationsExact = (((today.getTime() / 1000) - 1285704000) / 3600) / rotationLength;
-  const rotationsInteger = Math.floor(rotationsExact);
-  const partialRotation = (rotationsExact - rotationsInteger) * rotationLength;
-  if (partialRotation < 16) {
-    const closes = (16 - partialRotation).toFixed(3);
-    const hours = Math.floor(closes);
-    const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
-
-    timeLeftText = `${hours}h ${minutes}m remaining`;
-  }
+  const rotation = getLocationRotation('forbidden_grove');
 
   const timeLeftEl = makeElement('div', 'forbiddenGroveHUD-grovebar-timeLeft');
-  timeLeftEl.innerText = timeLeftText;
+  timeLeftEl.innerText = 'Open' === rotation.current.name ? `${formatRotationTime(rotation.current.minutesLeft)} remaining` : '';
 
   return timeLeftEl;
 };

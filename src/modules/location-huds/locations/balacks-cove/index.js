@@ -1,32 +1,9 @@
 import { addHudStyles, makeElement } from '@utils';
+import { formatRotationTime, getLocationRotation } from '@utils/shared/location-rotations';
 
 import styles from './styles.css';
 
 import addCheeseSelector from '../../shared/cheese-selectors';
-
-/**
- * Get the closing text.
- *
- * @param {number} closes                 The number of hours until the tide closes.
- * @param {string} stage                  The current tide stage.
- * @param {number} nextStageOffsetMinutes The number of minutes until the next stage.
- * @param {string} nextStageText          The next tide stage.
- *
- * @return {string} The closing text.
- */
-const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
-  const hours = Math.floor(closes);
-  const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
-
-  let timeLeftText = `${hours > 0 ? `${hours}h ` : ''}${minutes}m until ${stage}`;
-
-  if (nextStageOffsetMinutes && nextStageText) {
-    const totTimeMinutes = (hours * 60) + minutes + nextStageOffsetMinutes;
-    timeLeftText += `, <span class="offset">${hours > 0 ? `${Math.floor(totTimeMinutes / 60)}h ` : ''}${totTimeMinutes % 60}m until ${nextStageText}</span>`;
-  }
-
-  return timeLeftText;
-};
 
 /**
  * Update the closing time text.
@@ -37,25 +14,17 @@ const updateClosingTime = () => {
     return;
   }
 
-  let timeLeftText = '';
+  const rotation = getLocationRotation('balacks_cove');
+  if (! rotation) {
+    return;
+  }
 
-  // Props Warden Slayer & Timers+ for the math and logic.
-  const today = new Date();
+  // Mid Tide happens twice a rotation, so skip the one that's the tide we're already in.
+  const [next, following] = rotation.upcoming.filter((stage) => ! stage.isSameLevel);
 
-  const rotationLength = 18.66666;
-  const rotationsExact = (((today.getTime() / 1000) - 1294680060) / 3600) / rotationLength;
-  const rotationsInteger = Math.floor(rotationsExact);
-  const partialRotation = (rotationsExact - rotationsInteger) * rotationLength;
-
-  if (partialRotation < 16) {
-    // currently low, which means its (16 hours - current time) until mid flooding, then one more hour after than until high tide
-    timeLeftText = getClosingText(16 - partialRotation, 'Mid Tide', 60, 'High Tide');
-  } else if (partialRotation >= 16 && partialRotation < 17) {
-    // currently mid, which means its (1hr - current time) until high tide, then 40 minutes after that until low mid time again
-    timeLeftText = getClosingText(1 - (partialRotation - 16), 'High Tide', 40, 'Low Tide');
-  } else if (partialRotation >= 17 && partialRotation < 17.66666) {
-    // currently high, which means its (40 minutes - current time) until mid tide again, then 1 hour after that until low tide
-    timeLeftText = getClosingText(0.66666 - (partialRotation - 17), 'Mid Tide', 60, 'Low Tide');
+  let timeLeftText = `${formatRotationTime(next.minutes)} until ${next.name}`;
+  if (following) {
+    timeLeftText += `, <span class="offset">${formatRotationTime(following.minutes)} until ${following.name}</span>`;
   }
 
   const existing = document.querySelector('.balacksCoveHUD-tideContainer-timeLeft');
