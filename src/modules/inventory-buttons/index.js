@@ -106,18 +106,13 @@ const addOpenButtons = () => {
 
       const newButton = button.cloneNode(true);
 
-      newButton.classList.add(`open-${action}`);
+      newButton.classList.add('mh-improved-open-button', `open-${action}`);
       newButton.textContent = `Open ${text}`;
       newButton.value = text;
       newButton.setAttribute('data-item-action', action);
       newButton.removeAttribute('onclick');
 
       button.after(newButton);
-
-      newButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        useConvertible(event.target, action);
-      });
     };
 
     if (getSetting('inventory-buttons.open-one', true)) {
@@ -135,6 +130,25 @@ const addOpenButtons = () => {
 };
 
 /**
+ * Listen for clicks on our buttons.
+ *
+ * The listener is delegated rather than bound to each button because the game's
+ * inventory search clones matching items into the search results group without
+ * their event listeners, which would leave the cloned buttons doing nothing.
+ */
+const addClickListener = () => {
+  document.addEventListener('click', (event) => {
+    const button = event.target;
+    if (! button?.classList?.contains('mh-improved-open-button')) {
+      return;
+    }
+
+    event.preventDefault();
+    useConvertible(button, button.getAttribute('data-item-action'));
+  });
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
@@ -147,6 +161,8 @@ const init = () => {
     getSetting('inventory-buttons.open-all-but-one', false) ||
     getSetting('inventory-buttons.open-all', true)
   ) {
+    addClickListener();
+
     onNavigation(addOpenButtons, {
       page: 'inventory',
       tab: 'special',

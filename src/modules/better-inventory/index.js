@@ -1,4 +1,5 @@
 import {
+  addOnboardingTip,
   addStyles,
   createPopup,
   getCurrentLocation,
@@ -553,6 +554,22 @@ const main = async () => {
 
   onNavigation(go, {
     page: 'inventory',
+  });
+
+  onNavigation(() => {
+    setTimeout(() => {
+      addOnboardingTip({
+        step: 'better-inventory-crafting-shift-click',
+        anchor: '.inventoryPage-item[data-item-classification="crafting_item"]',
+        title: 'Take a closer look',
+        content: 'Shift-click a crafting item to open its item page instead of adding it to the crafting table.',
+        dismissOnAnchorClick: false,
+      });
+    }, 250);
+  }, {
+    page: 'inventory',
+    tab: 'crafting',
+    anySubtab: true,
   });
 
   if (getSetting('better-inventory.add-trap-sorting', false)) {
