@@ -1,6 +1,5 @@
 import {
   addBodyClass,
-  addExternalStyles,
   addStyles,
   createPopup,
   getSetting,
@@ -10,6 +9,7 @@ import {
   saveSetting
 } from '@utils';
 
+import miceImages from './mice-images';
 import settings from './settings';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
@@ -52,10 +52,6 @@ const maybeShowDarkModeConflictWarning = () => {
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
 
-  if (getSetting('native-dark-mode.enable-mice-page-image-changes', true)) {
-    addExternalStyles('dark-mode-mice-images.css');
-  }
-
   addBodyClass('mh-dark');
 
   onNavigation(() => {
@@ -63,6 +59,11 @@ const init = async () => {
   });
 
   setTimeout(maybeShowDarkModeConflictWarning, 2000);
+
+  // Awaited last, as this fetches its data and everything above it is immediate.
+  if (getSetting('native-dark-mode.enable-mice-page-image-changes', true)) {
+    await miceImages();
+  }
 };
 
 /**

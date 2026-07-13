@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const cssFilesToFetch = [
-  'dark-mode-mice-images.css',
   'great-winter-hunt-global.css',
   'journal-icons.css',
   'upscaled-images.css',

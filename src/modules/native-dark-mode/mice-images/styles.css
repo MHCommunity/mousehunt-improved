@@ -1,0 +1,163 @@
+/* The mouse art is a JPEG on a white background. The mouse's silhouette is layered
+over it with `mix-blend-mode: difference`, which knocks that white background down to
+near-black while leaving the mouse itself untouched.
+
+At runtime we tag each image with `data-mh-mouse="<mouse type>"` and declare that type's
+silhouettes as --mh-silhouette-large / --mh-silhouette-medium in a stylesheet of our own,
+so only mice we've resolved get the treatment. The URLs are deliberately kept out of the
+elements' style attributes — see the note in index.js. */
+
+.mh-dark .mouseView-imageContainer .mouseView-image {
+  position: relative;
+  border-radius: 0;
+}
+
+/* No height here on purpose. `inset: 0` already sizes this to the image, and the game
+renders landscape mice at 171px rather than 390px — pinning a height scales the
+silhouette into a box the art isn't in, so the two stop lining up. */
+
+.mh-dark .mouseView-imageContainer .mouseView-image[data-mh-mouse]::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: "";
+  background-image: var(--mh-silhouette-large);
+  filter: brightness(0.8);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: contain;
+  mix-blend-mode: difference;
+}
+
+/* Blending to near-black only looks right against a background that happens to match
+it, so where the browser can composite masks we cut the white out of the image instead
+and let the mouse sit on whatever is actually behind it.
+
+The mask is the solid layer minus the silhouette's luminance: the silhouette's white
+background (luminance 1) subtracts to transparent, and its dark mouse shape (luminance
+0) is left opaque. Geometry has to mirror the game's own background geometry on
+.mouseView-image (contain, 50% 0, no-repeat) for the two to line up.
+
+This is only applied to the popup. The mouse list tile carries the catch count and the
+mouse name as children of the element holding the image, and a mask applies to an
+element's descendants too, so masking it would cut the text out along with the white. */
+
+@supports (mask-composite: subtract) {
+  .mh-dark .mouseView-imageContainer .mouseView-image[data-mh-mask] {
+    box-shadow: none;
+    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-mode: luminance;
+    mask-repeat: no-repeat;
+    mask-position:
+      0 0,
+      50% 0;
+    mask-size:
+      100% 100%,
+      contain;
+    mask-composite: subtract, add;
+  }
+
+  /* The difference overlay would just paint over the hole we cut. */
+
+  .mh-dark .mouseView-imageContainer .mouseView-image[data-mh-mask]::after {
+    content: none;
+  }
+
+  /* The image is clickable, so the hover glow has to survive. The mask clips anything
+  the element itself paints, so the shadow goes on the parent, where it traces the
+  cut-out shape rather than the old rectangle. */
+
+  .mh-dark .mouseView-imageContainer:has(.mouseView-image[data-mh-mask]):hover {
+    filter: drop-shadow(0 0 3px #e70);
+  }
+}
+
+/* An uncaught mouse already shows its silhouette as the image, so it needs darkening
+rather than an overlay. */
+
+.mh-dark .mouseListView[data-display-mode="images"] .uncaught .mouseListView-categoryContent-subgroup-mouse-margin {
+  background-blend-mode: darken;
+}
+
+.mh-dark .mouseListView[data-display-mode="images"] .uncaught .mouseListView-categoryContent-subgroup-mouse-margin::after {
+  display: none;
+}
+
+/* Mice whose silhouette art is a full-bleed background have nothing to darken. */
+
+.mh-dark .mouseListView[data-display-mode="images"] .uncaught .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-blend="normal"] {
+  background-blend-mode: normal;
+}
+
+.mh-dark .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mouse]::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: "";
+  background-image: var(--mh-silhouette-medium);
+  filter: brightness(0.82);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 125px;
+  mix-blend-mode: difference;
+}
+
+.mh-dark .mouseListView[data-display-mode="images"] .landscape .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mouse]::after {
+  background-size: 250px;
+}
+
+/* The tile can't be masked directly: it holds the catch count and the mouse name as
+children, and a mask applies to an element's descendants, so it would cut the text out
+along with the white. The art is repainted onto a pseudo-element and only that is masked,
+leaving the text alone.
+
+`z-index: -1` keeps it behind the count and the name. `background-image: none` sheds the
+tile's own copy of the art, which needs !important to outrank upscaled-mice-images.css.
+Art and mask sit on the same element, so they line up whatever the tile's size. */
+
+@supports (mask-composite: subtract) {
+  .mh-dark .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mask] {
+    position: relative;
+
+    /* The tile paints its own dark background-color. Without a stacking context of its
+    own, the z-index: -1 below escapes the tile and paints behind that colour, which hides
+    the mouse completely. Isolating keeps it between the tile's background and its text. */
+    background-image: none !important;
+    isolation: isolate;
+  }
+
+  .mh-dark .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mask]::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    content: "";
+    background-image: var(--mh-art);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 125px;
+    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-mode: luminance;
+    mask-repeat: no-repeat;
+    mask-position:
+      0 0,
+      50% 50%;
+    mask-size:
+      100% 100%,
+      125px;
+    mask-composite: subtract, add;
+  }
+
+  .mh-dark .mouseListView[data-display-mode="images"] .landscape .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mask]::before {
+    background-size: 250px;
+    mask-size:
+      100% 100%,
+      250px;
+  }
+
+  /* The difference overlay would just paint over the hole we cut. */
+
+  .mh-dark .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mask]::after {
+    content: none;
+  }
+}

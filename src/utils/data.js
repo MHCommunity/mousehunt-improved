@@ -21,6 +21,7 @@ const validDataFiles = new Set([
   'mhct-mapper',
   'mice-groups',
   'mice-regions',
+  'mice-silhouettes',
   'mice-thumbnails',
   'mice',
   'journals-environment-mapping',
