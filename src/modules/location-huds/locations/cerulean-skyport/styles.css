@@ -45,9 +45,21 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
   animation-delay: 0.5s;
 }
 
+.headsUpDisplayCeruleanSkyportView__childView .ceruleanSkyportShippingView__foreground {
+  transition: 0.4s ease-in-out;
+}
+
+.headsUpDisplayCeruleanSkyportView__childView:hover .ceruleanSkyportShippingView__foreground {
+  transform: translateY(5px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon,
   .ceruleanSkyportShippingView__currentShipmentDirigible {
     animation: none;
+  }
+
+  .headsUpDisplayCeruleanSkyportView__childView:hover .ceruleanSkyportShippingView__foreground {
+    transform: none;
   }
 }
