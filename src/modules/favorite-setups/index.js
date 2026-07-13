@@ -1,5 +1,6 @@
 import {
   addIconToMenu,
+  addOnboardingTip,
   addStyles,
   cacheGet,
   cacheSet,
@@ -636,6 +637,17 @@ const makeSortable = (container) => {
       }
     });
   });
+
+  const firstDraggable = container.querySelector('.row-wrapper .row.draggable');
+  if (firstDraggable) {
+    addOnboardingTip({
+      step: 'favorite-setups-reorder',
+      anchor: firstDraggable,
+      title: 'Reorder your setups',
+      content: 'Drag a setup up or down to change its order. The new order is saved automatically.',
+      dismissOnAnchorClick: false,
+    });
+  }
 
   // Add dragover to main container
   container.addEventListener('dragover', (e) => {

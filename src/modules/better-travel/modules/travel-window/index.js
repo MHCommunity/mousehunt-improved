@@ -1,4 +1,5 @@
 import {
+  addOnboardingTip,
   addStyles,
   addSubmenuItem,
   createPopup,
@@ -360,6 +361,13 @@ const addEnvironmentIconListener = () => {
 
   environmentIcon.addEventListener('click', () => {
     openTravelWindow();
+  });
+
+  addOnboardingTip({
+    step: 'better-travel-environment-icon',
+    anchor: environmentIcon,
+    title: 'Travel from anywhere',
+    content: 'Click your location icon to open the Travel Window without leaving the page you\'re on.',
   });
 };
 

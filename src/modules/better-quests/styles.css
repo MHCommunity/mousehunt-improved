@@ -102,7 +102,8 @@
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questContainer {
   height: auto;
-  overflow-y: visible;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
@@ -169,7 +170,14 @@
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questResources {
-  padding: 5px 0;
+  display: flex;
+  flex-flow: row wrap;
+  place-content: center center;
+  width: 160px;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .item {
+  max-width: 75px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img.disabled[src=""] {
@@ -233,4 +241,13 @@ ul.mh-ui-assignment-details-task-list {
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix {
   border: none;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .suffix {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .content {
+  padding: 10px 10px 0;
 }

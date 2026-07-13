@@ -345,6 +345,8 @@ const updateAssignmentList = async () => {
     return;
   }
 
+  resources.innerHTML = resources.innerHTML.replace('You have:', '');
+
   const tomeDetails = await getUserItems([
     'library_boss_trinket', // not a tome but we want it here.
     'tome_of_wisdom_yellow_convertible',

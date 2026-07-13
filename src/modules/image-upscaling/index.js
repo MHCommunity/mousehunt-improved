@@ -7,6 +7,7 @@ import {
   getFlag,
   onDialogShow,
   onEvent,
+  onNavigation,
   onRequest
 } from '@utils';
 
@@ -339,6 +340,20 @@ class ImageUpscaler {
 }
 
 /**
+ * Add the upscaled journal theme styles, but only once a journal is on the page.
+ *
+ * These rules only ever theme the journal itself, so there's nothing for them to do
+ * anywhere else.
+ */
+const addJournalThemeStyles = () => {
+  if (! document.querySelector('#journalContainer')) {
+    return;
+  }
+
+  addExternalStyles('upscaled-journal-theme-images.css');
+};
+
+/**
  * The ImageUpscaler instance.
  */
 const init = async () => {
@@ -348,6 +363,10 @@ const init = async () => {
   }
 
   addStyles([styles, viewsStyles], 'image-upscaling');
+
+  // These two stay on every page on purpose. They override an item or mouse image
+  // wherever it turns up (inventory, journal, crafting, marketplace, HUD, popups),
+  // so there is no page they can be safely skipped on.
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
@@ -366,7 +385,8 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    addExternalStyles('upscaled-journal-theme-images.css');
+    addJournalThemeStyles();
+    onNavigation(addJournalThemeStyles);
   }
 };
 

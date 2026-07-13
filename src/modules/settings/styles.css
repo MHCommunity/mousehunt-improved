@@ -830,3 +830,15 @@ a.update-data-link.updating {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+#mousehunt-improved-settings-override-styles {
+  order: -200;
+}
+
+#mousehunt-improved-settings-override-flags {
+  order: -100;
+}
+
+#mousehunt-improved-settings-debug {
+  order: -50;
+}
