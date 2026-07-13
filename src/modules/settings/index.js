@@ -10,7 +10,6 @@ import {
   getCurrentTab,
   getSettings,
   makeElement,
-  markCachesAsExpired,
   onEvent,
   parseEncodedValue,
   setPage,
@@ -336,10 +335,17 @@ const addAdvancedSettingsButtons = () => {
     updateGameDataLink.classList.add('updating');
     updateGameDataLink.textContent = 'Updating Data…';
 
-    await markCachesAsExpired();
     await updateCaches();
 
-    window.location.reload();
+    updateGameDataLink.classList.remove('updating');
+    updateGameDataLink.textContent = 'Update Data';
+
+    showSuccessMessage({
+      message: 'Game data updated successfully.',
+      append: updateGameDataLink,
+      after: true,
+      classname: 'settings-update-data-success',
+    });
   });
   linkWrapper.append(updateGameDataLink);
 

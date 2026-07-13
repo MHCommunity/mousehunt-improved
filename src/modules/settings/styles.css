@@ -585,19 +585,16 @@
 /* Advanced */
 .mousehunt-improved-advanced-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
+  flex-flow: column wrap;
+  gap: 10px;
   align-items: flex-start;
-  padding: 20px 2px 0;
-  margin-top: 10px;
-  border-top: 1px solid var(--mhui-settings-border);
+  padding: 10px 2px 0;
 }
 
 .mousehunt-improved-advanced-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  justify-items: center;
 }
 
 .mousehunt-improved-advanced-buttons a {
