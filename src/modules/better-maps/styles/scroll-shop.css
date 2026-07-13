@@ -193,6 +193,26 @@ b[style="color:red; font-size: 14px;"] + br {
   background-color: #8fbef1;
 }
 
+.treasureMapPopup-shop[data-environment-type="draconic_depths"] {
+  background-color: #f5ae94;
+}
+
+.treasureMapPopup-shop[data-environment-type="afterword_acres"] {
+  background-color: #fbc9f0;
+}
+
+.treasureMapPopup-shop[data-environment-type="epilogue_falls"] {
+  background-color: #b9f0e6;
+}
+
+.treasureMapPopup-shop[data-environment-type="conclusion_cliffs"] {
+  background-image: linear-gradient(90deg, #ffc7c8, #ffe1a4, #c6ffcc, #c9faff, #f4d5ff);
+}
+
+.treasureMapPopup-shop[data-environment-type="cerulean_skyport"] {
+  background-color: #b9e6fb;
+}
+
 .treasureMapPopup-shop[data-environment-type="queso_quarry"],
 .treasureMapPopup-shop[data-environment-type="queso_plains"] {
   display: none;

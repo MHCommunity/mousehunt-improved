@@ -164,7 +164,6 @@ img.treasureMapView-reward-chestIcon {
 }
 
 .mh-dark .treasureMapInventoryView-scrollCase {
-  background-color: var(--d-transparent-30);
   border-color: var(--d-border);
 }
 
