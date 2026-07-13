@@ -1,11 +1,14 @@
 import {
+  addEvent,
   addStyles,
   doRequest,
   getSetting,
   makeElement,
   onEvent,
   onNavigation,
-  onRequest
+  onRequest,
+  sessionGet,
+  sessionSet
 } from '@utils';
 
 import {
@@ -20,9 +23,38 @@ import styles from './styles.css';
 
 let scoreboardObserver = null;
 let tournamentListObserver = null;
+let tournamentHudObserver = null;
+let observedTournamentHud = null;
 const tournamentNames = new Map();
 
 const tournamentRowSelector = '.tournamentPage-tournamentRow.tournamentPage-tournamentData';
+const namesCacheKey = 'better-tournaments-names';
+
+/**
+ * Remember a full tournament name, keeping it available across page loads.
+ *
+ * @param {string} tournamentId Tournament ID.
+ * @param {string} name         Full tournament name.
+ */
+const cacheTournamentName = (tournamentId, name) => {
+  if (! tournamentId || ! name || tournamentNames.get(tournamentId) === name) {
+    return;
+  }
+
+  tournamentNames.set(tournamentId, name);
+  sessionSet(namesCacheKey, Object.fromEntries(tournamentNames));
+};
+
+/**
+ * Cache the full tournament name from the HUD data the game already has, so
+ * that the name can be restored without waiting on a request.
+ */
+const cacheTournamentNameFromUser = () => {
+  const progress = user?.viewing_atts?.tournament;
+  if (progress?.tournament_id && progress?.name) {
+    cacheTournamentName(String(progress.tournament_id), progress.name);
+  }
+};
 
 /**
  * Restore the full tournament name after the game renders its short name.
@@ -34,7 +66,39 @@ const restoreTournamentName = () => {
     return;
   }
 
+  cacheTournamentNameFromUser();
   applyCachedTournamentName(activeTourney, tournamentNames);
+};
+
+/**
+ * Watch the tournament HUD because the game rewrites the name with its short
+ * version on every HUD render, and those renders aren't tied to navigation.
+ */
+const observeTournamentHud = () => {
+  const hud = document.querySelector('#tournamentStatusHud');
+  if (hud === observedTournamentHud) {
+    restoreTournamentName();
+    return;
+  }
+
+  tournamentHudObserver?.disconnect();
+  tournamentHudObserver = null;
+  observedTournamentHud = hud;
+
+  if (! hud) {
+    return;
+  }
+
+  restoreTournamentName();
+
+  // Restoring the name is a no-op once the name already matches, so writing it
+  // back from the observer can't retrigger the observer indefinitely.
+  tournamentHudObserver = new MutationObserver(restoreTournamentName);
+  tournamentHudObserver.observe(hud, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
 };
 
 /**
@@ -70,7 +134,7 @@ const updateTournamentHud = async () => {
   }
 
   if (tourneyData.page.name) {
-    tournamentNames.set(tourneyId, tourneyData.page.name);
+    cacheTournamentName(tourneyId, tourneyData.page.name);
   }
 
   // The request can finish after the game has replaced the HUD or moved the
@@ -321,11 +385,24 @@ const observeScoreboard = () => {
  */
 const init = () => {
   addStyles(styles, 'better-tournaments');
+
+  Object.entries(sessionGet(namesCacheKey, {}) || {}).forEach(([tournamentId, name]) => {
+    tournamentNames.set(tournamentId, name);
+  });
+
+  observeTournamentHud();
   setTimeout(updateTournamentHud, 1000);
 
-  onEvent('ajax_response', restoreTournamentName);
+  // The game re-renders the tournament HUD from its own unweighted 'ajax_response'
+  // listener. Listeners of the same weight fire in an arbitrary order, so restoring
+  // the name needs a heavier weight to reliably land after the game's render.
+  addEvent('ajax_response', observeTournamentHud, {
+    weight: 1000,
+    id: 'mh-improved-better-tournaments-restore-name',
+  });
+
   onEvent('tournament_status_change', updateTournamentHud);
-  onNavigation(restoreTournamentName);
+  onNavigation(observeTournamentHud);
   onNavigation(observeTournamentList, {
     page: 'tournament',
   });

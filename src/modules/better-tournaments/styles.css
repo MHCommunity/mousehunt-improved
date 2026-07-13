@@ -482,7 +482,7 @@ img.memberImage {
 .memberHover {
   left: 0;
   width: auto;
-  min-width: 120px;
+  min-width: 150px;
   padding: 5px;
 }
 
