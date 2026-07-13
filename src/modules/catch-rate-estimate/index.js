@@ -241,7 +241,6 @@ const renderList = async (list) => {
     }
 
     statsContainer.append(minluckList);
-    doEvent('mh-improved-cre-list-rendered');
   }
 
   const existing = document.querySelector('#mh-improved-cre-table');
@@ -347,6 +346,7 @@ const renderList = async (list) => {
   if (rows.length === 0) {
     makeElement('span', 'mh-improved-cre-no-mice', 'No mice found.', table);
     minluckList.append(table);
+    doEvent('mh-improved-cre-list-rendered');
     return;
   }
 
@@ -372,6 +372,8 @@ const renderList = async (list) => {
   minluckList.append(table);
 
   updateTrapView(rows);
+
+  doEvent('mh-improved-cre-list-rendered');
 };
 
 /**

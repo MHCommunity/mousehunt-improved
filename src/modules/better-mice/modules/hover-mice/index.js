@@ -148,6 +148,7 @@ export default () => {
   addStyles(styles, 'better-mice-hover-mice');
 
   onEvent('journal-mouse-link-modified', main);
+  onEvent('mh-improved-cre-list-rendered', () => main());
   onJournalEntry(main, {
     id: 'better-mice-hover-mice',
     weight: 9900,
