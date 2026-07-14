@@ -9,12 +9,11 @@ import {
   lsGet,
   makeElement,
   onDeactivation,
+  onJournalEntriesProcessed,
   onNavigation,
   onRequest,
-  onTurn,
   parseNumber,
-  saveSetting,
-  setMultipleTimeout
+  saveSetting
 } from '@utils';
 
 import settings from './settings';
@@ -741,32 +740,36 @@ const migrateFromUserscript = async () => {
 };
 
 /**
+ * Refresh tracker state after the journal pipeline settles a batch.
+ */
+const processJournalBatch = async () => {
+  await scrapeJournal();
+  showButton();
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles, MODULE_ID);
 
+  // Turn responses carry exact timestamps before their entries reach the DOM.
+  // Capture those immediately, then consume the settled DOM through the
+  // journal pipeline rather than guessing with request and turn delays.
+  onRequest('*', captureExactTimestamps, true);
+  const stopProcessingJournal = onJournalEntriesProcessed(processJournalBatch);
+
   await refreshLogsCache();
   await migrateFromUserscript();
+  await processJournalBatch();
 
-  showButton();
-  scrapeJournal();
-
-  // Registered first, and with `skipSuccess`, so the exact timestamps a turn
-  // response carries are available before anything scrapes the entries it adds.
-  onRequest('*', captureExactTimestamps, true);
-
-  // The journal page request resolves before the game swaps the new entries in,
-  // so wait for the DOM to catch up before reading the pager and the entries.
-  onRequest('pages/journal.php', () => setMultipleTimeout(scrapeJournal, [100, 500, 1000]));
-
-  onNavigation(() => {
-    showButton();
-    scrapeJournal();
-  });
-  onTurn(scrapeJournal);
+  // Empty journals do not produce a processed-entry batch, but still need the
+  // tracker button when their page shell is shown.
+  onNavigation(showButton);
 
   onDeactivation(MODULE_ID, () => {
+    stopProcessingJournal();
+
     if (buttonInterval) {
       clearInterval(buttonInterval);
       buttonInterval = null;
