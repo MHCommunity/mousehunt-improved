@@ -41,6 +41,7 @@
     "dev:firefox": "bun run scripts/build-extension.mjs --platform=firefox --watch",
     "dev": "bun run scripts/build-extension.mjs --platform=chrome --watch",
     "fix-map-groups": "bun run scripts/fix-map-groups.mjs",
+    "preview-map-groups": "bun run scripts/preview-map-groups.mjs",
     "get-changelog": "bun run scripts/get-changelog.mjs",
     "get-version": "bun run scripts/get-version.mjs",
     "lint:css:fix": "stylelint 'src/**/*.css' --fix --cache --config .stylelintrc.json",
