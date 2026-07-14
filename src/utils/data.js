@@ -17,7 +17,6 @@ const validDataFiles = new Set([
   'map-groups',
   'm400-locations',
   'marketplace-hidden-items',
-  'mhct-convertibles',
   'mice-groups',
   'mice-regions',
   'mice-silhouettes',

@@ -1,6 +1,6 @@
 // treasureMapView-previewRewardsButton
 
-import { getData, makeElement, mapData, waitForElement } from '@utils';
+import { fetchMouseRip, makeElement, mapData, waitForElement } from '@utils';
 
 export default () => {
   const previewRewardsButton = document.querySelector('.treasureMapView-previewRewardsButton');
@@ -19,15 +19,21 @@ export default () => {
       return;
     }
 
-    const mhctConvertibles = await getData('mhct-convertibles');
-    if (! mhctConvertibles) {
+    const rewardType = theMapData?.reward?.type;
+    if (! rewardType) {
       return;
     }
 
-    const rewardType = theMapData?.reward?.type;
     const rewardContents = theMapData?.reward?.contents || [];
+    const reward = await fetchMouseRip(`items/${encodeURIComponent(rewardType)}`);
+    if (! reward?.id) {
+      return;
+    }
 
-    const rewardData = mhctConvertibles.find((item) => item.type === rewardType);
+    const convertibleContents = await fetchMouseRip(`convertible/${reward.id}`);
+    if (! Array.isArray(convertibleContents)) {
+      return;
+    }
 
     const previeItems = document.querySelectorAll('.treasureMapDialogView-chest-item');
     previeItems.forEach((item) => {
@@ -38,12 +44,11 @@ export default () => {
 
       const itemName = itemNameEl.textContent.trim();
 
-      const itemType = rewardContents.find((convertible) => convertible.name === itemName);
-      if (! itemType || ! itemType.type) {
+      if (! rewardContents.some((convertible) => convertible.name === itemName)) {
         return;
       }
 
-      const itemData = rewardData?.convertibles?.find((convertible) => convertible.item === itemType.type);
+      const itemData = convertibleContents.find((convertible) => convertible.name === itemName);
       if (itemData) {
         const itemPadding = item.querySelector('.treasureMapDialogView-chest-item-padding');
         if (! itemPadding) {
@@ -52,12 +57,12 @@ export default () => {
 
         const details = makeElement('div', 'mh-improved-reward-details');
 
-        const min = Number.parseInt(itemData.min_item_quantity, 10);
-        const max = Number.parseInt(itemData.max_item_quantity, 10);
+        const min = Number.parseInt(itemData.min, 10);
+        const max = Number.parseInt(itemData.max, 10);
         const quantity = makeElement('div', 'mh-improved-reward-quantity', min === max ? min.toLocaleString() : `${min.toLocaleString()} - ${max.toLocaleString()}`);
         itemNameEl.prepend(quantity);
 
-        const chance = (itemData?.times_with_any || 0) / (itemData?.single_opens || 1) * 100;
+        const chance = Number.parseFloat(itemData.chance) || 0;
         makeElement('div', 'mh-improved-reward-chance', `${chance.toFixed(chance < 1 ? 2 : 0)}%`, details);
         itemPadding.append(details);
       }

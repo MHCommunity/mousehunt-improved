@@ -156,7 +156,15 @@ const publishMapData = (mapData, reason = 'map-data') => {
   return mapData;
 };
 
-const interceptMapRequest = async (mapId) => {
+/**
+ * Fetch and publish data for the map currently being shown.
+ *
+ * @param {string|number} mapId     The map to fetch.
+ * @param {Function}      isCurrent Whether this request remains current.
+ *
+ * @return {Promise<Object|boolean>} The published map data, if current.
+ */
+const interceptMapRequest = async (mapId, isCurrent = () => true) => {
   sessionSet('map-refreshed', Date.now());
 
   // If we don't have data, we're done.
@@ -165,7 +173,7 @@ const interceptMapRequest = async (mapId) => {
   }
 
   const data = await getMapData(mapId, true);
-  if (data) {
+  if (data && isCurrent()) {
     return publishMapData(data, 'map-fetch');
   }
 
@@ -174,6 +182,44 @@ const interceptMapRequest = async (mapId) => {
 
 let parentShowMap;
 let defaultMapId;
+let mapRequestGeneration = 0;
+let mapRecoveryTimeouts = [];
+
+/**
+ * Cancel delayed map-data recovery for the current dialog session.
+ */
+const clearMapRecovery = () => {
+  mapRecoveryTimeouts.forEach((timeout) => clearTimeout(timeout));
+  mapRecoveryTimeouts = [];
+};
+
+/**
+ * Fetch map data again while the originally requested map remains current.
+ *
+ * @param {string|number} mapId      The map being shown.
+ * @param {number}        generation Request generation that owns the retry.
+ */
+const recoverMapData = (mapId, generation) => {
+  clearMapRecovery();
+  mapRecoveryTimeouts = [250, 1000, 2500, 5000].map((delay) => setTimeout(async () => {
+    if (generation !== mapRequestGeneration) {
+      return;
+    }
+
+    if (`${getGlobal('mapper')?.mapData?.map_id}` === `${mapId}`) {
+      clearMapRecovery();
+      return;
+    }
+
+    const data = await getMapData(mapId, true);
+    if (generation !== mapRequestGeneration || ! data) {
+      return;
+    }
+
+    publishMapData(data, 'map-recovery');
+    clearMapRecovery();
+  }, delay));
+};
 
 /**
  * Route a treasure-map response to its matching surface implementation.
@@ -214,7 +260,21 @@ const intercept = (retries = 0) => {
     const result = Reflect.apply(parentShowMap, this, arguments);
 
     const mapId = id || defaultMapId;
-    interceptMapRequest(mapId);
+    const requestGeneration = ++mapRequestGeneration;
+    clearMapRecovery();
+    interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration).then((data) => {
+      if (mapId && requestGeneration === mapRequestGeneration && ! data) {
+        recoverMapData(mapId, requestGeneration);
+      }
+
+      return data;
+    }).catch(() => {
+      if (requestGeneration === mapRequestGeneration) {
+        recoverMapData(mapId, requestGeneration);
+      }
+
+      return null;
+    });
     return result;
   };
 
@@ -554,6 +614,8 @@ const init = () => {
   onDialogHide(() => {
     clearTimeout(clearCacheTimeout);
     clearCacheTimeout = null;
+    mapRequestGeneration++;
+    clearMapRecovery();
     mapRuntime.reset();
   }, 'map');
 
