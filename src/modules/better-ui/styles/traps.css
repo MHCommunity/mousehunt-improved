@@ -314,7 +314,8 @@ span.campPage-trap-armedItem-skin-description-content br {
   width: 330px;
   height: 330px;
   background-image: url(https://www.mousehuntgame.com/images/items/bases/trap_small/a44d6a59ca9c0d11224bb36fd4e16378.png);
-  background-size: cover;
+  background-position: 0 10px;
+  background-size: 330px;
 }
 
 img.itembrowser-skin-image {

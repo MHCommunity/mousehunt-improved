@@ -7,6 +7,7 @@ let queued = false;
 let started = false;
 let rendering = false;
 let rerenderRequested = false;
+let generation = 0;
 
 const flush = async () => {
   queued = false;
@@ -17,13 +18,22 @@ const flush = async () => {
 
   const context = queuedContext;
   queuedContext = null;
+  const renderGeneration = generation;
   rendering = true;
 
   try {
     for (const stage of TRAP_SELECTOR_STAGES) {
       for (const { callback, id } of decorators.get(stage)) {
+        if (renderGeneration !== generation) {
+          return;
+        }
+
         try {
-          await callback(context);
+          await callback({
+            ...context,
+            generation: renderGeneration,
+            isCurrent: () => renderGeneration === generation,
+          });
         } catch (error) {
           console.error(`Error in trap selector stage "${stage}" (${id}):`, error); // eslint-disable-line no-console
         }
@@ -39,6 +49,7 @@ const flush = async () => {
 };
 
 const scheduleTrapSelector = (context) => {
+  generation++;
   queuedContext = context;
   if (queued) {
     return;

@@ -38,13 +38,16 @@ const addSkin = (skin) => {
   appendTo.append(skinEl);
 };
 
-const addUnownedSkins = async () => {
+const addUnownedSkins = async (isCurrent = () => true) => {
   const header = document.querySelector('.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer');
   if (! header) {
     return;
   }
 
   const items = await getData('items');
+  if (! isCurrent()) {
+    return;
+  }
 
   const currentTrap = items.find((item) => item.id === user.weapon_item_id);
   if (! currentTrap) {
@@ -87,10 +90,10 @@ const addUnownedSkins = async () => {
 };
 
 let addUnownedSkinsTimeout = null;
-const maybeAddUnownedSkins = () => {
+const maybeAddUnownedSkins = (isCurrent) => {
   clearTimeout(addUnownedSkinsTimeout);
   addUnownedSkinsTimeout = setTimeout(() => {
-    addUnownedSkins();
+    addUnownedSkins(isCurrent);
   }, 250);
 };
 
@@ -99,9 +102,9 @@ const maybeAddUnownedSkins = () => {
  */
 export default async () => {
   addStyles(styles, 'better-ui-show-unowned-skins');
-  registerTrapSelectorDecorator('structure', 'show-unowned-skins', ({ type }) => {
+  registerTrapSelectorDecorator('structure', 'show-unowned-skins', ({ type, isCurrent }) => {
     if (['blueprint', 'components'].includes(type)) {
-      maybeAddUnownedSkins();
+      maybeAddUnownedSkins(isCurrent);
     }
   });
 };

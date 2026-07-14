@@ -20,10 +20,11 @@ let delayedAdd = null;
 /**
  * Add skin images to the trap selector.
  *
- * @param {string}  panel The panel to add the skin images to.
- * @param {boolean} force Whether to force add the skin images.
+ * @param {string}   panel     The panel to add the skin images to.
+ * @param {boolean}  force     Whether to force add the skin images.
+ * @param {Function} isCurrent Whether this render session remains current.
  */
-const addSkinImages = async (panel, force = false) => {
+const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
   if ('item_browser' !== panel) {
     return;
   }
@@ -53,8 +54,16 @@ const addSkinImages = async (panel, force = false) => {
     }
 
     for (const item of items) {
+      if (! isCurrent()) {
+        return;
+      }
+
       if (item.classList.contains('mh-unowned-skin-item')) {
         continue;
+      }
+
+      if (! isCurrent()) {
+        return;
       }
 
       const id = item.getAttribute('data-item-id');
@@ -131,18 +140,18 @@ const triggerFromClick = () => {
  */
 export default () => {
   addStyles(styles, 'better-ui-larger-skin-images');
-  registerTrapSelectorDecorator('images', 'larger-skin-images', ({ type, panel, data }) => {
+  registerTrapSelectorDecorator('images', 'larger-skin-images', ({ type, panel, data, isCurrent }) => {
     triggerFromClick();
 
     if ('blueprint' === type) {
-      return addSkinImages(panel);
+      return addSkinImages(panel, false, isCurrent);
     }
 
     if ('components' === type && 'skin' === data?.components?.[0]?.classification) {
       clearTimeout(delayedAdd);
-      delayedAdd = setTimeout(addSkinImages, 250, 'item_browser');
+      delayedAdd = setTimeout(addSkinImages, 250, 'item_browser', false, isCurrent);
     } else if ('trap-change' === type && data?.skin?.length) {
-      return addSkinImages('item_browser');
+      return addSkinImages('item_browser', false, isCurrent);
     }
 
     return null;
