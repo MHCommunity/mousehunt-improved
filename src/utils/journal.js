@@ -144,90 +144,260 @@ const addJournalEntry = async (opts = {}) => {
   });
 };
 
-const callbacks = [];
-let hasAddedJournalEventListener = false;
+const JOURNAL_STAGES = [
+  'history-save',
+  'text',
+  'listify',
+  'style-classes',
+  'links',
+  'images',
+  'interactions',
+];
 
-let numberOfEntries = 0;
-let numberOfProcessedEntries = 0;
+const TEXT_STAGES = new Set(['text', 'listify']);
+const callbacks = new Map(JOURNAL_STAGES.map((stage) => [stage, []]));
 const finishedProcessingCallbacks = [];
+const processedEntries = new WeakSet();
+const processingEntries = new WeakMap();
+const queuedEntries = new Set();
+let journalObserver = null;
+let processingQueue = false;
 
 /**
- * Add the event listener for journal entries.
+ * Build the shared model passed through the journal pipeline.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ *
+ * @return {Object|null} The journal entry model.
  */
-const addJournalEventListener = () => {
-  document.addEventListener('journal-entry', async (e) => {
-    const entryId = e.detail ? e.detail.getAttribute('data-entry-id') : null;
+const makeJournalEntryModel = (entry) => {
+  if (! entry?.classList) {
+    return null;
+  }
 
-    for (const { callback } of callbacks) {
-      try {
-        // Re-query the entry so a callback that replaced the entry's markup
-        // doesn't hand a stale element to the next callback. Match all the
-        // journal containers (camp, hunter profiles, single-entry popups),
-        // falling back to the dispatched element if it's still in the DOM.
-        let entry = entryId
-          ? document.querySelector(`.journalEntries .entry[data-entry-id="${entryId}"], .journal .entry[data-entry-id="${entryId}"], .jsingle .entry[data-entry-id="${entryId}"]`)
-          : null;
+  const textEl = entry.querySelector('.journalbody .journaltext');
 
-        if (! entry && e.detail?.isConnected) {
-          entry = e.detail;
-        }
-
-        await callback(entry);
-      } catch (error) {
-        console.error('Error in journal callback:', error); // eslint-disable-line no-console
+  return {
+    el: entry,
+    id: entry.getAttribute('data-entry-id'),
+    classes: new Set(entry.classList),
+    mouseType: entry.getAttribute('data-mouse-type'),
+    textEl,
+    html: textEl?.innerHTML || '',
+    dirty: false,
+    setHtml(html) {
+      if (this.html !== html) {
+        this.html = html;
+        this.dirty = true;
       }
-    }
-
-    numberOfProcessedEntries = numberOfProcessedEntries + 1;
-    if (numberOfProcessedEntries >= numberOfEntries) {
-      for (const finishedCallback of finishedProcessingCallbacks) {
-        try {
-          await finishedCallback();
-        } catch (error) {
-          console.error('Error in journal finished processing callback:', error); // eslint-disable-line no-console
-        }
-      }
-
-      // reset counts
-      numberOfEntries = 0;
-      numberOfProcessedEntries = 0;
-    }
-  });
+    },
+  };
 };
 
 /**
- * Helper function to add a callback to the journal entry event with a weight.
+ * Commit text-stage changes to the live DOM once.
  *
- * @param {Function}      callback  The callback to run when the event is fired.
- * @param {Object|number} [options] The options for the callback or a number representing the weight.
+ * @param {Object} model The journal entry model.
  */
-const onJournalEntry = (callback, options = {}) => {
-  // if a number is passed as the second argument, treat it as weight for backwards compatibility
-  const weight = typeof options === 'number' ? options : (options.weight || 0);
-  const id = options.id || (callback.name ? `journal-callback-${callback.name}` : `journal-callback-${Math.random().toString(36).slice(2, 15)}`);
-
-  if (! hasAddedJournalEventListener) {
-    addJournalEventListener();
-    hasAddedJournalEventListener = true;
+const commitJournalEntryText = (model) => {
+  if (! model.dirty || ! model.textEl) {
+    return;
   }
 
-  callbacks.push({ callback, id, weight });
+  model.textEl.innerHTML = model.html;
+  model.dirty = false;
+};
 
-  callbacks.sort((a, b) => a.weight - b.weight);
+/**
+ * Process one journal entry through all named stages.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ *
+ * @return {Promise<Object|null>} The processed entry model.
+ */
+const processJournalEntry = async (entry) => {
+  if (! entry?.isConnected || processedEntries.has(entry)) {
+    return null;
+  }
+
+  if (processingEntries.has(entry)) {
+    return processingEntries.get(entry);
+  }
+
+  const processing = (async () => {
+    const model = makeJournalEntryModel(entry);
+    if (! model) {
+      return null;
+    }
+
+    processedEntries.add(entry);
+    document.dispatchEvent(new CustomEvent('journal-entry', { detail: entry }));
+
+    for (const stage of JOURNAL_STAGES) {
+      if (! TEXT_STAGES.has(stage)) {
+        commitJournalEntryText(model);
+      }
+
+      for (const { callback, id } of callbacks.get(stage)) {
+        try {
+          await callback(model);
+        } catch (error) {
+          console.error(`Error in journal stage "${stage}" (${id}):`, error); // eslint-disable-line no-console
+        }
+      }
+    }
+
+    commitJournalEntryText(model);
+    return model;
+  })();
+
+  processingEntries.set(entry, processing);
+
+  try {
+    return await processing;
+  } finally {
+    processingEntries.delete(entry);
+  }
+};
+
+/**
+ * Run callbacks that depend on a completed journal batch.
+ */
+const finishJournalProcessing = async () => {
+  for (const callback of finishedProcessingCallbacks) {
+    try {
+      await callback();
+    } catch (error) {
+      console.error('Error in journal finished processing callback:', error); // eslint-disable-line no-console
+    }
+  }
+};
+
+/**
+ * Process every new journal entry within a root element.
+ *
+ * @param {Document|Element} root The root to search.
+ *
+ * @return {Promise<Array>} The processed entry models.
+ */
+const processJournalEntries = async (root = document) => {
+  const entries = [];
+
+  if (root?.matches?.('.journal .entry, .journalEntries .entry, .jsingle .entry')) {
+    entries.push(root);
+  }
+
+  if (root?.querySelectorAll) {
+    entries.push(...root.querySelectorAll('.journal .entry, .journalEntries .entry, .jsingle .entry'));
+  }
+
+  const newEntries = [...new Set(entries)].filter((entry) => ! processedEntries.has(entry));
+  if (! newEntries.length) {
+    return [];
+  }
+
+  const models = await Promise.all(newEntries.map((entry) => processJournalEntry(entry)));
+  await finishJournalProcessing();
+  return models.filter(Boolean);
+};
+
+/**
+ * Flush journal entries collected by the mutation observer.
+ */
+const flushJournalQueue = async () => {
+  processingQueue = false;
+  const entries = [...queuedEntries];
+  queuedEntries.clear();
+
+  if (! entries.length) {
+    return;
+  }
+
+  const models = await Promise.all(entries.map((entry) => processJournalEntry(entry)));
+  if (models.some(Boolean)) {
+    await finishJournalProcessing();
+  }
+};
+
+/**
+ * Queue a journal entry discovered by the observer.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
+const queueJournalEntry = (entry) => {
+  if (! processedEntries.has(entry)) {
+    queuedEntries.add(entry);
+  }
+
+  if (! processingQueue) {
+    processingQueue = true;
+    queueMicrotask(flushJournalQueue);
+  }
+};
+
+/**
+ * Find journal entries in an added DOM node.
+ *
+ * @param {Node} node The added node.
+ */
+const queueEntriesFromNode = (node) => {
+  if (! (node instanceof Element)) {
+    return;
+  }
+
+  if (node.matches('.journal .entry, .journalEntries .entry, .jsingle .entry')) {
+    queueJournalEntry(node);
+  }
+
+  node.querySelectorAll('.journal .entry, .journalEntries .entry, .jsingle .entry').forEach((entry) => queueJournalEntry(entry));
+};
+
+/**
+ * Observe the page for journal entries added by the game or journal history.
+ */
+const observeJournalEntries = () => {
+  if (journalObserver || ! document.body) {
+    return;
+  }
+
+  journalObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      mutation.addedNodes.forEach((node) => queueEntriesFromNode(node));
+    }
+  });
+
+  journalObserver.observe(document.body, { childList: true, subtree: true });
+  processJournalEntries();
+};
+
+/**
+ * Register a callback in a named journal stage.
+ *
+ * @param {Function} callback  The callback to run when the event is fired.
+ * @param {Object}   [options] The callback options.
+ */
+const onJournalEntry = (callback, options = {}) => {
+  const stage = options.stage || 'interactions';
+  const id = options.id || (callback.name ? `journal-callback-${callback.name}` : `journal-callback-${Math.random().toString(36).slice(2, 15)}`);
+
+  if (! callbacks.has(stage)) {
+    throw new Error(`Unknown journal stage: ${stage}`);
+  }
+
+  callbacks.get(stage).push({ callback, id });
 };
 
 const onJournalEntriesProcessed = (callback) => {
-  document.addEventListener('journal-entries-processing', (data) => {
-    numberOfEntries = data.detail.length * 3; // We run the processing 3 times.
-  });
-
   finishedProcessingCallbacks.push(callback);
 };
 
 export {
+  JOURNAL_STAGES,
   replaceJournalEntry,
   makeJournalEntry,
   addJournalEntry,
   onJournalEntry,
-  onJournalEntriesProcessed
+  onJournalEntriesProcessed,
+  observeJournalEntries,
+  processJournalEntries
 };

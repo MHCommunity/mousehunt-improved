@@ -6,15 +6,29 @@ const styles = imported;
 /**
  * Add a class to show the badge type.
  *
- * @param {HTMLElement} entry The journal entry.
+ * @param {Object} model The journal entry model.
  */
-const addBadgeClass = (entry) => {
-  if (! entry || ! entry.classList) {
+const cleanBadgeText = (model) => {
+  if (! model.classes.has('badge')) {
     return;
   }
 
-  const isBadge = entry.classList.contains('badge');
-  if (! isBadge) {
+  model.setHtml(model.html
+    .replace('I can view my trophy crowns on my', '')
+    .replace('<a href="https://www.mousehuntgame.com/hunterprofile.php?tab=kings_crowns">hunter profile</a>', '')
+    .replace('<br>', '')
+    .replace('.', '')
+    .trim());
+};
+
+/**
+ * Add a class to show the badge type.
+ *
+ * @param {Object} model The journal entry model.
+ */
+const addBadgeClass = (model) => {
+  const entry = model.el;
+  if (! model.classes.has('badge')) {
     return;
   }
 
@@ -29,35 +43,19 @@ const addBadgeClass = (entry) => {
     .trim();
 
   entry.classList.add(`better-journal-styles-badge-${badgeTypeClass}`);
-  entry.setAttribute('data-badge-class-added', 'true');
-
-  const content = entry.querySelector('.journaltext');
-  if (! content) {
-    return;
-  }
-
-  content.innerHTML = content.innerHTML
-    .replace('I can view my trophy crowns on my', '')
-    .replace('<a href="https://www.mousehuntgame.com/hunterprofile.php?tab=kings_crowns">hunter profile</a>', '')
-    .replace('<br>', '')
-    .replace('.', '')
-    .trim();
 };
 
 /**
  * Replace the rank up icon with the user's title shield.
  *
- * @param {HTMLElement} entry The journal entry.
+ * @param {Object} model The journal entry model.
  */
-const updateRankUpIcon = (entry) => {
-  if (! entry || ! entry.classList) {
+const updateRankUpIcon = (model) => {
+  if (! model.classes.has('titlechange')) {
     return;
   }
 
-  if (! entry.classList.contains('titlechange')) {
-    return;
-  }
-
+  const entry = model.el;
   const rankUp = entry.querySelector('.journalimage img');
   if (! rankUp) {
     return;
@@ -74,22 +72,17 @@ const updateRankUpIcon = (entry) => {
 /**
  * Toggle the expanded state of collapsed travel entries on click.
  *
- * @param {HTMLElement} entry The journal entry.
+ * @param {Object} model The journal entry model.
  */
-const addTravelEntryToggle = (entry) => {
-  if (! entry || ! entry.classList || ! entry.classList.contains('floatingIslands')) {
+const addTravelEntryToggle = (model) => {
+  const entry = model.el;
+  if (! model.classes.has('floatingIslands')) {
     return;
   }
 
-  if (! (entry.classList.contains('skyPalaceTravel') || entry.classList.contains('dirigibleTravel'))) {
+  if (! (model.classes.has('skyPalaceTravel') || model.classes.has('dirigibleTravel'))) {
     return;
   }
-
-  if (entry.getAttribute('data-travel-toggle-added')) {
-    return;
-  }
-
-  entry.setAttribute('data-travel-toggle-added', 'true');
 
   entry.addEventListener('click', (event) => {
     // Don't toggle when clicking a link in the entry.
@@ -104,18 +97,13 @@ const addTravelEntryToggle = (entry) => {
 /**
  * Toggle the expanded state of collapsed gift entries on click.
  *
- * @param {HTMLElement} entry The journal entry.
+ * @param {Object} model The journal entry model.
  */
-const addGiftEntryToggle = (entry) => {
-  if (! entry || ! entry.classList || ! entry.classList.contains('socialGift-send')) {
+const addGiftEntryToggle = (model) => {
+  const entry = model.el;
+  if (! model.classes.has('socialGift-send')) {
     return;
   }
-
-  if (entry.getAttribute('data-gift-toggle-added')) {
-    return;
-  }
-
-  entry.setAttribute('data-gift-toggle-added', 'true');
 
   entry.addEventListener('click', (event) => {
     // Don't toggle when clicking a link in the entry.
@@ -133,23 +121,28 @@ const addGiftEntryToggle = (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 
+  onJournalEntry(cleanBadgeText, {
+    id: 'better-journal-styles-badge-text',
+    stage: 'text',
+  });
+
   onJournalEntry(addBadgeClass, {
     id: 'better-journal-styles-badges',
-    weight: 5000,
+    stage: 'style-classes',
   });
 
   onJournalEntry(updateRankUpIcon, {
     id: 'better-journal-styles-rankup',
-    weight: 6000,
+    stage: 'images',
   });
 
   onJournalEntry(addTravelEntryToggle, {
     id: 'better-journal-styles-travel-toggle',
-    weight: 7000,
+    stage: 'interactions',
   });
 
   onJournalEntry(addGiftEntryToggle, {
     id: 'better-journal-styles-gift-toggle',
-    weight: 8000,
+    stage: 'interactions',
   });
 };

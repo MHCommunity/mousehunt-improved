@@ -1,19 +1,18 @@
 import {
   addEvent,
-  addOnboardingTip,
   addStyles,
   dbGet,
   dbGetAll,
   dbGetCount,
   dbSet,
-  doEvent,
   getCurrentPage,
   getData,
   makeElement,
   makeMhButton,
   onJournalEntry,
   onNavigation,
-  onRequest
+  onRequest,
+  processJournalEntries
 } from '@utils';
 
 import styles from './styles.css';
@@ -117,7 +116,7 @@ const doPageStuff = async (page, event = null) => {
 
   journalEntryContainer.append(makeElement('div', 'journal-history-entries', makeEntriesMarkup(journalEntriesForPage)));
 
-  doEvent('journal-history-entry-added', journalEntryContainer);
+  await processJournalEntries(journalEntryContainer);
 };
 
 /**
@@ -155,9 +154,10 @@ let lastDate = '';
 /**
  * Save a journal entry to the database.
  *
- * @param {HTMLElement} entry The journal entry element to save.
+ * @param {Object} model The journal entry model to save.
  */
-const saveToDatabase = async (entry) => {
+const saveToDatabase = async (model) => {
+  const entry = model.el;
   if (! entry || ! entry.classList) {
     return;
   }
@@ -171,8 +171,7 @@ const saveToDatabase = async (entry) => {
     return;
   }
 
-  const entryText = entry.querySelector('.journalbody .journaltext');
-  if (! entryText) {
+  if (! model.textEl) {
     return;
   }
 
@@ -198,9 +197,9 @@ const saveToDatabase = async (entry) => {
     timestamp: Date.now(),
     date: date[0] ? date[0].trim() : '0:00',
     location: location ? location.innerText : '',
-    text: entryText.innerHTML,
-    type: [...entry.classList].filter((cls) => ! ['newEntry', 'animate'].includes(cls)),
-    mouse: entry.getAttribute('data-mouse-type') || null,
+    text: model.html,
+    type: [...model.classes].filter((cls) => ! ['newEntry', 'animate'].includes(cls)),
+    mouse: model.mouseType || null,
     image: entryImage ? entryImage.innerHTML : null,
   };
 
@@ -219,13 +218,6 @@ const addPageSelector = () => {
   }
 
   current.classList.add('page-selector');
-
-  addOnboardingTip({
-    step: 'better-journal-page-selector',
-    anchor: current,
-    title: 'Jump to any journal page',
-    content: 'Click the current page number to pick a page instead of clicking through them one at a time.',
-  });
 
   let isShowing = false;
   current.addEventListener('click', (event) => {
@@ -399,6 +391,6 @@ export default async () => {
 
   onJournalEntry(saveToDatabase, {
     id: 'better-journal-journal-history-save',
-    weight: 10,
+    stage: 'history-save',
   });
 };

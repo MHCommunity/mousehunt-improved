@@ -4,7 +4,8 @@ import styles from './styles.css';
 
 let mice;
 
-const makeFullMouseImage = async (entry) => {
+const makeFullMouseImage = async (model) => {
+  const entry = model.el;
   if (! entry || ! entry.classList) {
     return;
   }
@@ -26,7 +27,7 @@ const makeFullMouseImage = async (entry) => {
     return;
   }
 
-  mouseType = entry.getAttribute('data-mouse-type');
+  mouseType = model.mouseType;
   if (! mouseType) {
     return;
   }
@@ -49,7 +50,7 @@ const makeFullMouseImage = async (entry) => {
 const main = () => {
   onJournalEntry(makeFullMouseImage, {
     id: 'journal-full-mice-images',
-    weight: 10000,
+    stage: 'images',
   });
 };
 

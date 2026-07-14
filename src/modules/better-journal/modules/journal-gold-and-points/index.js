@@ -5,25 +5,18 @@ import styles from './styles.css';
 /**
  * Wrap the points and gold in spans.
  *
- * @param {HTMLElement} entry The journal entry.
+ * @param {Object} model The journal entry model.
  */
-const wrapGoldAndPoints = (entry) => {
-  if (! entry || ! entry.classList) {
+const wrapGoldAndPoints = (model) => {
+  if (! model.html) {
     return;
   }
 
-  // if it has the pointsGold attribute, it's already been wrapped
-  if (entry.getAttribute('data-modified-points-gold')) {
+  if (model.html.includes('mh-ui-points') || model.html.includes('mh-ui-gold')) {
     return;
   }
 
-  entry.setAttribute('data-modified-points-gold', true);
-
-  if (entry.querySelector('.mh-ui-points') || entry.querySelector('.mh-ui-gold')) {
-    return;
-  }
-
-  let html = entry.innerHTML;
+  let html = model.html;
   // Find the amount of points via a regex and wrap it in a span
   const points = html.match(/worth (.+?) points/i);
   // also match the 'and X,XXX gold' part
@@ -37,9 +30,7 @@ const wrapGoldAndPoints = (entry) => {
     html = html.replace(gold[0], `points and <span class="mh-ui-gold">${gold[1]}</span> gold`);
   }
 
-  if (html !== entry.innerHTML) {
-    entry.innerHTML = html;
-  }
+  model.setHtml(html);
 };
 
 /**
@@ -50,7 +41,7 @@ const main = async () => {
 
   onJournalEntry(wrapGoldAndPoints, {
     id: 'better-journal-gold-and-points',
-    weight: 2000,
+    stage: 'text',
   });
 };
 

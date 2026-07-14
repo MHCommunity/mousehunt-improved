@@ -4,14 +4,13 @@ import {
   doEvent,
   doInternalEvent,
   getCurrentDialog,
-  getCurrentPage,
   makeElement,
+  observeJournalEntries,
   onDialogShow,
   onEvent,
   onNavigation,
   onRequest,
-  onTravel,
-  setMultipleTimeout
+  onTravel
 } from '@utils';
 
 import chromeIcon from '@images/chrome.svg';
@@ -53,69 +52,11 @@ const addEvents = () => {
   addHornCountdownEvents();
 };
 
-let isJournalProcessing = false;
-
-/**
- * Process the journal entries.
- */
-const processEntries = async () => {
-  if (
-    isJournalProcessing || ! (
-      'journal' === getCurrentPage() ||
-      'camp' === getCurrentPage() ||
-      'hunterprofile' === getCurrentPage()
-    )
-  ) {
-    return;
-  }
-
-  isJournalProcessing = true;
-
-  const entries = document.querySelectorAll('.journal .entry');
-
-  doInternalEvent('journal-entries-processing', entries);
-
-  for (const entry of entries) {
-    doInternalEvent('journal-entry', entry);
-  }
-
-  doInternalEvent('journal-entries-processed', entries);
-
-  isJournalProcessing = false;
-};
-
-/**
- * Process the single journal entries.
- */
-const processSingleEntries = async () => {
-  if (isJournalProcessing) {
-    return;
-  }
-
-  isJournalProcessing = true;
-  const entriesEl = document.querySelectorAll('.jsingle .entry');
-  for (const entry of entriesEl) {
-    doInternalEvent('journal-entry', entry);
-  }
-
-  isJournalProcessing = false;
-};
-
 /**
  * Add journal processing events.
  */
 const addJournalProcessingEvents = async () => {
-  setMultipleTimeout(processEntries, [100, 500, 1000]);
-
-  onRequest('*', (data) => {
-    setMultipleTimeout(processEntries, [100, 500, 1000]);
-
-    if (data.journal_markup && data.journal_markup.length > 0) {
-      processSingleEntries(data.journal_markup);
-    }
-  }, true);
-
-  onEvent('journal-history-entry-added', processEntries);
+  document.addEventListener('mh-improved-loaded', observeJournalEntries, { once: true });
 };
 
 /**

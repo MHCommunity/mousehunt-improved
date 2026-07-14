@@ -117,8 +117,8 @@ export default () => {
   addStyles(styles, 'better-item-view-hover-item');
 
   onEvent('journal-item-link-modified', main);
-  onJournalEntry(main, {
+  onJournalEntry((model) => main(model.el), {
     id: 'better-item-view-hover-item',
-    weight: 8000,
+    stage: 'links',
   });
 };

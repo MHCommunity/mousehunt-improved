@@ -1,6 +1,5 @@
 import { addExternalStyles, addStyles, onNavigation } from '@utils';
 
-import minimalStyles from '../journal-icons-minimal/styles.css';
 import styles from './styles.css';
 
 /**
@@ -27,7 +26,7 @@ export default async () => {
     return;
   }
 
-  addStyles([styles, minimalStyles], 'better-journal-icons');
+  addStyles(styles, 'better-journal-icons');
 
   addIconStyles();
   onNavigation(addIconStyles);

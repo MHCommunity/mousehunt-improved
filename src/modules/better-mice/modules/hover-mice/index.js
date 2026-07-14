@@ -149,8 +149,8 @@ export default () => {
 
   onEvent('journal-mouse-link-modified', main);
   onEvent('mh-improved-cre-list-rendered', () => main());
-  onJournalEntry(main, {
+  onJournalEntry((model) => main(model.el), {
     id: 'better-mice-hover-mice',
-    weight: 9900,
+    stage: 'links',
   });
 };

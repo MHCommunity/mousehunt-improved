@@ -8,6 +8,7 @@ import {
   unpluralize
 } from '@utils';
 
+import { LOOT_INTRO_PHRASES } from '../../shared/loot-intros';
 import { shouldSkipJournalItemLink } from '../../shared/item-linking';
 import styles from './styles.css';
 
@@ -42,23 +43,6 @@ const classTypeMap = Object.entries({
   });
   return acc;
 }, {});
-
-const otherStrings = [
-  'the following loot</b>',
-  'Inside my chest was',
-  'Inside I found',
-  'I found',
-  'I found</b>',
-  'Inside, I found</b>',
-  'Loyalty Chest and received:',
-  'I sifted through my Dragon Nest and found</b>',
-  'my Skyfarer\'s Oculus and discovered the following loot:',
-  'my Skyfarer\'s Oculus and discovered:',
-  'My golem returned from |*| with',
-  'scared up an additional:',
-  'the following bonus loot:',
-  'knocked loose additional loot from the Sky Raiders\' airships:',
-];
 
 const classesToSkip = new Set([
   'mountain-boulderLooted',
@@ -193,10 +177,6 @@ const makeItemLink = (item, name) => {
   const link = makeElement('a', 'loot', name);
   link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
   link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    hg.views.ItemView.show(item.type);
-  });
 
   return link;
 };
@@ -473,6 +453,8 @@ const getItemsFromText = (type, textEl) => {
 
   if (type === 'loot') {
     const checks = [
+      '<b>The mouse also dropped the following loot:</b>',
+      '<b>the mouse also dropped the following loot:</b>',
       ' dropped the following loot:</b>',
       ' dropped the following loot:',
       'She dropped ',
@@ -525,7 +507,7 @@ const getItemsFromText = (type, textEl) => {
       newText = `${parts[0]}created an additional:`;
     }
   } else {
-    for (const s of otherStrings) {
+    for (const s of LOOT_INTRO_PHRASES) {
       if (s.includes('|*|')) {
         const parts = s.split('|*|');
         if (parts[0] && innerHTML.includes(parts[0])) {
@@ -569,40 +551,30 @@ const getItemsFromText = (type, textEl) => {
 /**
  * Format a journal entry as a list.
  *
- * @param {HTMLElement} entry The journal entry element.
+ * @param {Object} model The journal entry model.
  *
  * @return {Promise<void>} Resolves when done.
  */
-const formatAsList = async (entry) => {
-  if (! entry || ! entry.classList) {
-    return;
-  }
-
-  // Don't process (or mark as processed) until the item data has loaded;
-  // unprocessed entries get picked up again on a later processing pass.
+const formatAsList = async (model) => {
   if (! itemLookup) {
     return;
   }
 
-  const processed = entry.getAttribute('data-better-journal-processed');
-  if (processed) {
-    return;
-  }
+  const entry = model.el;
+  const textEl = makeElement('div');
+  textEl.innerHTML = model.html;
 
   // Entries with items in prose get links (and thereby icons), and some of
   // them also get formatted as a list.
   const linkAndList = shouldLinkAndList(entry);
   if (linkAndList || shouldOnlyLinkItems(entry)) {
-    const linkifyTextEl = entry.querySelector('.journalbody .journaltext');
-    if (linkifyTextEl) {
-      linkifyItemsInText(linkifyTextEl);
+    linkifyItemsInText(textEl);
 
-      if (linkAndList) {
-        listifyAfterColon(linkifyTextEl);
-      }
+    if (linkAndList) {
+      listifyAfterColon(textEl);
     }
 
-    entry.setAttribute('data-better-journal-processed', 'true');
+    model.setHtml(textEl.innerHTML);
     return;
   }
 
@@ -616,20 +588,15 @@ const formatAsList = async (entry) => {
     }
   }
 
-  const textEl = entry.querySelector('.journalbody .journaltext');
-  if (! textEl) {
-    return;
-  }
-
   // Folklore fast-path
   if (entry.classList.contains('folkloreForest-bookClaimed') && handleFolkloreBookClaim(textEl)) {
-    entry.setAttribute('data-better-journal-processed', 'true');
+    model.setHtml(textEl.innerHTML);
     return;
   }
 
   if (type === 'update') {
     addClassesToLiAndUl(textEl);
-    entry.setAttribute('data-better-journal-processed', 'true');
+    model.setHtml(textEl.innerHTML);
     return;
   }
 
@@ -643,7 +610,7 @@ const formatAsList = async (entry) => {
     }
   }
 
-  entry.setAttribute('data-better-journal-processed', 'true');
+  model.setHtml(textEl.innerHTML);
 };
 
 /**
@@ -651,13 +618,6 @@ const formatAsList = async (entry) => {
  */
 export default async () => {
   addStyles(styles, 'better-journal-list');
-
-  // Register before waiting on the item data so a slow or failed fetch
-  // can't leave the journal without list formatting.
-  onJournalEntry(formatAsList, {
-    id: 'better-journal-list-format',
-    weight: 3000,
-  });
 
   try {
     allItems = await getData('items');
@@ -668,10 +628,8 @@ export default async () => {
 
   itemLookup = buildItemLookup(allItems);
 
-  // Entries rendered before the item data arrived were skipped, and the next
-  // journal processing pass only happens on the next request, so process the
-  // entries that are already on the page now.
-  document.querySelectorAll('.journal .entry, .jsingle .entry').forEach((entry) => {
-    formatAsList(entry);
+  onJournalEntry(formatAsList, {
+    id: 'better-journal-list-format',
+    stage: 'listify',
   });
 };
