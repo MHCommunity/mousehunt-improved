@@ -35,7 +35,7 @@ The Sorted tab provides an organized view of your map objectives with the follow
 - **Visual Indicators**: Each category has a distinctive icon and color for easy identification.
 - **Progress Tracking**: See at a glance which categories have remaining objectives.
 - **Fast Loading**: Mice with known attraction rates show immediately, with the rest loading in the background and re-sorting once they arrive.
-- **Sort by Location**: On maps without custom categories, sort mice by attraction rate or by location — each mouse is listed under every location it can be found in, with travel links.
+- **Sort by Location**: On any map, switch from the default view to attraction-rate or location sorting — each mouse is listed under every location it can be found in, with travel links.
 - **Click for Details**: Click on any mouse to see additional information, including:
   - Mouse image and name
   - Location information with direct travel links
