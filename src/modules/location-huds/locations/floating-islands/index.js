@@ -21,6 +21,7 @@ import fullWidthAirshipStyles from './full-width-airship.css';
 import styles from './styles.css';
 
 let hasJetstreamTimeListener = false;
+const boundFuelButtons = new WeakSet();
 
 /**
  * Toggle the fuel button class.
@@ -39,9 +40,8 @@ const toggleFuelClass = (fuelCount, isActive) => {
 /**
  * Toggle the fuel button.
  *
- * @param {boolean} skip Whether to skip the toggle.
  */
-const toggleFuel = (skip = false) => {
+const toggleFuel = () => {
   const fuel = document.querySelector('.floatingIslandsHUD-fuel-button');
   if (! fuel) {
     return;
@@ -59,10 +59,11 @@ const toggleFuel = (skip = false) => {
     fuelCount.classList.remove('active');
   }
 
-  if (skip) {
+  if (boundFuelButtons.has(fuel)) {
     return;
   }
 
+  boundFuelButtons.add(fuel);
   fuel.addEventListener('click', (e) => {
     toggleFuelClass(fuelCount, e.target.classList.contains('active'));
     hg.views.HeadsUpDisplayFloatingIslandsView.toggleFuel(fuel);
@@ -524,7 +525,7 @@ const hud = () => {
 
   onRequest('environment/floating_islands.php', (request, data) => {
     run();
-    toggleFuel(true);
+    toggleFuel();
 
     if (data?.action === 'launch') {
       setMultipleTimeout(() => {
