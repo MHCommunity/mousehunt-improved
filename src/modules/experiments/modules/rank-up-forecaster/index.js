@@ -11,6 +11,7 @@ import {
 import {
   RANKS,
   getForecasts,
+  getLatestSample,
   getLocationSummaries,
   getNextRank,
   getSamples,
@@ -317,10 +318,15 @@ const init = async () => {
   addStyles(styles, 'rank-up-prediction');
 
   await migrateLegacyData();
-  await recordSample('load');
+  const latestSample = await getLatestSample();
+  let trackedTurns = latestSample?.totalTurns || 0;
+  await recordSample('load', { totalTurns: trackedTurns });
 
-  onTurn(() => recordSample('hunt'));
-  onTravel(null, { callback: () => recordSample('travel') });
+  onTurn(() => {
+    trackedTurns++;
+    recordSample('hunt', { totalTurns: trackedTurns });
+  });
+  onTravel(null, { callback: () => recordSample('travel', { totalTurns: trackedTurns }) });
 
   addStatBarListener();
   addMenuItem();

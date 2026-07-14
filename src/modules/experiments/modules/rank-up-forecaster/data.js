@@ -13,6 +13,9 @@ import { buildForecasts } from './models';
 const DATABASE = 'rank-up-forecaster';
 const SCHEMA_VERSION = 1;
 const MIN_SAMPLE_INTERVAL = 15 * 60 * 1000;
+const TOTAL_TURNS_REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
+
+let totalTurnsRequest = null;
 
 const RANKS = [
   { id: 'novice', name: 'Novice', wisdom: 0 },
@@ -96,16 +99,50 @@ const getWisdom = async (forceUpdate = false) => {
 
 const getTotalTurns = async () => {
   const turns = user?.num_total_turns || user?.num_total_horn_calls || user?.num_hunts || null;
-  if (! turns) {
-    const response = await doRequest('managers/ajax/users/userData.php', {
-      'sn_user_ids[]': user?.sn_user_id,
-      'fields[]': 'num_total_turns',
-    });
-
-    return Number.parseInt(response?.user_data?.[user?.sn_user_id]?.num_total_turns || 0, 10) || null;
+  const currentTurns = Number.parseInt(turns?.toString().replaceAll(',', '') || 0, 10) || null;
+  if (currentTurns) {
+    return currentTurns;
   }
 
-  return Number.parseInt(turns.toString().replaceAll(',', ''), 10) || null;
+  const [cachedTurns, lastChecked] = await Promise.all([
+    dataGet('rank-up-forecaster-total-turns'),
+    dataGet('rank-up-forecaster-total-turns-last-checked'),
+  ]);
+  const parsedCachedTurns = Number.parseInt(cachedTurns, 10) || null;
+
+  if (lastChecked && Date.now() - lastChecked < TOTAL_TURNS_REFRESH_INTERVAL) {
+    return parsedCachedTurns;
+  }
+
+  if (totalTurnsRequest) {
+    return await totalTurnsRequest;
+  }
+
+  totalTurnsRequest = (async () => {
+    // Record the attempt first so a failed lookup is still retried no more
+    // than once per day.
+    await dataSet('rank-up-forecaster-total-turns-last-checked', Date.now());
+
+    try {
+      const response = await doRequest('managers/ajax/users/userData.php', {
+        'sn_user_ids[]': user?.sn_user_id,
+        'fields[]': 'num_total_turns',
+      });
+      const fetchedTurns = Number.parseInt(response?.user_data?.[user?.sn_user_id]?.num_total_turns || 0, 10) || null;
+
+      if (fetchedTurns) {
+        await dataSet('rank-up-forecaster-total-turns', fetchedTurns);
+      }
+
+      return fetchedTurns || parsedCachedTurns;
+    } catch {
+      return parsedCachedTurns;
+    } finally {
+      totalTurnsRequest = null;
+    }
+  })();
+
+  return await totalTurnsRequest;
 };
 
 const getLocationData = () => {
@@ -300,7 +337,7 @@ const saveLocationSegment = async (previous, sample) => {
 };
 
 const recordSample = async (source = 'automatic', options = {}) => {
-  const { forceWisdomUpdate = false } = options;
+  const { forceWisdomUpdate = false, totalTurns = null } = options;
   const now = Date.now();
   const latest = await getLatestSample();
 
@@ -322,6 +359,15 @@ const recordSample = async (source = 'automatic', options = {}) => {
     };
   }
 
+  // This returns immediately from the daily cache for ordinary samples and
+  // only makes a userData.php request once the cache is a day old.
+  const refreshedTotalTurns = await getTotalTurns();
+  const recordedTotalTurns = Math.max(
+    totalTurns || 0,
+    refreshedTotalTurns || 0,
+    latest?.totalTurns || 0
+  ) || null;
+
   const sample = {
     id: `sample:${now}`,
     type: 'wisdom-sample',
@@ -330,7 +376,10 @@ const recordSample = async (source = 'automatic', options = {}) => {
     timestamp: now,
     recordedAt: now,
     wisdom,
-    totalTurns: await getTotalTurns(),
+    // The hunt response does not include a lifetime hunt count. Refresh the
+    // server value at most daily, then use locally tracked hunt totals between
+    // refreshes.
+    totalTurns: recordedTotalTurns,
     title: getTitleData(),
     location: getLocationData(),
   };

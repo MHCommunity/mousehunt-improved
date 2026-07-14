@@ -301,7 +301,7 @@ const holtTrendModel = (samples, wisdomRemaining, alpha = 0.4, beta = 0.15) => {
  * @return {Object|null} The forecast result.
  */
 const perHuntModel = (samples, wisdomRemaining) => {
-  const turnSamples = samples.filter((sample) => sample.totalTurns && sample.wisdom);
+  const turnSamples = samples.filter((sample) => Number.isFinite(sample.totalTurns) && sample.wisdom);
   if (turnSamples.length < 2) {
     return null;
   }
