@@ -1,3 +1,5 @@
+import { prepareLifecycleCallback } from './lifecycle';
+
 /**
  * Add an event to the event registry.
  *
@@ -57,15 +59,20 @@ const onEvent = (event, callback, remove = false) => {
     return;
   }
 
+  const lifecycleCallback = prepareLifecycleCallback(callback, `event:${event}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
   // generate a unique id for the event based on the event name and the callback
-  const id = `${event}-${remove.toString()}-${callback.toString()}`;
+  const id = `${event}-${remove.toString()}-${lifecycleCallback.id || callback.toString()}`;
   if (eventsAdded[id]) {
     return;
   }
 
   eventsAdded[id] = true;
 
-  eventRegistry.addEventListener(event, callback, null, remove);
+  eventRegistry.addEventListener(event, lifecycleCallback.callback, null, remove);
 };
 
 /**

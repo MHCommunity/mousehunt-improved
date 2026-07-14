@@ -2,6 +2,7 @@ import { getCurrentSubtab, getCurrentTab, isCurrentPage } from './page';
 import { getCurrentLocation } from './location-current';
 import { getCurrentPage } from './page-current';
 import { onEvent } from './event-registry';
+import { prepareLifecycleCallback } from './lifecycle';
 import { showHornMessage } from './horn';
 
 const requestCallbacks = {};
@@ -121,6 +122,13 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
   if (! callback) {
     return;
   }
+
+  const lifecycleCallback = prepareLifecycleCallback(callback, `request:${url}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
+  callback = lifecycleCallback.callback;
 
   if (! requestCallbacks[url]) {
     requestCallbacks[url] = [];
@@ -275,9 +283,14 @@ const getDialogMapping = () => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (overlay = null, callback = null, once = false) => {
+  const lifecycleCallback = prepareLifecycleCallback(callback, `dialog-show:${overlay}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
   // TODO: rewrite this.
   // make a unique identifier for the event listener based on the callback.
-  const identifier = callback.toString().replaceAll(/[^\w-]/gi, '');
+  const identifier = (lifecycleCallback.id || callback.toString()).replaceAll(/[^\w-]/gi, '');
   eventRegistry.addEventListener('js_dialog_show', () => {
     if (! activejsDialog) {
       return;
@@ -318,7 +331,7 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
     lastDialog = dialogType;
 
     if ((! overlay || 'all' === overlay) && 'function' === typeof callback) {
-      return callback();
+      return lifecycleCallback.callback();
     }
 
     const dialogMapping = getDialogMapping();
@@ -331,7 +344,7 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
 
     if ('function' === typeof callback && isMatch) {
-      return callback();
+      return lifecycleCallback.callback();
     }
   }, null, once, 0, identifier);
 };
@@ -368,6 +381,12 @@ const normalizeDialogOverlay = (overlay = null) => {
  */
 const onDialogHide = (callback, overlay = null) => {
   const normalizedOverlay = normalizeDialogOverlay(overlay);
+  const lifecycleCallback = prepareLifecycleCallback(callback, `dialog-hide:${normalizedOverlay}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
+  callback = lifecycleCallback.callback;
 
   if (! dialogHideCallbacks.some((item) => item.callback === callback && item.overlay === normalizedOverlay)) {
     dialogHideCallbacks.push({
@@ -461,7 +480,13 @@ const onPageChange = (callbacks) => {
  * @param {Function} [options.callback]          The callback to run when the user is at the location.
  */
 const onTravel = (location, options) => {
-  eventRegistry.addEventListener('travel_complete', () => onTravelCallback(location, options));
+  const callback = () => onTravelCallback(location, options);
+  const lifecycleCallback = prepareLifecycleCallback(callback, `travel:${location || '*'}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
+  eventRegistry.addEventListener('travel_complete', lifecycleCallback.callback);
 };
 
 /**
@@ -560,7 +585,12 @@ const onNavigation = (callback, options = {}) => {
     callback();
   }
 
-  callbacks.push({ callback, page, tab, subtab, bypassMatch });
+  const lifecycleCallback = prepareLifecycleCallback(callback, `navigation:${page || '*'}:${tab || '*'}:${subtab || '*'}`);
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
+  callbacks.push({ callback: lifecycleCallback.callback, page, tab, subtab, bypassMatch });
 
   if (! hasAddedNavigationListener) {
     addNavigationListeners();
@@ -651,10 +681,15 @@ const onDeactivation = (module, callback) => {
  * @param {number}   delay    The delay to wait before running the callback.
  */
 const onTurn = (callback, delay = null) => {
+  const lifecycleCallback = prepareLifecycleCallback(callback, 'turn');
+  if (lifecycleCallback.skip) {
+    return;
+  }
+
   onRequest('turns/activeturn.php', (response, request) => {
     delay = delay || Math.floor(Math.random() * 1000) + 1000;
     setTimeout(() => {
-      callback(response, request);
+      lifecycleCallback.callback(response, request);
     }, delay);
   }, true);
 };

@@ -13,6 +13,7 @@ export * from './hover-card';
 export * from './humanizer';
 export * from './json';
 export * from './journal';
+export * from './lifecycle';
 export * from './links';
 export * from './location';
 export * from './location-current';

@@ -389,6 +389,13 @@ const onJournalEntry = (callback, options = {}) => {
 
 const onJournalEntriesProcessed = (callback) => {
   finishedProcessingCallbacks.push(callback);
+
+  return () => {
+    const index = finishedProcessingCallbacks.indexOf(callback);
+    if (-1 !== index) {
+      finishedProcessingCallbacks.splice(index, 1);
+    }
+  };
 };
 
 export {
