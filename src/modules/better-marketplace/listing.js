@@ -11,29 +11,7 @@ import {
   waitForElement
 } from '@utils';
 
-/**
- * Maximum number of quick price links to show, to avoid clutter.
- */
-const MAX_PRICE_LINKS = 6;
-
-/**
- * Round a number to a given number of significant figures, so derived steps
- * (like 1% of the price) land on tidy values instead of e.g. 5,234.
- *
- * @param {number} num   The number to round.
- * @param {number} [sig] The number of significant figures.
- *
- * @return {number} The rounded number.
- */
-const roundToSignificant = (num, sig = 2) => {
-  if (num <= 0) {
-    return 0;
-  }
-
-  const magnitude = Math.floor(Math.log10(num));
-  const factor = 10 ** (magnitude - sig + 1);
-  return Math.round(num / factor) * factor;
-};
+import { MAX_TRANSACTION_PRICE, calculateTariff, computePriceSteps } from './pricing';
 
 /**
  * Set the order price via the game, if available.
@@ -111,57 +89,6 @@ const getListingPrices = (type) => {
 };
 
 /**
- * Build a sensible, non-hardcoded set of step amounts for the quick links,
- * based on the best competing price (and the second-best where useful): a flat
- * 100 gold, 1%, 10%, the nearest round "place value" step (52,000 -> 1,000,
- * 2,000,000 -> 100,000), and the gap to the second-best listing when that gap
- * is a reasonable (not huge) increment.
- *
- * @param {number} best   The best competing price.
- * @param {number} second The second-best competing price, if any.
- *
- * @return {Array<Object>} Sorted, de-duplicated steps as `{ amount, note }`.
- */
-const computeSteps = (best, second) => {
-  const notes = new Map();
-
-  const add = (amount, note = '') => {
-    if (amount <= 0) {
-      return;
-    }
-
-    // Keep the first note set for an amount, but let a note fill a blank one.
-    if (! notes.has(amount) || (note && ! notes.get(amount))) {
-      notes.set(amount, note);
-    }
-  };
-
-  // Percentages first so they keep their annotation if another step collides.
-  add(roundToSignificant(best * 0.01), '1%');
-  add(roundToSignificant(best * 0.1), '10%');
-
-  if (best > 100) {
-    add(100);
-  }
-
-  // Nearest round "place value" step, one order of magnitude below the price.
-  add(10 ** Math.max(0, Math.floor(Math.log10(best)) - 1));
-
-  // The gap to the second-best listing, when it's a meaningful (not huge) step.
-  if (second && second !== best) {
-    const gap = Math.abs(second - best);
-    if (gap > 0 && gap <= best * 0.5) {
-      add(gap);
-    }
-  }
-
-  return [...notes.entries()]
-    .map(([amount, note]) => ({ amount, note }))
-    .sort((a, b) => a.amount - b.amount)
-    .slice(0, MAX_PRICE_LINKS);
-};
-
-/**
  * Build a price link that sets the order price when clicked. The step and price
  * are separate spans so they can be aligned into columns.
  *
@@ -233,7 +160,7 @@ const addQuickPriceLinks = (type, itemId) => {
     return;
   }
 
-  const steps = computeSteps(best, prices[1]);
+  const steps = computePriceSteps(best, prices[1]);
   if (steps.length === 0) {
     return;
   }
@@ -249,7 +176,7 @@ const addQuickPriceLinks = (type, itemId) => {
       return;
     }
 
-    if (type === 'buy' && price >= 4294967293) {
+    if (type === 'buy' && price >= MAX_TRANSACTION_PRICE) {
       return;
     }
 
@@ -355,8 +282,7 @@ const addTariffInfo = () => {
       return;
     }
 
-    const tax = Math.ceil(value / 11);
-    const raw = value - tax;
+    const { raw, tax } = calculateTariff(value);
     const info = `${formatNumber(raw)} (Raw)\n${formatNumber(tax)} (Tax)`;
 
     quantityEl.dataset.mhuiTariff = 'true';
@@ -376,6 +302,11 @@ const enhanceItemView = async (itemId) => {
   // have rendered), so the game's best-price helpers have data to work with.
   const listings = await waitForElement('.marketplaceView-item-quickListings .bestPrice');
   if (! listings) {
+    return;
+  }
+
+  const currentItem = document.querySelector('.marketplaceView-item[data-item-id]');
+  if (currentItem?.dataset.itemId !== String(itemId)) {
     return;
   }
 

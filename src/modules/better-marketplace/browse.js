@@ -10,6 +10,8 @@ import {
   waitForElement
 } from '@utils';
 
+import { calculateEstimatedValue } from './pricing';
+
 const LAST_VIEWED_KEY = 'mh-improved-marketplace-last-viewed';
 
 /**
@@ -210,7 +212,8 @@ const addValueColumn = (table, rows) => {
   rows.forEach((row) => {
     const owned = getOwnedQuantity(row);
     const price = getAveragePrice(row);
-    const buyValue = owned * price;
+    const value = calculateEstimatedValue({ owned, averagePrice: price });
+    const buyValue = value.buy;
 
     let display = abbreviateNumber(buyValue);
     if (price === 0) {
@@ -219,7 +222,7 @@ const addValueColumn = (table, rows) => {
     }
 
     if (buyValue > 0) {
-      const sellValue = (price - Math.ceil(price / 11)) * owned;
+      const sellValue = value.sell;
       totalBuy += buyValue;
       totalSell += sellValue;
       row.dataset.mhuiValue = String(buyValue);

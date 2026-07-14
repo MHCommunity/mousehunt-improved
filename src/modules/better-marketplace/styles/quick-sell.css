@@ -24,5 +24,8 @@ input.mhui-marketplace-quick-sell-quantity {
 }
 
 .mhui-marketplace-quick-sell-info {
+  width: 100%;
   font-size: 10px;
+  line-height: 1.2;
+  white-space: normal;
 }
