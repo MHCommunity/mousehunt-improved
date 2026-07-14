@@ -483,7 +483,11 @@ img.memberImage {
   left: 0;
   width: auto;
   min-width: 150px;
-  padding: 5px;
+}
+
+.memberRow.empty {
+  padding-left: 30px;
+  opacity: 0.5;
 }
 
 .memberRow:nth-child(even) {

@@ -25,10 +25,59 @@ let scoreboardObserver = null;
 let tournamentListObserver = null;
 let tournamentHudObserver = null;
 let observedTournamentHud = null;
+const tournamentDataCache = new Map();
 const tournamentNames = new Map();
 
 const tournamentRowSelector = '.tournamentPage-tournamentRow.tournamentPage-tournamentData';
+const tournamentDataCacheDuration = 5 * 60 * 1000;
+const tournamentDataCacheKeyPrefix = 'better-tournaments-data';
 const namesCacheKey = 'better-tournaments-names';
+
+/**
+ * Get tournament data, reusing recent and in-flight requests for the same
+ * tournament.
+ *
+ * @param {string} tournamentId Tournament ID.
+ *
+ * @return {Promise<Object>} Tournament page response.
+ */
+const getTournamentData = async (tournamentId) => {
+  const cacheKey = `${tournamentDataCacheKeyPrefix}-${tournamentId}`;
+  const cached = tournamentDataCache.get(tournamentId) ?? sessionGet(cacheKey, null);
+  if (cached?.expiry > Date.now()) {
+    return cached.data ?? cached.request;
+  }
+
+  const request = doRequest('managers/ajax/pages/page.php', {
+    page_class: 'Tournament',
+    'page_arguments[tournament_id]': tournamentId,
+  });
+
+  tournamentDataCache.set(tournamentId, {
+    expiry: Date.now() + tournamentDataCacheDuration,
+    request,
+  });
+
+  try {
+    const data = await request;
+    if (! data?.page) {
+      tournamentDataCache.delete(tournamentId);
+      return data;
+    }
+
+    const cacheEntry = {
+      expiry: Date.now() + tournamentDataCacheDuration,
+      data: { page: data.page },
+    };
+    tournamentDataCache.set(tournamentId, cacheEntry);
+    sessionSet(cacheKey, cacheEntry);
+
+    return data;
+  } catch (error) {
+    tournamentDataCache.delete(tournamentId);
+    throw error;
+  }
+};
 
 /**
  * Remember a full tournament name, keeping it available across page loads.
@@ -124,10 +173,7 @@ const updateTournamentHud = async () => {
   // synchronously while the rest of the tournament data refreshes.
   applyCachedTournamentName(activeTourney, tournamentNames);
 
-  const tourneyData = await doRequest('managers/ajax/pages/page.php', {
-    page_class: 'Tournament',
-    'page_arguments[tournament_id]': tourneyId,
-  });
+  const tourneyData = await getTournamentData(tourneyId);
 
   if (! tourneyData?.page) {
     return;
