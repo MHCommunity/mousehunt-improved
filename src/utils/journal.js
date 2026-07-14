@@ -162,6 +162,7 @@ const processingEntries = new WeakMap();
 const queuedEntries = new Set();
 let journalObserver = null;
 let processingQueue = false;
+let finishedProcessingPromise = Promise.resolve();
 
 /**
  * Build the shared model passed through the journal pipeline.
@@ -225,13 +226,16 @@ const processJournalEntry = async (entry) => {
   }
 
   const processing = (async () => {
+    // Preserve the legacy event as the compatibility seam. It must run before
+    // taking the text snapshot so its changes are not overwritten on commit.
+    document.dispatchEvent(new CustomEvent('journal-entry', { detail: entry }));
+
     const model = makeJournalEntryModel(entry);
     if (! model) {
       return null;
     }
 
     processedEntries.add(entry);
-    document.dispatchEvent(new CustomEvent('journal-entry', { detail: entry }));
 
     for (const stage of JOURNAL_STAGES) {
       if (! TEXT_STAGES.has(stage)) {
@@ -263,7 +267,7 @@ const processJournalEntry = async (entry) => {
 /**
  * Run callbacks that depend on a completed journal batch.
  */
-const finishJournalProcessing = async () => {
+const runFinishedProcessingCallbacks = async () => {
   for (const callback of finishedProcessingCallbacks) {
     try {
       await callback();
@@ -271,6 +275,11 @@ const finishJournalProcessing = async () => {
       console.error('Error in journal finished processing callback:', error); // eslint-disable-line no-console
     }
   }
+};
+
+const finishJournalProcessing = () => {
+  finishedProcessingPromise = finishedProcessingPromise.then(() => runFinishedProcessingCallbacks());
+  return finishedProcessingPromise;
 };
 
 /**
