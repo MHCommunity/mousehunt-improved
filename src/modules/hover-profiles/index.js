@@ -6,6 +6,8 @@ import {
   getSetting,
   makeElement,
   onJournalEntriesProcessed,
+  onNavigation,
+  onRequest,
   sessionGet,
   sessionSet
 } from '@utils';
@@ -108,6 +110,7 @@ let panel = null;
 let anchor = null;
 let showTimer = 0;
 let hideTimer = 0;
+let bindTimer = 0;
 
 // Hover state flags
 let overAnchor = false; // pointer over anchor link
@@ -284,6 +287,10 @@ const showForAnchor = async (a) => {
   p.focus({ preventScroll: true });
 
   const snuid = await resolveSnuid(a);
+  if (anchor !== a || ! a.isConnected) {
+    return;
+  }
+
   if (! snuid || snuid === user.sn_user_id) {
     hide();
     return;
@@ -300,7 +307,7 @@ const showForAnchor = async (a) => {
   }
 
   const data = await getFriendDataBySnuids([snuid]);
-  if (! anchor || ! anchor.isConnected) {
+  if (anchor !== a || ! a.isConnected) {
     return;
   }
 
@@ -384,10 +391,20 @@ const bindListeners = () => {
   });
 };
 
+/**
+ * Coalesce DOM refreshes before binding newly rendered profile links.
+ */
+const scheduleBindListeners = () => {
+  clearTimeout(bindTimer);
+  bindTimer = setTimeout(bindListeners, 0);
+};
+
 const init = () => {
   addStyles(styles, 'hover-profiles');
 
-  // onRequest('*', () => setTimeout(bindListeners, 250));
+  bindListeners();
+  onNavigation(scheduleBindListeners);
+  onRequest('*', scheduleBindListeners);
   onJournalEntriesProcessed(bindListeners);
 };
 
