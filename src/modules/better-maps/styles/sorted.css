@@ -13,14 +13,16 @@
 #sorted-mice-container .mouse-category-wrapper {
   position: relative;
   color: #000;
-  background-color: #e6e6e6;
+
+  /* Shorthand so category colors can also be gradients. */
+  background: var(--mh-improved-map-group-color, #e6e6e6);
   border: 1px solid rgb(5 5 5 / 50%);
   box-shadow: 0 2px 1px -1px #909090;
 }
 
 .mh-dark #sorted-mice-container .mouse-category-wrapper {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background: var(--mh-improved-map-group-color-dark, var(--mh-improved-map-group-color, var(--d-alt)));
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -39,7 +41,7 @@
 
 .mh-dark #sorted-mice-container .mouse-category-header {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-transparent-70);
   border-bottom-color: var(--d-border);
 }
 
@@ -140,12 +142,12 @@
 
 #sorted-mice-container .mouse-subcategory-wrapper {
   margin: 3px;
-  background-color: rgb(255 255 255 / 60%);
+  background: var(--mh-improved-map-subgroup-color, rgb(255 255 255 / 60%));
   border: 1px solid rgb(0 0 0 / 60%);
 }
 
 .mh-dark #sorted-mice-container .mouse-subcategory-wrapper {
-  background-color: var(--d-bg);
+  background: var(--mh-improved-map-subgroup-color-dark, var(--mh-improved-map-subgroup-color, var(--d-transparent-70)));
   border-color: var(--d-border);
 }
 
@@ -184,6 +186,35 @@
   padding-bottom: 5px;
   text-align: center;
   border-bottom: 1px solid #ccc;
+}
+
+#sorted-mice-container .mouse-minluck {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  font-size: 11px;
+  border-bottom: 1px solid #ccc;
+}
+
+.mh-dark #sorted-mice-container .mouse-minluck {
+  border-color: var(--d-alt);
+}
+
+#sorted-mice-container .mouse-minluck-title {
+  font-weight: 700;
+}
+
+#sorted-mice-container .mouse-minluck-value {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+
+#sorted-mice-container .mouse-minluck-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .mh-dark #sorted-mice-container .mouse-mhct-link,
@@ -260,8 +291,8 @@
 }
 
 .mh-dark #sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
-  background-color: var(--d-bg-alt);
-  border-bottom-color: var(--d-border);
+  background-color: var(--d-transparent-50);
+  border-bottom-color: var(--d-transparent-70);
 }
 
 .mhct-row.mhct-row-no-env {

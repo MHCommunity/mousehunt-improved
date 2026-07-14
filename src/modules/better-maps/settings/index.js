@@ -6,8 +6,13 @@
 export default async () => {
   return [
     {
+      id: 'better-maps.default-to-sorted-if-map-group-exists',
+      title: 'Default to Sorted tab (only if map is categorized)',
+      default: true,
+    },
+    {
       id: 'better-maps.default-to-sorted',
-      title: 'Default to Sorted tab',
+      title: 'Default to Sorted tab (always)',
     },
     {
       id: 'better-maps.show-sidebar-goals',

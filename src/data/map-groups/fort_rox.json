@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "name": "Night",
+      "id": "night",
+      "icon": "",
+      "color": "#d0d0d0",
+      "mice": [
+        "were_alpha",
+        "moonstone_slinger",
+        "mischievous_wereminer",
+        "wealthy_werewarrior"
+      ]
+    },
+    {
+      "name": "First Light / Utter Darkness",
+      "id": "first-light-utter-darkness",
+      "icon": "/powertypes/arcane.png",
+      "color": "#dc8ec7",
+      "mice": [
+        "arcane_summoner",
+        "cursed_taskmaster",
+        "moonstone_golem",
+        "moonstone_mystic",
+        "night_watcher",
+        "nightfire_wallbreak"
+      ]
+    },
+    {
+      "name": "Twilight, Midnight, Pitch",
+      "id": "twilight-midnight-pitch",
+      "icon": "/powertypes/shadow.png",
+      "color": "#84c3ff",
+      "mice": [
+        "good_supply_night",
+        "nightmancer",
+        "reveling_lycanthrope",
+        "werehauler",
+        "wereminer"
+      ]
+    },
+    {
+      "name": "Dawn",
+      "id": "dawn",
+      "icon": "/powertypes/arcane.png",
+      "color": "#f9d65a",
+      "mice": [
+        "dawn_guardian",
+        "monster_of_the_meteor"
+      ]
+    },
+    {
+      "name": "Day",
+      "id": "day",
+      "icon": "/powertypes/law.png",
+      "color": "#ffdb9c",
+      "mice": [
+        "hardworking_hauler",
+        "moonstone_snacker",
+        "moonstone_miner",
+        "good_supply_day",
+        "mischievous_moonstone_miner"
+      ]
+    }
+  ]
+}

@@ -156,6 +156,8 @@ const getBaseBuildOptions = (platform) => ({
  * Minify JSON files in the data folder and write them to data/dist.
  */
 const minifyAllJsonFiles = async () => {
+  fs.mkdirSync('./dist/data', { recursive: true });
+
   const files = fs.readdirSync('./src/data');
   for (const file of files) {
     if (! file.endsWith('.json')) {
@@ -166,10 +168,18 @@ const minifyAllJsonFiles = async () => {
     const json = JSON.parse(data);
     const minified = JSON.stringify(json);
 
-    fs.mkdirSync('./dist/data', { recursive: true });
-
     fs.writeFileSync(`./dist/data/${file}`, minified);
   }
+
+  // Combine the per-map files into a single map-groups.json, keyed by filename.
+  const mapGroups = {};
+  const mapGroupFiles = fs.readdirSync('./src/data/map-groups').filter((file) => file.endsWith('.json')).sort();
+  for (const file of mapGroupFiles) {
+    const data = fs.readFileSync(`./src/data/map-groups/${file}`, 'utf8');
+    mapGroups[path.basename(file, '.json')] = JSON.parse(data);
+  }
+
+  fs.writeFileSync('./dist/data/map-groups.json', JSON.stringify(mapGroups));
 };
 
 /**

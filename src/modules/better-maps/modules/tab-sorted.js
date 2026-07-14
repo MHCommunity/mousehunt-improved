@@ -19,6 +19,60 @@ import doHighlighting from './highlighting';
 import mouseGroups from '@data/map-groups.json';
 
 /**
+ * Normalize a map name for matching against the map group names.
+ *
+ * Uses the sorted words of the name (minus "Treasure") so in-game names like
+ * "Whisker Woods Rift Treasure Map" match the MHCT-style names in the data.
+ *
+ * @param {string} name The map name.
+ *
+ * @return {string} The normalized name.
+ */
+const normalizeMapName = (name) => {
+  return name
+    .toLowerCase()
+    .replaceAll(/[^\da-z]+/g, ' ')
+    .split(' ')
+    .filter((word) => word.length > 1 && 'treasure' !== word)
+    .sort()
+    .join(' ');
+};
+
+let mapNameIndex = null;
+
+/**
+ * Get the map group for a map, matching the map type or the map name.
+ *
+ * @param {Object} map The map data.
+ *
+ * @return {Object|boolean} The map group, or false if there's no match.
+ */
+const getGroupForMap = (map) => {
+  if (! map) {
+    return false;
+  }
+
+  if (map.map_type && mouseGroups[map.map_type]) {
+    return mouseGroups[map.map_type];
+  }
+
+  if (! map.name) {
+    return false;
+  }
+
+  if (! mapNameIndex) {
+    mapNameIndex = new Map();
+    for (const group of Object.values(mouseGroups)) {
+      for (const name of group.names || []) {
+        mapNameIndex.set(normalizeMapName(name), group);
+      }
+    }
+  }
+
+  return mapNameIndex.get(normalizeMapName(map.name)) || false;
+};
+
+/**
  * Get the mouse data for the map.
  *
  * @param {Object} currentMapData The current map data.
@@ -46,14 +100,16 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   });
 
   // Get the categories.
+  const group = getGroupForMap(currentMapData);
+
   let categories = [];
-  if (mouseGroups[currentMapData.map_type] && mouseGroups[currentMapData.map_type].categories) {
-    categories = mouseGroups[currentMapData.map_type].categories;
+  if (group && group.categories) {
+    categories = group.categories;
   }
 
   let subcategories = [];
-  if (mouseGroups[currentMapData.map_type] && mouseGroups[currentMapData.map_type].subcategories) {
-    subcategories = mouseGroups[currentMapData.map_type].subcategories;
+  if (group && group.subcategories) {
+    subcategories = group.subcategories;
   }
 
   return {
@@ -62,6 +118,66 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
     subcategories,
     getMouseDataForMap,
   };
+};
+
+let minlucksData = null;
+
+/**
+ * Get the minlucks data, cached after the first fetch.
+ *
+ * @return {Promise<Array>} The minlucks list.
+ */
+const getMinlucks = async () => {
+  if (! minlucksData) {
+    minlucksData = await getData('minlucks');
+  }
+
+  return Array.isArray(minlucksData) ? minlucksData : [];
+};
+
+/**
+ * Add the minluck values for a mouse to the extra info popup.
+ *
+ * @param {Object}      mouse    The mouse data.
+ * @param {HTMLElement} appendTo The element to append to.
+ */
+const addMinluckData = async (mouse, appendTo) => {
+  if (appendTo.querySelector('.mouse-minluck')) {
+    return;
+  }
+
+  const minlucks = await getMinlucks();
+  const mouseMinlucks = minlucks.find((m) => m.type === (mouse.type ?? mouse.unique_id))?.minlucks;
+  if (! mouseMinlucks) {
+    return;
+  }
+
+  const values = Object.entries(mouseMinlucks)
+    .filter(([, value]) => value && value > 0)
+    .sort((a, b) => a[1] - b[1]);
+
+  if (! values.length) {
+    return;
+  }
+
+  const wrapper = makeElement('div', 'mouse-minluck');
+  makeElement('span', 'mouse-minluck-title', 'Minluck', wrapper);
+
+  values.forEach(([power, value]) => {
+    const powerEl = makeElement('span', 'mouse-minluck-value');
+    powerEl.title = `${power.charAt(0).toUpperCase()}${power.slice(1)} minluck: ${value}`;
+
+    const icon = makeElement('img', 'mouse-minluck-icon');
+    icon.src = `https://www.mousehuntgame.com/images/powertypes/${power}.png`;
+    icon.alt = power;
+    powerEl.append(icon);
+
+    makeElement('span', 'mouse-minluck-number', value, powerEl);
+
+    wrapper.append(powerEl);
+  });
+
+  appendTo.append(wrapper);
 };
 
 // Background AR fetches for the current sorted page, so we can re-sort when they're all done.
@@ -216,7 +332,11 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
     mouseDiv.classList.add('mouse-container-selected');
     positionExtraInfo();
 
-    // Append MHCT data, then reposition since the popup size changed.
+    // Append minluck and MHCT data, then reposition since the popup size changed.
+    if ('mouse' === type) {
+      await addMinluckData(mouse, mouseExtraInfo);
+    }
+
     await addMHCTData(mouse, mouseExtraInfo, type);
     positionExtraInfo();
   });
@@ -239,15 +359,18 @@ const makeSortedPageWrapper = () => {
 
 /**
  * Make the sorted mice list HTML.
+ *
+ * @return {Promise<Array>} The unique mouse data rendered into the groups.
  */
 const makeSortedMiceList = async () => {
   // Get the current map data.
   const currentMapData = await getMapData(mapData().map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
+  const allMice = [...unsortedMice];
 
   const target = document.querySelector('.sorted-page-content');
   if (! target) {
-    return;
+    return [];
   }
 
   const categoriesWrapper = makeElement('div', 'mouse-category-container');
@@ -263,8 +386,14 @@ const makeSortedMiceList = async () => {
     // Category header.
     const categoryHeader = makeElement('div', 'mouse-category-header');
 
-    if (category.color) {
-      categoryWrapper.style.background = category.color;
+    // Colors are set as custom properties so the stylesheet can pick the
+    // right one for light or dark mode.
+    if (category.color && '#' !== category.color) {
+      categoryWrapper.style.setProperty('--mh-improved-map-group-color', category.color);
+    }
+
+    if (category['color-dark']) {
+      categoryWrapper.style.setProperty('--mh-improved-map-group-color-dark', category['color-dark']);
     }
 
     // Icon, title, and subtitle wrapper.
@@ -354,17 +483,16 @@ const makeSortedMiceList = async () => {
         const subcategoryWrapper = makeElement('div', ['mouse-subcategory-wrapper', `mouse-subcategory-${subcategory.id}`]);
 
         if (subcategory.color) {
-          subcategoryWrapper.style.backgroundColor = subcategory.color;
+          subcategoryWrapper.style.setProperty('--mh-improved-map-subgroup-color', subcategory.color);
         }
 
-        // find the subcategory name
-        const currentSubCat = mouseGroups[currentMapData.map_type].subcategories.find((subCat) => {
-          return subCat.id === subcategory.id;
-        });
+        if (subcategory['color-dark']) {
+          subcategoryWrapper.style.setProperty('--mh-improved-map-subgroup-color-dark', subcategory['color-dark']);
+        }
 
         // Subcategory header.
         const subcategoryHeader = makeElement('div', 'mouse-subcategory-header');
-        makeElement('div', 'mouse-subcategory-title', currentSubCat.name, subcategoryHeader);
+        makeElement('div', 'mouse-subcategory-title', subcategory.name, subcategoryHeader);
         subcategoryWrapper.append(subcategoryHeader);
 
         // Mice in subcategory.
@@ -412,21 +540,70 @@ const makeSortedMiceList = async () => {
   }
 
   target.append(categoriesWrapper);
+
+  return allMice;
 };
 
 /**
  * Make the scavenger sorted page.
  *
- * @param {boolean}     isNormal Is this a normal map?
- * @param {HTMLElement} target   The target element.
- * @param {Array}       allMice  The mice data for the map.
+ * @param {boolean}     isNormal    Is this a normal map?
+ * @param {HTMLElement} target      The target element.
+ * @param {Array}       allMice     The mice data for the map.
+ * @param {string}      initialSort The initial sort mode.
  */
-const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
-  target.classList.add('scavenger-sorted-page');
-  target.classList.add('treasureMapView-block');
-
-  target.setAttribute('data-scavenger-sorted-by', 'none');
+const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSort = 'none') => {
+  target.setAttribute('data-scavenger-sorted-by', initialSort);
   target.setAttribute('data-scavenger-sort-direction', 'descending');
+
+  const container = target.querySelector('.sorted-page-content');
+  if (! container) {
+    return;
+  }
+
+  /**
+   * Apply the generic sorted-view classes when leaving custom map groups.
+   */
+  const activateSortView = () => {
+    target.classList.add('scavenger-sorted-page', 'treasureMapView-block');
+    container.classList.add('treasureMapView-block-content', 'scavenger-sorted-page');
+  };
+
+  if ('group' !== initialSort) {
+    activateSortView();
+  }
+
+  const mouseDataByType = new Map(allMice.map((mouse) => [mouse.type, mouse]));
+
+  /**
+   * Get the original element for each mouse and discard location-sort copies.
+   *
+   * Deduplicating by goal ID also protects the next sort from an interrupted or
+   * overlapping location render that left more than one original-looking node.
+   *
+   * @return {Array} The unique mouse elements.
+   */
+  const getUniqueMice = () => {
+    const uniqueMice = [];
+    const seenMice = new Set();
+    const mice = target.querySelectorAll('.mouse-container');
+
+    mice.forEach((mouse) => {
+      const mouseID = mouse.getAttribute('data-mouse-id');
+      const mouseType = mouse.getAttribute('data-mouse-type');
+      const identity = `${mouse.getAttribute('data-type')}:${mouseID || mouseType}`;
+
+      if (mouse.classList.contains('mouse-container-duplicate') || seenMice.has(identity)) {
+        mouse.remove();
+        return;
+      }
+
+      seenMice.add(identity);
+      uniqueMice.push(mouse);
+    });
+
+    return uniqueMice;
+  };
 
   /**
    * Sort the mice by the AR.
@@ -434,25 +611,8 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
    * @param {string} direction The direction to sort in.
    */
   const sortMice = (direction = 'descending') => {
-    const container = target.querySelector('.sorted-page-content');
-    if (! container) {
-      return;
-    }
-
-    const mice = target.querySelectorAll('.mouse-container');
-    if (! mice) {
-      return;
-    }
-
-    // Remove any copies made by the location sort so each mouse only shows once.
-    const miceArray = [...mice].filter((mouse) => {
-      if (mouse.classList.contains('mouse-container-duplicate')) {
-        mouse.remove();
-        return false;
-      }
-
-      return true;
-    });
+    activateSortView();
+    const miceArray = getUniqueMice();
     miceArray.sort((a, b) => {
       let aAr = 0;
       let bAr = 0;
@@ -474,20 +634,9 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
       return bAr - aAr;
     });
 
-    mice.forEach((mouse) => {
-      mouse.remove();
-    });
-
-    const locationHeaders = container.querySelectorAll('.scavenger-location-wrapper');
-    if (locationHeaders) {
-      locationHeaders.forEach((header) => {
-        header.remove();
-      });
-    }
-
-    miceArray.forEach((mouse) => {
-      container.append(mouse);
-    });
+    // Replace the whole grouped/location view so no empty category wrappers or
+    // location-sort copies can survive when switching back to rate sorting.
+    container.replaceChildren(...miceArray);
   };
 
   const environments = await getData('environments');
@@ -501,27 +650,9 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
    * @param {string} direction The direction to sort in.
    */
   const sortMiceIntoLocations = async (direction = 'descending') => {
-    const container = target.querySelector('.sorted-page-content');
-    if (! container) {
-      return;
-    }
-
-    const mice = target.querySelectorAll('.mouse-container');
-    if (! mice) {
-      return;
-    }
-
+    activateSortView();
     const type = isNormal ? 'mouse' : 'item';
-
-    // Remove any copies from a previous location sort so we start from unique mice.
-    const uniqueMice = [...mice].filter((mouse) => {
-      if (mouse.classList.contains('mouse-container-duplicate')) {
-        mouse.remove();
-        return false;
-      }
-
-      return true;
-    });
+    const uniqueMice = getUniqueMice();
 
     // For each mouse, get every location it can be found in and add it to each
     // of them, falling back to an "Other" group when there's no data.
@@ -549,7 +680,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
         }
 
         // The mouse is in multiple locations, so make a copy for each extra one.
-        const mouseData = allMice.find((m) => m.type === mouseType);
+        const mouseData = mouseDataByType.get(mouseType);
         if (mouseData) {
           const duplicate = await makeMouseDiv(mouseData, type);
           duplicate.classList.add('mouse-container-duplicate');
@@ -558,25 +689,13 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
       }
     }
 
-    // move all the mice to the container
-    uniqueMice.forEach((mouse) => {
-      mouse.remove();
-    });
-
-    // remove all the location headers
-    const locationHeaders = document.querySelectorAll('.scavenger-location-wrapper');
-    if (locationHeaders) {
-      locationHeaders.forEach((header) => {
-        header.remove();
-      });
-    }
-
     // Sort the locations by the number of mice in them
     const sortedLocations = Object.keys(miceByLocation).sort((a, b) => {
       return miceByLocation[b].length - miceByLocation[a].length;
     });
 
     // Make a header for each location and then append the mice to it
+    const locationWrappers = [];
     sortedLocations.forEach((location) => {
       const locationWrapper = makeElement('div', ['treasureMapView-goals-groups', 'scavenger-location-wrapper']);
       const header = makeElement('div', ['treasureMapView-block-content-heading', 'scavenger-location-header']);
@@ -620,40 +739,76 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
       });
 
       locationWrapper.append(locationContent);
-      container.append(locationWrapper);
+      locationWrappers.push(locationWrapper);
     });
+
+    // Swap views atomically after every async location lookup has finished.
+    container.replaceChildren(...locationWrappers);
   };
 
+  let sortQueue = Promise.resolve();
+
   /**
-   * Toggle the sort direction.
+   * Run sort renders one at a time so an AR refresh and a user toggle cannot
+   * both clone the same mouse into a location view.
+   *
+   * @param {Function} callback The sort render to run.
+   *
+   * @return {Promise} The queued sort.
    */
-  const toggleSortDirection = async () => {
-    const currentDirection = target.getAttribute('data-scavenger-sort-direction');
-    const currentSort = target.getAttribute('data-scavenger-sorted-by');
+  const queueSort = async (callback) => {
+    const previousSort = sortQueue;
+    let releaseSort;
+    sortQueue = new Promise((resolve) => {
+      releaseSort = resolve;
+    });
 
-    const newDirection = currentDirection === 'descending' ? 'ascending' : 'descending';
-    target.setAttribute('data-scavenger-sort-direction', newDirection);
+    await previousSort;
 
-    await sortMice(newDirection);
-    if (currentSort === 'location') {
-      await sortMiceIntoLocations(newDirection);
+    try {
+      return await callback();
+    } finally {
+      releaseSort();
     }
   };
 
   /**
-   * Toggle the sort type.
+   * Get the direction for a requested sort. Repeating the active sort reverses
+   * it; switching sort types starts in descending order.
+   *
+   * @param {string} requestedSort The requested sort mode.
+   *
+   * @return {string} The next direction.
    */
-  const toggleSortType = async () => {
+  const getDirectionForSort = (requestedSort) => {
     const currentSort = target.getAttribute('data-scavenger-sorted-by');
-    const currentDirection = target.getAttribute('data-scavenger-sort-direction');
 
-    if (currentSort === 'location') {
-      target.setAttribute('data-scavenger-sorted-by', 'none');
-      sortMice(currentDirection);
-    } else {
-      target.setAttribute('data-scavenger-sorted-by', 'location');
-      await sortMiceIntoLocations(currentDirection);
+    if (currentSort !== requestedSort) {
+      return 'descending';
     }
+
+    const currentDirection = target.getAttribute('data-scavenger-sort-direction');
+    return currentDirection === 'descending' ? 'ascending' : 'descending';
+  };
+
+  /**
+   * Sort by location, showing a mouse once in every matching location.
+   */
+  const sortByLocation = async () => {
+    const direction = getDirectionForSort('location');
+    target.setAttribute('data-scavenger-sorted-by', 'location');
+    target.setAttribute('data-scavenger-sort-direction', direction);
+    await sortMiceIntoLocations(direction);
+  };
+
+  /**
+   * Sort by attraction or drop rate, showing each goal exactly once.
+   */
+  const sortByRate = () => {
+    const direction = getDirectionForSort('none');
+    target.setAttribute('data-scavenger-sorted-by', 'none');
+    target.setAttribute('data-scavenger-sort-direction', direction);
+    sortMice(direction);
   };
 
   // make buttons to toggle between drop rate sorting or by location
@@ -666,8 +821,11 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
     callback: async (event) => {
       const button = event.currentTarget;
       button.classList.add('disabled');
-      await toggleSortType();
-      button.classList.remove('disabled');
+      try {
+        await queueSort(sortByLocation);
+      } finally {
+        button.classList.remove('disabled');
+      }
     },
     appendTo: toggleWrapper
   });
@@ -679,8 +837,11 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
     callback: async (event) => {
       const button = event.currentTarget;
       button.classList.add('disabled');
-      await toggleSortDirection();
-      button.classList.remove('disabled');
+      try {
+        await queueSort(sortByRate);
+      } finally {
+        button.classList.remove('disabled');
+      }
     },
     appendTo: toggleWrapper
   });
@@ -692,11 +853,6 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
     target.prepend(toggleWrapper);
   }
 
-  // The mice are already appended in (cached) AR order, so just mark the page
-  // as AR-sorted instead of blocking on a location sort pass.
-  target.setAttribute('data-scavenger-sorted-by', 'none');
-  target.setAttribute('data-scavenger-sort-direction', 'descending');
-
   // Once the background AR fetches finish, re-sort with the full data.
   const resortWhenArsArrive = async () => {
     await Promise.allSettled(pendingArFills);
@@ -705,14 +861,16 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = []) => {
       return;
     }
 
-    const sortBy = target.getAttribute('data-scavenger-sorted-by');
-    const direction = target.getAttribute('data-scavenger-sort-direction');
+    await queueSort(async () => {
+      const sortBy = target.getAttribute('data-scavenger-sorted-by');
+      const direction = target.getAttribute('data-scavenger-sort-direction');
 
-    if ('location' === sortBy) {
-      await sortMiceIntoLocations(direction);
-    } else {
-      sortMice(direction);
-    }
+      if ('location' === sortBy) {
+        await sortMiceIntoLocations(direction);
+      } else if ('none' === sortBy) {
+        sortMice(direction);
+      }
+    });
   };
 
   resortWhenArsArrive();
@@ -851,8 +1009,9 @@ const processSortedTabClick = async () => {
   // Start a fresh batch of background AR fetches for this page.
   pendingArFills = [];
 
-  if (mouseGroups[currentMapData.map_type]) {
-    await makeSortedMiceList();
+  if (getGroupForMap(currentMapData)) {
+    const groupedMice = await makeSortedMiceList();
+    await makeScavengerSortedPage(true, sortedPage, groupedMice, 'group');
   } else if (currentMapData.is_scavenger_hunt) {
     await makeGenericSortedPage(false, sortedPage);
   } else {
@@ -912,8 +1071,20 @@ const hideSortedTab = () => {
   removeArToggle();
 };
 
+/**
+ * Check if the map has a sorted map group.
+ *
+ * @param {Object} map The map data.
+ *
+ * @return {boolean} Whether the map has a map group.
+ */
+const mapHasGroup = (map) => {
+  return Boolean(getGroupForMap(map));
+};
+
 export {
   addSortedMapTab,
   hideSortedTab,
+  mapHasGroup,
   showSortedTab
 };

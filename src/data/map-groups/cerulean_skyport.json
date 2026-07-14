@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "name": "Standard",
+      "id": "cs-standard",
+      "subtitle": "Standard Cheese",
+      "icon": "/items/bait/transparent_thumb/ead7ea88709e321c7de3fdba8aa06ac5.png",
+      "color": "#e6e6e6",
+      "mice": [
+        "treacherous_dock_lurker",
+        "amateur_knife_juggler",
+        "port_pillager"
+      ]
+    },
+    {
+      "name": "Sky Raider Romano",
+      "id": "cs-srr",
+      "subtitle": "SRR",
+      "icon": "/items/bait/transparent_thumb/967aaef6b2d53486157eb5de2a8a4641.png",
+      "color": "#eeaaf3",
+      "mice": [
+        "quarrelsome_quartermaster"
+      ]
+    },
+    {
+      "name": "Dock",
+      "id": "cs-dock",
+      "subtitle": "SPS/SRR",
+      "icon": "/items/stats/transparent_thumb/bf8218a3c425cba58c3ccf26097c66ff.png",
+      "color": "#f9bccd",
+      "mice": [
+        "sly_skulking_scrapper",
+        "stubby_scrap_scavenger",
+        "hefty_hulking_hauler",
+        {
+          "mouse": "cluttergrin_the_commodore_of_curiosities",
+          "subcategory": "abc"
+        }
+      ]
+    },
+    {
+      "name": "Atmo",
+      "id": "cs-atmo",
+      "subtitle": "SPS/SRR",
+      "icon": "/items/stats/transparent_thumb/44f0d2e54878efd4d86a1f80a7b48307.png",
+      "color": "#f8b46c",
+      "mice": [
+        "covetous_canister_thief",
+        "careless_canister_rider",
+        "colossal_canister_collector",
+        {
+          "mouse": "slipstream_the_virtuoso_of_vapours",
+          "subcategory": "abc"
+        }
+      ]
+    },
+    {
+      "name": "Mining",
+      "id": "cs-mining",
+      "subtitle": "SPS/SRR",
+      "icon": "/items/stats/transparent_thumb/2a05c8094fc9b020c6d0e05c0911f04f.png",
+      "color": "#a3d789",
+      "mice": [
+        "greedy_stone_grappler",
+        "swift_stone_snatcher",
+        "boulder_and_pebble",
+        {
+          "mouse": "craggerclaw_the_magnate_of_minerals",
+          "subcategory": "abc"
+        }
+      ]
+    },
+    {
+      "name": "Spice",
+      "id": "cs-spice",
+      "subtitle": "SPS/SRR",
+      "icon": "/items/stats/transparent_thumb/3788a09452cf1ec7428d46a3b8af32ac.png",
+      "color": "#79e2ee",
+      "mice": [
+        "acrobatic_aurora_bandit",
+        "arrogant_aurora_connoisseur",
+        "audacious_aurora_embezzler",
+        {
+          "mouse": "shimmerdread_the_sovereign_of_spice",
+          "subcategory": "abc"
+        }
+      ]
+    },
+    {
+      "name": "Raid",
+      "id": "cs-raid",
+      "subtitle": "SPS/SRR/ABC",
+      "icon": "https://www.mousehuntgame.com/images/mice/thumb/c502048fae03bc488657bc2a5c713f86.gif",
+      "color": "#e58a7e",
+      "mice": [
+        "captain_crook"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "abc",
+      "name": "Aurora Bocconcini (ABC)"
+    }
+  ]
+}

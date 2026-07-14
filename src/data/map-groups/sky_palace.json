@@ -1,0 +1,261 @@
+{
+  "categories": [
+    {
+      "name": "Arcane",
+      "id": "esp-arcane",
+      "icon": "/powertypes/arcane.png",
+      "color": "#b4ffff",
+      "mice": [
+        "sky_dancer",
+        "sky_glass_glazier",
+        "sky_glass_sorcerer",
+        {
+          "mouse": "arcane_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "sky_highborne",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_arcane_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Draconic",
+      "id": "esp-draconic",
+      "icon": "/powertypes/draconic.png",
+      "color": "#cf9e64",
+      "mice": [
+        "dragon_breather",
+        "dragon_lancer",
+        "tiny_dragonfly",
+        {
+          "mouse": "draconic_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "regal_spearman",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_draconic_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Forgotten",
+      "id": "esp-forgotten",
+      "icon": "/powertypes/forgotten.png",
+      "color": "#c37aa1",
+      "mice": [
+        "cumulost",
+        "spry_sky_explorer",
+        "spry_sky_seer",
+        {
+          "mouse": "forgotten_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "spheric_diviner",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_forgotten_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Hydro",
+      "id": "esp-hydro",
+      "icon": "/powertypes/hydro.png",
+      "color": "#a0dcff",
+      "mice": [
+        "cute_cloud_conjurer",
+        "nimbomancer",
+        "sky_surfer",
+        {
+          "mouse": "hydro_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "mist_maker",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_hydro_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Law",
+      "id": "esp-law",
+      "icon": "/powertypes/law.png",
+      "color": "#efcf86",
+      "mice": [
+        "devious_gentleman",
+        "lawbender",
+        "stack_of_thieves",
+        {
+          "mouse": "law_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "agent_m",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_law_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Physical",
+      "id": "esp-physical",
+      "icon": "/powertypes/physical.png",
+      "color": "#d98181",
+      "mice": [
+        "ground_gavaleer",
+        "heracles",
+        "sky_swordsman",
+        {
+          "mouse": "physical_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "sky_squire",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_physical_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Shadow",
+      "id": "esp-shadow",
+      "icon": "/powertypes/shadow.png",
+      "color": "#a4c0c1",
+      "mice": [
+        "astrological_astronomer",
+        "overcaster",
+        "stratocaster",
+        {
+          "mouse": "shadow_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "shadow_sage",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_shadow_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Tactical",
+      "id": "esp-tactical",
+      "icon": "/powertypes/tactical.png",
+      "color": "#cc8282",
+      "mice": [
+        "gyrologer",
+        "seasoned_islandographer",
+        "worried_wayfinder",
+        {
+          "mouse": "tactical_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "captain_cloudkicker",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_tactical_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Sky Palace",
+      "id": "esp-sky_palace",
+      "icon": "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png",
+      "color": "#a3fec4",
+      "mice": [
+        "empyrean_charm_hoarder",
+        "empyrean_oreglass_miner",
+        "empyrean_cloudstone_miner",
+        "empyrean_treasure_guardian"
+      ]
+    },
+    {
+      "name": "Pirates",
+      "id": "esp-pirates",
+      "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
+      "color": "#f173bf",
+      "mice": [
+        "admiral_cloudbeard",
+        "cutthroat_cannoneer",
+        "cutthroat_pirate",
+        "mairitime_pirate",
+        "empyrean_pirate",
+        "scarlet_revenger",
+        "suave_pirate"
+      ]
+    },
+    {
+      "name": "Other",
+      "id": "esp-other",
+      "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+      "color": "#",
+      "mice": [
+        "daydreamer",
+        "kite_flyer",
+        "richard_rich",
+        "empyrean_loot_cache_guardian"
+      ]
+    },
+    {
+      "name": "Wardens",
+      "id": "esp-wardens",
+      "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
+      "color": "#d3bdd3",
+      "mice": [
+        "fog_warden",
+        "frost_warden",
+        "rain_warden",
+        "wind_warden"
+      ]
+    },
+    {
+      "name": "Launchpad",
+      "id": "esp-launchpad",
+      "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+      "color": "#c2c2c2",
+      "mice": [
+        "cloud_miner",
+        "launchpad_labourer",
+        "sky_greaser",
+        "skydiver"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "hai",
+      "name": "High Altitude Island"
+    },
+    {
+      "id": "sp",
+      "name": "Sky Palace"
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "categories": [
+    {
+      "name": "Draconic Depths",
+      "subtitle": "Ice",
+      "id": "ice",
+      "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
+      "color": "#49ffff",
+      "mice": [
+        {
+          "mouse": "frostnip_icebound",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "blizzara_winterosa",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "iciclesius_the_defender",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "rimeus_polarblast",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "frigidocius_coldshot",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "chillandria_permafrost",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "avalancheus_the_glacial",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "arcticus_the_biting_frost",
+          "subcategory": "cavern-750+-loot"
+        }
+      ]
+    },
+    {
+      "name": "Draconic Depths",
+      "subtitle": "Fire",
+      "id": "fire",
+      "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
+      "color": "#ffa920",
+      "mice": [
+        {
+          "mouse": "squire_sizzleton",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "torchbearer_tinderhelm",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "colonel_crisp",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "crematio_scorchworth",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "flamina_cinderbreath",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "combustius_furnaceheart",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "incendarius_the_unquenchable",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "sulfurious_the_raging_inferno",
+          "subcategory": "cavern-750+-loot"
+        }
+      ]
+    },
+    {
+      "name": "Draconic Depths",
+      "subtitle": "Poison",
+      "id": "poison",
+      "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
+      "color": "#7fff3c",
+      "mice": [
+        {
+          "mouse": "goopus_dredgemore",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "noxio_sludgewell",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "dreck_grimehaven",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "malignus_vilestrom",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "venomona_festerbloom",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "belchazar_banewright",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "pestilentia_the_putrid",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "corrupticus_the_blight_baron",
+          "subcategory": "cavern-750+-loot"
+        }
+      ]
+    },
+    {
+      "name": "Draconic Depths",
+      "subtitle": "Elemental",
+      "id": "elemental",
+      "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
+      "color": "#ff3cd7",
+      "mice": [
+        {
+          "mouse": "tranquilia_protecticus",
+          "subcategory": "surface"
+        },
+        {
+          "mouse": "absolutia_harmonius",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "magnatius_majestica",
+          "subcategory": "cavern-0-750-loot"
+        },
+        {
+          "mouse": "supremia_magnificus",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "threeimat",
+          "subcategory": "cavern-100+-loot"
+        },
+        {
+          "mouse": "mythical_dragon_emperor",
+          "subcategory": "cavern-750+-loot"
+        }
+      ]
+    },
+    {
+      "name": "Dracano",
+      "id": "dracano",
+      "icon": "/environments/eefec52373c6cb93bcd55909cb477e47.jpg",
+      "color": "#ff3c3c",
+      "mice": [
+        "dragon",
+        "whelpling",
+        "draconic_warden"
+      ]
+    },
+    {
+      "name": "Floating Islands",
+      "id": "esp-draconic",
+      "icon": "/environments/0fb181c7f216be2d5bde0475ab46f8c5.jpg",
+      "color": "#64cf78",
+      "mice": [
+        "dragon_breather",
+        "dragon_lancer",
+        "tiny_dragonfly",
+        {
+          "mouse": "draconic_paragon",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "regal_spearman",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "empyrean_draconic_mouse",
+          "subcategory": "sp"
+        }
+      ]
+    },
+    {
+      "name": "Moussu Picchu",
+      "id": "mopi",
+      "icon": "/environments/438e2879c8c1e468f7e7eee169e289b6.jpg",
+      "color": "#cb8bec",
+      "mice": [
+        "ful_mina_mountain_queen",
+        {
+          "mouse": "drag_goon",
+          "subcategory": "storm-high"
+        },
+        {
+          "mouse": "thundering_watcher",
+          "subcategory": "storm-med-high"
+        },
+        {
+          "mouse": "thunderlord",
+          "subcategory": "storm-med"
+        },
+        {
+          "mouse": "violet_thunderling",
+          "subcategory": "storm-low"
+        },
+        {
+          "mouse": "thunderstriker",
+          "subcategory": "storm-low"
+        }
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "Corky & Friends",
+      "id": "corky-friends",
+      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_cork_dropper_bland",
+        "geyser_cork_dropper_medium",
+        "geyser_cork_dropper_mild",
+        "geyser_cork_dropper_hot",
+        "geyser_cork_dropper_rare",
+        "geyser_cork_dropper_flaming"
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "KSS",
+      "id": "kss",
+      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_eruption_dragon_wildfire",
+        "geyser_eruption_dragon_epic"
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "Cinder-Brut",
+      "id": "cinder-brut",
+      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_eruption_dragon_large",
+        "geyser_eruption_dragon_flaming"
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "BE Trio",
+      "id": "be-trio",
+      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_eruption_dragon_hot",
+        "geyser_eruption_dragon_medium",
+        "geyser_eruption_dragon_medium_spice"
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "Sizzle Mild",
+      "id": "sizzle-mild",
+      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_eruption_dragon_small",
+        "geyser_eruption_dragon_mild"
+      ]
+    },
+    {
+      "name": "Queso Geyser",
+      "subtitle": "Pressure Set",
+      "id": "pressure-set",
+      "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
+      "color": "#d3ba7a",
+      "mice": [
+        "geyser_pressure_builder_hot",
+        "geyser_pressure_builder_medium",
+        "geyser_pressure_builder_mild",
+        "geyser_pressure_builder_flaming"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "surface",
+      "name": "Surface"
+    },
+    {
+      "id": "cavern-0-750-loot",
+      "name": "Cavern 0-750 Loot"
+    },
+    {
+      "id": "cavern-100+-loot",
+      "name": "Cavern 100+ Loot"
+    },
+    {
+      "id": "cavern-750+-loot",
+      "name": "Cavern 750+ Loot"
+    },
+    {
+      "id": "hai",
+      "name": "High Altitude Island"
+    },
+    {
+      "id": "sp",
+      "name": "Sky Palace"
+    },
+    {
+      "id": "storm-high",
+      "name": "High Storm 80-99%"
+    },
+    {
+      "id": "storm-med-high",
+      "name": "Med-High Storm 35-99%"
+    },
+    {
+      "id": "storm-med",
+      "name": "Medium Storm 35-79%"
+    },
+    {
+      "id": "storm-low",
+      "name": "Low Storm 0-34%"
+    }
+  ]
+}

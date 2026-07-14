@@ -1,0 +1,391 @@
+{
+  "categories": [
+    {
+      "name": "Afterword Acres",
+      "id": "afterword-acres",
+      "icon": "/items/stats/transparent_thumb/de0e27996c34996321e8896dc58d0075.png",
+      "color": "#fda6fd",
+      "mice": [
+        {
+          "mouse": "bark_burner",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "sap_stealer",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "branch_breaker",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "moss_comber",
+          "subcategory": "sb"
+        },
+        {
+          "mouse": "sardonic_sapling",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "sour_sprout",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "twisted_twig",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "brash_birch",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "maniacal_maple",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "wailing_willow",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "furious_fir",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "heinous_hemlock",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "rampaging_redwood",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "blight_incarnate",
+          "subcategory": "boss"
+        },
+        {
+          "mouse": "herbicidal_maniac",
+          "subcategory": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Epilogue Falls",
+      "id": "epilogue-falls",
+      "icon": "/items/stats/transparent_thumb/82d40a70f38d00379ee5242e87b823d1.png",
+      "color": "#3ddad0",
+      "mice": [
+        {
+          "mouse": "crusty_crab",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "abrasive_abalone",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "scornful_scallop",
+          "subcategory": "standard"
+        },
+        {
+          "mouse": "barbaric_barnacle",
+          "subcategory": "sb"
+        },
+        {
+          "mouse": "anguished_anemone",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "menacing_medusozoa",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "belligerent_berghia",
+          "subcategory": "mmc"
+        },
+        {
+          "mouse": "loutish_loach",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "pesky_pleco",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "shifty_shrimp",
+          "subcategory": "aac"
+        },
+        {
+          "mouse": "killer_krill",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "chaotic_chiton",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "muscular_mussel",
+          "subcategory": "ssc"
+        },
+        {
+          "mouse": "falls_guardian",
+          "subcategory": "boss"
+        },
+        {
+          "mouse": "grotto_elder",
+          "subcategory": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#FFE1A4",
+      "subtitle": "Adventure",
+      "id": "adventure",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Adventure.png",
+      "mice": [
+        {
+          "mouse": "indigo_montana",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "robbin_cloak",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "captain_noname",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "dawn_quixotic",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "duke_of_reuben",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "three_mouseketeers",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#C6FFCC",
+      "subtitle": "Comedy",
+      "id": "comedy",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Comedy.png",
+      "mice": [
+        {
+          "mouse": "lady_breakwell",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "zephrum_bobblebrox",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "ignoramius_j_wryly",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "tumblestaff",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "ratberry",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "miss_crunchbull",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#FFC7C8",
+      "subtitle": "Romance",
+      "id": "romance",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Romance.png",
+      "mice": [
+        {
+          "mouse": "lisa_doolots",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "lady_blatherly",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "mr_daresee",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "rouge_o_hair",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "red_valet",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "dilemma_woodmouse",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#F4D5FF",
+      "subtitle": "Suspense",
+      "id": "suspense",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Suspense.png",
+      "mice": [
+        {
+          "mouse": "nancy_sketched",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "hardy_mice",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "herbie_pirouette",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "skillful_mr_cutley",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "professor_morty_artie",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "becca_de_frost",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#C9FAFF",
+      "subtitle": "Tragedy",
+      "id": "tragedy",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Tragedy.png",
+      "mice": [
+        {
+          "mouse": "billy_lowfellow",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "great_ratsby",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "madame_bogarty",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "lady_macbath",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "prince_hapless",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "aching_heels",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
+      "subtitle": "Fantasy",
+      "id": "fantasy",
+      "icon": "/ui/hud/conclusion_cliffs/icons/Fantasy.png",
+      "mice": [
+        {
+          "mouse": "petra_pot",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "gerald_rivers",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "danielle_targatheon",
+          "subcategory": "pp"
+        },
+        {
+          "mouse": "grandolph_the_green",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "rinsebreeze",
+          "subcategory": "ss"
+        },
+        {
+          "mouse": "janis_the_grey_witch",
+          "subcategory": "dem"
+        }
+      ]
+    },
+    {
+      "name": "Conclusion Cliffs",
+      "color": "#aad23a",
+      "subtitle": "Boss",
+      "id": "cc-boss",
+      "icon": "/items/convertibles/transparent_thumb/0f0b6c8dd41974223ced5f8bfd4dece8.png",
+      "mice": [
+        "adventure_weaver",
+        "comedy_weaver",
+        "romance_weaver",
+        "suspense_weaver",
+        "tragedy_weaver",
+        "ultimate_mythweaver"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "standard",
+      "name": "Standard"
+    },
+    {
+      "id": "sb",
+      "name": "SB"
+    },
+    {
+      "id": "boss",
+      "name": "Boss"
+    },
+    {
+      "id": "mmc",
+      "name": "MMC"
+    },
+    {
+      "id": "aac",
+      "name": "AAC"
+    },
+    {
+      "id": "ssc",
+      "name": "SSC"
+    },
+    {
+      "id": "pp",
+      "name": "PP"
+    },
+    {
+      "id": "ss",
+      "name": "SS"
+    },
+    {
+      "id": "dem",
+      "name": "DEM"
+    }
+  ]
+}

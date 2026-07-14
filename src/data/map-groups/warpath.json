@@ -1,0 +1,58 @@
+{
+  "categories": [
+    {
+      "name": "Wave 1",
+      "id": "warpath-wave-1",
+      "color": "#f1d16f",
+      "mice": [
+        "desert_scout_weak",
+        "desert_warrior_weak",
+        "desert_archer_weak"
+      ]
+    },
+    {
+      "name": "Wave 2",
+      "id": "warpath-wave-2",
+      "color": "#ea947b",
+      "mice": [
+        "desert_mage",
+        "desert_archer",
+        "desert_warrior",
+        "desert_scout",
+        "desert_cavalry"
+      ]
+    },
+    {
+      "name": "Wave 3",
+      "id": "warpath-wave-3",
+      "color": "#ff835f",
+      "mice": [
+        "desert_artillery",
+        "desert_mage_strong",
+        "desert_scout_epic",
+        "desert_archer_epic",
+        "desert_cavalry_strong",
+        "desert_warrior_epic"
+      ]
+    },
+    {
+      "name": "Wave 4",
+      "id": "warpath-wave-4",
+      "color": "#ffc8c8",
+      "mice": [
+        "desert_elite_gaurd",
+        "desert_boss"
+      ]
+    },
+    {
+      "name": "Any wave",
+      "id": "any-wave",
+      "color": "#e9e0e0",
+      "mice": [
+        "desert_beast",
+        "desert_supply",
+        "desert_general"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "categories": [
+    {
+      "name": "Farm",
+      "id": "fofo-farm",
+      "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
+      "color": "#d7b18b",
+      "mice": [
+        "angry_aphid",
+        "root_rummager",
+        "grit_grifter",
+        "mighty_mite",
+        "wily_weevil",
+        {
+          "mouse": "crazed_cultivator",
+          "subcategory": "sb"
+        },
+        {
+          "mouse": "land_loafer",
+          "subcategory": "zero-plants"
+        },
+        {
+          "mouse": "loathsome_locust",
+          "subcategory": "three-papyrus"
+        }
+      ]
+    },
+    {
+      "name": "Prologue Pond",
+      "id": "fofo-pond",
+      "icon": "/folklore_forest_upgrades/tackle_box_thumb.png",
+      "color": "#c3def5",
+      "mice": [
+        "beachcomber",
+        "sand_sifter",
+        "tackle_tracker",
+        {
+          "mouse": "covetous_coastguard",
+          "subcategory": "sb"
+        }
+      ]
+    },
+    {
+      "name": "Prologue Pond",
+      "subtitle": "Grubbeen",
+      "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
+      "color": "#fbc3fa",
+      "mice": [
+        "pompous_perch",
+        "careless_catfish",
+        "melodramatic_minnow"
+      ]
+    },
+    {
+      "name": "Prologue Pond",
+      "id": "fofo-pond-clamembert",
+      "subtitle": "Clamembert",
+      "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
+      "color": "#f3e0ff",
+      "mice": [
+        "nefarious_nautilus",
+        "vicious_vampire_squid",
+        "sinister_squid"
+      ]
+    },
+    {
+      "name": "Table of Contents",
+      "subtitle": "Not Writing",
+      "id": "fofo-toc-not-writing",
+      "icon": "/folklore_forest_upgrades/silver_quill_thumb.png",
+      "mice": [
+        "brothers_grimmaus",
+        "hans_cheesetian_squeakersen",
+        "madame_dormouse",
+        {
+          "mouse": "matriarch_gander",
+          "subcategory": "sb"
+        }
+      ]
+    },
+    {
+      "name": "Table of Contents",
+      "subtitle": "Writing",
+      "id": "fofo-toc-writing",
+      "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
+      "color": "#e9c390",
+      "mice": [
+        "humphrey_dumphrey",
+        "little_bo_squeak",
+        "little_miss_fluffet"
+      ]
+    },
+    {
+      "name": "Table of Contents",
+      "subtitle": "Writing - First Draft",
+      "id": "fofo-toc-first-draft",
+      "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
+      "mice": [
+        "fibbocchio",
+        "pinkielina",
+        "princess_and_the_olive"
+      ]
+    },
+    {
+      "name": "Table of Contents",
+      "subtitle": "Writing - Second Draft",
+      "id": "fofo-toc-second-draft",
+      "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
+      "mice": [
+        "flamboyant_flautist",
+        "greenbeard",
+        "ice_regent"
+      ]
+    },
+    {
+      "name": "Bosses",
+      "id": "fofo-bosses",
+      "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
+      "color": "#fde671",
+      "mice": [
+        "bitter_grammarian",
+        "mythweaver",
+        "monstrous_midge",
+        "architeuthulhu_of_the_abyss"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "sb",
+      "name": "SUPER|brie+"
+    },
+    {
+      "id": "zero-plants",
+      "name": "Zero Plants"
+    },
+    {
+      "id": "three-papyrus",
+      "name": "Three Papyrus Plants"
+    }
+  ]
+}

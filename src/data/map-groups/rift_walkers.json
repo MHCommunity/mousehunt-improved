@@ -1,0 +1,27 @@
+{
+  "categories": [
+    {
+      "name": "Gnawnia Rift",
+      "id": "gnawnia-rift",
+      "color": "#f7e8f9",
+      "mice": [
+        "rift_field",
+        "rift_bionic",
+        "rift_granite",
+        "rift_steel",
+        "rift_white",
+        "rift_grey",
+        "rift_brown",
+        "rift_lightning",
+        "rift_dwarf",
+        "rift_tiny",
+        "rift_cowardly",
+        "rift_spotted",
+        "rift_flying",
+        "rift_mole",
+        "rift_diamond",
+        "rift_gold"
+      ]
+    }
+  ]
+}

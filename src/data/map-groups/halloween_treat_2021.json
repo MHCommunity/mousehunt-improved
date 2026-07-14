@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "name": "Standard",
+      "id": "standard",
+      "icon": "/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png",
+      "color": "#fefa76",
+      "mice": [
+        "grey_recluse",
+        "hween_cobweb",
+        "vampira",
+        "zombot_unipire",
+        "candy_cat",
+        "candy_goblin",
+        "shortcut",
+        "tricky_witch",
+        "sweet_tooth"
+      ]
+    },
+    {
+      "name": "Monterey Jack-O-Lantern",
+      "id": "monterey-Jack",
+      "icon": "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png",
+      "color": "#f9a645",
+      "mice": [
+        "sprit_light",
+        "gordborg",
+        "pumpkin_hoarder",
+        "trick",
+        "treat",
+        "chainsaw",
+        "maize_harvester"
+      ]
+    }
+  ]
+}

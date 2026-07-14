@@ -45,7 +45,7 @@ const lookup = (name) => {
  * Main function.
  */
 const main = async () => {
-  // For each of the keys in the json, loop through the categories property and each of the mice in the category. if there's a replacement for it, replace it in the json.
+  // For each map file, loop through the categories property and each of the mice in the category. if there's a replacement for it, replace it in the json.
   const groups = Object.keys(mapGroups);
   if (groups.length === 0) {
     console.log('No maps found');
@@ -55,6 +55,7 @@ const main = async () => {
   console.log(`Checking ${groups.length} maps...`);
 
   groups.forEach((key) => {
+    let fileChanged = false;
     const categories = mapGroups[key].categories;
     let replacementsMade = 0;
     categories.forEach((category) => {
@@ -82,6 +83,7 @@ const main = async () => {
 
         if (replaced) {
           replacementsMade++;
+          fileChanged = true;
           console.log(`🐭 Replaced ${originalName} with ${replacedName} in ${category.name} in ${key}`);
         }
       });
@@ -95,11 +97,15 @@ const main = async () => {
       console.log(` ✓ No fixes needed in ${key}`);
       return;
     }
+
+    // write the json back to the map's file in the map-groups folder
+    if (fileChanged) {
+      fs.writeFileSync(path.resolve(mapGroupsPath, `${key}.json`), JSON.stringify(mapGroups[key], null, 2) + '\n');
+    }
+
     console.log(`✓ Replaced ${replacementsMade} mice in ${categories.length} categories in ${key}`);
   });
 
-  // write the json back to the src/data/map-groups.json file
-  fs.writeFileSync(mapGroupsPath, JSON.stringify(mapGroups, null, 2));
   console.log('Done!');
 };
 
@@ -138,8 +144,12 @@ const getReplacements = async () => {
   return replacements;
 };
 
-const mapGroupsPath = './src/data/map-groups.json';
-const mapGroups = await loadFile(mapGroupsPath);
+const mapGroupsPath = './src/data/map-groups';
+const mapGroups = {};
+for (const file of fs.readdirSync(mapGroupsPath).filter((f) => f.endsWith('.json')).sort()) {
+  mapGroups[path.basename(file, '.json')] = await loadFile(path.resolve(mapGroupsPath, file));
+}
+
 const replacements = await getReplacements();
 
 await main();

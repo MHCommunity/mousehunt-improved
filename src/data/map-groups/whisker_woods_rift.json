@@ -1,0 +1,82 @@
+{
+  "categories": [
+    {
+      "name": "Crazed Clearing",
+      "subtitle": "Cherry Charm",
+      "id": "crazed-clearing",
+      "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
+      "color": "#ff909d",
+      "mice": [
+        "rift_cherry",
+        "rift_sylvan",
+        "rift_wiggler",
+        "rift_moosker",
+        "rift_eagle_owl",
+        "rift_foxy",
+        "rift_elven_princess",
+        {
+          "mouse": "rift_cyclops",
+          "subcategory": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Gigantic Gnarled Tree",
+      "subtitle": "Gnarled Charm",
+      "id": "gigantic-gnarled-tree",
+      "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
+      "color": "#d9f720",
+      "mice": [
+        "rift_curious_chemist",
+        "rift_frog",
+        "rift_chameleon",
+        "rift_nomad",
+        "rift_bear",
+        "rift_tiger",
+        "rift_fairy",
+        {
+          "mouse": "rift_centaur",
+          "subcategory": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Deep Lagoon",
+      "subtitle": "Stagnant Charm",
+      "id": "deep-lagoon",
+      "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
+      "color": "#91f5ff",
+      "mice": [
+        "rift_silth",
+        "rift_goblin",
+        "rift_shaman",
+        "rift_troll",
+        "rift_treant",
+        "rift_water_nymph",
+        "rift_harpy",
+        {
+          "mouse": "rift_hydra",
+          "subcategory": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Misc",
+      "id": "misc",
+      "color": "#e9d2ff",
+      "mice": [
+        "rift_goldleaf",
+        {
+          "mouse": "rift_black_widow",
+          "subcategory": "boss"
+        }
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "boss",
+      "name": "Boss"
+    }
+  ]
+}

@@ -6,10 +6,14 @@
   font-size: 12px;
 }
 
-#sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-sp {
-  background-color: rgb(175 203 255 / 75%);
+.mh-dark #sorted-mice-container .mouse-category-wrapper.mouse-category-sos-boss,
+.mh-dark #sorted-mice-container .mouse-category-wrapper.mouse-category-school-of-sorcery,
+.mh-dark #sorted-mice-container .mouse-category-wrapper.mouse-category-fantasy {
+  color: var(--d-text-dark);
 }
 
-.mh-dark #sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-sp {
-  background-color: var(--d-blue-darker);
+.mh-dark #sorted-mice-container .mouse-category-sos-boss .mouse-subcategory-wrapper,
+.mh-dark #sorted-mice-container .mouse-category-school-of-sorcery .mouse-subcategory-wrapper,
+.mh-dark #sorted-mice-container .mouse-category-fantasy .mouse-subcategory-wrapper {
+  color: var(--d-text);
 }

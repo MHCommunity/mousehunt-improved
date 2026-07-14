@@ -1,5 +1,6 @@
 import {
   addMapPreviewListeners,
+  addOnboardingTip,
   addStyles,
   doEvent,
   getData,
@@ -18,7 +19,7 @@ import {
 
 import settings from './settings';
 
-import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
+import { addSortedMapTab, hideSortedTab, mapHasGroup, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
@@ -34,6 +35,18 @@ import sidebar from './modules/sidebar';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
+
+/**
+ * Add a one-time notice below the Sorted tab.
+ */
+const addSortedTabNotice = () => {
+  addOnboardingTip({
+    step: 'better-maps-sorted-tab',
+    anchor: '.treasureMapRootView-subTab.sorted-map-tab',
+    title: 'About the Sorted tab',
+    content: 'This view groups the map\'s mice by stage or category, making it easier to see what to hunt next.',
+  });
+};
 
 /**
  * Update the map classes.
@@ -156,16 +169,27 @@ const interceptMapRequest = async (mapId) => {
 /**
  * Initialize the mapper.
  *
- * @param {Object} map The map data.
+ * @param {Object} map     The map data.
+ * @param {number} retries Number of times we've waited for the dialog markup.
  */
-const initMapper = (map) => {
+const initMapper = (map, retries = 0) => {
   if (! map || ! map.map_id || ! map.map_type) {
     return;
   }
 
-  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for changes. once its loaded, proceed with our code
+  // The map data can arrive before the game has rendered the dialog at all,
+  // so wait for the markup to show up before trying to add anything to it.
   const content = document.querySelector('.treasureMapRootView-content');
-  if (content && content.classList.contains('loading')) {
+  if (! content) {
+    if (retries < 10) {
+      setTimeout(() => initMapper(map, retries + 1), 300);
+    }
+
+    return;
+  }
+
+  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for changes. once its loaded, proceed with our code
+  if (content.classList.contains('loading')) {
     const observer = new MutationObserver((mutations, mObserver) => {
       mutations.forEach((mutation) => {
         if (
@@ -193,11 +217,21 @@ const initMapper = (map) => {
   // Add the sorted tab.
   if (! map.is_complete && ! map.can_claim_reward) {
     addSortedMapTab();
+
+    if (mapHasGroup(map)) {
+      addSortedTabNotice();
+    }
   }
 
-  // Add the tab click events.
+  // Add the tab click events, but only once per tab since initMapper can run
+  // multiple times for the same map.
   const tabs = document.querySelectorAll('.treasureMapRootView-subTab');
   tabs.forEach((tab) => {
+    if (tab.getAttribute('data-mh-improved-tab-click')) {
+      return;
+    }
+
+    tab.setAttribute('data-mh-improved-tab-click', 'true');
     tab.addEventListener('click', () => {
       addBlockClasses();
 
@@ -208,8 +242,11 @@ const initMapper = (map) => {
 
   doEvent('map_show_goals_tab_click', map);
 
+  const defaultToSorted = getSetting('better-maps.default-to-sorted', false) ||
+    (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
+
   if (
-    getSetting('better-maps.default-to-sorted', false) &&
+    defaultToSorted &&
     ! map.is_complete &&
     ! map.can_claim_reward
   ) {
@@ -227,11 +264,73 @@ const initMapper = (map) => {
 
 let parentShowMap;
 let defaultMapId;
+let lastShownMapId;
+let ensureTimeouts = [];
+
+/**
+ * Check if the current map view is still missing our additions.
+ *
+ * @return {boolean} Whether the mapper still needs to be initialized.
+ */
+const needsMapperInit = () => {
+  const tabContainer = document.querySelector('.treasureMapRootView-subTabContainer');
+  if (! tabContainer) {
+    return false;
+  }
+
+  if (tabContainer.querySelector('.sorted-map-tab')) {
+    return false;
+  }
+
+  // Completed and claimable maps intentionally don't get the sorted tab, and
+  // these classes are added once the mapper has run for them.
+  const mapView = document.querySelector('.treasureMapRootView-content .treasureMapView');
+  if (mapView && (mapView.classList.contains('mh-ui-map-completed') || mapView.classList.contains('mh-ui-map-claimable'))) {
+    return false;
+  }
+
+  return true;
+};
+
+/**
+ * Re-run the map intercept a few times as a fallback for when the map data or
+ * the dialog markup isn't ready the first time around.
+ *
+ * @param {number|boolean} mapId The map ID to intercept.
+ */
+const ensureMapperInitialized = (mapId = false) => {
+  mapId = mapId || lastShownMapId || defaultMapId;
+  if (! mapId) {
+    return;
+  }
+
+  // Restart any pending checks so we only ever have one set running.
+  ensureTimeouts.forEach((timeout) => clearTimeout(timeout));
+  ensureTimeouts = [250, 1000, 2500, 5000].map((delay) => {
+    return setTimeout(() => {
+      if (needsMapperInit()) {
+        interceptMapRequest(mapId);
+      }
+    }, delay);
+  });
+};
+
 /**
  * Intercept the map request from the controller.
+ *
+ * @param {number} retries Number of times we've waited for the controller.
  */
-const intercept = () => {
+const intercept = (retries = 0) => {
   if (parentShowMap) {
+    return;
+  }
+
+  // The controller may not be registered yet if we loaded very early.
+  if (! hg?.controllers?.TreasureMapController?.showMap) {
+    if (retries < 10) {
+      setTimeout(() => intercept(retries + 1), 500);
+    }
+
     return;
   }
 
@@ -239,18 +338,27 @@ const intercept = () => {
   hg.controllers.TreasureMapController.showMap = async (id = false) => {
     parentShowMap(id);
 
-    const intercepted = await interceptMapRequest(id || defaultMapId);
+    const mapId = id || defaultMapId;
+    lastShownMapId = mapId;
+
+    const intercepted = await interceptMapRequest(mapId);
     setTimeout(() => {
       if (! intercepted) {
-        interceptMapRequest(id || defaultMapId);
+        interceptMapRequest(mapId);
       }
     }, 1000);
+
+    ensureMapperInitialized(mapId);
   };
 
   onRequest('users/treasuremap_v2.php', async (data) => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
+
+      // The map data just arrived, so if the first intercept ran before it was
+      // cached, this is the moment to retry.
+      ensureMapperInitialized(data.treasure_map.map_id);
     }
   }, true);
 
@@ -258,6 +366,8 @@ const intercept = () => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
+
+      ensureMapperInitialized(data.treasure_map.map_id);
     }
   }, true);
 };
@@ -538,7 +648,13 @@ const init = () => {
     setTimeout(runMapEnhancements, 750);
   });
 
-  onDialogShow('map', runMapEnhancements);
+  onDialogShow('map', () => {
+    runMapEnhancements();
+
+    // Catch any path that opened the map dialog without going through our
+    // showMap intercept, or where the intercept lost the race.
+    ensureMapperInitialized();
+  });
 
   floatingIslands();
 };

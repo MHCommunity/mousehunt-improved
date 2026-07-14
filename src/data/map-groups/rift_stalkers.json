@@ -1,0 +1,70 @@
+{
+  "categories": [
+    {
+      "name": "Gnawnia Rift",
+      "id": "gnawnia-rift",
+      "color": "#f7e8f9",
+      "mice": [
+        "rift_white",
+        "rift_dwarf",
+        "rift_diamond",
+        "rift_gold"
+      ]
+    },
+    {
+      "name": "Furoma Rift",
+      "id": "furoma-rift-outside",
+      "subtitle": "Training Grounds",
+      "color": "#e5a571",
+      "mice": [
+        "rift_samurai",
+        "rift_kung_fu",
+        "rift_worker",
+        "rift_ninja",
+        "rift_dumpling_chef",
+        "rift_archer"
+      ]
+    },
+    {
+      "name": "Furoma Rift",
+      "id": "furoma-rift-inside",
+      "subtitle": "Pagoda",
+      "color": "#cb7136",
+      "mice": [
+        "rift_assassin",
+        "rift_monk",
+        "rift_fang_student",
+        "rift_belt_student",
+        "rift_claw_student",
+        "rift_dojo_sensei",
+        "rift_fang_master",
+        "rift_claw_master",
+        "rift_belt_master",
+        "rift_dojo_master"
+      ]
+    },
+    {
+      "name": "Bristle Woods Rift",
+      "id": "bristle-woods-rift",
+      "mice": [
+        "rift_acolyte",
+        "rift_chrono",
+        "rift_gargoyle",
+        "rift_golem",
+        "rift_gorgon",
+        "rift_keeper",
+        "rift_keepers_assistant",
+        "rift_lich",
+        "rift_ooze",
+        "rift_reaper",
+        "rift_scavenger",
+        "rift_skeleton",
+        "rift_sorcerer",
+        "rift_spectre",
+        "rift_spider",
+        "rift_terror_knight",
+        "rift_wight"
+      ]
+    }
+  ]
+}
