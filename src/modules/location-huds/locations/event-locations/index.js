@@ -5,12 +5,25 @@ import { ronzaGlobal, ronzaLocation } from './ronza';
 import { lunarNewYearGlobal } from './lunar-new-year';
 import { springEggHuntGlobal } from './spring-egg-hunt';
 
+let initializedGlobalEvents = false;
+
+const eventLocationIds = new Set([
+  'halloween_event_location',
+  'winter_hunt_grove',
+  'winter_hunt_workshop',
+  'winter_hunt_fortress',
+  'super_brie_factory',
+  'ronzas_traveling_shoppe',
+]);
+
+const isEventLocation = (location) => eventLocationIds.has(location);
+
 /**
- * Load events based on the location.
+ * Activate behavior that only belongs to the current event location.
  *
- * @param {string} location The location.
+ * @param {string} location The raw location id.
  */
-export default async (location) => {
+const activateEventLocation = (location) => {
   switch (location) {
   case 'halloween_event_location':
     halloweenLocation();
@@ -29,6 +42,17 @@ export default async (location) => {
   default:
     break;
   }
+};
+
+/**
+ * Initialize seasonal behavior that remains active outside event locations.
+ */
+const initializeEventGlobals = () => {
+  if (initializedGlobalEvents) {
+    return;
+  }
+
+  initializedGlobalEvents = true;
 
   const events = {
     0: [greatWinterHuntGlobal, lunarNewYearGlobal], // January.
@@ -51,4 +75,10 @@ export default async (location) => {
   events[month].forEach((event) => {
     event();
   });
+};
+
+export {
+  activateEventLocation,
+  initializeEventGlobals,
+  isEventLocation
 };

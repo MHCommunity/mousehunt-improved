@@ -86,7 +86,8 @@ import regionLivingGarden from './locations/region-living-garden';
 import regionQueso from './locations/region-queso';
 
 // Events
-import eventLocations from './locations/event-locations';
+import { activateEventLocation, initializeEventGlobals, isEventLocation } from './locations/event-locations';
+import createLocationHudRuntime from './runtime';
 
 const regionMapping = [
   {
@@ -107,6 +108,75 @@ const regionMapping = [
     ],
   },
 ];
+
+/* eslint-disable camelcase */
+const locationHandlers = {
+  acolyte_realm,
+  afterword_acres,
+  ancient_city,
+  balacks_cove,
+  bazaar,
+  bountiful_beanstalk,
+  calm_clearing,
+  cape_clawed,
+  catacombs,
+  cerulean_skyport,
+  conclusion_cliffs,
+  clawshot_city,
+  derr_dunes,
+  desert_city,
+  desert_warpath,
+  dojo,
+  draconic_depths,
+  dracano,
+  elub_shore,
+  epilogue_falls,
+  floating_islands,
+  forbidden_grove,
+  foreword_farm,
+  fort_rox,
+  fungal_cavern,
+  great_gnarled_tree,
+  harbour,
+  iceberg,
+  jungle_of_dread,
+  kings_arms,
+  kings_gauntlet,
+  laboratory,
+  labyrinth,
+  lagoon,
+  meditation_room,
+  mountain,
+  mousoleum,
+  moussu_picchu,
+  nerg_plains,
+  pinnacle_chamber,
+  pollution_outbreak,
+  prologue_pond,
+  rift_bristle_woods,
+  rift_burroughs,
+  rift_furoma,
+  rift_gnawnia,
+  rift_valour,
+  rift_whisker_woods,
+  school_of_sorcery,
+  seasonal_garden,
+  slushy_shoreline,
+  ss_huntington_ii,
+  sunken_city,
+  table_of_contents,
+  tournament_hall,
+  town_of_digby,
+  town_of_gnawnia,
+  train_station,
+  windmill,
+  zugzwang_tower,
+  'region-living-garden': regionLivingGarden,
+  'region-queso': regionQueso,
+};
+/* eslint-enable camelcase */
+
+const runtime = createLocationHudRuntime();
 
 /**
  * Standardize the location name.
@@ -134,88 +204,40 @@ const main = () => {
   const location = normalizeCurrentLocation(currentLocation);
 
   if (getSetting('location-huds-enabled.event-locations', true)) {
-    eventLocations(currentLocation);
+    initializeEventGlobals();
   }
 
-  if (! getSetting(`location-huds-enabled.${location}`, true)) {
+  const locationEnabled = getSetting(`location-huds-enabled.${location}`, true);
+  const eventLocationsEnabled = getSetting('location-huds-enabled.event-locations', true);
+  const activeEventLocation = eventLocationsEnabled && isEventLocation(currentLocation);
+
+  if (! locationEnabled && ! activeEventLocation) {
+    runtime.deactivate();
+    removeBodyClassByPrefix('mh-improved-location-');
     return;
   }
 
   removeBodyClassByPrefix('mh-improved-location-');
   addBodyClass(`mh-improved-location-${location}`);
 
-  /* eslint-disable camelcase */
-  const locationHandlers = {
-    acolyte_realm,
-    afterword_acres,
-    ancient_city,
-    balacks_cove,
-    bazaar,
-    bountiful_beanstalk,
-    calm_clearing,
-    cape_clawed,
-    catacombs,
-    cerulean_skyport,
-    conclusion_cliffs,
-    clawshot_city,
-    derr_dunes,
-    desert_city,
-    desert_warpath,
-    dojo,
-    draconic_depths,
-    dracano,
-    elub_shore,
-    epilogue_falls,
-    floating_islands,
-    forbidden_grove,
-    foreword_farm,
-    fort_rox,
-    fungal_cavern,
-    great_gnarled_tree,
-    harbour,
-    iceberg,
-    jungle_of_dread,
-    kings_arms,
-    kings_gauntlet,
-    laboratory,
-    labyrinth,
-    lagoon,
-    meditation_room,
-    mountain,
-    mousoleum,
-    moussu_picchu,
-    nerg_plains,
-    pinnacle_chamber,
-    pollution_outbreak,
-    prologue_pond,
-    rift_bristle_woods,
-    rift_burroughs,
-    rift_furoma,
-    rift_gnawnia,
-    rift_valour,
-    rift_whisker_woods,
-    school_of_sorcery,
-    seasonal_garden,
-    slushy_shoreline,
-    ss_huntington_ii,
-    sunken_city,
-    table_of_contents,
-    tournament_hall,
-    town_of_digby,
-    town_of_gnawnia,
-    train_station,
-    windmill,
-    zugzwang_tower,
-    'region-living-garden': regionLivingGarden,
-    'region-queso': regionQueso,
-  };
-  /* eslint-enable camelcase */
+  const baseLocationHandler = locationEnabled ? locationHandlers[location] : null;
+  const locationHandler = (baseLocationHandler || activeEventLocation) ? () => {
+    if (activeEventLocation) {
+      activateEventLocation(currentLocation);
+    }
 
-  if (locationHandlers[location]) {
-    locationHandlers[location]();
+    if (baseLocationHandler) {
+      baseLocationHandler();
+    }
+  } : null;
+
+  if (locationHandler) {
+    runtime.activate(`${currentLocation}:${location}`, locationHandler);
     if (getSetting('debug.module-loading', false)) {
       debuglog('module-loading', `Loaded Location HUD: "${location}"`);
     }
+  } else {
+    runtime.deactivate();
   }
 };
 

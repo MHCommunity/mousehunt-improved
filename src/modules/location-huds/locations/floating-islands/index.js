@@ -20,6 +20,8 @@ import { addAirshipRandomizer } from '../../shared/airship-randomizer';
 import fullWidthAirshipStyles from './full-width-airship.css';
 import styles from './styles.css';
 
+let hasJetstreamTimeListener = false;
+
 /**
  * Toggle the fuel button class.
  *
@@ -508,13 +510,16 @@ const hud = () => {
   run();
 
   showBWReminder();
-  onTravel(() => setTimeout(showBWReminder, 1500));
+  onTravel(null, { callback: () => setTimeout(showBWReminder, 1500) });
 
   onEvent('ajax_response', () => {
     setTimeout(run, 300);
   });
 
-  document.addEventListener('horn-countdown-tick-minute', updateJetstreamTime);
+  if (! hasJetstreamTimeListener) {
+    hasJetstreamTimeListener = true;
+    document.addEventListener('horn-countdown-tick-minute', updateJetstreamTime);
+  }
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
 
   onRequest('environment/floating_islands.php', (request, data) => {

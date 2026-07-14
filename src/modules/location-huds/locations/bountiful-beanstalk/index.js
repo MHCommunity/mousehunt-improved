@@ -247,7 +247,7 @@ const addQuickHarpToggleButton = async () => {
 export default async () => {
   const stylesToAdd = [regionStyles, styles];
 
-  if (getSetting('location-huds.bountiful-beanstalk-flip-avatar', false)) {
+  if (getSetting('location-huds.flip-avatar-images', false)) {
     stylesToAdd.push('.bountifulBeanstalkCastleView__playerMarkerUserThumb { transform: scaleX(-1); }');
   }
 

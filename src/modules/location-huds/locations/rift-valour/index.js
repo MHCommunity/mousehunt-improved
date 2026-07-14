@@ -265,7 +265,7 @@ const ifUcEquipped = () => {
 export default async () => {
   addHudStyles([
     styles,
-    getSetting('location-huds.valour-rift-flip-avatar', false) ? flippedAvatarStyles : '',
+    getSetting('location-huds.flip-avatar-images', false) ? flippedAvatarStyles : '',
   ]);
 
   addUIComponents();

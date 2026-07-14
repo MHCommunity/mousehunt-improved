@@ -147,11 +147,12 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
 
+  onRequest('*', hud);
+  onTurn(hud, 300);
+
   if (! areaMice) {
     areaMice = await getData('brift-mice-per-mist-level');
   }
 
   hud();
-  onRequest('*', hud);
-  onTurn(hud, 300);
 };
