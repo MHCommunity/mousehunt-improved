@@ -643,7 +643,7 @@ const init = () => {
     excludeFromStandaloneUserscript: hoverMice();
   }
 
-  if (getSetting('better-mice.show-mice-sidebar', true)) {
+  if (getSetting('better-mice.show-sidebar', true)) {
     excludeFromStandaloneUserscript: sidebar();
   }
 

@@ -1,4 +1,4 @@
-import { addStyles, getData, getSetting, onNavigation } from '@utils';
+import { addStyles, getData, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
