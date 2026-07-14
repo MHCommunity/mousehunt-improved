@@ -35,18 +35,18 @@
 }
 
 .itemViewPopup .mouseview-has-mhct .mouse-ar-wrapper {
-  padding: 5px 7px 5px 5px;
+  padding: 5px;
 }
 
 .mouseview-has-mhct .has-stages .mouse-ar-wrapper {
-  grid-template-columns: 1fr 1fr 1fr 50px;
+  grid-template-columns: 2fr 3fr 2fr 50px;
 }
 
-.itemView-has-mhct .mouse-ar-wrapper div {
+.mouseview-has-mhct .mouse-ar-wrapper div {
   padding: 0 2px;
 }
 
-.itemView-has-mhct .mice-ar-wrapper {
+.mouseview-has-mhct .mice-ar-wrapper {
   margin-right: 10px;
 }
 
@@ -58,42 +58,35 @@
   font-size: 11px;
 }
 
-.itemView-has-mhct .ar-header {
+.mouseview-has-mhct .ar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 26px;
-  padding-bottom: 2px;
+  height: auto;
   margin-top: 10px;
-  margin-bottom: 10px;
   font-size: 12px;
   font-weight: 900;
   border-bottom: 1px solid #ccc;
 }
 
-.mh-dark .itemView-has-mhct .ar-header {
-  border-bottom-color: var(--d-border);
+.mh-dark .mouseview-has-mhct .ar-header {
+  border-bottom-color: var(--d-bg-alt);
 }
 
-.itemView-has-mhct .ar-link {
+.mouseview-has-mhct .ar-link {
   font-size: 9px;
 }
 
-.itemView-has-mhct .rate {
+.mouseview-has-mhct .rate {
   text-align: right;
 }
 
-.itemView-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+.mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
   background-color: #e7e7e7;
 }
 
-.mh-dark .itemView-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
   background-color: var(--d-bg);
-}
-
-.itemView-has-mhct .itemView-description {
-  font-weight: 500;
-  line-height: 19px;
 }
 
 .itemView-action.crafting_item b {
@@ -313,6 +306,18 @@ input.itemView-action-convert-quantity {
 .itemView-action-convertForm {
   position: relative;
   padding-bottom: 20px;
+}
+
+.mh-improved-convertible-contents-loading {
+  padding: 5px;
+  font-size: 10px;
+  font-style: italic;
+  color: #777;
+}
+
+.mh-improved-convertible-contents .item-ar-wrapper {
+  max-height: 250px;
+  overflow-y: auto;
 }
 
 .mh-improved-item-open-controls {

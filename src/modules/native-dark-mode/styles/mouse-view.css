@@ -3,8 +3,9 @@
 }
 
 .mh-dark .minluck-title,
+.mh-dark .mouseView-titleContainer,
 .mh-dark .mouseview-has-mhct .ar-header {
-  border-bottom-color: var(--d-bg);
+  border-bottom-color: var(--d-bg-alt);
 }
 
 .mh-dark .mouseview-has-mhct .mouse-ar-wrapper {
@@ -12,7 +13,7 @@
 }
 
 .mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(even) {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-alt);
 }
 
 .mh-dark li.minluck-item {
@@ -26,12 +27,6 @@
 
 .mh-dark .mouseView-statsContainer-block {
   background-color: var(--d-bg-alt);
-}
-
-.mh-dark .minluck-title,
-.mh-dark .mouseview-has-mhct .ar-header,
-.mh-dark .mouseView-titleContainer {
-  border-bottom-color: var(--d-border);
 }
 
 .mh-dark .mouseview-has-mhct .ar-link {

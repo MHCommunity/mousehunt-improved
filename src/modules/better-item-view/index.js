@@ -1,5 +1,7 @@
 import {
   addStyles,
+  fetchMouseRip,
+  formatNumber,
   getArForMouse,
   getData,
   getItemLinks,
@@ -47,10 +49,34 @@ const addLinks = (itemId) => {
 };
 
 let items;
-const updateForAirshipParts = async (itemId, itemView) => {
+
+/**
+ * Get the item metadata used by the item-view enhancements.
+ *
+ * @return {Promise<Array>} The item metadata.
+ */
+const getItems = async () => {
   if (! items) {
     items = await getData('items');
   }
+
+  return items;
+};
+
+/**
+ * Check whether an asynchronous item-view update still targets this item.
+ *
+ * @param {HTMLElement} itemView The item view that started the update.
+ * @param {string}      itemId   The expected item id.
+ *
+ * @return {boolean} Whether the view is still current.
+ */
+const isCurrentItemView = (itemView, itemId) => {
+  return itemView.isConnected && itemView.getAttribute('data-item-id') === `${itemId}`;
+};
+
+const updateForAirshipParts = async (itemId, itemView) => {
+  await getItems();
 
   if (! items) {
     return;
@@ -218,9 +244,7 @@ const showDropRates = async (itemId, itemView) => {
 };
 
 const maybeShowMiceOnMapLink = async (itemId, itemView) => {
-  if (! items) {
-    items = await getData('items');
-  }
+  await getItems();
 
   const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
   if (! (item && 'convertible' === item?.classification && item?.tags?.includes('scroll_case'))) {
@@ -291,6 +315,84 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
   itemViewDescription.append(mapLink);
 };
 
+/**
+ * Format a reward quantity range.
+ *
+ * @param {number|string} min The smallest observed quantity.
+ * @param {number|string} max The largest observed quantity.
+ *
+ * @return {string} The formatted quantity range.
+ */
+const formatRewardQuantity = (min, max) => {
+  const minimum = Number(min) || 0;
+  const maximum = Number(max) || minimum;
+
+  return minimum === maximum ? formatNumber(minimum) : `${formatNumber(minimum)}–${formatNumber(maximum)}`;
+};
+
+/**
+ * Add observed convertible contents without downloading the full dataset.
+ *
+ * @param {string}      itemId   The convertible item id.
+ * @param {HTMLElement} itemView The active item view.
+ */
+const addConvertibleContents = async (itemId, itemView) => {
+  await getItems();
+  const item = items.find((candidate) => candidate.id === Number.parseInt(itemId, 10));
+  if (item?.classification !== 'convertible' || ! isCurrentItemView(itemView, itemId)) {
+    return;
+  }
+
+  const padding = itemView.querySelector('.itemView-padding');
+  if (! padding || itemView.querySelector('.mh-improved-convertible-contents')) {
+    return;
+  }
+
+  itemView.classList.add('mouseview-has-mhct');
+
+  const section = makeElement('div', ['ar-wrapper', 'mh-improved-convertible-contents']);
+  const header = makeElement('div', 'ar-header');
+  const title = makeElement('div', 'ar-title', 'Possible contents');
+  makeTooltip({
+    appendTo: title,
+    text: 'Possible contents, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noreferrer">MHCT</a>.',
+  });
+  header.append(title);
+  const link = makeElement('a', 'ar-link', 'View on MHCT →');
+  link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
+  link.target = '_blank';
+  header.append(link);
+  section.append(header);
+
+  const loading = makeElement('div', 'mh-improved-convertible-contents-loading', 'Loading contents…');
+  section.append(loading);
+  padding.append(section);
+
+  const contents = await fetchMouseRip(`convertible/${itemId}`);
+  if (! isCurrentItemView(itemView, itemId) || ! Array.isArray(contents) || ! contents.length) {
+    section.remove();
+    return;
+  }
+
+  const list = makeElement('div', 'item-ar-wrapper');
+  contents
+    .filter((reward) => reward?.name && Number.parseFloat(reward.chance) > 0)
+    .forEach((reward) => {
+      const row = makeElement('div', 'mouse-ar-wrapper');
+      makeElement('div', 'location', reward.name, row);
+      makeElement('div', 'quantity', formatRewardQuantity(reward.min, reward.max), row);
+      makeElement('div', 'rate', `${reward.chance}%`, row);
+      list.append(row);
+    });
+
+  if (! list.children.length) {
+    section.remove();
+    return;
+  }
+
+  loading.replaceWith(list);
+};
+
 const updateDescription = (itemView) => {
   const toTruncate = [
     ['Upon opening this scroll case and completing the Gilded', '<b>A great way to share the Lucky Golden Shield with friends!</b>'],
@@ -315,8 +417,10 @@ const updateDescription = (itemView) => {
     }
   });
 
-  // Update the description content with the modified text
-  description.innerHTML = text;
+  // Update the description content with the modified text if it has changed
+  if (text !== description.innerHTML) {
+    description.innerHTML = text;
+  }
 };
 /**
  * Update the item view.
@@ -387,7 +491,7 @@ const updateItemView = async () => {
     showDropRates(itemId, itemView);
   }
 
-  await maybeShowMiceOnMapLink(itemId, itemView);
+  await Promise.all([addConvertibleContents(itemId, itemView), maybeShowMiceOnMapLink(itemId, itemView)]);
 };
 
 const shortenRecipeGoldHint = () => {
