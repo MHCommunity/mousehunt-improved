@@ -1,4 +1,6 @@
-import { addStyles, makeMhButton, onEvent } from '@utils';
+import { addStyles, makeMhButton } from '@utils';
+
+import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 
 import styles from './styles.css';
 
@@ -54,5 +56,9 @@ const addRandomSkinButton = () => {
  */
 export default async () => {
   addStyles(styles, 'better-ui-random-skin-button');
-  onEvent('camp_page_toggle_blueprint', addRandomSkinButton);
+  registerTrapSelectorDecorator('controls', 'random-skin-button', ({ type }) => {
+    if ('blueprint' === type) {
+      addRandomSkinButton();
+    }
+  });
 };

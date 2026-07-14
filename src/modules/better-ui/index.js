@@ -1,24 +1,8 @@
 import { addStyles, getSetting } from '@utils';
 
-import adventurebook from './modules/adventure-book';
-import codexAtBottom from './modules/codex-at-bottom';
-import eggMaster from './modules/egg-master';
-import friends from './modules/friends';
-import hud from './modules/hud';
-import kingsPromo from './modules/kings-promo';
-import largerCodices from './modules/larger-codices';
-import largerSkinImages from './modules/larger-skin-images';
-import legacyStyles from './modules/legacy-styles';
-import maintenance from './modules/maintenance';
-import randomSkinButton from './modules/random-skin-button';
-import showUnownedSkins from './modules/show-unowned-skins';
-import skinPreviewBase from './modules/skin-preview-base';
-import squareProfilePics from './modules/square-profile-pics';
-import tournamentTrophies from './modules/tournament-trophies';
-import trapGradientBackground from './modules/trap-gradient-background';
-import userscriptStyles from './modules/userscripts-styles';
-
+import featureManifest from './feature-manifest';
 import settings from './settings';
+import { startTrapSelectorRuntime } from './trap-selector-runtime';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -31,33 +15,19 @@ const init = () => {
     addStyles(styles, 'better-ui');
   }
 
-  adventurebook();
-  friends();
-  kingsPromo();
-  maintenance();
-  userscriptStyles();
-  randomSkinButton();
-  skinPreviewBase();
-  tournamentTrophies();
-
-  const modules = [
-    { enabled: getSetting('better-ui.codex-at-bottom', true), load: codexAtBottom },
-    { enabled: getSetting('better-ui.hud-changes', true), load: hud },
-    { enabled: getSetting('better-ui.larger-codices', true), load: largerCodices },
-    { enabled: getSetting('better-ui.larger-skin-images', true), load: largerSkinImages },
-    { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
-    { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
-    { enabled: getSetting('better-ui.trap-gradient-background', false), load: trapGradientBackground },
-    { enabled: getSetting('better-ui.square-profile-pics', false), load: squareProfilePics },
-  ];
-
-  for (const module of modules) {
-    if (module.enabled) {
-      module.load();
+  for (const feature of featureManifest) {
+    if (feature.condition && ! feature.condition()) {
+      continue;
     }
+
+    if (feature.setting && ! getSetting(feature.setting, feature.default)) {
+      continue;
+    }
+
+    feature.load();
   }
 
-  legacyStyles();
+  startTrapSelectorRuntime();
 };
 
 /**

@@ -1,6 +1,10 @@
 import { cacheGet, cacheSet, makeElement, onNavigation } from '@utils';
 
 const addEggMasterIcon = async () => {
+  if (document.querySelector('.mh-improved-egg-master-icon')) {
+    return;
+  }
+
   const eggMasterIcon = makeElement('div', ['eggMasterIcon', 'mousehuntTooltipParent', 'mh-improved-egg-master-icon']);
   eggMasterIcon.title = 'Egg Master';
 

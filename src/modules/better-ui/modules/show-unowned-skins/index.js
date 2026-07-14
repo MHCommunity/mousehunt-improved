@@ -1,11 +1,6 @@
-import {
-  addStyles,
-  getData,
-  getSetting,
-  makeElement,
-  onEvent,
-  onRequest
-} from '@utils';
+import { addStyles, getData, getSetting, makeElement } from '@utils';
+
+import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 
 import styles from './styles.css';
 
@@ -104,6 +99,9 @@ const maybeAddUnownedSkins = () => {
  */
 export default async () => {
   addStyles(styles, 'better-ui-show-unowned-skins');
-  onEvent('camp_page_toggle_blueprint', maybeAddUnownedSkins);
-  onRequest('users/gettrapcomponents.php', maybeAddUnownedSkins);
+  registerTrapSelectorDecorator('structure', 'show-unowned-skins', ({ type }) => {
+    if (['blueprint', 'components'].includes(type)) {
+      maybeAddUnownedSkins();
+    }
+  });
 };

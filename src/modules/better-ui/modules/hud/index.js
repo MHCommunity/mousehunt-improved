@@ -2,6 +2,9 @@ import { getFlag, onNavigation, onTurn } from '@utils';
 
 let shortPercent = 0;
 let fullPercent = 0;
+const boundLoyaltyBadges = new WeakSet();
+const boundTitleStats = new WeakSet();
+const boundTrapStats = new WeakSet();
 
 /**
  * Show the full title percent on hover.
@@ -12,17 +15,15 @@ const showFullTitlePercent = async () => {
     return;
   }
 
-  let percent = title.getAttribute('title');
-  if (! percent) {
-    percent = `${user?.title_percent_accurate}% ${user?.title_name}`;
-  }
-
   const target = title.querySelector('.hud_titlePercentage');
-  if (! target) {
+  if (! target || boundTitleStats.has(title)) {
     return;
   }
 
+  boundTitleStats.add(title);
+
   title.addEventListener('mouseover', () => {
+    const percent = title.getAttribute('title') || `${user?.title_percent_accurate}% ${user?.title_name}`;
     fullPercent = percent.includes('%') ? percent.split('%')[0] : percent;
     shortPercent = fullPercent.includes('.') ? fullPercent.split('.')[0] : fullPercent;
     target.innerText = fullPercent;
@@ -62,6 +63,11 @@ const allowTrapMathToggle = async () => {
   setTimeout(() => {
     const trapStats = document.querySelectorAll('.trapSelectorView__trapStatSummary .campPage-trap-trapStat');
     trapStats.forEach((stat) => {
+      if (boundTrapStats.has(stat)) {
+        return;
+      }
+
+      boundTrapStats.add(stat);
       stat.addEventListener('click', () => {
         stat.classList.toggle('show-math');
         trapStats.forEach((otherStat) => {
@@ -76,9 +82,11 @@ const allowTrapMathToggle = async () => {
 
 const addCakePopupToLoyaltyBadge = async () => {
   const loyaltyBadgeView = document.querySelector('.loyaltyBadgeView');
-  if (! loyaltyBadgeView) {
+  if (! loyaltyBadgeView || boundLoyaltyBadges.has(loyaltyBadgeView)) {
     return;
   }
+
+  boundLoyaltyBadges.add(loyaltyBadgeView);
 
   loyaltyBadgeView.addEventListener('click', () => {
     hg.views.HeadsUpDisplayView().showBirthdayCakePopup();

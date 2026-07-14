@@ -1,4 +1,6 @@
-import { addModuleStyles, getSetting, onEvent, onRequest } from '@utils';
+import { addModuleStyles, getSetting } from '@utils';
+
+import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 
 const run = async () => {
   const id = 'mh-improved-better-ui-skin-preview-base';
@@ -19,6 +21,9 @@ const run = async () => {
 };
 
 export default () => {
-  onEvent('camp_page_toggle_blueprint', run);
-  onRequest('users/changetrap.php', run);
+  registerTrapSelectorDecorator('preview', 'skin-preview-base', ({ type }) => {
+    if (['blueprint', 'trap-change'].includes(type)) {
+      run();
+    }
+  });
 };
