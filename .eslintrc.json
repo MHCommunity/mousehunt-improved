@@ -149,5 +149,13 @@
         "requireReturn": false
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/data/map-groups/*.json"],
+      "rules": {
+        "unicorn/filename-case": "off"
+      }
+    }
+  ]
 }

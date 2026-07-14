@@ -211,50 +211,52 @@ The `src/data/` folder contains JSON data files that are used by the extension a
     - `{ "id": "my-background", "name": "My Background", "css": "url(https://example.com/background.png) top center / 200px" }`
     - `{ "id": "a-gradient", "name": "A Gradient", "css": "linear-gradient(90deg, #ff0000, #00ff00)" }`
 - `journal-item-colors.json` - Used by Better Journal's 'Unique item colors' setting to color code journal items.
-- `journal-environment-mapping.json` - Used by Journal Changer to map environments to the corresponding journal theme.
-- `journal-events.json` - Used by Journal Changer to categorize the event journal themes.
-- `library-assignments.json` - Used by Better Quests to enhance the Library Assignments popup.
-- `magic-essence-potions.json` - Used by Better Inventory to show warnings on potions that are a bad use of Magic Essence.
-- `map-groups.json` - Used by Better Maps to categorize mice on the Sorted map tab.
+- `map-groups/<map-id>.json` - One file per map, used by Better Maps to categorize mice on the Sorted map tab. The files are combined into a single `map-groups.json` at build time, keyed by filename.
 - `ultimate-checkmark.json` - Used by Ultimate Checkmark to populate the list of items for each category.
 - `update-summaries/<version>.json` - One file per released version, used to provide a summary of the changes with each update. Each file must contain a `version` key matching its filename, a `summary` string, and a `details` array. On update, every summary newer than the version the user is coming from is shown, so someone updating from 0.97.0 to 0.98.1 sees both the 0.98.0 and 0.98.1 summaries. Old files can be deleted once they're no longer worth showing.
 
 ## Adding a map to the map sorter/categorizer
 
-To add a new map to the list of automatically sorted/categorized maps, you need to add it to `src/data/map-groups.json`. The format is as follows:
+To add a new map to the list of automatically sorted/categorized maps, you need to add a `src/data/map-groups/<map-id>.json` file, where the filename is the map type. The format is as follows:
 
 ```json
 {
-  "<map-id>": {
-    "categories": [
-      {
-        "name": "My Category",
-        "id": "my-category",
-        "icon": "https://example.com/icon.png",
-        "color": "#bc4ce3",
-        "mice": [
-          "mouse-type",
-          "another-mouse-type",
-          {
-            "mouse": "a-mouse-with-a-subcategory",
-            "subcategory": "my-subcategory"
-          }
-        ]
-      },
-      {
-        "name": "Another Category",
-        "id": "..."
-      }
-    ],
-    "subcategories": [
-      {
-        "id": "my-subcategory",
-        "name": "My Subcategory",
-      }
-    ]
-  }
+  "names": [
+    "My Map",
+    "My Map (Party Size)"
+  ],
+  "categories": [
+    {
+      "name": "My Category",
+      "id": "my-category",
+      "icon": "https://example.com/icon.png",
+      "color": "#bc4ce3",
+      "mice": [
+        "mouse-type",
+        "another-mouse-type",
+        {
+          "mouse": "a-mouse-with-a-subcategory",
+          "subcategory": "my-subcategory"
+        }
+      ]
+    },
+    {
+      "name": "Another Category",
+      "id": "..."
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "my-subcategory",
+      "name": "My Subcategory",
+    }
+  ]
 }
 ```
+
+The optional `names` array lists the display names of the maps the group applies to. If the filename doesn't match a map's `map_type`, the group is matched by comparing the map's name against these (word order and the word "Treasure" are ignored), so one file can cover a whole family of maps like the six Slayer maps.
+
+Category naming convention: every category must convey its bait, either in its name or its subtitle. For single-location maps, prefer bait-first names with the location in the subtitle (`"Runic Cheese" / "Acolyte Realm"`); for multi-location maps, prefer location or stage names with the bait in the subtitle (`"Mist Level 0: Brie String"`, `"Cape Clawed" / "Gumbo"`). Keep categories to 10 mice or fewer — split by stage or bait when one grows past that — and order them by hunting progression (cheapest or standard bait first, specialty baits after, bosses last). Use subcategories for mice inside a category that need a specific bait or charm (e.g. an Artisan Charm requirement).
 
 The `categories` array contains the categories that the map should be sorted into. Each category has the following properties:
 
@@ -262,6 +264,7 @@ The `categories` array contains the categories that the map should be sorted int
 - `id` - The ID of the category. This should be unique and can only contain lowercase letters, numbers, and dashes.
 - `icon` - The URL of the icon to use for the category.
 - `color` - A hex color code to use for the category.
+- `color-dark` - An optional hex color code used instead of `color` when dark mode is enabled, for when the normal color doesn't have enough contrast against the dark mode text. Subcategories can also have `color` and `color-dark`.
 - `mice` - An array of mice that should be sorted into this category. Each mouse can either be a string with the mouse type, or an object with the following properties:
   - `mouse` - The mouse type.
   - `subcategory` - The ID of the subcategory to sort the mouse into.
@@ -269,7 +272,7 @@ The `categories` array contains the categories that the map should be sorted int
 The `subcategories` array is only needed if you have mice that should be sorted into a subcategory. The subcategory object just needs `id` and `name` properties.
 
 > [!TIP]
-> Running `bun run fix-map-groups` will go through the mice in the map groups file and replace any mouse names with their mouse types, so you can use the full names like "Mutated Behemoth Mouse" in the file and then run this command to replace them with the mouse types like "mutated_behemoth".
+> Running `bun run fix-map-groups` will go through the mice in the map group files and replace any mouse names with their mouse types, so you can use the full names like "Mutated Behemoth Mouse" in the file and then run this command to replace them with the mouse types like "mutated_behemoth".
 
 ## Building an extension or userscript that interacts with MouseHunt Improved
 
