@@ -1,9 +1,17 @@
 import { onEvent } from '@utils';
 
+const boundGoals = new WeakSet();
+const boundHighlights = new WeakSet();
+
 const modifyStickyHighlights = async () => {
   const goals = document.querySelectorAll('.treasureMapView-goals-group-goal');
   if (goals && goals.length > 0) {
     goals.forEach((goal) => {
+      if (boundGoals.has(goal)) {
+        return;
+      }
+
+      boundGoals.add(goal);
       goal.addEventListener('click', stickHighlightGoal);
     });
   }
@@ -21,6 +29,13 @@ const stickHighlightGoal = (event) => {
   if (! highlight) {
     return;
   }
+
+  if (boundHighlights.has(highlight)) {
+    highlight.classList.add('mh-ui-sticky-highlight');
+    return;
+  }
+
+  boundHighlights.add(highlight);
 
   // Variables to track drag state
   let isDragging = false;

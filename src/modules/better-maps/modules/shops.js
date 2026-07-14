@@ -3,15 +3,16 @@ import {
   getCurrentLocation,
   getSetting,
   makeElement,
-  onRequest,
   saveSetting
 } from '@utils';
 
 /**
  * Update the shops markup.
+ *
+ * @param {Document|Element} root The shops root or document.
  */
-const updateShopsMarkup = async () => {
-  const shopsNodeList = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
+const updateShopsMarkup = async (root = document) => {
+  const shopsNodeList = root.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
   if (! shopsNodeList.length) {
     return;
   }
@@ -60,7 +61,7 @@ const updateShopsMarkup = async () => {
     return environmentType === currentLocation ? -1 : 0;
   });
 
-  const shopContainer = document.querySelector('.treasureMapShopsView-shopItems');
+  const shopContainer = root.querySelector('.treasureMapShopsView-shopItems');
   while (shopContainer.firstChild) {
     shopContainer.firstChild.remove();
   }
@@ -85,6 +86,11 @@ const updateShopsMarkup = async () => {
 
     if (! environmentEl.classList.contains('active')) {
       container.classList.add('hidden');
+    }
+
+    const existingPin = heading.querySelector('.treasureMapPopup-shop-pinIcon');
+    if (existingPin) {
+      return;
     }
 
     heading.addEventListener('click', () => {
@@ -123,48 +129,13 @@ const updateShopsMarkup = async () => {
     heading.append(pinIconWrapper);
   });
 
-  const lastPinned = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop.pinned');
+  const lastPinned = root.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop.pinned');
   if (lastPinned.length) {
     const lastPinnedEl = lastPinned[lastPinned.length - 1]; // eslint-disable-line unicorn/prefer-at
     lastPinnedEl.classList.add('last-pinned');
   }
 };
 
-/**
- * Update the shops markup from a click.
- */
-const updateFromClick = async () => {
-  const _showShops = hg.controllers.TreasureMapController.showShops;
-
-  /**
-   * Show the shops.
-   *
-   * @param {Object} data The data.
-   */
-  hg.controllers.TreasureMapController.showShops = (data) => {
-    _showShops(data);
-    updateShopsMarkup();
-  };
-};
-
-/**
- * Update the shops from a request.
- *
- * @param {Object} response The response.
- * @param {Object} data     The data.
- */
-const updateFromRequest = (response, data) => {
-  if (data?.action !== 'get_shops') {
-    return;
-  }
-
-  updateShopsMarkup();
-};
-
-/**
- * Initialize the module.
- */
-export default async () => {
-  updateFromClick();
-  onRequest('users/treasuremap_v2.php', updateFromRequest);
+export {
+  updateShopsMarkup
 };

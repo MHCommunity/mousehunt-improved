@@ -1,4 +1,6 @@
-import { getSetting, makeElement, onRequest, waitForElement } from '@utils';
+import { getSetting, makeElement, waitForElement } from '@utils';
+
+const boundSubtabs = new WeakSet();
 
 /**
  * Update the scroll content.
@@ -8,6 +10,10 @@ import { getSetting, makeElement, onRequest, waitForElement } from '@utils';
 const updateScrollContent = (scroll) => {
   const content = scroll.querySelector('.treasureMapInventoryView-scrollCase-content');
   if (! content) {
+    return;
+  }
+
+  if (content.querySelector(':scope > .scroll-text')) {
     return;
   }
 
@@ -101,9 +107,11 @@ const maybeLockAndHide = (scroll, action, scrollType) => {
 
 /**
  * Update the scrolls markup and reorganize the content.
+ *
+ * @param {Document|Element} root The inventory root or document.
  */
-const updateScrollsMarkup = () => {
-  const scrolls = document.querySelectorAll('.treasureMapInventoryView-scrollCase');
+const updateScrollsMarkup = (root = document) => {
+  const scrolls = root.querySelectorAll('.treasureMapInventoryView-scrollCase');
   if (! scrolls.length) {
     return;
   }
@@ -126,28 +134,15 @@ const updateScrollsMarkup = () => {
   });
 };
 
-/**
- * Update the shops markup from a click.
- */
-const updateFromClick = async () => {
-  const _showInventory = hg.controllers.TreasureMapController.showInventory;
-
-  /**
-   * Show the shops.
-   *
-   * @param {Object} data The data.
-   */
-  hg.controllers.TreasureMapController.showInventory = (data) => {
-    _showInventory(data);
-    updateSubTabListeners();
-    updateScrollsMarkup();
-  };
-};
-
 const updateSubTabListeners = async () => {
   await waitForElement('.treasureMapRootView-subTabContainer .treasureMapRootView-subTab');
   const subtabs = document.querySelectorAll('.treasureMapRootView-subTabContainer .treasureMapRootView-subTab');
   subtabs.forEach((subtab) => {
+    if (boundSubtabs.has(subtab)) {
+      return;
+    }
+
+    boundSubtabs.add(subtab);
     subtab.addEventListener('click', () => {
       setTimeout(() => {
         subtabs.forEach((st) => {
@@ -160,24 +155,7 @@ const updateSubTabListeners = async () => {
   });
 };
 
-/**
- * Update the shops from a request.
- *
- * @param {Object} response The response.
- * @param {Object} data     The data.
- */
-const updateFromRequest = (response, data) => {
-  if (data?.action !== 'get_inventory') {
-    return;
-  }
-
-  updateScrollsMarkup();
-};
-
-/**
- * Initialize the module.
- */
-export default async () => {
-  updateFromClick();
-  onRequest('users/treasuremap_v2.php', updateFromRequest);
+export {
+  updateScrollsMarkup,
+  updateSubTabListeners
 };

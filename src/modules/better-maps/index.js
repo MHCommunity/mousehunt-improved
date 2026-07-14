@@ -4,11 +4,13 @@ import {
   addStyles,
   doEvent,
   getData,
+  getGlobal,
   getMapData,
   getRelicHunterLocation,
   getSetting,
   makeElement,
   makeMhButton,
+  onDialogHide,
   onDialogShow,
   onEvent,
   onRequest,
@@ -24,17 +26,22 @@ import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
+import { updateScrollsMarkup, updateSubTabListeners } from './modules/scrolls';
 import catchDates from './modules/catch-dates';
-import community from './modules/community';
 import draggableHighlight from './modules/draggable-highlight';
 import enhancePreviewButton from './modules/preview';
 import floatingIslands from './modules/floating-islands';
-import scrolls from './modules/scrolls';
-import shops from './modules/shops';
 import sidebar from './modules/sidebar';
+import { updateCommunityListings } from './modules/community';
+import { updateShopsMarkup } from './modules/shops';
+
+import { createMapRuntime } from './runtime';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
+const mapRuntime = createMapRuntime();
+const navigationRoots = new WeakMap();
+const defaultedRoots = new WeakMap();
 
 /**
  * Add a one-time notice below the Sorted tab.
@@ -50,9 +57,11 @@ const addSortedTabNotice = () => {
 
 /**
  * Update the map classes.
+ *
+ * @param {Document|Element} root The map root or document.
  */
-const updateMapClasses = () => {
-  const map = document.querySelector('.treasureMapRootView');
+const updateMapClasses = (root = document) => {
+  const map = root.matches?.('.treasureMapRootView') ? root : root.querySelector('.treasureMapRootView');
   if (map && map.classList) {
     if (user?.quests?.QuestRelicHunter?.maps?.length >= 2) {
       map.classList.add('mh-ui-multiple-maps');
@@ -99,10 +108,12 @@ const updateBlockContent = (block, type) => {
 
 /**
  * Add block classes to the map.
+ *
+ * @param {Document|Element} root The map root or document.
  */
-const addBlockClasses = () => {
-  const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
-  const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
+const addBlockClasses = (root = document) => {
+  const rightBlocks = root.querySelectorAll('.treasureMapView-rightBlock > div');
+  const leftBlocks = root.querySelectorAll('.treasureMapView-leftBlock > div');
   const blocks = [...rightBlocks, ...leftBlocks];
 
   let prevBlockType = '';
@@ -127,12 +138,24 @@ const addBlockClasses = () => {
 };
 
 /**
- * Intercept the map request.
+ * Publish map data to compatibility consumers and the render runtime.
  *
- * @param {number} mapId The map ID.
+ * @param {Object} mapData The map data.
+ * @param {string} reason  The render reason.
  *
- * @return {boolean} If the map was intercepted.
+ * @return {Object} The published map data.
  */
+const publishMapData = (mapData, reason = 'map-data') => {
+  setGlobal('mapper', {
+    mapData,
+    mapModel: new hg.models.TreasureMapModel(mapData),
+  });
+
+  doEvent('mapper_loaded', mapData);
+  mapRuntime.queueRender({ map: mapData, reason });
+  return mapData;
+};
+
 const interceptMapRequest = async (mapId) => {
   sessionSet('map-refreshed', Date.now());
 
@@ -141,180 +164,32 @@ const interceptMapRequest = async (mapId) => {
     return false;
   }
 
-  /**
-   * Set the mapper global and fire the mapper loaded event.
-   *
-   * @param {Object} mapData The map data.
-   *
-   * @return {Object} The map data.
-   */
-  const init = (mapData) => {
-    setGlobal('mapper', {
-      mapData,
-      mapModel: new hg.models.TreasureMapModel(mapData),
-    });
-
-    doEvent('mapper_loaded', mapData);
-    return data;
-  };
-
   const data = await getMapData(mapId, true);
   if (data) {
-    return init(data);
+    return publishMapData(data, 'map-fetch');
   }
 
   return false;
 };
 
-/**
- * Initialize the mapper.
- *
- * @param {Object} map     The map data.
- * @param {number} retries Number of times we've waited for the dialog markup.
- */
-const initMapper = (map, retries = 0) => {
-  if (! map || ! map.map_id || ! map.map_type) {
-    return;
-  }
-
-  // The map data can arrive before the game has rendered the dialog at all,
-  // so wait for the markup to show up before trying to add anything to it.
-  const content = document.querySelector('.treasureMapRootView-content');
-  if (! content) {
-    if (retries < 10) {
-      setTimeout(() => initMapper(map, retries + 1), 300);
-    }
-
-    return;
-  }
-
-  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for changes. once its loaded, proceed with our code
-  if (content.classList.contains('loading')) {
-    const observer = new MutationObserver((mutations, mObserver) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'class' &&
-          ! mutation.target.classList.contains('loading')
-        ) {
-          mObserver.disconnect();
-          // call the init function again to proceed with our code
-          initMapper(map);
-        }
-      });
-    });
-
-    const rootOfChanges = document.querySelector('.treasureMapRootView');
-    observer.observe(rootOfChanges, {
-      attributes: true,
-      childList: true,
-      subtree: true,
-    });
-
-    return;
-  }
-
-  // Add the sorted tab.
-  if (! map.is_complete && ! map.can_claim_reward) {
-    addSortedMapTab();
-
-    if (mapHasGroup(map)) {
-      addSortedTabNotice();
-    }
-  }
-
-  // Add the tab click events, but only once per tab since initMapper can run
-  // multiple times for the same map.
-  const tabs = document.querySelectorAll('.treasureMapRootView-subTab');
-  tabs.forEach((tab) => {
-    if (tab.getAttribute('data-mh-improved-tab-click')) {
-      return;
-    }
-
-    tab.setAttribute('data-mh-improved-tab-click', 'true');
-    tab.addEventListener('click', () => {
-      addBlockClasses();
-
-      doEvent('map_tab_click', map);
-      doEvent(`map_${tab.getAttribute('data-type')}_tab_click`, map);
-    });
-  });
-
-  doEvent('map_show_goals_tab_click', map);
-
-  const defaultToSorted = getSetting('better-maps.default-to-sorted', false) ||
-    (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
-
-  if (
-    defaultToSorted &&
-    ! map.is_complete &&
-    ! map.can_claim_reward
-  ) {
-    setTimeout(async () => {
-      const newMapData = await getMapData(map.map_id, true);
-      if (newMapData && ! newMapData.is_complete && ! newMapData.can_claim_reward) {
-        showSortedTab(map);
-      }
-    }, 400);
-  }
-
-  // Add the block classes.
-  addBlockClasses();
-};
-
 let parentShowMap;
 let defaultMapId;
-let lastShownMapId;
-let ensureTimeouts = [];
 
 /**
- * Check if the current map view is still missing our additions.
+ * Route a treasure-map response to its matching surface implementation.
  *
- * @return {boolean} Whether the mapper still needs to be initialized.
+ * @param {Object} response The response payload.
+ * @param {Object} request  The request payload.
  */
-const needsMapperInit = () => {
-  const tabContainer = document.querySelector('.treasureMapRootView-subTabContainer');
-  if (! tabContainer) {
-    return false;
+async function updateMapSurface(response, request) {
+  if ('get_inventory' === request?.action) {
+    await updateInventorySurface(); // eslint-disable-line no-use-before-define
+  } else if ('get_shops' === request?.action) {
+    await updateShopsMarkup();
+  } else if ('get_listings' === request?.action && getSetting('better-maps.community')) {
+    await updateCommunityListings(response, request);
   }
-
-  if (tabContainer.querySelector('.sorted-map-tab')) {
-    return false;
-  }
-
-  // Completed and claimable maps intentionally don't get the sorted tab, and
-  // these classes are added once the mapper has run for them.
-  const mapView = document.querySelector('.treasureMapRootView-content .treasureMapView');
-  if (mapView && (mapView.classList.contains('mh-ui-map-completed') || mapView.classList.contains('mh-ui-map-claimable'))) {
-    return false;
-  }
-
-  return true;
-};
-
-/**
- * Re-run the map intercept a few times as a fallback for when the map data or
- * the dialog markup isn't ready the first time around.
- *
- * @param {number|boolean} mapId The map ID to intercept.
- */
-const ensureMapperInitialized = (mapId = false) => {
-  mapId = mapId || lastShownMapId || defaultMapId;
-  if (! mapId) {
-    return;
-  }
-
-  // Restart any pending checks so we only ever have one set running.
-  ensureTimeouts.forEach((timeout) => clearTimeout(timeout));
-  ensureTimeouts = [250, 1000, 2500, 5000].map((delay) => {
-    return setTimeout(() => {
-      if (needsMapperInit()) {
-        interceptMapRequest(mapId);
-      }
-    }, delay);
-  });
-};
-
+}
 /**
  * Intercept the map request from the controller.
  *
@@ -335,39 +210,30 @@ const intercept = (retries = 0) => {
   }
 
   parentShowMap = hg.controllers.TreasureMapController.showMap;
-  hg.controllers.TreasureMapController.showMap = async (id = false) => {
-    parentShowMap(id);
+  hg.controllers.TreasureMapController.showMap = function (id = false) {
+    const result = Reflect.apply(parentShowMap, this, arguments);
 
     const mapId = id || defaultMapId;
-    lastShownMapId = mapId;
-
-    const intercepted = await interceptMapRequest(mapId);
-    setTimeout(() => {
-      if (! intercepted) {
-        interceptMapRequest(mapId);
-      }
-    }, 1000);
-
-    ensureMapperInitialized(mapId);
+    interceptMapRequest(mapId);
+    return result;
   };
 
-  onRequest('users/treasuremap_v2.php', async (data) => {
+  onRequest('users/treasuremap_v2.php', async (data, request) => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
-
-      // The map data just arrived, so if the first intercept ran before it was
-      // cached, this is the moment to retry.
-      ensureMapperInitialized(data.treasure_map.map_id);
+      publishMapData(data.treasure_map, 'treasure-map-request');
     }
+
+    await updateMapSurface(data, request);
+    runMapEnhancements(); // eslint-disable-line no-use-before-define
   }, true);
 
   onRequest('board/board.php', async (data) => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
-
-      ensureMapperInitialized(data.treasure_map.map_id);
+      publishMapData(data.treasure_map, 'board-request');
     }
   }, true);
 };
@@ -388,6 +254,104 @@ const clearStickyMouse = () => {
       goal.classList.remove('sticky');
     });
   }
+};
+
+/**
+ * Bind one delegated navigation listener to a mounted map root.
+ *
+ * @param {Object} model The current render model.
+ */
+const bindMapNavigation = (model) => {
+  const existing = navigationRoots.get(model.root);
+  if (existing) {
+    existing.map = model.map;
+    return;
+  }
+
+  const state = { map: model.map };
+  navigationRoots.set(model.root, state);
+
+  const activeNavigation = model.root.querySelector('.treasureMapRootView-header-navigation-item.active');
+  if (activeNavigation) {
+    const type = [...activeNavigation.classList].find((className) => ! ['treasureMapRootView-header-navigation-item', 'active'].includes(className));
+    if (type) {
+      doEvent('map_navigation_tab_click', type);
+    }
+  }
+
+  model.root.addEventListener('click', (event) => {
+    const subtab = event.target.closest('.treasureMapRootView-subTab');
+    if (subtab && model.root.contains(subtab)) {
+      addBlockClasses(model.root);
+      doEvent('map_tab_click', state.map);
+      doEvent(`map_${subtab.getAttribute('data-type')}_tab_click`, state.map);
+      return;
+    }
+
+    const navigation = event.target.closest('.treasureMapRootView-header-navigation-item');
+    if (! navigation || ! model.root.contains(navigation)) {
+      return;
+    }
+
+    const type = [...navigation.classList].find((className) => ! ['treasureMapRootView-header-navigation-item', 'active'].includes(className));
+    if (type) {
+      doEvent('map_navigation_tab_click', type);
+    }
+  });
+};
+
+/**
+ * Register the visible Better Maps render order in one place.
+ */
+const configureMapRuntime = () => {
+  mapRuntime.register('structure', 'sorted-tab', ({ map }) => {
+    if (! map) {
+      return;
+    }
+
+    if (! map.is_complete && ! map.can_claim_reward) {
+      addSortedMapTab();
+
+      if (mapHasGroup(map)) {
+        addSortedTabNotice();
+      }
+    }
+
+    doEvent('map_show_goals_tab_click', map);
+  });
+
+  mapRuntime.register('state-classes', 'map-state', ({ root, map }) => {
+    updateMapClasses(root);
+    addInfoClasses(map, root); // eslint-disable-line no-use-before-define
+  });
+
+  mapRuntime.register('navigation', 'map-navigation', bindMapNavigation);
+
+  mapRuntime.register('content', 'map-content', ({ root }) => {
+    addBlockClasses(root);
+    enhancePreviewButton();
+    maybeShowInvitesTab();
+  });
+
+  mapRuntime.register('interactions', 'default-tab', async (model) => {
+    const { map, root } = model;
+    if (! map || `${defaultedRoots.get(root)}` === `${map.map_id}`) {
+      return;
+    }
+
+    defaultedRoots.set(root, map.map_id);
+    const defaultToSorted = getSetting('better-maps.default-to-sorted', false) ||
+      (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
+
+    if (! defaultToSorted || map.is_complete || map.can_claim_reward) {
+      return;
+    }
+
+    const newMapData = await getMapData(map.map_id, true);
+    if (model.isCurrent() && newMapData && ! newMapData.is_complete && ! newMapData.can_claim_reward) {
+      showSortedTab(map);
+    }
+  });
 };
 
 /**
@@ -448,129 +412,84 @@ const updateRelicHunterHint = async () => {
   return true;
 };
 
-let _showInventory;
-const relicHunterUpdate = async () => {
-  if (_showInventory) {
+const updateInventorySurface = async () => {
+  await updateSubTabListeners();
+  updateScrollsMarkup();
+
+  let didRelicHunter = await updateRelicHunterHint();
+  if (didRelicHunter) {
     return;
   }
 
-  _showInventory = hg.controllers.TreasureMapController.showInventory;
-
-  /**
-   * Show the inventory.
-   */
-  hg.controllers.TreasureMapController.showInventory = async () => {
-    _showInventory();
-
-    // Call updateRelicHunterHint, but if it fails, try again in 250ms, but stop after 5 tries.
-    let didRelicHunter = await updateRelicHunterHint();
-    if (didRelicHunter) {
-      return;
+  let tries = 0;
+  const interval = setInterval(async () => {
+    tries++;
+    didRelicHunter = await updateRelicHunterHint();
+    if (didRelicHunter || tries >= 5) {
+      clearInterval(interval);
     }
-
-    let tries = 0;
-    const interval = setInterval(async () => {
-      tries++;
-      didRelicHunter = await updateRelicHunterHint();
-      if (didRelicHunter || tries >= 5) {
-        clearInterval(interval);
-      }
-    }, 500);
-  };
+  }, 500);
 };
+
+let originalShowInventory;
+let originalShowShops;
+const installSurfaceHooks = () => {
+  if (! originalShowInventory) {
+    originalShowInventory = hg.controllers.TreasureMapController.showInventory;
+    hg.controllers.TreasureMapController.showInventory = function () {
+      const result = Reflect.apply(originalShowInventory, this, arguments);
+      updateInventorySurface();
+      return result;
+    };
+  }
+
+  if (! originalShowShops) {
+    originalShowShops = hg.controllers.TreasureMapController.showShops;
+    hg.controllers.TreasureMapController.showShops = function () {
+      const result = Reflect.apply(originalShowShops, this, arguments);
+      updateShopsMarkup();
+      return result;
+    };
+  }
+};
+
+let clearCacheTimeout = null;
 
 /**
- * Clear the cache of the map after 30 seconds.
+ * Schedule one cache clear for the current map dialog session.
  */
-const addClearCacheTimeout = () => {
-  let clearCacheTimeout;
-  onDialogShow('map', async () => {
-    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
-    tabs.forEach((tab) => {
-      const classes = [...tab.classList];
-
-      if (classes.includes('active')) {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
-      }
-
-      tab.addEventListener('click', () => {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
-      });
-    });
-
-    // Clear the map cache after 30 seconds so that we always fetch the latest map data when opening the map.
-    clearCacheTimeout = setTimeout(() => {
-      clearTimeout(clearCacheTimeout);
-      hg.controllers.TreasureMapController.clearMapCache();
-    }, 30 * 1000);
-  });
+const scheduleMapCacheClear = () => {
+  clearTimeout(clearCacheTimeout);
+  clearCacheTimeout = setTimeout(() => {
+    hg.controllers.TreasureMapController.clearMapCache();
+    clearCacheTimeout = null;
+  }, 30 * 1000);
 };
 
-/**
- * Clear the map cache after 10 seconds.
- */
-const clearMapCache = () => {
-  let clearCacheTimeout;
-  onDialogShow('map', async () => {
-    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
-    tabs.forEach((tab) => {
-      const classes = [...tab.classList];
-
-      if (classes.includes('active')) {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
-      }
-
-      tab.addEventListener('click', () => {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
-      });
-    });
-
-    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
-    clearTimeout(clearCacheTimeout);
-    clearCacheTimeout = setTimeout(hg.controllers.TreasureMapController.clearMapCache, 30 * 1000); // 10 seconds.
-  });
-};
-
-const addInfoClasses = (mapData) => {
-  const mapRoot = document.querySelector('.treasureMapRootView-content .treasureMapView');
+const addInfoClasses = (mapData, root = document) => {
+  const mapRoot = root.querySelector('.treasureMapRootView-content .treasureMapView') || root.querySelector('.treasureMapView');
   if (! mapRoot) {
     return;
   }
 
-  if (mapData?.is_complete) {
-    mapRoot.classList.add('mh-ui-map-completed');
-  }
+  const classes = {
+    'mh-ui-map-completed': mapData?.is_complete,
+    'mh-ui-map-upgradeable': mapData?.is_upgradeable,
+    'mh-ui-map-upgraded': mapData?.is_upgraded,
+    'mh-ui-map-claimable': mapData?.can_claim_reward,
+    'mh-ui-map-can-invite': mapData?.can_send_invites,
+    'mh-ui-user-on-map': mapData?.viewing_user_is_on_map,
+    'mh-ui-user-is-owner': mapData?.is_owner,
+  };
 
-  if (mapData?.is_upgradeable) {
-    mapRoot.classList.add('mh-ui-map-upgradeable');
-  }
-
-  if (mapData?.is_upgraded) {
-    mapRoot.classList.add('mh-ui-map-upgraded');
-  }
-
-  if (mapData?.can_claim_reward) {
-    mapRoot.classList.add('mh-ui-map-claimable');
-  }
-
-  if (mapData?.can_send_invites) {
-    mapRoot.classList.add('mh-ui-map-can-invite');
-  }
-
-  if (mapData?.viewing_user_is_on_map) {
-    mapRoot.classList.add('mh-ui-user-on-map');
-  }
-
-  if (mapData?.is_owner) {
-    mapRoot.classList.add('mh-ui-user-is-owner');
-  }
+  Object.entries(classes).forEach(([className, enabled]) => {
+    mapRoot.classList.toggle(className, Boolean(enabled));
+  });
 };
 
 const runMapEnhancements = () => {
-  addBlockClasses();
-  updateMapClasses();
-  enhancePreviewButton();
-  maybeShowInvitesTab();
+  const map = getGlobal('mapper')?.mapData || null;
+  mapRuntime.queueRender({ map, reason: 'enhancement-requested' });
 };
 
 /**
@@ -578,6 +497,7 @@ const runMapEnhancements = () => {
  */
 const init = () => {
   addStyles(styles, 'better-maps');
+  configureMapRuntime();
 
   // Fire the different tab clicks.
   eventRegistry.addEventListener('map_sorted_tab_click', (map) => {
@@ -599,19 +519,9 @@ const init = () => {
     addInfoClasses(map);
   });
 
-  // Initialize the mapper.
-  eventRegistry.addEventListener('mapper_loaded', initMapper);
-
   intercept();
 
-  addClearCacheTimeout();
-  relicHunterUpdate();
-  scrolls();
-  shops();
-
-  if (getSetting('better-maps.community')) {
-    community();
-  }
+  installSurfaceHooks();
 
   if (! (getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true))) {
     sidebar();
@@ -625,8 +535,6 @@ const init = () => {
     draggableHighlight();
   }
 
-  clearMapCache();
-
   onEvent('map_navigation_tab_click', runMapEnhancements);
 
   addMapPreviewListeners();
@@ -638,23 +546,16 @@ const init = () => {
     defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
   }, true);
 
-  onRequest('users/treasuremap_v2.php', () => {
-    runMapEnhancements();
-    setTimeout(runMapEnhancements, 750);
-  });
-
-  onRequest('board/board.php', () => {
-    runMapEnhancements();
-    setTimeout(runMapEnhancements, 750);
-  });
-
   onDialogShow('map', () => {
     runMapEnhancements();
-
-    // Catch any path that opened the map dialog without going through our
-    // showMap intercept, or where the intercept lost the race.
-    ensureMapperInitialized();
+    scheduleMapCacheClear();
   });
+
+  onDialogHide(() => {
+    clearTimeout(clearCacheTimeout);
+    clearCacheTimeout = null;
+    mapRuntime.reset();
+  }, 'map');
 
   floatingIslands();
 };

@@ -4,7 +4,6 @@ import {
   dbSet,
   getData,
   makeElement,
-  onRequest,
   sleep
 } from '@utils';
 
@@ -138,7 +137,7 @@ const updateListing = async (mapId) => {
  * @param {Object} response The response.
  * @param {Object} data     The data.
  */
-const debug = async (response, data) => {
+const updateCommunityListings = async (response, data) => {
   if ('get_listings' !== data.action) {
     return;
   }
@@ -159,9 +158,6 @@ const debug = async (response, data) => {
   hideMhct.remove();
 };
 
-/**
- * Initialize the module.
- */
-export default () => {
-  onRequest('users/treasuremap_v2.php', debug);
+export {
+  updateCommunityListings
 };
