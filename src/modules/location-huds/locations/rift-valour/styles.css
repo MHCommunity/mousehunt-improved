@@ -241,11 +241,11 @@ span.valourRiftHUD-towerUpgrade-currentValue {
   color: transparent;
   background-image: url(https://i.mouse.rip/mh-improved/sim.png);
   filter: grayscale(1);
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .valourRiftHUD-previewTower.mh-vrift-sim-link:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 span.valourRiftHUD-huntsRemaining-value {

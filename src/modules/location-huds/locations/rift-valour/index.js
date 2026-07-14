@@ -273,4 +273,11 @@ export default async () => {
   modifyPlayerIcon();
 
   onTrapChange(ifUcEquipped);
+
+  addOnboardingTip({
+    step: 'valour-rift-simulator-link',
+    anchor: '.mh-vrift-sim-link',
+    title: 'Simulate Run',
+    content: 'Click to simulate a Valour Rift run and see your estimated Eclipse chances',
+  });
 };

@@ -4,6 +4,26 @@
   color: #000;
 }
 
+.windmillHud-needle {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.windmillHud-bossContainer.complete {
+  transition:
+    filter 0.2s ease-out,
+    transform 0.2s ease-out;
+  transform-origin: bottom center;
+}
+
+.windmillHud-bossContainer.complete:hover {
+  filter: drop-shadow(0 2px 3px rgb(22 36 10 / 45%));
+  transform: translateY(-2px);
+}
+
+.windmillHud-bossContainer.complete:active {
+  transform: translateY(-1px) scale(0.97);
+}
+
 .windmillHud-bossContainer.complete::after {
   position: absolute;
   inset: 0;
@@ -70,4 +90,11 @@
 
 .windmillHud-speed span {
   margin-right: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .windmillHud-needle,
+  .windmillHud-bossContainer.complete {
+    transition: none;
+  }
 }

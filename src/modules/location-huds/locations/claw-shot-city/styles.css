@@ -3,3 +3,29 @@
   font-size: 27px;
   color: #e7c37d;
 }
+
+.clawShotCityHud.has_reward .open.has_reward {
+  transition: filter 0.2s ease-out;
+  animation: mh-improved-claw-shot-reward-glint 3.2s ease-in-out infinite;
+}
+
+.clawShotCityHud.has_reward .open.has_reward:hover {
+  filter: brightness(1.15) drop-shadow(0 1px 2px rgb(255 221 125 / 55%));
+}
+
+@keyframes mh-improved-claw-shot-reward-glint {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.12) drop-shadow(0 0 3px rgb(255 221 125 / 45%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clawShotCityHud.has_reward .open.has_reward {
+    animation: none;
+  }
+}

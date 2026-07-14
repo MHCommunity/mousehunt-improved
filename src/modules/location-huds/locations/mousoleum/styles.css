@@ -19,3 +19,41 @@
   background-image: url(https://i.mouse.rip/mousoleum-bg.png);
   filter: drop-shadow(0 -5px 3px #333);
 }
+
+.mousoleumHUD-wall-progressBar span {
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mousoleumHUD.canRepair .mousoleumHUD-repairWallButton:not(.disabled) {
+  transition: transform 0.15s ease-out;
+  animation: mh-improved-mousoleum-repair-ready 2.8s ease-in-out infinite;
+}
+
+.mousoleumHUD.canRepair .mousoleumHUD-repairWallButton:not(.disabled):hover {
+  transform: scale(1.08);
+}
+
+.mousoleumHUD.canRepair .mousoleumHUD-repairWallButton:not(.disabled):active {
+  transform: scale(0.96);
+}
+
+@keyframes mh-improved-mousoleum-repair-ready {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15) drop-shadow(0 0 2px rgb(254 255 145 / 65%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mousoleumHUD.canRepair .mousoleumHUD-repairWallButton:not(.disabled) {
+    animation: none;
+  }
+
+  .mousoleumHUD-wall-progressBar span {
+    transition: none;
+  }
+}
