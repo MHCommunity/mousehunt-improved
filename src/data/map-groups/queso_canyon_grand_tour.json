@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Queso Canyon Grand Tour Map"
+  ],
   "categories": [
     {
       "name": "KSS",
       "id": "kss",
       "icon": "/powertypes/draconic.png",
       "color": "#96b9dc",
+      "color-dark": "#2e547a",
       "mice": [
         "geyser_eruption_dragon_wildfire",
         "geyser_eruption_dragon_epic"
@@ -15,6 +19,7 @@
       "id": "cinder-brut",
       "icon": "/powertypes/draconic.png",
       "color": "#7fff66",
+      "color-dark": "#326827",
       "mice": [
         "geyser_eruption_dragon_large",
         "geyser_eruption_dragon_flaming"
@@ -25,6 +30,7 @@
       "id": "be-trio",
       "icon": "/powertypes/draconic.png",
       "color": "#ffb1b1",
+      "color-dark": "#7a2e2e",
       "mice": [
         "geyser_eruption_dragon_hot",
         "geyser_eruption_dragon_medium",
@@ -36,6 +42,7 @@
       "id": "sizzle-mild",
       "icon": "/powertypes/draconic.png",
       "color": "#ffc816",
+      "color-dark": "#685827",
       "mice": [
         "geyser_eruption_dragon_small",
         "geyser_eruption_dragon_mild"
@@ -46,11 +53,13 @@
       "id": "pressure-set",
       "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
       "color": "#dcb8ff",
+      "color-dark": "#552e7a",
       "mice": [
         "geyser_pressure_builder_hot",
         "geyser_pressure_builder_medium",
         "geyser_pressure_builder_mild",
-        "geyser_pressure_builder_flaming"
+        "geyser_pressure_builder_flaming",
+        "geyser_pressure_builder_wildfire"
       ]
     },
     {
@@ -58,13 +67,15 @@
       "id": "corky-friends",
       "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
       "color": "#f4c47e",
+      "color-dark": "#73562b",
       "mice": [
         "geyser_cork_dropper_bland",
         "geyser_cork_dropper_medium",
         "geyser_cork_dropper_mild",
         "geyser_cork_dropper_hot",
         "geyser_cork_dropper_rare",
-        "geyser_cork_dropper_flaming"
+        "geyser_cork_dropper_flaming",
+        "geyser_cork_dropper_wildfire"
       ]
     },
     {
@@ -72,9 +83,11 @@
       "id": "queso-river",
       "icon": "/powertypes/law.png",
       "color": "#89e8a9",
+      "color-dark": "#27683d",
       "mice": [
         "croquet_crusher",
         "pump_raider",
+        "queso_river_boss",
         "sleepy_merchant",
         "tiny_saboteur"
       ]
@@ -84,6 +97,7 @@
       "id": "prickly-plains",
       "icon": "/powertypes/arcane.png",
       "color": "#cddb75",
+      "color-dark": "#586024",
       "mice": [
         {
           "mouse": "spice_grower",
@@ -116,6 +130,10 @@
         {
           "mouse": "spice_sovereign",
           "subcategory": "medium"
+        },
+        {
+          "mouse": "spice_sorcerer",
+          "subcategory": "flamin"
         }
       ]
     },
@@ -124,6 +142,7 @@
       "id": "cantera-quarry",
       "icon": "/powertypes/shadow.png",
       "color": "#e9b2db",
+      "color-dark": "#7a2e67",
       "mice": [
         {
           "mouse": "chip_chiseler",
@@ -136,6 +155,10 @@
         {
           "mouse": "grampa_golem",
           "subcategory": "hot"
+        },
+        {
+          "mouse": "nachous",
+          "subcategory": "flamin"
         },
         {
           "mouse": "nachore_golem",
@@ -176,6 +199,12 @@
     {
       "id": "hot",
       "name": "Hot Queso"
+    },
+    {
+      "id": "flamin",
+      "name": "Flamin' Queso",
+      "color": "#ff842e",
+      "color-dark": "#8a3b1d"
     }
   ]
 }

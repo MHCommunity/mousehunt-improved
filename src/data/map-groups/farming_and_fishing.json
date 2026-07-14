@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Farming and Fishing Map"
+  ],
   "categories": [
     {
       "name": "Farm",
       "id": "fofo-farm",
       "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
       "color": "#d7b18b",
+      "color-dark": "#7a542e",
       "mice": [
         "angry_aphid",
         "grit_grifter",
@@ -12,16 +16,16 @@
         "root_rummager",
         "wily_weevil",
         {
-          "mouse": "crazed_cultivator",
-          "subcategory": "sb"
-        },
-        {
           "mouse": "land_loafer",
           "subcategory": "zero-plants"
         },
         {
           "mouse": "loathsome_locust",
           "subcategory": "three-papyrus"
+        },
+        {
+          "mouse": "crazed_cultivator",
+          "subcategory": "sb"
         }
       ]
     },
@@ -30,6 +34,7 @@
       "id": "fofo-pond",
       "icon": "/folklore_forest_upgrades/tackle_box_thumb.png",
       "color": "#c3def5",
+      "color-dark": "#2e577a",
       "mice": [
         "beachcomber",
         "sand_sifter",
@@ -42,10 +47,11 @@
     },
     {
       "name": "Prologue Pond",
-      "id": "fofo-pond-grubbeen",
       "subtitle": "Grubbeen",
+      "id": "fofo-pond-grubbeen",
       "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
       "color": "#fbc3fa",
+      "color-dark": "#7a2e79",
       "mice": [
         "pompous_perch",
         "careless_catfish",
@@ -54,10 +60,11 @@
     },
     {
       "name": "Prologue Pond",
-      "id": "fofo-pond-clamembert",
       "subtitle": "Clamembert",
+      "id": "fofo-pond-clamembert",
       "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
       "color": "#f3e0ff",
+      "color-dark": "#5d2e7a",
       "mice": [
         "nefarious_nautilus",
         "vicious_vampire_squid",
@@ -69,6 +76,7 @@
       "id": "fofo-bosses",
       "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
       "color": "#fde671",
+      "color-dark": "#645a26",
       "mice": [
         "monstrous_midge",
         "architeuthulhu_of_the_abyss"
@@ -77,16 +85,16 @@
   ],
   "subcategories": [
     {
-      "id": "sb",
-      "name": "SUPER|brie+"
-    },
-    {
       "id": "zero-plants",
       "name": "Zero Plants"
     },
     {
       "id": "three-papyrus",
       "name": "Three Papyrus Plants"
+    },
+    {
+      "id": "sb",
+      "name": "SUPER|brie+"
     }
   ]
 }

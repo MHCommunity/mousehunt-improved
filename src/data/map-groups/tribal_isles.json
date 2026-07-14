@@ -1,0 +1,174 @@
+{
+  "names": [
+    "Tribal Isles Map"
+  ],
+  "categories": [
+    {
+      "name": "Balack's Cove",
+      "id": "ti-balack-s-cove",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        {
+          "mouse": "balack_the_banished",
+          "subcategory": "vengeful-vanilla-stilton"
+        },
+        "brimstone",
+        "davy_jones",
+        "derr_lich",
+        "elub_lich",
+        "enslaved_spirit",
+        "nerg_lich",
+        "riptide",
+        "tidal_fisher",
+        "twisted_fiend"
+      ]
+    },
+    {
+      "name": "Cape Clawed",
+      "id": "ti-cape-clawed",
+      "color": "#a0dcff",
+      "color-dark": "#2c6268",
+      "mice": [
+        "alchemist",
+        "caretaker",
+        "healer",
+        "narrator",
+        "pathfinder",
+        "scout",
+        "taleweaver",
+        "trailblazer",
+        "wordsmith"
+      ]
+    },
+    {
+      "name": "Derr Dunes",
+      "id": "ti-derr-dunes",
+      "color": "#fce5cd",
+      "color-dark": "#7a4a21",
+      "mice": [
+        {
+          "mouse": "derr_chieftain",
+          "subcategory": "crunchy-cheese"
+        },
+        {
+          "mouse": "gladiator",
+          "subcategory": "crunchy-cheese"
+        },
+        "grunt",
+        {
+          "mouse": "guardian",
+          "subcategory": "crunchy-cheese"
+        },
+        "mintaka",
+        "renegade",
+        "seer",
+        "spellbinder"
+      ]
+    },
+    {
+      "name": "Jungle of Dread",
+      "id": "ti-jungle-of-dread",
+      "color": "#e3b5e8",
+      "color-dark": "#86388c",
+      "mice": [
+        "chitinous",
+        "fetid_swamp",
+        "jurassic",
+        "magma_carrier",
+        "pigmy_swarm",
+        "primal",
+        "pygmy_wrangler",
+        "stonework_warrior"
+      ]
+    },
+    {
+      "name": "Elub Shore",
+      "id": "ti-elub-shore",
+      "color": "#b6d7a8",
+      "color-dark": "#38761d",
+      "mice": [
+        "alnitak",
+        {
+          "mouse": "champion",
+          "subcategory": "shell-cheese"
+        },
+        {
+          "mouse": "elub_chieftain",
+          "subcategory": "shell-cheese"
+        },
+        "mystic",
+        "pack",
+        {
+          "mouse": "protector",
+          "subcategory": "shell-cheese"
+        },
+        "soothsayer",
+        "vanquisher"
+      ]
+    },
+    {
+      "name": "Nerg Plains",
+      "id": "ti-nerg-plains",
+      "color": "#ffe599",
+      "color-dark": "#7f6000",
+      "mice": [
+        "alnilam",
+        "beast_tamer",
+        "conjurer",
+        {
+          "mouse": "defender",
+          "subcategory": "gumbo-cheese"
+        },
+        "finder",
+        {
+          "mouse": "nerg_chieftain",
+          "subcategory": "gumbo-cheese"
+        },
+        {
+          "mouse": "slayer",
+          "subcategory": "gumbo-cheese"
+        }
+      ]
+    },
+    {
+      "name": "Dracano",
+      "id": "ti-dracano",
+      "color": "#ea9999",
+      "color-dark": "#85200c",
+      "mice": [
+        "draconic_warden",
+        "dragon",
+        "whelpling"
+      ]
+    },
+    {
+      "name": "Forbidden Grove",
+      "id": "ti-forbidden-grove",
+      "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
+      "color": "#a4c2f4",
+      "color-dark": "#1c4587",
+      "mice": [
+        "black_widow"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "shell-cheese",
+      "name": "Shell Cheese"
+    },
+    {
+      "id": "gumbo-cheese",
+      "name": "Gumbo Cheese"
+    },
+    {
+      "id": "crunchy-cheese",
+      "name": "Crunchy Cheese"
+    },
+    {
+      "id": "vengeful-vanilla-stilton",
+      "name": "Vengeful Vanilla Stilton"
+    }
+  ]
+}

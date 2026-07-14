@@ -1,0 +1,82 @@
+{
+  "names": [
+    "Icebreaker Map"
+  ],
+  "categories": [
+    {
+      "name": "Treacherous Tunnels",
+      "subtitle": "0–300 ft",
+      "id": "i-treacherous-tunnels",
+      "color": "#99e6ff",
+      "color-dark": "#0a6684",
+      "mice": [
+        "icebreaker",
+        "chipper",
+        "snow_slinger",
+        "snow_soldier",
+        "incompetent_ice_climber"
+      ]
+    },
+    {
+      "name": "Brutal Bulwark",
+      "subtitle": "300–600 ft",
+      "id": "i-brutal-bulwark",
+      "color": "#66d9ff",
+      "color-dark": "#0a6584",
+      "mice": [
+        "polar_bear",
+        "iceblock",
+        "mammoth"
+      ]
+    },
+    {
+      "name": "Bombing Run",
+      "subtitle": "600–1,600 ft",
+      "id": "i-bombing-run",
+      "color": "#b3ecff",
+      "color-dark": "#0a6584",
+      "mice": [
+        "saboteur",
+        "stickybomber",
+        "heavy_blaster"
+      ]
+    },
+    {
+      "name": "The Mad Depths",
+      "subtitle": "1,600–1,800 ft",
+      "id": "i-the-mad-depths",
+      "color": "#ccefff",
+      "color-dark": "#0a5e84",
+      "mice": [
+        "wolfskie",
+        "snowblind",
+        "iceblade",
+        "water_wielder"
+      ]
+    },
+    {
+      "name": "Icewing's Lair",
+      "subtitle": "After 1,800 ft",
+      "id": "i-icewing-s-lair",
+      "color": "#00b3e6",
+      "color-dark": "#0a6984",
+      "mice": [
+        "frostlance_guard",
+        "frostwing_commander",
+        "icewing"
+      ]
+    },
+    {
+      "name": "Slushy Shoreline",
+      "id": "i-slushy-shoreline",
+      "color": "#e6faff",
+      "color-dark": "#0a6b84",
+      "mice": [
+        "snow_bowler",
+        "snow_sniper",
+        "yeti",
+        "living_ice"
+      ]
+    }
+  ]
+}

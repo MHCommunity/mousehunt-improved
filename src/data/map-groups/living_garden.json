@@ -1,0 +1,119 @@
+{
+  "names": [
+    "Living Garden Map"
+  ],
+  "categories": [
+    {
+      "name": "Living Garden",
+      "id": "lg-living-garden",
+      "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
+      "color": "#bde5bd",
+      "color-dark": "#286628",
+      "mice": [
+        "carmine",
+        "shroom",
+        "camoflower",
+        "thistle",
+        "bark",
+        "calalilly",
+        "strawberry_hotcakes",
+        "thirsty"
+      ]
+    },
+    {
+      "name": "Sand Dunes",
+      "id": "lg-sand-dunes",
+      "icon": "https://i.mouse.rip/upscaled/347b62ad43e15bb3ebd898f64d402d42.png",
+      "color": "#e0c182",
+      "color-dark": "#72561c",
+      "mice": [
+        {
+          "mouse": "grubling",
+          "subcategory": "grubling-chow"
+        },
+        {
+          "mouse": "grubling_herder",
+          "subcategory": "grubling-chow"
+        },
+        "quesodillo",
+        "dunehopper",
+        "spiky_devil",
+        "sand_pilgrim"
+      ]
+    },
+    {
+      "name": "Lost City",
+      "id": "lg-lost-city",
+      "icon": "https://i.mouse.rip/upscaled/347b62ad43e15bb3ebd898f64d402d42.png",
+      "color": "#e6d2b8",
+      "color-dark": "#694b25",
+      "mice": [
+        "cursed",
+        "ethereal_enchanter",
+        "ethereal_librarian",
+        "essence_collector",
+        "ethereal_engineer",
+        "ethereal_thief"
+      ]
+    },
+    {
+      "name": "Twisted Garden",
+      "id": "lg-twisted-garden",
+      "icon": "https://i.mouse.rip/upscaled/7bf9f9bb5394d44f3ef50a7105d04931.png",
+      "color": "#a2cfa4",
+      "color-dark": "#305e32",
+      "mice": [
+        "camofusion",
+        "fungal_spore",
+        "twisted_carmine",
+        "barkshell",
+        "twisted_lilly",
+        "thorn",
+        "twisted_hotcakes",
+        "dehydrated"
+      ]
+    },
+    {
+      "name": "Sand Crypts",
+      "id": "lg-sand-crypts",
+      "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
+      "color": "#d2b48c",
+      "color-dark": "#664b28",
+      "mice": [
+        {
+          "mouse": "king_grub",
+          "subcategory": "grub-scent"
+        },
+        "sand_colossus",
+        "scarab",
+        "serpentine",
+        "sarcophamouse"
+      ]
+    },
+    {
+      "name": "Cursed City",
+      "id": "lg-cursed-city",
+      "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
+      "color": "#d19cd1",
+      "color-dark": "#612d61",
+      "mice": [
+        "cursed_librarian",
+        "cursed_thief",
+        "cursed_enchanter",
+        "cursed_engineer",
+        "essence_guardian",
+        "corrupt"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "grubling-chow",
+      "name": "Grubling Chow Scent Charm"
+    },
+    {
+      "id": "grub-scent",
+      "name": "Grub Scent Charm"
+    }
+  ]
+}

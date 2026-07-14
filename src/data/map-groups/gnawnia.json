@@ -1,0 +1,94 @@
+{
+  "names": [
+    "Gnawnia Map"
+  ],
+  "categories": [
+    {
+      "name": "Meadow & Town of Gnawnia",
+      "id": "gnawnia-meadow-town",
+      "color": "#fce5cd",
+      "color-dark": "#72481d",
+      "mice": [
+        "grey",
+        "brown",
+        "white",
+        "spotted",
+        "cowardly",
+        "field",
+        "lightning_rod"
+      ]
+    },
+    {
+      "name": "Windmill & King's Arms",
+      "id": "gnawnia-windmill-kings-arms",
+      "color": "#fff2cc",
+      "color-dark": "#725c1d",
+      "mice": [
+        "spud",
+        "scruffy",
+        "dwarf",
+        "longtail_mouse",
+        "pugilist"
+      ]
+    },
+    {
+      "name": "Mountain",
+      "id": "gnawnia-mountain",
+      "color": "#d9ead3",
+      "color-dark": "#3b612e",
+      "mice": [
+        "frozen",
+        "granite",
+        "gold",
+        "diamond"
+      ]
+    },
+    {
+      "name": "Town of Digby & Laboratory",
+      "id": "gnawnia-digby-lab",
+      "color": "#d0e0e3",
+      "color-dark": "#32565d",
+      "mice": [
+        "bionic",
+        "steel"
+      ]
+    },
+    {
+      "name": "Harbour & S.S. Huntington IV",
+      "id": "gnawnia-harbour",
+      "color": "#9fc5e8",
+      "color-dark": "#1d4972",
+      "mice": [
+        "pirate"
+      ]
+    },
+    {
+      "name": "SUPER|brie+",
+      "id": "gnawnia-super-brie",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#cfe2f3",
+      "color-dark": "#1d4a72",
+      "mice": [
+        "nibbler",
+        "tiny",
+        "fast",
+        "flying_mouse",
+        "silvertail",
+        "fog",
+        "frosty_snow",
+        "farmhand",
+        "zombie"
+      ]
+    },
+    {
+      "name": "Bosses",
+      "id": "gnawnia-bosses",
+      "color": "#fde671",
+      "color-dark": "#72641d",
+      "mice": [
+        "abominable_snow",
+        "captain_croissant"
+      ]
+    }
+  ]
+}

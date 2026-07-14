@@ -1,265 +1,158 @@
 {
+  "names": [
+    "Nice List"
+  ],
   "categories": [
     {
-      "name": "Anywhere",
-      "id": "anywhere",
-      "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png",
-      "color": "#3f8bae",
+      "name": "Bosses",
+      "subtitle": "Ice Fortress",
+      "id": "nice-bosses",
+      "color": "#fde671",
+      "color-dark": "#72641d",
       "mice": [
-        "hoarder",
-        {
-          "mouse": "winter_hunt_toy_strong",
-          "subcategory": "pp"
-        },
+        "winter_boss_2014",
+        "glacia_ice_fist"
+      ]
+    },
+    {
+      "name": "All Areas",
+      "id": "nice-all-areas",
+      "color": "#c3def5",
+      "color-dark": "#1d4b72",
+      "mice": [
         {
           "mouse": "stuck_snowball",
-          "subcategory": "pp"
+          "subcategory": "pecan"
         },
         {
-          "mouse": "glazed",
-          "subcategory": "pp"
+          "mouse": "winter_hunt_toy_strong",
+          "subcategory": "pecan"
         },
         {
-          "mouse": "joy",
-          "subcategory": "gpp"
+          "mouse": "hoarder",
+          "subcategory": "standard"
         }
       ]
     },
     {
       "name": "Cinnamon Hill",
-      "id": "cinnamon_hill",
-      "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg",
-      "color": "#c76e39",
+      "subtitle": "Pecan Pecorino",
+      "id": "nice-grove-pecan",
+      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
+      "color": "#d9ead3",
+      "color-dark": "#3b612e",
+      "mice": [
+        "snowball_general_one",
+        "golem_jockey",
+        "wreath_thief",
+        "sporty_ski_instructor",
+        "snowball_hoarder",
+        "nitro_racer",
+        "free_skiing",
+        "triple_lutz"
+      ]
+    },
+    {
+      "name": "Cinnamon Hill",
+      "subtitle": "Standard cheese",
+      "id": "nice-grove-standard",
+      "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
+      "color": "#acf28d",
+      "color-dark": "#37721d",
       "mice": [
         "candy_cane",
         "nice_knitting",
-        "winter_boss_2019",
+        "green_circle_boss",
         "snow_scavenger",
         "toboggan_technician",
-        "green_circle_boss",
-        {
-          "mouse": "triple_lutz",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "black_diamond_racer",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "double_black_diamond",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "free_skiing",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2020",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "nitro_racer",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2021",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2015",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowball_general_one",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "golem_jockey",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowball_hoarder",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "sporty_ski_instructor",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "wreath_thief",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "new_year_flight",
-          "subcategory": "pp"
-        }
+        "winter_boss_2019"
       ]
     },
     {
       "name": "Golem Workshop",
-      "id": "golem_workshop",
-      "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg",
-      "color": "#9ab1b4",
+      "subtitle": "Pecan Pecorino",
+      "id": "nice-workshop-pecan",
+      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
+      "color": "#fce5cd",
+      "color-dark": "#72481d",
+      "mice": [
+        "winter_hunt_toy",
+        "christmas_tree",
+        "toy",
+        "present",
+        "ridiculous_sweater",
+        "snowman_architect",
+        "toy_builder",
+        "elf",
+        "nutcracker",
+        "ribbon",
+        "stocking"
+      ]
+    },
+    {
+      "name": "Golem Workshop",
+      "subtitle": "Standard cheese",
+      "id": "nice-workshop-standard",
+      "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
+      "color": "#f9cb9c",
+      "color-dark": "#72481d",
       "mice": [
         "gingerbread",
-        "greedy_al",
-        "winter_future",
         "winter_past",
         "winter_present",
+        "winter_future",
+        "greedy_al",
         {
           "mouse": "scrooge",
-          "subcategory": "sb"
-        },
-        {
-          "mouse": "ribbon",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "christmas_tree",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_hunt_toy",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "elf",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "mad_elf",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "nutcracker",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "ornament",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "present",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "ridiculous_sweater",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowman_architect",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "stocking",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "toy",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "toy_builder",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "disco_ball_head",
-          "subcategory": "pp"
+          "subcategory": "sb-only"
         }
       ]
     },
     {
       "name": "Ice Fortress",
-      "id": "ice_fortress",
-      "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg",
-      "color": "#cc85fe",
+      "subtitle": "Pecan Pecorino",
+      "id": "nice-fortress-pecan",
+      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
+      "color": "#c9daf8",
+      "color-dark": "#1d3c72",
+      "mice": [
+        "winter_boss_2016",
+        "winter_boss_2017",
+        "snowball_general_two",
+        "snowball_bully",
+        "snow_fort",
+        "builder"
+      ]
+    },
+    {
+      "name": "Ice Fortress",
+      "subtitle": "Standard cheese",
+      "id": "nice-fortress-standard",
+      "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
+      "color": "#d0e0e3",
+      "color-dark": "#32565d",
       "mice": [
         "confused_courier",
-        "frigid_foreman",
-        "miser",
         "missle_toe",
+        "miser",
+        "frigid_foreman",
         "snowblower",
-        "snowglobe",
-        "builder",
-        {
-          "mouse": "builder",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2014",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "glacia_ice_fist",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2016",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2018",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2017",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowball_general_two",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowball_bully",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "slay",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snow_fort",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "snowball_general_three",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "squeaker_claws",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "tundra_huntress",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "new_years",
-          "subcategory": "pp"
-        },
-        {
-          "mouse": "winter_boss_2022",
-          "subcategory": "boss"
-        }
+        "snowglobe"
       ]
     }
   ],
   "subcategories": [
     {
-      "id": "pp",
+      "id": "pecan",
       "name": "Pecan Pecorino"
     },
     {
-      "id": "gpp",
-      "name": "Glazed Pecan Pecorino"
+      "id": "standard",
+      "name": "Standard cheese"
     },
     {
-      "id": "sb",
+      "id": "sb-only",
       "name": "SUPER|brie+"
-    },
-    {
-      "id": "boss",
-      "name": "Boss"
     }
   ]
 }

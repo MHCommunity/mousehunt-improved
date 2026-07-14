@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Folklore Forest Prelude Map"
+  ],
   "categories": [
     {
       "name": "Farm",
       "id": "fofo-farm",
       "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
       "color": "#d7b18b",
+      "color-dark": "#7a542e",
       "mice": [
         "angry_aphid",
         "root_rummager",
@@ -12,16 +16,16 @@
         "mighty_mite",
         "wily_weevil",
         {
-          "mouse": "crazed_cultivator",
-          "subcategory": "sb"
-        },
-        {
           "mouse": "land_loafer",
           "subcategory": "zero-plants"
         },
         {
           "mouse": "loathsome_locust",
           "subcategory": "three-papyrus"
+        },
+        {
+          "mouse": "crazed_cultivator",
+          "subcategory": "sb"
         }
       ]
     },
@@ -30,6 +34,7 @@
       "id": "fofo-pond",
       "icon": "/folklore_forest_upgrades/tackle_box_thumb.png",
       "color": "#c3def5",
+      "color-dark": "#2e577a",
       "mice": [
         "beachcomber",
         "sand_sifter",
@@ -43,8 +48,10 @@
     {
       "name": "Prologue Pond",
       "subtitle": "Grubbeen",
+      "id": "prologue-pond",
       "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
       "color": "#fbc3fa",
+      "color-dark": "#7a2e79",
       "mice": [
         "pompous_perch",
         "careless_catfish",
@@ -53,10 +60,11 @@
     },
     {
       "name": "Prologue Pond",
-      "id": "fofo-pond-clamembert",
       "subtitle": "Clamembert",
+      "id": "fofo-pond-clamembert",
       "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
       "color": "#f3e0ff",
+      "color-dark": "#5d2e7a",
       "mice": [
         "nefarious_nautilus",
         "vicious_vampire_squid",
@@ -68,6 +76,8 @@
       "subtitle": "Not Writing",
       "id": "fofo-toc-not-writing",
       "icon": "/folklore_forest_upgrades/silver_quill_thumb.png",
+      "color": "#c6e2ff",
+      "color-dark": "#0a4684",
       "mice": [
         "brothers_grimmaus",
         "hans_cheesetian_squeakersen",
@@ -84,6 +94,7 @@
       "id": "fofo-toc-writing",
       "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
       "color": "#e9c390",
+      "color-dark": "#73542b",
       "mice": [
         "humphrey_dumphrey",
         "little_bo_squeak",
@@ -95,6 +106,8 @@
       "subtitle": "Writing - First Draft",
       "id": "fofo-toc-first-draft",
       "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
+      "color": "#b18457",
+      "color-dark": "#61472d",
       "mice": [
         "fibbocchio",
         "pinkielina",
@@ -106,6 +119,8 @@
       "subtitle": "Writing - Second Draft",
       "id": "fofo-toc-second-draft",
       "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
+      "color": "#d0accc",
+      "color-dark": "#5c3158",
       "mice": [
         "flamboyant_flautist",
         "greenbeard",
@@ -117,6 +132,7 @@
       "id": "fofo-bosses",
       "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
       "color": "#fde671",
+      "color-dark": "#645a26",
       "mice": [
         "bitter_grammarian",
         "mythweaver",
@@ -127,16 +143,16 @@
   ],
   "subcategories": [
     {
-      "id": "sb",
-      "name": "SUPER|brie+"
-    },
-    {
       "id": "zero-plants",
       "name": "Zero Plants"
     },
     {
       "id": "three-papyrus",
       "name": "Three Papyrus Plants"
+    },
+    {
+      "id": "sb",
+      "name": "SUPER|brie+"
     }
   ]
 }

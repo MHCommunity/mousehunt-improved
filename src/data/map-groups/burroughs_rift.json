@@ -1,0 +1,143 @@
+{
+  "names": [
+    "Burroughs Rift Map"
+  ],
+  "categories": [
+    {
+      "name": "Mist Level 0",
+      "id": "br-mist-level-0",
+      "color": "#cfe2f3",
+      "color-dark": "#1c4972",
+      "mice": [
+        "rift_amplified_brown",
+        "rift_amplified_grey",
+        "rift_amplified_white",
+        "rift_automated_sentry",
+        "rift_bio_engineer",
+        "rift_cybernetic_specialist",
+        "rift_doktor",
+        "rift_evil_scientist",
+        "rift_surgeon_bot",
+        {
+          "mouse": "rift_portable_generator",
+          "subcategory": "magical-string"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 1-5",
+      "id": "br-mist-level-1-5",
+      "color": "#b6d7a8",
+      "color-dark": "#3c612c",
+      "mice": [
+        "rift_count_vampire",
+        "rift_phase_zombie",
+        "rift_prototype",
+        "rift_tech_ravenous_zombie",
+        {
+          "mouse": "rift_clump",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_cyber_miner",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_itty_bitty_burroughs",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_rifterranian",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_mecha_tail",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_spore",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_toxikinetic",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 6-18",
+      "id": "br-mist-level-6-18",
+      "color": "#ffd966",
+      "color-dark": "#84650a",
+      "mice": [
+        "rift_lycan",
+        "rift_revenant",
+        "rift_robat",
+        "rift_zombot_unipire",
+        {
+          "mouse": "rift_boulder_biter",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_lambent",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_master_exploder",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_pneumatic_dirt_displacement",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_radioactive_gold",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_rancid_bog_beast",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 19-20",
+      "id": "br-mist-level-19-20",
+      "color": "#e06666",
+      "color-dark": "#761818",
+      "mice": [
+        "rift_monstrous_abomination",
+        {
+          "mouse": "rift_big_bad_burroughs",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_assassin_beast",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_menace",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_plutonium_tentacle",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "terre-ricotta",
+      "name": "Terre Ricotta"
+    },
+    {
+      "id": "polluted-parmesan",
+      "name": "Polluted Parmesan"
+    },
+    {
+      "id": "magical-string",
+      "name": "Magical String"
+    }
+  ]
+}

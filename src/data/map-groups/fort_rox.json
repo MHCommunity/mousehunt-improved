@@ -1,10 +1,13 @@
 {
+  "names": [
+    "Fort Rox Map"
+  ],
   "categories": [
     {
       "name": "Night",
       "id": "night",
-      "icon": "",
       "color": "#d0d0d0",
+      "color-dark": "#545454",
       "mice": [
         "were_alpha",
         "moonstone_slinger",
@@ -17,6 +20,7 @@
       "id": "first-light-utter-darkness",
       "icon": "/powertypes/arcane.png",
       "color": "#dc8ec7",
+      "color-dark": "#7a2e66",
       "mice": [
         "arcane_summoner",
         "cursed_taskmaster",
@@ -31,6 +35,7 @@
       "id": "twilight-midnight-pitch",
       "icon": "/powertypes/shadow.png",
       "color": "#84c3ff",
+      "color-dark": "#2e557a",
       "mice": [
         "good_supply_night",
         "nightmancer",
@@ -44,6 +49,7 @@
       "id": "dawn",
       "icon": "/powertypes/arcane.png",
       "color": "#f9d65a",
+      "color-dark": "#685927",
       "mice": [
         "dawn_guardian",
         "monster_of_the_meteor"
@@ -54,6 +60,7 @@
       "id": "day",
       "icon": "/powertypes/law.png",
       "color": "#ffdb9c",
+      "color-dark": "#6f562a",
       "mice": [
         "hardworking_hauler",
         "moonstone_snacker",

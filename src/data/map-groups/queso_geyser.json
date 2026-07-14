@@ -1,0 +1,84 @@
+{
+  "names": [
+    "Queso Geyser Map"
+  ],
+  "categories": [
+    {
+      "name": "Cork Collecting",
+      "id": "qg-cork-collecting",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        "geyser_cork_dropper_bland",
+        "geyser_cork_dropper_flaming",
+        "geyser_cork_dropper_hot",
+        "geyser_cork_dropper_medium",
+        "geyser_cork_dropper_mild",
+        "geyser_cork_dropper_rare",
+        "geyser_cork_dropper_wildfire"
+      ]
+    },
+    {
+      "name": "Pressure Building",
+      "id": "qg-pressure-building",
+      "color": "#a0dcff",
+      "color-dark": "#2c6268",
+      "mice": [
+        "geyser_pressure_builder_flaming",
+        "geyser_pressure_builder_hot",
+        "geyser_pressure_builder_medium",
+        "geyser_pressure_builder_mild",
+        "geyser_pressure_builder_wildfire"
+      ]
+    },
+    {
+      "name": "Tiny Eruption",
+      "id": "qg-tiny-eruption",
+      "color": "#fce5cd",
+      "color-dark": "#7a4a21",
+      "mice": [
+        "geyser_eruption_dragon_mild"
+      ]
+    },
+    {
+      "name": "Small Eruption",
+      "id": "qg-small-eruption",
+      "color": "#e3b5e8",
+      "color-dark": "#86388c",
+      "mice": [
+        "geyser_eruption_dragon_flaming",
+        "geyser_eruption_dragon_small"
+      ]
+    },
+    {
+      "name": "Medium Eruption",
+      "id": "qg-medium-eruption",
+      "color": "#b6d7a8",
+      "color-dark": "#38761d",
+      "mice": [
+        "geyser_eruption_dragon_medium"
+      ]
+    },
+    {
+      "name": "Large Eruption",
+      "id": "qg-large-eruption",
+      "color": "#ffe599",
+      "color-dark": "#7f6000",
+      "mice": [
+        "geyser_eruption_dragon_large"
+      ]
+    },
+    {
+      "name": "Epic Eruption",
+      "id": "qg-epic-eruption",
+      "color": "#ea9999",
+      "color-dark": "#85200c",
+      "mice": [
+        "geyser_eruption_dragon_epic",
+        "geyser_eruption_dragon_hot",
+        "geyser_eruption_dragon_medium_spice",
+        "geyser_eruption_dragon_wildfire"
+      ]
+    }
+  ]
+}

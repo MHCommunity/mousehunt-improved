@@ -1,0 +1,211 @@
+{
+  "names": [
+    "Sky Pirate Map (4 Person)",
+    "Sky Pirate Map (5 Person)"
+  ],
+  "categories": [
+    {
+      "name": "Launchpad",
+      "id": "sp-launchpad",
+      "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+      "color": "#c97c49",
+      "color-dark": "#6e3f20",
+      "mice": [
+        "launchpad_labourer",
+        "cloud_miner"
+      ]
+    },
+    {
+      "name": "Wardens",
+      "id": "sp-wardens",
+      "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
+      "color": "#c2c2c2",
+      "color-dark": "#5c3131",
+      "mice": [
+        "rain_warden",
+        "fog_warden",
+        "frost_warden",
+        "wind_warden"
+      ]
+    },
+    {
+      "name": "Arcane",
+      "id": "sp-arcane",
+      "icon": "/powertypes/arcane.png",
+      "color": "#0be496",
+      "color-dark": "#0a8458",
+      "mice": [
+        "sky_glass_sorcerer",
+        "sky_glass_glazier",
+        "sky_dancer",
+        {
+          "mouse": "sky_highborne",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "arcane_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Forgotten",
+      "id": "sp-forgotten",
+      "icon": "/powertypes/forgotten.png",
+      "color": "#77c17c",
+      "color-dark": "#2c6230",
+      "mice": [
+        "spry_sky_explorer",
+        "spry_sky_seer",
+        "cumulost",
+        {
+          "mouse": "spheric_diviner",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "forgotten_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Hydro",
+      "id": "sp-hydro",
+      "icon": "/powertypes/hydro.png",
+      "color": "#5d9fce",
+      "color-dark": "#214d6d",
+      "mice": [
+        "nimbomancer",
+        "sky_surfer",
+        "cute_cloud_conjurer",
+        {
+          "mouse": "mist_maker",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "hydro_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Shadow",
+      "id": "sp-shadow",
+      "icon": "/powertypes/shadow.png",
+      "color": "#8f75e2",
+      "color-dark": "#2f1876",
+      "mice": [
+        "astrological_astronomer",
+        "overcaster",
+        "stratocaster",
+        {
+          "mouse": "shadow_sage",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "shadow_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Physical",
+      "id": "sp-physical",
+      "icon": "/powertypes/physical.png",
+      "color": "#5ae031",
+      "color-dark": "#2b7c12",
+      "mice": [
+        "ground_gavaleer",
+        "sky_swordsman",
+        "heracles",
+        {
+          "mouse": "sky_squire",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "physical_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Draconic",
+      "id": "sp-draconic",
+      "icon": "/powertypes/draconic.png",
+      "color": "#f06a60",
+      "color-dark": "#82140c",
+      "mice": [
+        "tiny_dragonfly",
+        "dragon_lancer",
+        "dragon_breather",
+        {
+          "mouse": "regal_spearman",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "draconic_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Law",
+      "id": "sp-law",
+      "icon": "/powertypes/law.png",
+      "color": "#f9a645",
+      "color-dark": "#844c0a",
+      "mice": [
+        "devious_gentleman",
+        "stack_of_thieves",
+        "lawbender",
+        {
+          "mouse": "agent_m",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "law_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Tactical",
+      "id": "sp-tactical",
+      "icon": "/powertypes/tactical.png",
+      "color": "#fff935",
+      "color-dark": "#84800a",
+      "mice": [
+        "worried_wayfinder",
+        "gyrologer",
+        "seasoned_islandographer",
+        {
+          "mouse": "captain_cloudkicker",
+          "subcategory": "hai"
+        },
+        {
+          "mouse": "tactical_paragon",
+          "subcategory": "hai"
+        }
+      ]
+    },
+    {
+      "name": "Pirates",
+      "subtitle": "Sky Pirate Swiss",
+      "id": "sp-pirates",
+      "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
+      "color": "#eca4a6",
+      "color-dark": "#76181b",
+      "mice": [
+        "suave_pirate",
+        "cutthroat_pirate",
+        "cutthroat_cannoneer"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "hai",
+      "name": "High Altitude Island"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "names": [
+    "Furoma Rift Map"
+  ],
+  "categories": [
+    {
+      "name": "Training Grounds",
+      "id": "fr-training-grounds",
+      "icon": "/items/bait/large/7c75d3a3415ced7258f5a0f341bbf15f.png",
+      "color": "#fff2cc",
+      "mice": [
+        "rift_archer",
+        "rift_ninja",
+        "rift_dumpling_chef",
+        "rift_white",
+        "rift_dwarf",
+        "rift_gold",
+        "rift_diamond",
+        "rift_worker"
+      ],
+      "color-dark": "#84650a"
+    },
+    {
+      "name": "Pagoda",
+      "id": "fr-pagoda",
+      "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
+      "color": "#ffe6a6",
+      "mice": [
+        "rift_samurai",
+        "rift_monk",
+        "rift_kung_fu",
+        "rift_assassin",
+        "rift_claw_student",
+        "rift_fang_student",
+        "rift_belt_student"
+      ],
+      "color-dark": "#84610a"
+    },
+    {
+      "name": "Chi Masters",
+      "id": "fr-chi-masters",
+      "icon": "/items/bait/large/1db55e49bd9c8d05be369b29a8205e03.png",
+      "color": "#ffd966",
+      "mice": [
+        "rift_claw_master",
+        "rift_belt_master",
+        "rift_fang_master"
+      ],
+      "color-dark": "#84650a"
+    },
+    {
+      "name": "Dojo Bosses",
+      "id": "fr-dojo-bosses",
+      "icon": "/items/bait/large/7d984bedbce03a3faf75da3478308233.png",
+      "color": "#e69138",
+      "mice": [
+        "rift_dojo_master"
+      ],
+      "color-dark": "#7e480f"
+    }
+  ]
+}

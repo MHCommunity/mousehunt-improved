@@ -1,4 +1,7 @@
 {
+  "names": [
+    "Whisker Woods Rift Map"
+  ],
   "categories": [
     {
       "name": "Crazed Clearing",
@@ -6,6 +9,7 @@
       "id": "crazed-clearing",
       "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
       "color": "#ff909d",
+      "color-dark": "#7a2e37",
       "mice": [
         "rift_cherry",
         "rift_sylvan",
@@ -26,6 +30,7 @@
       "id": "gigantic-gnarled-tree",
       "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
       "color": "#d9f720",
+      "color-dark": "#586024",
       "mice": [
         "rift_curious_chemist",
         "rift_frog",
@@ -46,6 +51,7 @@
       "id": "deep-lagoon",
       "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
       "color": "#91f5ff",
+      "color-dark": "#276268",
       "mice": [
         "rift_silth",
         "rift_goblin",
@@ -64,6 +70,7 @@
       "name": "Misc",
       "id": "misc",
       "color": "#e9d2ff",
+      "color-dark": "#552e7a",
       "mice": [
         "rift_goldleaf",
         {

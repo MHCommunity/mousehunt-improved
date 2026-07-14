@@ -1,0 +1,127 @@
+{
+  "names": [
+    "Zugzwang Map"
+  ],
+  "categories": [
+    {
+      "name": "Seasonal Garden: Spring",
+      "id": "z-seasonal-garden-spring",
+      "color": "#84f7a1",
+      "color-dark": "#0a8429",
+      "mice": [
+        "puddlemancer",
+        "tanglefoot",
+        "vinetail",
+        "spring_familiar",
+        "hydrophobe",
+        "derpicorn"
+      ]
+    },
+    {
+      "name": "Seasonal Garden: Summer",
+      "id": "z-seasonal-garden-summer",
+      "color": "#f7d384",
+      "color-dark": "#845e0a",
+      "mice": [
+        "firebreather",
+        "firefly",
+        "hot_head_mouse",
+        "monarch",
+        "stinger",
+        "summer_mage"
+      ]
+    },
+    {
+      "name": "Seasonal Garden: Fall",
+      "id": "z-seasonal-garden-fall",
+      "color": "#f7b684",
+      "color-dark": "#843f0a",
+      "mice": [
+        "harvest_harrier",
+        "scarecrow",
+        "pumpkin_head",
+        "whirleygig",
+        "harvester",
+        "fall_familiar"
+      ]
+    },
+    {
+      "name": "Seasonal Garden: Winter",
+      "id": "z-seasonal-garden-winter",
+      "color": "#a4d4ff",
+      "color-dark": "#0a4a84",
+      "mice": [
+        "icicle",
+        "fridgid",
+        "bruticle",
+        "penguin",
+        "overprepared",
+        "winter_mage"
+      ]
+    },
+    {
+      "name": "Zugzwang's Tower: Mystic",
+      "id": "z-zugzwang-s-tower-mystic",
+      "color": "#9376ff",
+      "color-dark": "#240a84",
+      "mice": [
+        "mystic_pawn",
+        "mystic_knight",
+        "mystic_bishop",
+        "mystic_rook",
+        "mystic_queen",
+        "mystic_king"
+      ]
+    },
+    {
+      "name": "Zugzwang's Tower: Technic",
+      "id": "z-zugzwang-s-tower-technic",
+      "color": "#a88bff",
+      "color-dark": "#290a84",
+      "mice": [
+        "tech_pawn",
+        "tech_knight",
+        "tech_bishop",
+        "tech_rook",
+        "tech_queen",
+        "tech_king"
+      ]
+    },
+    {
+      "name": "Crystal Library",
+      "id": "z-crystal-library",
+      "color": "#cce0ff",
+      "color-dark": "#0a3a84",
+      "mice": [
+        "pocketwatch",
+        "walker",
+        "effervecent",
+        "infiltrator",
+        "flutterby",
+        "steam_grip",
+        "explorator",
+        "tome_sprite",
+        "bookborn",
+        "scribe"
+      ]
+    },
+    {
+      "name": "Bosses",
+      "id": "z-bosses",
+      "color": "#9376ff",
+      "color-dark": "#3a2584",
+      "mice": [
+        {
+          "mouse": "chess_master",
+          "subcategory": "checkmate-cheese"
+        }
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "checkmate-cheese",
+      "name": "Checkmate Cheese"
+    }
+  ]
+}

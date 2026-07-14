@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Digby Map"
+  ],
   "categories": [
     {
       "name": "Limelight",
       "id": "limelight",
       "icon": "https://i.mouse.rip/upscaled/e3be5f83d06c5ff4ca7322273cc52f10.png",
       "color": "#e1e3a1",
+      "color-dark": "#5b5c23",
       "mice": [
         "core_sample",
         "demolitions",
@@ -20,6 +24,7 @@
       "id": "limelight-mining-charm",
       "icon": "https://i.mouse.rip/upscaled/531ca3dc8e0beb5939e609319f2ede13.png",
       "color": "#e7d3ba",
+      "color-dark": "#76562d",
       "mice": [
         "big_bad_burroughs",
         "itty_bitty_burroughs"
@@ -30,6 +35,7 @@
       "id": "other",
       "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
       "color": "#bcd0eb",
+      "color-dark": "#2e4f7a",
       "mice": [
         "bat",
         "bionic",

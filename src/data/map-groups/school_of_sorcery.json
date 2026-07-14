@@ -1,114 +1,137 @@
 {
+  "names": [
+    "School of Sorcery Map"
+  ],
   "categories": [
     {
-      "name": "Arcane SB",
-      "id": "sos-arcane-sb",
+      "name": "Arcane Arts",
+      "id": "sos-arcane-arts",
       "icon": "/powertypes/arcane.png",
       "color": "#16dfad",
+      "color-dark": "#266454",
       "mice": [
         "perpetual_detention",
         "broomstick_bungler",
         "misfortune_teller",
         {
           "mouse": "sleep_starved_scholar",
-          "subcategory": "final"
-        }
-      ]
-    },
-    {
-      "name": "Arcane AAC",
-      "id": "sos-arcane-aac",
-      "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
-      "color": "#16dfad",
-      "mice": [
-        "arcana_overachiever",
-        "invisible_fashionista",
-        "enchanted_chess_club_champion",
+          "subcategory": "standard-final"
+        },
+        {
+          "mouse": "arcana_overachiever",
+          "subcategory": "apprentice-ambert"
+        },
+        {
+          "mouse": "invisible_fashionista",
+          "subcategory": "apprentice-ambert"
+        },
+        {
+          "mouse": "enchanted_chess_club_champion",
+          "subcategory": "apprentice-ambert"
+        },
         {
           "mouse": "class_clown",
-          "subcategory": "final"
-        }
-      ]
-    },
-    {
-      "name": "Arcane MMC",
-      "id": "sos-arcane-mmc",
-      "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
-      "color": "#16dfad",
-      "mice": [
-        "illustrious_illusionist",
-        "featherlight",
-        "constructively_critical_artist",
+          "subcategory": "apprentice-ambert-final"
+        },
+        {
+          "mouse": "illustrious_illusionist",
+          "subcategory": "master-mimolette"
+        },
+        {
+          "mouse": "featherlight",
+          "subcategory": "master-mimolette"
+        },
+        {
+          "mouse": "constructively_critical_artist",
+          "subcategory": "master-mimolette"
+        },
         {
           "mouse": "tyrannical_thaumaturge",
-          "subcategory": "final"
+          "subcategory": "master-mimolette-final"
         }
       ]
     },
     {
-      "name": "Shadow SB",
-      "id": "sos-shadow-sb",
+      "name": "Shadow Sciences",
+      "id": "sos-shadow-sciences",
       "icon": "/powertypes/shadow.png",
       "color": "#c7abde",
+      "color-dark": "#582f79",
       "mice": [
         "mixing_mishap",
         "uncoordinated_cauldron_carrier",
         "bookworm",
         {
           "mouse": "cheat_sheet_conjurer",
-          "subcategory": "final"
-        }
-      ]
-    },
-    {
-      "name": "Shadow AAC",
-      "id": "sos-shadow-aac",
-      "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
-      "color": "#c7abde",
-      "mice": [
-        "classroom_keener",
-        "audacious_alchemist",
-        "prestigious_prestidigitator",
+          "subcategory": "standard-final"
+        },
+        {
+          "mouse": "classroom_keener",
+          "subcategory": "apprentice-ambert"
+        },
+        {
+          "mouse": "audacious_alchemist",
+          "subcategory": "apprentice-ambert"
+        },
+        {
+          "mouse": "prestigious_prestidigitator",
+          "subcategory": "apprentice-ambert"
+        },
         {
           "mouse": "celestial_summoner",
-          "subcategory": "final"
-        }
-      ]
-    },
-    {
-      "name": "Shadow MMC",
-      "id": "sos-shadow-mmc",
-      "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
-      "color": "#c7abde",
-      "mice": [
-        "classroom_disrupter",
-        "teleporting_truant",
-        "magical_multitasker",
+          "subcategory": "apprentice-ambert-final"
+        },
+        {
+          "mouse": "classroom_disrupter",
+          "subcategory": "master-mimolette"
+        },
+        {
+          "mouse": "teleporting_truant",
+          "subcategory": "master-mimolette"
+        },
+        {
+          "mouse": "magical_multitasker",
+          "subcategory": "master-mimolette"
+        },
         {
           "mouse": "data_devourer",
-          "subcategory": "final"
+          "subcategory": "master-mimolette-final"
         }
       ]
     },
     {
-      "name": "Boss",
-      "id": "sos-boss",
+      "name": "Bosses",
+      "id": "sos-bosses",
       "icon": "/ui/hud/school_of_sorcery/exam_icon.png",
-      "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
+      "color": "#a88bff",
+      "color-dark": "#3d2d6a",
       "mice": [
         "arcane_sorcerer",
         "shadow_sorcerer",
-        {
-          "mouse": "mythical_master_sorcerer",
-          "subcategory": "final"
-        }
+        "mythical_master_sorcerer"
       ]
     }
   ],
   "subcategories": [
     {
-      "id": "final",
-      "name": "Final Exam"
+      "id": "standard-final",
+      "name": "Final Exam — Standard Cheese"
+    },
+    {
+      "id": "apprentice-ambert",
+      "name": "Apprentice Ambert"
+    },
+    {
+      "id": "apprentice-ambert-final",
+      "name": "Final Exam — Apprentice Ambert"
+    },
+    {
+      "id": "master-mimolette",
+      "name": "Master Mimolette"
+    },
+    {
+      "id": "master-mimolette-final",
+      "name": "Final Exam — Master Mimolette"
     }
   ]
 }

@@ -1,4 +1,7 @@
 {
+  "names": [
+    "Origin of Dragons Map"
+  ],
   "categories": [
     {
       "name": "Draconic Depths",
@@ -6,6 +9,7 @@
       "id": "ice",
       "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
       "color": "#49ffff",
+      "color-dark": "#266464",
       "mice": [
         {
           "mouse": "frostnip_icebound",
@@ -47,6 +51,7 @@
       "id": "fire",
       "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
       "color": "#ffa920",
+      "color-dark": "#73572b",
       "mice": [
         {
           "mouse": "squire_sizzleton",
@@ -88,6 +93,7 @@
       "id": "poison",
       "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
       "color": "#7fff3c",
+      "color-dark": "#3b6426",
       "mice": [
         {
           "mouse": "goopus_dredgemore",
@@ -129,6 +135,7 @@
       "id": "elemental",
       "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
       "color": "#ff3cd7",
+      "color-dark": "#7a2e6a",
       "mice": [
         {
           "mouse": "tranquilia_protecticus",
@@ -158,9 +165,11 @@
     },
     {
       "name": "Dracano",
+      "subtitle": "Inferno Havarti",
       "id": "dracano",
       "icon": "/environments/eefec52373c6cb93bcd55909cb477e47.jpg",
       "color": "#ff3c3c",
+      "color-dark": "#7a2e2e",
       "mice": [
         "dragon",
         "whelpling",
@@ -172,6 +181,7 @@
       "id": "esp-draconic",
       "icon": "/environments/0fb181c7f216be2d5bde0475ab46f8c5.jpg",
       "color": "#64cf78",
+      "color-dark": "#276833",
       "mice": [
         "dragon_breather",
         "dragon_lancer",
@@ -195,6 +205,7 @@
       "id": "mopi",
       "icon": "/environments/438e2879c8c1e468f7e7eee169e289b6.jpg",
       "color": "#cb8bec",
+      "color-dark": "#602e7a",
       "mice": [
         "ful_mina_mountain_queen",
         {
@@ -220,48 +231,49 @@
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "Corky & Friends",
+      "name": "Corky & Friends",
       "id": "corky-friends",
-      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
-      "color": "#d3ba7a",
+      "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
+      "color": "#f4c47e",
+      "color-dark": "#73562b",
       "mice": [
         "geyser_cork_dropper_bland",
         "geyser_cork_dropper_medium",
         "geyser_cork_dropper_mild",
         "geyser_cork_dropper_hot",
         "geyser_cork_dropper_rare",
-        "geyser_cork_dropper_flaming"
+        "geyser_cork_dropper_flaming",
+        "geyser_cork_dropper_wildfire"
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "KSS",
+      "name": "KSS",
       "id": "kss",
-      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
-      "color": "#d3ba7a",
+      "icon": "/powertypes/draconic.png",
+      "color": "#96b9dc",
+      "color-dark": "#2e547a",
       "mice": [
         "geyser_eruption_dragon_wildfire",
         "geyser_eruption_dragon_epic"
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "Cinder-Brut",
+      "name": "Cinder-Brut",
       "id": "cinder-brut",
-      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
-      "color": "#d3ba7a",
+      "icon": "/powertypes/draconic.png",
+      "color": "#7fff66",
+      "color-dark": "#326827",
       "mice": [
         "geyser_eruption_dragon_large",
         "geyser_eruption_dragon_flaming"
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "BE Trio",
+      "name": "BE Trio",
       "id": "be-trio",
-      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
-      "color": "#d3ba7a",
+      "icon": "/powertypes/draconic.png",
+      "color": "#ffb1b1",
+      "color-dark": "#7a2e2e",
       "mice": [
         "geyser_eruption_dragon_hot",
         "geyser_eruption_dragon_medium",
@@ -269,27 +281,48 @@
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "Sizzle Mild",
+      "name": "Sizzle Mild",
       "id": "sizzle-mild",
-      "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
-      "color": "#d3ba7a",
+      "icon": "/powertypes/draconic.png",
+      "color": "#ffc816",
+      "color-dark": "#685827",
       "mice": [
         "geyser_eruption_dragon_small",
         "geyser_eruption_dragon_mild"
       ]
     },
     {
-      "name": "Queso Geyser",
-      "subtitle": "Pressure Set",
+      "name": "Pressure Set",
       "id": "pressure-set",
       "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
-      "color": "#d3ba7a",
+      "color": "#dcb8ff",
+      "color-dark": "#552e7a",
       "mice": [
         "geyser_pressure_builder_hot",
         "geyser_pressure_builder_medium",
         "geyser_pressure_builder_mild",
-        "geyser_pressure_builder_flaming"
+        "geyser_pressure_builder_flaming",
+        "geyser_pressure_builder_wildfire"
+      ]
+    },
+    {
+      "name": "Fiery Warpath",
+      "id": "fiery-warpath",
+      "icon": "/environments/50c140c25725c308d70f14ef96279ab6.jpg",
+      "color": "#f4cccc",
+      "color-dark": "#7a2e2e",
+      "mice": [
+        "desert_beast"
+      ]
+    },
+    {
+      "name": "Iceberg",
+      "id": "iceberg",
+      "icon": "/environments/11939d9ac30a58d4b923915834764ff0.jpg",
+      "color": "#99e6ff",
+      "color-dark": "#2c627a",
+      "mice": [
+        "icewing"
       ]
     }
   ],
@@ -316,7 +349,9 @@
     },
     {
       "id": "sp",
-      "name": "Sky Palace"
+      "name": "Sky Palace",
+      "color": "rgb(175 203 255 / 75%)",
+      "color-dark": "var(--d-blue-darker)"
     },
     {
       "id": "storm-high",

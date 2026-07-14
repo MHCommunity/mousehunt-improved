@@ -1,0 +1,88 @@
+{
+  "names": [
+    "Mousoleum Map"
+  ],
+  "categories": [
+    {
+      "name": "Mousoleum",
+      "id": "m-mousoleum",
+      "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        "bat",
+        {
+          "mouse": "coffin_zombie",
+          "subcategory": "crimson-cheese"
+        },
+        {
+          "mouse": "ghost",
+          "subcategory": "undead-emmental"
+        },
+        "gluttonous_zombie",
+        {
+          "mouse": "hween_2011_boss",
+          "subcategory": "crimson-cheese"
+        },
+        {
+          "mouse": "lycan",
+          "subcategory": "crescent-moon"
+        },
+        {
+          "mouse": "mummy",
+          "subcategory": "undead-emmental"
+        },
+        "ravenous_zombie",
+        "vampire",
+        "zombie"
+      ]
+    },
+    {
+      "name": "Laboratory",
+      "id": "m-laboratory",
+      "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
+      "color": "#a0dcff",
+      "color-dark": "#2c6268",
+      "mice": [
+        "monster",
+        "mutated_brown",
+        "mutated_grey",
+        "mutated_white"
+      ]
+    },
+    {
+      "name": "Catacombs",
+      "id": "m-catacombs",
+      "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
+      "color": "#fce5cd",
+      "color-dark": "#7a4a21",
+      "mice": [
+        "giant_snail"
+      ]
+    },
+    {
+      "name": "Forbidden Grove",
+      "id": "m-forbidden-grove",
+      "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
+      "color": "#e3b5e8",
+      "color-dark": "#86388c",
+      "mice": [
+        "black_widow"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "crimson-cheese",
+      "name": "Crimson Cheese"
+    },
+    {
+      "id": "undead-emmental",
+      "name": "Undead Emmental"
+    },
+    {
+      "id": "crescent-moon",
+      "name": "Crescent / Moon"
+    }
+  ]
+}

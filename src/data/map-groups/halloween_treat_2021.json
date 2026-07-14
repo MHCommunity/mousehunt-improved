@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Halloween Treat Map"
+  ],
   "categories": [
     {
       "name": "Standard",
       "id": "standard",
       "icon": "/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png",
       "color": "#fefa76",
+      "color-dark": "#605e24",
       "mice": [
         "grey_recluse",
         "hween_cobweb",
@@ -22,6 +26,7 @@
       "id": "monterey-Jack",
       "icon": "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png",
       "color": "#f9a645",
+      "color-dark": "#76542d",
       "mice": [
         "sprit_light",
         "gordborg",

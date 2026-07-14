@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Gilded Birthday Event Map"
+  ],
   "categories": [
     {
       "name": "Mixing Room",
       "id": "mixing-room",
       "icon": "/ui/events/birthday_factory/item_mixing_rod.png",
       "color": "#0aebdd",
+      "color-dark": "#266460",
       "mice": [
         "force_fighter_blue",
         "force_fighter_green",
@@ -19,6 +23,7 @@
       "id": "pumping-room",
       "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
       "color": "#fca00a",
+      "color-dark": "#73582b",
       "mice": [
         "reality_restitch",
         "time_punk",
@@ -32,6 +37,7 @@
       "id": "break-room",
       "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
       "color": "#ea8cab",
+      "color-dark": "#7a2e47",
       "mice": [
         "breakdancer",
         "fromager_mouse",
@@ -45,6 +51,7 @@
       "id": "qa-room",
       "icon": "/ui/events/birthday_factory/item_quality_cog.png",
       "color": "#fbabff",
+      "color-dark": "#762e7a",
       "mice": [
         "cupcake_candle_thief",
         "cupcake_cutie",
@@ -58,6 +65,7 @@
       "id": "any-room",
       "icon": "/items/bait/large/39a63a48084383a7eb07d64c74357544.png",
       "color": "#ffeeca",
+      "color-dark": "#6f592a",
       "mice": [
         "buckethead",
         "present",
@@ -72,7 +80,18 @@
         {
           "mouse": "cheesy_party",
           "subcategory": "sb"
-        }
+        },
+        "birthday"
+      ]
+    },
+    {
+      "name": "Boss",
+      "id": "birthday-boss",
+      "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
+      "color": "#e69138",
+      "color-dark": "#7e480f",
+      "mice": [
+        "vincent_the_magnificent"
       ]
     }
   ],

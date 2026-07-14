@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Valour Rift Map"
+  ],
   "categories": [
     {
       "name": "Puppetry",
       "subtitle": "Floors 1, 9, 17, 25, 33",
       "id": "vrift-1",
       "color": "#eaf2d3",
+      "color-dark": "#516024",
       "mice": [
         "rift_gaunt_puppet",
         "rift_gaunt_puppet_champ"
@@ -15,6 +19,7 @@
       "subtitle": "Floors 2, 10, 18, 26, 34",
       "id": "vrift-2",
       "color": "#acf28d",
+      "color-dark": "#396426",
       "mice": [
         "rift_gaunt_thief",
         "rift_gaunt_thief_champ"
@@ -25,6 +30,7 @@
       "subtitle": "Floors 3, 11, 19, 27, 35",
       "id": "vrift-3",
       "color": "#fce5cd",
+      "color-dark": "#76522d",
       "mice": [
         "rift_gaunt_melee",
         "rift_gaunt_melee_champ"
@@ -35,6 +41,7 @@
       "subtitle": "Floors 4, 12, 20, 28, 36",
       "id": "vrift-4",
       "color": "#f6b26b",
+      "color-dark": "#76522d",
       "mice": [
         "rift_gaunt_bard",
         "rift_gaunt_bard_champ"
@@ -45,6 +52,7 @@
       "subtitle": "Floors 5, 13, 21, 29, 37",
       "id": "vrift-5",
       "color": "#f9cb9c",
+      "color-dark": "#7a552e",
       "mice": [
         "rift_gaunt_magic",
         "rift_gaunt_magic_champ"
@@ -55,6 +63,7 @@
       "subtitle": "Floors 6, 14, 22, 30, 38",
       "id": "vrift-6",
       "color": "#f4cccc",
+      "color-dark": "#7a2e2e",
       "mice": [
         "rift_gaunt_noble",
         "rift_gaunt_noble_champ"
@@ -65,6 +74,7 @@
       "subtitle": "Floors 7, 15, 23, 31, 39",
       "id": "vrift-7",
       "color": "#ff9c9c",
+      "color-dark": "#7a2e2e",
       "mice": [
         "rift_gaunt_dust",
         "rift_gaunt_dust_champ"
@@ -74,6 +84,7 @@
       "name": "Non-UU",
       "id": "vrift-eclipse",
       "color": "#ea9999",
+      "color-dark": "#7a2e2e",
       "mice": [
         "rift_gaunt_eclipse"
       ]
@@ -82,34 +93,66 @@
       "name": "Ultimate Umbra",
       "id": "vrift-eclipse-uu",
       "color": "#ff81d7",
+      "color-dark": "#7a2e62",
       "mice": [
         "rift_gaunt_monster",
         "rift_gaunt_final_eclipse"
       ]
     },
     {
-      "name": "Other",
+      "name": "Any Non-Eclipse Floor",
       "id": "vrift-other",
       "color": "#b6d7a8",
+      "color-dark": "#3f652f",
       "mice": [
         "rift_gaunt_generic_one",
-        "rift_gaunt_generic_three",
         "rift_gaunt_generic_two",
-        "rift_gaunt_prestige_low",
-        "rift_gaunt_prestige_med",
-        "rift_gaunt_prestige_high",
-        "rift_gaunt_rare"
+        "rift_gaunt_generic_three",
+        {
+          "mouse": "rift_gaunt_prestige_low",
+          "subcategory": "floor-9"
+        },
+        {
+          "mouse": "rift_gaunt_prestige_med",
+          "subcategory": "floor-17"
+        },
+        {
+          "mouse": "rift_gaunt_prestige_high",
+          "subcategory": "floor-25"
+        },
+        {
+          "mouse": "rift_gaunt_rare",
+          "subcategory": "gauntlet-string"
+        }
       ]
     },
     {
       "name": "Outside",
       "id": "vrift-outside",
       "color": "#d0def7",
+      "color-dark": "#2e497a",
       "mice": [
         "rift_gaunt_elixir_one",
         "rift_gaunt_elixir_two"
       ]
     }
   ],
-  "subcategories": []
+  "subcategories": [
+    {
+      "id": "floor-9",
+      "name": "Floor 9 and up"
+    },
+    {
+      "id": "floor-17",
+      "name": "Floor 17 and up"
+    },
+    {
+      "id": "floor-25",
+      "name": "Floor 25 and up"
+    },
+    {
+      "id": "gauntlet-string",
+      "name": "Gauntlet String Cheese"
+    }
+  ]
 }

@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Draconic Depths Map"
+  ],
   "categories": [
     {
       "name": "Ice",
       "id": "ice",
       "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
       "color": "#49ffff",
+      "color-dark": "#266464",
       "mice": [
         {
           "mouse": "frostnip_icebound",
@@ -45,6 +49,7 @@
       "id": "fire",
       "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
       "color": "#ffa920",
+      "color-dark": "#73572b",
       "mice": [
         {
           "mouse": "squire_sizzleton",
@@ -85,6 +90,7 @@
       "id": "poison",
       "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
       "color": "#7fff3c",
+      "color-dark": "#3b6426",
       "mice": [
         {
           "mouse": "goopus_dredgemore",
@@ -125,6 +131,7 @@
       "id": "elemental",
       "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
       "color": "#ff3cd7",
+      "color-dark": "#7a2e6a",
       "mice": [
         {
           "mouse": "tranquilia_protecticus",

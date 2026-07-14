@@ -1,0 +1,62 @@
+{
+  "names": [
+    "Queso Canyoneer Map"
+  ],
+  "categories": [
+    {
+      "name": "Queso River",
+      "id": "qc-queso-river",
+      "color": "#7ec8ff",
+      "mice": [
+        "pump_raider",
+        "tiny_saboteur",
+        "croquet_crusher",
+        "sleepy_merchant"
+      ],
+      "color-dark": "#0a5084"
+    },
+    {
+      "name": "Prickly Plains",
+      "id": "qc-prickly-plains",
+      "color": "#efc922",
+      "mice": [
+        "spice_seer",
+        "spice_collector",
+        "spice_farmer",
+        "spice_grower",
+        "spice_finder",
+        "spice_sovereign",
+        "spice_reaper",
+        "spice_raider"
+      ],
+      "color-dark": "#846d0a"
+    },
+    {
+      "name": "Cantera Quarry",
+      "id": "qc-cantera-quarry",
+      "color": "#5ae031",
+      "mice": [
+        "chip_chiseler",
+        "tiny_toppler",
+        "ore_chipper",
+        "rubble_rummager",
+        "nachore_golem",
+        "rubble_rouser",
+        "grampa_golem",
+        "fiery_crusher"
+      ],
+      "color-dark": "#2b7c12"
+    },
+    {
+      "name": "Bosses",
+      "id": "qc-bosses",
+      "color": "#ff842e",
+      "color-dark": "#843c0a",
+      "mice": [
+        "queso_river_boss",
+        "spice_sorcerer",
+        "nachous"
+      ]
+    }
+  ]
+}

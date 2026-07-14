@@ -1,9 +1,13 @@
 {
+  "names": [
+    "M1000 Solo Pursuit Map"
+  ],
   "categories": [
     {
       "name": "Folklore Forest",
       "id": "folklore-forest",
       "color": "#98dca4",
+      "color-dark": "#276833",
       "mice": [
         "architeuthulhu_of_the_abyss",
         "monstrous_midge",
@@ -14,6 +18,7 @@
       "name": "Rift",
       "id": "rift",
       "color": "#98ccdc",
+      "color-dark": "#2b6273",
       "mice": [
         "rift_hapless",
         "rift_big_bad_burroughs",
@@ -24,15 +29,17 @@
       "name": "Queso",
       "id": "queso",
       "color": "#ffa123",
+      "color-dark": "#73542b",
       "mice": [
         "geyser_eruption_dragon_wildfire",
         "queso_river_boss"
       ]
     },
     {
-      "name": "Other",
-      "id": "other",
+      "name": "Hollow Heights",
+      "id": "hollow-heights",
       "color": "#dc98bf",
+      "color-dark": "#7a2e5a",
       "mice": [
         "crystal_behemoth",
         "ful_mina_mountain_queen"

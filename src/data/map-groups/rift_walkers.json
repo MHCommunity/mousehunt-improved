@@ -1,27 +1,261 @@
 {
+  "names": [
+    "Rift Walker Map"
+  ],
   "categories": [
     {
       "name": "Gnawnia Rift",
-      "id": "gnawnia-rift",
-      "color": "#f7e8f9",
+      "id": "gnaw-gnawnia-rift-split",
+      "icon": "https://i.mouse.rip/upscaled/f6194210df4050447719913dfebdb6f5.png",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
       "mice": [
-        "rift_field",
-        "rift_bionic",
-        "rift_granite",
-        "rift_steel",
-        "rift_white",
-        "rift_grey",
-        "rift_brown",
-        "rift_lightning",
-        "rift_dwarf",
-        "rift_tiny",
+        {
+          "mouse": "rift_bionic",
+          "subcategory": "riftiago"
+        },
+        "rift_diamond",
+        {
+          "mouse": "rift_dwarf",
+          "subcategory": "riftiago"
+        },
+        "rift_gold",
+        {
+          "mouse": "rift_granite",
+          "subcategory": "riftiago"
+        },
+        {
+          "mouse": "rift_steel",
+          "subcategory": "riftiago"
+        },
         "rift_cowardly",
+        "rift_lightning",
         "rift_spotted",
         "rift_flying",
         "rift_mole",
-        "rift_diamond",
-        "rift_gold"
+        "rift_tiny",
+        "rift_brown",
+        "rift_grey",
+        "rift_white"
       ]
+    },
+    {
+      "name": "Gnawnia Rift Boss",
+      "id": "gnaw-gnawnia-rift-boss",
+      "icon": "/items/bait/large/a3aa774ed0ca1524d516320743c2d134.png",
+      "color": "#e69138",
+      "color-dark": "#7e480f",
+      "mice": [
+        "rift_field"
+      ]
+    },
+    {
+      "name": "Mist Level 0",
+      "id": "burr-mist-level-0-split",
+      "color": "#cfe2f3",
+      "color-dark": "#1c4972",
+      "mice": [
+        "rift_amplified_brown",
+        "rift_amplified_grey",
+        "rift_amplified_white",
+        "rift_automated_sentry",
+        "rift_bio_engineer",
+        "rift_cybernetic_specialist",
+        "rift_doktor",
+        "rift_evil_scientist",
+        "rift_surgeon_bot",
+        {
+          "mouse": "rift_portable_generator",
+          "subcategory": "magical-string"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 1-5",
+      "id": "burr-mist-level-1-5-split",
+      "color": "#b6d7a8",
+      "color-dark": "#3c612c",
+      "mice": [
+        "rift_count_vampire",
+        "rift_phase_zombie",
+        "rift_prototype",
+        "rift_tech_ravenous_zombie",
+        {
+          "mouse": "rift_clump",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_cyber_miner",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_itty_bitty_burroughs",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_rifterranian",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_mecha_tail",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_spore",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_toxikinetic",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 6-18",
+      "id": "burr-mist-level-6-18-split",
+      "color": "#ffd966",
+      "color-dark": "#84650a",
+      "mice": [
+        "rift_lycan",
+        "rift_revenant",
+        "rift_robat",
+        "rift_zombot_unipire",
+        {
+          "mouse": "rift_boulder_biter",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_lambent",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_master_exploder",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_pneumatic_dirt_displacement",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_rancid_bog_beast",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_toxic_avenger",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_radioactive_gold",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    },
+    {
+      "name": "Mist Level 19-20",
+      "id": "burr-mist-level-19-20-split",
+      "color": "#e06666",
+      "color-dark": "#761818",
+      "mice": [
+        "rift_monstrous_abomination",
+        {
+          "mouse": "rift_big_bad_burroughs",
+          "subcategory": "terre-ricotta"
+        },
+        {
+          "mouse": "rift_assassin_beast",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_plutonium_tentacle",
+          "subcategory": "polluted-parmesan"
+        },
+        {
+          "mouse": "rift_menace",
+          "subcategory": "polluted-parmesan"
+        }
+      ]
+    },
+    {
+      "name": "Crazed Clearing",
+      "subtitle": "Cherry Charm",
+      "id": "whis-crazed-clearing-split",
+      "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
+      "color": "#ff909d",
+      "color-dark": "#7a2e37",
+      "mice": [
+        "rift_cherry",
+        "rift_cyclops",
+        "rift_elven_princess",
+        "rift_foxy",
+        "rift_moosker",
+        "rift_sylvan",
+        "rift_wiggler",
+        "rift_eagle_owl"
+      ]
+    },
+    {
+      "name": "Gigantic Gnarled Tree",
+      "subtitle": "Gnarled Charm",
+      "id": "whis-gigantic-gnarled-tree-split",
+      "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
+      "color": "#d9f720",
+      "color-dark": "#586024",
+      "mice": [
+        "rift_bear",
+        "rift_centaur",
+        "rift_chameleon",
+        "rift_curious_chemist",
+        "rift_fairy",
+        "rift_frog",
+        "rift_nomad",
+        "rift_tiger"
+      ]
+    },
+    {
+      "name": "Deep Lagoon",
+      "subtitle": "Stagnant Charm",
+      "id": "whis-deep-lagoon-split",
+      "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
+      "color": "#91f5ff",
+      "color-dark": "#276268",
+      "mice": [
+        "rift_goblin",
+        "rift_harpy",
+        "rift_hydra",
+        "rift_shaman",
+        "rift_silth",
+        "rift_treant",
+        "rift_troll",
+        "rift_water_nymph"
+      ]
+    },
+    {
+      "name": "Other",
+      "id": "whis-misc-split",
+      "color": "#e9d2ff",
+      "color-dark": "#552e7a",
+      "mice": [
+        "rift_black_widow",
+        "rift_goldleaf"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "riftiago",
+      "name": "Riftiago"
+    },
+    {
+      "id": "magical-string",
+      "name": "Magical String"
+    },
+    {
+      "id": "terre-ricotta",
+      "name": "Terre Ricotta"
+    },
+    {
+      "id": "polluted-parmesan",
+      "name": "Polluted Parmesan"
     }
   ]
 }

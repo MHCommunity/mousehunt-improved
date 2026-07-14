@@ -1,0 +1,105 @@
+{
+  "names": [
+    "Muridae Protector Map"
+  ],
+  "categories": [
+    {
+      "name": "Fiery Warpath: Wave 1",
+      "id": "muri-warpath-wave-1",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#f1d16f",
+      "color-dark": "#6b5b29",
+      "mice": [
+        "desert_archer_weak",
+        "desert_scout_weak",
+        "desert_warrior_weak"
+      ]
+    },
+    {
+      "name": "Fiery Warpath: Wave 2",
+      "id": "muri-warpath-wave-2",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ea947b",
+      "color-dark": "#7a3f2e",
+      "mice": [
+        "desert_archer",
+        "desert_cavalry",
+        "desert_mage",
+        "desert_scout",
+        "desert_warrior"
+      ]
+    },
+    {
+      "name": "Fiery Warpath: Wave 3",
+      "id": "muri-warpath-wave-3",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ff835f",
+      "color-dark": "#7a3f2e",
+      "mice": [
+        "desert_archer_epic",
+        "desert_artillery",
+        "desert_cavalry_strong",
+        "desert_mage_strong",
+        "desert_scout_epic",
+        "desert_warrior_epic"
+      ]
+    },
+    {
+      "name": "Fiery Warpath: Wave 4",
+      "id": "muri-warpath-wave-4",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ffc8c8",
+      "color-dark": "#7a2e2e",
+      "mice": [
+        "desert_boss",
+        "desert_elite_gaurd"
+      ]
+    },
+    {
+      "name": "Fiery Warpath: Any Wave",
+      "id": "muri-warpath-any-wave",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#e9e0e0",
+      "color-dark": "#624646",
+      "mice": [
+        "desert_beast",
+        "desert_general",
+        "desert_supply"
+      ]
+    },
+    {
+      "name": "Muridae Market",
+      "id": "muri-market",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ffe599",
+      "color-dark": "#84650a",
+      "mice": [
+        "desert_nomad",
+        "desert_worker_mouse",
+        "glass_blower",
+        "limestone_brick_layer",
+        "market_guard",
+        "market_thief",
+        "coconut_lumberjack_mouse",
+        "falling_carpet",
+        "pie_thief",
+        "snake_charmer",
+        "spice_merchant",
+        {
+          "mouse": "blacksmith",
+          "subcategory": "artisan-charm"
+        },
+        {
+          "mouse": "mage_weaver",
+          "subcategory": "artisan-charm"
+        }
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "artisan-charm",
+      "name": "Artisan Charm"
+    }
+  ]
+}

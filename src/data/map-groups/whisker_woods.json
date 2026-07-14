@@ -1,0 +1,88 @@
+{
+  "names": [
+    "Whisker Woods Map"
+  ],
+  "categories": [
+    {
+      "name": "Standard Cheese",
+      "id": "ww-standard",
+      "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
+      "color": "#ffe599",
+      "color-dark": "#84650a",
+      "mice": [
+        "chameleon",
+        "elven_princess",
+        "frog",
+        "harpy",
+        "moosker",
+        "sylvan",
+        "treant",
+        "wicked_witch_of_whisker_woods",
+        "wiggler",
+        {
+          "mouse": "cyclops",
+          "subcategory": "sb"
+        },
+        {
+          "mouse": "goldleaf",
+          "subcategory": "sb"
+        },
+        {
+          "mouse": "black_widow",
+          "subcategory": "sb"
+        }
+      ]
+    },
+    {
+      "name": "Gnarled Cheese",
+      "subtitle": "Great Gnarled Tree / Lagoon",
+      "id": "ww-gnarled",
+      "icon": "https://i.mouse.rip/upscaled/2682bc940071eb73a0a26a231cca3a59.png",
+      "color": "#b6d7a8",
+      "color-dark": "#3c612c",
+      "mice": [
+        "centaur",
+        "curious_chemist",
+        "eagle_owl",
+        "fairy",
+        "foxy",
+        "goblin",
+        "nomad",
+        "tiger",
+        "troll",
+        "water_nymph"
+      ]
+    },
+    {
+      "name": "Wicked Gnarly Cheese",
+      "subtitle": "Lagoon",
+      "id": "ww-wicked-gnarly",
+      "icon": "https://i.mouse.rip/upscaled/1ffa990ec8e9f6842dda44191aa7326f.png",
+      "color": "#93c47d",
+      "color-dark": "#3d622c",
+      "mice": [
+        "hydra",
+        "silth"
+      ]
+    },
+    {
+      "name": "Cherry Cheese",
+      "subtitle": "Calm Clearing",
+      "id": "ww-cherry",
+      "icon": "https://i.mouse.rip/upscaled/dd8efaed19bf744fa1cc5d48dfb4e37b.png",
+      "color": "#ea9999",
+      "color-dark": "#761818",
+      "mice": [
+        "bear",
+        "cherry",
+        "shaman"
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "sb",
+      "name": "SUPER|brie+"
+    }
+  ]
+}

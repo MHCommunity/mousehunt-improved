@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Folklore Forest Grand Tour Map"
+  ],
   "categories": [
     {
       "name": "Foreword Farm",
       "id": "foreword-farm",
       "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
       "color": "#d7b18b",
+      "color-dark": "#7a542e",
       "mice": [
         {
           "mouse": "angry_aphid",
@@ -37,6 +41,7 @@
       "id": "prologue-pond",
       "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
       "color": "#fbc3fa",
+      "color-dark": "#7a2e79",
       "mice": [
         {
           "mouse": "covetous_coastguard",
@@ -73,247 +78,197 @@
       ]
     },
     {
-      "name": "Table of Contents",
-      "id": "table-of-contents",
+      "name": "Not Writing",
+      "id": "not-writing-split",
+      "icon": "/folklore_forest_upgrades/silver_quill_thumb.png",
+      "color": "#c6e2ff",
+      "color-dark": "#0a4684",
+      "mice": [
+        "matriarch_gander"
+      ]
+    },
+    {
+      "name": "Writing: SB+",
+      "id": "writing-sb-split",
       "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
-      "color": "#e9c390",
+      "color": "#ffe1ad",
+      "color-dark": "#84570a",
       "mice": [
-        {
-          "mouse": "little_miss_fluffet",
-          "subcategory": "writing-basic"
-        },
-        {
-          "mouse": "humphrey_dumphrey",
-          "subcategory": "writing-basic"
-        },
-        {
-          "mouse": "little_bo_squeak",
-          "subcategory": "writing-basic"
-        },
-        {
-          "mouse": "matriarch_gander",
-          "subcategory": "sb"
-        },
-        {
-          "mouse": "pinkielina",
-          "subcategory": "1dd"
-        },
-        {
-          "mouse": "fibbocchio",
-          "subcategory": "1dd"
-        },
-        {
-          "mouse": "princess_and_the_olive",
-          "subcategory": "1dd"
-        },
-        {
-          "mouse": "greenbeard",
-          "subcategory": "2dd"
-        },
-        {
-          "mouse": "flamboyant_flautist",
-          "subcategory": "2dd"
-        },
-        {
-          "mouse": "ice_regent",
-          "subcategory": "2dd"
-        },
-        {
-          "mouse": "bitter_grammarian",
-          "subcategory": "fdd"
-        },
-        {
-          "mouse": "mythweaver",
-          "subcategory": "fdd"
-        }
+        "humphrey_dumphrey",
+        "little_bo_squeak",
+        "little_miss_fluffet"
       ]
     },
     {
-      "name": "Bountiful Beanstalk",
-      "id": "bountiful-beanstalk",
-      "icon": "/items/stats/transparent_thumb/71d2265100257e1c8d7de308ea02bfd7.png",
+      "name": "First Draft Derby",
+      "id": "first-draft-derby-split",
+      "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
+      "color": "#b18457",
+      "color-dark": "#61472d",
+      "mice": [
+        "fibbocchio",
+        "pinkielina",
+        "princess_and_the_olive"
+      ]
+    },
+    {
+      "name": "Second Draft Derby",
+      "id": "second-draft-derby-split",
+      "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
+      "color": "#ada392",
+      "color-dark": "#5c4c31",
+      "mice": [
+        "flamboyant_flautist",
+        "greenbeard",
+        "ice_regent"
+      ]
+    },
+    {
+      "name": "Final Draft Derby",
+      "id": "final-draft-derby-split",
+      "color": "#d0accc",
+      "color-dark": "#5c3158",
+      "mice": [
+        "bitter_grammarian",
+        "mythweaver"
+      ]
+    },
+    {
+      "name": "Beanstalk",
+      "id": "boun-beanstalk-split",
       "color": "#45890e",
+      "color-dark": "#426426",
       "mice": [
-        {
-          "mouse": "vinneus_stalkhome",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "cell_sweeper",
-          "subcategory": "dungeon-beanster"
-        },
-        {
-          "mouse": "jovial_jailor",
-          "subcategory": "dungeon-beanster"
-        },
-        {
-          "mouse": "lethargic_guard",
-          "subcategory": "dungeon-beanster"
-        },
-        {
-          "mouse": "gate_keeper",
-          "subcategory": "dungeon-lavish"
-        },
-        {
-          "mouse": "key_master",
-          "subcategory": "dungeon-lavish"
-        },
-        {
-          "mouse": "wrathful_warden",
-          "subcategory": "dungeon-royal"
-        },
-        {
-          "mouse": "dungeon_master",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "obstinate_oboist",
-          "subcategory": "ballroom-beanster"
-        },
-        {
-          "mouse": "peevish_piccoloist",
-          "subcategory": "ballroom-beanster"
-        },
-        {
-          "mouse": "sultry_saxophonist",
-          "subcategory": "ballroom-beanster"
-        },
-        {
-          "mouse": "violent_violinist",
-          "subcategory": "ballroom-lavish"
-        },
-        {
-          "mouse": "chafed_cellist",
-          "subcategory": "ballroom-lavish"
-        },
-        {
-          "mouse": "treacherous_tubaist",
-          "subcategory": "ballroom-royal"
-        },
-        {
-          "mouse": "malevolent_maestro",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "vindictive_viscount",
-          "subcategory": "greathall-beanster"
-        },
-        {
-          "mouse": "baroness_von_bean",
-          "subcategory": "greathall-beanster"
-        },
-        {
-          "mouse": "cagey_countess",
-          "subcategory": "greathall-beanster"
-        },
-        {
-          "mouse": "dastardly_duchess",
-          "subcategory": "greathall-lavish"
-        },
-        {
-          "mouse": "malicious_marquis",
-          "subcategory": "greathall-lavish"
-        },
-        {
-          "mouse": "pernicious_prince",
-          "subcategory": "greathall-royal"
-        },
-        {
-          "mouse": "mythical_giant_king",
-          "subcategory": "boss"
-        }
+        "vinneus_stalkhome"
       ]
     },
     {
-      "name": "School of Sorcery",
-      "id": "school-of-sorcery",
-      "icon": "/items/stats/transparent_thumb/759e4b2a686d90537c55c435f6a23c82.png",
-      "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
+      "name": "Dungeon",
+      "id": "boun-dungeon-split",
+      "color": "#919ac7",
+      "color-dark": "#394270",
       "mice": [
-        {
-          "mouse": "arcana_overachiever",
-          "subcategory": "arcane-arts-aac"
-        },
-        {
-          "mouse": "invisible_fashionista",
-          "subcategory": "arcane-arts-aac"
-        },
-        {
-          "mouse": "enchanted_chess_club_champion",
-          "subcategory": "arcane-arts-aac"
-        },
-        {
-          "mouse": "illustrious_illusionist",
-          "subcategory": "arcane-arts-mmc"
-        },
-        {
-          "mouse": "featherlight",
-          "subcategory": "arcane-arts-mmc"
-        },
-        {
-          "mouse": "constructively_critical_artist",
-          "subcategory": "arcane-arts-mmc"
-        },
-        {
-          "mouse": "arcane_sorcerer",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "classroom_keener",
-          "subcategory": "shadow-sciences-aac"
-        },
-        {
-          "mouse": "audacious_alchemist",
-          "subcategory": "shadow-sciences-aac"
-        },
-        {
-          "mouse": "prestigious_prestidigitator",
-          "subcategory": "shadow-sciences-aac"
-        },
-        {
-          "mouse": "classroom_disrupter",
-          "subcategory": "shadow-sciences-mmc"
-        },
-        {
-          "mouse": "teleporting_truant",
-          "subcategory": "shadow-sciences-mmc"
-        },
-        {
-          "mouse": "magical_multitasker",
-          "subcategory": "shadow-sciences-mmc"
-        },
-        {
-          "mouse": "shadow_sorcerer",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "sleep_starved_scholar",
-          "subcategory": "final-exam-arcane-standard"
-        },
-        {
-          "mouse": "class_clown",
-          "subcategory": "final-exam-arcane-aac"
-        },
-        {
-          "mouse": "tyrannical_thaumaturge",
-          "subcategory": "final-exam-arcane-mmc"
-        },
-        {
-          "mouse": "cheat_sheet_conjurer",
-          "subcategory": "final-exam-shadow-standard"
-        },
-        {
-          "mouse": "celestial_summoner",
-          "subcategory": "final-exam-shadow-aac"
-        },
-        {
-          "mouse": "data_devourer",
-          "subcategory": "final-exam-shadow-mmc"
-        },
-        {
-          "mouse": "mythical_master_sorcerer",
-          "subcategory": "boss"
-        }
+        "cell_sweeper",
+        "dungeon_master",
+        "gate_keeper",
+        "jovial_jailor",
+        "key_master",
+        "lethargic_guard",
+        "wrathful_warden"
+      ]
+    },
+    {
+      "name": "Ballroom",
+      "id": "boun-ballroom-split",
+      "color": "#e0b1b2",
+      "color-dark": "#783031",
+      "mice": [
+        "chafed_cellist",
+        "malevolent_maestro",
+        "obstinate_oboist",
+        "peevish_piccoloist",
+        "sultry_saxophonist",
+        "treacherous_tubaist",
+        "violent_violinist"
+      ]
+    },
+    {
+      "name": "Great Hall",
+      "id": "boun-great-hall-split",
+      "color": "#d68d0a",
+      "color-dark": "#6f562a",
+      "mice": [
+        "baroness_von_bean",
+        "cagey_countess",
+        "dastardly_duchess",
+        "malicious_marquis",
+        "mythical_giant_king",
+        "pernicious_prince",
+        "vindictive_viscount"
+      ]
+    },
+    {
+      "name": "Arcane SB",
+      "id": "scho-arcane-sb-split",
+      "icon": "/powertypes/arcane.png",
+      "color": "#16dfad",
+      "color-dark": "#266454",
+      "mice": [
+        "sleep_starved_scholar"
+      ]
+    },
+    {
+      "name": "Arcane AAC",
+      "id": "scho-arcane-aac-split",
+      "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
+      "color": "#16dfad",
+      "color-dark": "#266454",
+      "mice": [
+        "arcana_overachiever",
+        "class_clown",
+        "enchanted_chess_club_champion",
+        "invisible_fashionista"
+      ]
+    },
+    {
+      "name": "Arcane MMC",
+      "id": "scho-arcane-mmc-split",
+      "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
+      "color": "#16dfad",
+      "color-dark": "#266454",
+      "mice": [
+        "constructively_critical_artist",
+        "featherlight",
+        "illustrious_illusionist",
+        "tyrannical_thaumaturge"
+      ]
+    },
+    {
+      "name": "Shadow SB",
+      "id": "scho-shadow-sb-split",
+      "icon": "/powertypes/shadow.png",
+      "color": "#c7abde",
+      "color-dark": "#582f79",
+      "mice": [
+        "cheat_sheet_conjurer"
+      ]
+    },
+    {
+      "name": "Shadow AAC",
+      "id": "scho-shadow-aac-split",
+      "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
+      "color": "#c7abde",
+      "color-dark": "#582f79",
+      "mice": [
+        "audacious_alchemist",
+        "celestial_summoner",
+        "classroom_keener",
+        "prestigious_prestidigitator"
+      ]
+    },
+    {
+      "name": "Shadow MMC",
+      "id": "scho-shadow-mmc-split",
+      "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
+      "color": "#c7abde",
+      "color-dark": "#582f79",
+      "mice": [
+        "classroom_disrupter",
+        "data_devourer",
+        "magical_multitasker",
+        "teleporting_truant"
+      ]
+    },
+    {
+      "name": "Boss",
+      "id": "scho-boss-split",
+      "icon": "/ui/hud/school_of_sorcery/exam_icon.png",
+      "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
+      "color-dark": "#4a4a4a",
+      "mice": [
+        "arcane_sorcerer",
+        "mythical_master_sorcerer",
+        "shadow_sorcerer"
       ]
     },
     {
@@ -322,6 +277,7 @@
       "id": "ice",
       "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
       "color": "#49ffff",
+      "color-dark": "#266464",
       "mice": [
         {
           "mouse": "rimeus_polarblast",
@@ -351,6 +307,7 @@
       "id": "fire",
       "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
       "color": "#ffa920",
+      "color-dark": "#73572b",
       "mice": [
         {
           "mouse": "crematio_scorchworth",
@@ -380,6 +337,7 @@
       "id": "poison",
       "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
       "color": "#7fff3c",
+      "color-dark": "#3b6426",
       "mice": [
         {
           "mouse": "malignus_vilestrom",
@@ -409,6 +367,7 @@
       "id": "elemental",
       "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
       "color": "#ff3cd7",
+      "color-dark": "#7a2e6a",
       "mice": [
         {
           "mouse": "absolutia_harmonius",
@@ -433,115 +392,111 @@
       ]
     },
     {
-      "name": "Afterword Acres",
-      "id": "afterword-acres",
-      "icon": "/items/stats/transparent_thumb/de0e27996c34996321e8896dc58d0075.png",
-      "color": "#fda6fd",
+      "name": "Afterword Acres: Metaphor Manchego",
+      "id": "afterword-acres-manchego-split",
+      "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
+      "color": "#ffbb45",
+      "color-dark": "#84570a",
       "mice": [
-        {
-          "mouse": "sardonic_sapling",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "sour_sprout",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "twisted_twig",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "brash_birch",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "maniacal_maple",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "wailing_willow",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "furious_fir",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "heinous_hemlock",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "rampaging_redwood",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "blight_incarnate",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "herbicidal_maniac",
-          "subcategory": "boss"
-        }
+        "sardonic_sapling",
+        "sour_sprout",
+        "twisted_twig"
       ]
     },
     {
-      "name": "Epilogue Falls",
-      "id": "epilogue-falls",
-      "icon": "/items/stats/transparent_thumb/82d40a70f38d00379ee5242e87b823d1.png",
-      "color": "#3ddad0",
+      "name": "Afterword Acres: Allegory Anari",
+      "id": "afterword-acres-anari-split",
+      "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
+      "color": "#ffff44",
+      "color-dark": "#84840a",
       "mice": [
-        {
-          "mouse": "anguished_anemone",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "menacing_medusozoa",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "belligerent_berghia",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "loutish_loach",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "pesky_pleco",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "shifty_shrimp",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "killer_krill",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "chaotic_chiton",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "muscular_mussel",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "falls_guardian",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "grotto_elder",
-          "subcategory": "boss"
-        }
+        "brash_birch",
+        "maniacal_maple",
+        "wailing_willow"
+      ]
+    },
+    {
+      "name": "Afterword Acres: Sirene",
+      "id": "afterword-acres-sirene-split",
+      "color": "#b2ffff",
+      "color-dark": "#0a8484",
+      "mice": [
+        "blight_incarnate",
+        "furious_fir",
+        "heinous_hemlock",
+        "rampaging_redwood"
+      ]
+    },
+    {
+      "name": "Herbicidal Maniac",
+      "id": "herbicidal-maniac-split",
+      "color": "#f2b2eb",
+      "color-dark": "#7a146f",
+      "mice": [
+        "herbicidal_maniac"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Metaphor Manchego",
+      "id": "epilogue-falls-manchego-split",
+      "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
+      "color": "#ffbb45",
+      "color-dark": "#84570a",
+      "mice": [
+        "anguished_anemone",
+        "belligerent_berghia",
+        "menacing_medusozoa"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Allegory Anari",
+      "id": "epilogue-falls-anari-split",
+      "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
+      "color": "#ffff44",
+      "color-dark": "#84840a",
+      "mice": [
+        "loutish_loach",
+        "pesky_pleco",
+        "shifty_shrimp"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Symbolic Sirene",
+      "id": "epilogue-falls-sirene-split",
+      "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
+      "color": "#b2ffff",
+      "color-dark": "#0a8484",
+      "mice": [
+        "chaotic_chiton",
+        "killer_krill",
+        "muscular_mussel"
+      ]
+    },
+    {
+      "name": "Waterfall",
+      "id": "waterfall-split",
+      "color": "#abfdf4",
+      "color-dark": "#0a8476",
+      "mice": [
+        "falls_guardian"
+      ]
+    },
+    {
+      "name": "Hidden Grotto",
+      "id": "hidden-grotto-split",
+      "color": "#8fbc8f",
+      "color-dark": "#315c31",
+      "mice": [
+        "grotto_elder"
       ]
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#FFE1A4",
       "subtitle": "Adventure",
       "id": "adventure",
       "icon": "/ui/hud/conclusion_cliffs/icons/Adventure.png",
+      "color": "#FFE1A4",
+      "color-dark": "#6f582a",
       "mice": [
         {
           "mouse": "indigo_montana",
@@ -571,10 +526,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#C6FFCC",
       "subtitle": "Comedy",
       "id": "comedy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Comedy.png",
+      "color": "#C6FFCC",
+      "color-dark": "#27682e",
       "mice": [
         {
           "mouse": "lady_breakwell",
@@ -604,10 +560,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#FFC7C8",
       "subtitle": "Romance",
       "id": "romance",
       "icon": "/ui/hud/conclusion_cliffs/icons/Romance.png",
+      "color": "#FFC7C8",
+      "color-dark": "#7a2e30",
       "mice": [
         {
           "mouse": "lisa_doolots",
@@ -637,10 +594,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#F4D5FF",
       "subtitle": "Suspense",
       "id": "suspense",
       "icon": "/ui/hud/conclusion_cliffs/icons/Suspense.png",
+      "color": "#F4D5FF",
+      "color-dark": "#662e7a",
       "mice": [
         {
           "mouse": "nancy_sketched",
@@ -670,10 +628,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#C9FAFF",
       "subtitle": "Tragedy",
       "id": "tragedy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Tragedy.png",
+      "color": "#C9FAFF",
+      "color-dark": "#276268",
       "mice": [
         {
           "mouse": "billy_lowfellow",
@@ -703,10 +662,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
       "subtitle": "Fantasy",
       "id": "fantasy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Fantasy.png",
+      "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
+      "color-dark": "#4a4a4a",
       "mice": [
         {
           "mouse": "petra_pot",
@@ -736,10 +696,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#aad23a",
       "subtitle": "Boss",
       "id": "cc-boss",
       "icon": "/items/convertibles/transparent_thumb/0f0b6c8dd41974223ced5f8bfd4dece8.png",
+      "color": "#8a6bd6",
+      "color-dark": "#3d2e60",
       "mice": [
         "adventure_weaver",
         "comedy_weaver",
@@ -752,16 +713,8 @@
   ],
   "subcategories": [
     {
-      "id": "standard",
-      "name": "Standard"
-    },
-    {
       "id": "sb",
-      "name": "SB"
-    },
-    {
-      "id": "boss",
-      "name": "Boss"
+      "name": "Super|brie+"
     },
     {
       "id": "pest",
@@ -788,98 +741,6 @@
       "name": "Stormy Clamembert"
     },
     {
-      "id": "writing-basic",
-      "name": "Writing Basic"
-    },
-    {
-      "id": "1dd",
-      "name": "1DD"
-    },
-    {
-      "id": "2dd",
-      "name": "2DD"
-    },
-    {
-      "id": "fdd",
-      "name": "FDD"
-    },
-    {
-      "id": "dungeon-beanster",
-      "name": "Dungeon Beanster"
-    },
-    {
-      "id": "dungeon-lavish",
-      "name": "Dungeon Lavish"
-    },
-    {
-      "id": "dungeon-royal",
-      "name": "Dungeon Royal"
-    },
-    {
-      "id": "ballroom-beanster",
-      "name": "Ballroom Beanster"
-    },
-    {
-      "id": "ballroom-lavish",
-      "name": "Ballroom Lavish"
-    },
-    {
-      "id": "ballroom-royal",
-      "name": "Ballroom Royal"
-    },
-    {
-      "id": "greathall-beanster",
-      "name": "Great Hall Beanster"
-    },
-    {
-      "id": "greathall-lavish",
-      "name": "Great Hall Lavish"
-    },
-    {
-      "id": "greathall-royal",
-      "name": "Great Hall Royal"
-    },
-    {
-      "id": "arcane-arts-aac",
-      "name": "Arcane AAC"
-    },
-    {
-      "id": "arcane-arts-mmc",
-      "name": "Arcane MMC"
-    },
-    {
-      "id": "shadow-sciences-aac",
-      "name": "Shadow AAC"
-    },
-    {
-      "id": "shadow-sciences-mmc",
-      "name": "Shadow MMC"
-    },
-    {
-      "id": "final-exam-arcane-standard",
-      "name": "FE Arcane Standard"
-    },
-    {
-      "id": "final-exam-arcane-aac",
-      "name": "FE Arcane AAC"
-    },
-    {
-      "id": "final-exam-arcane-mmc",
-      "name": "FE Arcane MMC"
-    },
-    {
-      "id": "final-exam-shadow-standard",
-      "name": "FE Shadow Standard"
-    },
-    {
-      "id": "final-exam-shadow-aac",
-      "name": "FE Shadow AAC"
-    },
-    {
-      "id": "final-exam-shadow-mmc",
-      "name": "FE Shadow MMC"
-    },
-    {
       "id": "cavern-0-750-loot",
       "name": "Cavern 0-750 Loot"
     },
@@ -892,28 +753,16 @@
       "name": "Cavern 750+ Loot"
     },
     {
-      "id": "mmc",
-      "name": "MMC"
-    },
-    {
-      "id": "aac",
-      "name": "AAC"
-    },
-    {
-      "id": "ssc",
-      "name": "SSC"
-    },
-    {
       "id": "pp",
-      "name": "PP"
+      "name": "Plotting Paneer"
     },
     {
       "id": "ss",
-      "name": "SS"
+      "name": "Storied Saga"
     },
     {
       "id": "dem",
-      "name": "DEM"
+      "name": "Deus Ex Maconnais"
     }
   ]
 }

@@ -1,9 +1,13 @@
 {
+  "names": [
+    "Warpath Map"
+  ],
   "categories": [
     {
       "name": "Wave 1",
       "id": "warpath-wave-1",
       "color": "#f1d16f",
+      "color-dark": "#6b5b29",
       "mice": [
         "desert_scout_weak",
         "desert_warrior_weak",
@@ -14,6 +18,7 @@
       "name": "Wave 2",
       "id": "warpath-wave-2",
       "color": "#ea947b",
+      "color-dark": "#7a3f2e",
       "mice": [
         "desert_mage",
         "desert_archer",
@@ -26,6 +31,7 @@
       "name": "Wave 3",
       "id": "warpath-wave-3",
       "color": "#ff835f",
+      "color-dark": "#7a3f2e",
       "mice": [
         "desert_artillery",
         "desert_mage_strong",
@@ -39,15 +45,17 @@
       "name": "Wave 4",
       "id": "warpath-wave-4",
       "color": "#ffc8c8",
+      "color-dark": "#7a2e2e",
       "mice": [
         "desert_elite_gaurd",
         "desert_boss"
       ]
     },
     {
-      "name": "Any wave",
+      "name": "Any Wave",
       "id": "any-wave",
       "color": "#e9e0e0",
+      "color-dark": "#624646",
       "mice": [
         "desert_beast",
         "desert_supply",

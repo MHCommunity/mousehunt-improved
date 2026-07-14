@@ -1,0 +1,57 @@
+{
+  "names": [
+    "Moussu Picchu Map"
+  ],
+  "categories": [
+    {
+      "name": "Rainy",
+      "id": "mp-rain",
+      "icon": "/items/bait/large/5c49fbcfb6ce7cb5c3a9bb4254e27fce.png",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        "monsoon_maker",
+        "rainmancer",
+        "storm_summoner"
+      ]
+    },
+    {
+      "name": "Windy",
+      "id": "mp-wind",
+      "icon": "/items/bait/large/07d17414bb8d206b6f1481e08967890e.png",
+      "color": "#a0dcff",
+      "color-dark": "#2c6268",
+      "mice": [
+        "cycloness",
+        "fluttering_flutist",
+        "wind_warrior"
+      ]
+    },
+    {
+      "name": "Stormy",
+      "id": "mp-storm",
+      "icon": "/items/bait/large/74a0f97c45fe2f408d00c94f4dce1c88.png",
+      "color": "#fce5cd",
+      "color-dark": "#7a4a21",
+      "mice": [
+        "ful_mina_mountain_queen",
+        "thundering_watcher",
+        "thunderlord"
+      ]
+    },
+    {
+      "name": "Potion Brewers",
+      "id": "mp-moussu-picchu",
+      "icon": "/items/bait/large/9f8190c4aa5465cf36eddbc11e8f49e7.png",
+      "color": "#e3b5e8",
+      "color-dark": "#86388c",
+      "mice": [
+        "cloud_collector",
+        "homeopathic_apothecary",
+        "rain_purifier",
+        "wind_gatherer",
+        "wind_harvester"
+      ]
+    }
+  ]
+}

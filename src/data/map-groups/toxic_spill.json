@@ -1,0 +1,75 @@
+{
+  "names": [
+    "Toxic Spill Map (Hero)",
+    "Toxic Spill Map (Lord/Lady)",
+    "Toxic Spill Map (Count/Countess)",
+    "Toxic Spill Map (Duke/Duchess)",
+    "Toxic Spill Map (Grand Duke/Duchess)",
+    "Toxic Spill Map (Archduke/Archduchess)"
+  ],
+  "categories": [
+    {
+      "name": "Low-tier Mice",
+      "id": "ts-low-pollution",
+      "color": "#d9ead3",
+      "color-dark": "#3b612e",
+      "mice": [
+        "swamp_runner",
+        "sludge",
+        "spore",
+        "monster_tail",
+        "mutated_siblings",
+        "bog_beast"
+      ]
+    },
+    {
+      "name": "Mid-tier Mice",
+      "id": "ts-mid-pollution",
+      "color": "#b6d7a8",
+      "color-dark": "#3d622d",
+      "mice": [
+        "plague_hag",
+        "sludge_soaker",
+        "gelatinous_octahedron",
+        "scrap_metal_monster",
+        "tentacle",
+        "telekinetic_mutant",
+        "biohazard",
+        "mutant_ninja"
+      ]
+    },
+    {
+      "name": "High-tier Mice",
+      "id": "ts-high-pollution",
+      "color": "#a2c4c9",
+      "color-dark": "#32575d",
+      "mice": [
+        "toxic_warrior",
+        "slimefist",
+        "outbreak_assassin",
+        "mutant_mongrel",
+        "sludge_swimmer"
+      ]
+    },
+    {
+      "name": "All-tier Mice",
+      "id": "ts-any-pollution",
+      "color": "#c9daf8",
+      "color-dark": "#1d3c72",
+      "mice": [
+        "hazmat",
+        "lab_technician"
+      ]
+    },
+    {
+      "name": "Bosses",
+      "id": "ts-highest-pollution",
+      "color": "#fde671",
+      "color-dark": "#72641d",
+      "mice": [
+        "menace",
+        "behemoth"
+      ]
+    }
+  ]
+}

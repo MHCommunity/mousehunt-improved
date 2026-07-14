@@ -1,0 +1,64 @@
+{
+  "names": [
+    "Gnawnia Rift Map"
+  ],
+  "categories": [
+    {
+      "name": "Gnawnia Rift",
+      "id": "gr-gnawnia-rift",
+      "color": "#cfe2f3",
+      "color-dark": "#1c4972",
+      "mice": [
+        "rift_cowardly",
+        "rift_lightning",
+        "rift_spotted",
+        "rift_brown",
+        "rift_grey",
+        "rift_white",
+        "rift_flying",
+        "rift_mole",
+        "rift_tiny",
+        "rift_diamond",
+        "rift_gold"
+      ]
+    },
+    {
+      "name": "Specialty Cheese",
+      "id": "gr-specialty-cheese",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        {
+          "mouse": "rift_bionic",
+          "subcategory": "riftiago"
+        },
+        {
+          "mouse": "rift_dwarf",
+          "subcategory": "riftiago"
+        },
+        {
+          "mouse": "rift_granite",
+          "subcategory": "riftiago"
+        },
+        {
+          "mouse": "rift_steel",
+          "subcategory": "riftiago"
+        },
+        {
+          "mouse": "rift_field",
+          "subcategory": "resonator"
+        }
+      ]
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "riftiago",
+      "name": "Riftiago"
+    },
+    {
+      "id": "resonator",
+      "name": "Resonator Cheese"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "names": [
+    "Deep Sea Diving Map"
+  ],
+  "categories": [
+    {
+      "name": "Lost Ruins",
+      "id": "sc-lost-ruins",
+      "color": "#eaf2d3",
+      "color-dark": "#4a5d23",
+      "mice": [
+        "angler",
+        "mershark",
+        "octomermaid",
+        "old_one",
+        "urchin_king"
+      ]
+    },
+    {
+      "name": "Coral Castle",
+      "id": "sc-coral-castle",
+      "color": "#a0dcff",
+      "color-dark": "#2c6268",
+      "mice": [
+        "coral_dragon",
+        "coral_gardener",
+        "coral_guard",
+        "coral_queen",
+        "turret_guard"
+      ]
+    },
+    {
+      "name": "Haunted Shipwreck",
+      "id": "sc-haunted-shipwreck",
+      "color": "#fce5cd",
+      "color-dark": "#7a4a21",
+      "mice": [
+        "deep_sea_diver",
+        "deranged_deckhand",
+        "sunken_banshee",
+        "swashblade"
+      ]
+    },
+    {
+      "name": "Magma Flow",
+      "id": "sc-magma-flow",
+      "color": "#e3b5e8",
+      "color-dark": "#86388c",
+      "mice": [
+        "betta",
+        "eel",
+        "treasure_keeper"
+      ]
+    },
+    {
+      "name": "Deep Oxygen Stream",
+      "id": "sc-deep-oxygen-stream",
+      "color": "#b6d7a8",
+      "color-dark": "#38761d",
+      "mice": [
+        "jellyfish",
+        "koimaid"
+      ]
+    },
+    {
+      "name": "Lair of the Ancients",
+      "id": "sc-lair-of-the-ancients",
+      "color": "#ffe599",
+      "color-dark": "#7f6000",
+      "mice": [
+        "ancient_of_the_deep",
+        "tritus"
+      ]
+    },
+    {
+      "name": "Sunken Treasure",
+      "id": "sc-sunken-treasure",
+      "color": "#ea9999",
+      "color-dark": "#85200c",
+      "mice": [
+        "pearl",
+        "treasure_hoarder"
+      ]
+    },
+    {
+      "name": "Oxygen Stream",
+      "id": "sc-oxygen-stream",
+      "color": "#a4c2f4",
+      "color-dark": "#1c4587",
+      "mice": [
+        "stingray"
+      ]
+    },
+    {
+      "name": "Shipwreck",
+      "id": "sc-shipwreck",
+      "color": "#d5a6bd",
+      "color-dark": "#741b47",
+      "mice": [
+        "pirate_anchor"
+      ]
+    },
+    {
+      "name": "Murky Depths",
+      "id": "sc-murky-depths",
+      "color": "#b4a7d6",
+      "color-dark": "#351c75",
+      "mice": [
+        "angelfish"
+      ]
+    },
+    {
+      "name": "Pearl Patch",
+      "id": "sc-pearl-patch",
+      "color": "#f9cb9c",
+      "color-dark": "#9c5a1e",
+      "mice": [
+        "pearl_diver"
+      ]
+    },
+    {
+      "name": "Carnivore Cove",
+      "id": "sc-carnivore-cove",
+      "color": "#9fc5e8",
+      "color-dark": "#0b5394",
+      "mice": [
+        "carnivore"
+      ]
+    },
+    {
+      "name": "Monster Trench",
+      "id": "sc-monster-trench",
+      "color": "#cfb9a5",
+      "color-dark": "#9d5c6e",
+      "mice": [
+        "serpent_monster"
+      ]
+    }
+  ]
+}

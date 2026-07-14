@@ -1,147 +1,140 @@
 {
+  "names": [
+    "Folklore Forest Finale Map"
+  ],
   "categories": [
     {
-      "name": "Afterword Acres",
-      "id": "afterword-acres",
-      "icon": "/items/stats/transparent_thumb/de0e27996c34996321e8896dc58d0075.png",
-      "color": "#fda6fd",
+      "name": "Afterword Acres: Standard",
+      "id": "afterword-acres-standard-split",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ffe1ad",
+      "color-dark": "#84570a",
       "mice": [
-        {
-          "mouse": "bark_burner",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "sap_stealer",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "branch_breaker",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "moss_comber",
-          "subcategory": "sb"
-        },
-        {
-          "mouse": "sardonic_sapling",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "sour_sprout",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "twisted_twig",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "brash_birch",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "maniacal_maple",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "wailing_willow",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "furious_fir",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "heinous_hemlock",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "rampaging_redwood",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "blight_incarnate",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "herbicidal_maniac",
-          "subcategory": "boss"
-        }
+        "bark_burner",
+        "branch_breaker",
+        "moss_comber",
+        "sap_stealer"
       ]
     },
     {
-      "name": "Epilogue Falls",
-      "id": "epilogue-falls",
-      "icon": "/items/stats/transparent_thumb/82d40a70f38d00379ee5242e87b823d1.png",
-      "color": "#3ddad0",
+      "name": "Afterword Acres: Metaphor Manchego",
+      "id": "afterword-acres-manchego-split",
+      "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
+      "color": "#ffbb45",
+      "color-dark": "#84570a",
       "mice": [
-        {
-          "mouse": "crusty_crab",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "abrasive_abalone",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "scornful_scallop",
-          "subcategory": "standard"
-        },
-        {
-          "mouse": "barbaric_barnacle",
-          "subcategory": "sb"
-        },
-        {
-          "mouse": "anguished_anemone",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "menacing_medusozoa",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "belligerent_berghia",
-          "subcategory": "mmc"
-        },
-        {
-          "mouse": "loutish_loach",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "pesky_pleco",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "shifty_shrimp",
-          "subcategory": "aac"
-        },
-        {
-          "mouse": "killer_krill",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "chaotic_chiton",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "muscular_mussel",
-          "subcategory": "ssc"
-        },
-        {
-          "mouse": "falls_guardian",
-          "subcategory": "boss"
-        },
-        {
-          "mouse": "grotto_elder",
-          "subcategory": "boss"
-        }
+        "sardonic_sapling",
+        "sour_sprout",
+        "twisted_twig"
+      ]
+    },
+    {
+      "name": "Afterword Acres: Allegory Anari",
+      "id": "afterword-acres-anari-split",
+      "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
+      "color": "#ffff44",
+      "color-dark": "#84840a",
+      "mice": [
+        "brash_birch",
+        "maniacal_maple",
+        "wailing_willow"
+      ]
+    },
+    {
+      "name": "Afterword Acres: Sirene",
+      "id": "afterword-acres-sirene-split",
+      "color": "#b2ffff",
+      "color-dark": "#0a8484",
+      "mice": [
+        "blight_incarnate",
+        "furious_fir",
+        "heinous_hemlock",
+        "rampaging_redwood"
+      ]
+    },
+    {
+      "name": "Herbicidal Maniac",
+      "id": "herbicidal-maniac-split",
+      "color": "#f2b2eb",
+      "color-dark": "#7a146f",
+      "mice": [
+        "herbicidal_maniac"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Standard",
+      "id": "epilogue-falls-standard-split",
+      "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
+      "color": "#ffe1ad",
+      "color-dark": "#84570a",
+      "mice": [
+        "abrasive_abalone",
+        "barbaric_barnacle",
+        "crusty_crab",
+        "scornful_scallop"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Metaphor Manchego",
+      "id": "epilogue-falls-manchego-split",
+      "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
+      "color": "#ffbb45",
+      "color-dark": "#84570a",
+      "mice": [
+        "anguished_anemone",
+        "belligerent_berghia",
+        "menacing_medusozoa"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Allegory Anari",
+      "id": "epilogue-falls-anari-split",
+      "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
+      "color": "#ffff44",
+      "color-dark": "#84840a",
+      "mice": [
+        "loutish_loach",
+        "pesky_pleco",
+        "shifty_shrimp"
+      ]
+    },
+    {
+      "name": "Epilogue Falls: Symbolic Sirene",
+      "id": "epilogue-falls-sirene-split",
+      "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
+      "color": "#b2ffff",
+      "color-dark": "#0a8484",
+      "mice": [
+        "chaotic_chiton",
+        "killer_krill",
+        "muscular_mussel"
+      ]
+    },
+    {
+      "name": "Waterfall",
+      "id": "waterfall-split",
+      "color": "#abfdf4",
+      "color-dark": "#0a8476",
+      "mice": [
+        "falls_guardian"
+      ]
+    },
+    {
+      "name": "Hidden Grotto",
+      "id": "hidden-grotto-split",
+      "color": "#8fbc8f",
+      "color-dark": "#315c31",
+      "mice": [
+        "grotto_elder"
       ]
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#FFE1A4",
       "subtitle": "Adventure",
       "id": "adventure",
       "icon": "/ui/hud/conclusion_cliffs/icons/Adventure.png",
+      "color": "#FFE1A4",
+      "color-dark": "#6f582a",
       "mice": [
         {
           "mouse": "indigo_montana",
@@ -171,10 +164,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#C6FFCC",
       "subtitle": "Comedy",
       "id": "comedy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Comedy.png",
+      "color": "#C6FFCC",
+      "color-dark": "#27682e",
       "mice": [
         {
           "mouse": "lady_breakwell",
@@ -204,10 +198,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#FFC7C8",
       "subtitle": "Romance",
       "id": "romance",
       "icon": "/ui/hud/conclusion_cliffs/icons/Romance.png",
+      "color": "#FFC7C8",
+      "color-dark": "#7a2e30",
       "mice": [
         {
           "mouse": "lisa_doolots",
@@ -237,10 +232,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#F4D5FF",
       "subtitle": "Suspense",
       "id": "suspense",
       "icon": "/ui/hud/conclusion_cliffs/icons/Suspense.png",
+      "color": "#F4D5FF",
+      "color-dark": "#662e7a",
       "mice": [
         {
           "mouse": "nancy_sketched",
@@ -270,10 +266,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#C9FAFF",
       "subtitle": "Tragedy",
       "id": "tragedy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Tragedy.png",
+      "color": "#C9FAFF",
+      "color-dark": "#276268",
       "mice": [
         {
           "mouse": "billy_lowfellow",
@@ -303,10 +300,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
       "subtitle": "Fantasy",
       "id": "fantasy",
       "icon": "/ui/hud/conclusion_cliffs/icons/Fantasy.png",
+      "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
+      "color-dark": "#4a3a5c",
       "mice": [
         {
           "mouse": "petra_pot",
@@ -336,10 +334,11 @@
     },
     {
       "name": "Conclusion Cliffs",
-      "color": "#aad23a",
       "subtitle": "Boss",
       "id": "cc-boss",
       "icon": "/items/convertibles/transparent_thumb/0f0b6c8dd41974223ced5f8bfd4dece8.png",
+      "color": "#8a6bd6",
+      "color-dark": "#3d2e60",
       "mice": [
         "adventure_weaver",
         "comedy_weaver",
@@ -352,40 +351,16 @@
   ],
   "subcategories": [
     {
-      "id": "standard",
-      "name": "Standard"
-    },
-    {
-      "id": "sb",
-      "name": "SB"
-    },
-    {
-      "id": "boss",
-      "name": "Boss"
-    },
-    {
-      "id": "mmc",
-      "name": "MMC"
-    },
-    {
-      "id": "aac",
-      "name": "AAC"
-    },
-    {
-      "id": "ssc",
-      "name": "SSC"
-    },
-    {
       "id": "pp",
-      "name": "PP"
+      "name": "Plotting Paneer"
     },
     {
       "id": "ss",
-      "name": "SS"
+      "name": "Storied Saga"
     },
     {
       "id": "dem",
-      "name": "DEM"
+      "name": "Deus Ex Maconnais"
     }
   ]
 }

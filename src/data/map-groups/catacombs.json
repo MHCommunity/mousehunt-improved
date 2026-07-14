@@ -1,0 +1,85 @@
+{
+  "names": [
+    "Acolyte Map"
+  ],
+  "categories": [
+    {
+      "name": "Runic Cheese",
+      "subtitle": "Acolyte Realm",
+      "id": "cata-runic",
+      "icon": "https://i.mouse.rip/upscaled/4d36162beb73e286fbcce46a0b09606d.png",
+      "color": "#b4a7d6",
+      "color-dark": "#3b2d61",
+      "mice": [
+        "acolyte",
+        "lich",
+        "wight"
+      ]
+    },
+    {
+      "name": "Ancient Cheese",
+      "subtitle": "Acolyte Realm / Catacombs",
+      "id": "cata-ancient",
+      "icon": "https://i.mouse.rip/upscaled/e1f6cabec96832f1aa8e60ea1144a3b3.png",
+      "color": "#ffe599",
+      "color-dark": "#84650a",
+      "mice": [
+        "gorgon",
+        "sorcerer",
+        "spectre",
+        "keeper",
+        "keepers_assistant",
+        "ooze",
+        "skeleton",
+        "spider"
+      ]
+    },
+    {
+      "name": "Radioactive Blue",
+      "subtitle": "Acolyte Realm",
+      "id": "cata-radioactive-blue",
+      "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
+      "color": "#a0dcff",
+      "color-dark": "#0a5784",
+      "mice": [
+        "gate_guardian",
+        "golem"
+      ]
+    },
+    {
+      "name": "Undead Emmental",
+      "subtitle": "Catacombs",
+      "id": "cata-undead-emmental",
+      "icon": "https://i.mouse.rip/upscaled/undead_emmental_cheese.png",
+      "color": "#c2c2c2",
+      "color-dark": "#5c3131",
+      "mice": [
+        "terror_knight"
+      ]
+    },
+    {
+      "name": "Moon / Crescent",
+      "subtitle": "Forbidden Grove / Mousoleum",
+      "id": "cata-moon-crescent",
+      "icon": "/items/bait/large/ec3fa3c29b23d461f75abdb150842128.png",
+      "color": "#cfe2f3",
+      "color-dark": "#1c4972",
+      "mice": [
+        "scavenger",
+        "lycan"
+      ]
+    },
+    {
+      "name": "Rancid Radioactive Blue",
+      "subtitle": "Forbidden Grove / Mousoleum",
+      "id": "cata-rancid-radioactive-blue",
+      "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
+      "color": "#ea9999",
+      "color-dark": "#761818",
+      "mice": [
+        "realm_guardian",
+        "vampire"
+      ]
+    }
+  ]
+}

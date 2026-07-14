@@ -1,10 +1,14 @@
 {
+  "names": [
+    "Empyrean Sky Palace Map"
+  ],
   "categories": [
     {
       "name": "Arcane",
       "id": "esp-arcane",
       "icon": "/powertypes/arcane.png",
-      "color": "#b4ffff",
+      "color": "#0be496",
+      "color-dark": "#176b55",
       "mice": [
         "sky_dancer",
         "sky_glass_glazier",
@@ -27,7 +31,8 @@
       "name": "Draconic",
       "id": "esp-draconic",
       "icon": "/powertypes/draconic.png",
-      "color": "#cf9e64",
+      "color": "#f06a60",
+      "color-dark": "#7a3733",
       "mice": [
         "dragon_breather",
         "dragon_lancer",
@@ -50,7 +55,8 @@
       "name": "Forgotten",
       "id": "esp-forgotten",
       "icon": "/powertypes/forgotten.png",
-      "color": "#c37aa1",
+      "color": "#338838",
+      "color-dark": "#24572b",
       "mice": [
         "cumulost",
         "spry_sky_explorer",
@@ -73,7 +79,8 @@
       "name": "Hydro",
       "id": "esp-hydro",
       "icon": "/powertypes/hydro.png",
-      "color": "#a0dcff",
+      "color": "#5d9fce",
+      "color-dark": "#2e5e7a",
       "mice": [
         "cute_cloud_conjurer",
         "nimbomancer",
@@ -96,7 +103,8 @@
       "name": "Law",
       "id": "esp-law",
       "icon": "/powertypes/law.png",
-      "color": "#efcf86",
+      "color": "#f9a645",
+      "color-dark": "#76542d",
       "mice": [
         "devious_gentleman",
         "lawbender",
@@ -119,7 +127,8 @@
       "name": "Physical",
       "id": "esp-physical",
       "icon": "/powertypes/physical.png",
-      "color": "#d98181",
+      "color": "#5ae031",
+      "color-dark": "#326827",
       "mice": [
         "ground_gavaleer",
         "heracles",
@@ -142,7 +151,8 @@
       "name": "Shadow",
       "id": "esp-shadow",
       "icon": "/powertypes/shadow.png",
-      "color": "#a4c0c1",
+      "color": "#8f75e2",
+      "color-dark": "#493a78",
       "mice": [
         "astrological_astronomer",
         "overcaster",
@@ -165,7 +175,8 @@
       "name": "Tactical",
       "id": "esp-tactical",
       "icon": "/powertypes/tactical.png",
-      "color": "#cc8282",
+      "color": "#fff935",
+      "color-dark": "#6f6b24",
       "mice": [
         "gyrologer",
         "seasoned_islandographer",
@@ -188,46 +199,49 @@
       "name": "Sky Palace",
       "id": "esp-sky_palace",
       "icon": "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png",
-      "color": "#a3fec4",
+      "color": "#85c1e9",
+      "color-dark": "#2e5f7a",
       "mice": [
-        "empyrean_charm_hoarder",
-        "empyrean_oreglass_miner",
-        "empyrean_cloudstone_miner",
-        "empyrean_treasure_guardian"
+        {
+          "mouse": "empyrean_charm_hoarder",
+          "subcategory": "jade"
+        },
+        {
+          "mouse": "empyrean_oreglass_miner",
+          "subcategory": "glore"
+        },
+        {
+          "mouse": "empyrean_cloudstone_miner",
+          "subcategory": "seals"
+        },
+        {
+          "mouse": "empyrean_treasure_guardian",
+          "subcategory": "empress"
+        }
       ]
     },
     {
       "name": "Pirates",
       "id": "esp-pirates",
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
-      "color": "#f173bf",
+      "color": "#eca4a6",
+      "color-dark": "#754f51",
       "mice": [
         "admiral_cloudbeard",
-        "cutthroat_cannoneer",
-        "cutthroat_pirate",
         "mairitime_pirate",
-        "empyrean_pirate",
-        "scarlet_revenger",
-        "suave_pirate"
-      ]
-    },
-    {
-      "name": "Other",
-      "id": "esp-other",
-      "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
-      "color": "#",
-      "mice": [
-        "daydreamer",
-        "kite_flyer",
-        "richard_rich",
-        "empyrean_loot_cache_guardian"
+        {
+          "mouse": "empyrean_pirate",
+          "subcategory": "sp"
+        },
+        "scarlet_revenger"
       ]
     },
     {
       "name": "Wardens",
       "id": "esp-wardens",
       "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
-      "color": "#d3bdd3",
+      "color": "#f2f2f2",
+      "color-dark": "#55585e",
       "mice": [
         "fog_warden",
         "frost_warden",
@@ -239,12 +253,22 @@
       "name": "Launchpad",
       "id": "esp-launchpad",
       "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
-      "color": "#c2c2c2",
+      "color": "#c97c49",
+      "color-dark": "#68452e",
       "mice": [
         "cloud_miner",
-        "launchpad_labourer",
-        "sky_greaser",
-        "skydiver"
+        "launchpad_labourer"
+      ]
+    },
+    {
+      "name": "Other",
+      "id": "esp-other",
+      "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+      "color": "#d9e5ef",
+      "color-dark": "#40576a",
+      "mice": [
+        "richard_rich",
+        "empyrean_loot_cache_guardian"
       ]
     }
   ],
@@ -255,7 +279,25 @@
     },
     {
       "id": "sp",
-      "name": "Sky Palace"
+      "name": "Sky Palace",
+      "color": "rgb(175 203 255 / 75%)",
+      "color-dark": "var(--d-blue-darker)"
+    },
+    {
+      "id": "jade",
+      "name": "Ancient Jade"
+    },
+    {
+      "id": "glore",
+      "name": "Sky Glass and Sky Ore"
+    },
+    {
+      "id": "seals",
+      "name": "Empyrean Seals"
+    },
+    {
+      "id": "empress",
+      "name": "Empyrean Empress"
     }
   ]
 }

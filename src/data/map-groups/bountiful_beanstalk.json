@@ -1,14 +1,14 @@
 {
+  "names": [
+    "Bountiful Beanstalk Map"
+  ],
   "categories": [
     {
       "name": "Beanstalk",
       "id": "beanstalk",
-      "icon": "",
       "color": "#45890e",
+      "color-dark": "#426426",
       "mice": [
-        "budrich_thornborn",
-        "leafton_beanwell",
-        "herbaceous_bravestalk",
         {
           "mouse": "vinneus_stalkhome",
           "subcategory": "boss"
@@ -18,8 +18,8 @@
     {
       "name": "Dungeon",
       "id": "dungeon",
-      "icon": "",
       "color": "#919ac7",
+      "color-dark": "#394270",
       "mice": [
         "peaceful_prisoner",
         "diminutive_detainee",
@@ -57,8 +57,8 @@
     {
       "name": "Ballroom",
       "id": "ballroom",
-      "icon": "",
       "color": "#e0b1b2",
+      "color-dark": "#783031",
       "mice": [
         "whimsical_waltzer",
         "sassy_salsa_dancer",
@@ -96,8 +96,8 @@
     {
       "name": "Great Hall",
       "id": "great-hall",
-      "icon": "",
       "color": "#d68d0a",
+      "color-dark": "#6f562a",
       "mice": [
         "clumsy_cupbearer",
         "plotting_page",
