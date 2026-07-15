@@ -26,6 +26,7 @@ import getAfterwordAcresText from './locations/afterword-acres';
 import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
 import getBristleWoodsRiftText from './locations/rift-bristle-woods';
 import getBurroughsRiftText from './locations/rift-burroughs';
+import getCeruleanSkyportText from './locations/cerulean-skyport';
 import getConclusionCliffsText from './locations/conclusion-cliffs';
 import getDraconicDepthsText from './locations/draconic-depths';
 import getEpilogueFallsText from './locations/epilogue-falls';
@@ -98,6 +99,7 @@ const dashboardLocations = [
       { id: 'ancient_city', name: 'Zokor', getText: getZokorText },
       { id: 'moussu_picchu', name: 'Moussu Picchu', getText: getMoussuPicchuText },
       { id: 'floating_islands', name: 'Floating Islands', getText: getFloatingIslandsText },
+      { id: 'cerulean_skyport', name: 'Cerulean Skyport', getText: getCeruleanSkyportText },
     ],
   },
   {

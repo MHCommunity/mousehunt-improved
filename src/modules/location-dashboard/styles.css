@@ -71,6 +71,10 @@ img.locationImage {
   outline: 1px solid #838282;
 }
 
+.mh-dark img.locationImage {
+  outline: 1px solid var(--d-border);
+}
+
 .locationName {
   position: relative;
   flex-grow: 1;
@@ -386,4 +390,39 @@ img.locationImage {
   display: flex;
   gap: 2px;
   align-items: center;
+}
+
+.dashboard-cerulean-skyport-title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dashboard-cerulean-skyport-resources {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-cerulean-skyport-resource {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.dashboard-cerulean-skyport-arrow {
+  margin: 0 2px;
+}
+
+.dashboard-cerulean-skyport-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.dashboard-cerulean-skyport-export-icon {
+  width: 14px;
+  height: 14px;
+  margin: -2px 2px -2px 0;
+  vertical-align: middle;
 }

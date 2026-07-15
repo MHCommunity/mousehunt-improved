@@ -67,7 +67,7 @@ export default (quests) => {
   if (quest.isLai) {
     returnText += `<div class="stats">${quest.hunts_remaining} hunts remaining · ${quest.wardens_caught} wardens caught</div>`;
   } else {
-    return returnText += ` · ${quest.hunts_remaining} hunts remaining`;
+    return returnText += `${quest.hunts_remaining} hunts remaining`;
   }
 
   return returnText;
