@@ -211,29 +211,24 @@ const compareRecipes = (recipeA, recipeB) => {
  *
  * @return {HTMLElement|null} The matching container.
  */
-const getRecipeContainer = (tag) => {
-  const containers = document.querySelectorAll('.inventoryPage-tagContent-tagGroup');
+const getRecipeContainers = (tag) => {
+  const containers = [...document.querySelectorAll('.inventoryPage-tagContent-tagGroup')];
 
-  return [...containers].find((container) => {
-    return container.getAttribute('data-tag') === tag;
-  }) || null;
+  // 'All' has no group element of its own — the game activates every group instead — so looking for
+  // a [data-tag="all"] container finds nothing and the tab this module re-enables goes unsorted.
+  if ('all' === tag) {
+    return containers.filter((container) => container.classList.contains('active'));
+  }
+
+  return containers.filter((container) => container.getAttribute('data-tag') === tag);
 };
 
 /**
- * Sort the recipes in a category.
+ * Sort the recipes within a single category container.
  *
- * @param {string} tag The recipe category tag.
+ * @param {HTMLElement} recipesContainer The category container.
  */
-const updateRecipesOnPage = (tag) => {
-  if (! tag || 'recommended' === tag) {
-    return;
-  }
-
-  const recipesContainer = getRecipeContainer(tag);
-  if (! recipesContainer) {
-    return;
-  }
-
+const sortRecipeContainer = (recipesContainer) => {
   const recipes = [...recipesContainer.querySelectorAll(':scope > .inventoryPage-item.recipe')];
   if (recipes.length < 2) {
     return;
@@ -247,6 +242,19 @@ const updateRecipesOnPage = (tag) => {
   });
 
   recipesContainer.append(fragment);
+};
+
+/**
+ * Sort the recipes in a category.
+ *
+ * @param {string} tag The recipe category tag.
+ */
+const updateRecipesOnPage = (tag) => {
+  if (! tag || 'recommended' === tag) {
+    return;
+  }
+
+  getRecipeContainers(tag).forEach((container) => sortRecipeContainer(container));
 };
 
 /**
@@ -299,10 +307,15 @@ const cleanUpRecipeBook = () => {
     });
   });
 
-  // Sort the category that is already visible when the page opens.
+  // Sort the category that is already visible when the page opens. Take the tag from the selected
+  // directory link where possible: with 'All' selected every group is active, so reading it from
+  // the first active group would sort that one category and leave the rest untouched.
+  const activeTagLink = recipeBook.querySelector('a.inventoryPage-tagDirectory-tag.active');
   const activeGroup = recipeBook.querySelector('.inventoryPage-tagContent-tagGroup.active');
-  if (activeGroup) {
-    scheduleRecipeUpdate(activeGroup.getAttribute('data-tag'));
+  const activeTag = activeTagLink?.getAttribute('data-tag') || activeGroup?.getAttribute('data-tag');
+
+  if (activeTag) {
+    scheduleRecipeUpdate(activeTag);
   }
 };
 
