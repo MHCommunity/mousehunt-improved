@@ -44,7 +44,12 @@ const ruleMatchesEntry = (rule, model) => {
 };
 
 /**
- * Apply a rule globally, regardless of whether it uses a string or RegExp.
+ * Apply a replacement rule.
+ *
+ * Replaces the first occurrence by default so rules that wrap or prepend text
+ * (e.g. ' caught ' -> ' caught the final ') are not applied to every match in a
+ * multi-line entry. A regex rule that needs to replace every match should carry
+ * its own `g` flag; a string rule can opt in with `global: true`.
  *
  * @param {string} html The current journal HTML.
  * @param {Object} rule The replacement rule.
@@ -53,11 +58,10 @@ const ruleMatchesEntry = (rule, model) => {
  */
 const applyRule = (html, rule) => {
   if ('string' === typeof rule.from) {
-    return html.replaceAll(rule.from, rule.to);
+    return rule.global ? html.replaceAll(rule.from, rule.to) : html.replace(rule.from, rule.to);
   }
 
-  const flags = rule.from.flags.includes('g') ? rule.from.flags : `${rule.from.flags}g`;
-  return html.replace(new RegExp(rule.from.source, flags), rule.to);
+  return html.replace(rule.from, rule.to);
 };
 
 /**

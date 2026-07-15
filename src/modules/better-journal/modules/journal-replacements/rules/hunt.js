@@ -11,7 +11,9 @@ export default defineRules('hunt', [
   [
     /(?:\.?(?:<br>){1,2})?<b>the mouse also dropped the following loot:<\/b>(?:<br>){0,2}/i,
     ' that dropped ',
-    { classes: ['catchsuccessloot'] },
+    // Relic Hunter catches carry relicHunter_catch rather than catchsuccessloot, and
+    // still use this loot heading. The 'She that dropped' cleanup rule joins the two.
+    { classes: ['catchsuccessloot', 'relicHunter_catch'] },
   ],
   ['I caught a', '<p>I caught a'],
   ['found that I had caught a mouse! I', ''],
