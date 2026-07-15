@@ -6,8 +6,9 @@ import { getSearchTermString } from '../search-terms';
 /**
  * Add the search terms to the items on the inventory page.
  *
- * The game's own inventory search matches against `data-name`, which is never displayed, so the
- * terms can just be appended to it.
+ * The game's own inventory search matches against `data-name`, so the terms have to be appended to
+ * it. Better Inventory copies `data-name` into the visible item name and sorts on it, so the
+ * untouched name is stashed in `data-mhui-name` for it to read instead.
  */
 const addSearchTerms = () => {
   const items = document.querySelectorAll('.inventoryPage-item:not([data-mhui-search])');
@@ -40,6 +41,7 @@ const addSearchTerms = () => {
 
     const searchTerms = terms.filter(Boolean).join(' ');
     if (searchTerms) {
+      item.setAttribute('data-mhui-name', name);
       item.setAttribute('data-name', `${name} ${searchTerms}`);
     }
   });

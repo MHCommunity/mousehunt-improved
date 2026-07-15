@@ -69,7 +69,7 @@ const updateCollectibles = () => {
       return;
     }
 
-    const name = collectible.getAttribute('data-name');
+    const name = getItemDisplayName(collectible); // eslint-disable-line no-use-before-define
     const nameEl = collectible.querySelector('.inventoryPage-item-content-name span');
     if (name && nameEl) {
       nameEl.innerText = name;
@@ -119,10 +119,25 @@ const addArmButtonToCharms = () => {
   });
 };
 
+/**
+ * Get an item's real name.
+ *
+ * The Enhanced Search experiment appends its search terms to `data-name`, because that's what the
+ * game's own inventory filter matches on. It stashes the untouched name in `data-mhui-name` so that
+ * displaying or sorting on the name here doesn't pick up the terms as well.
+ *
+ * @param {Element} item The inventory item.
+ *
+ * @return {string} The item's name.
+ */
+const getItemDisplayName = (item) => {
+  return item.getAttribute('data-mhui-name') || item.getAttribute('data-name') || '';
+};
+
 const sortInventoryItemsByName = (items) => {
   return [...items].sort((a, b) => {
-    const aName = a.getAttribute('data-name') || '';
-    const bName = b.getAttribute('data-name') || '';
+    const aName = getItemDisplayName(a);
+    const bName = getItemDisplayName(b);
 
     return aName.localeCompare(bName);
   }).filter((item, index, self) => {
@@ -186,7 +201,7 @@ const resortInventory = () => {
 
     for (const item of items) {
       // While we're here, update the name so its not truncated.
-      const name = item.getAttribute('data-name');
+      const name = getItemDisplayName(item);
       const nameEl = item.querySelector('.inventoryPage-item-content-name span');
       if (name && nameEl) {
         nameEl.innerText = name;

@@ -10,8 +10,11 @@ let typesById = new Map();
  * a name, so both lookups are built once up front.
  */
 const initItems = async () => {
+  // getData() resolves to {} rather than a falsy value when the fetch fails, so this has to check
+  // for an array: calling .map() on the {} would throw and take every search surface down with it,
+  // including the two that don't need item data at all.
   const items = await getData('items');
-  if (! items) {
+  if (! Array.isArray(items)) {
     return;
   }
 

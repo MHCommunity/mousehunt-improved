@@ -1,6 +1,6 @@
 {
   "name": "mousehunt-improved",
-  "version": "0.98.4",
+  "version": "0.99.0",
   "description": "Improve your MouseHunt experience.",
   "author": "Brad Parbs <brad@bradparbs.com> (https://bradparbs.com/)",
   "license": "MIT",
@@ -42,6 +42,7 @@
     "dev": "bun run scripts/build-extension.mjs --platform=chrome --watch",
     "fix-map-groups": "bun run scripts/fix-map-groups.mjs",
     "preview-map-groups": "bun run scripts/preview-map-groups.mjs",
+    "preview-item-abbreviations": "bun run scripts/preview-item-abbreviations.mjs",
     "get-changelog": "bun run scripts/get-changelog.mjs",
     "get-version": "bun run scripts/get-version.mjs",
     "lint:css:fix": "stylelint 'src/**/*.css' --fix --cache --config .stylelintrc.json",
