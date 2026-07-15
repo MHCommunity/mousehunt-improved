@@ -368,6 +368,16 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
       continue;
     }
 
+    // The version manifest loaded but doesn't list this file, so there's no
+    // version to compare against. Keep valid cached data rather than expiring
+    // and re-downloading it on every check; only refresh when it's missing or
+    // invalid. When the whole manifest failed to load, fall through so the
+    // legacy full-download fallback still refreshes everything.
+    if (versions && ! serverVersion && hasValidData(cachedData)) {
+      await cacheSetExpiration(file);
+      continue;
+    }
+
     await cacheExpire(file);
     changedFiles.add(file);
   }
