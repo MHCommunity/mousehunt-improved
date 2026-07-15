@@ -13,6 +13,27 @@ const overallStatsKey = 'location-catch-stats-summary';
 const locationStatsKey = 'location-catch-stats-summary-details';
 
 /**
+ * How long cached stats stay usable.
+ *
+ * These are stored with dataSet(), which never expires on its own. Catch counts change with every
+ * hunt, so without a cutoff the modal keeps reporting whatever the numbers were the first time it
+ * was opened — and the pinned current location, which always refetches, ends up contradicting the
+ * totals shown directly above it.
+ */
+const statsCacheDuration = 30 * 60 * 1000;
+
+/**
+ * Check whether cached stats are recent enough to use.
+ *
+ * @param {Object} cached The cached entry, which carries the time it was written.
+ *
+ * @return {boolean} Whether the entry is still fresh.
+ */
+const isCacheFresh = (cached) => {
+  return Boolean(cached?.updated) && (Date.now() - cached.updated) < statsCacheDuration;
+};
+
+/**
  * Environments that are counted under another location's category.
  */
 const environmentNameMap = {
@@ -66,7 +87,7 @@ const fetchOverallStats = async () => {
 const getOverallStats = async (refresh = false) => {
   if (! refresh) {
     const cached = await dataGet(overallStatsKey);
-    if (cached) {
+    if (isCacheFresh(cached)) {
       return cached;
     }
   }
@@ -162,7 +183,8 @@ const makeLocationMarkup = (location, skipCache = false) => {
     makeElement('div', 'mh-catch-stats-summary-loading-text', 'Loading…', body);
 
     const allDetails = skipCache ? {} : await dataGet(locationStatsKey, {});
-    const details = allDetails[location.type] || await fetchLocationStats(location);
+    const cached = allDetails[location.type];
+    const details = isCacheFresh(cached) ? cached : await fetchLocationStats(location);
     renderLocationStats(location, details, body);
   });
 
