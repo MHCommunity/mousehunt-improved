@@ -38,14 +38,15 @@ const addSkin = (skin) => {
   appendTo.append(skinEl);
 };
 
-const addUnownedSkins = async (isCurrent = () => true) => {
+const addUnownedSkins = async () => {
   const header = document.querySelector('.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer');
   if (! header) {
     return;
   }
 
+  // getData() resolves to {} when the fetch fails, so this can't assume an array.
   const items = await getData('items');
-  if (! isCurrent()) {
+  if (! Array.isArray(items) || 0 === items.length) {
     return;
   }
 
@@ -58,16 +59,22 @@ const addUnownedSkins = async (isCurrent = () => true) => {
     return;
   }
 
+  const container = document.querySelector('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-tagGroup');
+  if (! container) {
+    return;
+  }
+
+  // Everything below reads the live DOM and the live armed trap, so it always decorates
+  // whatever blueprint is open right now. Drop anything a previous pass added first: the
+  // "already shown" check below deliberately ignores our own entries, so without this a
+  // second pass would append a duplicate of every unowned skin.
+  container.querySelectorAll('.mh-unowned-skin-item').forEach((skinEl) => skinEl.remove());
+
   const existingSkins = document.querySelectorAll('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-item.skin:not(.mh-unowned-skin-item)');
 
   let unownedSkins = [...currentTrap.skins];
   for (const skinEl of existingSkins) {
     unownedSkins = unownedSkins.filter((skinType) => ! [...skinEl.classList].includes(skinType));
-  }
-
-  const container = document.querySelector('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-tagGroup');
-  if (! container) {
-    return;
   }
 
   for (const skin of unownedSkins) {
@@ -90,11 +97,9 @@ const addUnownedSkins = async (isCurrent = () => true) => {
 };
 
 let addUnownedSkinsTimeout = null;
-const maybeAddUnownedSkins = (isCurrent) => {
+const maybeAddUnownedSkins = () => {
   clearTimeout(addUnownedSkinsTimeout);
-  addUnownedSkinsTimeout = setTimeout(() => {
-    addUnownedSkins(isCurrent);
-  }, 250);
+  addUnownedSkinsTimeout = setTimeout(addUnownedSkins, 250);
 };
 
 /**
@@ -102,9 +107,9 @@ const maybeAddUnownedSkins = (isCurrent) => {
  */
 export default async () => {
   addStyles(styles, 'better-ui-show-unowned-skins');
-  registerTrapSelectorDecorator('structure', 'show-unowned-skins', ({ type, isCurrent }) => {
+  registerTrapSelectorDecorator('structure', 'show-unowned-skins', ({ type }) => {
     if (['blueprint', 'components'].includes(type)) {
-      maybeAddUnownedSkins(isCurrent);
+      maybeAddUnownedSkins();
     }
   });
 };

@@ -43,7 +43,7 @@ const flush = async () => {
     rendering = false;
     if (rerenderRequested) {
       rerenderRequested = false;
-      scheduleTrapSelector(queuedContext || context); // eslint-disable-line no-use-before-define
+      scheduleTrapSelector(queuedContext || context);
     }
   }
 };
@@ -83,7 +83,17 @@ const startTrapSelectorRuntime = () => {
     scheduleTrapSelector({ type: 'trap-change', data });
   });
   onNavigation(() => {
-    scheduleTrapSelector({ type: 'navigation' });
+    // Landing on camp can re-render an already-open trap selector without firing
+    // camp_page_toggle_blueprint. Schedule a real blueprint pass so the decorators
+    // actually run: they only handle 'blueprint', 'components' and 'trap-change', so a
+    // 'navigation' context would bump the generation — aborting any in-flight render —
+    // and then decorate nothing. If the item browser isn't open there's nothing to do,
+    // and scheduling anyway would abort a render for no reason.
+    if (! document.querySelector('.campPage-trap-itemBrowser')) {
+      return;
+    }
+
+    scheduleTrapSelector({ type: 'blueprint', panel: 'item_browser' });
   }, { page: 'camp' });
 };
 
