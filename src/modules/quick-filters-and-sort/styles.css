@@ -139,7 +139,7 @@
 
 .mh-dark .quicklinks-filter-sortBy-name a,
 .mh-dark .quicklinks-filter-sortBy-quantity a {
-  background-color: var(--d-bg);
+  background-color: var(--d);
 }
 
 .trapSelectorView__browserStateParent--items[data-blueprint-type="skin"] .campPage-trap-itemBrowser-quickLinks {
