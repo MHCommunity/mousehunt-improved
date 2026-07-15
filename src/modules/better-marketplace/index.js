@@ -224,10 +224,11 @@ const autocloseClaim = (resp) => {
 /**
  * Decorate the current item view.
  *
- * @param {Object}        session        The item view session.
- * @param {string|number} session.itemId The item ID.
+ * @param {Object}        session           The item view session.
+ * @param {string|number} session.itemId    The item ID.
+ * @param {Function}      session.isCurrent Whether this render is still current.
  */
-const enhanceItemSession = async ({ itemId }) => {
+const enhanceItemSession = async ({ itemId, isCurrent }) => {
   // Allow toggling buy/sell by clicking the type indicator. The game reuses
   // this element while changing action states, so refresh its metadata on
   // every showItem call and bind the generic handlers only once.
@@ -308,14 +309,14 @@ const enhanceItemSession = async ({ itemId }) => {
   const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getItemLinks(itemName, itemId));
   actions.insertBefore(buttons, actions.firstChild);
 
-  const decorations = [enhanceItemView(itemId)];
+  const decorations = [enhanceItemView(itemId, isCurrent)];
 
   if (getSetting('better-marketplace.price-history-chart', false)) {
     decorations.push(addPriceChart(itemId));
   }
 
   if (getSetting('better-marketplace.quick-sell')) {
-    decorations.push(addQuickSellButton(itemId));
+    decorations.push(addQuickSellButton(itemId, isCurrent));
   }
 
   await Promise.all(decorations);
@@ -465,21 +466,27 @@ const getBestSellQuantity = () => {
   return parseNumber(quantityEl.textContent);
 };
 
-const addQuickSellButton = async (itemId) => {
+const addQuickSellButton = async (itemId, isCurrent) => {
   const actions = document.querySelector('.marketplaceView-item-table .marketplaceView-item-viewActions');
   if (! actions) {
     return;
   }
 
-  const existing = actions.querySelector('.mhui-marketplace-quick-sell');
+  // Remove the whole wrapper, not just the button — the wrapper holds the quantity
+  // input and the info row, so removing only the button leaves those behind and the
+  // next decoration pass appends a second set (along with a duplicate input ID).
+  const existing = actions.querySelector('.mhui-marketplace-quick-sell-wrapper');
   if (existing) {
     existing.remove();
   }
 
   await waitForElement('.marketplaceView-table .bestPrice');
 
+  // Bail if this render was superseded while awaiting. The item id alone can't
+  // catch a buy/sell toggle on the same item, whose stale run would otherwise
+  // append a second wrapper (and a duplicate quantity input id).
   const currentItem = document.querySelector('.marketplaceView-item[data-item-id]');
-  if (currentItem?.dataset.itemId !== String(itemId)) {
+  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && ! isCurrent())) {
     return;
   }
 
@@ -528,12 +535,12 @@ const addQuickSellButton = async (itemId) => {
       button.classList.add('disabled');
 
       const quantity = Math.min(Number.parseInt(quickSellInput.value, 10) || 0, bestSellQuantity);
-      if (quantity <= 0) {
-        return;
-      }
+      const price = quantity > 0 ? getBestSellPrice() : 0;
 
-      const price = getBestSellPrice();
-      if (price <= 0) {
+      // Re-enable before bailing, otherwise an empty quantity box or a missing best
+      // price leaves the button greyed out for the rest of the item view.
+      if (quantity <= 0 || price <= 0) {
+        button.classList.remove('disabled');
         return;
       }
 

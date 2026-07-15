@@ -295,9 +295,10 @@ const addTariffInfo = () => {
  * Enhance the item listing view with quick links and tariff info, based on the
  * enabled settings. Called after an item view is shown.
  *
- * @param {string|number} itemId The item ID being shown.
+ * @param {string|number} itemId    The item ID being shown.
+ * @param {Function}      isCurrent Whether this render is still current.
  */
-const enhanceItemView = async (itemId) => {
+const enhanceItemView = async (itemId, isCurrent) => {
   // Wait for the quick listings to load (the best-price row appears once they
   // have rendered), so the game's best-price helpers have data to work with.
   const listings = await waitForElement('.marketplaceView-item-quickListings .bestPrice');
@@ -305,8 +306,11 @@ const enhanceItemView = async (itemId) => {
     return;
   }
 
+  // Bail if this render was superseded while awaiting. The item id alone can't
+  // catch a buy/sell toggle on the same item, whose stale run would otherwise
+  // duplicate the quantity buttons, price links, and tariff info.
   const currentItem = document.querySelector('.marketplaceView-item[data-item-id]');
-  if (currentItem?.dataset.itemId !== String(itemId)) {
+  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && ! isCurrent())) {
     return;
   }
 

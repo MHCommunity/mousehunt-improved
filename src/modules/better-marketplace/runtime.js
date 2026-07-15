@@ -36,6 +36,7 @@ const createMarketplaceRuntime = (dependencies = {}) => {
   let lifecycle = 0;
   let rendering = false;
   let rerenderRequested = false;
+  let cancelRender = null;
 
   const flush = async () => {
     queued = false;
@@ -55,19 +56,30 @@ const createMarketplaceRuntime = (dependencies = {}) => {
     }
 
     rendering = true;
+    let cancel;
+    const cancelled = new Promise((resolve) => {
+      cancel = resolve;
+    });
+    cancelRender = cancel;
+
     try {
-      await callback({
+      const decoration = callback({
         ...session,
         generation,
         isCurrent: () => session === currentSession,
       });
+      await Promise.race([decoration, cancelled]);
     } catch (error) {
       console.error(`Error decorating marketplace ${session.type} view:`, error); // eslint-disable-line no-console
     } finally {
+      if (cancelRender === cancel) {
+        cancelRender = null;
+      }
+
       rendering = false;
       if (rerenderRequested) {
         rerenderRequested = false;
-        queue(); // eslint-disable-line no-use-before-define
+        queue();
       }
     }
   };
@@ -89,6 +101,7 @@ const createMarketplaceRuntime = (dependencies = {}) => {
   };
 
   const open = (session) => {
+    cancelRender?.();
     generation++;
     currentSession = session;
     queue();
@@ -128,6 +141,7 @@ const createMarketplaceRuntime = (dependencies = {}) => {
     refresh: queue,
     register: (type, callback) => decorators.set(type, callback),
     reset: () => {
+      cancelRender?.();
       generation++;
       currentSession = null;
       queued = false;
