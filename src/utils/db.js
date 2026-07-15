@@ -496,7 +496,11 @@ const dbOperation = async (databaseName, mode, runRequest, fallback, onFinalErro
       return await dbOperation(databaseName, mode, runRequest, fallback, onFinalError, attempt + 1);
     }
 
-    if (attempt < 2 && regenerableDatabases.has(databaseName)) {
+    // A single unreadable record does not warrant wiping the whole database.
+    // Fall through to onFinalError so the caller can heal just that record
+    // (dbGet deletes it; dbGetAll reads around it). Reserve the whole-database
+    // repair for errors that a targeted delete can't resolve.
+    if (attempt < 2 && regenerableDatabases.has(databaseName) && ! isUnreadableValueError(error)) {
       closeConnection(databaseName);
 
       if (await deleteForRepair(databaseName)) {
