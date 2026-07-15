@@ -320,7 +320,14 @@ const init = async () => {
   await migrateLegacyData();
   const latestSample = await getLatestSample();
   let trackedTurns = latestSample?.totalTurns || 0;
-  await recordSample('load', { totalTurns: trackedTurns });
+
+  // Seed local tracking from the total the load sample actually recorded (which
+  // pulls the live server total when there is no prior sample or a legacy one
+  // with no turn count). Seeding from 0 would keep every hunt sample pinned to
+  // the server total for the rest of the session, so no location segments or
+  // per-hunt pace could be derived until the next page load.
+  const loadSample = await recordSample('load', { totalTurns: trackedTurns });
+  trackedTurns = loadSample?.sample?.totalTurns || trackedTurns;
 
   onTurn(() => {
     trackedTurns++;
