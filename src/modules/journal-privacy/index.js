@@ -111,7 +111,7 @@ const disablePrivacy = () => {
  * Add the toggle icon to the menu.
  */
 const addIcon = () => {
-  if (! getSetting('journal-privacy.show-toggle-icon', false)) {
+  if (! getSetting('journal-privacy.show-toggle-icon', true)) {
     return;
   }
 
@@ -166,7 +166,7 @@ const syncPrivacyState = () => {
     return;
   }
 
-  if (getSetting('journal-privacy.show-toggle-icon', false)) {
+  if (getSetting('journal-privacy.show-toggle-icon', true)) {
     addIcon();
     isPrivacyEnabled = false;
     disablePrivacy();

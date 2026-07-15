@@ -249,7 +249,7 @@ async function updateMapSurface(response, request) {
     await updateInventorySurface();
   } else if ('get_shops' === request?.action) {
     await updateShopsMarkup();
-  } else if ('get_listings' === request?.action && getSetting('better-maps.community')) {
+  } else if ('get_listings' === request?.action && getSetting('better-maps.community', true)) {
     await updateCommunityListings(response, request);
   }
 }
