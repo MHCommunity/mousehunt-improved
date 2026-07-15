@@ -37,13 +37,14 @@ const namesCacheKey = 'better-tournaments-names';
  * Get tournament data, reusing recent and in-flight requests for the same
  * tournament.
  *
- * @param {string} tournamentId Tournament ID.
+ * @param {string}  tournamentId Tournament ID.
+ * @param {boolean} skipCache    Whether to refetch instead of reusing a cached response.
  *
  * @return {Promise<Object>} Tournament page response.
  */
-const getTournamentData = async (tournamentId) => {
+const getTournamentData = async (tournamentId, skipCache = false) => {
   const cacheKey = `${tournamentDataCacheKeyPrefix}-${tournamentId}`;
-  const cached = tournamentDataCache.get(tournamentId) ?? sessionGet(cacheKey, null);
+  const cached = skipCache ? null : (tournamentDataCache.get(tournamentId) ?? sessionGet(cacheKey, null));
   if (cached?.expiry > Date.now()) {
     return cached.data ?? cached.request;
   }
@@ -140,6 +141,13 @@ const observeTournamentHud = () => {
 
   restoreTournamentName();
 
+  // The game builds a fresh HUD when you join a tournament and rebuilds it again when one
+  // flips from pending to active, and neither path fires tournament_status_change. This is
+  // the only signal that the HUD was replaced, so the hover panels have to be rebuilt here
+  // too — otherwise they stay empty until a full page reload. A rebuild is also exactly
+  // when the cached is_active state goes stale, so refetch rather than reuse it.
+  updateTournamentHud(true);
+
   // Restoring the name is a no-op once the name already matches, so writing it
   // back from the observer can't retrigger the observer indefinitely.
   tournamentHudObserver = new MutationObserver(restoreTournamentName);
@@ -152,8 +160,13 @@ const observeTournamentHud = () => {
 
 /**
  * Update the tournament HUD.
+ *
+ * The cached response holds the tournament's is_active state, which goes stale the moment a
+ * tournament starts, so callers that know the state just changed should skip the cache.
+ *
+ * @param {boolean} skipCache Whether to refetch rather than reuse a cached response.
  */
-const updateTournamentHud = async () => {
+const updateTournamentHud = async (skipCache = false) => {
   const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
   if (! activeTourney) {
     return;
@@ -173,7 +186,7 @@ const updateTournamentHud = async () => {
   // synchronously while the rest of the tournament data refreshes.
   applyCachedTournamentName(activeTourney, tournamentNames);
 
-  const tourneyData = await getTournamentData(tourneyId);
+  const tourneyData = await getTournamentData(tourneyId, skipCache);
 
   if (! tourneyData?.page) {
     return;
@@ -327,22 +340,27 @@ const updateTournamentList = () => {
     statusColumn.querySelector(':scope > .tournament-normal-time')?.remove();
     durationColumn.querySelector(':scope > .tournament-normal-time')?.remove();
 
+    // The game exposes a row's status as a CSS class, not a data attribute.
+    // Active rows count down to the end; everything else that still has a
+    // countdown (signed up / upcoming) counts down to the start.
+    const status = row.classList.contains('active') ? 'active' : 'pending';
+
     const countdownMinutes = parseTournamentMinutes(row.dataset.timer ?? statusColumn.textContent);
     const durationHours = Number.parseFloat(row.dataset.duration);
     const durationMinutes = Number.isFinite(durationHours) ? durationHours * 60 : parseTournamentMinutes(durationColumn.textContent);
-    const dates = getTournamentListingDates(row.dataset.status, nowTime, countdownMinutes, durationMinutes);
+    const dates = getTournamentListingDates(status, nowTime, countdownMinutes, durationMinutes);
     if (! dates) {
       return;
     }
 
     const inlineOrHover = getSetting('better-tournaments.time-inline', true) ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
 
-    const statusDateClass = 'pending' === row.dataset.status ? 'tournament-begins-date' : 'tournament-end-date';
+    const statusDateClass = 'pending' === status ? 'tournament-begins-date' : 'tournament-end-date';
     const statusDateEl = makeElement('div', ['tournament-normal-time', statusDateClass, inlineOrHover], dates.statusDate.toLocaleString('en-US', dateOptions));
     statusColumn.append(statusDateEl);
 
     if (dates.durationDate) {
-      const durationDateClass = 'pending' === row.dataset.status ? 'tournament-end-date' : 'tournament-begins-date';
+      const durationDateClass = 'pending' === status ? 'tournament-end-date' : 'tournament-begins-date';
       const durationDateEl = makeElement('div', ['tournament-normal-time', durationDateClass, inlineOrHover], dates.durationDate.toLocaleString('en-US', dateOptions));
       durationColumn.append(durationDateEl);
     }
@@ -447,7 +465,9 @@ const init = () => {
     id: 'mh-improved-better-tournaments-restore-name',
   });
 
-  onEvent('tournament_status_change', updateTournamentHud);
+  // Joining, leaving or claiming changes the tournament's state, so don't reuse the
+  // cached response here either.
+  onEvent('tournament_status_change', () => updateTournamentHud(true));
   onNavigation(observeTournamentHud);
   onNavigation(observeTournamentList, {
     page: 'tournament',
