@@ -25,10 +25,17 @@ const addSearchTerms = () => {
 
     // Recipes and potions are worth finding by what they make and not just by their own name, so
     // that searching for 'ESB' turns up the recipe for it as well as the cheese itself. An unknown
-    // type resolves to no name and so contributes no terms.
+    // type resolves to no name and so contributes no terms. A recipe can produce several items, in
+    // which case data-produced-item is a comma-separated list, so add terms for each one.
     const produced = item.getAttribute('data-produced-item');
     if (produced) {
-      terms.push(getSearchTermString(produced, getItemName(produced)));
+      produced
+        .split(',')
+        .map((producedType) => producedType.trim())
+        .filter(Boolean)
+        .forEach((producedType) => {
+          terms.push(getSearchTermString(producedType, getItemName(producedType)));
+        });
     }
 
     const searchTerms = terms.filter(Boolean).join(' ');
