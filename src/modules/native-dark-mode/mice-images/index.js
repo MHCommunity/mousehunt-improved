@@ -1,4 +1,4 @@
-import { addStyles, getData, onNavigation } from '@utils';
+import { addStyles, getCurrentPage, getData, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -194,6 +194,22 @@ const watchMouseList = () => {
 };
 
 /**
+ * Stop watching the mouse list.
+ *
+ * The observer covers the whole page container, so leaving it attached after navigating
+ * away means every DOM change the game makes anywhere — the journal especially — keeps
+ * queueing updates for a list that isn't on the page.
+ */
+const unwatchMouseList = () => {
+  if (! listObserver) {
+    return;
+  }
+
+  listObserver.disconnect();
+  listObserver = null;
+};
+
+/**
  * Overlay mouse images with their silhouette so they sit on a dark background.
  */
 export default async () => {
@@ -223,6 +239,15 @@ export default async () => {
 
   onNavigation(watchMouseList, { page: 'adversaries' });
   onNavigation(watchMouseList, { page: 'hunterprofile' });
+
+  // Tear the list observer back down on the way out, so it doesn't keep firing on every DOM
+  // change for the rest of the session once one of those pages has been visited.
+  onNavigation(() => {
+    const page = getCurrentPage();
+    if ('adversaries' !== page && 'hunterprofile' !== page) {
+      unwatchMouseList();
+    }
+  });
 
   queueUpdate();
 };
