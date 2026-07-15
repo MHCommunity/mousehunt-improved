@@ -1,22 +1,47 @@
 # Changelog
 
-## Version 0.98.4
+## Version 0.99.0
 
-- Location Catch Stats: Redesigned the stats view with per-location summaries, crown counts, and sortable columns, plus a "Use simplified view" setting to keep the old layout
-- Native Dark Mode: Expanded dark mode coverage across nearly every module, including maps, marketplace, tournaments, shops, inbox, journal themes, and more
-- Better Tournaments: Improved reliability of the tournament HUD and pages — full tournament names no longer revert to shortened ones, hover scoreboards and localized listing times survive page refreshes, and scoreboard ranks stay formatted
+### New Beta Features
+
+- Added **Enhanced Search** for fuzzy and abbreviated searching in Inventory, Marketplace, Send Supplies, and Trap Selector — search "ESB" to find Empowered SUPER|brie+, for example
+- Added **Timers** to the Camp menu dropdown, with countdowns for Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill
+
+### Better Maps
+
+- Added sorting for 25 map types, including Bristle Woods Rift, Burroughs Rift, Furoma Rift, Gnawnia Rift, Icebreaker, Labyrinth, Mousoleum, Muridae Protector, Toxic Spill, Tribal Isles, Valour, and Zugzwang
+- Updated sorting data for 30 existing map types, including Cerulean Skyport, Draconic Depths, Folklore Forest, Fort Rox, Queso Canyon, Rift maps, Sky Palace, and Whisker Woods Rift
+- Added the **Default to Sorted tab (only if map is categorized)** setting
+- Improved map rendering, scroll shops, drag-to-highlight, and recovery when map data arrives late
+
+### Location HUDs and Catch Stats
+
+- Redesigned Location Catch Stats with all-location completion progress, expandable per-location mouse details, crown counts, reversible catch-count order, and a **Use simplified view** setting to retain the old layout
+- Added a Cerulean Skyport Location Dashboard
+- Updated HUD styling for Cerulean Skyport, Floating Islands, Valour Rift, Mousoleum, Claw Shot City, and Windmill
+- Updated the Valour Rift simulator for the Hailstone Singularity Base
+
+### Better Journal and Inventory
+
+- Better Journal: Expanded entry styling, icons, history, and loot-list support; fixed reprocessing and style edge cases
+- Better Inventory: Reworked crafting recipes with clearer sorting, search by every produced item, and grouped multi-step crafting chains
+- Better Item View: Convertible-item contents now show their potential rewards
+
+### Other Improvements
+
+- Native Dark Mode: Expanded coverage across nearly every module, including maps, Marketplace, tournaments, shops, inbox, journal themes, and more
+- Better Tournaments: Improved reliability and formatting across the tournament HUD, pages, scoreboards, and localized times
+- Rank-Up Forecaster: Tracks turns locally to reduce server interaction
+- Game data: Checks file versions before downloading, refreshes data in the background, and keeps cached unversioned data between update checks for faster, more current data without interrupting play
+- Performance and memory: Lifecycle cleanup prevents inactive observers and outdated page decorations from continuing to run; local Rank-Up Forecaster turn tracking also makes fewer server requests
 - Better UI: Tournament trophies and badges on hunter profiles are now clickable to view the item
-- Location HUDs: Added Cerulean Skyport HUD styling
 - User Highlighting: Profiles of hunters banned from the community MouseHunt Discord server now show a warning (these are Discord-only bans from the community-run server, not in-game bans)
 - Gifts in Inbox: Viewing the gift links tab now marks gifts as seen and clears the unread counter
-- Settings: Added a loading indicator while the settings screen builds and fixed search matches highlighting the section menu
+- Settings: Added a loading indicator, corrected some default-setting mismatches, and fixed search matches highlighting the section menu
 - Feature Flags: Added a `?flag=<flag>` URL parameter to temporarily enable feature flags for a single page load, and a `load-<module-id>` flag to temporarily load a module without enabling it
-- Improved recovery from database errors, with graceful fallbacks and a clearer error message when an update fails
-- Fixed Hide Daily Draw hiding gift messages in the inbox
-- Fixed hover cards lingering after navigating to another page
-- Fixed the full-width airship setting in Floating Islands
-- Better Journal: Fixed journal reprocessing and style edge cases
-- Minor style tweaks
+- Improved recovery from database and update errors, with graceful fallbacks and clearer error messages
+- Fixed Hide Daily Draw hiding gift messages, stale hover cards after navigation, Trap Selector skin refreshes, stale Marketplace decorations, and the Floating Islands full-width airship setting
+- Minor style tweaks and reliability improvements across the extension
 
 ## Version 0.98.3
 

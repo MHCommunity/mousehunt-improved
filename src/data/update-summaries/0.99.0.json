@@ -1,0 +1,40 @@
+{
+  "version": "0.99.0",
+  "summary": "",
+  "details": [
+    {
+      "title": "New Beta Features",
+      "items": [
+        "\"Enhanced Search\" adds fuzzy and abbreviated searching in inventory, marketplace, Send Supplies, and the Trap Selector",
+        "\"Timers\" adds an item to the Camp menu dropdown with countdowns for different locations"
+      ]
+    },
+    {
+      "title": "Better Maps",
+      "items": [
+        "Added sorting for 20+ map types",
+        "Updated sorting data for many existing map types",
+        "Added the \"Default to Sorted tab (only if map is categorized)\" setting",
+        "Map enhancements now load and update more reliably"
+      ]
+    },
+    {
+      "title": "Location HUDs and Catch Stats",
+      "items": [
+        "Location Catch Stats has been redesigned with completion progress for each location, crown counts, and more.",
+        "Added a \"Use simplified view\" setting for Location Catch Stats to restore the previous version.",
+        "Added a Cerulean Skyport Location Dashboard",
+        "Updated HUD styling for Cerulean Skyport, Floating Islands, Valour Rift, and other locations",
+        "Updated the Valour Rift simulator for the Hailstone Singularity Base"
+      ]
+    },
+    {
+      "title": "More Improvements",
+      "items": [
+        "Expanded Native Dark Mode coverage across nearly every module",
+        "Extension updates now load faster and data is kept more up-to-date",
+        "Fixed a variety of issues and improved performance across many modules"
+      ]
+    }
+  ]
+}
