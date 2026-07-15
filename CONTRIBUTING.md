@@ -223,7 +223,6 @@ To add a new map to the list of automatically sorted/categorized maps, you need 
 {
   "names": [
     "My Map",
-    "My Map (Party Size)"
   ],
   "categories": [
     {
@@ -253,10 +252,6 @@ To add a new map to the list of automatically sorted/categorized maps, you need 
   ]
 }
 ```
-
-The optional `names` array lists the display names of the maps the group applies to. If the filename doesn't match a map's `map_type`, the group is matched by comparing the map's name against these (word order and the word "Treasure" are ignored), so one file can cover a whole family of maps like the six Slayer maps.
-
-Category naming convention: every category must convey its bait, either in its name or its subtitle. For single-location maps, prefer bait-first names with the location in the subtitle (`"Runic Cheese" / "Acolyte Realm"`); for multi-location maps, prefer location or stage names with the bait in the subtitle (`"Mist Level 0: Brie String"`, `"Cape Clawed" / "Gumbo"`). Keep categories to 10 mice or fewer — split by stage or bait when one grows past that — and order them by hunting progression (cheapest or standard bait first, specialty baits after, bosses last). Use subcategories for mice inside a category that need a specific bait or charm (e.g. an Artisan Charm requirement).
 
 The `categories` array contains the categories that the map should be sorted into. Each category has the following properties:
 
