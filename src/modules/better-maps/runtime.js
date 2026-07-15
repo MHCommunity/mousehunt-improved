@@ -30,6 +30,7 @@ const createMapRuntime = (dependencies = {}) => {
   let rerenderRequested = false;
   let pendingReason = 'initial';
   let session = 0;
+  let observerTimeout = null;
 
   const isReady = () => {
     const root = getRoot();
@@ -38,6 +39,11 @@ const createMapRuntime = (dependencies = {}) => {
   };
 
   const disconnectObserver = () => {
+    if (observerTimeout) {
+      clearTimeout(observerTimeout);
+      observerTimeout = null;
+    }
+
     if (observer) {
       observer.disconnect();
       observer = null;
@@ -62,7 +68,7 @@ const createMapRuntime = (dependencies = {}) => {
     const queuedSession = session;
     schedule(() => {
       if (queuedSession === session) {
-        return flush(); // eslint-disable-line no-use-before-define
+        return flush();
       }
 
       return null;
@@ -87,6 +93,11 @@ const createMapRuntime = (dependencies = {}) => {
       childList: true,
       subtree: true,
     });
+
+    // The map root only mounts while the dialog is opening. A render queued when it never
+    // mounts (a background map refresh with the dialog closed) would otherwise leave this
+    // whole-document observer attached for the rest of the page session.
+    observerTimeout = setTimeout(disconnectObserver, 10_000);
   };
 
   async function flush() {

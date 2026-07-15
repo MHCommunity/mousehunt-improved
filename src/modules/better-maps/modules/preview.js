@@ -2,11 +2,22 @@
 
 import { fetchMouseRip, makeElement, mapData, waitForElement } from '@utils';
 
+// The content stage runs on every map render pass, and several passes hit the same button
+// element. Without this the click handler stacks, and each copy prepends the quantity and
+// appends the drop-chance row again.
+const boundPreviewButtons = new WeakSet();
+
 export default () => {
   const previewRewardsButton = document.querySelector('.treasureMapView-previewRewardsButton');
   if (! previewRewardsButton) {
     return;
   }
+
+  if (boundPreviewButtons.has(previewRewardsButton)) {
+    return;
+  }
+
+  boundPreviewButtons.add(previewRewardsButton);
 
   previewRewardsButton.addEventListener('click', async () => {
     const theMapData = mapData();

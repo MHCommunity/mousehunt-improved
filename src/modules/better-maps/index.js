@@ -182,6 +182,23 @@ const interceptMapRequest = async (mapId, isCurrent = () => true) => {
 
 let parentShowMap;
 let defaultMapId;
+
+// The map the dialog was last asked to show, or null when it's closed. Responses for any
+// other map must not take over the display: the sidebar refreshes the *default* map on
+// every turn (see refreshMap in ./utils), which would otherwise re-decorate an open
+// dialog with a different map's goals, classes and quick-invite target.
+let activeMapId = null;
+
+/**
+ * Check whether a map response is for the map currently on screen.
+ *
+ * @param {string|number} mapId The map ID from the response.
+ *
+ * @return {boolean} Whether the map is the one being displayed.
+ */
+const isActiveMap = (mapId) => {
+  return Boolean(activeMapId) && `${activeMapId}` === `${mapId}`;
+};
 let mapRequestGeneration = 0;
 let mapRecoveryTimeouts = [];
 
@@ -229,7 +246,7 @@ const recoverMapData = (mapId, generation) => {
  */
 async function updateMapSurface(response, request) {
   if ('get_inventory' === request?.action) {
-    await updateInventorySurface(); // eslint-disable-line no-use-before-define
+    await updateInventorySurface();
   } else if ('get_shops' === request?.action) {
     await updateShopsMarkup();
   } else if ('get_listings' === request?.action && getSetting('better-maps.community')) {
@@ -260,6 +277,7 @@ const intercept = (retries = 0) => {
     const result = Reflect.apply(parentShowMap, this, arguments);
 
     const mapId = id || defaultMapId;
+    activeMapId = mapId;
     const requestGeneration = ++mapRequestGeneration;
     clearMapRecovery();
     interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration).then((data) => {
@@ -282,18 +300,30 @@ const intercept = (retries = 0) => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
-      publishMapData(data.treasure_map, 'treasure-map-request');
+
+      if (isActiveMap(data.treasure_map.map_id)) {
+        publishMapData(data.treasure_map, 'treasure-map-request');
+      }
     }
 
     await updateMapSurface(data, request);
-    runMapEnhancements(); // eslint-disable-line no-use-before-define
+
+    // Only re-run enhancements while the map dialog is open. Background map
+    // refreshes fire every turn; queueing a render with no mounted map root just
+    // arms a whole-document observer that can never become ready.
+    if (activeMapId) {
+      runMapEnhancements();
+    }
   }, true);
 
   onRequest('board/board.php', async (data) => {
     hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
-      publishMapData(data.treasure_map, 'board-request');
+
+      if (isActiveMap(data.treasure_map.map_id)) {
+        publishMapData(data.treasure_map, 'board-request');
+      }
     }
   }, true);
 };
@@ -364,13 +394,20 @@ const bindMapNavigation = (model) => {
  * Register the visible Better Maps render order in one place.
  */
 const configureMapRuntime = () => {
-  mapRuntime.register('structure', 'sorted-tab', ({ map }) => {
+  mapRuntime.register('structure', 'sorted-tab', async ({ root, map }) => {
     if (! map) {
       return;
     }
 
     if (! map.is_complete && ! map.can_claim_reward) {
-      addSortedMapTab();
+      // A map update rebuilds the header, destroying our tab and re-selecting Goals.
+      // addSortedMapTab() only reports true when it had to (re)create the tab, so that's
+      // also the signal that the game reset the tab selection and the default needs to be
+      // applied again. Clicking Goals leaves the tab in place, so this won't override a
+      // deliberate choice.
+      if (await addSortedMapTab()) {
+        defaultedRoots.delete(root);
+      }
 
       if (mapHasGroup(map)) {
         addSortedTabNotice();
@@ -382,7 +419,7 @@ const configureMapRuntime = () => {
 
   mapRuntime.register('state-classes', 'map-state', ({ root, map }) => {
     updateMapClasses(root);
-    addInfoClasses(map, root); // eslint-disable-line no-use-before-define
+    addInfoClasses(map, root);
   });
 
   mapRuntime.register('navigation', 'map-navigation', bindMapNavigation);
@@ -493,7 +530,18 @@ const updateInventorySurface = async () => {
 
 let originalShowInventory;
 let originalShowShops;
-const installSurfaceHooks = () => {
+const installSurfaceHooks = (retries = 0) => {
+  // The controller may not be registered yet if we loaded very early. Without this the
+  // dereference below throws and aborts the rest of init(), taking the sidebar, catch
+  // dates, draggable highlight and the dialog-hide reset down with it.
+  if (! hg?.controllers?.TreasureMapController?.showInventory) {
+    if (retries < 10) {
+      setTimeout(() => installSurfaceHooks(retries + 1), 500);
+    }
+
+    return;
+  }
+
   if (! originalShowInventory) {
     originalShowInventory = hg.controllers.TreasureMapController.showInventory;
     hg.controllers.TreasureMapController.showInventory = function () {
@@ -615,6 +663,7 @@ const init = () => {
     clearTimeout(clearCacheTimeout);
     clearCacheTimeout = null;
     mapRequestGeneration++;
+    activeMapId = null;
     clearMapRecovery();
     mapRuntime.reset();
   }, 'map');
