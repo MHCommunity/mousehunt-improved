@@ -128,6 +128,12 @@ const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
   }
 };
 
+// The module name passed to addStyles() for location HUD styles, and the element ID
+// it produces. addStyles() keys its element as `${identifier}-${module}`, so the ID
+// carries the default 'mh-improved-styles' identifier as well as the module name.
+const hudStylesModule = 'mh-improved-styles-location-hud';
+const hudStylesId = `mh-improved-styles-${hudStylesModule}`;
+
 /**
  * Add custom styles specific for a location HUD.
  *
@@ -135,14 +141,14 @@ const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
  */
 const addHudStyles = async (styles) => {
   removeHudStyles();
-  addStyles(styles, 'mh-improved-styles-location-hud');
+  addStyles(styles, hudStylesModule);
 };
 
 /**
  * Remove all location hud styles.
  */
 const removeHudStyles = () => {
-  const styles = document.querySelectorAll('.mh-improved-styles-location-hud');
+  const styles = document.querySelectorAll(`#${hudStylesId}`);
   styles.forEach((style) => {
     style.remove();
   });
