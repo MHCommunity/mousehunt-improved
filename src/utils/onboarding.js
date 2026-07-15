@@ -227,7 +227,7 @@ const addOnboardingTip = ({
    */
   const reposition = () => {
     if (! anchorEl.isConnected) {
-      remove(); // eslint-disable-line no-use-before-define
+      remove();
       return;
     }
 
@@ -258,8 +258,8 @@ const addOnboardingTip = ({
   const remove = () => {
     window.removeEventListener('resize', reposition);
     window.removeEventListener('scroll', reposition, true);
-    document.removeEventListener('keydown', onKeydown); // eslint-disable-line no-use-before-define
-    observer.disconnect(); // eslint-disable-line no-use-before-define
+    document.removeEventListener('keydown', onKeydown);
+    observer.disconnect();
 
     tip.remove();
   };

@@ -167,7 +167,11 @@ const showTimersPopup = () => {
 const init = async () => {
   addStyles(styles, 'timers');
 
-  environments = await getData('environments');
+  // getData() resolves to {} rather than a falsy value when the fetch fails. The environments are
+  // only used to look up a background image, so fall back to an empty list and render the timers
+  // without images rather than throwing on .find() and never opening the popup at all.
+  const environmentData = await getData('environments');
+  environments = Array.isArray(environmentData) ? environmentData : [];
 
   document.addEventListener('horn-countdown-tick-minute', tick);
 

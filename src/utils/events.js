@@ -283,6 +283,10 @@ const getDialogMapping = () => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (overlay = null, callback = null, once = false) => {
+  if (! window.eventRegistry) {
+    return;
+  }
+
   const lifecycleCallback = prepareLifecycleCallback(callback, `dialog-show:${overlay}`);
   if (lifecycleCallback.skip) {
     return;
@@ -380,6 +384,10 @@ const normalizeDialogOverlay = (overlay = null) => {
  * @param {string}   overlay  The overlay to check for.
  */
 const onDialogHide = (callback, overlay = null) => {
+  if (! window.eventRegistry) {
+    return;
+  }
+
   const normalizedOverlay = normalizeDialogOverlay(overlay);
   const lifecycleCallback = prepareLifecycleCallback(callback, `dialog-hide:${normalizedOverlay}`);
   if (lifecycleCallback.skip) {
@@ -480,6 +488,10 @@ const onPageChange = (callbacks) => {
  * @param {Function} [options.callback]          The callback to run when the user is at the location.
  */
 const onTravel = (location, options) => {
+  if (! window.eventRegistry) {
+    return;
+  }
+
   const callback = () => onTravelCallback(location, options);
   const lifecycleCallback = prepareLifecycleCallback(callback, `travel:${location || '*'}`);
   if (lifecycleCallback.skip) {
@@ -602,6 +614,10 @@ const onNavigation = (callback, options = {}) => {
  * Add the navigation listeners.
  */
 const addNavigationListeners = () => {
+  if (! window.eventRegistry) {
+    return;
+  }
+
   eventRegistry.addEventListener('set_page', (e) => {
     const tabs = e?.data?.tabs || {};
 
