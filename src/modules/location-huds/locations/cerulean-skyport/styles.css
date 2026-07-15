@@ -279,3 +279,7 @@ slowly, and wisps of cloud blow past the windows. */
 .headsUpDisplayCeruleanSkyportView__logButton:hover {
   filter: brightness(1.2);
 }
+
+.ceruleanSkyportInventoryView__inventoryBlockQuantity.quantity {
+  height: 16px;
+}

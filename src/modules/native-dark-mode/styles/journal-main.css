@@ -113,3 +113,7 @@
   background-color: var(--d-green-dark);
   box-shadow: -10px 0 57px var(--d-green-darker) inset;
 }
+
+.mh-dark .journal .content .entry.short.tournamentpointswithloot {
+  background-color: var(--d-yellow-dark);
+}

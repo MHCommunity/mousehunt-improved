@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.99.1
+
+Updated Better Tournaments styling
+Updated Dark Mode tournament journal entry styling
+
 ## Version 0.99.0
 
 ### New Beta Features

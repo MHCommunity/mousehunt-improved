@@ -611,7 +611,7 @@ img.pointsMouseIcon {
   text-align: center;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .timer.active {
+.tournamentStatusHud:not(.trainStationHUD).active > .timer {
   top: 1px;
 }
 
@@ -830,6 +830,25 @@ img.pointsMouseIcon {
   margin-left: 4px;
 }
 
+.tournamentStatusHud:not(.trainStationHUD).active > a.name {
+  width: 205px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tournamentStatusHud:not(.trainStationHUD).active > a.name:hover {
+  z-index: 32;
+  width: auto;
+  min-width: 205px;
+  max-width: 360px;
+  padding-left: 10px;
+  margin-left: 5px;
+  overflow: visible;
+  white-space: normal;
+  background-color: rgb(230 88 19 / 50%);
+}
+
 .tournamentStatusHud:not(.trainStationHUD) > a.teamMembers {
   border-radius: 20px;
 }
@@ -877,14 +896,14 @@ img.pointsMouseIcon {
 .tournamentStatusHud:not(.trainStationHUD) > .rank::after,
 .tournamentStatusHud:not(.trainStationHUD) > .score::after {
   position: absolute;
-  inset: 8px 9px 7px 4px;
+  inset: 10px 10px 10px 5px;
   content: "";
   border-radius: 15px 3px 3px 15px;
   transition: 0.2s;
 }
 
 .tournamentStatusHud:not(.trainStationHUD) > .score::after {
-  inset: 9px -21px 10px 10px;
+  inset: 10px -10px 10px 10px;
   border-radius: 2px 18px 18px 3px;
 }
 
@@ -991,4 +1010,8 @@ img.pointsMouseIcon {
 
 .overlayPopup .tournamentHelp .faq ul {
   margin: 0 0 0 9px;
+}
+
+.mh-dark a.teamWrapper {
+  color: var(--d-link);
 }
