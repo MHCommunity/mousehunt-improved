@@ -32,15 +32,15 @@
         },
         {
           "mouse": "chillandria_permafrost",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "avalancheus_the_glacial",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "arcticus_the_biting_frost",
-          "subcategory": "cavern-750+-loot"
+          "subcategory": "cavern-750-loot"
         }
       ]
     },
@@ -73,15 +73,15 @@
         },
         {
           "mouse": "combustius_furnaceheart",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "incendarius_the_unquenchable",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "sulfurious_the_raging_inferno",
-          "subcategory": "cavern-750+-loot"
+          "subcategory": "cavern-750-loot"
         }
       ]
     },
@@ -114,15 +114,15 @@
         },
         {
           "mouse": "belchazar_banewright",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "pestilentia_the_putrid",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "corrupticus_the_blight_baron",
-          "subcategory": "cavern-750+-loot"
+          "subcategory": "cavern-750-loot"
         }
       ]
     },
@@ -139,15 +139,15 @@
         },
         {
           "mouse": "supremia_magnificus",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "threeimat",
-          "subcategory": "cavern-100+-loot"
+          "subcategory": "cavern-100-loot"
         },
         {
           "mouse": "mythical_dragon_emperor",
-          "subcategory": "cavern-750+-loot"
+          "subcategory": "cavern-750-loot"
         }
       ]
     }

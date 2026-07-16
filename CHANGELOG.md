@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.99.3
+
+- Better Maps: Fixed mice missing from the Sorted tab on Draconic Depths, Folklore Forest Grand Tour, and Origin of Dragons maps
+
 ## Version 0.99.2
 
 - Better Maps: Fixed several rendering issues, including duplicate attraction rate badges, the quick invite box duplicating, and the Goals tab reinitializing when map data reloaded
