@@ -35,7 +35,8 @@ const createMapRuntime = (dependencies = {}) => {
   const isReady = () => {
     const root = getRoot();
     const content = root?.querySelector('.treasureMapRootView-content');
-    return root && content && ! content.classList.contains('loading') ? { root, content } : null;
+    const mapView = content?.querySelector('.treasureMapView');
+    return root && content && mapView && ! content.classList.contains('loading') ? { root, content } : null;
   };
 
   const disconnectObserver = () => {

@@ -12,6 +12,7 @@ const LOOT_INTRO_PHRASES = [
   'Inside, I found</b>',
   'Loyalty Chest and received:',
   'I sifted through my Dragon Nest and found</b>',
+  'I claimed a reward of</b>',
   'my Skyfarer\'s Oculus and discovered the following loot:',
   'my Skyfarer\'s Oculus and discovered:',
   'My golem returned from |*| with',

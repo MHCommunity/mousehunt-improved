@@ -35,12 +35,16 @@ const addArDataToMap = async (mapData) => {
   }
 
   mice.forEach(async (mouse) => {
-    const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
-    if (! mouseEl) {
+    const arEl = await getArEl(mouse.type ?? mouse.unique_id, type);
+    if (! arEl) {
       return;
     }
 
-    if (mouseEl.classList.contains('complete')) {
+    // Multiple map render sessions can be fetching the same rate at once. Wait to
+    // remove an old badge until this fetch has resolved, so the last completed
+    // session replaces the previous badge instead of appending a duplicate.
+    const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
+    if (! mouseEl || mouseEl.classList.contains('complete')) {
       return;
     }
 
@@ -49,18 +53,7 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    const existingArEl = name.querySelectorAll('.mh-ui-ar');
-    if (existingArEl.length > 0) {
-      existingArEl.forEach((el) => {
-        el.remove();
-      });
-    }
-
-    const arEl = await getArEl(mouse.type ?? mouse.unique_id, type);
-    if (! arEl) {
-      return;
-    }
-
+    name.querySelectorAll('.mh-ui-ar').forEach((existing) => existing.remove());
     name.append(arEl);
 
     mouseEl.setAttribute('data-mh-ui-ar', true);

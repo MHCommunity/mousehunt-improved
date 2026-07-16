@@ -77,3 +77,7 @@
 .mh-dark td.teamPage-memberRow-activeTournament a {
   color: var(--d-link);
 }
+
+.mh-dark .tournamentPage-profile-prizeWaiting {
+  color: var(--d-text-dark);
+}

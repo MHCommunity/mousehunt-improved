@@ -846,6 +846,22 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
     appendTo: toggleWrapper
   });
 
+  makeMhButton({
+    element: 'button',
+    text: 'Reset Sort',
+    className: 'scavenger-toggle-button',
+    callback: async (event) => {
+      const button = event.currentTarget;
+      button.classList.add('disabled');
+      try {
+        await processSortedTabClick(true);
+      } finally {
+        button.classList.remove('disabled');
+      }
+    },
+    appendTo: toggleWrapper
+  });
+
   const sortedContainer = document.querySelector('#sorted-mice-container');
   if (sortedContainer) {
     sortedContainer.prepend(toggleWrapper);
@@ -943,10 +959,12 @@ const moveTabToBody = () => {
 
 /**
  * Process the sorted tab click.
+ *
+ * @param {boolean} [force] Rebuild the default view even when Sorted is active.
  */
-const processSortedTabClick = async () => {
+const processSortedTabClick = async (force = false) => {
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
-  if (currentlyActive) {
+  if (currentlyActive && ! force) {
     return;
   }
 

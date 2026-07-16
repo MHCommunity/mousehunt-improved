@@ -42,6 +42,7 @@ const styles = imported;
 const mapRuntime = createMapRuntime();
 const navigationRoots = new WeakMap();
 const defaultedRoots = new WeakMap();
+const initializedGoalsTabs = new WeakSet();
 
 /**
  * Add a one-time notice below the Sorted tab.
@@ -414,7 +415,14 @@ const configureMapRuntime = () => {
       }
     }
 
-    doEvent('map_show_goals_tab_click', map);
+    // Map responses can re-run this render session without rebuilding the Goals
+    // tab. Its setup is not a refresh hook, so run it once per tab instance;
+    // subsequent user clicks still flow through the delegated navigation handler.
+    const goalsTab = root.querySelector('.treasureMapRootView-subTab[data-type="goals"]');
+    if (goalsTab && ! initializedGoalsTabs.has(goalsTab)) {
+      initializedGoalsTabs.add(goalsTab);
+      doEvent('map_show_goals_tab_click', map);
+    }
   });
 
   mapRuntime.register('state-classes', 'map-state', ({ root, map }) => {

@@ -388,7 +388,7 @@ const addQuickInvite = async (mapData) => {
     return;
   }
 
-  const existing = document.querySelector('.mh-ui-quick-invite');
+  const existing = sidebar.querySelector('.mh-ui-quick-invite-wrapper');
   if (existing) {
     existing.remove();
   }

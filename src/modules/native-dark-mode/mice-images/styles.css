@@ -63,12 +63,21 @@ element's descendants too, so masking it would cut the text out along with the w
     content: none;
   }
 
-  /* The image is clickable, so the hover glow has to survive. The mask clips anything
-  the element itself paints, so the shadow goes on the parent, where it traces the
-  cut-out shape rather than the old rectangle. */
+  /* Full-size journal art is an image element rather than a background, so the
+  mask can apply directly without affecting any journal text. */
 
-  .mh-dark .mouseView-imageContainer:has(.mouseView-image[data-mh-mask]):hover {
-    filter: drop-shadow(0 0 3px #e70);
+  .mh-dark .journal .entry .journalimage img[data-mh-mask] {
+    border: 0;
+    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-mode: luminance;
+    mask-repeat: no-repeat;
+    mask-position:
+      0 0,
+      50% 50%;
+    mask-size:
+      100% 100%,
+      contain;
+    mask-composite: subtract, add;
   }
 }
 

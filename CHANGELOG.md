@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.99.2
+
+- Better Maps: Fixed several rendering issues, including duplicate attraction rate badges, the quick invite box duplicating, and the Goals tab reinitializing when map data reloaded
+- Better Maps: Added a Reset Sort button to the Sorted tab
+- Better Journal: Added loot list support for reward claim entries
+- Dark Mode: Updated styles and applied masking to full-size mice images in journal entries
+- Minor style tweaks
+
 ## Version 0.99.1
 
 Updated Better Tournaments styling

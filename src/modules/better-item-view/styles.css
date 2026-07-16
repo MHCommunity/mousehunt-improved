@@ -26,7 +26,7 @@
 
 .mouseview-has-mhct .mouse-ar-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 50px;
+  grid-template-columns: 1fr 1fr 60px;
   gap: 10px;
   place-items: center stretch;
   width: auto;

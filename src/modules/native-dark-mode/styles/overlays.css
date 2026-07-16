@@ -167,6 +167,10 @@
   color: var(--d-text);
 }
 
+.mh-dark #overlayPopup.multipleItems .img .name {
+  color: var(--d-text-dark);
+}
+
 .mh-dark .mousehuntCharacterGuideBox-content {
   background-color: var(--d-bg-alt);
 }

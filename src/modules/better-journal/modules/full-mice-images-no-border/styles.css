@@ -19,7 +19,6 @@
 .journal .content .entry.relicHunter_catch .journalimage a:hover,
 .journal .content .entry.catchsuccessloot .journalimage a:hover,
 .journal .content .entry.catchsuccessprize .journalimage a:hover {
-  margin: 1px;
   overflow: visible;
   background-color: #fff;
   outline: 1px solid #90d3e4;
