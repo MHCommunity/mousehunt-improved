@@ -1,13 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  getCurrentPage,
-  getCurrentTab,
-  getData,
-  getSetting,
-  makeElement,
-  onNavigation
-} from '@utils';
+import { addStyles, doRequest, getCurrentPage, getCurrentTab, getData, getSetting, makeElement, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -25,7 +16,7 @@ import categories from '@data/ultimate-checkmark.json';
  * @return {Array} The items.
  */
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
-  if (! allItems.length) {
+  if (!allItems.length) {
     const inventoryData = await doRequest('managers/ajax/pages/page.php', {
       page_class: 'Inventory',
       'page_arguments[legacyMode]': '',
@@ -36,12 +27,12 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     // Find the inventoryData.page.tabs array item that has type=special
     const tabs = inventoryData?.page?.tabs || [];
     const specialTab = tabs.find((tab) => queryTab === tab.type);
-    if (! specialTab || ! specialTab.subtabs || ! specialTab.subtabs.length || ! specialTab.subtabs[0].tags) {
+    if (!specialTab || !specialTab.subtabs || !specialTab.subtabs.length || !specialTab.subtabs[0].tags) {
       return [];
     }
 
     const owned = specialTab.subtabs[0].tags.filter((tag) => queryTag === tag.type);
-    if (! owned || ! owned.length || ! owned[0].items) {
+    if (!owned || !owned.length || !owned[0].items) {
       return [];
     }
 
@@ -51,9 +42,9 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   // Merge the required allItems with the owned allItems
   required.forEach((requiredItem) => {
     const ownedItem = allItems.find((i) => i.type === requiredItem);
-    if (! ownedItem) {
+    if (!ownedItem) {
       const itemToAdd = items.find((i) => i.type === requiredItem);
-      if (! itemToAdd) {
+      if (!itemToAdd) {
         return;
       }
 
@@ -70,7 +61,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   });
 
   allItems = allItems.map((item) => {
-    if (! item.item_id) { // eslint-disable-line camelcase
+    if (!item.item_id) {
       item = items.find((i) => i.type === item.type);
     }
 
@@ -81,7 +72,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
       thumbnail: item.thumbnail_gray || item.thumbnail,
       quantity: item.quantity || 0,
       quantity_formatted: item.quantity_formatted || '0',
-      le: ! required.includes(item.type),
+      le: !required.includes(item.type),
     };
   });
 
@@ -116,7 +107,7 @@ const getProgress = (items, required) => {
       return;
     }
 
-    if (! item.le) {
+    if (!item.le) {
       requiredCompleted++;
     } else if (item.le) {
       le++;
@@ -163,7 +154,7 @@ const makeCategory = (category, name, progress) => {
   }
 
   const sidebar = document.querySelector('.hunterProfileItemsView-directory');
-  if (! sidebar) {
+  if (!sidebar) {
     return;
   }
 
@@ -256,7 +247,7 @@ const makeItem = (item) => {
  */
 const makeContent = (id, name, items, completed) => {
   const content = document.querySelector('.hunterProfileItemsView-content-padding');
-  if (! content) {
+  if (!content) {
     return;
   }
 
@@ -331,7 +322,7 @@ const addCategoryAndItems = async (required, type, subtype, key, name) => {
  * @return {boolean} If the profile is the user's own profile.
  */
 const isOwnProfile = () => {
-  if (! hg?.utils?.PageUtil?.getQueryParams) {
+  if (!hg?.utils?.PageUtil?.getQueryParams) {
     return false;
   }
 
@@ -349,16 +340,16 @@ let items;
  * Run the module.
  */
 const run = async () => {
-  if ('hunterprofile' !== getCurrentPage() || 'items' !== getCurrentTab() || ! isOwnProfile()) {
+  if ('hunterprofile' !== getCurrentPage() || 'items' !== getCurrentTab() || !isOwnProfile()) {
     return;
   }
 
-  if (! items) {
+  if (!items) {
     items = await getData('items');
   }
 
   for (const category of categories) {
-    if (! getSetting(`ultimate-checkmark.show-${category.id}`, true)) {
+    if (!getSetting(`ultimate-checkmark.show-${category.id}`, true)) {
       continue;
     }
 

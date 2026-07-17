@@ -1,10 +1,4 @@
-import {
-  addHudStyles,
-  getCurrentLocation,
-  makeElement,
-  onRequest,
-  onTurn
-} from '@utils';
+import { addHudStyles, getCurrentLocation, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -30,7 +24,7 @@ const highlightDoors = () => {
       return door?.choice?.length && door?.choice?.charAt(0).toLowerCase() === clue.type.toLowerCase();
     });
 
-    if (! matchingDoors.length) {
+    if (!matchingDoors.length) {
       return;
     }
 
@@ -66,7 +60,7 @@ const highlightDoors = () => {
  */
 const scrambleGems = () => {
   const gems = document.querySelectorAll('.labyrinthHUD-scrambleGem');
-  if (! gems) {
+  if (!gems) {
     return;
   }
 
@@ -96,10 +90,7 @@ const expandClueBar = () => {
   const clueProgress = document.querySelectorAll('.labyrinthHUD-clue');
   if (clueProgress) {
     clueProgress.forEach((progress) => {
-      const clueType = progress.classList.value
-        .replace('labyrinthHUD-clue', '')
-        .replace('clueFound', '')
-        .trim();
+      const clueType = progress.classList.value.replace('labyrinthHUD-clue', '').replace('clueFound', '').trim();
 
       // check if user.quests.QuestLabyrinth.clues has a clue of this type
       const clues = user.quests.QuestLabyrinth.clues || [];
@@ -143,7 +134,7 @@ const updateDoorText = () => {
   }
 
   const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
-  if (! appendTo) {
+  if (!appendTo) {
     return;
   }
 
@@ -182,7 +173,7 @@ const updateDoorText = () => {
     cptExisting.remove();
   }
 
-  if (stepsToGo !== 0) { // eslint-disable-line unicorn/no-negated-condition
+  if (stepsToGo !== 0) {
     const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
     if (intersectionDoors) {
       const tilesWithClues = tiles.filter((tile) => tile.status.includes('good'));
@@ -193,14 +184,14 @@ const updateDoorText = () => {
       const intersectionText = makeElement('div', 'mh-ui-labyrinth-door-text');
 
       let stepsNoun = 'hunt';
-      if (stepsToGo > 1 || stepsToGo < 1) {
+      if (stepsToGo !== 1) {
         stepsNoun = 'hunts';
       }
 
       makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} ${stepsNoun} left in the hallway`, intersectionText);
       if (cluesPerTile !== 'NaN') {
         let clueNoun = 'clue';
-        if (cluesPerTile > 1 || cluesPerTile < 1) {
+        if (Number(cluesPerTile) !== 1) {
           clueNoun = 'clues';
         }
 
@@ -221,7 +212,7 @@ const updateDoorText = () => {
  */
 const highlight100Clues = () => {
   const clues = document.querySelector('.labyrinthHUD-clueBar-totalContainer');
-  if (! clues) {
+  if (!clues) {
     return;
   }
 
@@ -267,7 +258,7 @@ const highlightTileForMinigame = (tile) => {
 const minigame = async () => {
   // whenever a user clicks on a .labyrinthHUD-hallway-tile.locked, change it to a random color for 2 seconds
   const tiles = document.querySelectorAll('.labyrinthHUD-hallway-tile');
-  if (! tiles) {
+  if (!tiles) {
     return;
   }
 

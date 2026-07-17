@@ -1,10 +1,4 @@
-import {
-  addHudStyles,
-  createPopup,
-  getSetting,
-  makeElement,
-  onTrapChange
-} from '@utils';
+import { addHudStyles, addOnboardingTip, createPopup, getSetting, makeElement, onTrapChange } from '@utils';
 
 import flippedAvatarStyles from './flipped-avatar.css';
 import styles from './styles.css';
@@ -86,7 +80,7 @@ const displayResults = (results) => {
  */
 const doSimulation = (selector) => {
   const simPopup = document.querySelector(selector);
-  if (! simPopup) {
+  if (!simPopup) {
     return;
   }
 
@@ -120,12 +114,12 @@ const addUIComponents = () => {
   }
 
   const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');
-  if (! floorTooltipParent) {
+  if (!floorTooltipParent) {
     return;
   }
 
   const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
-  if (! tooltip) {
+  if (!tooltip) {
     return;
   }
 
@@ -133,12 +127,12 @@ const addUIComponents = () => {
   tooltip.classList.remove('top');
 
   const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
-  if (! stepsRemaining) {
+  if (!stepsRemaining) {
     return;
   }
 
   const floorBar = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
-  if (! floorBar) {
+  if (!floorBar) {
     return;
   }
 
@@ -158,7 +152,7 @@ const addUIComponents = () => {
  */
 const modifyPlayerIcon = () => {
   const playerIcon = document.querySelector('.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image');
-  if (! playerIcon) {
+  if (!playerIcon) {
     return;
   }
 
@@ -184,7 +178,7 @@ const addSimulatorEvents = () => {
   doSimulation('.valourRiftHUD-floorProgress-barContainer');
 
   const magnifyingGlass = document.querySelector('.valourRiftHUD-previewTower');
-  if (! magnifyingGlass) {
+  if (!magnifyingGlass) {
     return;
   }
 
@@ -206,20 +200,21 @@ const addSimulatorEvents = () => {
  */
 const removeWarningIfUcEquipped = () => {
   const warningContainer = document.querySelector('.valourRiftHUD-warningContainer.active');
-  if (! warningContainer) {
+  if (!warningContainer) {
     return;
   }
 
   warningContainer.classList.remove('hidden');
 
   const powerTypeWarning = warningContainer.querySelector('.valourRiftHUD-powerTypeWarning.active');
-  if (! powerTypeWarning) {
+  if (!powerTypeWarning) {
     return;
   }
 
   powerTypeWarning.classList.remove('hidden');
 
-  if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (1075 == user.trinket_item_id) {
     warningContainer.classList.add('hidden');
     powerTypeWarning.classList.add('hidden');
   }
@@ -229,20 +224,17 @@ const removeWarningIfUcEquipped = () => {
  * Highlight quantities if an Ultimate Charm is equipped.
  */
 const highlightQuantitiesIfUcEquipped = async () => {
-  const selectors = [
-    '.valourRiftHUD-gauntletBait-quantity.quantity',
-    '.valourRiftHUD-towerLoot-quantity.quantity',
-    '.valourRiftHUD-powerUp-currentLevel',
-  ];
+  const selectors = ['.valourRiftHUD-gauntletBait-quantity.quantity', '.valourRiftHUD-towerLoot-quantity.quantity', '.valourRiftHUD-powerUp-currentLevel'];
 
   selectors.forEach((selector) => {
     const existing = document.querySelectorAll(selector);
-    if (! existing) {
+    if (!existing) {
       return;
     }
 
     existing.forEach((e) => {
-      if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+      // eslint-disable-next-line eqeqeq
+      if (1075 == user.trinket_item_id) {
         e.classList.add('uc-text-highlight');
       } else {
         e.classList.remove('uc-text-highlight');
@@ -263,10 +255,7 @@ const ifUcEquipped = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles([
-    styles,
-    getSetting('location-huds.flip-avatar-images', false) ? flippedAvatarStyles : '',
-  ]);
+  addHudStyles([styles, getSetting('location-huds.flip-avatar-images', false) ? flippedAvatarStyles : '']);
 
   addUIComponents();
   addSimulatorEvents();

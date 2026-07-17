@@ -1,17 +1,4 @@
-import {
-  addBodyClass,
-  addStyles,
-  createPopup,
-  debuglog,
-  doEvent,
-  getFlag,
-  getSetting,
-  onEvent,
-  saveSetting,
-  setGlobal,
-  showLoadingPopup,
-  updateCaches
-} from '@utils';
+import { addBodyClass, addStyles, createPopup, debuglog, doEvent, getFlag, getSetting, onEvent, saveSetting, setGlobal, showLoadingPopup, updateCaches } from '@utils';
 
 import errorPopupStyles from './error-popup.css';
 
@@ -23,7 +10,7 @@ const versionUpdates = imported;
  */
 const saveSettingsBackup = () => {
   const settings = localStorage.getItem('mousehunt-improved-settings');
-  if (! settings) {
+  if (!settings) {
     return;
   }
 
@@ -51,7 +38,7 @@ const getVersionUpdates = () => {
   const updatesCompleted = getSetting('updates-completed', []);
   for (const versionUpdate in Object.values(versionUpdates)) {
     const version = versionUpdates[versionUpdate].version;
-    if (! updatesCompleted.includes(version)) {
+    if (!updatesCompleted.includes(version)) {
       neededUpdates.push(versionUpdates[versionUpdate]);
     }
   }
@@ -85,7 +72,7 @@ const doVersionUpdates = async (updates) => {
         debuglog('update-migration', `Completed update for ${update.version}`);
       } catch (error) {
         debuglog('update-migration', `Error running update for ${update.version}`, error);
-        throw new Error(`Error running update for ${update.version}: ${error.message}`);
+        throw new Error(`Error running update for ${update.version}: ${error.message}`, { cause: error });
       }
     } catch (error) {
       debuglog('update-migration', `Error updating to ${update.version}`, error);
@@ -103,10 +90,7 @@ const doVersionUpdates = async (updates) => {
  * @param {Array}  updates         The version updates that were pending.
  */
 const showUpdateError = (error, previousVersion, newVersion, updates) => {
-  const details = (error?.message || String(error))
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;');
+  const details = (error?.message || String(error)).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
   const popup = createPopup({
     title: `Error updating MouseHunt Improved to v${newVersion}`,
@@ -123,7 +107,7 @@ const showUpdateError = (error, previousVersion, newVersion, updates) => {
     hasCloseButton: false,
   });
 
-  if (! popup) {
+  if (!popup) {
     showLoadingPopup(`Error updating MouseHunt Improved to v${newVersion}. Please try refreshing the page.`);
     return;
   }
@@ -147,7 +131,7 @@ const showUpdateError = (error, previousVersion, newVersion, updates) => {
     // next release either.
     const updatesCompleted = getSetting('updates-completed', []);
     for (const pendingUpdate of updates) {
-      if (! updatesCompleted.includes(pendingUpdate.version)) {
+      if (!updatesCompleted.includes(pendingUpdate.version)) {
         updatesCompleted.push(pendingUpdate.version);
       }
     }
@@ -177,7 +161,7 @@ const update = async (previousVersion, newVersion) => {
   let popup;
 
   // Backup the settings before we start updating in case something goes wrong.
-  if (! isFreshInstall) {
+  if (!isFreshInstall) {
     popup = showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}…`);
 
     addBodyClass('mh-improved-updating');
@@ -188,11 +172,11 @@ const update = async (previousVersion, newVersion) => {
 
   try {
     // Allow testing the update-failed popup by setting the 'test-update-error' flag.
-    if (! isFreshInstall && getFlag('test-update-error')) {
+    if (!isFreshInstall && getFlag('test-update-error')) {
       throw new Error('Simulated update failure via the "test-update-error" flag.');
     }
 
-    if (! isFreshInstall && needsToRunUpdate) {
+    if (!isFreshInstall && needsToRunUpdate) {
       debuglog('update-migration', 'Running version updates:', updates);
       await doVersionUpdates(updates);
     }
@@ -217,11 +201,15 @@ const update = async (previousVersion, newVersion) => {
 
     popup = showLoadingPopup(`MouseHunt Improved has been updated to v${newVersion}!`);
 
-    onEvent('mh-improved-init', () => {
-      popup.hide();
+    onEvent(
+      'mh-improved-init',
+      () => {
+        popup.hide();
 
-      doEvent('mh-improved-updated', previousVersion);
-    }, true);
+        doEvent('mh-improved-updated', previousVersion);
+      },
+      true
+    );
   } catch (error) {
     // If something goes wrong, restore the settings from the backup, but keep
     // the new version number — the backup contains the old one, and restoring
@@ -255,7 +243,7 @@ export default async (previousVersion, newVersion) => {
     debuglog('update-migration', `Previous version: ${previousVersion}`);
 
     const updated = await update(previousVersion, newVersion);
-    if (! updated) {
+    if (!updated) {
       return false;
     }
 

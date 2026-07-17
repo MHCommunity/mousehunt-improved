@@ -29,7 +29,7 @@ const getWeight = (weight) => {
   } else if (lbSplit.length > 1) {
     const lb = Number.parseInt(lbSplit[0].trim(), 10);
     const oz = Number.parseFloat(lbSplit[1].trim());
-    weightOz = (lb * 16) + oz;
+    weightOz = lb * 16 + oz;
   }
 
   return weightOz;
@@ -179,23 +179,26 @@ const processWeights = (results) => {
   const totalCatchesEl = document.querySelector('.export-items-footer .total-catches');
   const totalWeightEl = document.querySelector('.export-items-footer .total-weight');
 
-  if (! totalUniqueMiceEl || ! totalCatchesEl || ! totalWeightEl) {
+  if (!totalUniqueMiceEl || !totalCatchesEl || !totalWeightEl) {
     return;
   }
 
   // reduce the results to get the totals
-  const totals = results.reduce((acc, { caughtMice, uniqueMice, totalCatches, totalWeight }) => {
-    acc.caughtMice += caughtMice;
-    acc.uniqueMice += uniqueMice;
-    acc.totalCatches += totalCatches;
-    acc.totalWeight += totalWeight;
-    return acc;
-  }, {
-    caughtMice: 0,
-    uniqueMice: 0,
-    totalCatches: 0,
-    totalWeight: 0,
-  });
+  const totals = results.reduce(
+    (acc, { caughtMice, uniqueMice, totalCatches, totalWeight }) => {
+      acc.caughtMice += caughtMice;
+      acc.uniqueMice += uniqueMice;
+      acc.totalCatches += totalCatches;
+      acc.totalWeight += totalWeight;
+      return acc;
+    },
+    {
+      caughtMice: 0,
+      uniqueMice: 0,
+      totalCatches: 0,
+      totalWeight: 0,
+    }
+  );
 
   totalUniqueMiceEl.textContent = `${totals.caughtMice}/${totals.uniqueMice}`;
   totalCatchesEl.textContent = formatNumber(totals.totalCatches);
@@ -205,6 +208,7 @@ const processWeights = (results) => {
 
 let groups = [];
 let regions = [];
+let environments = [];
 
 /**
  * Show the export popup for the mice data.
@@ -249,19 +253,7 @@ const exportMicePopup = () => {
     fetch: () => recursiveFetch(itemTypes, getDataForRegion),
     afterFetch: processWeights,
     download: {
-      headers: [
-        `${title} ID`,
-        title,
-        'Name',
-        'Type',
-        'Crown',
-        'Catches',
-        'Misses',
-        'Avg. Weight (oz)',
-        'Avg. Weight',
-        'Heaviest (oz)',
-        'Heaviest',
-      ],
+      headers: [`${title} ID`, title, 'Name', 'Type', 'Crown', 'Catches', 'Misses', 'Avg. Weight (oz)', 'Avg. Weight', 'Heaviest (oz)', 'Heaviest'],
       reduceResults: true,
     },
   });

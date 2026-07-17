@@ -100,16 +100,7 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
  * @return {HTMLElement} The created button.
  */
 const makeMhButton = (opts) => {
-  const {
-    text = '',
-    size = 'tiny',
-    element = 'a',
-    id = null,
-    className = [],
-    title = null,
-    callback = null,
-    appendTo = null,
-  } = opts;
+  const { text = '', size = 'tiny', element = 'a', id = null, className = [], title = null, callback = null, appendTo = null } = opts;
 
   const classes = ['mousehuntActionButton'];
 
@@ -135,7 +126,7 @@ const makeMhButton = (opts) => {
 
   makeElement('span', '', text, button);
 
-  if (callback && callback instanceof Function) {
+  if (typeof callback === 'function') {
     button.addEventListener('click', (event) => {
       callback(event);
     });
@@ -189,17 +180,7 @@ const makeLink = (text, href, encodeAsSpace = false) => {
  * @return {HTMLElement} The created button.
  */
 const makeFavoriteButton = async (options) => {
-  const {
-    id = null,
-    target = null,
-    size = 'small',
-    state = false,
-    isSetting = true,
-    defaultState = false,
-    onChange = null,
-    onActivate = null,
-    onDeactivate = null,
-  } = options;
+  const { id = null, target = null, size = 'small', state = false, isSetting = true, defaultState = false, onChange = null, onActivate = null, onDeactivate = null } = options;
 
   const existing = document.querySelector(`#${id}`);
   if (existing) {
@@ -233,7 +214,7 @@ const makeFavoriteButton = async (options) => {
     e.preventDefault();
     e.stopPropagation();
     const currentStar = e.target;
-    const currentState = ! currentStar.classList.contains('active');
+    const currentState = !currentStar.classList.contains('active');
 
     if (onChange !== null) {
       await onChange(currentState);
@@ -301,23 +282,27 @@ const makeFavoriteButton = async (options) => {
  */
 const createPopup = (options) => {
   // If we don't have jsDialog, bail.
-  if ('undefined' === typeof jsDialog || ! jsDialog) {
+  if ('undefined' === typeof jsDialog || !jsDialog) {
     return false;
   }
 
   // Default to sensible values.
-  const settings = Object.assign({}, {
-    title: '',
-    content: '',
-    hasCloseButton: true,
-    template: 'default',
-    show: true,
-    className: '',
-  }, options);
+  const settings = Object.assign(
+    {},
+    {
+      title: '',
+      content: '',
+      hasCloseButton: true,
+      template: 'default',
+      show: true,
+      className: '',
+    },
+    options
+  );
 
   // Initiate the popup.
   const popup = new jsDialog();
-  popup.setIsModal(! settings.hasCloseButton);
+  popup.setIsModal(!settings.hasCloseButton);
 
   // Set the template & add in the content.
   popup.setTemplate(settings.template);
@@ -370,7 +355,7 @@ const makePage = (content) => {
    */
   const setContent = () => {
     const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-    if (! pageContainer) {
+    if (!pageContainer) {
       return;
     }
 
@@ -385,7 +370,7 @@ const makePage = (content) => {
     }
   };
 
-  if (! hg?.utils?.PageUtil?.setPage) {
+  if (!hg?.utils?.PageUtil?.setPage) {
     return;
   }
 
@@ -407,14 +392,7 @@ const makePage = (content) => {
  * @return {HTMLElement} The created button.
  */
 const makeMathButton = (amount, opts) => {
-  const {
-    appendTo = null,
-    input = null,
-    maxQty = 0,
-    classNames = [],
-    getValue = null,
-    setValue = null,
-  } = opts;
+  const { appendTo = null, input = null, maxQty = 0, classNames = [], getValue = null, setValue = null } = opts;
 
   const button = makeElement('a', ['mousehuntActionButton', 'mh-improved-math-button', `mh-improved-math-button-${amount}`, ...classNames]);
 
@@ -432,7 +410,7 @@ const makeMathButton = (amount, opts) => {
 
     if (e.shiftKey && currentText !== minusText) {
       buttonText.innerText = minusText;
-    } else if (! e.shiftKey && currentText !== plusText) {
+    } else if (!e.shiftKey && currentText !== plusText) {
       buttonText.innerText = plusText;
     }
   };
@@ -632,12 +610,12 @@ const updateTrapStat = (statsContainer, statClass, newValue, currentValue) => {
  */
 const updateTrapStatsDisplay = (selector, pbStats) => {
   const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
-  if (! stats) {
+  if (!stats) {
     return;
   }
 
   const currentSetup = getUserSetupDetails();
-  if (! currentSetup) {
+  if (!currentSetup) {
     return;
   }
 
@@ -677,5 +655,5 @@ export {
   toEscapedJSON,
   makeProgressLogLink,
   waitForElement,
-  updateTrapStatsDisplay
+  updateTrapStatsDisplay,
 };

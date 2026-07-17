@@ -21,7 +21,7 @@ import {
   saveSetting,
   sessionGet,
   sessionSet,
-  toggleBlueprint
+  toggleBlueprint,
 } from '@utils';
 
 import styles from './styles.css';
@@ -54,7 +54,7 @@ const getFavoriteSetups = async (makeRequest = true) => {
 
   if (getSetting('favorite-setups.show-mobile-favorites', false)) {
     let mobileFavorites = await cacheGet('mobile-trap-favorites');
-    if (! mobileFavorites && makeRequest) {
+    if (!mobileFavorites && makeRequest) {
       const userData = await getUserData(['trap_favourite']);
       mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
 
@@ -78,14 +78,14 @@ const getFavoriteSetups = async (makeRequest = true) => {
         };
 
         // Remove any existing mobile setups.
-        faves = faves.filter((s) => ! s?.is_mobile || (s?.is_mobile && ! s.id.startsWith('mobile-')));
+        faves = faves.filter((s) => !s?.is_mobile || (s?.is_mobile && !s.id.startsWith('mobile-')));
 
         // Check if the setup already exists.
         const existingSetup = faves.find((s) => {
           return s?.id === newFavorite.id;
         });
 
-        if (! existingSetup) {
+        if (!existingSetup) {
           newFaves.push(newFavorite);
         }
       }
@@ -94,7 +94,7 @@ const getFavoriteSetups = async (makeRequest = true) => {
     }
   }
 
-  if (! faves || ! Array.isArray(faves) || ! faves.length) {
+  if (!faves || !Array.isArray(faves) || !faves.length) {
     return [];
   }
 
@@ -110,7 +110,7 @@ const getFavoriteSetups = async (makeRequest = true) => {
  * @return {Promise<string>} The generated name.
  */
 const getGeneratedName = async (setup) => {
-  if (! getSetting('favorite-setups.use-generated-names', true)) {
+  if (!getSetting('favorite-setups.use-generated-names', true)) {
     return {
       name: user.environment_name || 'Unnamed Setup',
     };
@@ -144,7 +144,7 @@ const getGeneratedName = async (setup) => {
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = await getFavoriteSetups();
 
-  if (! setups.length) {
+  if (!setups.length) {
     setups = [];
   }
 
@@ -160,7 +160,7 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   if (setup.id) {
     normalizedSetup.id = setup.id;
     // replace the setup in the list.
-    const index = setups.findIndex((s) => s?.id && (s.id === setup.id));
+    const index = setups.findIndex((s) => s?.id && s.id === setup.id);
     if (-1 === index) {
       setups.push(normalizedSetup);
     } else {
@@ -180,57 +180,59 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
 
   // Generate name asynchronously if requested
   if (useGeneratedName) {
-    getGeneratedName(normalizedSetup).then((setupNameData) => {
-      if (setupNameData && setupNameData.name) {
-        // Update the setup with the generated name
-        normalizedSetup.name = setupNameData.name;
+    getGeneratedName(normalizedSetup)
+      .then((setupNameData) => {
+        if (setupNameData && setupNameData.name) {
+          // Update the setup with the generated name
+          normalizedSetup.name = setupNameData.name;
 
-        // Update the saved setups
+          // Update the saved setups
+          const updatedSetups = getSetting('favorite-setups.setups', []);
+          const setupIndex = updatedSetups.findIndex((s) => s?.id === normalizedSetup.id);
+          if (setupIndex !== -1) {
+            updatedSetups[setupIndex] = normalizedSetup;
+            saveSetting('favorite-setups.setups', updatedSetups);
+
+            // Update the UI if the container is visible
+            const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
+            if (container) {
+              // Find and update the specific setup row
+              const setupRow = container.querySelector(`[data-setup-id="${normalizedSetup.id}"]`);
+              if (setupRow) {
+                const label = setupRow.querySelector('.label');
+                if (label && !setupRow.classList.contains('editing')) {
+                  label.textContent = normalizedSetup.name;
+                }
+              }
+            }
+
+            updateFavoriteSetupName();
+          }
+        }
+      })
+      .catch(() => {
+        // Fallback to location name if generation fails
+        normalizedSetup.name = setup.location || getCurrentLocation() || 'Unnamed Setup';
+
         const updatedSetups = getSetting('favorite-setups.setups', []);
         const setupIndex = updatedSetups.findIndex((s) => s?.id === normalizedSetup.id);
         if (setupIndex !== -1) {
           updatedSetups[setupIndex] = normalizedSetup;
           saveSetting('favorite-setups.setups', updatedSetups);
 
-          // Update the UI if the container is visible
+          // Update the UI
           const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
           if (container) {
-            // Find and update the specific setup row
             const setupRow = container.querySelector(`[data-setup-id="${normalizedSetup.id}"]`);
             if (setupRow) {
               const label = setupRow.querySelector('.label');
-              if (label && ! setupRow.classList.contains('editing')) {
+              if (label && !setupRow.classList.contains('editing')) {
                 label.textContent = normalizedSetup.name;
               }
             }
           }
-
-          updateFavoriteSetupName();
         }
-      }
-    }).catch(() => {
-      // Fallback to location name if generation fails
-      normalizedSetup.name = setup.location || getCurrentLocation() || 'Unnamed Setup';
-
-      const updatedSetups = getSetting('favorite-setups.setups', []);
-      const setupIndex = updatedSetups.findIndex((s) => s?.id === normalizedSetup.id);
-      if (setupIndex !== -1) {
-        updatedSetups[setupIndex] = normalizedSetup;
-        saveSetting('favorite-setups.setups', updatedSetups);
-
-        // Update the UI
-        const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-        if (container) {
-          const setupRow = container.querySelector(`[data-setup-id="${normalizedSetup.id}"]`);
-          if (setupRow) {
-            const label = setupRow.querySelector('.label');
-            if (label && ! setupRow.classList.contains('editing')) {
-              label.textContent = normalizedSetup.name;
-            }
-          }
-        }
-      }
-    });
+      });
   }
 
   return normalizedSetup;
@@ -242,9 +244,7 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
  * @return {FavoriteSetup[]} The setups without mobile setups.
  */
 const removeMobileSetups = (setups) => {
-  return setups.filter((s) => ! s ||
-    ! s?.is_mobile ||
-   (s?.is_mobile && ! s.id.startsWith('mobile-')));
+  return setups.filter((s) => !s || !s?.is_mobile || (s?.is_mobile && !s.id.startsWith('mobile-')));
 };
 
 /**
@@ -297,7 +297,7 @@ const addImage = async (type, id, appendTo) => {
 
   const item = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-image']);
 
-  if (! itemThumbs) {
+  if (!itemThumbs) {
     itemThumbs = await getData('item-thumbnails');
   }
 
@@ -402,7 +402,8 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-search">';
   content += '<input type="text" placeholder="Search" id="mh-improved-favorite-setups-component-picker-popup-search-input" />';
-  content += '<div class="mh-improved-favorites-setups-component-picker-popup-use-current mousehuntActionButton" title="Use current item"><span>Use currently armed item</span></div>';
+  content +=
+    '<div class="mh-improved-favorites-setups-component-picker-popup-use-current mousehuntActionButton" title="Use current item"><span>Use currently armed item</span></div>';
   content += '</div>';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body-items">';
   for (const item of items) {
@@ -423,7 +424,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
         compare = getCheeseEffect(compare);
       }
 
-      const compareClass = compare === compareStat ? '' : (compare > compareStat ? 'better' : 'worse');
+      const compareClass = compare === compareStat ? '' : compare > compareStat ? 'better' : 'worse';
 
       return `<div class="campPage-trap-itemBrowser-item-stat ${stat} ${compareClass}" title="${title}">
         <div class="value"><span>${formatted}</span></div>
@@ -494,7 +495,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
   const searchInput = document.querySelector('#mh-improved-favorite-setups-component-picker-popup-search-input');
 
-  if (! searchInput) {
+  if (!searchInput) {
     return;
   }
 
@@ -516,12 +517,12 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   const useCurrentItemButton = document.querySelector('.mh-improved-favorites-setups-component-picker-popup-use-current');
   useCurrentItemButton.addEventListener('click', () => {
     const item = document.querySelector(`.campPage-trap-itemBrowser-item[data-item-id="${user[`${type}_item_id`]}"]`);
-    if (! item) {
+    if (!item) {
       return;
     }
 
     const saveButton = item.querySelector('.campPage-trap-itemBrowser-item-armButton.save-button');
-    if (! saveButton) {
+    if (!saveButton) {
       return;
     }
 
@@ -545,7 +546,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 const armItem = async (items) => {
   return new Promise((resolve, reject) => {
     items.forEach(({ id, type }) => {
-      if (! id) {
+      if (!id) {
         if ('bait' === type) {
           hg.utils.TrapControl.disarmBait();
         } else if ('trinket' === type) {
@@ -607,14 +608,14 @@ const makeSortable = (container) => {
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
 
-      if (draggedElement && row !== draggedElement && ! row.classList.contains('location-favorite')) {
+      if (draggedElement && row !== draggedElement && !row.classList.contains('location-favorite')) {
         // Remove placeholder from its current position if it exists
         if (placeholder && placeholder.parentNode) {
           placeholder.remove();
         }
 
         const rect = row.getBoundingClientRect();
-        const midpoint = rect.top + (rect.height / 2);
+        const midpoint = rect.top + rect.height / 2;
 
         if (e.clientY < midpoint) {
           row.parentNode.insertBefore(placeholder, row);
@@ -653,8 +654,11 @@ const makeSortable = (container) => {
   container.addEventListener('dragover', (e) => {
     e.preventDefault();
 
-    if (draggedElement && ! draggedElement.classList.contains('location-favorite') && // If we're dragging over empty space in the main container
-      e.target === container) {
+    if (
+      draggedElement &&
+      !draggedElement.classList.contains('location-favorite') && // If we're dragging over empty space in the main container
+      e.target === container
+    ) {
       if (placeholder && placeholder.parentNode) {
         placeholder.remove();
       }
@@ -673,7 +677,7 @@ const makeSortable = (container) => {
   container.addEventListener('drop', async (e) => {
     e.preventDefault();
 
-    if (draggedElement && placeholder && placeholder.parentNode && ! draggedElement.classList.contains('location-favorite')) {
+    if (draggedElement && placeholder && placeholder.parentNode && !draggedElement.classList.contains('location-favorite')) {
       placeholder.parentNode.insertBefore(draggedElement, placeholder);
       placeholder.remove();
       await updateSetupOrder(container);
@@ -688,7 +692,7 @@ const makeSortable = (container) => {
  */
 const updateSetupOrder = async (container) => {
   const setups = await getFavoriteSetups();
-  if (! setups.length) {
+  if (!setups.length) {
     return;
   }
 
@@ -716,7 +720,7 @@ const updateSetupOrder = async (container) => {
  * @return {Promise<Element|boolean>} The setup row element.
  */
 const makeBlueprintRow = async (setup, isCurrent = false) => {
-  if (! setup) {
+  if (!setup) {
     return false;
   }
 
@@ -724,11 +728,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   setupContainer.setAttribute('data-setup-id', setup.id);
 
   // Add drag handle for non-current and non-location-favorite setups
-  if (! (
-    isCurrent ||
-    setup?.isLocationFavorite ||
-    setup?.is_mobile
-  )) {
+  if (!(isCurrent || setup?.isLocationFavorite || setup?.is_mobile)) {
     const dragHandle = makeElement('div', ['drag-handle']);
     dragHandle.innerHTML = '⋮⋮';
     dragHandle.setAttribute('title', 'Drag to reorder');
@@ -741,67 +741,71 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   let hasHighlighted = false;
   const buttonWrapper = makeElement('div', ['button-wrapper']);
   if (isCurrent) {
-    buttonWrapper.append(makeMhButton({
-      text: 'Save',
-      className: ['action', 'save', 'lightBlue'],
-      /**
-       * Save the current setup as a favorite setup.
-       */
-      callback: async () => {
-        // Save the current setup, using the current location as the name.
-        let currentSetup = getCurrentSetup();
+    buttonWrapper.append(
+      makeMhButton({
+        text: 'Save',
+        className: ['action', 'save', 'lightBlue'],
+        /**
+         * Save the current setup as a favorite setup.
+         */
+        callback: async () => {
+          // Save the current setup, using the current location as the name.
+          let currentSetup = getCurrentSetup();
 
-        // if the setup already exists, then just alert the user.
-        const setups = await getFavoriteSetups();
+          // if the setup already exists, then just alert the user.
+          const setups = await getFavoriteSetups();
 
-        if (setups.length) {
-          // check if the setup has a matching bait, base, weapon, and trinket.
-          const existingSetup = setups.find((s) => {
-            return s?.bait_id === currentSetup.bait_id &&
-              s?.base_id === currentSetup.base_id &&
-              s?.weapon_id === currentSetup.weapon_id &&
-              s?.trinket_id === currentSetup.trinket_id &&
-              s?.location === currentSetup.location;
-          });
-
-          if (existingSetup && ! hasHighlighted) {
-            // flash both the shortcut and main list rows
-            const rows = document.querySelectorAll(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${existingSetup.id}"]`);
-            rows.forEach((row) => {
-              row.classList.add('flash');
-              setTimeout(() => row.classList.remove('flash'), 1000);
+          if (setups.length) {
+            // check if the setup has a matching bait, base, weapon, and trinket.
+            const existingSetup = setups.find((s) => {
+              return (
+                s?.bait_id === currentSetup.bait_id &&
+                s?.base_id === currentSetup.base_id &&
+                s?.weapon_id === currentSetup.weapon_id &&
+                s?.trinket_id === currentSetup.trinket_id &&
+                s?.location === currentSetup.location
+              );
             });
 
-            hasHighlighted = true;
-            // allow clicking save a second time to bypass the highlight for 2 seconds.
-            setTimeout(() => {
-              hasHighlighted = false;
-            }, 2000);
+            if (existingSetup && !hasHighlighted) {
+              // flash both the shortcut and main list rows
+              const rows = document.querySelectorAll(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${existingSetup.id}"]`);
+              rows.forEach((row) => {
+                row.classList.add('flash');
+                setTimeout(() => row.classList.remove('flash'), 1000);
+              });
 
-            return;
+              hasHighlighted = true;
+              // allow clicking save a second time to bypass the highlight for 2 seconds.
+              setTimeout(() => {
+                hasHighlighted = false;
+              }, 2000);
+
+              return;
+            }
           }
-        }
 
-        // Generate a random name for the setup.
-        currentSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
+          // Generate a random name for the setup.
+          currentSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
 
-        currentSetup = await saveFavoriteSetup(currentSetup, true);
+          currentSetup = await saveFavoriteSetup(currentSetup, true);
 
-        // append the new setup to the list.
-        const setupRow = await makeBlueprintRow(currentSetup);
+          // append the new setup to the list.
+          const setupRow = await makeBlueprintRow(currentSetup);
 
-        // If there are mobile rows, then insert the new row before the first.
-        const mobileRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content .row.mobile-setup');
-        if (mobileRow) {
-          mobileRow.before(setupRow);
-        } else {
-          const content = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
-          content.append(setupRow);
-        }
+          // If there are mobile rows, then insert the new row before the first.
+          const mobileRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content .row.mobile-setup');
+          if (mobileRow) {
+            mobileRow.before(setupRow);
+          } else {
+            const content = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
+            content.append(setupRow);
+          }
 
-        updateFavoriteSetupName();
-      }
-    }));
+          updateFavoriteSetupName();
+        },
+      })
+    );
   } else {
     const armButton = makeMhButton({
       text: 'Arm',
@@ -818,18 +822,18 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // get the setup.
         const setups = await getFavoriteSetups();
-        if (! setups.length) {
+        if (!setups.length) {
           return;
         }
 
-        if (! setupId) {
+        if (!setupId) {
           return;
         }
 
-        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+        const index = setups.findIndex((s) => s?.id && s.id === setupId);
 
         const thisSetup = setups[index];
-        if (! thisSetup) {
+        if (!thisSetup) {
           return;
         }
 
@@ -870,97 +874,100 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         armButton.classList.remove('loading');
 
         updateFavoriteSetupName();
-      }
+      },
     });
 
     buttonWrapper.append(armButton);
 
     let editClickables = [];
-    buttonWrapper.append(makeMhButton({
-      text: 'Edit',
-      className: ['action', 'edit-setup'],
-      /**
-       * Edit the setup.
-       */
-      callback: () => {
-        const setupId = setupContainer.getAttribute('data-setup-id');
-        debuglog('favorite-setups', `Editing setup ${setupId}`);
+    buttonWrapper.append(
+      makeMhButton({
+        text: 'Edit',
+        className: ['action', 'edit-setup'],
+        /**
+         * Edit the setup.
+         */
+        callback: () => {
+          const setupId = setupContainer.getAttribute('data-setup-id');
+          debuglog('favorite-setups', `Editing setup ${setupId}`);
 
-        setupContainer.classList.add('editing');
+          setupContainer.classList.add('editing');
 
-        // Update the setup title to be an input.
-        const title = setupContainer.querySelector('.label');
+          // Update the setup title to be an input.
+          const title = setupContainer.querySelector('.label');
 
-        const randomTitleButton = makeElement('a', 'random-title');
-        randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
+          const randomTitleButton = makeElement('a', 'random-title');
+          randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
 
-        randomTitleButton.addEventListener('click', async (e) => {
-          e.preventDefault();
+          randomTitleButton.addEventListener('click', async (e) => {
+            e.preventDefault();
 
-          e.target.classList.add('loading');
+            e.target.classList.add('loading');
 
-          const setupNameData = await getGeneratedName(setup);
+            const setupNameData = await getGeneratedName(setup);
 
-          if (setupNameData.name) {
-            title.querySelector('input').value = setupNameData.name;
-          }
+            if (setupNameData.name) {
+              title.querySelector('input').value = setupNameData.name;
+            }
 
-          e.target.classList.remove('loading');
-        });
-
-        const titleInput = makeElement('input', 'setup-title-input');
-        titleInput.setAttribute('type', 'text');
-        titleInput.setAttribute('name', 'setup-title');
-        titleInput.value = title.textContent;
-        title.textContent = '';
-        title.append(titleInput);
-        title.prepend(randomTitleButton);
-
-        const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
-        powerTypeInput.setAttribute('type', 'hidden');
-        powerTypeInput.setAttribute('name', 'power-type');
-        powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
-        title.append(powerTypeInput);
-
-        // Update the setup images to be clickable.
-        const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-        images.forEach((image) => {
-          image.classList.add('clickable');
-          const eventListenerClickable = image.addEventListener('click', async () => {
-            image.classList.add('loading');
-
-            // Handle image click
-            const itemType = image.getAttribute('data-item-type');
-            const itemId = image.getAttribute('data-item-id');
-            const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-            await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
-              if (itemType !== newItemType) {
-                return;
-              }
-
-              if (itemId == newItemId) { // eslint-disable-line eqeqeq
-                return;
-              }
-
-              image.setAttribute('data-new-item-id', newItemId);
-              image.setAttribute('data-new-item-image', newItemImageUrl);
-              image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
-
-              if (newItemPowerType && 'undefined' !== newItemPowerType) {
-                const ptInput = setupContainer.querySelector('.power-type-input');
-                ptInput.setAttribute('data-power-type', newItemPowerType);
-              }
-
-              imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
-            });
-
-            image.classList.remove('loading');
+            e.target.classList.remove('loading');
           });
 
-          editClickables.push({ image, event: eventListenerClickable });
-        });
-      }
-    }));
+          const titleInput = makeElement('input', 'setup-title-input');
+          titleInput.setAttribute('type', 'text');
+          titleInput.setAttribute('name', 'setup-title');
+          titleInput.value = title.textContent;
+          title.textContent = '';
+          title.append(titleInput);
+          title.prepend(randomTitleButton);
+
+          const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
+          powerTypeInput.setAttribute('type', 'hidden');
+          powerTypeInput.setAttribute('name', 'power-type');
+          powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
+          title.append(powerTypeInput);
+
+          // Update the setup images to be clickable.
+          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
+          images.forEach((image) => {
+            image.classList.add('clickable');
+            const eventListenerClickable = image.addEventListener('click', async () => {
+              image.classList.add('loading');
+
+              // Handle image click
+              const itemType = image.getAttribute('data-item-type');
+              const itemId = image.getAttribute('data-item-id');
+              const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
+              await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
+                if (itemType !== newItemType) {
+                  return;
+                }
+
+                // eslint-disable-next-line eqeqeq
+                if (itemId == newItemId) {
+                  return;
+                }
+
+                image.setAttribute('data-new-item-id', newItemId);
+                image.setAttribute('data-new-item-image', newItemImageUrl);
+                image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
+
+                if (newItemPowerType && 'undefined' !== newItemPowerType) {
+                  const ptInput = setupContainer.querySelector('.power-type-input');
+                  ptInput.setAttribute('data-power-type', newItemPowerType);
+                }
+
+                imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
+              });
+
+              image.classList.remove('loading');
+            });
+
+            editClickables.push({ image, event: eventListenerClickable });
+          });
+        },
+      })
+    );
 
     /**
      * Stop editing the setup.
@@ -975,172 +982,178 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       editClickables = [];
     };
 
-    buttonWrapper.append(makeMhButton({
-      text: 'Save',
-      className: ['action', 'save-setup'],
-      /**
-       * Save the edited setup.
-       */
-      callback: async () => {
-        const setupId = setupContainer.getAttribute('data-setup-id');
-        debuglog('favorite-setups', `Saving setup ${setupId}`);
+    buttonWrapper.append(
+      makeMhButton({
+        text: 'Save',
+        className: ['action', 'save-setup'],
+        /**
+         * Save the edited setup.
+         */
+        callback: async () => {
+          const setupId = setupContainer.getAttribute('data-setup-id');
+          debuglog('favorite-setups', `Saving setup ${setupId}`);
 
-        setupContainer.classList.remove('editing');
-        // When save is clicked, save the changes.
+          setupContainer.classList.remove('editing');
+          // When save is clicked, save the changes.
 
-        const newSetup = setup;
+          const newSetup = setup;
 
-        const title = setupContainer.querySelector('.label');
-        const titleInput = title.querySelector('input');
-        setup.name = titleInput.value;
+          const title = setupContainer.querySelector('.label');
+          const titleInput = title.querySelector('input');
+          setup.name = titleInput.value;
 
-        const powerTypeInput = setupContainer.querySelector('.power-type-input');
-        if (powerTypeInput) {
-          const lastPowerType = setup.power_type;
-          const newPowerType = powerTypeInput.getAttribute('data-the-power-type');
+          const powerTypeInput = setupContainer.querySelector('.power-type-input');
+          if (powerTypeInput) {
+            const lastPowerType = setup.power_type;
+            const newPowerType = powerTypeInput.getAttribute('data-the-power-type');
 
-          if (newPowerType && lastPowerType !== newPowerType) {
-            setup.power_type = newPowerType;
+            if (newPowerType && lastPowerType !== newPowerType) {
+              setup.power_type = newPowerType;
 
-            const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
-            if (powerTypeImage) {
-              const lastPowerTypeClass = lastPowerType ? getPowerTypeId(lastPowerType) : 'hidden';
-              const newPowerTypeClass = newPowerType ? getPowerTypeId(newPowerType) : 'hidden';
+              const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
+              if (powerTypeImage) {
+                const lastPowerTypeClass = lastPowerType ? getPowerTypeId(lastPowerType) : 'hidden';
+                const newPowerTypeClass = newPowerType ? getPowerTypeId(newPowerType) : 'hidden';
 
-              powerTypeImage.classList.remove(lastPowerTypeClass);
-              powerTypeImage.classList.add(newPowerTypeClass);
-              powerTypeImage.classList.remove('hidden');
+                powerTypeImage.classList.remove(lastPowerTypeClass);
+                powerTypeImage.classList.add(newPowerTypeClass);
+                powerTypeImage.classList.remove('hidden');
+              }
             }
           }
-        }
 
-        // if there are any items with a new-item-id, then update the setup.
-        const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-        images.forEach((image) => {
-          const newItemId = image.getAttribute('data-new-item-id');
-          if (! newItemId) {
-            return;
-          }
+          // if there are any items with a new-item-id, then update the setup.
+          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
+          images.forEach((image) => {
+            const newItemId = image.getAttribute('data-new-item-id');
+            if (!newItemId) {
+              return;
+            }
 
-          const itemType = image.getAttribute('data-item-type');
+            const itemType = image.getAttribute('data-item-type');
 
-          // update the setup.
-          newSetup[`${itemType}_id`] = newItemId;
+            // update the setup.
+            newSetup[`${itemType}_id`] = newItemId;
 
-          // remove the new-item-id attribute.
-          image.removeAttribute('data-new-item-id');
-          image.removeAttribute('data-new-item-image');
-          image.removeAttribute('data-old-image-url');
-        });
-
-        // Update the setup title to be a div.
-        title.textContent = newSetup.name;
-        titleInput.remove();
-
-        let setups = await getFavoriteSetups();
-        if (! setups.length) {
-          setups = [];
-        }
-
-        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-
-        // replace the setup in the list.
-        setups[index] = newSetup;
-        saveSetting('favorite-setups.setups', removeMobileSetups(setups));
-
-        if (setupId.startsWith('mobile-')) {
-          const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
-          await setMobileFavourite(mobileIndex, newSetup);
-        }
-
-        updateFavoriteSetupName();
-
-        stopEditing();
-      }
-    }));
-
-    buttonWrapper.append(makeMhButton({
-      text: 'Cancel',
-      className: ['action', 'cancel-setup'],
-      /**
-       * Cancel editing the setup.
-       */
-      callback: () => {
-        setupContainer.classList.remove('editing');
-        // When cancel is clicked, revert the changes.
-
-        // title.
-        const titleInput = setupContainer.querySelector('.label input');
-        const title = setupContainer.querySelector('.label');
-        title.textContent = setup.name;
-        titleInput.remove();
-
-        // check for any new-item-id attributes.
-        const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-        images.forEach((image) => {
-          const newItemId = image.getAttribute('data-new-item-id');
-          if (! newItemId) {
-            return;
-          }
-
-          // reset the image background.
-          const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-          imageDisplay.style.backgroundImage = image.getAttribute('data-old-image-url');
-
-          // remove the new-item-id attribute.
-          image.removeAttribute('data-new-item-id');
-          image.removeAttribute('data-new-item-image');
-          image.removeAttribute('data-old-image-url');
-        });
-
-        stopEditing();
-      }
-    }));
-
-    buttonWrapper.append(makeMhButton({
-      text: 'Delete',
-      className: ['action', 'delete', 'danger'],
-      /**
-       * Delete the setup.
-       */
-      callback: async () => {
-        const setupId = setupContainer.getAttribute('data-setup-id');
-        debuglog('favorite-setups', `Deleting setup ${setupId}`);
-
-        // show a confirmation dialog.
-        const confirmed = confirm('Are you sure you want to delete this setup?'); // eslint-disable-line no-alert
-        if (! confirmed) {
-          return;
-        }
-
-        // remove the setup from the list.
-        let setups = await getFavoriteSetups();
-        if (! setups.length) {
-          setups = [];
-        }
-
-        if (setupId.startsWith('mobile-')) {
-          const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
-          await deleteMobileFavourite(mobileIndex);
-
-          const newContainer = await makeBlueprintRow({
-            id: `mobile-${mobileIndex}`,
-            is_mobile: true,
+            // remove the new-item-id attribute.
+            image.removeAttribute('data-new-item-id');
+            image.removeAttribute('data-new-item-image');
+            image.removeAttribute('data-old-image-url');
           });
-          setupContainer.replaceWith(newContainer);
-        } else {
-          const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-          setups.splice(index, 1);
+
+          // Update the setup title to be a div.
+          title.textContent = newSetup.name;
+          titleInput.remove();
+
+          let setups = await getFavoriteSetups();
+          if (!setups.length) {
+            setups = [];
+          }
+
+          const index = setups.findIndex((s) => s?.id && s.id === setupId);
+
+          // replace the setup in the list.
+          setups[index] = newSetup;
           saveSetting('favorite-setups.setups', removeMobileSetups(setups));
 
-          // Remove all instances of this setup (both shortcut and main list)
-          const allInstances = document.querySelectorAll(`.row[data-setup-id="${setupId}"]`);
-          allInstances.forEach((instance) => {
-            instance.remove();
+          if (setupId.startsWith('mobile-')) {
+            const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
+            await setMobileFavourite(mobileIndex, newSetup);
+          }
+
+          updateFavoriteSetupName();
+
+          stopEditing();
+        },
+      })
+    );
+
+    buttonWrapper.append(
+      makeMhButton({
+        text: 'Cancel',
+        className: ['action', 'cancel-setup'],
+        /**
+         * Cancel editing the setup.
+         */
+        callback: () => {
+          setupContainer.classList.remove('editing');
+          // When cancel is clicked, revert the changes.
+
+          // title.
+          const titleInput = setupContainer.querySelector('.label input');
+          const title = setupContainer.querySelector('.label');
+          title.textContent = setup.name;
+          titleInput.remove();
+
+          // check for any new-item-id attributes.
+          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
+          images.forEach((image) => {
+            const newItemId = image.getAttribute('data-new-item-id');
+            if (!newItemId) {
+              return;
+            }
+
+            // reset the image background.
+            const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
+            imageDisplay.style.backgroundImage = image.getAttribute('data-old-image-url');
+
+            // remove the new-item-id attribute.
+            image.removeAttribute('data-new-item-id');
+            image.removeAttribute('data-new-item-image');
+            image.removeAttribute('data-old-image-url');
           });
-        }
-      }
-    }));
+
+          stopEditing();
+        },
+      })
+    );
+
+    buttonWrapper.append(
+      makeMhButton({
+        text: 'Delete',
+        className: ['action', 'delete', 'danger'],
+        /**
+         * Delete the setup.
+         */
+        callback: async () => {
+          const setupId = setupContainer.getAttribute('data-setup-id');
+          debuglog('favorite-setups', `Deleting setup ${setupId}`);
+
+          // show a confirmation dialog.
+          const confirmed = confirm('Are you sure you want to delete this setup?'); // eslint-disable-line no-alert
+          if (!confirmed) {
+            return;
+          }
+
+          // remove the setup from the list.
+          let setups = await getFavoriteSetups();
+          if (!setups.length) {
+            setups = [];
+          }
+
+          if (setupId.startsWith('mobile-')) {
+            const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
+            await deleteMobileFavourite(mobileIndex);
+
+            const newContainer = await makeBlueprintRow({
+              id: `mobile-${mobileIndex}`,
+              is_mobile: true,
+            });
+            setupContainer.replaceWith(newContainer);
+          } else {
+            const index = setups.findIndex((s) => s?.id && s.id === setupId);
+            setups.splice(index, 1);
+            saveSetting('favorite-setups.setups', removeMobileSetups(setups));
+
+            // Remove all instances of this setup (both shortcut and main list)
+            const allInstances = document.querySelectorAll(`.row[data-setup-id="${setupId}"]`);
+            allInstances.forEach((instance) => {
+              instance.remove();
+            });
+          }
+        },
+      })
+    );
   }
 
   controls.append(buttonWrapper);
@@ -1148,7 +1161,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
   const powerTypeId = getPowerTypeId(setup?.power_type);
   const powertype = makeElement('div', ['campPage-trap-itemBrowser-item-powerType', powerTypeId]);
-  if (! powerTypeId) {
+  if (!powerTypeId) {
     powertype.classList.add('hidden');
   }
 
@@ -1196,9 +1209,7 @@ const makeBlueprintContainer = async () => {
 
     if (getSetting('favorite-setups.show-location-favorites', true)) {
       // Get the current location from the user data
-      locationFavorites = setups.filter((setup) =>
-        setup && setup.id && setup.location && setup.location === getCurrentLocation()
-      );
+      locationFavorites = setups.filter((setup) => setup && setup.id && setup.location && setup.location === getCurrentLocation());
 
       if (getFlag('favorite-setups-limit-location-favorites')) {
         locationFavorites = locationFavorites.slice(0, 3);
@@ -1225,7 +1236,7 @@ const makeBlueprintContainer = async () => {
 
     // Display ALL setups (including location favorites and mobile) in their saved order
     for (const setup of setups) {
-      if (! setup || ! setup.id) {
+      if (!setup || !setup.id) {
         continue;
       }
 
@@ -1257,7 +1268,7 @@ const makeBlueprintContainer = async () => {
 const getNameOfCurrentSetup = async () => {
   const setups = await getFavoriteSetups(false);
 
-  if (! setups.length) {
+  if (!setups.length) {
     return '';
   }
 
@@ -1265,10 +1276,7 @@ const getNameOfCurrentSetup = async () => {
   const currentSetup = getCurrentSetup();
 
   const setup = setups.find((s) => {
-    return s?.bait_id === currentSetup?.bait_id &&
-      s?.base_id === currentSetup?.base_id &&
-      s?.weapon_id === currentSetup?.weapon_id &&
-      s?.trinket_id === currentSetup?.trinket_id;
+    return s?.bait_id === currentSetup?.bait_id && s?.base_id === currentSetup?.base_id && s?.weapon_id === currentSetup?.weapon_id && s?.trinket_id === currentSetup?.trinket_id;
   });
 
   if (setup && setup.name) {
@@ -1284,7 +1292,7 @@ const getNameOfCurrentSetup = async () => {
 const updateFavoriteSetupName = async () => {
   const label = document.querySelector('.mh-improved-favorite-setups-button-label');
   if (label) {
-    label.innerHTML = await getNameOfCurrentSetup() || '';
+    label.innerHTML = (await getNameOfCurrentSetup()) || '';
   }
 };
 
@@ -1351,7 +1359,7 @@ const addFavoriteSetupsButton = async () => {
   }
 
   const appendTo = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-  if (! appendTo) {
+  if (!appendTo) {
     return;
   }
 

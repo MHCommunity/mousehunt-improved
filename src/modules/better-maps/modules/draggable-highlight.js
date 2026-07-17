@@ -19,14 +19,12 @@ const modifyStickyHighlights = async () => {
 
 const stickHighlightGoal = (event) => {
   const goalId = event.currentTarget.getAttribute('data-unique-id');
-  if (! goalId) {
+  if (!goalId) {
     return;
   }
 
-  stickiedHighlight = goalId;
-
   const highlight = document.querySelector('.treasureMapView-highlight.active');
-  if (! highlight) {
+  if (!highlight) {
     return;
   }
 
@@ -58,7 +56,7 @@ const stickHighlightGoal = (event) => {
 
   // Handle dragging
   const onMouseMove = (e) => {
-    if (! isDragging) {
+    if (!isDragging) {
       return;
     }
 

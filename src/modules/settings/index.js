@@ -15,7 +15,7 @@ import {
   setPage,
   showErrorMessage,
   showSuccessMessage,
-  updateCaches
+  updateCaches,
 } from '@utils';
 
 import styles from './styles.css';
@@ -30,11 +30,7 @@ import styles from './styles.css';
 const normalizeSettingsForExport = (settingValues = {}) => {
   const exportableSettings = { ...settingValues };
 
-  if (
-    exportableSettings['override-styles'] &&
-    'string' === typeof exportableSettings['override-styles'] &&
-    ! exportableSettings['override-styles'].startsWith('data:')
-  ) {
+  if (exportableSettings['override-styles'] && 'string' === typeof exportableSettings['override-styles'] && !exportableSettings['override-styles'].startsWith('data:')) {
     exportableSettings['override-styles'] = `data:text/css;base64,${btoa(exportableSettings['override-styles'])}`;
   }
 
@@ -51,12 +47,7 @@ const normalizeSettingsForExport = (settingValues = {}) => {
 const parseSettingsText = (settingText) => {
   const parsedSettings = JSON.parse(settingText);
 
-  if (
-    parsedSettings &&
-    parsedSettings['override-styles'] &&
-    'string' === typeof parsedSettings['override-styles'] &&
-    parsedSettings['override-styles'].startsWith('data:')
-  ) {
+  if (parsedSettings && parsedSettings['override-styles'] && 'string' === typeof parsedSettings['override-styles'] && parsedSettings['override-styles'].startsWith('data:')) {
     parsedSettings['override-styles'] = parseEncodedValue(parsedSettings['override-styles']);
   }
 
@@ -115,12 +106,12 @@ const addExportSettings = (append) => {
       show: true,
     });
     // Save the current settings to the backup.
-    if (! window.location.search.includes('safe-mode')) {
+    if (!window.location.search.includes('safe-mode')) {
       localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(getSettings()));
     }
 
     const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
-    if (! popupElement) {
+    if (!popupElement) {
       return;
     }
 
@@ -138,7 +129,7 @@ const addExportSettings = (append) => {
       textarea.classList.remove('dragover');
 
       // Get the file
-      if (! dropevent.dataTransfer?.files?.length) {
+      if (!dropevent.dataTransfer?.files?.length) {
         return;
       }
 
@@ -166,7 +157,7 @@ const addExportSettings = (append) => {
       input.type = 'file';
       input.accept = '.json';
       input.addEventListener('change', (changeEvent) => {
-        if (! changeEvent?.target?.files?.length) {
+        if (!changeEvent?.target?.files?.length) {
           return;
         }
 
@@ -191,10 +182,14 @@ const addExportSettings = (append) => {
     const resetButton = popupElement.querySelector('.export-reset');
     resetButton.addEventListener('click', (evt) => {
       evt.preventDefault();
-      textarea.value = JSON.stringify({
-        'mh-improved-platform': mhImprovedPlatform,
-        'mh-improved-version': mhImprovedVersion,
-      }, null, 2);
+      textarea.value = JSON.stringify(
+        {
+          'mh-improved-platform': mhImprovedPlatform,
+          'mh-improved-version': mhImprovedVersion,
+        },
+        null,
+        2
+      );
     });
 
     const formatButton = popupElement.querySelector('.export-format');
@@ -217,11 +212,11 @@ const addExportSettings = (append) => {
 
       // sort the keys alphabetically, with the mh-improved keys at the top
       const sorted = Object.keys(currentSettings).sort((a, b) => {
-        if (a.startsWith('mh-improved') && ! b.startsWith('mh-improved')) {
+        if (a.startsWith('mh-improved') && !b.startsWith('mh-improved')) {
           return -1;
         }
 
-        if (b.startsWith('mh-improved') && ! a.startsWith('mh-improved')) {
+        if (b.startsWith('mh-improved') && !a.startsWith('mh-improved')) {
           return 1;
         }
 
@@ -306,7 +301,7 @@ const addExportSettings = (append) => {
  */
 const addAdvancedSettingsButtons = () => {
   const settingWrapper = document.querySelector('#mousehunt-improved-settings-advanced-wrapper');
-  if (! settingWrapper) {
+  if (!settingWrapper) {
     return;
   }
 
@@ -350,7 +345,8 @@ const addAdvancedSettingsButtons = () => {
   clearCachedDataLink.href = '#';
   clearCachedDataLink.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (window.confirm('Are you sure you want to clear the cached data?')) { // eslint-disable-line no-alert
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure you want to clear the cached data?')) {
       await clearCaches();
 
       // Delete all the mh-improved keys that are in session storage.
@@ -372,7 +368,8 @@ const addAdvancedSettingsButtons = () => {
   resetJournalLink.href = '#';
   resetJournalLink.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (window.confirm('Are you sure you want to reset your journal history?')) { // eslint-disable-line no-alert
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure you want to reset your journal history?')) {
       await dbDeleteAll('journal');
       window.location.reload();
     }
@@ -383,7 +380,8 @@ const addAdvancedSettingsButtons = () => {
   resetDashboardLink.href = '#';
   resetDashboardLink.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (window.confirm('Are you sure you want to reset your dashboard data?')) { // eslint-disable-line no-alert
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure you want to reset your dashboard data?')) {
       await dataSet('quests', {});
       window.location.reload();
     }
@@ -409,12 +407,12 @@ const highlightLocationHud = () => {
  */
 const moveTabToEnd = () => {
   const mhImprovedTab = document.querySelector('#mousehunt-improved-settings');
-  if (! mhImprovedTab) {
+  if (!mhImprovedTab) {
     return;
   }
 
   const userscriptTab = document.querySelector('#userscript-settings');
-  if (! userscriptTab) {
+  if (!userscriptTab) {
     return;
   }
 
@@ -535,7 +533,7 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
 
   settingsPage.classList.toggle('mhui-settings-search-active', Boolean(normalizedSearchTerm));
 
-  if (! normalizedSearchTerm) {
+  if (!normalizedSearchTerm) {
     sections.forEach((section) => {
       getSectionSettings(section).forEach((setting) => {
         setting.style.display = '';
@@ -573,17 +571,17 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
  */
 const showSettingFromHash = (settingsPage) => {
   const hash = window.location.hash.slice(1);
-  if (! hash) {
+  if (!hash) {
     return;
   }
 
   const target = settingsPage.querySelector(`#${CSS.escape(hash)}`);
-  if (! target) {
+  if (!target) {
     return;
   }
 
   const section = target.closest('.mhui-settings-main > .PagePreferences__section');
-  if (! section) {
+  if (!section) {
     return;
   }
 
@@ -601,12 +599,12 @@ const showSettingFromHash = (settingsPage) => {
  */
 const createSettingsBrowser = () => {
   const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
-  if (! settingsPage || settingsPage.querySelector('.mhui-settings-browser')) {
+  if (!settingsPage || settingsPage.querySelector('.mhui-settings-browser')) {
     return;
   }
 
   const sections = [...settingsPage.querySelectorAll('.PagePreferences__section')];
-  if (! sections.length) {
+  if (!sections.length) {
     return;
   }
 
@@ -633,7 +631,7 @@ const createSettingsBrowser = () => {
     section.classList.add('mhui-settings-browser-section');
 
     const sectionIntro = section.querySelector('.mhui-settings-section-intro');
-    if (! sectionIntro) {
+    if (!sectionIntro) {
       const newIntro = makeElement('div', 'mhui-settings-section-intro');
       if (sectionDescription) {
         makeElement('div', 'mhui-settings-section-description', sectionDescription, newIntro);
@@ -694,7 +692,7 @@ const markSettingsReady = () => {
  */
 const addSettingsLoadingIndicator = () => {
   const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
-  if (! settingsPage || settingsPage.querySelector('.mhui-settings-loading')) {
+  if (!settingsPage || settingsPage.querySelector('.mhui-settings-loading')) {
     return;
   }
 
@@ -712,7 +710,7 @@ const addSettingsLoadingIndicator = () => {
  */
 const addHeaderToSettings = () => {
   const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
-  if (! settingsPage) {
+  if (!settingsPage) {
     return;
   }
 
@@ -722,7 +720,11 @@ const addHeaderToSettings = () => {
   }
 
   const header = makeElement('div', 'mhui-settings-header');
-  const title = makeElement('div', 'mhui-settings-header-title', `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noopener noreferrer">v${mhImprovedVersion}</a>`);
+  const title = makeElement(
+    'div',
+    'mhui-settings-header-title',
+    `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noopener noreferrer">v${mhImprovedVersion}</a>`
+  );
   header.append(title);
 
   const searchWrapper = makeElement('div', 'mhui-settings-header-wrapper');

@@ -11,7 +11,7 @@ import {
   onEvent,
   onNavigation,
   onRequest,
-  saveSetting
+  saveSetting,
 } from '@utils';
 
 import settings from './settings';
@@ -35,7 +35,7 @@ const getJournalThemes = async () => {
     action: 'get_themes',
   });
 
-  if (! req || ! req.journal_themes) {
+  if (!req || !req.journal_themes) {
     return [];
   }
 
@@ -56,17 +56,23 @@ const getJournalThemes = async () => {
 const updateJournalTheme = async (theme) => {
   const current = getCurrentJournalTheme();
 
-  if (! theme || current == theme) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (!theme || current == theme) {
     return false;
   }
 
   shouldListen = false;
-  const req = await doRequest('managers/ajax/users/journal_theme.php', {
-    action: 'set_theme',
-    theme,
-  }, false, {
-    skipLastReadJournalEntryId: true,
-  });
+  const req = await doRequest(
+    'managers/ajax/users/journal_theme.php',
+    {
+      action: 'set_theme',
+      theme,
+    },
+    false,
+    {
+      skipLastReadJournalEntryId: true,
+    }
+  );
 
   if (req && req.success) {
     // remove the old theme and add the new one
@@ -89,7 +95,7 @@ const updateJournalTheme = async (theme) => {
  */
 const getCurrentJournalTheme = () => {
   const journal = document.querySelector('#journalContainer');
-  if (! journal) {
+  if (!journal) {
     return false;
   }
 
@@ -108,7 +114,7 @@ const getCurrentJournalTheme = () => {
  */
 const getJournalThemeForLocation = () => {
   const location = getCurrentLocation();
-  if (! journals[location]) {
+  if (!journals[location]) {
     return false;
   }
 
@@ -141,7 +147,7 @@ const changeForLocation = async () => {
   }
 
   const newTheme = getJournalThemeForLocation();
-  if (! newTheme) {
+  if (!newTheme) {
     revertToSavedTheme();
     return;
   }
@@ -151,7 +157,7 @@ const changeForLocation = async () => {
   }
 
   const currentTheme = getCurrentJournalTheme();
-  if (! currentTheme) {
+  if (!currentTheme) {
     return;
   }
 
@@ -160,7 +166,7 @@ const changeForLocation = async () => {
   }
 
   // check if we even have the theme
-  if (! themes.some((t) => t.type === newTheme)) {
+  if (!themes.some((t) => t.type === newTheme)) {
     revertToSavedTheme();
     return;
   }
@@ -199,7 +205,7 @@ const randomizeTheme = async (skip = false) => {
   }
 
   const theme = themes[Math.floor(Math.random() * themes.length)];
-  if (! theme || ! theme.type) {
+  if (!theme || !theme.type) {
     return false;
   }
 
@@ -214,7 +220,7 @@ const randomizeTheme = async (skip = false) => {
  */
 const addRandomButton = () => {
   const journal = document.querySelector('#journalContainer .top');
-  if (! journal) {
+  if (!journal) {
     return;
   }
 
@@ -237,12 +243,7 @@ const changeJournalDaily = async () => {
   const now = new Date();
 
   // Check if the current time is past midnight and the journal has not been changed today
-  if (
-    ! lastChange ||
-    lastChange.getDate() !== now.getDate() ||
-    lastChange.getMonth() !== now.getMonth() ||
-    lastChange.getFullYear() !== now.getFullYear()
-  ) {
+  if (!lastChange || lastChange.getDate() !== now.getDate() || lastChange.getMonth() !== now.getMonth() || lastChange.getFullYear() !== now.getFullYear()) {
     const lastTheme = getSetting('journal-changer.last-theme', false);
     const theme = await randomizeTheme(lastTheme);
 
@@ -303,7 +304,7 @@ const init = async () => {
   }
 
   onNavigation(addRandomButton, {
-    page: 'camp'
+    page: 'camp',
   });
 
   onThemeSelectorChange();

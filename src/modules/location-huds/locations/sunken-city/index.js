@@ -71,7 +71,8 @@ const makeCharmElement = (charm, appendTo) => {
   }
 
   const wrapper = makeElement('a', ['charm', 'mhui-sunken-charm']);
-  if (user.trinket_item_id == charm.item_id) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (user.trinket_item_id == charm.item_id) {
     wrapper.classList.add('active');
   }
 
@@ -119,7 +120,7 @@ const makeCharmElement = (charm, appendTo) => {
  */
 const addMoreCharms = async () => {
   const charmsWrapper = document.querySelector('.sunkenCityHud .sunkenCharms');
-  if (! charmsWrapper) {
+  if (!charmsWrapper) {
     return;
   }
 
@@ -129,21 +130,18 @@ const addMoreCharms = async () => {
     charm.remove();
   }
 
-  const itemsData = await getUserItems([
-    'spiked_anchor_trinket',
-    'smart_water_jet_trinket',
-    'golden_anchor_trinket',
-    'brilliant_water_jet_trinket',
-  ]);
+  const itemsData = await getUserItems(['spiked_anchor_trinket', 'smart_water_jet_trinket', 'golden_anchor_trinket', 'brilliant_water_jet_trinket']);
 
-  if (user.trinket_item_id == 1517) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (user.trinket_item_id == 1517) {
     const waterJetCharm = document.querySelector('.sunkenCityHud .sunkenCharms a[data-item-type="water_jet_trinket"]');
     if (waterJetCharm) {
       waterJetCharm.classList.add('active');
     }
   }
 
-  if (user.trinket_item_id == 423) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (user.trinket_item_id == 423) {
     const anchorCharm = document.querySelector('.sunkenCityHud .sunkenCharms a[data-item-type="anchor_trinket"]');
     if (anchorCharm) {
       anchorCharm.classList.add('active');

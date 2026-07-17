@@ -1,6 +1,7 @@
 import {
   addStyles,
   clamp,
+  debug,
   getSetting,
   getTradableItems,
   makeElement,
@@ -11,7 +12,7 @@ import {
   onNavigation,
   onRequest,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
 } from '@utils';
 
 import settings from './settings';
@@ -29,15 +30,13 @@ const buildItems = async () => {
   ];
 
   const tradables = await getTradableItems('all');
-  return opts
-    .map((type) => tradables.find((t) => t.type === type))
-    .filter(Boolean);
+  return opts.map((type) => tradables.find((t) => t.type === type)).filter(Boolean);
 };
 
 const positionPanel = (panel, anchor) => {
   const rect = anchor.getBoundingClientRect();
   const top = rect.top + window.scrollY + rect.height - 10;
-  let left = rect.left + window.scrollX + (rect.width / 2) - (panel.offsetWidth / 2);
+  let left = rect.left + window.scrollX + rect.width / 2 - panel.offsetWidth / 2;
 
   const minLeft = window.scrollX + 8;
   const maxLeft = window.scrollX + document.documentElement.clientWidth - panel.offsetWidth - 8;
@@ -62,12 +61,12 @@ const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, c
       signal: aborter.signal,
     });
 
-    if (! res.ok) {
+    if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     }
 
     const data = await res.json();
-    if (! data.success) {
+    if (!data.success) {
       throw new Error('API success=false');
     }
 
@@ -86,7 +85,7 @@ const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, c
       classname: 'mh-ui-quick-send-error',
     });
   } finally {
-    if (! aborter.signal.aborted) {
+    if (!aborter.signal.aborted) {
       button.classList.remove('disabled');
     }
   }
@@ -161,11 +160,11 @@ const buildPanel = async (btn, snuid) => {
     };
 
     const qty = qtyInput.value;
-    if (! qty || Number(qty) <= 0) {
+    if (!qty || Number(qty) <= 0) {
       showErrorMessage({ ...errorParams, message: 'Quantity is required' });
       return;
     }
-    if (! selectedTile) {
+    if (!selectedTile) {
       showErrorMessage({ ...errorParams, message: 'Item is required' });
       return;
     }
@@ -173,7 +172,7 @@ const buildPanel = async (btn, snuid) => {
     const radio = selectedTile.querySelector('.quickSendItemRadio');
     const itemType = radio?.value;
     const itemName = radio?.getAttribute('data-name');
-    if (! itemType || ! itemName) {
+    if (!itemType || !itemName) {
       showErrorMessage({ ...errorParams, message: 'Item is required' });
       return;
     }
@@ -194,7 +193,7 @@ const buildPanel = async (btn, snuid) => {
   sendBtn.addEventListener('click', performSend);
 
   qtyInput.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter' && ! sendBtn.classList.contains('disabled') && ! wrapper.classList.contains('hidden')) {
+    if (ev.key === 'Enter' && !sendBtn.classList.contains('disabled') && !wrapper.classList.contains('hidden')) {
       ev.preventDefault();
       performSend();
     }
@@ -228,13 +227,13 @@ const buildPanel = async (btn, snuid) => {
   wrapper.append(itemsWrapper, controls, close);
 
   wrapper.addEventListener('mouseleave', () => {
-    if (! wrapper.classList.contains('sticky')) {
+    if (!wrapper.classList.contains('sticky')) {
       setTimeout(() => wrapper.classList.add('hidden'), 350);
     }
   });
 
   const outsideClick = (event) => {
-    if (! wrapper.contains(event.target) && ! btn.contains(event.target)) {
+    if (!wrapper.contains(event.target) && !btn.contains(event.target)) {
       wrapper.classList.remove('sticky');
       setTimeout(() => wrapper.classList.add('hidden'), 350);
     }
@@ -246,10 +245,7 @@ const buildPanel = async (btn, snuid) => {
 };
 
 const attachToButtons = (root = document) => {
-  const buttons = [
-    ...root.querySelectorAll('.userInteractionButtonsView-button.sendSupplies'),
-    ...root.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent')
-  ];
+  const buttons = [...root.querySelectorAll('.userInteractionButtonsView-button.sendSupplies'), ...root.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent')];
 
   const seen = new WeakMap();
 
@@ -259,12 +255,9 @@ const attachToButtons = (root = document) => {
     }
     seen.set(btn, true);
 
-    const snuid =
-      btn.parentNode?.parentNode?.getAttribute('data-recipient-snuid') ||
-      btn.getAttribute('data-snuid') ||
-      null;
+    const snuid = btn.parentNode?.parentNode?.getAttribute('data-recipient-snuid') || btn.getAttribute('data-snuid') || null;
 
-    if (! snuid || snuid === user.sn_user_id) {
+    if (!snuid || snuid === user.sn_user_id) {
       return;
     }
 
@@ -283,16 +276,16 @@ const attachToButtons = (root = document) => {
     const onLeave = () => {
       clearTimeout(hoverTimer);
       const state = STATE.get(btn);
-      if (! state) {
+      if (!state) {
         return;
       }
       const { wrapper } = state;
-      if (wrapper && ! wrapper.classList.contains('sticky')) {
+      if (wrapper && !wrapper.classList.contains('sticky')) {
         setTimeout(() => wrapper.classList.add('hidden'), 350);
       }
     };
 
-    if (! btn.classList.contains('mhui-quick-send-attached')) {
+    if (!btn.classList.contains('mhui-quick-send-attached')) {
       btn.classList.add('mhui-quick-send-attached');
       btn.addEventListener('mouseenter', onEnter);
       btn.addEventListener('mouseleave', onLeave);

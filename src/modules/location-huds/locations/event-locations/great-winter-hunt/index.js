@@ -10,7 +10,7 @@ import {
   onDialogShow,
   onEvent,
   onRequest,
-  parseNumber
+  parseNumber,
 } from '@utils';
 
 import styles from './styles.css';
@@ -20,7 +20,7 @@ import styles from './styles.css';
  */
 const updateGolemFooter = () => {
   const footer = document.querySelector('.greatWinterHuntDialogView__inventoryFooter');
-  if (! footer) {
+  if (!footer) {
     return;
   }
 
@@ -28,7 +28,7 @@ const updateGolemFooter = () => {
   const torsoEl = footer.querySelector('.greatWinterHuntDialogView__footerItemQuantity[data-item-type="golem_part_torso_stat_item"]');
   const limbsEl = footer.querySelector('.greatWinterHuntDialogView__footerItemQuantity[data-item-type="golem_part_limb_stat_item"]');
 
-  if (! headsEl && ! torsoEl && ! limbsEl) {
+  if (!headsEl && !torsoEl && !limbsEl) {
     return;
   }
 
@@ -69,14 +69,14 @@ const updateGolemFooter = () => {
  */
 const getFraction = (num) => {
   switch (num) {
-  case 1:
-    return '¼';
-  case 2:
-    return '½';
-  case 3:
-    return '¾';
-  default:
-    return '';
+    case 1:
+      return '¼';
+    case 2:
+      return '½';
+    case 3:
+      return '¾';
+    default:
+      return '';
   }
 };
 
@@ -85,7 +85,7 @@ const getFraction = (num) => {
  */
 const updateGolemPartsQuantity = () => {
   const limbs = document.querySelector('.greatWinterHuntRecycleDialogView__itemQuantity.quantity[data-item-type="golem_part_limb_stat_item"]');
-  if (! limbs) {
+  if (!limbs) {
     return;
   }
 
@@ -113,12 +113,12 @@ const updateGolemPartsQuantity = () => {
  */
 const updateGolemTravelCount = async () => {
   const title = document.querySelector('.greatWinterHuntGolemManagerTabView__destinationHeader');
-  if (! title) {
+  if (!title) {
     return;
   }
 
   const name = title.querySelector('.greatWinterHuntGolemManagerTabView__destinationName');
-  if (! name) {
+  if (!name) {
     return;
   }
 
@@ -126,7 +126,7 @@ const updateGolemTravelCount = async () => {
 
   // Find the environment type by checking the name against the environment name.
   const currentEnvironment = allEnvironments.find((env) => env.name === name.textContent);
-  if (! currentEnvironment) {
+  if (!currentEnvironment) {
     return;
   }
 
@@ -166,18 +166,18 @@ const updateGolemPopup = () => {
  */
 const golemDance = () => {
   const trigger = document.querySelector('.greatWinterHuntRewardTrackView__progress');
-  if (! trigger) {
+  if (!trigger) {
     return;
   }
 
   trigger.addEventListener('click', () => {
     const golems = document.querySelectorAll('.headsUpDisplayWinterHuntRegionView__golem .winterHuntGolemView');
-    if (! golems) {
+    if (!golems) {
       return;
     }
 
     // Off set the animations so they don't all start at the same time.
-    count = 0;
+    let count = 0;
     golems.forEach((golem) => {
       setTimeout(() => golem.classList.add('winterHuntGolemView--idleAnimation'), 100 * count);
       count++;
@@ -207,7 +207,7 @@ const getQuest = () => {
  */
 const expandAnimatedSnowCount = () => {
   const limbEl = document.querySelector('.headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity[data-item-type="animate_snow_stat_item"]');
-  if (! limbEl) {
+  if (!limbEl) {
     return;
   }
 
@@ -220,7 +220,7 @@ const expandAnimatedSnowCount = () => {
 const showPossibleSnowballShowdownDustCount = () => {
   // 175 for each dust.
   const showdownItems = document.querySelector('.campHudSnowballShowdownView__itemsContainer');
-  if (! showdownItems) {
+  if (!showdownItems) {
     return;
   }
 
@@ -233,7 +233,7 @@ const showPossibleSnowballShowdownDustCount = () => {
   const currentDustQty = currentDustQtyEl ? parseNumber(currentDustQtyEl.textContent) : 0;
 
   const possibleDustQty = Math.floor(snowballQty / 175);
-  const snowballText = snowballQty - (possibleDustQty * 175);
+  const snowballText = snowballQty - possibleDustQty * 175;
   const dustText = currentDustQty + possibleDustQty;
 
   const possibleSnowballExists = showdownItems.querySelector('.campHudSnowballShowdownView__quantity.possibleSnowball');
@@ -277,7 +277,7 @@ const getGolemCounts = () => {
  */
 const adventCalendarPopup = () => {
   const suffix = document.querySelector('#overlayPopup .suffix');
-  if (! suffix) {
+  if (!suffix) {
     return;
   }
 
@@ -295,7 +295,7 @@ const adventCalendarPopup = () => {
   toggleBtn.setAttribute('data-enabled', 'false');
   toggleBtn.addEventListener('click', () => {
     const popup = document.querySelector('#overlayPopup');
-    if (! popup) {
+    if (!popup) {
       return;
     }
 
@@ -329,12 +329,12 @@ const maybeHideAdventCalendarInMenu = () => {
 
 const giftingPopup = () => {
   const giftContainer = document.querySelector('.giftContainer');
-  if (! giftContainer) {
+  if (!giftContainer) {
     return;
   }
 
   const gifts = giftContainer.querySelectorAll('.gift');
-  if (! gifts) {
+  if (!gifts) {
     return;
   }
 
@@ -420,7 +420,4 @@ const greatWinterHuntLocation = () => {
   setTimeout(expandAnimatedSnowCount, 1000);
 };
 
-export {
-  greatWinterHuntGlobal,
-  greatWinterHuntLocation
-};
+export { greatWinterHuntGlobal, greatWinterHuntLocation };

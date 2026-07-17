@@ -73,12 +73,12 @@ const addSettingsTabOnce = (identifier = 'mousehunt-improved-settings', name = '
   }
 
   const tabsContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
-  if (! tabsContainer) {
+  if (!tabsContainer) {
     return;
   }
 
   const tabsContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-  if (! tabsContentContainer) {
+  if (!tabsContentContainer) {
     return;
   }
 
@@ -179,7 +179,7 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = false
       settingRow.classList.toggle('active');
     }
 
-    saveSettingDirectAndToggleClass(event.target, toggleKey, ! isSettingActive, toggleTab);
+    saveSettingDirectAndToggleClass(event.target, toggleKey, !isSettingActive, toggleTab);
   };
 
   // Add the input to the settings row.
@@ -247,6 +247,7 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
    *
    * @return {Object} The option and whether or not it's selected.
    */
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const makeOption = (option, foundSelected, currentSetting, dValue, i) => {
     if (option.seperator) {
       return {
@@ -263,14 +264,14 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
     if (currentSetting && currentSetting === option.value) {
       settingRowInputDropdownSelectOption.selected = true;
       foundSelected = true;
-    } else if (! foundSelected && dValue && dValue[i] && dValue[i].value === option.value) {
+    } else if (!foundSelected && dValue && dValue[i] && dValue[i].value === option.value) {
       settingRowInputDropdownSelectOption.selected = true;
       foundSelected = true;
     }
 
     return {
       settingRowInputDropdownSelectOption,
-      foundSelected
+      foundSelected,
     };
   };
 
@@ -541,7 +542,7 @@ const addSettingOnce = (options) => {
 
   // Make sure we have the container for our settings.
   const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
-  if (! container) {
+  if (!container) {
     return false;
   }
 
@@ -556,7 +557,7 @@ const addSettingOnce = (options) => {
 
   // If we don't have our custom settings section, then create it.
   let sectionExists = document.querySelector(`#${section.id}-wrapper`);
-  if (! sectionExists) {
+  if (!sectionExists) {
     const title = makeElement('div', 'PagePreferences__section');
     title.id = section.id;
 
@@ -621,7 +622,7 @@ const addSettingOnce = (options) => {
   settingNameText.setAttribute('data-default', JSON.stringify(defaultValue));
   settingName.append(settingNameText);
 
-  if (! section.subSetting) {
+  if (!section.subSetting) {
     settingNameText.addEventListener('click', (event) => {
       event.preventDefault();
       navigator.clipboard.writeText(`${window.location.href}#${settingId}`);
@@ -715,7 +716,7 @@ let removeTimeout = null;
  */
 const addSettingRefreshReminder = () => {
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
-  if (! refreshMessage) {
+  if (!refreshMessage) {
     const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Settings updated! You may need to refresh the page for changes to take effect.');
     newMessageEl.id = 'mh-utils-settings-refresh-message';
 
@@ -749,17 +750,13 @@ onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
  * @param {Object} module The module to add settings for.
  */
 const addSettingForModule = async (module) => {
-  if (! module || ! Array.isArray(module.modules)) {
+  if (!module || !Array.isArray(module.modules)) {
     return;
   }
 
   for (const submodule of module.modules) {
     let moduleSettingRow = null;
-    if (
-      ! submodule.alwaysLoad &&
-      ! submodule.beta &&
-      ! (submodule.hiddenUnlessEnabled && ! getSetting(submodule.id, false) && ! getFlag('show-deprecated-modules'))
-    ) {
+    if (!submodule.alwaysLoad && !submodule.beta && !(submodule.hiddenUnlessEnabled && !getSetting(submodule.id, false) && !getFlag('show-deprecated-modules'))) {
       moduleSettingRow = await addSetting({
         name: submodule.name,
         id: submodule.id,
@@ -772,7 +769,7 @@ const addSettingForModule = async (module) => {
 
     if (submodule.settings) {
       const subSettingsGroup = await submodule.settings(module);
-      if (! subSettingsGroup) {
+      if (!subSettingsGroup) {
         continue;
       }
 
@@ -810,22 +807,24 @@ const addSettingForModule = async (module) => {
  * @return {Array} The flattened options.
  */
 const flattenSettingOptions = (options, exclude = ['default']) => {
-  return options.reduce((acc, option) => {
-    if (Array.isArray(option.options)) {
-      return [...acc, ...option.options];
-    }
+  return options
+    .reduce((acc, option) => {
+      if (Array.isArray(option.options)) {
+        return [...acc, ...option.options];
+      }
 
-    if (option.value && option.name) {
-      return [...acc, option];
-    }
+      if (option.value && option.name) {
+        return [...acc, option];
+      }
 
-    return acc;
-  }, []).filter((option) => ! exclude.includes(option.value));
+      return acc;
+    }, [])
+    .filter((option) => !exclude.includes(option.value));
 };
 
 const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview = true, previewCallback = () => {}, itemPreviewCallback = null }) => {
   const previewLink = document.querySelector(selector);
-  if (! previewLink) {
+  if (!previewLink) {
     return;
   }
 
@@ -836,13 +835,17 @@ const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview 
 
   previewLink.setAttribute('data-mh-improved-settings-preview', true);
 
-  previewLink.addEventListener('click', (e) => {
-    e.stopPropagation();
-    e.preventDefault();
+  previewLink.addEventListener(
+    'click',
+    (e) => {
+      e.stopPropagation();
+      e.preventDefault();
 
-    const hasItemPreview = !! itemPreviewCallback;
+      const hasItemPreview = !!itemPreviewCallback;
 
-    const content = items.map((gradient) => `
+      const content = items
+        .map(
+          (gradient) => `
       <div class="gradient ${id}${gradient?.id ? ` ${gradient.id}` : ''}${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
         <div class="name">${gradient.name}</div>
         ${hasItemPreview ? itemPreviewCallback(gradient) : ''}
@@ -851,41 +854,46 @@ const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview 
           <div class="mousehuntActionButton small mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Select</span></div>
         </div>
       </div>
-    `).join('');
+    `
+        )
+        .join('');
 
-    const popup = createPopup({
-      title: '',
-      className: `mh-improved-custom-background-gradient-preview-popup mh-improved-custom-preview-popup-${id}`,
-      content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
-      show: false,
-    });
+      const popup = createPopup({
+        title: '',
+        className: `mh-improved-custom-background-gradient-preview-popup mh-improved-custom-preview-popup-${id}`,
+        content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
+        show: false,
+      });
 
-    popup.show();
+      popup.show();
 
-    document.querySelector('.mh-improved-custom-background-gradient-preview').addEventListener('click', (evt) => {
-      const action = evt.target.closest('.mh-improved-custom-bg-action-button');
-      if (! action) {
-        return;
-      }
-
-      evt.preventDefault();
-
-      const gradient = action.getAttribute('data-gradient');
-      const actionType = action.getAttribute('data-action');
-
-      if ('preview' === actionType) {
-        previewCallback(gradient);
-      } else if ('use' === actionType) {
-        const input = document.querySelector(inputSelector);
-        if (input) {
-          input.value = gradient;
-          input.dispatchEvent(new Event('change'));
+      document.querySelector('.mh-improved-custom-background-gradient-preview').addEventListener('click', (evt) => {
+        const action = evt.target.closest('.mh-improved-custom-bg-action-button');
+        if (!action) {
+          return;
         }
 
-        popup.hide();
-      }
-    });
-  }, {}, true);
+        evt.preventDefault();
+
+        const gradient = action.getAttribute('data-gradient');
+        const actionType = action.getAttribute('data-action');
+
+        if ('preview' === actionType) {
+          previewCallback(gradient);
+        } else if ('use' === actionType) {
+          const input = document.querySelector(inputSelector);
+          if (input) {
+            input.value = gradient;
+            input.dispatchEvent(new Event('change'));
+          }
+
+          popup.hide();
+        }
+      });
+    },
+    {},
+    true
+  );
 };
 
 /**
@@ -902,10 +910,4 @@ const addSettingPreview = (options) => {
   setMultipleTimeout(() => doAddSettingPreview(options), [10, 250, 500, 1000, 2000, 5000]);
 };
 
-export {
-  addSettingForModule,
-  addSetting,
-  addSettingsTab,
-  addSettingPreview,
-  flattenSettingOptions
-};
+export { addSettingForModule, addSetting, addSettingsTab, addSettingPreview, flattenSettingOptions };

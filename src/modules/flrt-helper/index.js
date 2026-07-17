@@ -1,14 +1,4 @@
-import {
-  addStyles,
-  cacheFinishedMap,
-  createPopup,
-  doRequest,
-  getData,
-  getLastMaptain,
-  makeMhButton,
-  onDialogShow,
-  onRequest
-} from '@utils';
+import { addStyles, cacheFinishedMap, createPopup, doRequest, getData, getLastMaptain, makeMhButton, onDialogShow, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -18,7 +8,7 @@ import styles from './styles.css';
  * @param {Object} response The response from the request.
  */
 const addFlrtButtonToConvertible = async (response) => {
-  if (! response?.convertible_open?.name || ! response?.convertible_open?.items) {
+  if (!response?.convertible_open?.name || !response?.convertible_open?.items) {
     return;
   }
 
@@ -58,7 +48,7 @@ const addFlrtButtonToConvertible = async (response) => {
   }
 
   const buttons = document.querySelector('.jsDialogContainer .suffix');
-  if (! buttons) {
+  if (!buttons) {
     return;
   }
 
@@ -122,11 +112,11 @@ const flrtPopup = async (items) => {
   popup.show();
 
   const search = document.querySelector('.search-for-hunter');
-  if (! search) {
+  if (!search) {
     return;
   }
 
-  hasFoundMaptain = !! lastMaptain;
+  hasFoundMaptain = !!lastMaptain;
 
   if (lastMaptain) {
     app.pages.FriendsPage.triggerHunterForm(search);
@@ -136,7 +126,7 @@ const flrtPopup = async (items) => {
 
   search.addEventListener('click', () => {
     const id = document.querySelector('.friendsPage-community-hunterIdForm-input');
-    if (! id) {
+    if (!id) {
       return;
     }
 
@@ -145,19 +135,19 @@ const flrtPopup = async (items) => {
 
   flrtItems.forEach((item) => {
     const sendButton = item.querySelector('.flrt-item-send');
-    if (! sendButton) {
+    if (!sendButton) {
       return;
     }
 
     sendButton.addEventListener('click', async () => {
-      if (! hasFoundMaptain) {
+      if (!hasFoundMaptain) {
         return;
       }
 
       const type = item.getAttribute('data-item-type');
       const quantity = item.getAttribute('data-item-quantity');
 
-      if (! type || ! quantity) {
+      if (!type || !quantity) {
         return;
       }
 
@@ -183,15 +173,15 @@ const flrtPopup = async (items) => {
 
 let hasFoundMaptain = false;
 const updateSendButtons = async (resp) => {
-  hasFoundMaptain = resp.friend && resp.friend.sn_user_id ? true : false;
+  hasFoundMaptain = Boolean(resp.friend && resp.friend.sn_user_id);
 
   const overlay = document.querySelector('#overlayPopup.flrt-helper-popup');
-  if (! overlay) {
+  if (!overlay) {
     return;
   }
 
   const flrtSendButtons = document.querySelectorAll('.flrt-item-send');
-  if (! flrtSendButtons) {
+  if (!flrtSendButtons) {
     return;
   }
 
@@ -200,8 +190,8 @@ const updateSendButtons = async (resp) => {
       return;
     }
 
-    button.disabled = ! hasFoundMaptain;
-    button.classList.toggle('disabled', ! hasFoundMaptain);
+    button.disabled = !hasFoundMaptain;
+    button.classList.toggle('disabled', !hasFoundMaptain);
   });
 };
 

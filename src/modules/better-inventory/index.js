@@ -12,7 +12,7 @@ import {
   makeMhButton,
   onNavigation,
   onOverlayChange,
-  onRequest
+  onRequest,
 } from '@utils';
 
 import recipes from './modules/recipes';
@@ -31,7 +31,7 @@ import tinyGroupStyles from './styles/tiny-group.css';
  */
 const setOpenQuantityOnClick = (attempts = 0) => {
   const qty = document.querySelector('.itemView-action-convertForm');
-  if (! qty) {
+  if (!qty) {
     if (attempts > 10) {
       return;
     }
@@ -59,13 +59,13 @@ const setOpenQuantityOnClick = (attempts = 0) => {
  */
 const updateCollectibles = () => {
   const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
-  if (! collectibles.length) {
+  if (!collectibles.length) {
     return;
   }
 
   collectibles.forEach((collectible) => {
     const type = collectible.getAttribute('data-item-type');
-    if (! type) {
+    if (!type) {
       return;
     }
 
@@ -96,7 +96,7 @@ const addArmButtonToCharms = () => {
   }
 
   const charms = document.querySelectorAll('.inventoryPage-item.trinket');
-  if (! charms.length) {
+  if (!charms.length) {
     return;
   }
 
@@ -108,7 +108,7 @@ const addArmButtonToCharms = () => {
     }
 
     const actionContainer = charm.querySelector('.inventoryPage-item-imageContainer');
-    if (! actionContainer) {
+    if (!actionContainer) {
       return;
     }
 
@@ -135,31 +135,31 @@ const getItemDisplayName = (item) => {
 };
 
 const sortInventoryItemsByName = (items) => {
-  return [...items].sort((a, b) => {
-    const aName = getItemDisplayName(a);
-    const bName = getItemDisplayName(b);
+  return [...items]
+    .sort((a, b) => {
+      const aName = getItemDisplayName(a);
+      const bName = getItemDisplayName(b);
 
-    return aName.localeCompare(bName);
-  }).filter((item, index, self) => {
-    return index === self.findIndex((t) => (
-      t.getAttribute('data-item-type') === item.getAttribute('data-item-type')
-    ));
-  });
+      return aName.localeCompare(bName);
+    })
+    .filter((item, index, self) => {
+      return index === self.findIndex((t) => t.getAttribute('data-item-type') === item.getAttribute('data-item-type'));
+    });
 };
 
 const addSkinPreview = async (item) => {
   const type = item.getAttribute('data-item-type');
-  if (! items) {
+  if (!items) {
     items = await getData('items');
   }
 
   const itemData = items.find((i) => i.type === type);
-  if (! itemData || ! itemData?.images?.trap) {
+  if (!itemData || !itemData?.images?.trap) {
     return;
   }
 
   const description = item.querySelector('.inventoryPage-item-content-description-text');
-  if (! description) {
+  if (!description) {
     return;
   }
 
@@ -197,7 +197,7 @@ const resortInventory = () => {
 
   lists.forEach((list) => {
     const items = list.querySelectorAll('.inventoryPage-item');
-    sortedItems = sortInventoryItemsByName(items);
+    const sortedItems = sortInventoryItemsByName(items);
 
     for (const item of items) {
       // While we're here, update the name so its not truncated.
@@ -208,20 +208,25 @@ const resortInventory = () => {
       }
 
       addSkinPreview(item);
+    }
 
+    for (const item of sortedItems) {
       list.append(item);
     }
   });
 };
 
 const addResortInventory = () => {
-  onNavigation(() => {
-    setTimeout(resortInventory, 250);
-  }, {
-    page: 'inventory',
-    anyTab: true,
-    anySubtab: true,
-  });
+  onNavigation(
+    () => {
+      setTimeout(resortInventory, 250);
+    },
+    {
+      page: 'inventory',
+      anyTab: true,
+      anySubtab: true,
+    }
+  );
 
   onRequest('pages/page.php', (response, data) => {
     if ('Inventory' === data.page_class) {
@@ -240,25 +245,18 @@ const replaceInventoryView = () => {
 
   app.pages.InventoryPage.useItem = function (target) {
     const itemClassification = target.getAttribute('data-item-classification');
-    if (! itemClassification) {
+    if (!itemClassification) {
       return _InventoryPageuseItem.call(this, target);
     }
 
-    const allowedTypes = [
-      'bait',
-      'collectible',
-      'crafting_item',
-      'message_item',
-      'recipe',
-      'stat',
-    ];
+    const allowedTypes = ['bait', 'collectible', 'crafting_item', 'message_item', 'recipe', 'stat'];
 
-    if (! allowedTypes.includes(itemClassification)) {
+    if (!allowedTypes.includes(itemClassification)) {
       return _InventoryPageuseItem.call(this, target);
     }
 
     const container = target.closest('.mousehuntHud-page-subTabContent');
-    if (! container) {
+    if (!container) {
       return _InventoryPageuseItem.call(this, target);
     }
 
@@ -295,7 +293,7 @@ const replaceInventoryView = () => {
       return this.armItem(target);
     }
 
-    if (! itemType) {
+    if (!itemType) {
       return;
     }
 
@@ -323,7 +321,7 @@ const cheeseEffectValues = {
   'Extremely Stale': 4,
   'Insanely Stale': 3,
   'Ultim. Stale': 2,
-  'Uber Stale': 1
+  'Uber Stale': 1,
 };
 
 /**
@@ -335,7 +333,7 @@ const cheeseEffectValues = {
  */
 const getInventoryItemQuantity = (el) => {
   const qtyEl = el.querySelector('.quantity');
-  if (! qtyEl) {
+  if (!qtyEl) {
     return 0;
   }
 
@@ -363,7 +361,7 @@ let specialEffectItems = null;
  */
 const addTrapSorting = async () => {
   const header = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabHeader-container');
-  if (! header) {
+  if (!header) {
     return;
   }
 
@@ -371,16 +369,13 @@ const addTrapSorting = async () => {
   // navigations can't both pass the "remove existing row" check and then each
   // append a row (which produced the duplicated controls).
   const titles = await getData('titles');
-  if (! specialEffectItems) {
+  if (!specialEffectItems) {
     specialEffectItems = await getData('trap-special-effects');
   }
 
   // An item has a special effect if it always does (`all`) or does in the
   // current location — matching the trap-selector-special-effects module.
-  const specialTypes = new Set([
-    ...(specialEffectItems?.all || []),
-    ...(specialEffectItems?.[getCurrentLocation()] || []),
-  ]);
+  const specialTypes = new Set([...(specialEffectItems?.all || []), ...(specialEffectItems?.[getCurrentLocation()] || [])]);
 
   // Remove any existing controls (this also drops their click listeners).
   document.querySelectorAll('.mh-inventory-sort-row').forEach((el) => el.remove());
@@ -392,22 +387,21 @@ const addTrapSorting = async () => {
 
   const listingSelector = `.inventoryPage-tagContent-listing .inventoryPage-item.${itemClass}`;
 
-  const getEntries = () => [...document.querySelectorAll(listingSelector)].map((el) => {
-    const type = el.getAttribute('data-item-type');
-    return { el, type, item: items.find((i) => i.type === type) };
-  });
+  const getEntries = () =>
+    [...document.querySelectorAll(listingSelector)].map((el) => {
+      const type = el.getAttribute('data-item-type');
+      return { el, type, item: items.find((i) => i.type === type) };
+    });
 
   // --- Filters ---
   const filters = { le: 'all', effects: 'all' };
 
   const applyFilters = () => {
     getEntries().forEach(({ el, type, item }) => {
-      const leOk = filters.le === 'all' ||
-        (filters.le === 'le' ? Boolean(item?.is_limited_edition) : ! item?.is_limited_edition);
-      const effectsOk = filters.effects === 'all' ||
-        (filters.effects === 'special' ? specialTypes.has(type) : ! specialTypes.has(type));
+      const leOk = filters.le === 'all' || (filters.le === 'le' ? Boolean(item?.is_limited_edition) : !item?.is_limited_edition);
+      const effectsOk = filters.effects === 'all' || (filters.effects === 'special' ? specialTypes.has(type) : !specialTypes.has(type));
 
-      el.classList.toggle('mh-inventory-item-hidden', ! (leOk && effectsOk));
+      el.classList.toggle('mh-inventory-item-hidden', !(leOk && effectsOk));
     });
   };
 
@@ -433,7 +427,7 @@ const addTrapSorting = async () => {
 
     const statValue = (entry) => {
       let value = Number.parseFloat(entry.item?.has_stats?.[sortType] || 0);
-      if (! value || Number.isNaN(value)) {
+      if (!value || Number.isNaN(value)) {
         const text = entry.item?.has_stats?.[`${sortType}_formatted`] || '0';
         value = Number.parseFloat(text.replace('%', '')) || 0;
       }
@@ -445,12 +439,12 @@ const addTrapSorting = async () => {
 
   const doSort = (sortType, order) => {
     const entries = getEntries();
-    if (! entries.length) {
+    if (!entries.length) {
       return;
     }
 
     const container = entries[0].el.parentElement;
-    if (! container) {
+    if (!container) {
       return;
     }
 
@@ -571,21 +565,24 @@ const main = async () => {
     page: 'inventory',
   });
 
-  onNavigation(() => {
-    setTimeout(() => {
-      addOnboardingTip({
-        step: 'better-inventory-crafting-shift-click',
-        anchor: '.inventoryPage-item[data-item-classification="crafting_item"]',
-        title: 'Take a closer look',
-        content: 'Shift-click a crafting item to open its item page instead of adding it to the crafting table.',
-        dismissOnAnchorClick: false,
-      });
-    }, 250);
-  }, {
-    page: 'inventory',
-    tab: 'crafting',
-    anySubtab: true,
-  });
+  onNavigation(
+    () => {
+      setTimeout(() => {
+        addOnboardingTip({
+          step: 'better-inventory-crafting-shift-click',
+          anchor: '.inventoryPage-item[data-item-classification="crafting_item"]',
+          title: 'Take a closer look',
+          content: 'Shift-click a crafting item to open its item page instead of adding it to the crafting table.',
+          dismissOnAnchorClick: false,
+        });
+      }, 250);
+    },
+    {
+      page: 'inventory',
+      tab: 'crafting',
+      anySubtab: true,
+    }
+  );
 
   if (getSetting('better-inventory.add-trap-sorting', false)) {
     onNavigation(addTrapSorting, {
@@ -606,12 +603,15 @@ const main = async () => {
  * Initialize the module.
  */
 const init = () => {
-  addStyles([
-    styles,
-    getSetting('better-inventory.one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
-    getSetting('better-inventory.larger-images', true) ? largerImagesStyles : '',
-    getSetting('better-inventory.show-all-group', false) ? tinyGroupStyles : '',
-  ], 'better-inventory');
+  addStyles(
+    [
+      styles,
+      getSetting('better-inventory.one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
+      getSetting('better-inventory.larger-images', true) ? largerImagesStyles : '',
+      getSetting('better-inventory.show-all-group', false) ? tinyGroupStyles : '',
+    ],
+    'better-inventory'
+  );
 
   main();
 };

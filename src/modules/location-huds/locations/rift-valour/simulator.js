@@ -6,6 +6,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-var */
+/* eslint-disable block-scoped-var */
 /* eslint-disable jsdoc/require-jsdoc */
 import getQuestData from './quest-data';
 
@@ -16,89 +17,91 @@ const cumulativeDisplay = true;
 const exactDisplay = false;
 const useUConEclipse = false;
 
-const cacheLoot =
-  [[0, 0],
-    [7, 0],
-    [16, 0],
-    [24, 0],
-    [32, 0],
-    [40, 0],
-    [48, 0],
-    [50, 0],
-    [59, 8],
-    [69, 10],
-    [80, 11],
-    [88, 13],
-    [98, 14],
-    [107, 16],
-    [118, 17],
-    [120, 17],
-    [135, 20],
-    [150, 22],
-    [165, 24],
-    [182, 26],
-    [199, 28],
-    [217, 31],
-    [235, 33],
-    [254, 33],
-    [272, 37],
-    [290, 40],
-    [308, 43],
-    [325, 45],
-    [342, 48],
-    [357, 51],
-    [372, 54],
-    [386, 54],
-    [399, 60],
-    [410, 63],
-    [421, 66],
-    [430, 70],
-    [439, 73],
-    [446, 77],
-    [453, 80],
-    [459, 80],
-    [464, 88],
-    [469, 92],
-    [473, 96],
-    [477, 101],
-    [480, 105],
-    [482, 109],
-    [485, 113],
-    [487, 113],
-    [489, 123],
-    [490, 128],
-    [492, 133],
-    [493, 138],
-    [494, 143],
-    [495, 148],
-    [495, 153],
-    [496, 153],
-    [497, 161],
-    [497, 167],
-    [497, 173],
-    [498, 178],
-    [498, 184],
-    [498, 190],
-    [499, 196],
-    [500, 196],
-    [500, 205],
-    [500, 212],
-    [500, 218],
-    [500, 224],
-    [500, 231],
-    [500, 237],
-    [500, 244],
-    [500, 244],
-    [500, 253],
-    [500, 260],
-    [500, 267],
-    [500, 274],
-    [500, 282],
-    [500, 289],
-    [500, 296],
-    [500, 300]];
+const cacheLoot = [
+  [0, 0],
+  [7, 0],
+  [16, 0],
+  [24, 0],
+  [32, 0],
+  [40, 0],
+  [48, 0],
+  [50, 0],
+  [59, 8],
+  [69, 10],
+  [80, 11],
+  [88, 13],
+  [98, 14],
+  [107, 16],
+  [118, 17],
+  [120, 17],
+  [135, 20],
+  [150, 22],
+  [165, 24],
+  [182, 26],
+  [199, 28],
+  [217, 31],
+  [235, 33],
+  [254, 33],
+  [272, 37],
+  [290, 40],
+  [308, 43],
+  [325, 45],
+  [342, 48],
+  [357, 51],
+  [372, 54],
+  [386, 54],
+  [399, 60],
+  [410, 63],
+  [421, 66],
+  [430, 70],
+  [439, 73],
+  [446, 77],
+  [453, 80],
+  [459, 80],
+  [464, 88],
+  [469, 92],
+  [473, 96],
+  [477, 101],
+  [480, 105],
+  [482, 109],
+  [485, 113],
+  [487, 113],
+  [489, 123],
+  [490, 128],
+  [492, 133],
+  [493, 138],
+  [494, 143],
+  [495, 148],
+  [495, 153],
+  [496, 153],
+  [497, 161],
+  [497, 167],
+  [497, 173],
+  [498, 178],
+  [498, 184],
+  [498, 190],
+  [499, 196],
+  [500, 196],
+  [500, 205],
+  [500, 212],
+  [500, 218],
+  [500, 224],
+  [500, 231],
+  [500, 237],
+  [500, 244],
+  [500, 244],
+  [500, 253],
+  [500, 260],
+  [500, 267],
+  [500, 274],
+  [500, 282],
+  [500, 289],
+  [500, 296],
+  [500, 300],
+];
 
-const normalAR = [[0, 0, 0, 0],
+const normalAR = [
+  [0, 0, 0, 0],
   [0, 0, 0, 0],
   [0.08246, 0.05616, 0.04866, 0.04231],
   [0.08246, 0.05616, 0.04866, 0.04231],
@@ -124,9 +127,11 @@ const normalAR = [[0, 0, 0, 0],
   [0, 0, 0, 0.09725],
   [0.17886, 0.1029, 0.102, 0.08956],
   [0, 0, 0, 0],
-  [0, 0, 0, 0]];
+  [0, 0, 0, 0],
+];
 
-const umbraAR = [[0, 0, 0, 0],
+const umbraAR = [
+  [0, 0, 0, 0],
   [0, 0, 0, 0],
   [0.066, 0.04129, 0.03857, 0.031],
   [0.066, 0.04129, 0.03857, 0.031],
@@ -152,9 +157,11 @@ const umbraAR = [[0, 0, 0, 0],
   [0, 0, 0, 0.081],
   [0.183, 0.112, 0.102, 0.08],
   [0.179, 0.186, 0.192, 0.2],
-  [0, 0, 0, 0]];
+  [0, 0, 0, 0],
+];
 
-const mouseDrops = [[0, 0, 0, 0, 1982],
+const mouseDrops = [
+  [0, 0, 0, 0, 1982],
   [0, 0, 0, 0, 4250],
   [0.60515, 0.60515, 0, 0, 1000],
   [0.63774, 0.63774, 0, 0, 1250],
@@ -180,9 +187,11 @@ const mouseDrops = [[0, 0, 0, 0, 1982],
   [0.02475, 0.02475, 1.75, 1, 8000],
   [0.99597, 0.99396, 0, 0, 4795],
   [0, 0, 0, 0, 12000],
-  [0, 0, 0, 0, 0]];
+  [0, 0, 0, 0, 0],
+];
 
-const mouseStats = [[3300, 1],
+const mouseStats = [
+  [3300, 1],
   [5050, 1],
   [2900, 1],
   [6650, 2],
@@ -208,7 +217,8 @@ const mouseStats = [[3300, 1],
   [350000, 50],
   [100, 2],
   [818250, 75],
-  [1e30, 1]];
+  [1e30, 1],
+];
 
 // Rift Hailstone Singularity Base: +1 step per catch, but it consumes every loot
 // drop while climbing the tower.
@@ -216,7 +226,7 @@ const HAILSTONE_BASE_ID = 3954;
 const lootProfileKeys = ['sg', 'sgi', 'sc', 'sci', 'gold', 'cf'];
 
 function getCacheLoot(floor) {
-  let idx = floor > 1 ? (floor - 1) : 0;
+  let idx = floor > 1 ? floor - 1 : 0;
   if (idx >= cacheLoot.length) {
     idx = cacheLoot.length - 1;
   }
@@ -253,7 +263,7 @@ function simulate(shouldDisplay = true) {
 
   const hasHailstoneBase = Number.parseInt(window.user.base_item_id, 10) === HAILSTONE_BASE_ID;
   let power = window.user.trap_power;
-  let luck = (window.user.trinket_name == 'Ultimate Charm') ? 100000 : window.user.trap_luck;
+  let luck = window.user.trinket_name == 'Ultimate Charm' ? 100000 : window.user.trap_luck;
 
   try {
     const altpower = Number(document.querySelectorAll('.campPage-trap-trapStat.power')[0].children[1].innerText.match(/\d/g).join(''));
@@ -288,7 +298,7 @@ function simulate(shouldDisplay = true) {
     sc: [eclipseSC * eclipseCR],
     sci: [0],
     gold: [eclipseGold * eclipseCR],
-    cf: [0]
+    cf: [0],
   };
 
   for (var j = 1; j <= 4; j++) {
@@ -350,18 +360,18 @@ function simulate(shouldDisplay = true) {
     stepDetails[step] = {};
     let lap = Math.floor(Math.pow(step / 35 + 2809 / 1225, 0.5) - 53 / 35) + 1;
     const checkLap = Math.floor(Math.pow((step + 1) / 35 + 2809 / 1225, 0.5) - 53 / 35) + 1;
-    const toEC = checkLap * (106 + 35 * (checkLap)) - 1;
+    const toEC = checkLap * (106 + 35 * checkLap) - 1;
     const floorLength = 10 * (lap + 1);
-    const onEC = lap * (106 + 35 * (lap)) - 1;
+    const onEC = lap * (106 + 35 * lap) - 1;
     const flFromEC = Math.ceil((onEC - step) / floorLength);
     const floorStart = onEC - flFromEC * floorLength;
     stepDetails[step].floor = lap * 8 - flFromEC;
     stepDetails[step].sync = siphon * (lap - 1) - syncSpent;
-    stepDetails[step].toPush = (flFromEC == 0) ? Math.min(step + speed - torchState + torchEclipse, toEC) : Math.min(step + speed, toEC);
+    stepDetails[step].toPush = flFromEC == 0 ? Math.min(step + speed - torchState + torchEclipse, toEC) : Math.min(step + speed, toEC);
     stepDetails[step].toTA = strStep ? Math.min(step + 4 * speed, toEC) : Math.min(step + 2 * speed, toEC); // normal TA
     stepDetails[step].toKB = umbra === true ? Math.max(step - 5, floorStart) : Math.max(step, floorStart); // normal run FTC
     stepDetails[step].toBKB = Math.max(step - 10, floorStart); // bulwarked
-    lap = (flFromEC == 0) ? 0 : Math.min(lap, 4);
+    lap = flFromEC == 0 ? 0 : Math.min(lap, 4);
     stepDetails[step].cPush = catchProfile.push[lap];
     stepDetails[step].cTA = catchProfile.ta[lap];
     stepDetails[step].cKB = catchProfile.kb[lap];
@@ -420,7 +430,7 @@ function simulate(shouldDisplay = true) {
           cfDrops += rate * stepDetails[step].cf;
           sigils += rate * stepDetails[step].sg;
           secrets += rate * stepDetails[step].sc;
-          if ((torchState && (stepDetails[step].floor % 8 != 0)) || (torchEclipse && (stepDetails[step].floor % 8 == 0))) {
+          if ((torchState && stepDetails[step].floor % 8 != 0) || (torchEclipse && stepDetails[step].floor % 8 == 0)) {
             sigils += rate * stepDetails[step].sgi;
             secrets += rate * stepDetails[step].sci;
           }
@@ -450,17 +460,15 @@ function simulate(shouldDisplay = true) {
     averageFloor += a * (b + 1);
   });
 
-  const loopDistribution = Array.from({ length: 25 }).fill(0).map(
-    function (a, index) {
+  const loopDistribution = Array.from({ length: 25 })
+    .fill(0)
+    .map(function (a, index) {
       let sum = 0;
-      valuesDistribution.slice(index * 8, (index + 1) * 8).map(
-        function (a) {
-          sum += Number(a);
-        }
-      );
+      valuesDistribution.slice(index * 8, (index + 1) * 8).map(function (a) {
+        sum += Number(a);
+      });
       return Number(sum);
-    }
-  );
+    });
 
   let runningProbability = 1;
   const loopCumulative = loopDistribution.map(function (a) {
@@ -479,17 +487,28 @@ function simulate(shouldDisplay = true) {
   const deltaCache = [Math.ceil(avgCache[0] * mult[0]) - Math.ceil(curCache[0] * mult[0]), Math.ceil(avgCache[1] * mult[1]) - Math.ceil(curCache[1] * mult[1])];
 
   const display = [
-    'VRift Sim: ' + lvSpeed + '/' + lvSync + '/' + lvSiphon + (torchState ? ' CF' : '') + (superSiphon ? ' SS' : '') + (umbra ? ' UU' : '') + (strStep ? ' SSt' : '') + (useUConEclipse ? ' (UC Eclipse)' : ''),
+    'VRift Sim: ' +
+      lvSpeed +
+      '/' +
+      lvSync +
+      '/' +
+      lvSiphon +
+      (torchState ? ' CF' : '') +
+      (superSiphon ? ' SS' : '') +
+      (umbra ? ' UU' : '') +
+      (strStep ? ' SSt' : '') +
+      (useUConEclipse ? ' (UC Eclipse)' : ''),
     'Steps: ' + steps + '    Sync: ' + sync,
     'Power: ' + power + '    Luck: ' + luck,
     'Average Highest Floor: ' + avgFloor + ',    Average Hunts: ' + Math.round(totalHunts),
     '| Loot:  Sigils: +' + Math.round(sigils) + ',    Secrets: +' + Math.round(secrets),
     '| Cache: Sigils: +' + deltaCache[0] + ',    Secrets: +' + deltaCache[1],
-    ''
+    '',
   ];
 
   const startDisplay = display.length;
-  const fullDisplay = ['VRift Run Simulation: ' + (Date.now() / 1000 - time) + ' seconds taken.',
+  const fullDisplay = [
+    'VRift Run Simulation: ' + (Date.now() / 1000 - time) + ' seconds taken.',
     'Speed: ' + lvSpeed,
     'Siphon: ' + siphon,
     (torchState ? 'CF ' : '') + (superSiphon ? 'SS ' : '') + (umbra ? 'UU ' : '') + (strStep ? 'SSt ' : ''),
@@ -502,7 +521,8 @@ function simulate(shouldDisplay = true) {
     'Gold: ' + gold,
     'Average Highest Floor: ' + Math.round(averageFloor),
     'Average Hunts: ' + Math.round(totalHunts),
-    ''];
+    '',
+  ];
 
   const startFullDisplay = fullDisplay.length;
 
@@ -530,7 +550,7 @@ function simulate(shouldDisplay = true) {
     eclipses.push({
       number: loopIndex,
       percent: eEntry,
-      cumulative: cEntry
+      cumulative: cEntry,
     });
   }
 

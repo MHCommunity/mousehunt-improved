@@ -75,7 +75,7 @@ const exportScoreboards = async ({ useWeekly = false, useFriendsOnly = false } =
   let scoreboardsToUse = await getData('scoreboards');
 
   if (useWeekly) {
-    scoreboardsToUse = scoreboards.filter((scoreboard) => scoreboard.weekly);
+    scoreboardsToUse = scoreboardsToUse.filter((scoreboard) => scoreboard.weekly);
   }
 
   for (const region of scoreboardsToUse) {
@@ -87,7 +87,7 @@ const exportScoreboards = async ({ useWeekly = false, useFriendsOnly = false } =
 
   exportPopup({
     type: `scoreboard-rankings${useWeekly ? '-weekly' : ''}${useFriendsOnly ? '-friends' : ''}`,
-    text: `Scoreboard Rankings${useWeekly ? (useFriendsOnly ? ' (Weekly, Friends)' : ' (Weekly)') : (useFriendsOnly ? ' (Friends)' : '')}`,
+    text: `Scoreboard Rankings${useWeekly ? (useFriendsOnly ? ' (Weekly, Friends)' : ' (Weekly)') : useFriendsOnly ? ' (Friends)' : ''}`,
     headerMarkup: '<div class="region-name">Scoreboard</div><div class="total-items">Place</div>',
     itemsMarkup: inventoryMarkup,
     fetch: () => recursiveFetch(scoreboardsToUse, (scoreboard) => getScoreboardData(scoreboard, useWeekly, useFriendsOnly)),

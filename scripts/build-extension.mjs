@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
+import { copyPlugin } from '@sprout2000/esbuild-copy-plugin';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -19,16 +19,18 @@ const buildExtension = async (platform, watch = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
-  const manifest = JSON.parse(fs.readFileSync(
-    path.join(process.cwd(), 'src/extension/manifest.json'), 'utf8'
-  ));
+  const manifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/extension/manifest.json'), 'utf8'));
 
   fs.writeFileSync(
     path.join(process.cwd(), `dist/${platform}/manifest.json`),
-    JSON.stringify({
-      ...manifest,
-      version: process.env.npm_package_version,
-    }, null, 2)
+    JSON.stringify(
+      {
+        ...manifest,
+        version: process.env.npm_package_version,
+      },
+      null,
+      2
+    )
   );
 
   await minifyAllJsonFiles();
@@ -42,7 +44,7 @@ const buildExtension = async (platform, watch = false) => {
     outfile: `dist/${platform}/main.js`,
     plugins: [
       ...baseOptions.plugins,
-      copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
+      copyPlugin({
         src: 'src/extension',
         dest: `dist/${platform}`,
         /**
@@ -55,12 +57,12 @@ const buildExtension = async (platform, watch = false) => {
          */
         filter: (file) => {
           return (
-            ! file.startsWith('src/extension/screenshots') &&
-            ! file.startsWith('src/extension/.') &&
-            ! file.startsWith('src/extension/manifest') &&
-            ! file.startsWith('src/extension/content.js')
+            !file.startsWith('src/extension/screenshots') &&
+            !file.startsWith('src/extension/.') &&
+            !file.startsWith('src/extension/manifest') &&
+            !file.startsWith('src/extension/content.js')
           );
-        }
+        },
       }),
     ],
   };
@@ -78,11 +80,7 @@ const buildExtension = async (platform, watch = false) => {
     bundle: true,
     minify: false,
     sourcemap: true,
-    target: [
-      'es6',
-      'chrome58',
-      'firefox57'
-    ],
+    target: ['es6', 'chrome58', 'firefox57'],
     outfile: `dist/${platform}/content.js`,
   });
 

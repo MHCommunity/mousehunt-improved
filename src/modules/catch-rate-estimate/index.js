@@ -12,16 +12,10 @@ import {
   onNavigation,
   onRequest,
   onTravel,
-  parseNumber
+  parseNumber,
 } from '@utils';
 
-import {
-  getCatchRate,
-  getMiceEffectiveness,
-  getMinluck,
-  getMouseEffectiveness,
-  getMousePower
-} from './data';
+import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, getMousePower } from './data';
 
 import styles from './styles.css';
 
@@ -45,12 +39,12 @@ const updateStats = () => {
 
   trapMath.forEach((mathRow) => {
     const row = mathRow.querySelector('.campPage-trap-trapStat-mathRow-value');
-    if (! row?.textContent) {
+    if (!row?.textContent) {
       return;
     }
 
     const value = parseNumber(row.textContent.replace('%', ''));
-    if (! value) {
+    if (!value) {
       return;
     }
 
@@ -58,9 +52,9 @@ const updateStats = () => {
     // "Your trap is weakened!", "Your trap is receiving a boost!"
     if (label && label.textContent.includes('Your trap is')) {
       // Skip Zugzwang's Tower effects. Calc'd later.
-      if (user.environment_name !== 'Zugzwang\'s Tower') {
+      if (user.environment_name !== "Zugzwang's Tower") {
         const sign = label.textContent.includes('weakened') ? -1 : 1;
-        trapPowerBoost += (sign * value);
+        trapPowerBoost += sign * value;
       }
       return;
     }
@@ -116,7 +110,7 @@ const updateMinLucks = async (useCachedData = false) => {
     minluckList.classList.add('cre-refreshing');
   } else {
     const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-    if (! statsContainer) {
+    if (!statsContainer) {
       isUpdating = false;
       return;
     }
@@ -161,7 +155,7 @@ const updateMinLucks = async (useCachedData = false) => {
       updateStats();
     }
 
-    if (! effectiveness) {
+    if (!effectiveness) {
       throw new Error('Failed to fetch effectiveness data');
     }
 
@@ -187,12 +181,12 @@ const updateMinLucks = async (useCachedData = false) => {
 };
 
 const updateTrapView = (rows) => {
-  if (! getSetting('catch-rate-estimate.show-trap-highlight', false)) {
+  if (!getSetting('catch-rate-estimate.show-trap-highlight', false)) {
     return;
   }
 
   const trapView = document.querySelector('.trapImageView');
-  if (! trapView) {
+  if (!trapView) {
     return;
   }
 
@@ -210,7 +204,8 @@ const updateTrapView = (rows) => {
   // if our average is worse than 40%, add a bad class. if it's better than 60%, add a good class. Better than 75%, add a great class.
   trapView.classList.add('mh-improved-cre-highlight');
 
-  if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (1075 == user.trinket_item_id) {
     trapView.classList.add('mh-improved-cre-highlight-ultimate');
   } else if (rows.every((row) => user.trap_luck >= row.minluck)) {
     trapView.classList.add('mh-improved-cre-highlight-minlucked');
@@ -231,12 +226,12 @@ const updateTrapView = (rows) => {
  */
 const renderList = async (list) => {
   let minluckList = document.querySelector('#mh-improved-cre');
-  if (! minluckList) {
+  if (!minluckList) {
     minluckList = makeElement('div', 'campPage-trap-trapEffectiveness');
     minluckList.id = 'mh-improved-cre';
 
     const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-    if (! statsContainer) {
+    if (!statsContainer) {
       return;
     }
 
@@ -301,7 +296,8 @@ const renderList = async (list) => {
     const minluckClass = ['mh-improved-cre-data'];
 
     // Ultimate charm.
-    if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+    // eslint-disable-next-line eqeqeq
+    if (1075 == user.trinket_item_id) {
       crClass.push('mh-improved-cre-data-ultimate');
       minluckClass.push('mh-improved-cre-data-ultimate');
       catchRate.rate = 1;
@@ -380,11 +376,14 @@ const renderList = async (list) => {
  * Main function.
  */
 const main = async () => {
-  onNavigation(() => {
-    updateMinLucks(true);
-  }, {
-    page: 'camp',
-  });
+  onNavigation(
+    () => {
+      updateMinLucks(true);
+    },
+    {
+      page: 'camp',
+    }
+  );
 
   if (getFlag('catch-rate-estimate-more-refresh')) {
     onRequest('*', updateMinLucks, true, ['users/getmiceeffectiveness.php']);

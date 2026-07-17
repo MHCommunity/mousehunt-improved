@@ -1,16 +1,4 @@
-import {
-  addStyles,
-  clamp,
-  doEvent,
-  doRequest,
-  getSetting,
-  makeElement,
-  onJournalEntriesProcessed,
-  onNavigation,
-  onRequest,
-  sessionGet,
-  sessionSet
-} from '@utils';
+import { addStyles, clamp, debug, doEvent, doRequest, getSetting, makeElement, onJournalEntriesProcessed, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
 
 import styles from './styles.css';
 
@@ -19,10 +7,13 @@ const HIDE_DELAY_MS = 240;
 
 const isString = (v) => typeof v === 'string' && v.length > 0;
 
-const clean = (s) => String(s || '').trim().replace(/^#+/, '');
+const clean = (s) =>
+  String(s || '')
+    .trim()
+    .replace(/^#+/, '');
 
 const parseSnuidFromHref = (href) => {
-  if (! href) {
+  if (!href) {
     return null;
   }
 
@@ -62,7 +53,7 @@ const resolveSnuid = async (el) => {
       try {
         const res = await doRequest('managers/ajax/pages/friends.php', {
           action: 'community_search_by_id',
-          user_id: parsed.pid
+          user_id: parsed.pid,
         });
         const sn = res?.friend?.sn_user_id;
         if (isString(sn)) {
@@ -94,7 +85,7 @@ const getFriendDataBySnuids = (snuids) =>
 const renderFriend = (payload) => {
   try {
     if (payload && payload.length) {
-      const isStranger = !! payload[0]?.user_interactions?.relationship?.is_stranger;
+      const isStranger = !!payload[0]?.user_interactions?.relationship?.is_stranger;
       const tpl = isStranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
       return hg.utils.TemplateUtil.render(tpl, payload[0]);
     }
@@ -145,7 +136,7 @@ const ensurePanel = () => {
 
   // Dismiss on outside click or Escape
   document.addEventListener('click', (e) => {
-    if (! panel) {
+    if (!panel) {
       return;
     }
     if (panel.contains(e.target)) {
@@ -169,44 +160,52 @@ const ensurePanel = () => {
 
   // Global delegated listeners to track Quick Send hover
   // Use capture so we see events even if stopped elsewhere
-  document.addEventListener('mouseover', (ev) => {
-    const el = ev.target instanceof Element ? ev.target : null;
-    if (! el) {
-      return;
-    }
+  document.addEventListener(
+    'mouseover',
+    (ev) => {
+      const el = ev.target instanceof Element ? ev.target : null;
+      if (!el) {
+        return;
+      }
 
-    // If pointer moves into any Quick Send wrapper, hold the profile open
-    if (el.closest('.quickSendWrapper')) {
-      overQuickSend = true;
-      clearTimeout(hideTimer);
-    }
+      // If pointer moves into any Quick Send wrapper, hold the profile open
+      if (el.closest('.quickSendWrapper')) {
+        overQuickSend = true;
+        clearTimeout(hideTimer);
+      }
 
-    // If pointer moves into the Send Supplies button inside the profile panel
-    if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
-      overSendBtn = true;
-      clearTimeout(hideTimer);
-    }
-  }, true);
+      // If pointer moves into the Send Supplies button inside the profile panel
+      if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
+        overSendBtn = true;
+        clearTimeout(hideTimer);
+      }
+    },
+    true
+  );
 
-  document.addEventListener('mouseout', (ev) => {
-    const el = ev.target instanceof Element ? ev.target : null;
-    if (! el) {
-      return;
-    }
-    const to = ev.relatedTarget instanceof Element ? ev.relatedTarget : null;
+  document.addEventListener(
+    'mouseout',
+    (ev) => {
+      const el = ev.target instanceof Element ? ev.target : null;
+      if (!el) {
+        return;
+      }
+      const to = ev.relatedTarget instanceof Element ? ev.relatedTarget : null;
 
-    if (el.closest('.quickSendWrapper') && ! (to && to.closest('.quickSendWrapper'))) {
-      overQuickSend = false;
-      scheduleHide();
-    }
-    if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
-      const stillInsideBtn = !! (to && panel.contains(to) && to.closest('.userInteractionButtonsView-button.sendSupplies'));
-      if (! stillInsideBtn) {
-        overSendBtn = false;
+      if (el.closest('.quickSendWrapper') && !(to && to.closest('.quickSendWrapper'))) {
+        overQuickSend = false;
         scheduleHide();
       }
-    }
-  }, true);
+      if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
+        const stillInsideBtn = !!(to && panel.contains(to) && to.closest('.userInteractionButtonsView-button.sendSupplies'));
+        if (!stillInsideBtn) {
+          overSendBtn = false;
+          scheduleHide();
+        }
+      }
+    },
+    true
+  );
 
   return p;
 };
@@ -224,7 +223,7 @@ const scheduleHide = () => {
   clearTimeout(hideTimer);
   hideTimer = setTimeout(() => {
     // Keep open if any related hover is active
-    if (! overAnchor && ! overPanel && ! overSendBtn && ! overQuickSend) {
+    if (!overAnchor && !overPanel && !overSendBtn && !overQuickSend) {
       hide();
     }
   }, HIDE_DELAY_MS);
@@ -244,7 +243,7 @@ const hide = () => {
 };
 
 const reposition = () => {
-  if (! panel || ! anchor) {
+  if (!panel || !anchor) {
     return;
   }
 
@@ -264,14 +263,14 @@ const reposition = () => {
   const preferAbove = rect.top > ph + 20;
   const top = preferAbove ? aboveTop : belowTop;
 
-  let left = rect.left + window.scrollX + (rect.width / 2) - (pw / 2);
+  let left = rect.left + window.scrollX + rect.width / 2 - pw / 2;
   left = clamp(left, window.scrollX + 8, window.scrollX + viewportW - pw - 8);
 
   panel.style.top = `${top}px`;
   panel.style.left = `${left}px`;
 
   const r = panel.getBoundingClientRect();
-  if (! preferAbove && r.bottom > viewportH - 8) {
+  if (!preferAbove && r.bottom > viewportH - 8) {
     panel.style.top = `${aboveTop}px`;
   }
 
@@ -287,11 +286,11 @@ const showForAnchor = async (a) => {
   p.focus({ preventScroll: true });
 
   const snuid = await resolveSnuid(a);
-  if (anchor !== a || ! a.isConnected) {
+  if (anchor !== a || !a.isConnected) {
     return;
   }
 
-  if (! snuid || snuid === user.sn_user_id) {
+  if (!snuid || snuid === user.sn_user_id) {
     hide();
     return;
   }
@@ -307,7 +306,7 @@ const showForAnchor = async (a) => {
   }
 
   const data = await getFriendDataBySnuids([snuid]);
-  if (anchor !== a || ! a.isConnected) {
+  if (anchor !== a || !a.isConnected) {
     return;
   }
 
@@ -323,11 +322,11 @@ const showForAnchor = async (a) => {
 
 // Ensure we hold the panel open when hovering the Send Supplies button in the panel
 const wireSendButtonHover = () => {
-  if (! panel) {
+  if (!panel) {
     return;
   }
   const sendBtn = panel.querySelector('.userInteractionButtonsView-button.sendSupplies');
-  if (! sendBtn) {
+  if (!sendBtn) {
     return;
   }
 
@@ -348,7 +347,7 @@ const SELECTORS = [
   'a[href*="/p.php?id="]',
   '.notificationMessageList .messageText a[href*="/p.php"]',
   '.treasureMapView-scoreboard-table a[href*="/profile.php"]',
-  'tr.teamPage-memberRow-identity a[href*="/profile.php"]'
+  'tr.teamPage-memberRow-identity a[href*="/profile.php"]',
 ];
 
 const seen = new WeakSet();
@@ -362,10 +361,7 @@ const bindListeners = () => {
 
     seen.add(link);
 
-    if (
-      link.classList.contains('friendsPage-friendRow-image') ||
-      link.classList.contains('mousehuntHud-shield')
-    ) {
+    if (link.classList.contains('friendsPage-friendRow-image') || link.classList.contains('mousehuntHud-shield')) {
       return;
     }
 
@@ -414,5 +410,5 @@ export default {
   type: 'social-profiles',
   default: true,
   description: 'Hover over a name to see a mini profile popup.',
-  load: init
+  load: init,
 };

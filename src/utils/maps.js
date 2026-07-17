@@ -1,11 +1,4 @@
-import {
-  cacheGet,
-  cacheGetNoExpiration,
-  cacheSet,
-  cacheSetNoExpiration,
-  getData,
-  getHeaders
-} from './data';
+import { cacheGet, cacheGetNoExpiration, cacheSet, cacheSetNoExpiration, getData, getHeaders } from './data';
 import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
@@ -22,7 +15,7 @@ import { makeElement } from './elements';
 const mapper = (key = false) => {
   if (key) {
     const mapperData = getGlobal('mapper');
-    if (! mapperData || ! mapperData[key]) {
+    if (!mapperData || !mapperData[key]) {
       return false;
     }
 
@@ -39,7 +32,7 @@ const mapper = (key = false) => {
  */
 const mapData = () => {
   const m = mapper();
-  if (! m) {
+  if (!m) {
     return {};
   }
 
@@ -53,7 +46,7 @@ const mapData = () => {
  */
 const mapModel = () => {
   const m = mapper();
-  if (! m) {
+  if (!m) {
     return {};
   }
 
@@ -98,7 +91,8 @@ const setMapData = async (mapId, theMapData) => {
   await cacheSet(`map-${mapId}`, theMapData);
   await cacheSet('map-last', theMapData);
 
-  if (getSetting('better-maps.catch-dates', true)) { // default to true even though the setting is false by default, so that enabling it will toggle the display, we still want to cache the data.
+  if (getSetting('better-maps.catch-dates', true)) {
+    // default to true even though the setting is false by default, so that enabling it will toggle the display, we still want to cache the data.
     await setExtraMapData(mapId, theMapData);
   }
 };
@@ -111,7 +105,7 @@ const setExtraMapData = async (mapId, theMapData) => {
   theMapData.hunters.forEach((hunter) => {
     if (hunter.completed_goal_ids && hunter.completed_goal_ids[goalTypes]) {
       hunter.completed_goal_ids[goalTypes].forEach((goalId) => {
-        if (! catchDates[goalId]) {
+        if (!catchDates[goalId]) {
           newCatchDates[goalId] = new Date().toISOString();
         }
       });
@@ -119,14 +113,11 @@ const setExtraMapData = async (mapId, theMapData) => {
   });
 
   if (newCatchDates !== catchDates) {
-    await Promise.all([
-      cacheSetNoExpiration(`map-catches-${mapId}`, newCatchDates),
-      cacheSetNoExpiration(`map-catches-last-update-${mapId}`, Date.now())
-    ]);
+    await Promise.all([cacheSetNoExpiration(`map-catches-${mapId}`, newCatchDates), cacheSetNoExpiration(`map-catches-last-update-${mapId}`, Date.now())]);
   }
 
   const start = await cacheGetNoExpiration(`map-start-${mapId}`);
-  if (! start) {
+  if (!start) {
     await cacheSetNoExpiration(`map-start-${mapId}`, Date.now());
   }
 };
@@ -137,7 +128,7 @@ const setExtraMapData = async (mapId, theMapData) => {
  * @return {string} Last maptain.
  */
 const getLastMaptain = async () => {
-  return await cacheGet('map-last-maptain') || '';
+  return (await cacheGet('map-last-maptain')) || '';
 };
 
 /**
@@ -154,12 +145,12 @@ const setLastMaptain = (id) => {
  */
 const cacheFinishedMap = async () => {
   const completedMap = user.quests.QuestRelicHunter.maps.find((map) => map.is_complete);
-  if (! completedMap?.map_id) {
+  if (!completedMap?.map_id) {
     return;
   }
 
   const data = await getMapData(completedMap.map_id);
-  if (! data) {
+  if (!data) {
     return;
   }
 
@@ -175,7 +166,7 @@ const cacheFinishedMap = async () => {
  * @param {Object} theMapModel Map model.
  */
 const showTravelConfirmation = (environment, theMapModel) => {
-  if (! environment?.id || ! environment?.type) {
+  if (!environment?.id || !environment?.type) {
     return;
   }
 
@@ -189,8 +180,8 @@ const showTravelConfirmation = (environment, theMapModel) => {
     environment: environment.type,
     templateData: {
       environment: environmentData,
-      goals: environmentGoals
-    }
+      goals: environmentGoals,
+    },
   });
 };
 
@@ -239,14 +230,14 @@ const showTravelConfirmationNoDetails = async (environment) => {
       can_travel: true,
       num_missing_goals: 0,
     },
-    goals: []
+    goals: [],
   };
 
   showTravelConfirmationForMice({
     title: environment?.name ? `Travel to ${environment.name}?` : 'Travel to Environment',
     description: '',
     environment: environment.type,
-    templateData
+    templateData,
   });
 };
 
@@ -274,7 +265,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const mhctLink = makeElement('a', 'mhct-link', 'View on MHCT →');
   mhctLink.target = '_blank';
 
-  if (! mouse.name) {
+  if (!mouse.name) {
     const nameEl = document.querySelector('.treasureMapView-highlight-name');
     mouse.name = nameEl ? nameEl.innerText : mouse.unique_id;
   }
@@ -284,7 +275,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   header.append(mhctLink);
   mhctDiv.append(header);
 
-  if (! mhctJson || mhctJson.length === 0 || mhctJson.error) {
+  if (!mhctJson || mhctJson.length === 0 || mhctJson.error) {
     const mhctRow = makeElement('div', 'mhct-row');
     makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
     mhctDiv.append(mhctRow);
@@ -309,19 +300,16 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     }
 
     let environment = environments.find((env) => {
-      return env.name === mhct.location
-        .replace('Cursed City', 'Lost City')
-        .replace('Twisted Garden', 'Living Garden')
-        .replace('Sand Crypts', 'Sand Dunes');
+      return env.name === mhct.location.replace('Cursed City', 'Lost City').replace('Twisted Garden', 'Living Garden').replace('Sand Crypts', 'Sand Dunes');
     });
 
-    if (! environment) {
+    if (!environment) {
       environment = environmentsEvent.find((env) => {
         return env.name === mhct.location;
       });
     }
 
-    if (! environment) {
+    if (!environment) {
       mhctRow.classList.add('mhct-row-no-env');
     }
 
@@ -332,7 +320,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     const mhctRate = (Math.round(('item' === type ? mhct.drop_pct : mhct.rate / 100) * 100) / 100).toFixed(1);
     makeElement('div', 'mhct-rate', `${mhctRate}%`, mhctRow);
 
-    if (environment && (environment.id === getCurrentLocation()) && app?.pages?.CampPage?.showTrapSelector) {
+    if (environment && environment.id === getCurrentLocation() && app?.pages?.CampPage?.showTrapSelector) {
       locationEl.setAttribute('title', 'Click to open the trap selector to change bait');
 
       mhctRow.addEventListener('click', () => {
@@ -378,9 +366,9 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 const getArEl = async (id, type = 'mouse') => {
   let ar = await getArText(id, type);
   let arType = 'location';
-  if (! ar) {
+  if (!ar) {
     ar = await getHighestArText(id, type);
-    if (! ar || ar.length === 0) {
+    if (!ar || ar.length === 0) {
       return makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
     }
 
@@ -461,7 +449,8 @@ const fetchArForMouse = async (id, type, cacheKey) => {
   }
 
   // No sense in fetching the data for the m400 mouse.
-  if (! isItem && (id === 'm400' || id == 547)) { // eslint-disable-line eqeqeq
+  // eslint-disable-next-line eqeqeq
+  if (!isItem && (id === 'm400' || id == 547)) {
     return [];
   }
 
@@ -473,19 +462,19 @@ const fetchArForMouse = async (id, type, cacheKey) => {
 
     try {
       mhctData = await fetch(url, { headers: getHeaders() });
-    } catch (errorRetry) { // eslint-disable-line unicorn/catch-error-name
+    } catch (errorRetry) {
       console.error('Error fetching MHCT data:', errorRetry); // eslint-disable-line no-console
       return [];
     }
   }
 
-  if (! mhctData.ok) {
+  if (!mhctData.ok) {
     return [];
   }
 
   mhctJson = await mhctData.json();
 
-  if (! mhctJson || mhctJson.length === 0) {
+  if (!mhctJson || mhctJson.length === 0) {
     return [];
   }
 
@@ -558,10 +547,13 @@ const getArForMouse = async (id, type = 'mouse', options = {}) => {
   }
 
   // Share a single request when multiple callers ask for the same mouse at once.
-  if (! inflightArRequests.has(cacheKey)) {
-    inflightArRequests.set(cacheKey, fetchArForMouse(id, type, cacheKey).finally(() => {
-      inflightArRequests.delete(cacheKey);
-    }));
+  if (!inflightArRequests.has(cacheKey)) {
+    inflightArRequests.set(
+      cacheKey,
+      fetchArForMouse(id, type, cacheKey).finally(() => {
+        inflightArRequests.delete(cacheKey);
+      })
+    );
   }
 
   return inflightArRequests.get(cacheKey);
@@ -577,12 +569,12 @@ const getArForMouse = async (id, type = 'mouse', options = {}) => {
  */
 const getArText = async (id, type = 'mouse') => {
   const rates = await getArForMouse(id, type);
-  if (! rates || rates.length === 0) {
+  if (!rates || rates.length === 0) {
     return false;
   }
 
   const rate = rates[0];
-  if (! rate) {
+  if (!rate) {
     return false;
   }
 
@@ -601,7 +593,7 @@ const getArText = async (id, type = 'mouse') => {
  */
 const getHighestArForMouse = async (id, type = 'mouse', options = {}) => {
   const rates = await getArForMouse(id, type, options);
-  if (! rates || rates.length === 0) {
+  if (!rates || rates.length === 0) {
     return 0;
   }
 
@@ -611,7 +603,7 @@ const getHighestArForMouse = async (id, type = 'mouse', options = {}) => {
   }
 
   // make sure we can sort the rates
-  if (! rates.sort) {
+  if (!rates.sort) {
     return 0;
   }
 
@@ -619,7 +611,7 @@ const getHighestArForMouse = async (id, type = 'mouse', options = {}) => {
   rates.sort((a, b) => b.rate - a.rate);
 
   const rate = rates[0];
-  if (! rate) {
+  if (!rate) {
     return 0;
   }
 
@@ -640,7 +632,7 @@ const getLocationsForMouse = async (mouse, type = 'mouse') => {
   const environments = await getData('environments');
   const rates = await getArForMouse(mouse, type);
 
-  if (! rates || rates.length === 0) {
+  if (!rates || rates.length === 0) {
     return [];
   }
 
@@ -659,7 +651,7 @@ const getLocationsForMouse = async (mouse, type = 'mouse') => {
       return env.name === lookupName;
     });
 
-    if (environment && ! locations.has(environment.id)) {
+    if (environment && !locations.has(environment.id)) {
       // Return a copy with the original (e.g. twisted) name, so we don't
       // modify the shared environments data.
       locations.set(environment.id, { ...environment, name: originalName });
@@ -732,5 +724,5 @@ export {
   getLocationForMouse,
   getLocationsForMouse,
   showTravelConfirmationNoDetails,
-  addMapPreviewListeners
+  addMapPreviewListeners,
 };

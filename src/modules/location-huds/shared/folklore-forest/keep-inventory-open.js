@@ -24,7 +24,7 @@ const createToggleInventory = (setting, inventory, inventoryOpenClass, toggleBut
     e.stopPropagation();
 
     isSetOpen = getSetting(setting, false);
-    saveSetting(setting, ! isSetOpen);
+    saveSetting(setting, !isSetOpen);
     setToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
   };
 };
@@ -42,23 +42,17 @@ let toggleInventory;
  * @param {string} opts.buttonOpenClass    The class to add to the button when open.
  */
 const keepInventoryToggled = async (opts) => {
-  const {
-    setting,
-    buttonSelector,
-    inventorySelector,
-    inventoryOpenClass,
-    buttonOpenClass,
-  } = opts;
+  const { setting, buttonSelector, inventorySelector, inventoryOpenClass, buttonOpenClass } = opts;
 
   await waitForElement(buttonSelector);
 
   const toggleButton = document.querySelector(buttonSelector);
-  if (! toggleButton) {
+  if (!toggleButton) {
     return;
   }
 
   const inventory = document.querySelector(inventorySelector);
-  if (! inventory) {
+  if (!inventory) {
     return;
   }
 
@@ -71,7 +65,8 @@ const keepInventoryToggled = async (opts) => {
     toggleButton.removeEventListener('click', toggleInventory);
   }
 
-  toggleButton.addEventListener('click', () => createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass));
+  toggleInventory = () => createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
+  toggleButton.addEventListener('click', toggleInventory);
 };
 
 export default keepInventoryToggled;

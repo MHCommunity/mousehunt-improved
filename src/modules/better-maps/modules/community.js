@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  dbGet,
-  dbSet,
-  getData,
-  makeElement,
-  sleep
-} from '@utils';
+import { addStyles, dbGet, dbSet, getData, makeElement, sleep } from '@utils';
 
 /**
  * Get the map data.
@@ -17,15 +10,21 @@ import {
  */
 const getMapData = async (mapId, forceUpdate = false) => {
   return new Promise((resolve) => {
-    hg.utils.TreasureMapUtil.getMapInfo(mapId, (resp) => {
-      resolve(resp);
-    }, () => {
-      resolve([]);
-    }, forceUpdate);
+    hg.utils.TreasureMapUtil.getMapInfo(
+      mapId,
+      (resp) => {
+        resolve(resp);
+      },
+      () => {
+        resolve([]);
+      },
+      forceUpdate
+    );
   });
 };
 
-const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+const addInfoToListing = async (mapId, mapEl) => {
   // TODO: update this to add a 'get info' button and then load the info on click.
   if (mapEl.innerText.includes('Loading')) {
     // add an observer to wait for the map data to load
@@ -58,7 +57,7 @@ const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unu
 
     await sleep(500);
 
-    if (! mapData || ! mapData.treasure_map || ! mapData.treasure_map.hunters) {
+    if (!mapData || !mapData.treasure_map || !mapData.treasure_map.hunters) {
       return;
     }
 
@@ -72,7 +71,7 @@ const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unu
 
   // find the user that owns this map, which is mapData.treasure_map.hunters[0].captain === true
   const captain = mapData.hunters.find((hunter) => hunter.captain === true);
-  if (! captain) {
+  if (!captain) {
     return;
   }
 
@@ -95,10 +94,7 @@ const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unu
     return;
   }
 
-  if (
-    (mapData.max_hunters - 1 === mapData.hunters.length) ||
-    mapData.invite_requests.length > 15
-  ) {
+  if (mapData.max_hunters - 1 === mapData.hunters.length || mapData.invite_requests.length > 15) {
     mapEl.classList.add('mh-improved-map-listing-full');
   }
 
@@ -112,7 +108,7 @@ const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unu
  */
 const updateListing = async (mapId) => {
   const mapEl = document.querySelector(`.treasureMapListingsTableView-row[data-map-id="${mapId}"]`);
-  if (! mapEl) {
+  if (!mapEl) {
     return;
   }
 
@@ -144,7 +140,7 @@ const updateCommunityListings = async (response, data) => {
     return;
   }
 
-  if (! response.treasure_map_listings) {
+  if (!response.treasure_map_listings) {
     return;
   }
 
@@ -160,6 +156,4 @@ const updateCommunityListings = async (response, data) => {
   hideMhct.remove();
 };
 
-export {
-  updateCommunityListings
-};
+export { updateCommunityListings };

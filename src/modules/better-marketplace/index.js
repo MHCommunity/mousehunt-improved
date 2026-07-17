@@ -13,7 +13,7 @@ import {
   onRequest,
   parseNumber,
   saveOnboardingStep,
-  waitForElement
+  waitForElement,
 } from '@utils';
 
 import { enhanceBrowseTable, ensureFilterWrapper } from './browse';
@@ -60,14 +60,8 @@ const initSearch = (searchInputDOM) => {
       width: 'resolve',
     })
     .on('change', () => {
-      if (! searchInputDOM.prop('disabled') && searchInputDOM.val()) {
-        hg.views.MarketplaceView.showItem(
-          searchInputDOM.val(),
-          'view',
-          false,
-          false,
-          true
-        );
+      if (!searchInputDOM.prop('disabled') && searchInputDOM.val()) {
+        hg.views.MarketplaceView.showItem(searchInputDOM.val(), 'view', false, false, true);
       }
     });
 };
@@ -84,7 +78,7 @@ let searchTimeout = null;
  */
 const modifySearch = async (opts) => {
   const searchContainer = document.querySelector('.marketplaceView-header-searchContainer');
-  if (! searchContainer) {
+  if (!searchContainer) {
     return;
   }
 
@@ -105,7 +99,7 @@ const modifySearch = async (opts) => {
   const itemsToRemove = await getData('marketplace-hidden-items');
 
   opts.forEach((opt) => {
-    if (! opt.value || opt.value === '' || (itemsToRemove && itemsToRemove.some((item) => item.id === opt.value || item.name === opt.text))) {
+    if (!opt.value || opt.value === '' || (itemsToRemove && itemsToRemove.some((item) => item.id === opt.value || item.name === opt.text))) {
       opt.remove();
     }
   });
@@ -113,7 +107,7 @@ const modifySearch = async (opts) => {
   initSearch(searchInputDOM);
 
   newSelect = document.querySelector('select.marketplaceView-header-search');
-  if (! newSelect) {
+  if (!newSelect) {
     return;
   }
 
@@ -138,7 +132,7 @@ const modifySearch = async (opts) => {
 
   // toggle the checkbox when the label is clicked
   label.addEventListener('click', () => {
-    toggleSearch.checked = ! toggleSearch.checked;
+    toggleSearch.checked = !toggleSearch.checked;
     toggleSearch.dispatchEvent(new Event('change'));
   });
 
@@ -203,20 +197,16 @@ const initializeSearchSession = () => {
  * @param {Object} resp The response from the claim request.
  */
 const autocloseClaim = (resp) => {
-  if (! (resp && resp.success)) {
+  if (!(resp && resp.success)) {
     return;
   }
 
   const journalEntry = resp?.journal_markup?.[0]?.render_data?.css_class;
-  if (! journalEntry || journalEntry === '') {
+  if (!journalEntry || journalEntry === '') {
     return;
   }
 
-  if (
-    journalEntry.includes('marketplace_claim_listing') ||
-    journalEntry.includes('marketplace_complete_listing') ||
-    journalEntry.includes('marketplace_cancel_listing')
-  ) {
+  if (journalEntry.includes('marketplace_claim_listing') || journalEntry.includes('marketplace_complete_listing') || journalEntry.includes('marketplace_cancel_listing')) {
     setTimeout(() => hg.views.MarketplaceView.hideDialog(), 0);
   }
 };
@@ -233,13 +223,12 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   // this element while changing action states, so refresh its metadata on
   // every showItem call and bind the generic handlers only once.
   const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
-  const currentAction = actionButton?.classList.contains('buy')
-    ? 'buy'
-    : (actionButton?.classList.contains('sell') ? 'sell' : null);
+  const currentAction = actionButton?.classList.contains('buy') ? 'buy' : actionButton?.classList.contains('sell') ? 'sell' : null;
   const targetAction = 'buy' === currentAction ? 'sell' : 'buy';
   const targetLabel = 'sell' === targetAction ? 'Selling' : 'Buying';
-  const targetAllowed = [...document.querySelectorAll('.marketplaceView-item-viewActions > a.mousehuntActionButton:not(.disabled)')]
-    .some((button) => button.textContent.trim().toLowerCase() === targetAction);
+  const targetAllowed = [...document.querySelectorAll('.marketplaceView-item-viewActions > a.mousehuntActionButton:not(.disabled)')].some(
+    (button) => button.textContent.trim().toLowerCase() === targetAction
+  );
 
   if (actionButton && currentAction && targetAllowed) {
     actionButton.dataset.mhuiTargetAction = targetAction;
@@ -249,13 +238,13 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
     actionButton.setAttribute('role', 'button');
     actionButton.setAttribute('aria-label', `Switch to ${targetLabel}`);
 
-    if (! actionButton.dataset.mhuiToggleBound) {
+    if (!actionButton.dataset.mhuiToggleBound) {
       actionButton.dataset.mhuiToggleBound = 'true';
 
       const toggleActionType = () => {
         const nextAction = actionButton.dataset.mhuiTargetAction;
         const nextItemId = actionButton.dataset.mhuiItemId;
-        if (! nextAction || ! nextItemId) {
+        if (!nextAction || !nextItemId) {
           return;
         }
 
@@ -294,7 +283,7 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   }
 
   const actions = document.querySelector('.marketplaceView-item-titleActions');
-  if (! actions) {
+  if (!actions) {
     return;
   }
 
@@ -327,7 +316,7 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
  */
 const addListingQuantityClicks = async () => {
   const cells = await waitForElement('.marketplaceView-table-listing-quantity', { single: false });
-  if (! cells) {
+  if (!cells) {
     return;
   }
 
@@ -341,7 +330,7 @@ const addListingQuantityClicks = async () => {
       // Other features may append extra lines to the cell; use the first one.
       const [first] = order.textContent.split('\n');
       const quantity = parseNumber(first);
-      if (! quantity) {
+      if (!quantity) {
         return;
       }
 
@@ -357,12 +346,12 @@ const addChartToCategories = async () => {
   const items = document.querySelectorAll('.marketplaceView-table tr');
   items.forEach((item) => {
     const itemId = item.getAttribute('data-item-id');
-    if (! itemId) {
+    if (!itemId) {
       return;
     }
 
     const name = item.querySelector('.marketplaceView-table-name');
-    if (! name) {
+    if (!name) {
       return;
     }
 
@@ -391,7 +380,7 @@ const enhanceBrowseSession = async () => {
 
 const filterListings = async () => {
   const wrapper = ensureFilterWrapper();
-  if (! wrapper) {
+  if (!wrapper) {
     return;
   }
 
@@ -404,48 +393,51 @@ const filterListings = async () => {
   filter.setAttribute('type', 'text');
   filter.setAttribute('placeholder', 'Filter listings…');
 
-  filter.addEventListener('input', debounce(() => {
-    const filterValue = filter.value.toLowerCase();
-    const filterItems = document.querySelectorAll('.marketplaceView-table tr');
-    filterItems.forEach((item) => {
-      const itemId = item.getAttribute('data-item-id');
-      if (! itemId) {
-        return;
-      }
+  filter.addEventListener(
+    'input',
+    debounce(() => {
+      const filterValue = filter.value.toLowerCase();
+      const filterItems = document.querySelectorAll('.marketplaceView-table tr');
+      filterItems.forEach((item) => {
+        const itemId = item.getAttribute('data-item-id');
+        if (!itemId) {
+          return;
+        }
 
-      const name = item.querySelector('.marketplaceView-table-name');
-      if (! name) {
-        return;
-      }
+        const name = item.querySelector('.marketplaceView-table-name');
+        if (!name) {
+          return;
+        }
 
-      let nameText = name.textContent.replace('SUPER|brie+', 'sb SUPER|brie+').toLowerCase();
+        let nameText = name.textContent.replace('SUPER|brie+', 'sb SUPER|brie+').toLowerCase();
 
-      // Include the base trap name so skins can be filtered by their trap.
-      if (item.dataset.mhuiTrap) {
-        nameText += ` ${item.dataset.mhuiTrap}`;
-      }
+        // Include the base trap name so skins can be filtered by their trap.
+        if (item.dataset.mhuiTrap) {
+          nameText += ` ${item.dataset.mhuiTrap}`;
+        }
 
-      if (nameText.includes(filterValue)) {
-        item.classList.remove('hidden');
-        item.classList.add('filter-visible');
-      } else {
-        item.classList.add('hidden');
-        item.classList.remove('filter-visible');
-      }
-    });
-  }, 300));
+        if (nameText.includes(filterValue)) {
+          item.classList.remove('hidden');
+          item.classList.add('filter-visible');
+        } else {
+          item.classList.add('hidden');
+          item.classList.remove('filter-visible');
+        }
+      });
+    }, 300)
+  );
 
   wrapper.append(filter);
 };
 
 const getBestSellPrice = () => {
   const buyRow = document.querySelector('.marketplaceView-item-quickListings.buy .bestPrice');
-  if (! buyRow) {
+  if (!buyRow) {
     return 0;
   }
 
   const priceEl = buyRow.querySelector('.marketplaceView-table-numeric.marketplaceView-table-listing-unitPrice a');
-  if (! priceEl) {
+  if (!priceEl) {
     return 0;
   }
 
@@ -454,12 +446,12 @@ const getBestSellPrice = () => {
 
 const getBestSellQuantity = () => {
   const buyRow = document.querySelector('.marketplaceView-item-quickListings.buy .bestPrice');
-  if (! buyRow) {
+  if (!buyRow) {
     return 0;
   }
 
   const quantityEl = buyRow.querySelector('.marketplaceView-table-numeric.marketplaceView-table-listing-quantity');
-  if (! quantityEl) {
+  if (!quantityEl) {
     return 0;
   }
 
@@ -468,7 +460,7 @@ const getBestSellQuantity = () => {
 
 const addQuickSellButton = async (itemId, isCurrent) => {
   const actions = document.querySelector('.marketplaceView-item-table .marketplaceView-item-viewActions');
-  if (! actions) {
+  if (!actions) {
     return;
   }
 
@@ -486,18 +478,17 @@ const addQuickSellButton = async (itemId, isCurrent) => {
   // catch a buy/sell toggle on the same item, whose stale run would otherwise
   // append a second wrapper (and a duplicate quantity input id).
   const currentItem = document.querySelector('.marketplaceView-item[data-item-id]');
-  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && ! isCurrent())) {
+  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && !isCurrent())) {
     return;
   }
 
   // The left block has an "Average price:" and a "You own:" block; find the
   // latter by its label rather than a positional selector (which breaks when
   // the markethunt userscript injects extra nodes).
-  const ownBlock = [...document.querySelectorAll('.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice')]
-    .find((el) => el.textContent.includes('You own'));
+  const ownBlock = [...document.querySelectorAll('.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice')].find((el) => el.textContent.includes('You own'));
 
   const maxQuantityEl = ownBlock?.querySelector('span');
-  if (! maxQuantityEl) {
+  if (!maxQuantityEl) {
     return;
   }
 
@@ -544,7 +535,11 @@ const addQuickSellButton = async (itemId, isCurrent) => {
         return;
       }
 
-      hg.utils.Marketplace.createListing(itemId, price, quantity, 'sell',
+      hg.utils.Marketplace.createListing(
+        itemId,
+        price,
+        quantity,
+        'sell',
         (data) => {
           hg.views.MarketplaceView.showMyListings(data.marketplace_new_listing.listing_id);
         },
@@ -572,18 +567,21 @@ const addQuickSellButton = async (itemId, isCurrent) => {
 
 const addRelistButtonToCancelled = async () => {
   const listings = document.querySelectorAll('.marketplaceView-table tr');
-  if (! listings || listings.length === 0) {
+  if (!listings || listings.length === 0) {
     return;
   }
 
   listings.forEach((listing) => {
     const listingId = listing.getAttribute('data-listing-id');
-    if (! listingId) {
+    if (!listingId) {
       return;
     }
 
-    const listingData = marketplaceData?.marketplace_my_listings?.find((listingListingData) => listingListingData.listing_id == listingId); // eslint-disable-line eqeqeq
-    if (! listingData) {
+    const listingData = marketplaceData?.marketplace_my_listings?.find(
+      // eslint-disable-next-line eqeqeq
+      (listingListingData) => listingListingData.listing_id == listingId
+    );
+    if (!listingData) {
       return;
     }
 
@@ -594,7 +592,7 @@ const addRelistButtonToCancelled = async () => {
 
     // add a relist button
     const actions = listing.querySelector('.marketplaceView-table-actions');
-    if (! actions) {
+    if (!actions) {
       return;
     }
 
@@ -634,14 +632,17 @@ let marketplaceData;
  * Initialize the module.
  */
 const init = () => {
-  addStyles([
-    styles,
-    extras,
-    getSetting('better-marketplace.small-images') ? smallImages : '',
-    getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
-    getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
-    getSetting('better-marketplace.price-history-chart', true) ? priceChartStyles : '',
-  ], 'better-marketplace');
+  addStyles(
+    [
+      styles,
+      extras,
+      getSetting('better-marketplace.small-images') ? smallImages : '',
+      getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
+      getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
+      getSetting('better-marketplace.price-history-chart', true) ? priceChartStyles : '',
+    ],
+    'better-marketplace'
+  );
 
   marketplaceRuntime.register('item', enhanceItemSession);
   marketplaceRuntime.register('browse', enhanceBrowseSession);
