@@ -1,4 +1,4 @@
-import { doEvent, doRequest, sessionGet, setMapData } from '@utils';
+import { doEvent, doRequest, getMapData, setMapData } from '@utils';
 
 /**
  * Get the remaining (uncompleted) goals.
@@ -58,10 +58,15 @@ const refreshMap = async () => {
     return false;
   }
 
-  setMapData(mapId, newMapData.treasure_map);
+  // Read the previous data before storing the new data over it. This used to read a
+  // sessionStorage key that nothing has written since map data moved to the cache, so it was
+  // always empty and the event below fired on every refresh rather than only when the goals
+  // actually changed.
+  const currentMapData = await getMapData(mapId, true);
 
-  const currentMapData = sessionGet(`mh-improved-map-cache-${mapId}`);
-  if (currentMapData && newMapData && newMapData.treasure_map) {
+  await setMapData(mapId, newMapData.treasure_map);
+
+  if (currentMapData) {
     const currentGoals = getCompletedGoals(currentMapData);
     const newGoals = getCompletedGoals(newMapData.treasure_map);
     if (currentGoals.goals.length !== newGoals.goals.length) {
@@ -71,7 +76,6 @@ const refreshMap = async () => {
     doEvent('mh-improved-map-refreshed');
   }
 
-  mapData = newMapData.treasure_map;
   return newMapData;
 };
 

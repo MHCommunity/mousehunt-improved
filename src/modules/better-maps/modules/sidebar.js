@@ -1,11 +1,11 @@
 import {
   getData,
+  getMapData,
   makeElement,
   onEvent,
   onRequest,
   onTravel,
-  onTurn,
-  sessionGet
+  onTurn
 } from '@utils';
 
 import { getCompletedGoals, refreshMap } from '../utils';
@@ -68,11 +68,17 @@ const addMapToSidebar = async () => {
     return;
   }
 
-  mapData = sessionGet(`mh-improved-map-cache-${mapId}`);
+  mapData = await getMapData(mapId, true);
   if (! mapData) {
     doingAddMapToSidebar = true;
-    await refreshMap();
+    const refreshed = await refreshMap();
     doingAddMapToSidebar = false;
+
+    mapData = refreshed?.treasure_map || false;
+  }
+
+  if (! mapData) {
+    return;
   }
 
   const mapSidebar = makeElement('div', 'mh-improved-map-sidebar');

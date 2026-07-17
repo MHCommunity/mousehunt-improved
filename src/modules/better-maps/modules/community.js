@@ -48,6 +48,8 @@ const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unu
     return;
   }
 
+  let mapData;
+
   const cachedData = await dbGet('cache', `map-listing-cache-${mapId}`);
   if (cachedData) {
     mapData = cachedData.data.mapData;

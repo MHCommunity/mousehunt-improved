@@ -1,9 +1,9 @@
 import {
   debuglog,
   getCurrentLocation,
+  getMapData,
   onEvent,
   onRequest,
-  sessionGet,
   waitForElement
 } from '@utils';
 import { refreshMap } from '../utils';
@@ -178,9 +178,16 @@ const main = async () => {
     return;
   }
 
-  mapData = sessionGet(`mh-improved-map-cache-${mapId}`);
+  // See sidebar.js: this read targeted a sessionStorage key nothing writes any more, and
+  // refreshMap() never handed its data back, so mapData was always unset here.
+  mapData = await getMapData(mapId, true);
   if (! mapData) {
-    await refreshMap();
+    const refreshed = await refreshMap();
+    mapData = refreshed?.treasure_map || false;
+  }
+
+  if (! mapData) {
+    return;
   }
 
   if (mapData?.is_scavenger_hunt) {
