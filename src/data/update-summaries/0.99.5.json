@@ -1,0 +1,14 @@
+{
+  "version": "0.99.5",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Maps: Restored previous groups for Cerulean Skyport and Corsair Chaser maps",
+        "Better Maps: Fixed the Relic Hunter hint travel button sometimes being added twice",
+        "Dark Mode: Updated styles"
+      ]
+    }
+  ]
+}

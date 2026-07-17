@@ -500,6 +500,11 @@ const updateRelicHunterHint = async () => {
     return false;
   }
 
+  // Re-check after the awaits above: a concurrent call may have already added the button.
+  if (relicHunter.getAttribute('data-travel-button-added')) {
+    return true;
+  }
+
   relicHunter.setAttribute('data-travel-button-added', true);
 
   // Find the environment that matches the key.

@@ -1,7 +1,7 @@
 {
   "scavenger_hunt_hint_stat_item": "#1e831e",
-  "map_clue_stat_item": "#1e831e",
-  "fulminas_gift_convertible": "#a012a0",
+  "map_clue_stat_item": { "color": "#1e831e", "dark": "#55d355" },
+  "fulminas_gift_convertible": { "color": "#a012a0", "dark": "#f27ef2" },
   "chrome_trinket": "#6680b7",
   "chrome_bit_stat_item": "#6680b7",
   "snowball_trinket": "#1f719e",

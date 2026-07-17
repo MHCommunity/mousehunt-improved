@@ -13,10 +13,20 @@ import tagStyles from './modules/journal-tags/styles.css';
  */
 const makeItemColorStyles = () => {
   return Object.entries(colors)
-    .map(
-      ([id, color]) =>
-        `#overlayPopup.hunting_summary .lootContainer a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"], .journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"] { color: ${color}; }`
-    )
+    .map(([id, value]) => {
+      const { color, dark } = 'string' === typeof value ? { color: value } : value;
+      const selectors = [
+        `#overlayPopup.hunting_summary .lootContainer a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"]`,
+        `.journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"]`,
+      ];
+
+      let styles = `${selectors.join(', ')} { color: ${color}; }`;
+      if (dark) {
+        styles += ` ${selectors.map((selector) => `.mh-dark ${selector}`).join(', ')} { color: ${dark}; }`;
+      }
+
+      return styles;
+    })
     .join(' ');
 };
 

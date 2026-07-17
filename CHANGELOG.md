@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.99.5
+
+- Better Maps: Split the Port group back out of Dock on Cerulean Skyport and Corsair Chaser maps, with the Quarrelsome Quartermaster marked as a Sky Raider Romano catch
+- Better Maps: Fixed the Relic Hunter hint travel button sometimes being added twice
+- Better Journal: Map clue and Fulmina's Gift journal links now use brighter, more readable colors in dark mode
+- Dark Mode: Fixed completed gift rows in the inbox being hard to read
+
 ## Version 0.99.4
 
 - Cerulean Skyport: Added a "View Ledger" button to completed shipment journal entries, and clicking the airship now opens the shipment log

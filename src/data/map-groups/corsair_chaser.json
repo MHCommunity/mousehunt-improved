@@ -2,15 +2,28 @@
   "names": ["Corsair Chaser Map"],
   "categories": [
     {
-      "name": "Dock",
+      "name": "Port",
       "id": "csc-standard",
-      "icon": "/items/stats/transparent_thumb/bf8218a3c425cba58c3ccf26097c66ff.png",
-      "color": "#cfb9a5",
-      "color-dark": "#9d5c6e",
+      "icon": "/items/bait/transparent_thumb/ead7ea88709e321c7de3fdba8aa06ac5.png",
+      "color": "#c2c2c2",
+      "color-dark": "#55585e",
       "mice": [
         "treacherous_dock_lurker",
         "amateur_knife_juggler",
         "port_pillager",
+        {
+          "mouse": "quarrelsome_quartermaster",
+          "subcategory": "srr"
+        }
+      ]
+    },
+    {
+      "name": "Dock",
+      "id": "csc-dock",
+      "icon": "/items/stats/transparent_thumb/bf8218a3c425cba58c3ccf26097c66ff.png",
+      "color": "#cfb9a5",
+      "color-dark": "#9d5c6e",
+      "mice": [
         "sly_skulking_scrapper",
         "stubby_scrap_scavenger",
         "hefty_hulking_hauler",
@@ -74,7 +87,7 @@
       "icon": "/items/bait/transparent_thumb/967aaef6b2d53486157eb5de2a8a4641.png",
       "color": "#fde671",
       "color-dark": "#996126",
-      "mice": ["quarrelsome_quartermaster", "captain_crook"]
+      "mice": ["captain_crook"]
     },
     {
       "name": "Floating Islands",
@@ -125,6 +138,10 @@
     {
       "id": "abc",
       "name": "Aurora Bocconcini (ABC)"
+    },
+    {
+      "id": "srr",
+      "name": "Sky Raider Romano (SRR)"
     },
     {
       "id": "hai",

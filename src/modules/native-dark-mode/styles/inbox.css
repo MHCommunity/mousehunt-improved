@@ -91,3 +91,7 @@
 .mh-dark .notificationMessageList .message {
   border-left: none;
 }
+
+.mh-dark .giftSelectorView-inbox-giftRow.complete {
+  color: var(--d-text-dark);
+}
