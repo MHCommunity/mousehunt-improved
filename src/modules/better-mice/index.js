@@ -517,7 +517,6 @@ let copyListener;
 const copyKingsCrowns = () => {
   copyListener?.remove();
   copyListener = document.addEventListener('copy', (e) => {
-    // eslint-disable-next-line @wordpress/no-global-get-selection
     if (window.getSelection && window.getSelection().toString().length > 0) {
       return;
     }

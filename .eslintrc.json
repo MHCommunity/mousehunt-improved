@@ -6,15 +6,17 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
     "plugin:import/recommended",
+    "plugin:jsdoc/recommended",
     "plugin:json/recommended",
     "plugin:eslint-comments/recommended",
     "plugin:promise/recommended",
     "plugin:unicorn/recommended"
   ],
   "plugins": ["import-newlines", "jsdoc", "json", "unicorn"],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "requireConfigFile": false,
     "sourceType": "module"
   },
   "settings": {
@@ -22,11 +24,25 @@
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
+    },
+    "jsdoc": {
+      "preferredTypes": {
+        "object": "Object"
+      },
+      "tagNamePreference": {
+        "returns": "return",
+        "yields": "yield"
+      }
     }
   },
   "rules": {
+    "array-callback-return": "error",
     "array-bracket-spacing": ["error", "never"],
+    "arrow-parens": ["error", "always"],
+    "arrow-spacing": "error",
     "block-spacing": ["error", "always"],
+    "brace-style": ["error", "1tbs"],
+    "camelcase": ["error", { "properties": "never" }],
     "comma-dangle": [
       "error",
       {
@@ -44,14 +60,20 @@
         "after": true
       }
     ],
+    "comma-style": ["error", "last"],
     "computed-property-spacing": ["error", "never"],
+    "curly": ["error", "all"],
+    "dot-notation": "error",
     "eol-last": ["error", "always"],
+    "eqeqeq": "error",
+    "func-call-spacing": "error",
     "import-newlines/enforce": "error",
     "import/exports-last": "error",
     "import/first": "error",
     "import/group-exports": "error",
     "import/no-absolute-path": "error",
     "import/no-cycle": "error",
+    "import/no-extraneous-dependencies": ["error", { "peerDependencies": true }],
     "import/no-named-as-default": "error",
     "import/no-unassigned-import": "error",
     "import/no-unresolved": [
@@ -62,13 +84,29 @@
     ],
     "import/no-useless-path-segments": "error",
     "indent": ["error", 2],
+    "jsdoc/check-access": "error",
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "warn",
-    "jsdoc/check-line-alignment": "warn",
+    "jsdoc/check-line-alignment": [
+      "warn",
+      "always",
+      {
+        "tags": ["param", "arg", "argument", "property", "prop"],
+        "preserveMainDescriptionPostDelimiter": true
+      }
+    ],
+    "jsdoc/check-param-names": "error",
+    "jsdoc/check-property-names": "error",
+    "jsdoc/check-tag-names": "error",
+    "jsdoc/check-types": "error",
+    "jsdoc/check-values": "off",
+    "jsdoc/empty-tags": "error",
+    "jsdoc/implements-on-classes": "error",
     "jsdoc/multiline-blocks": "warn",
     "jsdoc/no-bad-blocks": "warn",
     "jsdoc/no-blank-block-descriptions": "warn",
     "jsdoc/no-blank-blocks": "warn",
+    "jsdoc/no-defaults": "off",
     "jsdoc/no-multi-asterisks": ["warn", { "allowWhitespace": true }],
     "jsdoc/no-undefined-types": "warn",
     "jsdoc/require-asterisk-prefix": "warn",
@@ -91,25 +129,68 @@
     "jsdoc/require-param-name": "warn",
     "jsdoc/require-param-type": "warn",
     "jsdoc/require-param": "warn",
+    "jsdoc/require-property-description": "error",
+    "jsdoc/require-property-name": "error",
+    "jsdoc/require-property-type": "error",
+    "jsdoc/require-property": "error",
     "jsdoc/require-returns-check": "warn",
     "jsdoc/require-returns-description": "warn",
     "jsdoc/require-returns-type": "warn",
     "jsdoc/require-returns": "warn",
-    "jsdoc/tag-lines": "warn",
+    "jsdoc/require-yields": "off",
+    "jsdoc/tag-lines": [
+      "warn",
+      "any",
+      {
+        "startLines": null,
+        "endLines": 0,
+        "applyToEndTag": false
+      }
+    ],
     "jsdoc/valid-types": "warn",
     "jsx-quotes": ["error", "prefer-double"],
+    "key-spacing": "error",
+    "keyword-spacing": "error",
     "linebreak-style": ["error", "unix"],
     "no-alert": "error",
+    "no-bitwise": "error",
+    "no-caller": "error",
+    "no-cond-assign": ["error", "except-parens"],
     "no-console": "error",
+    "no-duplicate-imports": "error",
+    "no-else-return": "error",
     "no-eval": "error",
     "no-implied-eval": "error",
+    "no-irregular-whitespace": "error",
+    "no-lonely-if": "error",
+    "no-mixed-operators": "error",
+    "no-multi-str": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "no-multi-spaces": "error",
+    "no-shadow": "error",
     "no-template-curly-in-string": "error",
+    "no-trailing-spaces": "error",
     "no-undef": 0,
+    "no-undef-init": "error",
     "no-unused-labels": 0,
+    "no-unused-expressions": "error",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "no-useless-computed-key": "error",
     "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "no-whitespace-before-property": "error",
+    "object-shorthand": "error",
     "object-curly-spacing": ["error", "always"],
+    "one-var-declaration-per-line": ["error", "initializations"],
+    "operator-linebreak": "error",
+    "padded-blocks": ["error", "never"],
+    "prefer-const": ["error", { "destructuring": "all" }],
     "promise/always-return": ["error", { "ignoreLastCallback": true }],
+    "quote-props": ["error", "as-needed"],
     "quotes": ["error", "single"],
+    "semi-spacing": "error",
     "semi": ["error", "always"],
     "sort-imports": [
       "error",
@@ -118,6 +199,7 @@
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }
     ],
+    "space-before-blocks": ["error", "always"],
     "space-before-function-paren": [
       "error",
       {
@@ -127,6 +209,16 @@
       }
     ],
     "space-in-parens": ["error", "never"],
+    "space-infix-ops": "error",
+    "space-unary-ops": [
+      "error",
+      {
+        "overrides": {
+          "!": true,
+          "yield": true
+        }
+      }
+    ],
     "spaced-comment": ["error", "always"],
     "template-curly-spacing": ["error", "never"],
     "unicorn/explicit-length-check": "off",
@@ -148,7 +240,8 @@
       {
         "requireReturn": false
       }
-    ]
+    ],
+    "wrap-iife": "error"
   },
   "overrides": [
     {
