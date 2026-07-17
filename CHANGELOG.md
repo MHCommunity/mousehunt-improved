@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.99.4
+
+- Cerulean Skyport: Added a "View Ledger" button to completed shipment journal entries, and clicking the airship now opens the shipment log
+- Better Maps: Added current area highlighting to the Sorted tab on Cerulean Skyport maps, marking the area you're hunting in and its boss when using Aurora Bocconcini Cheese, and merged the Port group into Dock for Cerulean Skyport and Corsair Chaser maps
+- Better Maps: Fixed several Sorted tab issues — getting stuck loading, showing the previously viewed map's mice, and sorting by attraction rate in the location view
+- Better Maps: Fixed "Show map goals in sidebar" adding goals to the sidebar when the setting was turned off, and improved reliability of sidebar map goals and Floating Islands map handling
+- Minor style tweaks
+
 ## Version 0.99.3
 
 - Better Maps: Fixed mice missing from the Sorted tab on Draconic Depths, Folklore Forest Grand Tour, and Origin of Dragons maps
