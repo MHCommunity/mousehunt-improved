@@ -4,24 +4,15 @@
   ],
   "categories": [
     {
-      "name": "Port",
-      "id": "csc-standard",
-      "icon": "/items/bait/transparent_thumb/ead7ea88709e321c7de3fdba8aa06ac5.png",
-      "color": "#c2c2c2",
-      "color-dark": "#55585e",
-      "mice": [
-        "treacherous_dock_lurker",
-        "amateur_knife_juggler",
-        "port_pillager"
-      ]
-    },
-    {
       "name": "Dock",
-      "id": "csc-dock",
+      "id": "csc-standard",
       "icon": "/items/stats/transparent_thumb/bf8218a3c425cba58c3ccf26097c66ff.png",
       "color": "#cfb9a5",
       "color-dark": "#9d5c6e",
       "mice": [
+        "treacherous_dock_lurker",
+        "amateur_knife_juggler",
+        "port_pillager",
         "sly_skulking_scrapper",
         "stubby_scrap_scavenger",
         "hefty_hulking_hauler",
