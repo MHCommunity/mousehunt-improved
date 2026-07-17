@@ -121,12 +121,3 @@
 .mousehuntHeaderView-menu-notification {
   text-shadow: 1px 1px #666;
 }
-
-#hudLocationContent {
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 50%));
-}
-
-.mh-improved-location-cerulean_skyport #hudLocationContent,
-.mh-dark #hudLocationContent {
-  filter: none;
-}

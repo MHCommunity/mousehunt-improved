@@ -27,11 +27,11 @@
   border: 0;
 }
 
-.journal .content .entry.short.relicHunter_catch,
-.journal .content .entry.short.catchsuccess,
-.journal .content .entry.short.catchsuccessloot,
-.journal .content .entry.short.catchsuccessprize {
-  min-height: 120px;
+.journal .content .entry.relicHunter_catch,
+.journal .content .entry.catchsuccess,
+.journal .content .entry.catchsuccessloot,
+.journal .content .entry.catchsuccessprize {
+  min-height: 150px;
 }
 
 .journal .content .entry.relicHunter_catch .journalimage,
