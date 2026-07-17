@@ -196,6 +196,66 @@ const areaHighlightingHalloween = () => {
 };
 
 /**
+ * Highlight the current area in the map for Cerulean Skyport.
+ *
+ * @return {boolean} Was the area highlighted?
+ */
+const areaHighlightingCeruleanSkyport = () => {
+  if ('cerulean_skyport' !== getCurrentLocation()) {
+    return false;
+  }
+
+  const quest = user?.quests?.QuestCeruleanSkyport;
+  if (! quest) {
+    return false;
+  }
+
+  const shipmentToCategory = {
+    gas_shipment: 'atmo',
+    cloudstone_shipment: 'mining',
+    spice_shipment: 'spice',
+  };
+
+  // Back at the port the bait is what tells the two dockside groups apart: the
+  // scrap mice come to Sky Pirate Swiss, and their boss to Aurora Bocconcini.
+  const baitToCategory = {
+    3090: 'dock', // Sky Pirate Swiss Cheese.
+    4087: 'dock', // Aurora Bocconcini Cheese.
+  };
+
+  let area;
+  if (quest.is_shipping) {
+    area = shipmentToCategory[quest.current_shipment?.type];
+  } else if (quest.is_intercepting) {
+    area = 'raid';
+  } else {
+    area = baitToCategory[user.bait_item_id || 0] || 'standard';
+  }
+
+  if (! area) {
+    return false;
+  }
+
+  const areaCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-cs-${area}`);
+  if (! areaCategory) {
+    return false;
+  }
+
+  areaCategory.classList.add('mouse-category-current-floor');
+
+  // Aurora Bocconcini is what draws out each area's boss, and every area that has one
+  // keeps it in a subcategory of its own. The port and a raid have no boss to point at.
+  if (4087 === Number.parseInt(user.bait_item_id, 10)) {
+    const bossSubcategory = areaCategory.querySelector('.mouse-subcategory-abc');
+    if (bossSubcategory) {
+      bossSubcategory.classList.add('mouse-subcategory-current-floor');
+    }
+  }
+
+  return true;
+};
+
+/**
  * Get the user's profile picture.
  *
  * @return {Promise} The user's profile picture.
@@ -244,6 +304,11 @@ export default () => {
     existing.classList.remove('mouse-category-current-floor');
   }
 
+  const existingSubcategory = document.querySelector('.mouse-subcategory-current-floor');
+  if (existingSubcategory) {
+    existingSubcategory.classList.remove('mouse-subcategory-current-floor');
+  }
+
   let added = false;
   switch (mapType) {
   case 'sky_palace':
@@ -266,6 +331,9 @@ export default () => {
     break;
   case 'halloween_treat_2021':
     added = areaHighlightingHalloween();
+    break;
+  case 'cerulean_skyport':
+    added = areaHighlightingCeruleanSkyport();
     break;
   default:
     break;

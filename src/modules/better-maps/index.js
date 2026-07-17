@@ -492,7 +492,7 @@ const updateRelicHunterHint = async () => {
   relicHunter.setAttribute('data-travel-button-added', true);
 
   // Find the environment that matches the key.
-  environments = await getData('environments');
+  const environments = await getData('environments');
   const environment = environments.find((e) => e.id === relicHunterLocation.id);
   if (! (environment && environment.id)) {
     return true;
@@ -605,7 +605,13 @@ const addInfoClasses = (mapData, root = document) => {
 
 const runMapEnhancements = () => {
   const map = getGlobal('mapper')?.mapData || null;
-  mapRuntime.queueRender({ map, reason: 'enhancement-requested' });
+
+  // Until this map's own fetch resolves, the global mapper still holds whichever map was
+  // open before, so rendering with it would build the tabs -- including Sorted -- from the
+  // previous map's goals. Render without a map instead and let the fetch queue the real one.
+  const isStale = map && activeMapId && ! isActiveMap(map.map_id);
+
+  mapRuntime.queueRender({ map: isStale ? null : map, reason: 'enhancement-requested' });
 };
 
 /**
@@ -639,7 +645,10 @@ const init = () => {
 
   installSurfaceHooks();
 
-  if (! (getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true))) {
+  // Only add map goals to the sidebar when there's a sidebar to add them to and they've been
+  // asked for. This read as `! (no-sidebar && show-sidebar-goals)`, which meant turning the
+  // goals setting *off* switched the sidebar on.
+  if (! getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true)) {
     sidebar();
   }
 

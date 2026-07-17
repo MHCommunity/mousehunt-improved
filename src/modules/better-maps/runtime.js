@@ -51,9 +51,15 @@ const createMapRuntime = (dependencies = {}) => {
     }
   };
 
-  const queueRender = ({ map = null, reason = 'update' } = {}) => {
-    if (map) {
-      if (! currentMap || `${currentMap.map_id}` !== `${map.map_id}`) {
+  const queueRender = (options = {}) => {
+    const { reason = 'update' } = options;
+
+    // Only touch the current map when the caller actually passed one. An omitted `map` (the
+    // observer and post-render re-queues) has to keep whatever is current, while an explicit
+    // null clears it -- that is how a caller says "the map I hold is not the one on screen".
+    if ('map' in options) {
+      const map = options.map || null;
+      if (`${currentMap?.map_id}` !== `${map?.map_id}`) {
         generation++;
       }
 

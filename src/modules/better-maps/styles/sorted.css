@@ -295,6 +295,40 @@
   border-bottom-color: var(--d-transparent-70);
 }
 
+/* The category around it is already carrying the profile pin, so the subcategory the
+hunter is standing in gets a smaller pin of its own rather than a second face. */
+#sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-current-floor {
+  border-color: rgb(0 0 0 / 85%);
+}
+
+.mh-dark #sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-current-floor {
+  border-color: var(--d-text-muted);
+}
+
+#sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header {
+  padding-right: 28px;
+  font-weight: 700;
+  background-color: rgb(255 255 255 / 90%);
+}
+
+.mh-dark #sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header {
+  background-color: var(--d-transparent-70);
+}
+
+#sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
+  position: absolute;
+  top: -7px;
+  right: 2px;
+  width: 22px;
+  height: 29px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/player.png);
+  filter: hue-rotate(275deg);
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: 100%;
+}
+
 .mhct-row.mhct-row-no-env {
   cursor: not-allowed;
 }

@@ -83,16 +83,20 @@ const getGroupForMap = (map) => {
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.
   let unsortedMice = [];
-  if (currentMapData.goals && currentMapData.goals[type]) {
+  if (currentMapData?.goals?.[type]) {
     unsortedMice = currentMapData.goals[type];
   }
 
-  // Get the mice that have been caught from each hunter.
-  let caughtMice = [];
-  // get the ids from currentMapData.hunters.completed_goal_ids.mouse
-  currentMapData.hunters.forEach((hunter) => {
-    caughtMice = [...caughtMice, ...hunter.completed_goal_ids[type]];
-  });
+  // Get the mice that have been caught from each hunter. A hunter who hasn't completed any
+  // goals can come back without a list for this type, and spreading that throws -- which
+  // would leave the map blocks hidden behind a loading spinner that never goes away.
+  const caughtMice = [];
+  for (const hunter of currentMapData?.hunters || []) {
+    const completed = hunter?.completed_goal_ids?.[type];
+    if (completed) {
+      caughtMice.push(...completed);
+    }
+  }
 
   // Remove the caught mice from the unsorted mice.
   unsortedMice = unsortedMice.filter((mouse) => {
@@ -360,15 +364,21 @@ const makeSortedPageWrapper = () => {
 /**
  * Make the sorted mice list HTML.
  *
+ * @param {HTMLElement} sortedPage The sorted page to fill.
+ *
  * @return {Promise<Array>} The unique mouse data rendered into the groups.
  */
-const makeSortedMiceList = async () => {
-  // Get the current map data.
-  const currentMapData = await getMapData(mapData().map_id);
+const makeSortedMiceList = async (sortedPage) => {
+  // Get the current map data. Read this map's cache entry only -- without `strict` a miss
+  // falls back to whichever map was viewed last, which would quietly fill this page with a
+  // different map's mice. The map being shown is the correct fallback.
+  const currentMapData = await getMapData(mapData().map_id, true) || mapData();
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
   const allMice = [...unsortedMice];
 
-  const target = document.querySelector('.sorted-page-content');
+  // Scope to this page rather than the document: a second render can replace the container
+  // while this one is awaiting, and a global lookup would spill these mice into its page.
+  const target = sortedPage.querySelector('.sorted-page-content');
   if (! target) {
     return [];
   }
@@ -428,14 +438,10 @@ const makeSortedMiceList = async () => {
 
     const addToSubCat = [];
 
-    // loop through the mice properties and add them to the category
-    category.mice.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 1;
-    });
-
+    // Rendered in the order the group data lists them. There was a sort here comparing
+    // `a.name`, but entries are mouse types -- a string, or { mouse, subcategory } -- so it
+    // never had a `name` to compare, never reordered anything, and sorted the imported
+    // group data in place on every render.
     for (const mouse of category.mice) {
       // if the mouse is a string, then it's just a name, otherwise it's an object with a name and a subcategory
       let hasSubCat = false;
@@ -545,6 +551,35 @@ const makeSortedMiceList = async () => {
 };
 
 /**
+ * Read the attraction or drop rate off a mouse element.
+ *
+ * @param {HTMLElement} mouse The mouse element.
+ *
+ * @return {number} The rate, or 0 when it hasn't loaded yet.
+ */
+const getArForElement = (mouse) => {
+  const arEl = mouse.querySelector('.mh-ui-ar');
+  return Number.parseFloat(arEl?.getAttribute('data-ar')) || 0;
+};
+
+/**
+ * Order mice by their rate. Sorting on the rate rather than reversing the current DOM order
+ * keeps this idempotent, so re-running a sort can't flip an already-sorted list.
+ *
+ * @param {Array}  mice      The mouse elements.
+ * @param {string} direction The direction to sort in.
+ *
+ * @return {Array} The sorted mouse elements.
+ */
+const sortMiceByAr = (mice, direction) => {
+  return mice.sort((a, b) => {
+    return 'ascending' === direction
+      ? getArForElement(a) - getArForElement(b)
+      : getArForElement(b) - getArForElement(a);
+  });
+};
+
+/**
  * Make the scavenger sorted page.
  *
  * @param {boolean}     isNormal    Is this a normal map?
@@ -612,27 +647,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
    */
   const sortMice = (direction = 'descending') => {
     activateSortView();
-    const miceArray = getUniqueMice();
-    miceArray.sort((a, b) => {
-      let aAr = 0;
-      let bAr = 0;
-
-      const aArEl = a.querySelector('.mh-ui-ar');
-      if (aArEl) {
-        aAr = aArEl.getAttribute('data-ar') || 0;
-      }
-
-      const bArEl = b.querySelector('.mh-ui-ar');
-      if (bArEl) {
-        bAr = bArEl.getAttribute('data-ar') || 0;
-      }
-
-      if (direction === 'ascending') {
-        return aAr - bAr;
-      }
-
-      return bAr - aAr;
-    });
+    const miceArray = sortMiceByAr(getUniqueMice(), direction);
 
     // Replace the whole grouped/location view so no empty category wrappers or
     // location-sort copies can survive when switching back to rate sorting.
@@ -729,13 +744,8 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
 
       locationWrapper.append(header);
 
-      miceByLocation[location].forEach((mouse) => {
-        // Depending on the direction, we want to reverse the order of the mice
-        if (direction === 'ascending') {
-          locationContent.prepend(mouse);
-        } else {
-          locationContent.append(mouse);
-        }
+      sortMiceByAr(miceByLocation[location], direction).forEach((mouse) => {
+        locationContent.append(mouse);
       });
 
       locationWrapper.append(locationContent);
@@ -862,7 +872,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
     appendTo: toggleWrapper
   });
 
-  const sortedContainer = document.querySelector('#sorted-mice-container');
+  const sortedContainer = target.closest('#sorted-mice-container');
   if (sortedContainer) {
     sortedContainer.prepend(toggleWrapper);
   } else {
@@ -899,12 +909,14 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
  * @param {HTMLElement} sortedPage The sorted page element.
  */
 const makeGenericSortedPage = async (isNormal, sortedPage) => {
-  const target = document.querySelector('.sorted-page-content');
+  // Scope to this page -- see makeSortedMiceList.
+  const target = sortedPage.querySelector('.sorted-page-content');
   if (! target) {
     return;
   }
 
-  const currentMapData = await getMapData(mapData().map_id);
+  // See makeSortedMiceList: `strict` keeps a cache miss from returning the last map's data.
+  const currentMapData = await getMapData(mapData().map_id, true) || mapData();
 
   const type = isNormal ? 'mouse' : 'item';
   target.classList.add('treasureMapView-block-content', 'scavenger-sorted-page');
@@ -957,14 +969,26 @@ const moveTabToBody = () => {
   body.append(sortedMiceContainer);
 };
 
+// The map the sorted page currently on screen was built from. Rendering is skipped while
+// Sorted is already active, so without this a page built from a previous map's goals would
+// never be replaced once that map's data finally arrives.
+let renderedMapId = null;
+
 /**
  * Process the sorted tab click.
  *
  * @param {boolean} [force] Rebuild the default view even when Sorted is active.
  */
 const processSortedTabClick = async (force = false) => {
+  // Get the current map data.
+  const currentMapData = mapData();
+
+  if (! currentMapData || ! currentMapData.goals) {
+    return;
+  }
+
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
-  if (currentlyActive && ! force) {
+  if (currentlyActive && ! force && `${renderedMapId}` === `${currentMapData.map_id}`) {
     return;
   }
 
@@ -975,13 +999,6 @@ const processSortedTabClick = async (force = false) => {
       tab.removeEventListener('click', moveTabToBody);
       tab.addEventListener('click', moveTabToBody);
     });
-  }
-
-  // Get the current map data.
-  const currentMapData = mapData();
-
-  if (! currentMapData || ! currentMapData.goals) {
-    return;
   }
 
   // First, remove the active class from the other tab, and add it to this one.
@@ -1023,12 +1040,13 @@ const processSortedTabClick = async (force = false) => {
   const sortedPage = makeSortedPageWrapper();
   sortedMiceContainer.append(sortedPage);
   mapContainer.append(sortedMiceContainer);
+  renderedMapId = currentMapData.map_id;
 
   // Start a fresh batch of background AR fetches for this page.
   pendingArFills = [];
 
   if (getGroupForMap(currentMapData)) {
-    const groupedMice = await makeSortedMiceList();
+    const groupedMice = await makeSortedMiceList(sortedPage);
     await makeScavengerSortedPage(true, sortedPage, groupedMice, 'group');
   } else if (currentMapData.is_scavenger_hunt) {
     await makeGenericSortedPage(false, sortedPage);
@@ -1037,7 +1055,7 @@ const processSortedTabClick = async (force = false) => {
   }
 
   // Remove the loading icon.
-  const loading = document.querySelector('.sorted-loading');
+  const loading = sortedPage.querySelector('.sorted-loading');
   if (loading) {
     loading.remove();
   }
@@ -1063,7 +1081,9 @@ const addSortedMapTab = async () => {
   const sortedTab = makeElement('a', 'treasureMapRootView-subTab sorted-map-tab', 'Sorted');
   sortedTab.setAttribute('data-type', 'sorted');
 
-  sortedTab.addEventListener('click', processSortedTabClick);
+  // Rebuild on every click. This was previously implicit -- the listener passed the click
+  // Event straight into `force` -- and clicking the tab should always give a fresh view.
+  sortedTab.addEventListener('click', () => processSortedTabClick(true));
 
   const divider = makeElement('div', 'treasureMapRootView-subTab-spacer');
 
