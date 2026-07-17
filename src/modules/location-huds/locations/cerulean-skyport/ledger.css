@@ -1,0 +1,31 @@
+.mh-improved-skyport-ledger-button {
+  display: block;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.headsUpDisplayCeruleanSkyportView__overlay.mh-improved-skyport-ledger-overlay.active {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  height: auto;
+  overflow: auto;
+}
+
+.mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__dialogContainer.active {
+  top: 20vh;
+  margin: auto;
+}
+
+.mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__dialogPadding {
+  padding: 20px 0 10px;
+}
+
+.mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__logDialogItemContainer .name {
+  color: #fff;
+}
+
+.mh-dark .mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__logDialogItemContainer .name {
+  color: var(--color-text-dark);
+}

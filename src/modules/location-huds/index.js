@@ -87,7 +87,11 @@ import regionQueso from './locations/region-queso';
 
 // Events
 import { activateEventLocation, initializeEventGlobals, isEventLocation } from './locations/event-locations';
+
 import createLocationHudRuntime from './runtime';
+
+// Location HUD features that must survive their location lifecycle.
+import { initLedger } from './locations/cerulean-skyport/ledger';
 
 const regionMapping = [
   {
@@ -246,6 +250,9 @@ const main = () => {
  */
 const init = async () => {
   addStyles(styles, 'location-huds');
+  if (getSetting('location-huds-enabled.cerulean_skyport', true)) {
+    initLedger();
+  }
 
   if (getSetting('location-huds.location-hud-toggle')) {
     addToggleIcon();

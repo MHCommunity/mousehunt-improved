@@ -45,6 +45,15 @@ const getBaseShortcuts = () => {
        * Close the current popup.
        */
       action: () => {
+        // Some location HUD dialogs are not jsDialogs, but expose their own
+        // active container and close button. Use the game's close handler so
+        // Escape has the same result as clicking its X button.
+        const dialogCloseButton = document.querySelector('[class*="__dialogContainer"].active [class*="__dialogCloseButton"]');
+        if (dialogCloseButton) {
+          dialogCloseButton.click();
+          return;
+        }
+
         if (activejsDialog && activejsDialog.hide) {
           activejsDialog.hide();
         }

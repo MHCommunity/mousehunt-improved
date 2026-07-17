@@ -38,6 +38,7 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
 }
 
 .ceruleanSkyportShippingView__currentShipmentDirigible {
+  transition: filter 0.2s ease-out;
   animation-duration: 6s;
 }
 
@@ -54,6 +55,18 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
 }
 
 .headsUpDisplayCeruleanSkyportView__airship:active {
+  filter: brightness(0.98) drop-shadow(0 1px 1px rgb(18 44 64 / 25%));
+}
+
+.headsUpDisplayCeruleanSkyportView:has(.headsUpDisplayCeruleanSkyportView__logButton:not(.disabled)) .ceruleanSkyportShippingView__currentShipmentDirigibleHull {
+  cursor: pointer;
+}
+
+.headsUpDisplayCeruleanSkyportView:has(.headsUpDisplayCeruleanSkyportView__logButton:not(.disabled)) .ceruleanSkyportShippingView__currentShipmentDirigible:hover {
+  filter: brightness(1.08) drop-shadow(0 2px 3px rgb(18 44 64 / 35%));
+}
+
+.headsUpDisplayCeruleanSkyportView:has(.headsUpDisplayCeruleanSkyportView__logButton:not(.disabled)) .ceruleanSkyportShippingView__currentShipmentDirigible:active {
   filter: brightness(0.98) drop-shadow(0 1px 1px rgb(18 44 64 / 25%));
 }
 
@@ -233,8 +246,9 @@ slowly, and wisps of cloud blow past the windows. */
 
 .headsUpDisplayCeruleanSkyportView__logDialogLootName.name {
   width: auto;
-  max-width: 85px;
+  max-width: 115px;
   padding: 0 2px;
+  white-space: break-spaces;
 }
 
 .headsUpDisplayCeruleanSkyportView__logDialogPointsImageThumbnail,
@@ -282,4 +296,28 @@ slowly, and wisps of cloud blow past the windows. */
 
 .ceruleanSkyportInventoryView__inventoryBlockQuantity.quantity {
   height: 16px;
+}
+
+.headsUpDisplayCeruleanSkyportView__logDialogLootQuantity.quantity {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  width: auto;
+  min-width: 5px;
+  padding: 3px;
+  font-weight: 700;
+  line-height: 11px;
+  text-align: right;
+}
+
+.headsUpDisplayCeruleanSkyportView__overlay.mh-improved-skyport-ledger-overlay.active {
+  background: none;
+}
+
+.headsUpDisplayCeruleanSkyportView__overlay.mh-improved-skyport-ledger-overlay.active::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
 }
