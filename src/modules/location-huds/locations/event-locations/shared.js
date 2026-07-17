@@ -5,7 +5,7 @@
  */
 const updateDateTooltip = (selector) => {
   const tooltip = document.querySelector(selector);
-  if (! tooltip) {
+  if (!tooltip) {
     return;
   }
 
@@ -46,7 +46,7 @@ const updateDateDates = (remainingSelector, textSelector = false) => {
     badge.setAttribute('data-changed', 'true');
   }
 
-  if (! textSelector) {
+  if (!textSelector) {
     return;
   }
 
@@ -61,7 +61,4 @@ const updateDateDates = (remainingSelector, textSelector = false) => {
   }
 };
 
-export {
-  updateDateTooltip,
-  updateDateDates
-};
+export { updateDateTooltip, updateDateDates };

@@ -14,14 +14,7 @@ import { getCurrentLocationName } from './location-current';
  * @param {Function} [opts.callback] The callback to run after replacing the entry.
  */
 const replaceJournalEntry = (entry, opts = {}) => {
-  const {
-    classes = ['short'],
-    image = false,
-    text = 'Hello, world!',
-    time = false,
-    location = false,
-    callback = () => {},
-  } = opts;
+  const { classes = ['short'], image = false, text = 'Hello, world!', time = false, location = false, callback = () => {} } = opts;
 
   let date = false;
 
@@ -63,7 +56,7 @@ const makeJournalEntry = (opts = {}) => {
   }
 
   const entry = document.querySelector(`.journalEntries .entry${opts.before ? `[data-entry-id="${opts.before}"]` : ''}`);
-  if (! entry) {
+  if (!entry) {
     return;
   }
 
@@ -80,7 +73,7 @@ const makeJournalEntry = (opts = {}) => {
  */
 const getLatestJournalEntryId = () => {
   const entries = document.querySelectorAll('.journalEntries .entry');
-  if (! entries || entries.length === 0) {
+  if (!entries || entries.length === 0) {
     return 0;
   }
 
@@ -105,19 +98,19 @@ const addJournalEntry = async (opts = {}) => {
   const previousEntryData = await dbGet('data', `journal-entry-${opts.id}`);
   const previousEntryId = previousEntryData ? previousEntryData.data?.previous : null;
 
-  if (! previousEntryId) {
+  if (!previousEntryId) {
     const data = {
       id: `journal-entry-${opts.id}`,
       previous: getLatestJournalEntryId(),
     };
 
-    if (! opts.noDate) {
-      if (! opts.time) {
+    if (!opts.noDate) {
+      if (!opts.time) {
         const now = new Date();
         opts.time = `${now.getHours()}:${now.getMinutes()} ${now.getHours() >= 12 ? 'pm' : 'am'}`;
       }
 
-      if (! opts.location) {
+      if (!opts.location) {
         opts.location = getCurrentLocationName();
       }
     }
@@ -144,15 +137,7 @@ const addJournalEntry = async (opts = {}) => {
   });
 };
 
-const JOURNAL_STAGES = [
-  'history-save',
-  'text',
-  'listify',
-  'style-classes',
-  'links',
-  'images',
-  'interactions',
-];
+const JOURNAL_STAGES = ['history-save', 'text', 'listify', 'style-classes', 'links', 'images', 'interactions'];
 
 const TEXT_STAGES = new Set(['text', 'listify']);
 const callbacks = new Map(JOURNAL_STAGES.map((stage) => [stage, []]));
@@ -172,7 +157,7 @@ let finishedProcessingPromise = Promise.resolve();
  * @return {Object|null} The journal entry model.
  */
 const makeJournalEntryModel = (entry) => {
-  if (! entry?.classList) {
+  if (!entry?.classList) {
     return null;
   }
 
@@ -201,7 +186,7 @@ const makeJournalEntryModel = (entry) => {
  * @param {Object} model The journal entry model.
  */
 const commitJournalEntryText = (model) => {
-  if (! model.dirty || ! model.textEl) {
+  if (!model.dirty || !model.textEl) {
     return;
   }
 
@@ -217,7 +202,7 @@ const commitJournalEntryText = (model) => {
  * @return {Promise<Object|null>} The processed entry model.
  */
 const processJournalEntry = async (entry) => {
-  if (! entry?.isConnected || processedEntries.has(entry)) {
+  if (!entry?.isConnected || processedEntries.has(entry)) {
     return null;
   }
 
@@ -231,14 +216,14 @@ const processJournalEntry = async (entry) => {
     document.dispatchEvent(new CustomEvent('journal-entry', { detail: entry }));
 
     const model = makeJournalEntryModel(entry);
-    if (! model) {
+    if (!model) {
       return null;
     }
 
     processedEntries.add(entry);
 
     for (const stage of JOURNAL_STAGES) {
-      if (! TEXT_STAGES.has(stage)) {
+      if (!TEXT_STAGES.has(stage)) {
         commitJournalEntryText(model);
       }
 
@@ -300,8 +285,8 @@ const processJournalEntries = async (root = document) => {
     entries.push(...root.querySelectorAll('.journal .entry, .journalEntries .entry, .jsingle .entry'));
   }
 
-  const newEntries = [...new Set(entries)].filter((entry) => ! processedEntries.has(entry));
-  if (! newEntries.length) {
+  const newEntries = [...new Set(entries)].filter((entry) => !processedEntries.has(entry));
+  if (!newEntries.length) {
     return [];
   }
 
@@ -318,7 +303,7 @@ const flushJournalQueue = async () => {
   const entries = [...queuedEntries];
   queuedEntries.clear();
 
-  if (! entries.length) {
+  if (!entries.length) {
     return;
   }
 
@@ -334,11 +319,11 @@ const flushJournalQueue = async () => {
  * @param {HTMLElement} entry The journal entry.
  */
 const queueJournalEntry = (entry) => {
-  if (! processedEntries.has(entry)) {
+  if (!processedEntries.has(entry)) {
     queuedEntries.add(entry);
   }
 
-  if (! processingQueue) {
+  if (!processingQueue) {
     processingQueue = true;
     queueMicrotask(flushJournalQueue);
   }
@@ -350,7 +335,7 @@ const queueJournalEntry = (entry) => {
  * @param {Node} node The added node.
  */
 const queueEntriesFromNode = (node) => {
-  if (! (node instanceof Element)) {
+  if (!(node instanceof Element)) {
     return;
   }
 
@@ -365,7 +350,7 @@ const queueEntriesFromNode = (node) => {
  * Observe the page for journal entries added by the game or journal history.
  */
 const observeJournalEntries = () => {
-  if (journalObserver || ! document.body) {
+  if (journalObserver || !document.body) {
     return;
   }
 
@@ -389,7 +374,7 @@ const onJournalEntry = (callback, options = {}) => {
   const stage = options.stage || 'interactions';
   const id = options.id || (callback.name ? `journal-callback-${callback.name}` : `journal-callback-${Math.random().toString(36).slice(2, 15)}`);
 
-  if (! callbacks.has(stage)) {
+  if (!callbacks.has(stage)) {
     throw new Error(`Unknown journal stage: ${stage}`);
   }
 
@@ -407,13 +392,4 @@ const onJournalEntriesProcessed = (callback) => {
   };
 };
 
-export {
-  JOURNAL_STAGES,
-  replaceJournalEntry,
-  makeJournalEntry,
-  addJournalEntry,
-  onJournalEntry,
-  onJournalEntriesProcessed,
-  observeJournalEntries,
-  processJournalEntries
-};
+export { JOURNAL_STAGES, replaceJournalEntry, makeJournalEntry, addJournalEntry, onJournalEntry, onJournalEntriesProcessed, observeJournalEntries, processJournalEntries };

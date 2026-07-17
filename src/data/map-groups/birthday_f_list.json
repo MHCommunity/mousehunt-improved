@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Birthday Event Map"
-  ],
+  "names": ["Birthday Event Map"],
   "categories": [
     {
       "name": "Mixing Room",
@@ -9,14 +7,7 @@
       "icon": "/ui/events/birthday_factory/item_mixing_rod.png",
       "color": "#0aebdd",
       "color-dark": "#266460",
-      "mice": [
-        "force_fighter_blue",
-        "force_fighter_green",
-        "force_fighter_pink",
-        "force_fighter_red",
-        "force_fighter_yellow",
-        "super_fighterbot_megasupreme"
-      ]
+      "mice": ["force_fighter_blue", "force_fighter_green", "force_fighter_pink", "force_fighter_red", "force_fighter_yellow", "super_fighterbot_megasupreme"]
     },
     {
       "name": "Pumping Room",
@@ -24,13 +15,7 @@
       "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
       "color": "#fca00a",
       "color-dark": "#73582b",
-      "mice": [
-        "reality_restitch",
-        "time_punk",
-        "time_tailor",
-        "time_thief",
-        "time_plumber"
-      ]
+      "mice": ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"]
     },
     {
       "name": "Break Room",
@@ -38,13 +23,7 @@
       "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
       "color": "#ea8cab",
       "color-dark": "#7a2e47",
-      "mice": [
-        "breakdancer",
-        "fromager_mouse",
-        "dance_party",
-        "dance_boss",
-        "para_para_dancer"
-      ]
+      "mice": ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"]
     },
     {
       "name": "QA Room",
@@ -52,13 +31,7 @@
       "icon": "/ui/events/birthday_factory/item_quality_cog.png",
       "color": "#fbabff",
       "color-dark": "#762e7a",
-      "mice": [
-        "cupcake_candle_thief",
-        "cupcake_cutie",
-        "sprinkley_sweet",
-        "cupcake_camo",
-        "cupcake_runner"
-      ]
+      "mice": ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"]
     },
     {
       "name": "Any Room",
@@ -89,9 +62,7 @@
       "id": "birthday-factory-boss",
       "color": "#e69138",
       "color-dark": "#7e480f",
-      "mice": [
-        "vincent_the_magnificent"
-      ]
+      "mice": ["vincent_the_magnificent"]
     },
     {
       "name": "Other",

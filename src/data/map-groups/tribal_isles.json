@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Tribal Isles Map"
-  ],
+  "names": ["Tribal Isles Map"],
   "categories": [
     {
       "name": "Balack's Cove",
@@ -29,17 +27,7 @@
       "id": "ti-cape-clawed",
       "color": "#a0dcff",
       "color-dark": "#2c6268",
-      "mice": [
-        "alchemist",
-        "caretaker",
-        "healer",
-        "narrator",
-        "pathfinder",
-        "scout",
-        "taleweaver",
-        "trailblazer",
-        "wordsmith"
-      ]
+      "mice": ["alchemist", "caretaker", "healer", "narrator", "pathfinder", "scout", "taleweaver", "trailblazer", "wordsmith"]
     },
     {
       "name": "Derr Dunes",
@@ -71,16 +59,7 @@
       "id": "ti-jungle-of-dread",
       "color": "#e3b5e8",
       "color-dark": "#86388c",
-      "mice": [
-        "chitinous",
-        "fetid_swamp",
-        "jurassic",
-        "magma_carrier",
-        "pigmy_swarm",
-        "primal",
-        "pygmy_wrangler",
-        "stonework_warrior"
-      ]
+      "mice": ["chitinous", "fetid_swamp", "jurassic", "magma_carrier", "pigmy_swarm", "primal", "pygmy_wrangler", "stonework_warrior"]
     },
     {
       "name": "Elub Shore",
@@ -136,11 +115,7 @@
       "id": "ti-dracano",
       "color": "#ea9999",
       "color-dark": "#85200c",
-      "mice": [
-        "draconic_warden",
-        "dragon",
-        "whelpling"
-      ]
+      "mice": ["draconic_warden", "dragon", "whelpling"]
     },
     {
       "name": "Forbidden Grove",
@@ -148,9 +123,7 @@
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#a4c2f4",
       "color-dark": "#1c4587",
-      "mice": [
-        "black_widow"
-      ]
+      "mice": ["black_widow"]
     }
   ],
   "subcategories": [

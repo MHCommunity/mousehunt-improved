@@ -1,7 +1,5 @@
 {
-  "names": [
-    "New Year's Party Map"
-  ],
+  "names": ["New Year's Party Map"],
   "categories": [
     {
       "name": "Bosses",
@@ -24,11 +22,7 @@
       "id": "nyp-new-year",
       "color": "#ead1dc",
       "color-dark": "#622d44",
-      "mice": [
-        "new_year_flight",
-        "new_years",
-        "disco_ball_head"
-      ]
+      "mice": ["new_year_flight", "new_years", "disco_ball_head"]
     },
     {
       "name": "All Areas",
@@ -57,13 +51,7 @@
       "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
-      "mice": [
-        "sporty_ski_instructor",
-        "snowball_hoarder",
-        "nitro_racer",
-        "golem_jockey",
-        "wreath_thief"
-      ]
+      "mice": ["sporty_ski_instructor", "snowball_hoarder", "nitro_racer", "golem_jockey", "wreath_thief"]
     },
     {
       "name": "Golem Workshop",
@@ -72,13 +60,7 @@
       "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#fce5cd",
       "color-dark": "#72481d",
-      "mice": [
-        "toy_builder",
-        "present",
-        "winter_hunt_toy",
-        "christmas_tree",
-        "ridiculous_sweater"
-      ]
+      "mice": ["toy_builder", "present", "winter_hunt_toy", "christmas_tree", "ridiculous_sweater"]
     },
     {
       "name": "Ice Fortress",
@@ -87,13 +69,7 @@
       "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#c9daf8",
       "color-dark": "#1d3c72",
-      "mice": [
-        "snowball_bully",
-        "winter_boss_2016",
-        "winter_boss_2017",
-        "squeaker_claws",
-        "slay"
-      ]
+      "mice": ["snowball_bully", "winter_boss_2016", "winter_boss_2017", "squeaker_claws", "slay"]
     }
   ],
   "subcategories": [

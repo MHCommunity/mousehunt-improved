@@ -8,14 +8,9 @@ import { prepareLifecycleCallback } from './lifecycle';
  * @param {Object}   args          The arguments for the event.
  */
 const addEvent = (eventName, eventCallback, args) => {
-  const {
-    eventScope = null,
-    removeAfterFire = false,
-    weight = 0,
-    id = null
-  } = args || {};
+  const { eventScope = null, removeAfterFire = false, weight = 0, id = null } = args || {};
 
-  if (! eventRegistry) {
+  if (!eventRegistry) {
     return;
   }
 
@@ -29,7 +24,7 @@ const addEvent = (eventName, eventCallback, args) => {
  * @param {Object} params    The parameters to pass to the event.
  */
 const doEvent = (eventName, params) => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -55,7 +50,7 @@ const eventsAdded = {};
  * @param {boolean}  remove   Whether or not to remove the event listener after it's fired.
  */
 const onEvent = (event, callback, remove = false) => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -100,10 +95,4 @@ const onSettingsChange = (key, callback) => {
   });
 };
 
-export {
-  addEvent,
-  doEvent,
-  doInternalEvent,
-  onEvent,
-  onSettingsChange
-};
+export { addEvent, doEvent, doInternalEvent, onEvent, onSettingsChange };

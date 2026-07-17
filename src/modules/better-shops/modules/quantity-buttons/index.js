@@ -43,7 +43,7 @@ export default async (block, input, maxQty) => {
       buyMaxButtonText.textContent = 'Reset';
     }
 
-    hasMaxed = ! hasMaxed;
+    hasMaxed = !hasMaxed;
   });
 
   // Find the closest parent element with the class 'itemPurchaseView-action-form' and append the buyControls to it.

@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  createHoverCard,
-  doRequest,
-  makeElement,
-  onEvent,
-  onJournalEntry
-} from '@utils';
+import { addStyles, createHoverCard, doRequest, makeElement, onEvent, onJournalEntry } from '@utils';
 import styles from './styles.css';
 
 let lastFetchedItem = null;
@@ -32,7 +25,7 @@ const fetchItemData = async (itemId) => {
   });
 
   const itemData = itemDataRequest?.items?.[0];
-  if (! itemData) {
+  if (!itemData) {
     return null;
   }
 
@@ -51,7 +44,7 @@ const fetchItemData = async (itemId) => {
  * @return {HTMLElement|boolean} The item data markup or false.
  */
 const makeItemMarkup = (item) => {
-  if (! item) {
+  if (!item) {
     return false;
   }
 
@@ -98,7 +91,7 @@ const hoverCard = createHoverCard({
 const main = (element = null) => {
   const parentElement = element || document;
   const itemLinks = parentElement.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
-  if (! itemLinks) {
+  if (!itemLinks) {
     return;
   }
 

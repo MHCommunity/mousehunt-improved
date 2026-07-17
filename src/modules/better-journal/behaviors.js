@@ -2,14 +2,7 @@ import { onJournalEntry } from '@utils';
 
 import { excludedItemTypes } from './shared/item-linking';
 
-const keepOriginalClasses = new Set([
-  'lunar_lantern',
-  'valentines_matchmaker',
-  'vending_machine_purchase',
-  'fullyExplored',
-  'folkloreForest-bookClaimed',
-  'claimBooty',
-]);
+const keepOriginalClasses = new Set(['lunar_lantern', 'valentines_matchmaker', 'vending_machine_purchase', 'fullyExplored', 'folkloreForest-bookClaimed', 'claimBooty']);
 
 /**
  * Whether behavior fixes should leave an entry untouched.
@@ -34,7 +27,7 @@ const updateItemLinks = (model) => {
 
   model.el.querySelectorAll('.journaltext a[href*="item.php"]').forEach((link) => {
     const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
-    if (! itemType || 2 !== itemType.length) {
+    if (!itemType || 2 !== itemType.length) {
       return;
     }
 
@@ -55,7 +48,7 @@ const updateItemLinks = (model) => {
     }
 
     const itemType = link.getAttribute('onclick').match(/hg\.views\.ItemView\.show\('(\w+)'\)/);
-    if (! itemType || 2 !== itemType.length) {
+    if (!itemType || 2 !== itemType.length) {
       return;
     }
 
@@ -74,7 +67,7 @@ const updateItemLinks = (model) => {
  * @param {Object} model The journal entry model.
  */
 const updateMouseImageLinks = (model) => {
-  if (shouldSkip(model) || ! model.mouseType) {
+  if (shouldSkip(model) || !model.mouseType) {
     return;
   }
 
@@ -90,12 +83,12 @@ const updateMouseImageLinks = (model) => {
  * @param {Object} model The journal entry model.
  */
 const updateProgressLog = (model) => {
-  if (shouldSkip(model) || ! model.classes.has('log_summary')) {
+  if (shouldSkip(model) || !model.classes.has('log_summary')) {
     return;
   }
 
   const link = model.el.querySelector('td a');
-  if (! link) {
+  if (!link) {
     return;
   }
 

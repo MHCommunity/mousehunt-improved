@@ -9,7 +9,7 @@ import styles from './styles.css';
  */
 const changeColors = () => {
   const popup = document.querySelector('.superBrieFactoryVendingMachinePopup');
-  if (! popup) {
+  if (!popup) {
     return;
   }
 
@@ -74,7 +74,10 @@ const birthdayLocation = async () => {
 
   setMultipleTimeout(() => {
     updateDateTooltip('.superBrieFactoryHUD-dateCountdownMiniWrapper.mousehuntTooltipParent .mousehuntTooltip');
-    updateDateDates('.superBrieFactoryHUD-dateCountdownMiniContainer .dateCountdownMini__remainingText', '.superBrieFactoryHUD-dateCountdownMiniWrapper.mousehuntTooltipParent .mousehuntTooltip .dateCountdown__datesContainer .dateCountdown__remainingText');
+    updateDateDates(
+      '.superBrieFactoryHUD-dateCountdownMiniContainer .dateCountdownMini__remainingText',
+      '.superBrieFactoryHUD-dateCountdownMiniWrapper.mousehuntTooltipParent .mousehuntTooltip .dateCountdown__datesContainer .dateCountdown__remainingText'
+    );
   }, [100, 500, 1000]);
 
   onDialogShow('superBrieFactoryVendingMachinePopup', () => {
@@ -82,7 +85,4 @@ const birthdayLocation = async () => {
   });
 };
 
-export {
-  birthdayGlobal,
-  birthdayLocation
-};
+export { birthdayGlobal, birthdayLocation };

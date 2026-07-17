@@ -62,7 +62,7 @@ const addStylesDirect = (styles, identifier = 'mh-utils-custom-styles', once = f
  * @return {Element} The style element.
  */
 const addStyles = (styles, module = '', identifier = 'mh-improved-styles') => {
-  if (! module) {
+  if (!module) {
     throw new Error('Module ID is required for adding module styles.');
   }
 
@@ -117,7 +117,7 @@ const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = fa
  * @param {string} identifier Identifier used for the styles.
  */
 const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
-  if (! module) {
+  if (!module) {
     throw new Error('Module ID is required for adding module styles.');
   }
 
@@ -162,7 +162,7 @@ let extensionBaseUrl;
  * @return {string} The extension base URL.
  */
 const getExtensionBaseUrl = () => {
-  if (! extensionBaseUrl) {
+  if (!extensionBaseUrl) {
     const baseScript = document.querySelector('#mousehunt-improved-script');
     if (baseScript && baseScript.getAttribute('data-baseurl')) {
       extensionBaseUrl = baseScript.getAttribute('data-baseurl');
@@ -204,12 +204,4 @@ const addExternalStyles = async (filename) => {
   return style;
 };
 
-export {
-  addStylesDirect,
-  addHudStyles,
-  addStyles,
-  addModuleStyles,
-  removeHudStyles,
-  removeStyles,
-  addExternalStyles
-};
+export { addStylesDirect, addHudStyles, addStyles, addModuleStyles, removeHudStyles, removeStyles, addExternalStyles };

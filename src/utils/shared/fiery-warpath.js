@@ -40,7 +40,7 @@ const getFieryWarpathStreak = () => {
  * @return {number} The number of mice remaining.
  */
 const getFieryWarpathRemainingInWave = (wave) => {
-  if (! wave) {
+  if (!wave) {
     wave = getFieryWarpathWave();
   }
 
@@ -80,9 +80,4 @@ const getFieryWarpathPercent = () => {
   return percent;
 };
 
-export {
-  getFieryWarpathWave,
-  getFieryWarpathStreak,
-  getFieryWarpathRemainingInWave,
-  getFieryWarpathPercent
-};
+export { getFieryWarpathWave, getFieryWarpathStreak, getFieryWarpathRemainingInWave, getFieryWarpathPercent };

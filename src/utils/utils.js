@@ -10,12 +10,7 @@ import { getFlag } from './flags';
  * @return {boolean} Whether we have the required functions.
  */
 const isApp = () => {
-  return (
-    typeof app !== 'undefined' &&
-		typeof user !== 'undefined' &&
-		typeof hg !== 'undefined' &&
-		typeof eventRegistry !== 'undefined'
-  );
+  return typeof app !== 'undefined' && typeof user !== 'undefined' && typeof hg !== 'undefined' && typeof eventRegistry !== 'undefined';
 };
 
 /**
@@ -69,7 +64,7 @@ const isLoggedIn = () => {
  * @return {boolean} True if dark mode is enabled, false otherwise.
  */
 const isDarkMode = () => {
-  return !! getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
+  return !!getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
 };
 
 /**
@@ -78,7 +73,7 @@ const isDarkMode = () => {
  * @return {boolean} Whether MHCT is installed or not.
  */
 const isMHCT = () => {
-  return !! document.querySelector('#mhhh_version');
+  return !!document.querySelector('#mhhh_version');
 };
 
 /**
@@ -103,7 +98,7 @@ const addBodyClass = (className, force = false) => {
 
   if (alreadyRemoved || alreadyAdded) {
     if (force) {
-      if (! alreadyAdded) {
+      if (!alreadyAdded) {
         bodyClasses.added.push(className);
       }
 
@@ -151,7 +146,7 @@ const removeBodyClass = (className) => {
  * @param {string} prefix The prefix to remove.
  */
 const removeBodyClassByPrefix = (prefix) => {
-  bodyClasses.added = bodyClasses.added.filter((c) => ! c.startsWith(prefix));
+  bodyClasses.added = bodyClasses.added.filter((c) => !c.startsWith(prefix));
   bodyClasses.removed.push(prefix);
 
   [...document.body.classList].forEach((className) => {
@@ -170,7 +165,7 @@ const removeBodyClassByPrefix = (prefix) => {
  */
 const getTradableItems = async (valueKey = 'all') => {
   const tradableItems = await getData('items-tradable');
-  if (! tradableItems) {
+  if (!tradableItems) {
     return [];
   }
 
@@ -204,7 +199,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
     return;
   }
 
-  if (! isLoggedIn()) {
+  if (!isLoggedIn()) {
     return;
   }
 
@@ -214,7 +209,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   }
 
   // If our needed params are empty, bail.
-  if (! lastReadJournalEntryId || ! user || ! user?.unique_hash) {
+  if (!lastReadJournalEntryId || !user || !user?.unique_hash) {
     return;
   }
 
@@ -230,7 +225,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   const timeRequested = Date.now();
   debuglog('utils-data', `Making request: ${requestKey} at ${timeRequested}`);
 
-  if (requests[requestKey] && ! skipChecks) {
+  if (requests[requestKey] && !skipChecks) {
     debuglog('utils-data', `Request already in progress: ${requestKey}`);
 
     if (requests[requestKey].in_progress) {
@@ -246,7 +241,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
         const interval = setInterval(() => {
           debuglog('utils-data', `Checking if request is complete: ${requestKey}`);
 
-          if (! requests[requestKey].in_progress) {
+          if (!requests[requestKey].in_progress) {
             debuglog('utils-data', `Returning saved response: ${requestKey}`);
 
             clearInterval(interval);
@@ -255,7 +250,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
           }
         }, 100);
       });
-    } else if (requests[requestKey].time_requested > (timeRequested - 350)) {
+    } else if (requests[requestKey].time_requested > timeRequested - 350) {
       debuglog('utils-data', `Request already completed: ${requestKey}`);
       return requests[requestKey].response;
     }
@@ -270,19 +265,19 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
 
   // Build the form for the request.
   const form = new FormData();
-  if (! skipOpts.skipSn && ! skipOpts.skipAll) {
+  if (!skipOpts.skipSn && !skipOpts.skipAll) {
     form.append('sn', 'Hitgrab');
   }
 
-  if (! skipOpts.skipHgIsAjax && ! skipOpts.skipAll) {
+  if (!skipOpts.skipHgIsAjax && !skipOpts.skipAll) {
     form.append('hg_is_ajax', 1);
   }
 
-  if (! skipOpts.skipLastReadJournalEntryId && ! skipOpts.skipAll) {
+  if (!skipOpts.skipLastReadJournalEntryId && !skipOpts.skipAll) {
     form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
   }
 
-  if (! skipOpts.skipUh && ! skipOpts.skipAll) {
+  if (!skipOpts.skipUh && !skipOpts.skipAll) {
     form.append('uh', user?.unique_hash ?? '');
   }
 
@@ -351,7 +346,7 @@ const sleep = async (ms, elapsed = 0) => {
  * @return {boolean} True if MacOS; false otherwise.
  */
 function isAppleOS(_window = null) {
-  if (! _window) {
+  if (!_window) {
     if (typeof window === 'undefined') {
       return false;
     }
@@ -379,9 +374,9 @@ const hasMiniCRE = () => {
   }
 
   const cre = document.querySelector('.min-luck-button');
-  sessionSet('has-mini-cre', !! cre);
+  sessionSet('has-mini-cre', !!cre);
 
-  return !! cre;
+  return !!cre;
 };
 
 /**
@@ -421,7 +416,7 @@ const parseNumber = (text) => {
  * @return {number} The parsed number, or 0 if it could not be parsed.
  */
 const parseGold = (text) => {
-  if (! text) {
+  if (!text) {
     return 0;
   }
 
@@ -627,5 +622,5 @@ export {
   refreshPage,
   debounce,
   isVersionHigher,
-  unpluralize
+  unpluralize,
 };

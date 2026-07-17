@@ -1,13 +1,4 @@
-import {
-  addHudStyles,
-  getFlag,
-  makeElement,
-  onRequest,
-  onTrapChange,
-  onTurn,
-  showHornMessage,
-  uppercaseFirstLetter
-} from '@utils';
+import { addHudStyles, getFlag, makeElement, onRequest, onTrapChange, onTurn, showHornMessage, uppercaseFirstLetter } from '@utils';
 import { getFieryWarpathWave } from '@utils/shared/fiery-warpath';
 
 import styles from './styles.css';
@@ -19,7 +10,7 @@ let engaged = false;
  */
 const addMissiles = () => {
   const container = document.querySelector('.warpathHUD-waveContainer');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -32,7 +23,7 @@ const addMissiles = () => {
   container.append(trigger);
 
   trigger.addEventListener('click', () => {
-    engaged = ! engaged;
+    engaged = !engaged;
 
     if (engaged) {
       container.classList.add('warpathHUD-engaged');
@@ -47,7 +38,7 @@ const addMissiles = () => {
    * @param {Event} event The click event.
    */
   const launchMissile = (event) => {
-    if (! container.classList.contains('warpathHUD-engaged')) {
+    if (!container.classList.contains('warpathHUD-engaged')) {
       return;
     }
 
@@ -55,7 +46,7 @@ const addMissiles = () => {
       return;
     }
 
-    if (! engaged) {
+    if (!engaged) {
       return;
     }
 
@@ -70,7 +61,7 @@ const addMissiles = () => {
     let missile;
     setTimeout(() => {
       missile = container.querySelectorAll('.warpathHUD-missile[style*="left: ' + x + 'px"]');
-      if (! missile || missile.length === 0) {
+      if (!missile || missile.length === 0) {
         return;
       }
 
@@ -87,12 +78,12 @@ const addMissiles = () => {
 
 const updateCommandBar = () => {
   const wave = getFieryWarpathWave();
-  if (! wave || wave > 3) {
+  if (!wave || wave > 3) {
     return;
   }
 
   const panicMeter = document.querySelector('.warpathHUD-moraleBar.mousehuntTooltipParent');
-  if (! panicMeter) {
+  if (!panicMeter) {
     return;
   }
 
@@ -104,7 +95,7 @@ const updateCommandBar = () => {
   miceInWave.forEach((mouse) => {
     const mouseType = mouse.getAttribute('data-mouse');
     const mouseCount = mouse.querySelector('.warpathHUD-wave-mouse-population');
-    if (! mouseType || ! mouseCount) {
+    if (!mouseType || !mouseCount) {
       return;
     }
 
@@ -153,7 +144,7 @@ const addPowerTypeReminders = () => {
   const currentPowerType = user?.trap_power_type_name.toLowerCase() || '';
   const currentTrinket = user?.trinket_item_id || 0;
 
-  if (! currentPowerType || ! currentTrinket) {
+  if (!currentPowerType || !currentTrinket) {
     return;
   }
 
@@ -206,7 +197,7 @@ export default async () => {
 
   onTrapChange(addPowerTypeReminders);
 
-  if (! getFlag('location-hud-fiery-warpath-no-command-bar-stats')) {
+  if (!getFlag('location-hud-fiery-warpath-no-command-bar-stats')) {
     updateCommandBar();
     onTurn(updateCommandBar, 250);
   }

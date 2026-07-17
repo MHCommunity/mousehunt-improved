@@ -1,10 +1,4 @@
-import {
-  doRequest,
-  formatNumber,
-  getData,
-  sessionGet,
-  sessionSet
-} from '@utils';
+import { doRequest, formatNumber, getData, sessionGet, sessionSet } from '@utils';
 
 import { exportPopup } from '../utils';
 
@@ -66,7 +60,7 @@ const fetchTransactions = async () => {
         total_price: item.total_price,
         total_price_without_tariff: item.total_price_without_tariff,
         average: item.average,
-        is_active: (item.is_active === '1'),
+        is_active: item.is_active === '1',
         date_updated: item.date_updated,
         date_closed: item.date_closed,
       });

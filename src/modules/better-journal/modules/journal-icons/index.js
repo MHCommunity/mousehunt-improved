@@ -10,7 +10,7 @@ import styles from './styles.css';
  * from parsing it.
  */
 const addIconStyles = () => {
-  if (! document.querySelector('#journalContainer')) {
+  if (!document.querySelector('#journalContainer')) {
     return;
   }
 

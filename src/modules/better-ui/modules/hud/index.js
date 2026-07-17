@@ -11,12 +11,12 @@ const boundTrapStats = new WeakSet();
  */
 const showFullTitlePercent = async () => {
   const title = document.querySelector('.mousehuntHud-userStat.title');
-  if (! title) {
+  if (!title) {
     return;
   }
 
   const target = title.querySelector('.hud_titlePercentage');
-  if (! target || boundTitleStats.has(title)) {
+  if (!target || boundTitleStats.has(title)) {
     return;
   }
 
@@ -38,8 +38,10 @@ const showFullTitlePercent = async () => {
  * Replace the close button in the inbox.
  */
 const replaceInboxClose = async () => {
-  const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox')
-    .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
+  const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox').replace(
+    '<a class="messengerUINotificationClose" href="#">X',
+    '<a class="messengerUINotificationClose" href="#">✕'
+  );
   hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
 };
 
@@ -48,7 +50,7 @@ const replaceInboxClose = async () => {
  */
 const replaceKingdomLink = async () => {
   const kingdomLink = document.querySelector('.mousehuntHud-menu .kingdom a[href="https://www.mousehuntgame.com/forum.php"]');
-  if (! kingdomLink) {
+  if (!kingdomLink) {
     return;
   }
 
@@ -82,7 +84,7 @@ const allowTrapMathToggle = async () => {
 
 const addCakePopupToLoyaltyBadge = async () => {
   const loyaltyBadgeView = document.querySelector('.loyaltyBadgeView');
-  if (! loyaltyBadgeView || boundLoyaltyBadges.has(loyaltyBadgeView)) {
+  if (!loyaltyBadgeView || boundLoyaltyBadges.has(loyaltyBadgeView)) {
     return;
   }
 
@@ -108,7 +110,7 @@ export default async () => {
     page: 'hunterprofile',
   });
 
-  if (! getFlag('no-kingdom-link-replacement')) {
+  if (!getFlag('no-kingdom-link-replacement')) {
     replaceKingdomLink();
   }
 

@@ -1,17 +1,4 @@
-import {
-  addEvent,
-  addStyles,
-  getCurrentPage,
-  getCurrentTab,
-  getData,
-  getSetting,
-  makeElement,
-  makeMhButton,
-  onEvent,
-  onNavigation,
-  onRequest,
-  saveSetting
-} from '@utils';
+import { addEvent, addStyles, getCurrentPage, getCurrentTab, getData, getSetting, makeElement, makeMhButton, onEvent, onNavigation, onRequest, saveSetting } from '@utils';
 
 import styles from './styles.css';
 
@@ -20,7 +7,7 @@ let itemsById = null;
 let itemSettings = {};
 
 const getType = async (itemsToType) => {
-  if (! itemsById) {
+  if (!itemsById) {
     items = await getData('items');
     itemsById = Object.fromEntries(items.map((i) => [i.id, i]));
   }
@@ -81,7 +68,7 @@ const shouldAddLocks = (currentTab) => {
  */
 const addControlsToItems = async () => {
   const itemsEl = document.querySelectorAll('.inventoryPage-item');
-  if (! itemsEl) {
+  if (!itemsEl) {
     return;
   }
 
@@ -93,7 +80,7 @@ const addControlsToItems = async () => {
   itemsEl.forEach((item) => {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
-    if (! id) {
+    if (!id) {
       return;
     }
 
@@ -183,7 +170,7 @@ const addControlsToItems = async () => {
       e.preventDefault();
       e.stopPropagation();
 
-      if (e.altKey && ! e.shiftKey) {
+      if (e.altKey && !e.shiftKey) {
         clickHide(e);
       }
     });
@@ -197,24 +184,24 @@ const addControlsToItems = async () => {
  */
 const updateGroupTitles = () => {
   const container = getCurrentTabContainer();
-  if (! container) {
+  if (!container) {
     return;
   }
 
   const groups = container.querySelectorAll('.inventoryPage-tagContent-tagGroup');
-  if (! groups) {
+  if (!groups) {
     return;
   }
 
   groups.forEach((group) => {
     // find the group title, count how many items we hid in this group and add it to the title.
     const title = group.querySelector('.inventoryPage-tagContent-tagTitle');
-    if (! title) {
+    if (!title) {
       return;
     }
 
     const hiddenItems = group.querySelectorAll('.inventoryPage-item.hidden');
-    if (! hiddenItems) {
+    if (!hiddenItems) {
       return;
     }
 
@@ -230,7 +217,7 @@ const updateGroupTitles = () => {
     makeElement('span', 'mhui-inventory-lock-and-hide-hidden-count', ` (${hiddenItems.length} hidden)`, title);
 
     const listings = group.querySelectorAll('.inventoryPage-tagContent-listing .inventoryPage-item');
-    if (! listings) {
+    if (!listings) {
       return;
     }
 
@@ -245,14 +232,14 @@ const updateGroupTitles = () => {
  */
 const maybeLockOrHideItems = async () => {
   const itemsEl = document.querySelectorAll('.inventoryPage-item');
-  if (! itemsEl) {
+  if (!itemsEl) {
     return;
   }
 
   for (const item of itemsEl) {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
-    if (! id) {
+    if (!id) {
       return;
     }
 
@@ -272,24 +259,24 @@ const maybeLockOrHideItems = async () => {
  * Add the lock all and unlock all buttons to the groups.
  */
 const addBulkControls = () => {
-  if (! shouldAddLocks(getCurrentTab())) {
+  if (!shouldAddLocks(getCurrentTab())) {
     return;
   }
 
   const container = getCurrentTabContainer();
-  if (! container) {
+  if (!container) {
     return;
   }
 
   // Get all of the groups and add a bulk lock and hide button.
   const groups = container.querySelectorAll('.inventoryPage-tagContent-tagGroup');
-  if (! groups) {
+  if (!groups) {
     return;
   }
 
   groups.forEach((group) => {
     const title = group.querySelector('.inventoryPage-tagContent-tagTitle');
-    if (! title) {
+    if (!title) {
       return;
     }
 
@@ -426,7 +413,7 @@ const addBulkControls = () => {
  */
 const getCurrentTabContainer = () => {
   let currentTab = getCurrentTab();
-  if (! currentTab || 'inventory' === currentTab) {
+  if (!currentTab || 'inventory' === currentTab) {
     currentTab = 'cheese';
   }
 
@@ -445,19 +432,16 @@ const addLockAndHideControls = () => {
   }
 
   let currentTab = getCurrentTab();
-  if (! currentTab || 'inventory' === currentTab) {
+  if (!currentTab || 'inventory' === currentTab) {
     currentTab = 'cheese';
   }
 
-  if (
-    'crafting' === currentTab ||
-    'plankrun' === currentTab
-  ) {
+  if ('crafting' === currentTab || 'plankrun' === currentTab) {
     return;
   }
 
   const container = getCurrentTabContainer();
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -480,7 +464,7 @@ const addLockAndHideControls = () => {
       addBulkControls();
       addControlsToItems();
 
-      isEditing = ! isEditing;
+      isEditing = !isEditing;
 
       container.setAttribute('mhui-inventory-lock-and-hide-controls-active', isEditing);
       container.classList.toggle('mhui-inventory-lock-and-hide-controls-active');
@@ -518,7 +502,7 @@ const onSetPage = () => {
  */
 const addHideStyles = (theItems) => {
   // TODO: this doesn't take owned items into for the category hiding
-  if (! theItems || ! theItems.components) {
+  if (!theItems || !theItems.components) {
     return;
   }
 
@@ -541,17 +525,17 @@ const addHideStyles = (theItems) => {
 
   // Group items by their tags
   theItems.components.forEach((item) => {
-    if (! item.tag_types || ! item.classification) {
+    if (!item.tag_types || !item.classification) {
       return;
     }
 
     // if the item.classification is not in the classifications array, skip it
-    if (! classifications.includes(item.classification)) {
+    if (!classifications.includes(item.classification)) {
       return;
     }
 
     item.tag_types.forEach((tag) => {
-      if (! itemsByTags[item.classification][tag]) {
+      if (!itemsByTags[item.classification][tag]) {
         itemsByTags[item.classification][tag] = new Set();
       }
 
@@ -571,9 +555,9 @@ const addHideStyles = (theItems) => {
   });
 
   // Generate styles to hide tags and items
-  const hideTagsStyles = classifications.flatMap((classification) =>
-    tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
-  ).join(',');
+  const hideTagsStyles = classifications
+    .flatMap((classification) => tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`))
+    .join(',');
 
   const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 

@@ -19,7 +19,7 @@ const getTypeFromLink = (link, hrefParam) => {
     match = link.getAttribute('href').match(new RegExp(`${hrefParam}=([^&]+)`));
   }
 
-  if (! match || match.length < 2) {
+  if (!match || match.length < 2) {
     return null;
   }
 
@@ -40,14 +40,7 @@ const getTypeFromLink = (link, hrefParam) => {
  *
  * @return {Object} A controller with an `attach(link)` method.
  */
-const createHoverCard = ({
-  wrapperId,
-  hrefParam,
-  fetchData,
-  render,
-  loadingText = 'Loading...',
-  delay = 500,
-}) => {
+const createHoverCard = ({ wrapperId, hrefParam, fetchData, render, loadingText = 'Loading...', delay = 500 }) => {
   let wrapper;
   const listeners = new Map();
 
@@ -77,7 +70,7 @@ const createHoverCard = ({
     }
 
     wrapper.style.top = `${tooltipTop}px`;
-    wrapper.style.left = `${left - (wrapper.offsetWidth / 2) + (rect.width / 2)}px`;
+    wrapper.style.left = `${left - wrapper.offsetWidth / 2 + rect.width / 2}px`;
   };
 
   /**
@@ -116,14 +109,14 @@ const createHoverCard = ({
       }
 
       timeoutId = setTimeout(async () => {
-        if (! isMouseOver) {
+        if (!isMouseOver) {
           return;
         }
 
         showLoading(e);
 
         const type = getTypeFromLink(link, hrefParam);
-        if (! type) {
+        if (!type) {
           return;
         }
 
@@ -156,7 +149,4 @@ const createHoverCard = ({
   return { attach };
 };
 
-export {
-  createHoverCard,
-  getTypeFromLink
-};
+export { createHoverCard, getTypeFromLink };

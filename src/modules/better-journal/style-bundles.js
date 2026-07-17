@@ -13,7 +13,12 @@ import tagStyles from './modules/journal-tags/styles.css';
  * @return {string} The item color CSS.
  */
 const makeItemColorStyles = () => {
-  return Object.entries(colors).map(([id, color]) => `#overlayPopup.hunting_summary .lootContainer a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"], .journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"] { color: ${color}; }`).join(' ');
+  return Object.entries(colors)
+    .map(
+      ([id, color]) =>
+        `#overlayPopup.hunting_summary .lootContainer a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"], .journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${id}"] { color: ${color}; }`
+    )
+    .join(' ');
 };
 
 /**
@@ -42,8 +47,7 @@ export default () => {
       styles: minimalIconStyles,
     },
     {
-      enabled: getSetting('better-journal.full-mice-images-no-border', false) &&
-        ! getSetting('native-dark-mode', false),
+      enabled: getSetting('better-journal.full-mice-images-no-border', false) && !getSetting('native-dark-mode', false),
       id: 'full-mice-images-no-border',
       styles: fullMiceImagesNoBorderStyles,
     },

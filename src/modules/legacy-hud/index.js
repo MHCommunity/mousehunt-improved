@@ -155,14 +155,14 @@ const getLegacyHudHtml = () => {
  */
 const replaceMenuBar = () => {
   const body = document.querySelector('body');
-  if (! body) {
+  if (!body) {
     return;
   }
 
   const mpLink = document.querySelector('.mousehuntHud-marketPlace');
   if (mpLink) {
     const existingOldCampButton = document.querySelector('.mh-legacy-mode-camp-button');
-    if (! existingOldCampButton) {
+    if (!existingOldCampButton) {
       const oldCampButton = makeElement('a', ['mousehuntHud-campButton', 'mh-legacy-mode-camp-button']);
       oldCampButton.href = 'https://www.mousehuntgame.com/';
 
@@ -196,7 +196,7 @@ const replaceMenuBar = () => {
   const friendsMenu = document.querySelector('.mousehuntHud-menu .friends');
   if (kingdomMenu && friendsMenu) {
     const existing = document.querySelector('.mh-legacy-mode-teams');
-    if (! existing) {
+    if (!existing) {
       const teams = friendsMenu.cloneNode(true);
       teams.classList.remove('friends');
       teams.classList.add('team', 'mh-legacy-mode-teams');
@@ -205,7 +205,7 @@ const replaceMenuBar = () => {
     }
 
     const existingLore = document.querySelector('.mh-legacy-mode-lore');
-    if (! existingLore) {
+    if (!existingLore) {
       const lore = kingdomMenu.cloneNode(true);
       lore.classList.remove('kingdom');
       lore.classList.add('scoreboards', 'mh-legacy-mode-lore');
@@ -222,7 +222,7 @@ const replaceStatsBar = () => {
   const hudStats = document.querySelector('.headsUpDisplayView-stats');
   if (hudStats) {
     const existingLegacyHud = document.querySelector('.mh-legacy-mode-hud');
-    if (! existingLegacyHud) {
+    if (!existingLegacyHud) {
       const legacyHud = makeElement('div', ['headsup', 'mh-legacy-mode-hud'], getLegacyHudHtml());
 
       hudStats.parentNode.insertBefore(legacyHud, hudStats.nextSibling);

@@ -37,7 +37,7 @@ const getChessProgress = (pieces) => {
  * @return {string} The Zugzwang Tower text.
  */
 const getZugzwangTowerText = (quests) => {
-  if (! quests.QuestZugzwangTower) {
+  if (!quests.QuestZugzwangTower) {
     return '';
   }
 
@@ -75,7 +75,4 @@ const setZugzwangTowerData = () => {
   };
 };
 
-export {
-  getZugzwangTowerText,
-  setZugzwangTowerData
-};
+export { getZugzwangTowerText, setZugzwangTowerData };

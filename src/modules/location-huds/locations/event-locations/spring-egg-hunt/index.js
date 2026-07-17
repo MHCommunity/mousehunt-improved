@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  makeElement,
-  onDialogShow,
-  onEvent,
-  onRequest,
-  setMultipleTimeout
-} from '@utils';
+import { addStyles, makeElement, onDialogShow, onEvent, onRequest, setMultipleTimeout } from '@utils';
 
 import { updateDateDates } from '../shared';
 
@@ -16,12 +9,12 @@ import styles from './styles.css';
  */
 const addUnfoundEggHighlight = () => {
   const tabContent = document.querySelector('.springHuntHUD-popup-tabContentContainer');
-  if (! tabContent) {
+  if (!tabContent) {
     return;
   }
 
   const stats = tabContent.querySelector('.springHuntHUD-totalEggStats');
-  if (! stats) {
+  if (!stats) {
     return;
   }
 
@@ -58,7 +51,7 @@ const addUnfoundEggHighlightWithTimeout = () => {
  */
 const rightclickToFlag = () => {
   const board = document.querySelector('.eggSweeper');
-  if (! board) {
+  if (!board) {
     return;
   }
 
@@ -68,7 +61,7 @@ const rightclickToFlag = () => {
   }
 
   const spaces = board.querySelectorAll('.eggSweeper-board-row-cell');
-  if (! spaces) {
+  if (!spaces) {
     return;
   }
 
@@ -76,7 +69,7 @@ const rightclickToFlag = () => {
   spaces.forEach((space) => {
     space.addEventListener('contextmenu', async (e) => {
       const cell = space.querySelector('a');
-      if (! cell) {
+      if (!cell) {
         return;
       }
 
@@ -122,7 +115,4 @@ const springEggHuntLocation = async () => {
   // no-op.
 };
 
-export {
-  springEggHuntGlobal,
-  springEggHuntLocation
-};
+export { springEggHuntGlobal, springEggHuntLocation };

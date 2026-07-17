@@ -1,15 +1,4 @@
-import {
-  addStyles,
-  debuglog,
-  doRequest,
-  makeElement,
-  onDialogShow,
-  onRequest,
-  sessionGet,
-  sessionSet,
-  sleep,
-  waitForElement
-} from '@utils';
+import { addStyles, debuglog, doRequest, makeElement, onDialogShow, onRequest, sessionGet, sessionSet, sleep, waitForElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -25,15 +14,13 @@ const airshipPartsCacheKey = 'fi-airship-parts';
  */
 const cacheAirshipParts = (airshipParts) => {
   debuglog('airship-randomizer', 'Caching airship parts', airshipParts);
-  if (! airshipParts) {
+  if (!airshipParts) {
     return null;
   }
 
   const parts = {};
   for (const partType of airshipPartTypes) {
-    parts[partType] = (airshipParts[partType]?.items || [])
-      .filter((item) => item?.can_equip && item?.type)
-      .map((item) => item.type);
+    parts[partType] = (airshipParts[partType]?.items || []).filter((item) => item?.can_equip && item?.type).map((item) => item.type);
   }
 
   sessionSet(airshipPartsCacheKey, parts);
@@ -52,9 +39,13 @@ const getAirshipParts = async () => {
     return cached;
   }
 
-  const response = await doRequest('managers/ajax/environment/floating_islands.php', {
-    action: 'get_workshop',
-  }, true);
+  const response = await doRequest(
+    'managers/ajax/environment/floating_islands.php',
+    {
+      action: 'get_workshop',
+    },
+    true
+  );
 
   return cacheAirshipParts(response?.workshop?.airship_parts);
 };
@@ -79,7 +70,7 @@ const getActivePartsTab = () => {
  */
 const equipAirshipPart = async (partType, itemType) => {
   const view = hg?.views?.FloatingIslandsWorkshopView;
-  const inWorkshop = !! document.querySelector('.floatingIslandsWorkshop-container');
+  const inWorkshop = !!document.querySelector('.floatingIslandsWorkshop-container');
 
   if (inWorkshop && view?.equipCosmeticItem) {
     if (getActivePartsTab() === partType && view.previewCosmeticItem) {
@@ -92,7 +83,7 @@ const equipAirshipPart = async (partType, itemType) => {
 
     const equipButton = document.querySelector(`.floatingIslandsWorkshop-part-state.previewed a[data-category="${partType}"][data-type="${itemType}"]`);
     let trigger = equipButton;
-    if (! trigger) {
+    if (!trigger) {
       trigger = makeElement('a');
       trigger.setAttribute('data-category', partType);
       trigger.setAttribute('data-type', itemType);
@@ -117,12 +108,12 @@ const equipAirshipPart = async (partType, itemType) => {
  */
 const randomizeAirshipPart = async (partType) => {
   const parts = await getAirshipParts();
-  if (! parts) {
+  if (!parts) {
     return;
   }
 
   const options = parts[partType].items || [];
-  if (! options.length) {
+  if (!options.length) {
     return;
   }
 
@@ -134,7 +125,7 @@ const randomizeAirshipPart = async (partType) => {
  * Equip a random equippable hull, sail, and balloon.
  */
 const randomizeAirship = async () => {
-  const inWorkshop = !! document.querySelector('.floatingIslandsWorkshop-container');
+  const inWorkshop = !!document.querySelector('.floatingIslandsWorkshop-container');
 
   for (const partType of airshipPartTypes) {
     await randomizeAirshipPart(partType);
@@ -143,10 +134,10 @@ const randomizeAirship = async () => {
   // Outside the workshop dialog we've just started an island, so wait a
   // second for the airship to fly in and then briefly highlight it. In the
   // workshop, the dirigible preview already shows the change.
-  if (! inWorkshop) {
+  if (!inWorkshop) {
     setTimeout(() => {
       const airship = document.querySelector('.floatingIslandsHUD-airshipContainer .floatingIslandsAirship');
-      if (! airship) {
+      if (!airship) {
         return;
       }
 
@@ -198,7 +189,7 @@ const makeRandomizeButton = ({ text, title, callback }) => {
  */
 const addAirshipRandomizerButtons = async () => {
   const container = await waitForElement('.floatingIslandsWorkshop-container', { maxAttempts: 5, delay: 200 });
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -210,25 +201,29 @@ const addAirshipRandomizerButtons = async () => {
 
     const wrapper = makeElement('div', 'mh-improved-airship-randomizer');
 
-    wrapper.append(makeRandomizeButton({
-      text: 'Randomize',
-      title: 'Equip a random part for the selected slot',
-      /**
-       * Randomize the part type that's selected in the workshop.
-       */
-      callback: async () => {
-        await randomizeAirshipPart(getActivePartsTab() || 'balloon');
-      },
-    }));
+    wrapper.append(
+      makeRandomizeButton({
+        text: 'Randomize',
+        title: 'Equip a random part for the selected slot',
+        /**
+         * Randomize the part type that's selected in the workshop.
+         */
+        callback: async () => {
+          await randomizeAirshipPart(getActivePartsTab() || 'balloon');
+        },
+      })
+    );
 
-    wrapper.append(makeRandomizeButton({
-      text: 'Randomize all',
-      title: 'Equip a random hull, sail, and balloon',
-      /**
-       * Randomize every part type.
-       */
-      callback: randomizeAirship,
-    }));
+    wrapper.append(
+      makeRandomizeButton({
+        text: 'Randomize all',
+        title: 'Equip a random hull, sail, and balloon',
+        /**
+         * Randomize every part type.
+         */
+        callback: randomizeAirship,
+      })
+    );
 
     tab.append(wrapper);
   });
@@ -245,7 +240,7 @@ const clearHoverPreview = () => {
   clearTimeout(hoverPreviewTimeout);
 
   const previewedPart = document.querySelector('.floatingIslandsWorkshop-part.previewed');
-  if (! previewedPart) {
+  if (!previewedPart) {
     return;
   }
 
@@ -261,7 +256,7 @@ const clearHoverPreview = () => {
  */
 const addHoverPreview = async () => {
   const container = await waitForElement('.floatingIslandsWorkshop-container', { maxAttempts: 5, delay: 200 });
-  if (! container || container.getAttribute('data-mh-improved-hover-preview')) {
+  if (!container || container.getAttribute('data-mh-improved-hover-preview')) {
     return;
   }
 
@@ -279,18 +274,18 @@ const addHoverPreview = async () => {
     clearHoverPreview();
     hoverPreviewPart = part;
 
-    if (! part || part.classList.contains('previewed') || part.classList.contains('active')) {
+    if (!part || part.classList.contains('previewed') || part.classList.contains('active')) {
       return;
     }
 
     const previewButton = part.querySelector('.floatingIslandsWorkshop-part-state.default a[data-category][data-type]');
-    if (! previewButton) {
+    if (!previewButton) {
       return;
     }
 
     hoverPreviewTimeout = setTimeout(() => {
       // Skip if the part got previewed or equipped while we were waiting.
-      if (! previewButton.isConnected || ! part.classList.contains('default')) {
+      if (!previewButton.isConnected || !part.classList.contains('default')) {
         return;
       }
 
@@ -331,7 +326,7 @@ const fixStabilizerLabel = async () => {
 
       const checkbox = label.querySelector('input[type="checkbox"]');
       if (checkbox) {
-        checkbox.checked = ! checkbox.checked;
+        checkbox.checked = !checkbox.checked;
       }
 
       // Passing the label lets the game show its busy spinner on it while the
@@ -363,14 +358,15 @@ const addAirshipRandomizer = () => {
     addHoverPreview();
   });
 
-  onRequest('environment/floating_islands.php', (response) => {
-    if (response?.workshop?.airship_parts) {
-      cacheAirshipParts(response.workshop.airship_parts);
-    }
-  }, true);
+  onRequest(
+    'environment/floating_islands.php',
+    (response) => {
+      if (response?.workshop?.airship_parts) {
+        cacheAirshipParts(response.workshop.airship_parts);
+      }
+    },
+    true
+  );
 };
 
-export {
-  addAirshipRandomizer,
-  randomizeAirship
-};
+export { addAirshipRandomizer, randomizeAirship };

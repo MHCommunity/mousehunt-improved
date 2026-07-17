@@ -49,14 +49,14 @@ const addCrownsToTEM = async (panel) => {
     action: 'get_hunting_stats',
   });
 
-  if (! (crowns?.hunting_stats && crowns?.hunting_stats.length > 0)) {
+  if (!(crowns?.hunting_stats && crowns?.hunting_stats.length > 0)) {
     return;
   }
 
   huntingStats = crowns?.hunting_stats;
 
   const temMice = document.querySelectorAll('.campPage-trap-trapEffectiveness-mouse');
-  if (! temMice || ! temMice.length) {
+  if (!temMice || !temMice.length) {
     return;
   }
 
@@ -67,19 +67,19 @@ const addCrownsToTEM = async (panel) => {
     }
 
     const type = mouse.getAttribute('data-mouse');
-    if (! type) {
+    if (!type) {
       return;
     }
 
     mouse.setAttribute('data-mh-ui-tem-crown', true);
 
     const mouseStats = huntingStats.find((m) => m.type === type);
-    if (! mouseStats) {
+    if (!mouseStats) {
       return;
     }
 
     const name = mouse.querySelector('.campPage-trap-trapEffectiveness-mouse-name');
-    if (! name) {
+    if (!name) {
       return;
     }
 

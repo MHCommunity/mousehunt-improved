@@ -4,10 +4,4 @@ import hunt from './hunt';
 import maps from './maps';
 import other from './other';
 
-export default [
-  ...hunt,
-  ...maps,
-  ...other,
-  ...events,
-  ...cleanup,
-];
+export default [...hunt, ...maps, ...other, ...events, ...cleanup];

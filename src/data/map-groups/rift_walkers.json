@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Rift Walker Map"
-  ],
+  "names": ["Rift Walker Map"],
   "categories": [
     {
       "name": "Gnawnia Rift",
@@ -45,9 +43,7 @@
       "icon": "/items/bait/large/a3aa774ed0ca1524d516320743c2d134.png",
       "color": "#e69138",
       "color-dark": "#7e480f",
-      "mice": [
-        "rift_field"
-      ]
+      "mice": ["rift_field"]
     },
     {
       "name": "Mist Level 0",
@@ -182,16 +178,7 @@
       "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
       "color": "#ff909d",
       "color-dark": "#7a2e37",
-      "mice": [
-        "rift_cherry",
-        "rift_cyclops",
-        "rift_elven_princess",
-        "rift_foxy",
-        "rift_moosker",
-        "rift_sylvan",
-        "rift_wiggler",
-        "rift_eagle_owl"
-      ]
+      "mice": ["rift_cherry", "rift_cyclops", "rift_elven_princess", "rift_foxy", "rift_moosker", "rift_sylvan", "rift_wiggler", "rift_eagle_owl"]
     },
     {
       "name": "Gigantic Gnarled Tree",
@@ -200,16 +187,7 @@
       "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
       "color": "#d9f720",
       "color-dark": "#586024",
-      "mice": [
-        "rift_bear",
-        "rift_centaur",
-        "rift_chameleon",
-        "rift_curious_chemist",
-        "rift_fairy",
-        "rift_frog",
-        "rift_nomad",
-        "rift_tiger"
-      ]
+      "mice": ["rift_bear", "rift_centaur", "rift_chameleon", "rift_curious_chemist", "rift_fairy", "rift_frog", "rift_nomad", "rift_tiger"]
     },
     {
       "name": "Deep Lagoon",
@@ -218,26 +196,14 @@
       "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
       "color": "#91f5ff",
       "color-dark": "#276268",
-      "mice": [
-        "rift_goblin",
-        "rift_harpy",
-        "rift_hydra",
-        "rift_shaman",
-        "rift_silth",
-        "rift_treant",
-        "rift_troll",
-        "rift_water_nymph"
-      ]
+      "mice": ["rift_goblin", "rift_harpy", "rift_hydra", "rift_shaman", "rift_silth", "rift_treant", "rift_troll", "rift_water_nymph"]
     },
     {
       "name": "Other",
       "id": "whis-misc-split",
       "color": "#e9d2ff",
       "color-dark": "#552e7a",
-      "mice": [
-        "rift_black_widow",
-        "rift_goldleaf"
-      ]
+      "mice": ["rift_black_widow", "rift_goldleaf"]
     }
   ],
   "subcategories": [

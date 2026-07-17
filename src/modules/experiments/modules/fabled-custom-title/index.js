@@ -1,14 +1,4 @@
-import {
-  doEvent,
-  getFlag,
-  getSetting,
-  isUserTitleAtLeast,
-  makeElement,
-  makeMhButton,
-  onEvent,
-  onNavigation,
-  saveSetting
-} from '@utils';
+import { doEvent, getFlag, getSetting, isUserTitleAtLeast, makeElement, makeMhButton, onEvent, onNavigation, saveSetting } from '@utils';
 
 const customTitleSettingKey = 'experiments.fabled-custom-title-text';
 const customTitleRowId = 'mousehunt-improved-settings-experiments-fabled-custom-title';
@@ -21,12 +11,12 @@ const customTitleInputRowId = 'mousehunt-improved-settings-experiments-fabled-cu
  */
 const updateTitleText = (customTitle = getSetting(customTitleSettingKey, '')) => {
   const title = document.querySelector('.mousehuntHud-userStat-maxTitle');
-  if (! title) {
+  if (!title) {
     return;
   }
 
   const cleanedTitle = String(customTitle).trim();
-  if (! cleanedTitle) {
+  if (!cleanedTitle) {
     return;
   }
 
@@ -38,7 +28,7 @@ const updateTitleText = (customTitle = getSetting(customTitleSettingKey, '')) =>
  */
 const addCustomTitleSettingInput = () => {
   const parentRow = document.querySelector(`#${customTitleRowId}`);
-  if (! parentRow || document.querySelector(`#${customTitleInputRowId}`)) {
+  if (!parentRow || document.querySelector(`#${customTitleInputRowId}`)) {
     return;
   }
 
@@ -123,14 +113,16 @@ const init = async () => {
  * @return {Array} The settings for the module.
  */
 const settings = async () => {
-  return [{
-    id: customTitleSettingKey,
-    title: 'Text to show for max title in the HUD',
-    default: 'MAX TITLE',
-    settings: {
-      type: 'input',
+  return [
+    {
+      id: customTitleSettingKey,
+      title: 'Text to show for max title in the HUD',
+      default: 'MAX TITLE',
+      settings: {
+        type: 'input',
+      },
     },
-  }];
+  ];
 };
 
 export default {

@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  createHoverCard,
-  doRequest,
-  makeElement,
-  onEvent,
-  onJournalEntry
-} from '@utils';
+import { addStyles, createHoverCard, doRequest, makeElement, onEvent, onJournalEntry } from '@utils';
 import styles from './styles.css';
 
 let lastFetchedMouse = null;
@@ -32,7 +25,7 @@ const fetchMouseData = async (mouseId) => {
   });
 
   const mouseData = mouseDataRequest?.mice?.[0];
-  if (! mouseData) {
+  if (!mouseData) {
     return null;
   }
 
@@ -51,7 +44,7 @@ const fetchMouseData = async (mouseId) => {
  * @return {HTMLElement|boolean} The mouse data markup or false.
  */
 const makeMouseMarkup = (mouse) => {
-  if (! mouse) {
+  if (!mouse) {
     return false;
   }
 

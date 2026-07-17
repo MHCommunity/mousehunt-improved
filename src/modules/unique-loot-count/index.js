@@ -9,7 +9,7 @@ import styles from './styles.css';
  */
 const updateSection = async (selector) => {
   const section = document.querySelectorAll(`#overlayPopup.hunting_summary .${selector}`);
-  if (! section) {
+  if (!section) {
     return;
   }
 
@@ -31,11 +31,7 @@ const updateSection = async (selector) => {
  * Add the unique loot count to the sections.
  */
 const addUniqueLootCount = async () => {
-  const sections = [
-    'environmentContainer',
-    'baitContainer',
-    'lootContainer',
-  ];
+  const sections = ['environmentContainer', 'baitContainer', 'lootContainer'];
 
   sections.forEach((section) => updateSection(section));
 };

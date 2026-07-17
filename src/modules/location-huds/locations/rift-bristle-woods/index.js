@@ -7,7 +7,7 @@ import styles from './styles.css';
  */
 const maybeAddUserscriptStyles = () => {
   const check = document.querySelector('.riftBristleWoodsHUD .item_container .item-Btn');
-  if (! check) {
+  if (!check) {
     return;
   }
 

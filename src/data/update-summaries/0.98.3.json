@@ -4,9 +4,7 @@
   "details": [
     {
       "title": "",
-      "items": [
-        "Fix Better Marketplace: Show Markethunt price history chart when viewing an item defaulting to enabled"
-      ]
+      "items": ["Fix Better Marketplace: Show Markethunt price history chart when viewing an item defaulting to enabled"]
     }
   ]
 }

@@ -1,10 +1,4 @@
-import {
-  addBodyClass,
-  addStyles,
-  makeElement,
-  onDeactivation,
-  removeBodyClass
-} from '@utils';
+import { addBodyClass, addStyles, makeElement, onDeactivation, removeBodyClass } from '@utils';
 
 import styles from './styles.css';
 
@@ -63,7 +57,7 @@ const moveSidebar = () => {
   menuTab.append(dropdownContent);
 
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
-  if (! tabsContainer) {
+  if (!tabsContainer) {
     return;
   }
 

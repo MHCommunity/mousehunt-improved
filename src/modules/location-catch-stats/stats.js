@@ -1,10 +1,4 @@
-import {
-  doRequest,
-  getSetting,
-  makeElement,
-  makeElementDraggable,
-  parseNumber
-} from '@utils';
+import { doRequest, getSetting, makeElement, makeElementDraggable, parseNumber } from '@utils';
 
 /**
  * Get the mouse stats for a location.
@@ -25,7 +19,7 @@ const getMouseStats = async (category = false) => {
   // Grab the data from the response.
   const mouseData = data?.mouse_list_category?.subgroups?.[0]?.mice;
 
-  if (! mouseData) {
+  if (!mouseData) {
     return [];
   }
 
@@ -47,13 +41,17 @@ const getMouseStats = async (category = false) => {
  */
 const buildMouseMarkup = (mouseData) => {
   // Fallbacks for mouse data.
-  const mouse = Object.assign({}, {
-    name: '',
-    type: '',
-    image: '',
-    crown: 'none',
-    num_catches: 0,
-  }, mouseData);
+  const mouse = Object.assign(
+    {},
+    {
+      name: '',
+      type: '',
+      image: '',
+      crown: 'none',
+      num_catches: 0,
+    },
+    mouseData
+  );
 
   const mouseEl = makeElement('a', 'mh-catch-stats');
 
@@ -120,7 +118,7 @@ const makeCrownBreakdown = (mice) => {
   const breakdown = makeElement('div', 'mh-catch-stats-crown-breakdown');
   crownTypes.forEach((type) => {
     const count = mice.filter((mouse) => type === mouse.crown).length;
-    if (! count) {
+    if (!count) {
       return;
     }
 
@@ -182,7 +180,7 @@ const makeMouseList = (mice) => {
 
   sortToggle.addEventListener('click', (e) => {
     e.preventDefault();
-    reversed = ! reversed;
+    reversed = !reversed;
     render();
   });
 
@@ -272,9 +270,4 @@ const showSimplifiedModal = async () => {
   makeElementDraggable('#mh-catch-stats', '#mh-catch-stats .mh-catch-stats-header', 25, 25);
 };
 
-export {
-  getMouseStats,
-  makeMouseList,
-  makeStatsModal,
-  showSimplifiedModal
-};
+export { getMouseStats, makeMouseList, makeStatsModal, showSimplifiedModal };

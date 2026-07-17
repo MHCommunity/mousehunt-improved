@@ -1,15 +1,4 @@
-import {
-  dataGet,
-  dataSet,
-  getCurrentPage,
-  getUserItems,
-  makeElement,
-  onEvent,
-  onNavigation,
-  onRequest,
-  onTurn,
-  sleep
-} from '@utils';
+import { dataGet, dataSet, getCurrentPage, getUserItems, makeElement, onEvent, onNavigation, onRequest, onTurn, sleep } from '@utils';
 
 /**
  * Get the selector for the item.
@@ -52,7 +41,7 @@ const addQuantityToDisplay = async () => {
     bases = bases.map((base) => Number.parseInt(base, 10));
     const userBase = Number.parseInt(user.base_item_id, 10);
 
-    if (! bases.includes(userBase)) {
+    if (!bases.includes(userBase)) {
       continue;
     }
 
@@ -65,7 +54,7 @@ const addQuantityToDisplay = async () => {
     }
 
     const trapContainer = document.querySelector('.trapSelectorView__armedItem[data-item-classification="base"] .trapSelectorView__armedItemImage');
-    if (! trapContainer) {
+    if (!trapContainer) {
       continue;
     }
 
@@ -84,7 +73,7 @@ const addQuantityToDisplay = async () => {
  * @param {string}  base   The base ID.
  */
 const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
-  if (! el || ! itemId || ! base) {
+  if (!el || !itemId || !base) {
     return;
   }
 
@@ -144,7 +133,9 @@ const addQtyToTrapBrowser = async (tab) => {
  * Handle change trap events.
  */
 const onChangeTrap = async () => {
-  const trapSelector = document.querySelector('.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]');
+  const trapSelector = document.querySelector(
+    '.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]'
+  );
   if (trapSelector) {
     for (const opts of options) {
       await addQtyToTrapBrowser('item_browser', opts);
@@ -166,14 +157,12 @@ const maybeClearCache = async (response) => {
 
   allItems = [...new Set(allItems)];
 
-  if (! allItems.length) {
+  if (!allItems.length) {
     return;
   }
 
   const hasItemsInResponse = allItems.every((itemId) => Object.prototype.hasOwnProperty.call(response?.inventory ?? {}, itemId));
-  const details = hasItemsInResponse
-    ? response.inventory
-    : await getUserItems(allItems, true);
+  const details = hasItemsInResponse ? response.inventory : await getUserItems(allItems, true);
   for (const itemId in details) {
     const qty = Number.parseInt(details[itemId]?.quantity) || 0;
 
@@ -215,18 +204,16 @@ let hasAddedEvents = false;
  * @param {Array}  opts.baseIds The base IDs.
  */
 const addTrapQuantity = async (opts) => {
-  if (! opts.itemId || ! opts.baseIds) {
+  if (!opts.itemId || !opts.baseIds) {
     return;
   }
 
   options.push(opts);
 
-  if (! hasAddedEvents) {
+  if (!hasAddedEvents) {
     hasAddedEvents = true;
     addEvents();
   }
 };
 
-export {
-  addTrapQuantity
-};
+export { addTrapQuantity };

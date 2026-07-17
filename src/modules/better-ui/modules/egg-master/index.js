@@ -26,7 +26,7 @@ const addEggMasterIcon = async () => {
 const checkForEggMaster = async () => {
   const snuidEl = document.querySelector('.hunterInfoView-friendsBlock .userInteractionButtonsView-action[data-recipient-snuid]');
   let snuid = snuidEl ? snuidEl.getAttribute('data-recipient-snuid') : false;
-  if (! snuid && document.querySelector('.friendsProfileView-selfStats')) {
+  if (!snuid && document.querySelector('.friendsProfileView-selfStats')) {
     snuid = user.sn_user_id;
   }
 

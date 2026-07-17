@@ -36,7 +36,7 @@ const addDownloadToButton = (opts, callback) => {
   let { buttonSelector, results, filename, beforeDownload } = opts;
 
   const exportButton = document.querySelector(buttonSelector);
-  if (! exportButton) {
+  if (!exportButton) {
     return;
   }
 
@@ -165,12 +165,12 @@ const addDownloadButtons = (opts) => {
 
 const addCopyButton = ({ type, results }) => {
   const copyButton = document.querySelector(`#copy-${type}`);
-  if (! copyButton) {
+  if (!copyButton) {
     return;
   }
 
   const copyText = copyButton.querySelector('span');
-  if (! copyText) {
+  if (!copyText) {
     return;
   }
 
@@ -180,19 +180,22 @@ const addCopyButton = ({ type, results }) => {
     copyButton.classList.add('disabled');
     const formattedResults = results.join('\n');
 
-    navigator.clipboard.writeText(formattedResults).then(() => {
-      copyButton.classList.remove('disabled');
-      copyText.textContent = 'Copied!';
-      setTimeout(() => {
-        copyText.textContent = 'Copy Data';
-      }, 2000);
-    }).catch(() => {
-      copyButton.classList.remove('disabled');
-      copyText.textContent = 'Copy Failed';
-      setTimeout(() => {
-        copyText.textContent = 'Copy Data';
-      }, 2000);
-    });
+    navigator.clipboard
+      .writeText(formattedResults)
+      .then(() => {
+        copyButton.classList.remove('disabled');
+        copyText.textContent = 'Copied!';
+        setTimeout(() => {
+          copyText.textContent = 'Copy Data';
+        }, 2000);
+      })
+      .catch(() => {
+        copyButton.classList.remove('disabled');
+        copyText.textContent = 'Copy Failed';
+        setTimeout(() => {
+          copyText.textContent = 'Copy Data';
+        }, 2000);
+      });
   });
 };
 
@@ -223,7 +226,7 @@ const resultReducer = (results) => {
  */
 const updateSingleTotalEl = (results) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  if (! totalItemsEl) {
+  if (!totalItemsEl) {
     return;
   }
 
@@ -298,11 +301,11 @@ const exportPopup = ({
         </div>
       </div>
     </div>
-    ${extraText ? `<div class="extra-text">${extraText}</div>` : ''}`
+    ${extraText ? `<div class="extra-text">${extraText}</div>` : ''}`,
   });
 
   const exportBackButton = document.querySelector('#export-back');
-  if (! exportBackButton) {
+  if (!exportBackButton) {
     return;
   }
 
@@ -311,7 +314,7 @@ const exportPopup = ({
   });
 
   const fetchButton = document.querySelector(`#fetch-${type}`);
-  if (! fetchButton) {
+  if (!fetchButton) {
     return;
   }
 
@@ -348,8 +351,4 @@ const exportPopup = ({
   }
 };
 
-export {
-  recursiveFetch,
-  addDownloadButtons,
-  exportPopup
-};
+export { recursiveFetch, addDownloadButtons, exportPopup };

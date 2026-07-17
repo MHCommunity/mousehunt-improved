@@ -30,17 +30,20 @@ const init = () => {
     after: true,
     callback: (data, results) => {
       return replaceInText(results);
-    }
+    },
   });
 
-  onNavigation(() => {
-    const messages = document.querySelectorAll('.messageBoardView-message-body');
-    messages.forEach((message) => {
-      message.innerHTML = replaceInText(message.innerHTML);
-    });
-  }, {
-    page: 'hunterprofile',
-  });
+  onNavigation(
+    () => {
+      const messages = document.querySelectorAll('.messageBoardView-message-body');
+      messages.forEach((message) => {
+        message.innerHTML = replaceInText(message.innerHTML);
+      });
+    },
+    {
+      page: 'hunterprofile',
+    }
+  );
 };
 
 export default {
@@ -48,6 +51,7 @@ export default {
   name: 'Emotes',
   type: 'social-profiles',
   default: true,
-  description: 'Replace Discord-style emotes on corkboards (e.g., :jerry:) with actual images in map and profile corkboard messages. <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/emotes.md" target="_blank" rel="noreferrer">View the list of supported emotes</a>',
+  description:
+    'Replace Discord-style emotes on corkboards (e.g., :jerry:) with actual images in map and profile corkboard messages. <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/emotes.md" target="_blank" rel="noreferrer">View the list of supported emotes</a>',
   load: init,
 };

@@ -44,6 +44,6 @@ export default async () => {
       id: 'better-marketplace.quick-sell',
       title: 'Quick sell',
       default: false,
-    }
+    },
   ];
 };

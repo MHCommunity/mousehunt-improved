@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Lunar New Year Map"
-  ],
+  "names": ["Lunar New Year Map"],
   "categories": [
     {
       "name": "Standard",
@@ -31,11 +29,7 @@
       "icon": "/items/bait/large/f4c3ee4bb9aba29938223172a791650b.png",
       "color": "#ffefb9",
       "color-dark": "#725f1d",
-      "mice": [
-        "calligraphy",
-        "dumpling_chef",
-        "red_envelope"
-      ]
+      "mice": ["calligraphy", "dumpling_chef", "red_envelope"]
     },
     {
       "name": "Nian Gao'da",
@@ -43,9 +37,7 @@
       "icon": "/items/bait/large/d4813a69fff0b714f79976a726b7ce66.png",
       "color": "#ffa4a4",
       "color-dark": "#721d1d",
-      "mice": [
-        "red_candle"
-      ]
+      "mice": ["red_candle"]
     }
   ]
 }

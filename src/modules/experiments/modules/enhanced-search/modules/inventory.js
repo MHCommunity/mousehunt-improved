@@ -18,7 +18,7 @@ const addSearchTerms = () => {
 
     const name = item.getAttribute('data-name');
     const type = item.getAttribute('data-item-type');
-    if (! name || ! type) {
+    if (!name || !type) {
       return;
     }
 

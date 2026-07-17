@@ -16,7 +16,7 @@ import {
   onRequest,
   sessionSet,
   setGlobal,
-  setMapData
+  setMapData,
 } from '@utils';
 
 import settings from './settings';
@@ -52,7 +52,7 @@ const addSortedTabNotice = () => {
     step: 'better-maps-sorted-tab',
     anchor: '.treasureMapRootView-subTab.sorted-map-tab',
     title: 'About the Sorted tab',
-    content: 'This view groups the map\'s mice by stage or category, making it easier to see what to hunt next.',
+    content: "This view groups the map's mice by stage or category, making it easier to see what to hunt next.",
   });
 };
 
@@ -169,7 +169,7 @@ const interceptMapRequest = async (mapId, isCurrent = () => true) => {
   sessionSet('map-refreshed', Date.now());
 
   // If we don't have data, we're done.
-  if (! mapId) {
+  if (!mapId) {
     return false;
   }
 
@@ -219,24 +219,26 @@ const clearMapRecovery = () => {
  */
 const recoverMapData = (mapId, generation) => {
   clearMapRecovery();
-  mapRecoveryTimeouts = [250, 1000, 2500, 5000].map((delay) => setTimeout(async () => {
-    if (generation !== mapRequestGeneration) {
-      return;
-    }
+  mapRecoveryTimeouts = [250, 1000, 2500, 5000].map((delay) =>
+    setTimeout(async () => {
+      if (generation !== mapRequestGeneration) {
+        return;
+      }
 
-    if (`${getGlobal('mapper')?.mapData?.map_id}` === `${mapId}`) {
+      if (`${getGlobal('mapper')?.mapData?.map_id}` === `${mapId}`) {
+        clearMapRecovery();
+        return;
+      }
+
+      const data = await getMapData(mapId, true);
+      if (generation !== mapRequestGeneration || !data) {
+        return;
+      }
+
+      publishMapData(data, 'map-recovery');
       clearMapRecovery();
-      return;
-    }
-
-    const data = await getMapData(mapId, true);
-    if (generation !== mapRequestGeneration || ! data) {
-      return;
-    }
-
-    publishMapData(data, 'map-recovery');
-    clearMapRecovery();
-  }, delay));
+    }, delay)
+  );
 };
 
 /**
@@ -265,7 +267,7 @@ const intercept = (retries = 0) => {
   }
 
   // The controller may not be registered yet if we loaded very early.
-  if (! hg?.controllers?.TreasureMapController?.showMap) {
+  if (!hg?.controllers?.TreasureMapController?.showMap) {
     if (retries < 10) {
       setTimeout(() => intercept(retries + 1), 500);
     }
@@ -281,52 +283,62 @@ const intercept = (retries = 0) => {
     activeMapId = mapId;
     const requestGeneration = ++mapRequestGeneration;
     clearMapRecovery();
-    interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration).then((data) => {
-      if (mapId && requestGeneration === mapRequestGeneration && ! data) {
-        recoverMapData(mapId, requestGeneration);
-      }
+    interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration)
+      .then((data) => {
+        if (mapId && requestGeneration === mapRequestGeneration && !data) {
+          recoverMapData(mapId, requestGeneration);
+        }
 
-      return data;
-    }).catch(() => {
-      if (requestGeneration === mapRequestGeneration) {
-        recoverMapData(mapId, requestGeneration);
-      }
+        return data;
+      })
+      .catch(() => {
+        if (requestGeneration === mapRequestGeneration) {
+          recoverMapData(mapId, requestGeneration);
+        }
 
-      return null;
-    });
+        return null;
+      });
     return result;
   };
 
-  onRequest('users/treasuremap_v2.php', async (data, request) => {
-    hg.controllers.TreasureMapController.clearMapCache();
-    if (data.treasure_map && data.treasure_map.map_id) {
-      await setMapData(data.treasure_map.map_id, data.treasure_map);
+  onRequest(
+    'users/treasuremap_v2.php',
+    async (data, request) => {
+      hg.controllers.TreasureMapController.clearMapCache();
+      if (data.treasure_map && data.treasure_map.map_id) {
+        await setMapData(data.treasure_map.map_id, data.treasure_map);
 
-      if (isActiveMap(data.treasure_map.map_id)) {
-        publishMapData(data.treasure_map, 'treasure-map-request');
+        if (isActiveMap(data.treasure_map.map_id)) {
+          publishMapData(data.treasure_map, 'treasure-map-request');
+        }
       }
-    }
 
-    await updateMapSurface(data, request);
+      await updateMapSurface(data, request);
 
-    // Only re-run enhancements while the map dialog is open. Background map
-    // refreshes fire every turn; queueing a render with no mounted map root just
-    // arms a whole-document observer that can never become ready.
-    if (activeMapId) {
-      runMapEnhancements();
-    }
-  }, true);
-
-  onRequest('board/board.php', async (data) => {
-    hg.controllers.TreasureMapController.clearMapCache();
-    if (data.treasure_map && data.treasure_map.map_id) {
-      await setMapData(data.treasure_map.map_id, data.treasure_map);
-
-      if (isActiveMap(data.treasure_map.map_id)) {
-        publishMapData(data.treasure_map, 'board-request');
+      // Only re-run enhancements while the map dialog is open. Background map
+      // refreshes fire every turn; queueing a render with no mounted map root just
+      // arms a whole-document observer that can never become ready.
+      if (activeMapId) {
+        runMapEnhancements();
       }
-    }
-  }, true);
+    },
+    true
+  );
+
+  onRequest(
+    'board/board.php',
+    async (data) => {
+      hg.controllers.TreasureMapController.clearMapCache();
+      if (data.treasure_map && data.treasure_map.map_id) {
+        await setMapData(data.treasure_map.map_id, data.treasure_map);
+
+        if (isActiveMap(data.treasure_map.map_id)) {
+          publishMapData(data.treasure_map, 'board-request');
+        }
+      }
+    },
+    true
+  );
 };
 
 /**
@@ -364,7 +376,7 @@ const bindMapNavigation = (model) => {
 
   const activeNavigation = model.root.querySelector('.treasureMapRootView-header-navigation-item.active');
   if (activeNavigation) {
-    const type = [...activeNavigation.classList].find((className) => ! ['treasureMapRootView-header-navigation-item', 'active'].includes(className));
+    const type = [...activeNavigation.classList].find((className) => !['treasureMapRootView-header-navigation-item', 'active'].includes(className));
     if (type) {
       doEvent('map_navigation_tab_click', type);
     }
@@ -380,11 +392,11 @@ const bindMapNavigation = (model) => {
     }
 
     const navigation = event.target.closest('.treasureMapRootView-header-navigation-item');
-    if (! navigation || ! model.root.contains(navigation)) {
+    if (!navigation || !model.root.contains(navigation)) {
       return;
     }
 
-    const type = [...navigation.classList].find((className) => ! ['treasureMapRootView-header-navigation-item', 'active'].includes(className));
+    const type = [...navigation.classList].find((className) => !['treasureMapRootView-header-navigation-item', 'active'].includes(className));
     if (type) {
       doEvent('map_navigation_tab_click', type);
     }
@@ -396,11 +408,11 @@ const bindMapNavigation = (model) => {
  */
 const configureMapRuntime = () => {
   mapRuntime.register('structure', 'sorted-tab', async ({ root, map }) => {
-    if (! map) {
+    if (!map) {
       return;
     }
 
-    if (! map.is_complete && ! map.can_claim_reward) {
+    if (!map.is_complete && !map.can_claim_reward) {
       // A map update rebuilds the header, destroying our tab and re-selecting Goals.
       // addSortedMapTab() only reports true when it had to (re)create the tab, so that's
       // also the signal that the game reset the tab selection and the default needs to be
@@ -419,7 +431,7 @@ const configureMapRuntime = () => {
     // tab. Its setup is not a refresh hook, so run it once per tab instance;
     // subsequent user clicks still flow through the delegated navigation handler.
     const goalsTab = root.querySelector('.treasureMapRootView-subTab[data-type="goals"]');
-    if (goalsTab && ! initializedGoalsTabs.has(goalsTab)) {
+    if (goalsTab && !initializedGoalsTabs.has(goalsTab)) {
       initializedGoalsTabs.add(goalsTab);
       doEvent('map_show_goals_tab_click', map);
     }
@@ -440,20 +452,19 @@ const configureMapRuntime = () => {
 
   mapRuntime.register('interactions', 'default-tab', async (model) => {
     const { map, root } = model;
-    if (! map || `${defaultedRoots.get(root)}` === `${map.map_id}`) {
+    if (!map || `${defaultedRoots.get(root)}` === `${map.map_id}`) {
       return;
     }
 
     defaultedRoots.set(root, map.map_id);
-    const defaultToSorted = getSetting('better-maps.default-to-sorted', false) ||
-      (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
+    const defaultToSorted = getSetting('better-maps.default-to-sorted', false) || (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
 
-    if (! defaultToSorted || map.is_complete || map.can_claim_reward) {
+    if (!defaultToSorted || map.is_complete || map.can_claim_reward) {
       return;
     }
 
     const newMapData = await getMapData(map.map_id, true);
-    if (model.isCurrent() && newMapData && ! newMapData.is_complete && ! newMapData.can_claim_reward) {
+    if (model.isCurrent() && newMapData && !newMapData.is_complete && !newMapData.can_claim_reward) {
       showSortedTab(map);
     }
   });
@@ -466,7 +477,7 @@ const configureMapRuntime = () => {
  */
 const updateRelicHunterHint = async () => {
   const relicHunter = document.querySelector('.treasureMapInventoryView-relicHunter-hint');
-  if (! relicHunter) {
+  if (!relicHunter) {
     return false;
   }
 
@@ -475,7 +486,7 @@ const updateRelicHunterHint = async () => {
   }
 
   const relicHunterLocation = await getRelicHunterLocation();
-  if (! relicHunterLocation || ! relicHunterLocation.id || ! relicHunterLocation.name || 'Unknown' === relicHunterLocation.name) {
+  if (!relicHunterLocation || !relicHunterLocation.id || !relicHunterLocation.name || 'Unknown' === relicHunterLocation.name) {
     const relicHunterHints = await getData('relic-hunter-hints');
 
     const foundLocation = Object.keys(relicHunterHints).find((key) => {
@@ -485,7 +496,7 @@ const updateRelicHunterHint = async () => {
     relicHunterLocation.id = foundLocation;
   }
 
-  if (! relicHunterLocation.id || 'unknown' === relicHunterLocation.id) {
+  if (!relicHunterLocation.id || 'unknown' === relicHunterLocation.id) {
     return false;
   }
 
@@ -494,12 +505,12 @@ const updateRelicHunterHint = async () => {
   // Find the environment that matches the key.
   const environments = await getData('environments');
   const environment = environments.find((e) => e.id === relicHunterLocation.id);
-  if (! (environment && environment.id)) {
+  if (!(environment && environment.id)) {
     return true;
   }
 
   let hintWrapper = document.querySelector('.treasureMapInventoryView-relicHunter');
-  if (! hintWrapper) {
+  if (!hintWrapper) {
     hintWrapper = relicHunter;
   }
 
@@ -542,7 +553,7 @@ const installSurfaceHooks = (retries = 0) => {
   // The controller may not be registered yet if we loaded very early. Without this the
   // dereference below throws and aborts the rest of init(), taking the sidebar, catch
   // dates, draggable highlight and the dialog-hide reset down with it.
-  if (! hg?.controllers?.TreasureMapController?.showInventory) {
+  if (!hg?.controllers?.TreasureMapController?.showInventory) {
     if (retries < 10) {
       setTimeout(() => installSurfaceHooks(retries + 1), 500);
     }
@@ -550,7 +561,7 @@ const installSurfaceHooks = (retries = 0) => {
     return;
   }
 
-  if (! originalShowInventory) {
+  if (!originalShowInventory) {
     originalShowInventory = hg.controllers.TreasureMapController.showInventory;
     hg.controllers.TreasureMapController.showInventory = function () {
       const result = Reflect.apply(originalShowInventory, this, arguments);
@@ -559,7 +570,7 @@ const installSurfaceHooks = (retries = 0) => {
     };
   }
 
-  if (! originalShowShops) {
+  if (!originalShowShops) {
     originalShowShops = hg.controllers.TreasureMapController.showShops;
     hg.controllers.TreasureMapController.showShops = function () {
       const result = Reflect.apply(originalShowShops, this, arguments);
@@ -584,7 +595,7 @@ const scheduleMapCacheClear = () => {
 
 const addInfoClasses = (mapData, root = document) => {
   const mapRoot = root.querySelector('.treasureMapRootView-content .treasureMapView') || root.querySelector('.treasureMapView');
-  if (! mapRoot) {
+  if (!mapRoot) {
     return;
   }
 
@@ -609,7 +620,7 @@ const runMapEnhancements = () => {
   // Until this map's own fetch resolves, the global mapper still holds whichever map was
   // open before, so rendering with it would build the tabs -- including Sorted -- from the
   // previous map's goals. Render without a map instead and let the fetch queue the real one.
-  const isStale = map && activeMapId && ! isActiveMap(map.map_id);
+  const isStale = map && activeMapId && !isActiveMap(map.map_id);
 
   mapRuntime.queueRender({ map: isStale ? null : map, reason: 'enhancement-requested' });
 };
@@ -648,7 +659,7 @@ const init = () => {
   // Only add map goals to the sidebar when there's a sidebar to add them to and they've been
   // asked for. This read as `! (no-sidebar && show-sidebar-goals)`, which meant turning the
   // goals setting *off* switched the sidebar on.
-  if (! getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true)) {
+  if (!getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true)) {
     sidebar();
   }
 
@@ -667,9 +678,13 @@ const init = () => {
   onEvent('map_hide_map_preview', removeMapClassesFromPreview);
 
   defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
-  onRequest('*', () => {
-    defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
-  }, true);
+  onRequest(
+    '*',
+    () => {
+      defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
+    },
+    true
+  );
 
   onDialogShow('map', () => {
     runMapEnhancements();
@@ -698,5 +713,5 @@ export default {
   default: true,
   description: 'Add features to maps such as updated styles, attraction rates, a sorted tab categorizing various maps, and displaying more information on the various tabs.',
   load: init,
-  settings
+  settings,
 };

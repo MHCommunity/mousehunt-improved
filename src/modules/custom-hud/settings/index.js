@@ -35,14 +35,16 @@ export default async () => {
     },
   ];
 
-  return [{
-    id: 'custom-hud',
-    title: 'Custom HUD background <span class="mhui-setting-title-links"><a class="mh-improved-custom-hud-preview">Preview choices</a></span>',
-    default: [options[0]],
-    settings: {
-      type: 'multi-select',
-      number: 1,
-      options,
+  return [
+    {
+      id: 'custom-hud',
+      title: 'Custom HUD background <span class="mhui-setting-title-links"><a class="mh-improved-custom-hud-preview">Preview choices</a></span>',
+      default: [options[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options,
+      },
     },
-  }];
+  ];
 };

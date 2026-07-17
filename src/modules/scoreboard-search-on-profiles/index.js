@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  getData,
-  makeElement,
-  onNavigation
-} from '@utils';
+import { addStyles, doRequest, getData, makeElement, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -14,12 +8,12 @@ import styles from './styles.css';
 const main = async () => {
   const scoreboards = await getData('scoreboards');
 
-  if (! scoreboards || scoreboards.length === 0) {
+  if (!scoreboards || scoreboards.length === 0) {
     return;
   }
 
   const achievementsBlock = document.querySelector('.hunterInfoView-achievementsBlock');
-  if (! achievementsBlock) {
+  if (!achievementsBlock) {
     return;
   }
 
@@ -28,7 +22,7 @@ const main = async () => {
   }
 
   const teamTab = document.querySelector('.mousehuntTabHeaderContainer .mousehuntTabHeader[data-tab="team"]');
-  if (! teamTab) {
+  if (!teamTab) {
     return;
   }
 
@@ -38,12 +32,12 @@ const main = async () => {
   }
 
   const teamTabContent = achievementsBlock.querySelector('.mousehuntTabContentContainer .mousehuntTabContent[data-tab="team"]');
-  if (! teamTabContent) {
+  if (!teamTabContent) {
     return;
   }
 
   const friendName = document.querySelector('.friendsPage-friendRow-titleBar-name');
-  if (! friendName) {
+  if (!friendName) {
     return;
   }
 
@@ -77,7 +71,7 @@ const main = async () => {
   for (const scoreboard of scoreboards) {
     let parent = scoreboardDropdown;
     if (scoreboard.group) {
-      if (! groups[scoreboard.group]) {
+      if (!groups[scoreboard.group]) {
         groups[scoreboard.group] = makeElement('optgroup');
         groups[scoreboard.group].label = scoreboard.group;
         scoreboardDropdown.append(groups[scoreboard.group]);
@@ -97,7 +91,7 @@ const main = async () => {
   tabContent.append(results);
 
   scoreboardDropdown.addEventListener('change', async (e) => {
-    if (e.target.value === 'placeholder' || ! friendName.getAttribute('data-text') || ! e.target.value) {
+    if (e.target.value === 'placeholder' || !friendName.getAttribute('data-text') || !e.target.value) {
       return;
     }
 
@@ -114,7 +108,7 @@ const main = async () => {
     });
 
     const data = response?.scoreboard_page?.rows;
-    if (! data || ! data.length) {
+    if (!data || !data.length) {
       results.innerHTML = '<div class="mh-improved-scoreboard-no-results">No results found.</div>';
       return;
     }

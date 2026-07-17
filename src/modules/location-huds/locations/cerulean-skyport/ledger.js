@@ -1,12 +1,4 @@
-import {
-  addStyles,
-  dbGet,
-  dbSet,
-  formatNumber,
-  makeElement,
-  onJournalEntry,
-  onRequest
-} from '@utils';
+import { addStyles, dbGet, dbSet, formatNumber, makeElement, onJournalEntry, onRequest } from '@utils';
 
 import styles from './ledger.css';
 
@@ -57,7 +49,7 @@ const saveShipment = async (response) => {
   });
 
   const entryId = finished?.render_data?.entry_id;
-  if (! entryId) {
+  if (!entryId) {
     return;
   }
 
@@ -67,10 +59,8 @@ const saveShipment = async (response) => {
   // The Skyport HUD renders from enviroment_atts. Some shipment types only
   // include their finished ledger there, so prefer it and keep the quest data
   // as a fallback for older response shapes.
-  const skyport = response?.user?.enviroment_atts?.ledger
-    ? response.user.enviroment_atts
-    : response?.user?.quests?.QuestCeruleanSkyport;
-  if (! skyport?.ledger) {
+  const skyport = response?.user?.enviroment_atts?.ledger ? response.user.enviroment_atts : response?.user?.quests?.QuestCeruleanSkyport;
+  if (!skyport?.ledger) {
     return;
   }
 
@@ -104,7 +94,9 @@ const saveShipment = async (response) => {
 const makeLedger = ({ ledger, airship }) => {
   const wrapper = makeElement('div');
 
-  wrapper.innerHTML = hg.utils.TemplateUtil.renderFromFile('HeadsUpDisplayCeruleanSkyportView', 'dialog_container', { title: '' });
+  wrapper.innerHTML = hg.utils.TemplateUtil.renderFromFile('HeadsUpDisplayCeruleanSkyportView', 'dialog_container', {
+    title: '',
+  });
 
   const overlay = wrapper.firstElementChild;
   overlay.classList.add('mh-improved-skyport-ledger-overlay', 'active');
@@ -159,17 +151,25 @@ const showLedger = (shipment) => {
   overlay.querySelector('.headsUpDisplayCeruleanSkyportView__dialogCloseButton').addEventListener('click', close, { signal });
 
   // The overlay is only the target of a click that missed the dialog sitting on it.
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      close();
-    }
-  }, { signal });
+  overlay.addEventListener(
+    'click',
+    (event) => {
+      if (event.target === overlay) {
+        close();
+      }
+    },
+    { signal }
+  );
 
-  document.addEventListener('keydown', (event) => {
-    if ('Escape' === event.key) {
-      close();
-    }
-  }, { signal });
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if ('Escape' === event.key) {
+        close();
+      }
+    },
+    { signal }
+  );
 
   document.body.append(overlay);
 };
@@ -180,12 +180,12 @@ const showLedger = (shipment) => {
  * @param {Object} model The journal entry model.
  */
 const addLedgerButton = async (model) => {
-  if (! model.id || ! model.classes.has(shipmentFinishedClass)) {
+  if (!model.id || !model.classes.has(shipmentFinishedClass)) {
     return;
   }
 
   const shipment = await getSavedShipment(model.id);
-  if (! shipment || ! model.textEl) {
+  if (!shipment || !model.textEl) {
     return;
   }
 
@@ -207,7 +207,7 @@ const addLedgerButton = async (model) => {
  */
 const addHullClick = () => {
   const hud = document.querySelector('#hudLocationContent');
-  if (! hud || hud.getAttribute('data-mh-improved-skyport-ledger')) {
+  if (!hud || hud.getAttribute('data-mh-improved-skyport-ledger')) {
     return;
   }
 
@@ -216,7 +216,7 @@ const addHullClick = () => {
   // Delegated from the HUD, which outlives the shipping view the game swaps out
   // whenever the shipment changes.
   hud.addEventListener('click', (event) => {
-    if (! event.target.closest('.ceruleanSkyportShippingView__currentShipmentDirigibleHull')) {
+    if (!event.target.closest('.ceruleanSkyportShippingView__currentShipmentDirigibleHull')) {
       return;
     }
 
@@ -252,7 +252,4 @@ const initLedger = () => {
   });
 };
 
-export {
-  addHullClick,
-  initLedger
-};
+export { addHullClick, initLedger };

@@ -15,7 +15,7 @@ const addSearchTerms = () => {
     element.setAttribute('data-mhui-search', 'true');
 
     const item = $(element).data()?.item;
-    if (! item?.type || ! item?.name) {
+    if (!item?.type || !item?.name) {
       return;
     }
 

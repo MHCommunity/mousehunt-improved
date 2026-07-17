@@ -19,7 +19,7 @@ const rotations = {
     ],
   },
   balacks_cove: {
-    name: 'Balack\'s Cove',
+    name: "Balack's Cove",
     // The app's BalacksCoveView: the tide rises through one 560 minute half cycle and falls
     // back through the next, so a rotation is 1120 minutes. This epoch is the first minute of
     // a low tide. The app says 'Medium Tide', but the web HUD this sits beside says 'Mid Tide'.
@@ -53,7 +53,7 @@ const rotations = {
     //
     // Timers+ starts 15 hours into Hero, splitting it across the wrap; starting 15 hours
     // earlier keeps Hero in one piece.
-    epoch: 1503597600 - (15 * 3600),
+    epoch: 1503597600 - 15 * 3600,
     stages: [
       { name: 'Hero', length: 30 * 60 },
       { name: 'Knight', length: 16 * 60, note: 'rising' },
@@ -88,14 +88,14 @@ const rotationLocations = Object.keys(rotations);
  */
 const getLocationRotation = (location) => {
   const rotation = rotations[location];
-  if (! rotation) {
+  if (!rotation) {
     return false;
   }
 
   const stages = rotation.stages;
   const rotationLength = stages.reduce((total, stage) => total + stage.length, 0);
 
-  const elapsed = ((Date.now() / 1000) - rotation.epoch) / 60;
+  const elapsed = (Date.now() / 1000 - rotation.epoch) / 60;
   const minutesIntoRotation = ((elapsed % rotationLength) + rotationLength) % rotationLength;
 
   // Walk the stages until we find the one we're currently in.
@@ -107,7 +107,7 @@ const getLocationRotation = (location) => {
   }
 
   const current = stages[index];
-  const minutesLeft = (stageStart + current.length) - minutesIntoRotation;
+  const minutesLeft = stageStart + current.length - minutesIntoRotation;
 
   // Walk the rest of the rotation, keeping the first time we come across each stage.
   const upcoming = [];
@@ -117,7 +117,7 @@ const getLocationRotation = (location) => {
   for (let offset = 1; offset <= stages.length; offset += 1) {
     const stage = stages[(index + offset) % stages.length];
 
-    if (! seen.has(stage.name)) {
+    if (!seen.has(stage.name)) {
       seen.add(stage.name);
 
       upcoming.push({
@@ -169,8 +169,4 @@ const formatRotationTime = (minutes, showSeconds = false) => {
   return `${Math.ceil(totalSeconds / 60)}m`;
 };
 
-export {
-  formatRotationTime,
-  getLocationRotation,
-  rotationLocations
-};
+export { formatRotationTime, getLocationRotation, rotationLocations };

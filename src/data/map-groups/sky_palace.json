@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Empyrean Sky Palace Map"
-  ],
+  "names": ["Empyrean Sky Palace Map"],
   "categories": [
     {
       "name": "Arcane",
@@ -242,12 +240,7 @@
       "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
       "color": "#f2f2f2",
       "color-dark": "#55585e",
-      "mice": [
-        "fog_warden",
-        "frost_warden",
-        "rain_warden",
-        "wind_warden"
-      ]
+      "mice": ["fog_warden", "frost_warden", "rain_warden", "wind_warden"]
     },
     {
       "name": "Launchpad",
@@ -255,10 +248,7 @@
       "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
       "color": "#c97c49",
       "color-dark": "#68452e",
-      "mice": [
-        "cloud_miner",
-        "launchpad_labourer"
-      ]
+      "mice": ["cloud_miner", "launchpad_labourer"]
     },
     {
       "name": "Other",
@@ -266,10 +256,7 @@
       "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
       "color": "#d9e5ef",
       "color-dark": "#40576a",
-      "mice": [
-        "richard_rich",
-        "empyrean_loot_cache_guardian"
-      ]
+      "mice": ["richard_rich", "empyrean_loot_cache_guardian"]
     }
   ],
   "subcategories": [

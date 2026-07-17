@@ -1,7 +1,5 @@
 {
-  "names": [
-    "M1000 Team Research Expedition Map"
-  ],
+  "names": ["M1000 Team Research Expedition Map"],
   "categories": [
     {
       "name": "Paragons",
@@ -9,16 +7,7 @@
       "icon": "/items/bait/large/b6bf3d7d2a0fb563572f7eb4f03071b9.png",
       "color": "#d0def7",
       "color-dark": "#1d3b72",
-      "mice": [
-        "arcane_paragon",
-        "draconic_paragon",
-        "forgotten_paragon",
-        "hydro_paragon",
-        "law_paragon",
-        "physical_paragon",
-        "shadow_paragon",
-        "tactical_paragon"
-      ]
+      "mice": ["arcane_paragon", "draconic_paragon", "forgotten_paragon", "hydro_paragon", "law_paragon", "physical_paragon", "shadow_paragon", "tactical_paragon"]
     },
     {
       "name": "Sky Palace",
@@ -26,14 +15,7 @@
       "icon": "/items/bait/large/0ae707c97067446e1dffa95eca697c3b_v2.png",
       "color": "#c9daf8",
       "color-dark": "#1d3c72",
-      "mice": [
-        "empyrean_treasure_guardian",
-        "empyrean_oreglass_miner",
-        "empyrean_cloudstone_miner",
-        "empyrean_charm_hoarder",
-        "empyrean_loot_cache_guardian",
-        "richard_rich"
-      ]
+      "mice": ["empyrean_treasure_guardian", "empyrean_oreglass_miner", "empyrean_cloudstone_miner", "empyrean_charm_hoarder", "empyrean_loot_cache_guardian", "richard_rich"]
     },
     {
       "name": "Floating Islands: Sky Pirates",
@@ -41,10 +23,7 @@
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
       "color": "#ead1dc",
       "color-dark": "#622d44",
-      "mice": [
-        "admiral_cloudbeard",
-        "empyrean_pirate"
-      ]
+      "mice": ["admiral_cloudbeard", "empyrean_pirate"]
     },
     {
       "name": "Bountiful Beanstalk",
@@ -52,12 +31,7 @@
       "icon": "/items/bait/large/86f620c07ab394de415fb258cefbf1d8.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
-      "mice": [
-        "mythical_giant_king",
-        "malevolent_maestro",
-        "dungeon_master",
-        "vinneus_stalkhome"
-      ]
+      "mice": ["mythical_giant_king", "malevolent_maestro", "dungeon_master", "vinneus_stalkhome"]
     },
     {
       "name": "Zokor",
@@ -65,13 +39,7 @@
       "icon": "/items/bait/large/9f8190c4aa5465cf36eddbc11e8f49e7.png",
       "color": "#efcf86",
       "color-dark": "#72581d",
-      "mice": [
-        "retired_minotaur",
-        "soul_binder",
-        "manaforge_weapon_master",
-        "manaforge_smith",
-        "molten_midas"
-      ]
+      "mice": ["retired_minotaur", "soul_binder", "manaforge_weapon_master", "manaforge_smith", "molten_midas"]
     },
     {
       "name": "Zugzwang's Tower",
@@ -124,10 +92,7 @@
       "icon": "/items/bait/large/fcd306116ab4e8f36a801b69d506401f.png",
       "color": "#f9cb9c",
       "color-dark": "#72481d",
-      "mice": [
-        "spice_sorcerer",
-        "nachous"
-      ]
+      "mice": ["spice_sorcerer", "nachous"]
     },
     {
       "name": "Whisker Woods Rift",
@@ -135,11 +100,7 @@
       "icon": "/items/bait/large/72c907ab7ed5661f1ec8e740e03584d9.png",
       "color": "#b5a1e3",
       "color-dark": "#38216e",
-      "mice": [
-        "rift_centaur",
-        "rift_cyclops",
-        "rift_hydra"
-      ]
+      "mice": ["rift_centaur", "rift_cyclops", "rift_hydra"]
     },
     {
       "name": "Valour Rift",
@@ -147,11 +108,7 @@
       "icon": "/items/bait/large/4641aed8c8e370fd1193207961f296ec.png",
       "color": "#b4a7d6",
       "color-dark": "#3c2d61",
-      "mice": [
-        "rift_gaunt_monster",
-        "rift_gaunt_eclipse",
-        "rift_gaunt_final_eclipse"
-      ]
+      "mice": ["rift_gaunt_monster", "rift_gaunt_eclipse", "rift_gaunt_final_eclipse"]
     },
     {
       "name": "Burroughs Rift",
@@ -159,10 +116,7 @@
       "icon": "/items/bait/large/b6dba4c5dfd19635ac386776fdfdf342.png",
       "color": "#b6d7a8",
       "color-dark": "#3d622d",
-      "mice": [
-        "rift_menace",
-        "rift_monstrous_abomination"
-      ]
+      "mice": ["rift_menace", "rift_monstrous_abomination"]
     },
     {
       "name": "Furoma",
@@ -208,11 +162,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ea9999",
       "color-dark": "#721d1d",
-      "mice": [
-        "desert_boss",
-        "desert_elite_gaurd",
-        "desert_beast"
-      ]
+      "mice": ["desert_boss", "desert_elite_gaurd", "desert_beast"]
     },
     {
       "name": "Fort Rox",
@@ -220,10 +170,7 @@
       "icon": "/items/bait/large/0d69edd56ca4ff2a1919654b4104013b.png",
       "color": "#fff2cc",
       "color-dark": "#725c1d",
-      "mice": [
-        "monster_of_the_meteor",
-        "dawn_guardian"
-      ]
+      "mice": ["monster_of_the_meteor", "dawn_guardian"]
     },
     {
       "name": "Fungal Cavern",
@@ -231,20 +178,14 @@
       "icon": "/items/crafting_items/large/5a934d4f696aca2796b2c81a0f2a6e0a.png",
       "color": "#acf28d",
       "color-dark": "#37721d",
-      "mice": [
-        "diamondhide",
-        "huntereater"
-      ]
+      "mice": ["diamondhide", "huntereater"]
     },
     {
       "name": "Sunken City",
       "id": "m1000team-sunken-city",
       "color": "#9fc5e8",
       "color-dark": "#1d4972",
-      "mice": [
-        "tritus",
-        "ancient_of_the_deep"
-      ]
+      "mice": ["tritus", "ancient_of_the_deep"]
     },
     {
       "name": "Living Garden",
@@ -252,11 +193,7 @@
       "icon": "/items/bait/large/6aae69535c9c12bdaf818b883e7cdf2b.png",
       "color": "#e6d5b8",
       "color-dark": "#6a5025",
-      "mice": [
-        "twisted_carmine",
-        "shattered_carmine",
-        "carmine"
-      ]
+      "mice": ["twisted_carmine", "shattered_carmine", "carmine"]
     },
     {
       "name": "Lost City",
@@ -264,10 +201,7 @@
       "icon": "/items/bait/large/b088026b83aec9be3f9216c45acec1d5.png",
       "color": "#c37aa1",
       "color-dark": "#622c49",
-      "mice": [
-        "dark_magi",
-        "cursed_librarian"
-      ]
+      "mice": ["dark_magi", "cursed_librarian"]
     },
     {
       "name": "Sand Dunes",
@@ -275,10 +209,7 @@
       "icon": "/items/bait/large/b088026b83aec9be3f9216c45acec1d5.png",
       "color": "#fce5cd",
       "color-dark": "#72481d",
-      "mice": [
-        "king_grub",
-        "king_scarab"
-      ]
+      "mice": ["king_grub", "king_scarab"]
     },
     {
       "name": "Iceberg",
@@ -286,10 +217,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#c3def5",
       "color-dark": "#1d4b72",
-      "mice": [
-        "icewing",
-        "deep"
-      ]
+      "mice": ["icewing", "deep"]
     },
     {
       "name": "Dracano",
@@ -297,11 +225,7 @@
       "icon": "/items/bait/large/7b474ae8c3f0e5bab2009487f6edbd3a.png",
       "color": "#cf9e64",
       "color-dark": "#6d4b22",
-      "mice": [
-        "dragon",
-        "draconic_warden",
-        "whelpling"
-      ]
+      "mice": ["dragon", "draconic_warden", "whelpling"]
     },
     {
       "name": "Tribal Isles",
@@ -330,23 +254,14 @@
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#f4cccc",
       "color-dark": "#721d1d",
-      "mice": [
-        "abominable_snow",
-        "big_bad_burroughs",
-        "monster",
-        "menace"
-      ]
+      "mice": ["abominable_snow", "big_bad_burroughs", "monster", "menace"]
     },
     {
       "name": "Gnawnia & Whisker Woods",
       "id": "m1000team-gnawnia-whisker-woods",
       "color": "#b4ffff",
       "color-dark": "#1d7272",
-      "mice": [
-        "captain_croissant",
-        "eclipse",
-        "silth"
-      ]
+      "mice": ["captain_croissant", "eclipse", "silth"]
     },
     {
       "name": "Acolyte Realm",
@@ -354,10 +269,7 @@
       "icon": "/items/bait/large/5de48a221f54512fbe18177f57bc4614.png",
       "color": "#cc8282",
       "color-dark": "#652929",
-      "mice": [
-        "acolyte",
-        "chrono"
-      ]
+      "mice": ["acolyte", "chrono"]
     },
     {
       "name": "Table of Contents",
@@ -365,18 +277,14 @@
       "icon": "/items/bait/large/38e4c8bed6a1a021e307a950bb51399d.png",
       "color": "#ffe599",
       "color-dark": "#725c1d",
-      "mice": [
-        "bitter_grammarian"
-      ]
+      "mice": ["bitter_grammarian"]
     },
     {
       "name": "Other",
       "id": "m1000team-other",
       "color": "#c2c2c2",
       "color-dark": "#5d3232",
-      "mice": [
-        "m400"
-      ]
+      "mice": ["m400"]
     }
   ],
   "subcategories": [

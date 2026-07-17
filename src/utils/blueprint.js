@@ -12,17 +12,17 @@ let addedEvent = false;
  */
 const toggleBlueprint = (id, content) => {
   const container = document.querySelector('#mousehuntContainer');
-  if (! container) {
+  if (!container) {
     return;
   }
 
   const blueprint = document.querySelector('.trapSelectorView__blueprint');
-  if (! blueprint) {
+  if (!blueprint) {
     return;
   }
 
   const browserStateParent = document.querySelector('.trapSelectorView__browserStateParent');
-  if (! browserStateParent) {
+  if (!browserStateParent) {
     return;
   }
 
@@ -31,12 +31,7 @@ const toggleBlueprint = (id, content) => {
     existing.remove();
   }
 
-  const wrapper = makeElement('div', [
-    'trapSelectorView__browserState',
-    'trapSelectorView__browserContainer',
-    'mh-improved-blueprint',
-    `mh-improved-blueprint--${id}`
-  ]);
+  const wrapper = makeElement('div', ['trapSelectorView__browserState', 'trapSelectorView__browserContainer', 'mh-improved-blueprint', `mh-improved-blueprint--${id}`]);
   wrapper.id = `mh-improved-blueprint--${id}`;
   const inner = makeElement('div', 'trapSelectorView__outerBlock');
 
@@ -61,7 +56,7 @@ const toggleBlueprint = (id, content) => {
     browserStateParent.classList.add(`trapSelectorView__browserStateParent--${id}`);
   }
 
-  if (! addedEvent) {
+  if (!addedEvent) {
     onEvent('camp_page_toggle_blueprint', () => {
       activeBlueprint = null;
     });
@@ -69,6 +64,4 @@ const toggleBlueprint = (id, content) => {
   }
 };
 
-export {
-  toggleBlueprint
-};
+export { toggleBlueprint };

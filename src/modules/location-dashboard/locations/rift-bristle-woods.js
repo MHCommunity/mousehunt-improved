@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestRiftBristleWoods) {
+  if (!quests.QuestRiftBristleWoods) {
     return '';
   }
 

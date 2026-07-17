@@ -1,10 +1,4 @@
-import {
-  addHudStyles,
-  getData,
-  makeElement,
-  onRequest,
-  onTurn
-} from '@utils';
+import { addHudStyles, getData, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -72,7 +66,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
  * Update the HUD.
  */
 const hud = () => {
-  if (! user?.quests?.QuestRiftBurroughs) {
+  if (!user?.quests?.QuestRiftBurroughs) {
     return;
   }
 
@@ -83,7 +77,7 @@ const hud = () => {
   const mistTier = quest?.mist_tier || 'tier_0';
 
   const hudEl = document.querySelector('#hudLocationContent .riftBurroughsHud');
-  if (! hudEl) {
+  if (!hudEl) {
     return;
   }
 
@@ -119,17 +113,17 @@ const hud = () => {
 
   let currentType = null;
   switch (armedBait) {
-  case 'brie_string_cheese':
-  case 'marble_string_cheese':
-  case 'magical_string_cheese':
-    currentType = 'string';
-    break;
-  case 'polluted_parmesan_cheese':
-    currentType = 'polluted';
-    break;
-  case 'terre_ricotta_cheese':
-    currentType = 'terra';
-    break;
+    case 'brie_string_cheese':
+    case 'marble_string_cheese':
+    case 'magical_string_cheese':
+      currentType = 'string';
+      break;
+    case 'polluted_parmesan_cheese':
+      currentType = 'polluted';
+      break;
+    case 'terre_ricotta_cheese':
+      currentType = 'terra';
+      break;
   }
 
   makeMiceList('string', 'Magical String', availableMice.string, currentType, mouseWrapper);
@@ -150,7 +144,7 @@ export default async () => {
   onRequest('*', hud);
   onTurn(hud, 300);
 
-  if (! areaMice) {
+  if (!areaMice) {
     areaMice = await getData('brift-mice-per-mist-level');
   }
 

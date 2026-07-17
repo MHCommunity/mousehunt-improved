@@ -12,14 +12,7 @@ const repairAttemptedDatabases = new Set();
 // Errors that can succeed on a clean retry with a fresh connection: the
 // browser force-closing the backend, another tab's upgrade closing our
 // connection, or an internal abort.
-const transientErrorNames = new Set([
-  'AbortError',
-  'InvalidStateError',
-  'NotReadableError',
-  'TimeoutError',
-  'TransactionInactiveError',
-  'UnknownError',
-]);
+const transientErrorNames = new Set(['AbortError', 'InvalidStateError', 'NotReadableError', 'TimeoutError', 'TransactionInactiveError', 'UnknownError']);
 
 // One shared connection per database, reused across operations. Each entry is
 // { promise, db }: the promise so concurrent operations during boot share a
@@ -47,14 +40,16 @@ const unavailableDatabases = new Set();
  */
 const notifyDatabaseIssue = (context, databaseName, error) => {
   try {
-    globalThis.dispatchEvent(new CustomEvent('mh-improved-db-issue', {
-      detail: {
-        context,
-        databaseName,
-        errorName: error?.name,
-        errorMessage: error?.message || (error ? String(error) : undefined),
-      },
-    }));
+    globalThis.dispatchEvent(
+      new CustomEvent('mh-improved-db-issue', {
+        detail: {
+          context,
+          databaseName,
+          errorName: error?.name,
+          errorMessage: error?.message || (error ? String(error) : undefined),
+        },
+      })
+    );
   } catch {
     // Reporting is best-effort.
   }
@@ -77,11 +72,12 @@ const requestPersistentStorage = () => {
   hasRequestedPersistence = true;
 
   try {
-    if (navigator.userAgent.includes('Firefox') || ! navigator.storage?.persist) {
+    if (navigator.userAgent.includes('Firefox') || !navigator.storage?.persist) {
       return;
     }
 
-    navigator.storage.persisted()
+    navigator.storage
+      .persisted()
       .then((persisted) => persisted || navigator.storage.persist())
       .catch(() => {});
   } catch {
@@ -124,7 +120,7 @@ const closeConnection = (databaseName) => {
  */
 const evictConnection = (databaseName, db) => {
   const entry = openConnections.get(databaseName);
-  if (entry && (entry.db === db || ! entry.db)) {
+  if (entry && (entry.db === db || !entry.db)) {
     openConnections.delete(databaseName);
   }
 };
@@ -149,8 +145,7 @@ const isErrorNamed = (error, name) => error && name === error.name;
  * @return {boolean} Whether the record's value is permanently unreadable.
  */
 const isUnreadableValueError = (error) => {
-  return isErrorNamed(error, 'NotReadableError') ||
-    (isErrorNamed(error, 'UnknownError') && (error.message || '').includes('large IndexedDB value'));
+  return isErrorNamed(error, 'NotReadableError') || (isErrorNamed(error, 'UnknownError') && (error.message || '').includes('large IndexedDB value'));
 };
 
 /**
@@ -163,16 +158,14 @@ const isUnreadableValueError = (error) => {
  */
 const openDatabase = (databaseName, version = dbVersion) => {
   return new Promise((resolve, reject) => {
-    const request = version
-      ? indexedDB.open(`mh-improved-${databaseName}`, version)
-      : indexedDB.open(`mh-improved-${databaseName}`);
+    const request = version ? indexedDB.open(`mh-improved-${databaseName}`, version) : indexedDB.open(`mh-improved-${databaseName}`);
     let settled = false;
 
     // A wedged backing store can leave the open request pending forever with
     // no error or blocked event, which would block every feature waiting on
     // this database. Give up and skip the database for this page load.
     const timeout = setTimeout(() => {
-      if (! settled) {
+      if (!settled) {
         settled = true;
         unavailableDatabases.add(databaseName);
         console.warn(`IndexedDB "${databaseName}" open timed out; skipping it for this page load.`); // eslint-disable-line no-console
@@ -184,7 +177,7 @@ const openDatabase = (databaseName, version = dbVersion) => {
     request.onerror = (event) => {
       clearTimeout(timeout);
 
-      if (! settled) {
+      if (!settled) {
         settled = true;
         reject(event.target.error);
       }
@@ -195,7 +188,7 @@ const openDatabase = (databaseName, version = dbVersion) => {
     request.onblocked = () => {
       clearTimeout(timeout);
 
-      if (! settled) {
+      if (!settled) {
         console.warn(`IndexedDB "${databaseName}" upgrade blocked by another connection.`); // eslint-disable-line no-console
         settled = true;
         resolve(null);
@@ -239,7 +232,7 @@ const openDatabase = (databaseName, version = dbVersion) => {
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
 
-      if (! db.objectStoreNames.contains(databaseName)) {
+      if (!db.objectStoreNames.contains(databaseName)) {
         db.createObjectStore(databaseName, { keyPath: 'id' });
       }
     };
@@ -301,7 +294,7 @@ const deleteForRepair = async (databaseName) => {
  * @return {Promise<IDBDatabase|null>} The recreated database, or null if the repair failed.
  */
 const repairDatabase = async (databaseName) => {
-  if (! await deleteForRepair(databaseName)) {
+  if (!(await deleteForRepair(databaseName))) {
     return null;
   }
 
@@ -350,7 +343,7 @@ const connectDatabase = async (databaseName) => {
 
   // A database missing its object store can't serve any requests and holds
   // no data, so recreating it is safe regardless of which database it is.
-  if (db && ! db.objectStoreNames.contains(databaseName)) {
+  if (db && !db.objectStoreNames.contains(databaseName)) {
     closeDatabase(db);
     return await repairDatabase(databaseName);
   }
@@ -372,7 +365,7 @@ const database = async (databaseName) => {
   // Accessing indexedDB itself can throw in restricted contexts (e.g. some
   // privacy modes), so treat that the same as it being absent.
   try {
-    if (! globalThis.indexedDB) {
+    if (!globalThis.indexedDB) {
       return null;
     }
   } catch {
@@ -386,7 +379,7 @@ const database = async (databaseName) => {
   requestPersistentStorage();
 
   let entry = openConnections.get(databaseName);
-  if (! entry) {
+  if (!entry) {
     entry = {};
     entry.promise = connectDatabase(databaseName).then((db) => {
       if (openConnections.get(databaseName) === entry) {
@@ -443,7 +436,7 @@ const handleRequestError = (request, setError) => {
  */
 const dbOperation = async (databaseName, mode, runRequest, fallback, onFinalError, attempt = 0) => {
   const db = await database(databaseName);
-  if (! db) {
+  if (!db) {
     return fallback;
   }
 
@@ -488,10 +481,8 @@ const dbOperation = async (databaseName, mode, runRequest, fallback, onFinalErro
 
     // A write to a user-data database ran out of quota. The caches are
     // regenerable, so free the space they hold and try the write once more.
-    if (0 === attempt && isErrorNamed(error, 'QuotaExceededError') && ! regenerableDatabases.has(databaseName)) {
-      await Promise.all([...regenerableDatabases].map(
-        (cacheName) => databaseDelete(cacheName).catch(() => {})
-      ));
+    if (0 === attempt && isErrorNamed(error, 'QuotaExceededError') && !regenerableDatabases.has(databaseName)) {
+      await Promise.all([...regenerableDatabases].map((cacheName) => databaseDelete(cacheName).catch(() => {})));
 
       return await dbOperation(databaseName, mode, runRequest, fallback, onFinalError, attempt + 1);
     }
@@ -500,7 +491,7 @@ const dbOperation = async (databaseName, mode, runRequest, fallback, onFinalErro
     // Fall through to onFinalError so the caller can heal just that record
     // (dbGet deletes it; dbGetAll reads around it). Reserve the whole-database
     // repair for errors that a targeted delete can't resolve.
-    if (attempt < 2 && regenerableDatabases.has(databaseName) && ! isUnreadableValueError(error)) {
+    if (attempt < 2 && regenerableDatabases.has(databaseName) && !isUnreadableValueError(error)) {
       closeConnection(databaseName);
 
       if (await deleteForRepair(databaseName)) {
@@ -524,19 +515,25 @@ const dbOperation = async (databaseName, mode, runRequest, fallback, onFinalErro
  * @return {Promise} Promise that resolves with the item, or undefined if unavailable.
  */
 const dbGet = async (databaseName, id) => {
-  return dbOperation(databaseName, 'readonly', (objectStore, setResult, setError) => {
-    const request = objectStore.get(id);
-    request.onsuccess = (event) => setResult(event.target.result);
-    handleRequestError(request, setError);
-  }, undefined, (error) => {
-    // A record whose stored value can't be read back stays unreadable
-    // forever, and its data is already lost. Delete it so the store heals
-    // instead of erroring on every future read of this id.
-    if (isUnreadableValueError(error)) {
-      console.warn(`Deleting unreadable IndexedDB record "${id}" from "${databaseName}".`); // eslint-disable-line no-console
-      dbDelete(databaseName, id);
+  return dbOperation(
+    databaseName,
+    'readonly',
+    (objectStore, setResult, setError) => {
+      const request = objectStore.get(id);
+      request.onsuccess = (event) => setResult(event.target.result);
+      handleRequestError(request, setError);
+    },
+    undefined,
+    (error) => {
+      // A record whose stored value can't be read back stays unreadable
+      // forever, and its data is already lost. Delete it so the store heals
+      // instead of erroring on every future read of this id.
+      if (isUnreadableValueError(error)) {
+        console.warn(`Deleting unreadable IndexedDB record "${id}" from "${databaseName}".`); // eslint-disable-line no-console
+        dbDelete(databaseName, id);
+      }
     }
-  });
+  );
 };
 
 /**
@@ -589,26 +586,31 @@ const dbDelete = async (databaseName, id) => {
 const dbGetAllSkippingUnreadable = async (databaseName) => {
   // Walk the keys first — a key cursor never reads values, so it works even
   // when some values are corrupt.
-  const ids = await dbOperation(databaseName, 'readonly', (objectStore, setResult, setError) => {
-    const keys = [];
-    const request = objectStore.openKeyCursor();
+  const ids = await dbOperation(
+    databaseName,
+    'readonly',
+    (objectStore, setResult, setError) => {
+      const keys = [];
+      const request = objectStore.openKeyCursor();
 
-    request.onsuccess = (event) => {
-      const cursor = event.target.result;
+      request.onsuccess = (event) => {
+        const cursor = event.target.result;
 
-      if (! cursor) {
-        setResult(keys);
-        return;
-      }
+        if (!cursor) {
+          setResult(keys);
+          return;
+        }
 
-      keys.push(cursor.key);
-      cursor.continue();
-    };
+        keys.push(cursor.key);
+        cursor.continue();
+      };
 
-    handleRequestError(request, setError);
-  }, null);
+      handleRequestError(request, setError);
+    },
+    null
+  );
 
-  if (! ids) {
+  if (!ids) {
     return [];
   }
 
@@ -638,26 +640,32 @@ const dbGetAllSkippingUnreadable = async (databaseName) => {
 const dbGetAll = async (databaseName) => {
   let hitUnreadableRecord = false;
 
-  const items = await dbOperation(databaseName, 'readonly', (objectStore, setResult, setError) => {
-    const results = [];
-    const request = objectStore.openCursor();
+  const items = await dbOperation(
+    databaseName,
+    'readonly',
+    (objectStore, setResult, setError) => {
+      const results = [];
+      const request = objectStore.openCursor();
 
-    request.onsuccess = (event) => {
-      const cursor = event.target.result;
+      request.onsuccess = (event) => {
+        const cursor = event.target.result;
 
-      if (! cursor) {
-        setResult(results);
-        return;
-      }
+        if (!cursor) {
+          setResult(results);
+          return;
+        }
 
-      results.push(cursor.value);
-      cursor.continue();
-    };
+        results.push(cursor.value);
+        cursor.continue();
+      };
 
-    handleRequestError(request, setError);
-  }, [], (error) => {
-    hitUnreadableRecord = isUnreadableValueError(error);
-  });
+      handleRequestError(request, setError);
+    },
+    [],
+    (error) => {
+      hitUnreadableRecord = isUnreadableValueError(error);
+    }
+  );
 
   if (hitUnreadableRecord) {
     console.warn(`IndexedDB "${databaseName}" has unreadable records; reading around them.`); // eslint-disable-line no-console
@@ -675,11 +683,16 @@ const dbGetAll = async (databaseName) => {
  * @return {Promise<number>} Promise that resolves with the count of items.
  */
 const dbGetCount = async (databaseName) => {
-  return dbOperation(databaseName, 'readonly', (objectStore, setResult, setError) => {
-    const request = objectStore.count();
-    request.onsuccess = (event) => setResult(event.target.result);
-    handleRequestError(request, setError);
-  }, 0);
+  return dbOperation(
+    databaseName,
+    'readonly',
+    (objectStore, setResult, setError) => {
+      const request = objectStore.count();
+      request.onsuccess = (event) => setResult(event.target.result);
+      handleRequestError(request, setError);
+    },
+    0
+  );
 };
 
 /**
@@ -697,13 +710,4 @@ const dbDeleteAll = async (databaseName) => {
   });
 };
 
-export {
-  database,
-  databaseDelete,
-  dbGet,
-  dbSet,
-  dbDelete,
-  dbGetAll,
-  dbGetCount,
-  dbDeleteAll
-};
+export { database, databaseDelete, dbGet, dbSet, dbDelete, dbGetAll, dbGetCount, dbDeleteAll };

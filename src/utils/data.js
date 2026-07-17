@@ -67,7 +67,7 @@ const getSessionStorageKey = (key) => {
  * @return {string|null} The legacy key, if applicable.
  */
 const getLegacySessionStorageKey = (key) => {
-  if (! key.startsWith('mh-improved-')) {
+  if (!key.startsWith('mh-improved-')) {
     return null;
   }
 
@@ -94,7 +94,7 @@ const isValidDataFile = (file) => {
  */
 const getCacheExpiration = async (key = null) => {
   const expiration = await dbGet('cache', `expiration-${key}`);
-  if (! expiration || ! expiration.data || ! expiration.data.value) {
+  if (!expiration || !expiration.data || !expiration.data.value) {
     return null;
   }
 
@@ -114,7 +114,7 @@ const cacheSetExpiration = async (key, time = null) => {
     return await dbSet('cache', { id: `expiration-${key}`, value: Date.now() + time });
   }
 
-  const expirationTime = Date.now() + ((Math.floor(Math.random() * 4) + 3) * 24 * 60 * 60 * 1000);
+  const expirationTime = Date.now() + (Math.floor(Math.random() * 4) + 3) * 24 * 60 * 60 * 1000;
   return await dbSet('cache', { id: `expiration-${key}`, value: expirationTime });
 };
 
@@ -139,7 +139,7 @@ const cacheExpire = async (key) => {
 const isCacheExpired = async (key) => {
   const expiration = await getCacheExpiration(key);
 
-  if (! expiration) {
+  if (!expiration) {
     return true;
   }
 
@@ -161,7 +161,7 @@ const fetchData = async (key, retries = 0) => {
       headers: getHeaders(),
     });
 
-    if (! data.ok) {
+    if (!data.ok) {
       throw new Error(`Failed to fetch data for ${key}: ${data.status} ${data.statusText}`);
     }
 
@@ -198,7 +198,7 @@ const fetchMouseRip = async (path, { json = true } = {}) => {
       headers: getHeaders(),
     });
 
-    if (! response.ok) {
+    if (!response.ok) {
       return null;
     }
 
@@ -231,7 +231,7 @@ const hasValidData = (data) => {
  */
 const fetchDataVersions = async () => {
   const versions = await fetchMouseRip('versions');
-  if (! versions || typeof versions !== 'object' || Array.isArray(versions)) {
+  if (!versions || typeof versions !== 'object' || Array.isArray(versions)) {
     return null;
   }
 
@@ -260,12 +260,12 @@ const getCachedDataVersion = async (key) => {
  * @return {Object} The data.
  */
 const getData = async (key, force = false, expectedVersion = null) => {
-  if (! isValidDataFile(key)) {
+  if (!isValidDataFile(key)) {
     console.error(`Invalid data file requested: ${key}`); // eslint-disable-line no-console
     return {};
   }
 
-  if (! force) {
+  if (!force) {
     const cachedData = await cacheGet(key, false);
     if (hasValidData(cachedData)) {
       return cachedData;
@@ -277,7 +277,7 @@ const getData = async (key, force = false, expectedVersion = null) => {
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (hasValidData(data)) {
-    if (! expectedVersion) {
+    if (!expectedVersion) {
       const versions = await cacheGetNoExpiration('data-versions', {});
       expectedVersion = versions[key] || null;
     }
@@ -292,7 +292,7 @@ const getData = async (key, force = false, expectedVersion = null) => {
 
   const retryData = await fetchData(key);
   if (hasValidData(retryData)) {
-    if (! expectedVersion) {
+    if (!expectedVersion) {
       const versions = await cacheGetNoExpiration('data-versions', {});
       expectedVersion = versions[key] || null;
     }
@@ -348,7 +348,7 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
   const filesToUpdate = all ? validDataFiles : dataFilesToPreload;
   const versions = await fetchDataVersions();
 
-  if (! versions && ! downloadOnVersionFailure) {
+  if (!versions && !downloadOnVersionFailure) {
     return false;
   }
 
@@ -373,7 +373,7 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
     // and re-downloading it on every check; only refresh when it's missing or
     // invalid. When the whole manifest failed to load, fall through so the
     // legacy full-download fallback still refreshes everything.
-    if (versions && ! serverVersion && hasValidData(cachedData)) {
+    if (versions && !serverVersion && hasValidData(cachedData)) {
       await cacheSetExpiration(file);
       continue;
     }
@@ -383,7 +383,7 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
   }
 
   for (const file of filesToUpdate) {
-    if (versions && ! changedFiles.has(file)) {
+    if (versions && !changedFiles.has(file)) {
       continue;
     }
 
@@ -411,7 +411,8 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
  */
 const checkForDataUpdates = async () => {
   const lastChecked = await cacheGetNoExpiration('data-versions-last-checked', 0);
-  if (Date.now() - lastChecked < 3 * 60 * 60 * 1000) { // 3 hours.
+  if (Date.now() - lastChecked < 3 * 60 * 60 * 1000) {
+    // 3 hours.
     return false;
   }
 
@@ -462,7 +463,7 @@ const sessionSet = (key, value, retry = false) => {
   try {
     sessionStorage.setItem(storageKey, stringified);
   } catch (error) {
-    if ('QuotaExceededError' === error.name && ! retry) {
+    if ('QuotaExceededError' === error.name && !retry) {
       void clearCaches()
         .catch(() => {})
         .finally(() => {
@@ -488,7 +489,7 @@ const sessionGet = (key, defaultValue = false) => {
   const storageKey = getSessionStorageKey(key);
   const legacyKey = getLegacySessionStorageKey(key);
   const value = sessionStorage.getItem(storageKey) ?? (legacyKey ? sessionStorage.getItem(legacyKey) : null);
-  if (! value) {
+  if (!value) {
     return defaultValue;
   }
 
@@ -569,10 +570,7 @@ const lsSet = (key, value) => {
  * @return {Promise<Object>} The value that was set.
  */
 const cacheSet = async (key, value, expiration = null, version = null) => {
-  await Promise.all([
-    dbSet('cache', { id: key, value, version }),
-    cacheSetExpiration(key, expiration),
-  ]);
+  await Promise.all([dbSet('cache', { id: key, value, version }), cacheSetExpiration(key, expiration)]);
 
   return value;
 };
@@ -620,7 +618,7 @@ const cacheGetHelper = async (key, defaultValue = false) => {
 
   const cached = await dbGet('cache', key);
 
-  if (! cached?.data?.value) {
+  if (!cached?.data?.value) {
     return defaultValue;
   }
 
@@ -650,7 +648,7 @@ const cacheGet = async (key, defaultValue = false) => {
  */
 const cacheGetNoExpiration = async (key, defaultValue = false) => {
   const cached = await dbGet('cache', key);
-  if (! cached?.data?.value) {
+  if (!cached?.data?.value) {
     return defaultValue;
   }
 
@@ -663,10 +661,7 @@ const cacheGetNoExpiration = async (key, defaultValue = false) => {
  * @param {string} key Key to delete the value for.
  */
 const cacheDelete = async (key) => {
-  await Promise.all([
-    dbDelete('cache', key),
-    dbDelete('cache', `expiration-${key}`),
-  ]);
+  await Promise.all([dbDelete('cache', key), dbDelete('cache', `expiration-${key}`)]);
 };
 
 /**
@@ -689,7 +684,7 @@ const dataSet = async (key, value) => {
  */
 const dataGet = async (key, defaultValue = false) => {
   const cached = await dbGet('data', key);
-  if (! cached?.data?.value) {
+  if (!cached?.data?.value) {
     return defaultValue;
   }
 
@@ -719,5 +714,5 @@ export {
   sessionGet,
   sessionSet,
   sessionDelete,
-  sessionsDelete
+  sessionsDelete,
 };

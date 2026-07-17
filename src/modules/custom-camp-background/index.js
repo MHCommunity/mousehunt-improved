@@ -1,11 +1,4 @@
-import {
-  addSettingPreview,
-  addStyles,
-  flattenSettingOptions,
-  getSetting,
-  onEvent,
-  onNavigation
-} from '@utils';
+import { addSettingPreview, addStyles, flattenSettingOptions, getSetting, onEvent, onNavigation } from '@utils';
 
 import gradients from '@data/backgrounds.json';
 
@@ -61,7 +54,7 @@ const getPreviewItems = async () => {
 
 const addCampBackground = () => {
   const camp = document.querySelector('#mousehuntContainer.PageCamp');
-  if (! camp) {
+  if (!camp) {
     return;
   }
 
@@ -78,7 +71,7 @@ const addCampBackground = () => {
     return;
   }
 
-  if (! gradients) {
+  if (!gradients) {
     return;
   }
 
@@ -104,22 +97,27 @@ const init = () => {
     }
   });
 
-  onNavigation(() => {
-    getPreviewItems().then((items) => {
-      addSettingPreview({
-        id: 'custom-camp-background',
-        selector: '.mh-improved-custom-camp-bg-preview',
-        inputSelector: '#mousehunt-improved-settings-custom-camp-background select',
-        preview: false,
-        items,
-      });
-    }).catch(() => {
-      /* Failed to load camp background settings values */
-    });
-  }, {
-    page: 'preferences',
-    onLoad: true,
-  });
+  onNavigation(
+    () => {
+      getPreviewItems()
+        .then((items) => {
+          addSettingPreview({
+            id: 'custom-camp-background',
+            selector: '.mh-improved-custom-camp-bg-preview',
+            inputSelector: '#mousehunt-improved-settings-custom-camp-background select',
+            preview: false,
+            items,
+          });
+        })
+        .catch(() => {
+          /* Failed to load camp background settings values */
+        });
+    },
+    {
+      page: 'preferences',
+      onLoad: true,
+    }
+  );
 };
 
 /**

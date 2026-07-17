@@ -63,8 +63,4 @@ const migrateFlag = (oldKey, newKey) => {
   }
 };
 
-export {
-  getFlag,
-  getFlags,
-  migrateFlag
-};
+export { getFlag, getFlags, migrateFlag };

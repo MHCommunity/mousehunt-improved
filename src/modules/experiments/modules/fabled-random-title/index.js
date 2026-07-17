@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  getFlag,
-  isUserTitleAtLeast,
-  makeElement,
-  onNavigation,
-  onTurn
-} from '@utils';
+import { addStyles, getFlag, isUserTitleAtLeast, makeElement, onNavigation, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -16,7 +9,7 @@ let lastTitle = null;
  */
 const updateMaxTitleHud = () => {
   const title = document.querySelector('.mousehuntHud-userStat-maxTitle');
-  if (! title) {
+  if (!title) {
     return;
   }
 
@@ -780,7 +773,7 @@ const updateMaxTitleHud = () => {
   lastTitle = randomTitle;
 
   let titleText = title.querySelector('.mh-improved-random-title');
-  if (! titleText) {
+  if (!titleText) {
     title.innerText = '';
     titleText = makeElement('span', 'mh-improved-random-title', randomTitle);
     title.append(titleText);

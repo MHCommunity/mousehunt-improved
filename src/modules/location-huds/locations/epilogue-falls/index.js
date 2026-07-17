@@ -1,10 +1,4 @@
-import {
-  addHudStyles,
-  formatNumber,
-  makeElement,
-  onRequest,
-  onTurn
-} from '@utils';
+import { addHudStyles, formatNumber, makeElement, onRequest, onTurn } from '@utils';
 
 import folkloreForest from '../../shared/folklore-forest';
 
@@ -13,7 +7,7 @@ import styles from './styles.css';
 
 const highlightBarrelHealth = async () => {
   const healthContainer = document.querySelector('.headsUpDisplayEpilogueFallsView__barrelHealthContainer');
-  if (! healthContainer) {
+  if (!healthContainer) {
     return;
   }
 
@@ -40,17 +34,19 @@ const highlightBarrelHealth = async () => {
 
 const updateBarrelCraftDialog = async () => {
   const craftButton = document.querySelector('.headsUpDisplayEpilogueFallsView__craftBarrelButton');
-  if (! craftButton) {
+  if (!craftButton) {
     return;
   }
 
   craftButton.addEventListener('click', () => {
     user.quests.QuestEpilogueFalls?.barrels.forEach((barrel) => {
-      if (! barrel.can_craft && barrel?.cost?.length) {
+      if (!barrel.can_craft && barrel?.cost?.length) {
         barrel.cost.forEach((ingredient) => {
           const ownedQty = user.quests.QuestEpilogueFalls?.items[ingredient.type]?.quantity_unformatted;
           if (ingredient.quantity > ownedQty) {
-            const itemEl = document.querySelector(`.epilogueFallsBarrelChoiceDialogView__barrel[data-barrel-type='${barrel.type}'] .epilogueFallsBarrelChoiceDialogView__costItemThumbnail[style*='${ingredient.thumb_transparent}']`);
+            const itemEl = document.querySelector(
+              `.epilogueFallsBarrelChoiceDialogView__barrel[data-barrel-type='${barrel.type}'] .epilogueFallsBarrelChoiceDialogView__costItemThumbnail[style*='${ingredient.thumb_transparent}']`
+            );
             if (itemEl) {
               itemEl.classList.add('mh-improved-missing-ingredient');
             }
@@ -63,7 +59,7 @@ const updateBarrelCraftDialog = async () => {
 
 const updateBoostButton = (response) => {
   const boostButton = document.querySelector('.headsUpDisplayEpilogueFallsView__jetBoostButton');
-  if (! boostButton) {
+  if (!boostButton) {
     return;
   }
 
@@ -75,7 +71,7 @@ const updateBoostButton = (response) => {
   const userData = response?.user || window.user;
 
   const boostCost = userData?.quests?.QuestEpilogueFalls?.jet_boost?.current_boost_cost?.poetic_plank_stat_item || 0;
-  if (! boostCost || boostCost <= 0) {
+  if (!boostCost || boostCost <= 0) {
     return;
   }
 
@@ -101,7 +97,11 @@ export default async () => {
 
   run();
   onTurn(run, 250);
-  onRequest('environment/epilogue_falls.php', (resp) => {
-    setTimeout(updateBoostButton, 150, resp);
-  }, true);
+  onRequest(
+    'environment/epilogue_falls.php',
+    (resp) => {
+      setTimeout(updateBoostButton, 150, resp);
+    },
+    true
+  );
 };

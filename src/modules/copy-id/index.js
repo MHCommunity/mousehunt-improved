@@ -9,7 +9,7 @@ import styles from './styles.css';
  */
 const main = () => {
   const profilePic = document.querySelector('.mousehuntHud-userStatBar .mousehuntHud-profilePic');
-  if (! profilePic) {
+  if (!profilePic) {
     return;
   }
 

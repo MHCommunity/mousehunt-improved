@@ -35,13 +35,16 @@ const init = async () => {
 
   const modules = [
     { enabled: enabled.styles, load: journalStyles },
-    { enabled: enabled.list, load: () => {
-      if (enabled.icons || getSetting('better-journal.icons-minimal', false)) {
-        addStyles(listAndIconsStyles, 'better-journal-list-and-icons');
-      }
+    {
+      enabled: enabled.list,
+      load: () => {
+        if (enabled.icons || getSetting('better-journal.icons-minimal', false)) {
+          addStyles(listAndIconsStyles, 'better-journal-list-and-icons');
+        }
 
-      return journalList();
-    } },
+        return journalList();
+      },
+    },
     { enabled: enabled.icons, load: journalIcons },
     { enabled: enabled.replacements, load: journalReplacements },
     { enabled: enabled.goldAndPoints, load: journalGoldAndPoints },

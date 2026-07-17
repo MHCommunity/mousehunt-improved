@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Origin of Dragons Map"
-  ],
+  "names": ["Origin of Dragons Map"],
   "categories": [
     {
       "name": "Draconic Depths",
@@ -170,11 +168,7 @@
       "icon": "/environments/eefec52373c6cb93bcd55909cb477e47.jpg",
       "color": "#ff3c3c",
       "color-dark": "#7a2e2e",
-      "mice": [
-        "dragon",
-        "whelpling",
-        "draconic_warden"
-      ]
+      "mice": ["dragon", "whelpling", "draconic_warden"]
     },
     {
       "name": "Floating Islands",
@@ -252,10 +246,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#96b9dc",
       "color-dark": "#2e547a",
-      "mice": [
-        "geyser_eruption_dragon_wildfire",
-        "geyser_eruption_dragon_epic"
-      ]
+      "mice": ["geyser_eruption_dragon_wildfire", "geyser_eruption_dragon_epic"]
     },
     {
       "name": "Cinder-Brut",
@@ -263,10 +254,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#7fff66",
       "color-dark": "#326827",
-      "mice": [
-        "geyser_eruption_dragon_large",
-        "geyser_eruption_dragon_flaming"
-      ]
+      "mice": ["geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming"]
     },
     {
       "name": "BE Trio",
@@ -274,11 +262,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#ffb1b1",
       "color-dark": "#7a2e2e",
-      "mice": [
-        "geyser_eruption_dragon_hot",
-        "geyser_eruption_dragon_medium",
-        "geyser_eruption_dragon_medium_spice"
-      ]
+      "mice": ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"]
     },
     {
       "name": "Sizzle Mild",
@@ -286,10 +270,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#ffc816",
       "color-dark": "#685827",
-      "mice": [
-        "geyser_eruption_dragon_small",
-        "geyser_eruption_dragon_mild"
-      ]
+      "mice": ["geyser_eruption_dragon_small", "geyser_eruption_dragon_mild"]
     },
     {
       "name": "Pressure Set",
@@ -311,9 +292,7 @@
       "icon": "/environments/50c140c25725c308d70f14ef96279ab6.jpg",
       "color": "#f4cccc",
       "color-dark": "#7a2e2e",
-      "mice": [
-        "desert_beast"
-      ]
+      "mice": ["desert_beast"]
     },
     {
       "name": "Iceberg",
@@ -321,9 +300,7 @@
       "icon": "/environments/11939d9ac30a58d4b923915834764ff0.jpg",
       "color": "#99e6ff",
       "color-dark": "#2c627a",
-      "mice": [
-        "icewing"
-      ]
+      "mice": ["icewing"]
     }
   ],
   "subcategories": [

@@ -4,16 +4,16 @@ import { getCurrentPage, onNavigation, onRequest } from '@utils';
  * Add the adventure book class to the adventure book banner.
  */
 const addAdventureBookClass = () => {
-  if (! user?.quests?.QuestAdventureBook?.adventure?.can_claim) {
+  if (!user?.quests?.QuestAdventureBook?.adventure?.can_claim) {
     return;
   }
 
-  if (! getCurrentPage('camp')) {
+  if (!getCurrentPage('camp')) {
     return;
   }
 
   const adventureBook = document.querySelector('.adventureBookBanner');
-  if (! adventureBook) {
+  if (!adventureBook) {
     return;
   }
 

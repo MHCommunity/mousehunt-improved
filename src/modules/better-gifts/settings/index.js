@@ -21,7 +21,7 @@ export default async () => {
       value: 'skip',
     },
     {
-      name: 'Don\'t skip any gifts',
+      name: "Don't skip any gifts",
       value: 'no-skip',
     },
     {
@@ -63,7 +63,7 @@ export default async () => {
         type: 'multi-select',
         number: 1,
         options: orderOptions,
-      }
+      },
     },
     {
       id: 'better-gifts.ignore-bad-gifts',
@@ -74,12 +74,12 @@ export default async () => {
         type: 'multi-select',
         number: 1,
         options: skipBadGiftOptions,
-      }
+      },
     },
     {
       id: 'better-gifts.gift-button-opens-gift-selector',
       title: 'Gift button opens gift selector',
       default: false,
-    }
+    },
   ];
 };

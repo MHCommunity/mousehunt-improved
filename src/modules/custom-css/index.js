@@ -11,7 +11,7 @@ const stylesId = 'mh-improved-styles-mousehunt-improved-override-styles';
  */
 const applyCustomStyles = (customStyles = getSetting('override-styles')) => {
   const existingStyles = document.querySelector(`#${stylesId}`);
-  if (! customStyles) {
+  if (!customStyles) {
     existingStyles?.remove();
     return;
   }
@@ -32,7 +32,7 @@ const init = () => {
   });
 
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
-    if ('override-styles' === key && ! window.location.search.includes('no-custom-styles')) {
+    if ('override-styles' === key && !window.location.search.includes('no-custom-styles')) {
       applyCustomStyles(value);
     }
   });

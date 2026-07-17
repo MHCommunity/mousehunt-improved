@@ -6,16 +6,14 @@ let mice;
 
 const makeFullMouseImage = async (model) => {
   const entry = model.el;
-  if (! entry || ! entry.classList) {
+  if (!entry || !entry.classList) {
     return;
   }
 
-  const isCatchEntry = entry.classList.contains('catchsuccessloot') ||
-    entry.classList.contains('catchsuccess') ||
-    entry.classList.contains('catchsuccessprize');
+  const isCatchEntry = entry.classList.contains('catchsuccessloot') || entry.classList.contains('catchsuccess') || entry.classList.contains('catchsuccessprize');
 
   let mouseType = null;
-  if (! isCatchEntry) {
+  if (!isCatchEntry) {
     const isRh = entry.classList.contains('relicHunter_catch');
     if (isRh) {
       const journalImage = entry.querySelector('.journalimage img');
@@ -28,17 +26,17 @@ const makeFullMouseImage = async (model) => {
   }
 
   mouseType = model.mouseType;
-  if (! mouseType) {
+  if (!mouseType) {
     return;
   }
 
   const image = entry.querySelector('.journalimage img');
-  if (! image) {
+  if (!image) {
     return;
   }
 
   const mouse = mice.find((m) => m.type === mouseType);
-  if (! mouse) {
+  if (!mouse) {
     return;
   }
 

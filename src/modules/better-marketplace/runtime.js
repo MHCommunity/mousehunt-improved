@@ -46,12 +46,12 @@ const createMarketplaceRuntime = (dependencies = {}) => {
     }
 
     const session = currentSession;
-    if (! session) {
+    if (!session) {
       return;
     }
 
     const callback = decorators.get(session.type);
-    if (! callback) {
+    if (!callback) {
       return;
     }
 
@@ -85,7 +85,7 @@ const createMarketplaceRuntime = (dependencies = {}) => {
   };
 
   const queue = () => {
-    if (queued || ! currentSession) {
+    if (queued || !currentSession) {
       return;
     }
 
@@ -115,7 +115,7 @@ const createMarketplaceRuntime = (dependencies = {}) => {
   };
 
   const install = (marketplaceView) => {
-    if (! marketplaceView || installedViews.has(marketplaceView)) {
+    if (!marketplaceView || installedViews.has(marketplaceView)) {
       return;
     }
 
@@ -151,6 +151,4 @@ const createMarketplaceRuntime = (dependencies = {}) => {
   };
 };
 
-export {
-  createMarketplaceRuntime
-};
+export { createMarketplaceRuntime };

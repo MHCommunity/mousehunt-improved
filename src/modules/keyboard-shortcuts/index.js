@@ -1,14 +1,4 @@
-import {
-  addStyles,
-  createPopup,
-  getCurrentDialog,
-  getCurrentPage,
-  getSetting,
-  hasMiniCRE,
-  isAppleOS,
-  onNavigation,
-  saveSetting
-} from '@utils';
+import { addStyles, createPopup, getCurrentDialog, getCurrentPage, getSetting, hasMiniCRE, isAppleOS, onNavigation, saveSetting } from '@utils';
 
 import actions from './actions';
 
@@ -32,7 +22,7 @@ const getBaseShortcuts = () => {
     {
       id: 'horn',
       key: 'h',
-      description: 'Sound the Hunter\'s Horn',
+      description: "Sound the Hunter's Horn",
       action: () => {},
       category: 'misc',
     },
@@ -73,14 +63,14 @@ const getShortcuts = () => {
   const shortcuts = getBaseShortcuts();
 
   const saved = getSetting('keyboard-shortcuts.shortcuts', []);
-  if (! saved || ! saved.length) {
+  if (!saved || !saved.length) {
     return shortcuts;
   }
 
   // Merge the saved shortcuts with the defaults.
   saved.forEach((savedShortcut) => {
     const shortcut = shortcuts.find((s) => s.id === savedShortcut.id);
-    if (! shortcut) {
+    if (!shortcut) {
       return;
     }
 
@@ -103,7 +93,7 @@ const getShortcuts = () => {
 const saveShortcut = (shortcutId, shortcutKey) => {
   let saved = getSetting('keyboard-shortcuts.shortcuts', []);
 
-  if (! saved || ! saved.length) {
+  if (!saved || !saved.length) {
     saved = [];
   }
 
@@ -123,11 +113,7 @@ const saveShortcut = (shortcutId, shortcutKey) => {
   }
 
   // only save the shortcut if it's not the default, its not blank, delete, or backspace, and it's not already in use.
-  if (
-    toSave.key !== 'Backspace' &&
-    toSave.key !== 'Delete' &&
-    toSave.key !== ' '
-  ) {
+  if (toSave.key !== 'Backspace' && toSave.key !== 'Delete' && toSave.key !== ' ') {
     saved.push(toSave);
   }
 
@@ -169,34 +155,34 @@ const getKeyForDisplay = (keyEvent) => {
   }
 
   switch (keyEvent.key) {
-  case ' ':
-    keysToShow.push('Space');
-    break;
-  case 'ArrowUp':
-    keysToShow.push('↑');
-    break;
-  case 'ArrowDown':
-    keysToShow.push('↓');
-    break;
-  case 'ArrowLeft':
-    keysToShow.push('←');
-    break;
-  case 'ArrowRight':
-    keysToShow.push('→');
-    break;
-  case 'Backspace':
-    // if it's backspace, we want to clear the shortcut.
-    keysToShow.push('');
-    break;
-  default:
-    // if its a plain letter, then capitalize it.
-    if (keyEvent.key && keyEvent.key.length === 1) {
-      keysToShow.push(keyEvent.key.toUpperCase());
-    } else {
-      keysToShow.push(keyEvent.key);
-    }
+    case ' ':
+      keysToShow.push('Space');
+      break;
+    case 'ArrowUp':
+      keysToShow.push('↑');
+      break;
+    case 'ArrowDown':
+      keysToShow.push('↓');
+      break;
+    case 'ArrowLeft':
+      keysToShow.push('←');
+      break;
+    case 'ArrowRight':
+      keysToShow.push('→');
+      break;
+    case 'Backspace':
+      // if it's backspace, we want to clear the shortcut.
+      keysToShow.push('');
+      break;
+    default:
+      // if its a plain letter, then capitalize it.
+      if (keyEvent.key && keyEvent.key.length === 1) {
+        keysToShow.push(keyEvent.key.toUpperCase());
+      } else {
+        keysToShow.push(keyEvent.key);
+      }
 
-    break;
+      break;
   }
 
   keyString = keysToShow.join('<span class="connector"> + </span>');
@@ -347,7 +333,7 @@ const showHelpPopup = () => {
       shortcutsWrapper.classList.remove('editing');
       document.removeEventListener('keydown', keypressListener);
 
-      if (! id || ! key) {
+      if (!id || !key) {
         return;
       }
 
@@ -381,7 +367,7 @@ const showHelpPopup = () => {
       if (theShortcut) {
         // find the shortcut that matches the key and show an error message.
         const matchingShortcut = document.querySelector(`.mh-ui-keyboard-shortcut[data-shortcut-id="${theShortcut.id}"]`);
-        if (! matchingShortcut) {
+        if (!matchingShortcut) {
           return;
         }
 
@@ -418,7 +404,7 @@ const showHelpPopup = () => {
     if (resetButton) {
       resetButton.addEventListener('click', () => {
         const defaultShortcut = getBaseShortcuts().find((s) => s.id === shortcutId);
-        if (! defaultShortcut) {
+        if (!defaultShortcut) {
           return;
         }
 
@@ -462,13 +448,7 @@ const listenForKeypresses = () => {
       s.altKey = s.altKey || false;
       s.shiftKey = s.shiftKey || false;
 
-      return (
-        s.key === event.key &&
-        s.ctrlKey === event.ctrlKey &&
-        s.metaKey === event.metaKey &&
-        s.altKey === event.altKey &&
-        s.shiftKey === event.shiftKey
-      );
+      return s.key === event.key && s.ctrlKey === event.ctrlKey && s.metaKey === event.metaKey && s.altKey === event.altKey && s.shiftKey === event.shiftKey;
     });
 
     if (shortcut && shortcut.action) {
@@ -489,7 +469,7 @@ const openFromSettings = () => {
   }
 
   const openLink = document.querySelector('.mh-ui-keyboard-shortcuts-edit');
-  if (! openLink) {
+  if (!openLink) {
     return;
   }
 

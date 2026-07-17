@@ -1,8 +1,5 @@
 {
-  "names": [
-    "Sky Pirate Map (4 Person)",
-    "Sky Pirate Map (5 Person)"
-  ],
+  "names": ["Sky Pirate Map (4 Person)", "Sky Pirate Map (5 Person)"],
   "categories": [
     {
       "name": "Launchpad",
@@ -10,10 +7,7 @@
       "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
       "color": "#c97c49",
       "color-dark": "#6e3f20",
-      "mice": [
-        "launchpad_labourer",
-        "cloud_miner"
-      ]
+      "mice": ["launchpad_labourer", "cloud_miner"]
     },
     {
       "name": "Wardens",
@@ -21,12 +15,7 @@
       "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
       "color": "#c2c2c2",
       "color-dark": "#5c3131",
-      "mice": [
-        "rain_warden",
-        "fog_warden",
-        "frost_warden",
-        "wind_warden"
-      ]
+      "mice": ["rain_warden", "fog_warden", "frost_warden", "wind_warden"]
     },
     {
       "name": "Arcane",
@@ -195,11 +184,7 @@
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
       "color": "#eca4a6",
       "color-dark": "#76181b",
-      "mice": [
-        "suave_pirate",
-        "cutthroat_pirate",
-        "cutthroat_cannoneer"
-      ]
+      "mice": ["suave_pirate", "cutthroat_pirate", "cutthroat_cannoneer"]
     }
   ],
   "subcategories": [

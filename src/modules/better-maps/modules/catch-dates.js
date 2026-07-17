@@ -2,7 +2,7 @@ import { cacheGetNoExpiration, getMapData, makeElement, onEvent } from '@utils';
 
 const addCatchDates = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
-  if (! mapId) {
+  if (!mapId) {
     return;
   }
 
@@ -10,12 +10,12 @@ const addCatchDates = async () => {
   const goals = document.querySelectorAll('.treasureMapView-goals-group-goal.complete');
   goals.forEach((goal) => {
     const goalId = goal.getAttribute('data-unique-id') || goal.getAttribute('data-mouse-type');
-    if (! goalId || ! catchDates[goalId]) {
+    if (!goalId || !catchDates[goalId]) {
       return;
     }
 
     let dateEl = goal.querySelector('.mh-improved-catch-date');
-    if (! dateEl) {
+    if (!dateEl) {
       const nameEl = goal.querySelector('.treasureMapView-goals-group-goal-name');
       if (nameEl) {
         dateEl = makeElement('div', 'mh-improved-catch-date');
@@ -30,12 +30,12 @@ const addCatchDates = async () => {
 
 const addMapStartDate = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
-  if (! mapId) {
+  if (!mapId) {
     return;
   }
 
   const mapActions = document.querySelector('.treasureMapView-mapMenu-group-actions');
-  if (! mapActions) {
+  if (!mapActions) {
     return;
   }
 
@@ -45,12 +45,12 @@ const addMapStartDate = async () => {
   }
 
   const start = await cacheGetNoExpiration(`map-start-${mapId}`);
-  if (! start) {
+  if (!start) {
     return;
   }
 
   const mapData = await getMapData(mapId);
-  if (! mapData || ! mapData.hunters || ! mapData.hunters[0] || ! mapData.hunters[0].sn_user_id) {
+  if (!mapData || !mapData.hunters || !mapData.hunters[0] || !mapData.hunters[0].sn_user_id) {
     return;
   }
 
@@ -64,11 +64,11 @@ const addMapStartDate = async () => {
 export default () => {
   onEvent('map_show_goals_tab_click', (map) => {
     let shouldShowDates = map.viewing_user_is_on_map;
-    if (! shouldShowDates) {
+    if (!shouldShowDates) {
       shouldShowDates = map.map_data?.hunters?.some((hunter) => hunter.sn_user_id === user.sn_user_id);
     }
 
-    if (! shouldShowDates) {
+    if (!shouldShowDates) {
       return;
     }
 

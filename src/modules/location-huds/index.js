@@ -1,16 +1,5 @@
 // Location HUD improvements.
-import {
-  addBodyClass,
-  addStyles,
-  debuglog,
-  getCurrentLocation,
-  getSetting,
-  onEvent,
-  onNavigation,
-  onRequest,
-  removeBodyClassByPrefix,
-  removeHudStyles
-} from '@utils';
+import { addBodyClass, addStyles, debuglog, getCurrentLocation, getSetting, onEvent, onNavigation, onRequest, removeBodyClassByPrefix, removeHudStyles } from '@utils';
 
 import addToggleIcon from './toggle-icon';
 import settings from './settings';
@@ -104,12 +93,7 @@ const regionMapping = [
   },
   {
     region: 'event-locations',
-    locations: [
-      'halloween_event_location',
-      'winter_hunt_workshop',
-      'winter_hunt_fortress',
-      'great_winter_taiga',
-    ],
+    locations: ['halloween_event_location', 'winter_hunt_workshop', 'winter_hunt_fortress', 'great_winter_taiga'],
   },
 ];
 
@@ -215,7 +199,7 @@ const main = () => {
   const eventLocationsEnabled = getSetting('location-huds-enabled.event-locations', true);
   const activeEventLocation = eventLocationsEnabled && isEventLocation(currentLocation);
 
-  if (! locationEnabled && ! activeEventLocation) {
+  if (!locationEnabled && !activeEventLocation) {
     runtime.deactivate();
     removeBodyClassByPrefix('mh-improved-location-');
     return;
@@ -225,15 +209,18 @@ const main = () => {
   addBodyClass(`mh-improved-location-${location}`);
 
   const baseLocationHandler = locationEnabled ? locationHandlers[location] : null;
-  const locationHandler = (baseLocationHandler || activeEventLocation) ? () => {
-    if (activeEventLocation) {
-      activateEventLocation(currentLocation);
-    }
+  const locationHandler =
+    baseLocationHandler || activeEventLocation
+      ? () => {
+          if (activeEventLocation) {
+            activateEventLocation(currentLocation);
+          }
 
-    if (baseLocationHandler) {
-      baseLocationHandler();
-    }
-  } : null;
+          if (baseLocationHandler) {
+            baseLocationHandler();
+          }
+        }
+      : null;
 
   if (locationHandler) {
     runtime.activate(`${currentLocation}:${location}`, locationHandler);

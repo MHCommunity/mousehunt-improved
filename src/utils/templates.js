@@ -25,12 +25,12 @@ const onRenderCallbacks = {};
  * Initialize template extensions immediately when module loads.
  */
 const initializeTemplateExtensions = () => {
-  if (! hasExtendedRenderFromFile) {
+  if (!hasExtendedRenderFromFile) {
     extenderRenderFromFile();
     hasExtendedRenderFromFile = true;
   }
 
-  if (! hasExtendedRender) {
+  if (!hasExtendedRender) {
     extendRender();
     hasExtendedRender = true;
   }
@@ -47,24 +47,24 @@ const initializeTemplateExtensions = () => {
  * @param {boolean}  [options.after]  Whether to run the callback after the template is rendered.
  */
 const onRender = ({ group, layout = 'layout', callback, before = false, after = false }) => {
-  if (! hasExtendedRenderFromFile) {
+  if (!hasExtendedRenderFromFile) {
     extenderRenderFromFile();
     hasExtendedRenderFromFile = true;
   }
 
-  if (! hasExtendedRender) {
+  if (!hasExtendedRender) {
     extendRender();
     hasExtendedRender = true;
   }
 
-  if (! onRenderCallbacks[group]) {
+  if (!onRenderCallbacks[group]) {
     onRenderCallbacks[group] = {};
   }
 
-  if (! onRenderCallbacks[group][layout]) {
+  if (!onRenderCallbacks[group][layout]) {
     onRenderCallbacks[group][layout] = {
       before: [],
-      after: []
+      after: [],
     };
   }
 
@@ -85,11 +85,7 @@ const extenderRenderFromFile = () => {
   _templateRenderFromFile = hg.utils.TemplateUtil.renderFromFile;
   hg.utils.TemplateUtil.renderFromFile = (group, type, data) => {
     // Call the before callbacks if they exist
-    if (
-      onRenderCallbacks[group] &&
-      onRenderCallbacks[group][type] &&
-      onRenderCallbacks[group][type].before
-    ) {
+    if (onRenderCallbacks[group] && onRenderCallbacks[group][type] && onRenderCallbacks[group][type].before) {
       onRenderCallbacks[group][type].before.forEach((callback) => {
         try {
           callback(data);
@@ -102,11 +98,7 @@ const extenderRenderFromFile = () => {
     let results = _templateRenderFromFile(group, type, data);
 
     // Call the after callbacks if they exist
-    if (
-      onRenderCallbacks[group] &&
-      onRenderCallbacks[group][type] &&
-      onRenderCallbacks[group][type].after
-    ) {
+    if (onRenderCallbacks[group] && onRenderCallbacks[group][type] && onRenderCallbacks[group][type].after) {
       onRenderCallbacks[group][type].after.forEach((callback) => {
         try {
           results = callback(data, results);
@@ -127,11 +119,7 @@ const extendRender = () => {
 
   _templateRender = hg.utils.TemplateUtil.render;
   hg.utils.TemplateUtil.render = (templateType, templateData) => {
-    if (
-      onRenderCallbacks[templateType] &&
-      onRenderCallbacks[templateType].layout &&
-    onRenderCallbacks[templateType].layout.before
-    ) {
+    if (onRenderCallbacks[templateType] && onRenderCallbacks[templateType].layout && onRenderCallbacks[templateType].layout.before) {
       onRenderCallbacks[templateType].layout.before.forEach((callback) => {
         try {
           callback(templateData);
@@ -143,11 +131,7 @@ const extendRender = () => {
 
     let results = _templateRender(templateType, templateData);
 
-    if (
-      onRenderCallbacks[templateType] &&
-      onRenderCallbacks[templateType].layout &&
-      onRenderCallbacks[templateType].layout.after
-    ) {
+    if (onRenderCallbacks[templateType] && onRenderCallbacks[templateType].layout && onRenderCallbacks[templateType].layout.after) {
       onRenderCallbacks[templateType].layout.after.forEach((callback) => {
         try {
           results = callback(templateData, results);
@@ -164,7 +148,4 @@ const extendRender = () => {
 // Initialize the template extensions immediately
 initializeTemplateExtensions();
 
-export {
-  replaceInTemplate,
-  onRender
-};
+export { replaceInTemplate, onRender };

@@ -1,14 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  makeElement,
-  makeMhButton,
-  onDeactivation,
-  onDialogShow,
-  onRender,
-  onRequest,
-  replaceInTemplate
-} from '@utils';
+import { addStyles, getSetting, makeElement, makeMhButton, onDeactivation, onDialogShow, onRender, onRequest, replaceInTemplate } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -48,7 +38,7 @@ const claimGifts = async (send = false, retries = 0) => {
   hg.views.GiftSelectorView.show();
 
   const isLoaded = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-friendRow');
-  if (! isLoaded) {
+  if (!isLoaded) {
     if (retries <= 10) {
       setTimeout(claimGifts, 250, send, retries + 1);
     }
@@ -83,7 +73,7 @@ const claimGifts = async (send = false, retries = 0) => {
     const verb = send && sendLimit > 0 && gift.is_returnable ? 'return' : 'claim';
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
-    if (! giftEl) {
+    if (!giftEl) {
       continue;
     }
 
@@ -92,7 +82,7 @@ const claimGifts = async (send = false, retries = 0) => {
       hg.views.GiftSelectorView.selectReturnableGift(event, giftEl);
       sendLimit--;
       claimLimit--;
-    } else if (! send && 'claim' === verb && claimLimit > 0) {
+    } else if (!send && 'claim' === verb && claimLimit > 0) {
       hg.views.GiftSelectorView.selectClaimableGift(giftEl);
       claimLimit--;
     }
@@ -167,10 +157,8 @@ const fixTypo = () => {
   onRender({
     group: 'GiftSelectorView',
     callback: (data, results) => {
-      return results
-        .replaceAll('You can send 1 free gifts', 'You can send 1 free gift')
-        .replaceAll('<b>1</b> free gifts', '<b>1</b> free gift');
-    }
+      return results.replaceAll('You can send 1 free gifts', 'You can send 1 free gift').replaceAll('<b>1</b> free gifts', '<b>1</b> free gift');
+    },
   });
 };
 
@@ -180,7 +168,7 @@ const addCloseButtonToConfirmPopup = (resp, req) => {
   }
 
   const confirmTitle = document.querySelector('.giftSelectorView-confirmPopup-title');
-  if (! confirmTitle) {
+  if (!confirmTitle) {
     return;
   }
 
@@ -197,10 +185,7 @@ const addCloseButtonToConfirmPopup = (resp, req) => {
  */
 const lineBreakGiftFooter = () => {
   replaceInTemplate('GiftSelectorView', [
-    [
-      'more free gifts today. You can',
-      'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can',
-    ],
+    ['more free gifts today. You can', 'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'],
     [
       'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
       'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>',
@@ -339,7 +324,7 @@ const addSendButton = (className, text, selector, buttonContainer) => {
 
   sendButton.addEventListener('click', (event) => {
     const friends = document.querySelectorAll(selector);
-    if (! friends.length) {
+    if (!friends.length) {
       return;
     }
 
@@ -382,12 +367,17 @@ const addRandomSendButton = () => {
     _selectGift(gift);
 
     const title = document.querySelector('.giftSelectorView-tabContent.active .selectFriends .giftSelectorView-content-title');
-    if (! title) {
+    if (!title) {
       return false;
     }
 
     addSendButton('random', 'Select Random Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
-    addSendButton('faves', 'Select Frequent Gifters', '.giftSelectorView-tabContent.active .giftSelectorView-friend-group.favorite .giftSelectorView-friend:not(.disabled, .selected)', title);
+    addSendButton(
+      'faves',
+      'Select Frequent Gifters',
+      '.giftSelectorView-tabContent.active .giftSelectorView-friend-group.favorite .giftSelectorView-friend:not(.disabled, .selected)',
+      title
+    );
 
     return true;
   };
@@ -448,7 +438,7 @@ const addGiftSwitcher = () => {
       _selectGift.call(hg.views.GiftSelectorView, gift);
 
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
-      if (! giftContainer) {
+      if (!giftContainer) {
         return false;
       }
 
@@ -460,7 +450,7 @@ const addGiftSwitcher = () => {
       const giftType = tabType === 'send_free_gifts' ? 'gift' : 'paidgift';
 
       const gifts = document.querySelectorAll(`.active .selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable.${giftType}`);
-      if (! gifts.length) {
+      if (!gifts.length) {
         return false;
       }
 
@@ -495,7 +485,7 @@ const addGiftSwitcher = () => {
  */
 const addButtonsToDropdown = () => {
   const buttonLink = document.querySelector('#hgbar_freegifts');
-  if (! buttonLink) {
+  if (!buttonLink) {
     return;
   }
 
@@ -509,7 +499,7 @@ const addButtonsToDropdown = () => {
  */
 const addButtonsToPopup = () => {
   const actionRow = document.querySelector('.giftSelectorView-tabContentContainer .giftSelectorView-tabContent.active .giftSelectorView-actionContainer');
-  if (! actionRow) {
+  if (!actionRow) {
     return;
   }
 
@@ -544,7 +534,7 @@ const main = () => {
  */
 const setupGiftButtonOpensGiftSelector = () => {
   const giftButton = document.querySelector('#hgbar_freegifts');
-  if (! giftButton || giftButton.getAttribute('data-gift-selector')) {
+  if (!giftButton || giftButton.getAttribute('data-gift-selector')) {
     return;
   }
 

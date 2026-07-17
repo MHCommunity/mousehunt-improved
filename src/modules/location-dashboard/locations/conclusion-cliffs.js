@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestConclusionCliffs) {
+  if (!quests.QuestConclusionCliffs) {
     return '';
   }
 
@@ -16,8 +16,8 @@ export default (quests) => {
     return `Postscript <div class="stats">${story.postscript_hunts_remaining || 0} ${story.postscript_hunts_text || 'Hunts Remaining'}</div>`;
   }
 
-  if (! story.is_writing) {
-    return 'Writer\'s Block';
+  if (!story.is_writing) {
+    return "Writer's Block";
   }
 
   const chapter = story.current_chapter || {};

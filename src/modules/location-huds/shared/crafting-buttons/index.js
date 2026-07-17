@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  formatNumber,
-  makeElement,
-  makeMhButton
-} from '@utils';
+import { addStyles, doRequest, formatNumber, makeElement, makeMhButton } from '@utils';
 import styles from './styles.css';
 
 /**
@@ -18,7 +12,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
   addStyles(styles, 'location-huds-shared-crafting-buttons');
 
   const baitContainers = document.querySelectorAll(selectors.baits);
-  if (! baitContainers) {
+  if (!baitContainers) {
     return;
   }
 
@@ -41,7 +35,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
     });
 
     popup.classList.remove('loading');
-    if (! results?.success) {
+    if (!results?.success) {
       popup.classList.add('error');
       setTimeout(() => popup.classList.remove('error'), 1000);
       return false;
@@ -88,7 +82,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
 
   baitContainers.forEach((container) => {
     const quantityElement = container.querySelector(selectors.baitQuantity);
-    if (! quantityElement || container.querySelector('.mh-crafting-popup')) {
+    if (!quantityElement || container.querySelector('.mh-crafting-popup')) {
       return;
     }
 

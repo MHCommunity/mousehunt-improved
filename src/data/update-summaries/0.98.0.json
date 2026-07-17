@@ -36,62 +36,39 @@
     },
     {
       "title": "Better Journal",
-      "items": [
-        "Journal entries now support broader loot displays with more useful links and icons",
-        "Several journal-related options were updated and improved"
-      ]
+      "items": ["Journal entries now support broader loot displays with more useful links and icons", "Several journal-related options were updated and improved"]
     },
     {
       "title": "Better Maps",
-      "items": [
-        "Map groups, styling, and performance were updated",
-        "Added support for more map organization and cleaner map displays"
-      ]
+      "items": ["Map groups, styling, and performance were updated", "Added support for more map organization and cleaner map displays"]
     },
     {
       "title": "Location HUDs - Floating Islands",
-      "items": [
-        "Airship customization now has better preview, randomization, and workflow tools",
-        "The Floating Islands HUD received usability, style, and beta feature updates"
-      ]
+      "items": ["Airship customization now has better preview, randomization, and workflow tools", "The Floating Islands HUD received usability, style, and beta feature updates"]
     },
     {
       "title": "Location HUDs - Fort Rox",
-      "items": [
-        "Fort Rox timeline and trap setup tools were refined",
-        "Hunt tracking and related interactions should be clearer and easier to use"
-      ]
+      "items": ["Fort Rox timeline and trap setup tools were refined", "Hunt tracking and related interactions should be clearer and easier to use"]
     },
     {
       "title": "Location Dashboard",
-      "items": [
-        "The dashboard now supports more locations",
-        "Reliability and refresh behavior were improved across supported dashboards"
-      ]
+      "items": ["The dashboard now supports more locations", "Reliability and refresh behavior were improved across supported dashboards"]
     },
     {
       "title": "Better Inventory",
-      "items": [
-        "Trap sorting, filtering, and inventory readability were reworked and improved"
-      ]
+      "items": ["Trap sorting, filtering, and inventory readability were reworked and improved"]
     },
     {
       "title": "Better Quests",
-      "items": [
-        "Quest objective mice are easier to inspect with improved links and hover details"
-      ]
+      "items": ["Quest objective mice are easier to inspect with improved links and hover details"]
     },
     {
       "title": "Paste Hunter ID",
-      "items": [
-        "Hunter lookup is more flexible and now handles full profile links more reliably"
-      ]
+      "items": ["Hunter lookup is more flexible and now handles full profile links more reliably"]
     },
     {
       "title": "Image Upscaling & Transparency",
-      "items": [
-        "Upscaled images now recover more reliably when the game rerenders them"
-      ]
+      "items": ["Upscaled images now recover more reliably when the game rerenders them"]
     },
     {
       "title": "General Improvements",

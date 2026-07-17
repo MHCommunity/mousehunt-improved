@@ -8,33 +8,30 @@ const isValidItem = (item) => {
     'https://i.mouse.rip/upscaled/parts-new.png',
     'https://i.mouse.rip/upscaled/egg-paint.png',
     'https://i.mouse.rip/upscaled/blueprint-new2.png',
-    'https://i.mouse.rip/nothing.png'
+    'https://i.mouse.rip/nothing.png',
   ]);
 
-  const excludedClassifications = new Set([
-    'adventure',
-    'skin',
-  ]);
+  const excludedClassifications = new Set(['adventure', 'skin']);
 
-  const excludedTypes = new Set([
-    'bucket_o_cannon_parts_crafting_item',
-  ]);
+  const excludedTypes = new Set(['bucket_o_cannon_parts_crafting_item']);
 
-  return item.images &&
+  return (
+    item.images &&
     item.images.best &&
     item.images.upscaled &&
-    ! excludedImages.has(item.images.best) &&
-    ! excludedImages.has(item.images.upscaled) &&
-    ! excludedClassifications.has(item.classification) &&
-    ! excludedTypes.has(item.type) &&
-    ! item.is_airship_part &&
-    item.name.length < 25;
+    !excludedImages.has(item.images.best) &&
+    !excludedImages.has(item.images.upscaled) &&
+    !excludedClassifications.has(item.classification) &&
+    !excludedTypes.has(item.type) &&
+    !item.is_airship_part &&
+    item.name.length < 25
+  );
 };
 
 const getValidItems = async () => {
-  if (! validItemsPromise) {
+  if (!validItemsPromise) {
     validItemsPromise = getData('items').then((items) => {
-      if (! Array.isArray(items)) {
+      if (!Array.isArray(items)) {
         return [];
       }
 
@@ -67,28 +64,31 @@ const init = async () => {
     menu: 'camp',
     label: 'Memory Matching Game',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: () => startGame({
-      mode: 'easy'
-    })
+    callback: () =>
+      startGame({
+        mode: 'easy',
+      }),
   });
 
   addSubmenuItem({
     menu: 'camp',
     label: 'Memory Game (hard)',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: () => startGame({
-      mode: 'hard'
-    })
+    callback: () =>
+      startGame({
+        mode: 'hard',
+      }),
   });
 
   addSubmenuItem({
     menu: 'camp',
     label: 'Memory Game (extreme)',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: () => startGame({
-      title: 'Memory Matching Game (150 items)',
-      mode: 'nope'
-    })
+    callback: () =>
+      startGame({
+        title: 'Memory Matching Game (150 items)',
+        mode: 'nope',
+      }),
   });
 };
 

@@ -16,7 +16,7 @@ let onRequestHolder = false;
  * @return {string} The normalized URL.
  */
 const normalizeRequestUrl = (url = null) => {
-  if (! url || '*' === url) {
+  if (!url || '*' === url) {
     return '*';
   }
 
@@ -71,7 +71,7 @@ const shouldIgnoreRequest = (responseUrl, ignore = []) => {
  * @param {boolean}  priority    Whether or not to run the callback first.
  */
 const onRequest = (url = null, callback = null, skipSuccess = false, ignore = [], priority = false) => {
-  if (! onRequestHolder) {
+  if (!onRequestHolder) {
     const req = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function () {
       this.addEventListener('load', function () {
@@ -119,7 +119,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 
   url = normalizeRequestUrl(url);
 
-  if (! callback) {
+  if (!callback) {
     return;
   }
 
@@ -130,7 +130,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 
   callback = lifecycleCallback.callback;
 
-  if (! requestCallbacks[url]) {
+  if (!requestCallbacks[url]) {
     requestCallbacks[url] = [];
   }
 
@@ -292,15 +292,13 @@ const getDialogMapping = () => {
  * @return {boolean} Whether the dialog matches the overlay.
  */
 const dialogMatchesOverlay = (dialogType, overlay) => {
-  if (! dialogType || ! overlay) {
+  if (!dialogType || !overlay) {
     return false;
   }
 
   const dialogMapping = getDialogMapping();
 
-  return overlay === dialogType ||
-    overlay === dialogMapping[dialogType] ||
-    dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
+  return overlay === dialogType || overlay === dialogMapping[dialogType] || dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
 };
 
 /**
@@ -311,7 +309,7 @@ const dialogMatchesOverlay = (dialogType, overlay) => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (overlay = null, callback = null, once = false) => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -323,53 +321,54 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
   // TODO: rewrite this.
   // make a unique identifier for the event listener based on the callback.
   const identifier = (lifecycleCallback.id || callback.toString()).replaceAll(/[^\w-]/gi, '');
-  eventRegistry.addEventListener('js_dialog_show', () => {
-    if (! activejsDialog) {
-      return;
-    }
+  eventRegistry.addEventListener(
+    'js_dialog_show',
+    () => {
+      if (!activejsDialog) {
+        return;
+      }
 
-    // Get all the tokens and check the content.
-    const tokens = activejsDialog.getAllTokens();
+      // Get all the tokens and check the content.
+      const tokens = activejsDialog.getAllTokens();
 
-    // Make sure we have the 'content' key.
-    // For item and mouse views, the entire event fires twice, once while loading and
-    // once when the content is loaded. We only want to run this once, so we check if
-    // the content is empty in a weird way.
-    if (
-      ! tokens ||
-      ! tokens['{*content*}'] ||
-      ! tokens['{*content*}'].value ||
-      tokens['{*content*}'].value === '' ||
-      tokens['{*content*}'].value.includes('data-item-type=""') || // Item view.
-      tokens['{*content*}'].value.includes('data-mouse-id=""') // Mouse view.
-    ) {
-      return;
-    }
+      // Make sure we have the 'content' key.
+      // For item and mouse views, the entire event fires twice, once while loading and
+      // once when the content is loaded. We only want to run this once, so we check if
+      // the content is empty in a weird way.
+      if (
+        !tokens ||
+        !tokens['{*content*}'] ||
+        !tokens['{*content*}'].value ||
+        tokens['{*content*}'].value === '' ||
+        tokens['{*content*}'].value.includes('data-item-type=""') || // Item view.
+        tokens['{*content*}'].value.includes('data-mouse-id=""') // Mouse view.
+      ) {
+        return;
+      }
 
-    // Grab the attributes of the dialog to determine the type.
-    const atts = activejsDialog.getAttributes();
-    let dialogType = atts.className
-      .replace('jsDialogFixed', '')
-      .replace('wide', '')
-      .replace('default', '')
-      .replaceAll('  ', ' ')
-      .replaceAll(' ', '.')
-      .trim();
+      // Grab the attributes of the dialog to determine the type.
+      const atts = activejsDialog.getAttributes();
+      let dialogType = atts.className.replace('jsDialogFixed', '').replace('wide', '').replace('default', '').replaceAll('  ', ' ').replaceAll(' ', '.').trim();
 
-    // Remove any leading or trailing periods left over from removed classes.
-    dialogType = dialogType.replaceAll(/^\.+|\.+$/g, '');
+      // Remove any leading or trailing periods left over from removed classes.
+      dialogType = dialogType.replaceAll(/^\.+|\.+$/g, '');
 
-    window.mhutils = window.mhutils ? { ...window.mhutils, lastDialog: { overlay: dialogType } } : { lastDialog: { overlay: dialogType } };
-    lastDialog = dialogType;
+      window.mhutils = window.mhutils ? { ...window.mhutils, lastDialog: { overlay: dialogType } } : { lastDialog: { overlay: dialogType } };
+      lastDialog = dialogType;
 
-    if ((! overlay || 'all' === overlay) && 'function' === typeof callback) {
-      return lifecycleCallback.callback();
-    }
+      if ((!overlay || 'all' === overlay) && 'function' === typeof callback) {
+        return lifecycleCallback.callback();
+      }
 
-    if ('function' === typeof callback && dialogMatchesOverlay(dialogType, overlay)) {
-      return lifecycleCallback.callback();
-    }
-  }, null, once, 0, identifier);
+      if ('function' === typeof callback && dialogMatchesOverlay(dialogType, overlay)) {
+        return lifecycleCallback.callback();
+      }
+    },
+    null,
+    once,
+    0,
+    identifier
+  );
 };
 
 const dialogHideCallbacks = [];
@@ -384,7 +383,7 @@ let hasAddedDialogHideListener = false;
  * @return {string} The normalized overlay name.
  */
 const normalizeDialogOverlay = (overlay = null) => {
-  if (! overlay || 'all' === overlay) {
+  if (!overlay || 'all' === overlay) {
     return 'all';
   }
 
@@ -403,7 +402,7 @@ const normalizeDialogOverlay = (overlay = null) => {
  * @param {string}   overlay  The overlay to check for.
  */
 const onDialogHide = (callback, overlay = null) => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -415,7 +414,7 @@ const onDialogHide = (callback, overlay = null) => {
 
   callback = lifecycleCallback.callback;
 
-  if (! dialogHideCallbacks.some((item) => item.callback === callback && item.overlay === normalizedOverlay)) {
+  if (!dialogHideCallbacks.some((item) => item.callback === callback && item.overlay === normalizedOverlay)) {
     dialogHideCallbacks.push({
       overlay: normalizedOverlay,
       callback,
@@ -427,7 +426,7 @@ const onDialogHide = (callback, overlay = null) => {
   }
 
   eventRegistry.addEventListener('js_dialog_hide', () => {
-    if (! lastDialog) {
+    if (!lastDialog) {
       return;
     }
 
@@ -509,7 +508,7 @@ const onPageChange = (callbacks) => {
  * @param {Function} [options.callback]          The callback to run when the user is at the location.
  */
 const onTravel = (location, options) => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -602,19 +601,10 @@ const onNavigation = (callback, options = {}) => {
   const { page, tab, subtab, onLoad, anyTab, anySubtab } = Object.assign(defaults, options);
 
   // If we don't pass in a page, then we want to run the callback on every page.
-  const bypassMatch = ! page;
+  const bypassMatch = !page;
 
   // We do this once on load in case we are starting on the page we want to watch for.
-  if (
-    onLoad && (
-      bypassMatch ||
-      isCurrentPage(
-        page,
-        anyTab ? getCurrentTab() : tab,
-        anySubtab ? getCurrentSubtab() : subtab
-      )
-    )
-  ) {
+  if (onLoad && (bypassMatch || isCurrentPage(page, anyTab ? getCurrentTab() : tab, anySubtab ? getCurrentSubtab() : subtab))) {
     callback();
   }
 
@@ -625,7 +615,7 @@ const onNavigation = (callback, options = {}) => {
 
   callbacks.push({ callback: lifecycleCallback.callback, page, tab, subtab, bypassMatch });
 
-  if (! hasAddedNavigationListener) {
+  if (!hasAddedNavigationListener) {
     addNavigationListeners();
     hasAddedNavigationListener = true;
   }
@@ -635,7 +625,7 @@ const onNavigation = (callback, options = {}) => {
  * Add the navigation listeners.
  */
 const addNavigationListeners = () => {
-  if (! window.eventRegistry) {
+  if (!window.eventRegistry) {
     return;
   }
 
@@ -651,7 +641,7 @@ const addNavigationListeners = () => {
         return;
       }
 
-      if (! subtab) {
+      if (!subtab) {
         if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
           callback();
         }
@@ -705,7 +695,7 @@ const onActivation = (module, callback) => {
  */
 const onDeactivation = (module, callback) => {
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
-    if (key === module && ! value) {
+    if (key === module && !value) {
       callback();
     }
   });
@@ -723,12 +713,16 @@ const onTurn = (callback, delay = null) => {
     return;
   }
 
-  onRequest('turns/activeturn.php', (response, request) => {
-    delay = delay || Math.floor(Math.random() * 1000) + 1000;
-    setTimeout(() => {
-      lifecycleCallback.callback(response, request);
-    }, delay);
-  }, true);
+  onRequest(
+    'turns/activeturn.php',
+    (response, request) => {
+      delay = delay || Math.floor(Math.random() * 1000) + 1000;
+      setTimeout(() => {
+        lifecycleCallback.callback(response, request);
+      }, delay);
+    },
+    true
+  );
 };
 
 /**
@@ -760,16 +754,4 @@ const onTrapChange = (callback, opts) => {
   }
 };
 
-export {
-  onDialogHide,
-  onDialogShow,
-  onNavigation,
-  onOverlayChange,
-  onPageChange,
-  onRequest,
-  onTravel,
-  onActivation,
-  onDeactivation,
-  onTurn,
-  onTrapChange
-};
+export { onDialogHide, onDialogShow, onNavigation, onOverlayChange, onPageChange, onRequest, onTravel, onActivation, onDeactivation, onTurn, onTrapChange };

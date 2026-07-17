@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Cerulean Skyport Map"
-  ],
+  "names": ["Cerulean Skyport Map"],
   "categories": [
     {
       "name": "Dock",
@@ -76,10 +74,7 @@
       "icon": "/items/bait/transparent_thumb/967aaef6b2d53486157eb5de2a8a4641.png",
       "color": "#fde671",
       "color-dark": "#996126",
-      "mice": [
-        "quarrelsome_quartermaster",
-        "captain_crook"
-      ]
+      "mice": ["quarrelsome_quartermaster", "captain_crook"]
     }
   ],
   "subcategories": [

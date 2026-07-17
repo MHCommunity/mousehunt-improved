@@ -9,7 +9,7 @@ const boundPreviewButtons = new WeakSet();
 
 export default () => {
   const previewRewardsButton = document.querySelector('.treasureMapView-previewRewardsButton');
-  if (! previewRewardsButton) {
+  if (!previewRewardsButton) {
     return;
   }
 
@@ -21,48 +21,48 @@ export default () => {
 
   previewRewardsButton.addEventListener('click', async () => {
     const theMapData = mapData();
-    if (! theMapData) {
+    if (!theMapData) {
       return;
     }
 
     const preview = await waitForElement('.treasureMapDialogView-chestPreview');
-    if (! preview) {
+    if (!preview) {
       return;
     }
 
     const rewardType = theMapData?.reward?.type;
-    if (! rewardType) {
+    if (!rewardType) {
       return;
     }
 
     const rewardContents = theMapData?.reward?.contents || [];
     const reward = await fetchMouseRip(`items/${encodeURIComponent(rewardType)}`);
-    if (! reward?.id) {
+    if (!reward?.id) {
       return;
     }
 
     const convertibleContents = await fetchMouseRip(`convertible/${reward.id}`);
-    if (! Array.isArray(convertibleContents)) {
+    if (!Array.isArray(convertibleContents)) {
       return;
     }
 
     const previeItems = document.querySelectorAll('.treasureMapDialogView-chest-item');
     previeItems.forEach((item) => {
       const itemNameEl = item.querySelector('.treasureMapDialogView-chest-item-name span');
-      if (! itemNameEl) {
+      if (!itemNameEl) {
         return;
       }
 
       const itemName = itemNameEl.textContent.trim();
 
-      if (! rewardContents.some((convertible) => convertible.name === itemName)) {
+      if (!rewardContents.some((convertible) => convertible.name === itemName)) {
         return;
       }
 
       const itemData = convertibleContents.find((convertible) => convertible.name === itemName);
       if (itemData) {
         const itemPadding = item.querySelector('.treasureMapDialogView-chest-item-padding');
-        if (! itemPadding) {
+        if (!itemPadding) {
           return;
         }
 

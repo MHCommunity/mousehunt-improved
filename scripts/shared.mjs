@@ -17,10 +17,7 @@ const SVGDataUriPlugin = {
     build.onLoad({ filter: /\.svg$/ }, async (args) => {
       const svg = await readFile(args.path, 'utf8');
       return {
-        contents: svg
-          .replaceAll(/\s+/g, ' ')
-          .replaceAll('> <', '><')
-          .trim(),
+        contents: svg.replaceAll(/\s+/g, ' ').replaceAll('> <', '><').trim(),
         loader: 'dataurl',
       };
     });
@@ -51,7 +48,7 @@ const CSSMinifyTextPlugin = {
         contents: css.outputFiles[0].text,
       };
     });
-  }
+  },
 };
 
 const ImportGlobPlugin = {
@@ -125,17 +122,8 @@ const getBaseBuildOptions = (platform) => ({
   globalName: 'mhui',
   bundle: true,
   minify: false,
-  target: [
-    'es6',
-    'chrome58',
-    'firefox57'
-  ],
-  plugins: [
-    ImportGlobPlugin,
-    CSSMinifyTextPlugin,
-    JSONMinifyPlugin,
-    SVGDataUriPlugin
-  ],
+  target: ['es6', 'chrome58', 'firefox57'],
+  plugins: [ImportGlobPlugin, CSSMinifyTextPlugin, JSONMinifyPlugin, SVGDataUriPlugin],
   alias: {
     '@data': path.resolve(process.cwd(), 'dist/data'),
     '@images': path.resolve(process.cwd(), 'src/images'),
@@ -145,10 +133,7 @@ const getBaseBuildOptions = (platform) => ({
   },
   dropLabels: ['userscript' === platform ? 'excludeFromUserscript' : 'excludeFromExtension'],
   banner: {
-    js: [
-      `const mhImprovedVersion = '${process.env.npm_package_version}';`,
-      `const mhImprovedPlatform = '${platform}';`,
-    ].join('\n'),
+    js: [`const mhImprovedVersion = '${process.env.npm_package_version}';`, `const mhImprovedPlatform = '${platform}';`].join('\n'),
   },
 });
 
@@ -160,7 +145,7 @@ const minifyAllJsonFiles = async () => {
 
   const files = fs.readdirSync('./src/data');
   for (const file of files) {
-    if (! file.endsWith('.json')) {
+    if (!file.endsWith('.json')) {
       continue;
     }
 
@@ -173,7 +158,10 @@ const minifyAllJsonFiles = async () => {
 
   // Combine the per-map files into a single map-groups.json, keyed by filename.
   const mapGroups = {};
-  const mapGroupFiles = fs.readdirSync('./src/data/map-groups').filter((file) => file.endsWith('.json')).sort();
+  const mapGroupFiles = fs
+    .readdirSync('./src/data/map-groups')
+    .filter((file) => file.endsWith('.json'))
+    .sort();
   for (const file of mapGroupFiles) {
     const data = fs.readFileSync(`./src/data/map-groups/${file}`, 'utf8');
     mapGroups[path.basename(file, '.json')] = JSON.parse(data);
@@ -202,12 +190,4 @@ const parseArgs = async (args) => {
     .parseAsync();
 };
 
-export {
-  CSSMinifyTextPlugin,
-  JSONMinifyPlugin,
-  ImportGlobPlugin,
-  SVGDataUriPlugin,
-  getBaseBuildOptions,
-  parseArgs,
-  minifyAllJsonFiles
-};
+export { CSSMinifyTextPlugin, JSONMinifyPlugin, ImportGlobPlugin, SVGDataUriPlugin, getBaseBuildOptions, parseArgs, minifyAllJsonFiles };

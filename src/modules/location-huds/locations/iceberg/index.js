@@ -1,15 +1,4 @@
-import {
-  addHudStyles,
-  formatNumber,
-  getCurrentLocation,
-  getSetting,
-  getUserItems,
-  makeElement,
-  onRequest,
-  onTurn,
-  replaceOrAppend,
-  saveSetting
-} from '@utils';
+import { addHudStyles, formatNumber, getCurrentLocation, getSetting, getUserItems, makeElement, onRequest, onTurn, replaceOrAppend, saveSetting } from '@utils';
 
 import bobIceberg from './styles/bob-iceberg.css';
 import styles from './styles/styles.css';
@@ -48,7 +37,7 @@ const getSections = (quest) => {
       complete: quest.complete.depths,
     },
     {
-      name: 'Icewing\'s Lair',
+      name: "Icewing's Lair",
       where: '1800 ft',
       length: 0,
       complete: quest.complete.lair,
@@ -141,7 +130,7 @@ const calculateStageHunts = (stage, avg) => {
  */
 const getQuestProgress = () => {
   const quest = user?.quests?.QuestIceberg;
-  if (! quest) {
+  if (!quest) {
     return false;
   }
 
@@ -212,14 +201,14 @@ const getTooltipText = (quest) => {
 
   makeElement('div', 'average-hunts', `Avg. ${roundProgress(quest.avg)} ft/hunt`, progress);
 
-  if (! quest.isLair) {
+  if (!quest.isLair) {
     const stageProgressPercent = makeElement('div', 'stage-progress-percent');
     makeElement('span', 'progress-label', 'Stage Progress: ', stageProgressPercent);
     makeElement('span', ['progress-label-short', 'hidden'], 'Stage: ', stageProgressPercent);
     makeElement('strong', '', `${roundProgress(quest.stagePercent)}%`, stageProgressPercent);
     progress.append(stageProgressPercent);
 
-    if (! quest.isDeep) {
+    if (!quest.isDeep) {
       const totalProgressPercent = makeElement('div', 'total-progress-percent');
       makeElement('span', 'progress-label', 'Total Progress: ', totalProgressPercent);
       makeElement('span', ['progress-label-short', 'hidden'], 'Total: ', totalProgressPercent);
@@ -241,7 +230,7 @@ const getTooltipText = (quest) => {
     }
 
     const section = makeElement('div', ['iceberg-section', sectionData.complete ? 'complete' : 'incomplete']);
-    if (! currentSection && ! sectionData.complete) {
+    if (!currentSection && !sectionData.complete) {
       section.classList.add('current');
       currentSection = true;
     }
@@ -271,11 +260,7 @@ const addDeepWarning = async () => {
     return;
   }
 
-  const bases = await getUserItems([
-    'deep_freeze_base',
-    'iceberg_boiler_base',
-    'ultimate_iceberg_base',
-  ]);
+  const bases = await getUserItems(['deep_freeze_base', 'iceberg_boiler_base', 'ultimate_iceberg_base']);
 
   const equippableBases = [];
 
@@ -287,12 +272,12 @@ const addDeepWarning = async () => {
     }
   });
 
-  if (! hasBase) {
+  if (!hasBase) {
     return;
   }
 
   const appendTo = document.querySelector('.cutawayClippingMask');
-  if (! appendTo) {
+  if (!appendTo) {
     return;
   }
 
@@ -332,19 +317,19 @@ const hud = async () => {
     return;
   }
 
-  if (! user.quests.QuestIceberg) {
+  if (!user.quests.QuestIceberg) {
     return;
   }
 
   const huntInfo = document.querySelector('.icebergHud .depth');
-  if (! huntInfo) {
+  if (!huntInfo) {
     return;
   }
 
   const quest = getQuestProgress();
 
   // If we're in icewing's lair, don't show the stage distance.
-  if (! quest.isLair) {
+  if (!quest.isLair) {
     // Create the stage distance element.
     const remainingStageDistance = makeElement('div', 'remaining-stage-distance');
     const destination = quest.isDeep ? 'Hidden Depths' : 'next stage';
@@ -355,7 +340,7 @@ const hud = async () => {
       }
       feet = formatNumber(feet);
 
-      if (! quest.isDeep) {
+      if (!quest.isDeep) {
         remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
         if (quest.stageHunts > 0) {
           remainingStageDistance.innerHTML += ` (~${quest.stageHunts} hunts)`;
@@ -374,7 +359,7 @@ const hud = async () => {
   }
 
   // If we're in icewing's lair, don't show the total distance.
-  if (! quest.isLair && ! quest.isDeep) {
+  if (!quest.isLair && !quest.isDeep) {
     // Create the distance element.
     const remainingDistance = makeElement('div', 'remaining-distance');
 
@@ -425,12 +410,12 @@ const hud = async () => {
  */
 const makeTooltipSticky = () => {
   const tooltip = document.querySelector('.icebergStatusTooltip');
-  if (! tooltip) {
+  if (!tooltip) {
     return;
   }
 
   const huntInfo = document.querySelector('.icebergHud .depth');
-  if (! huntInfo) {
+  if (!huntInfo) {
     return;
   }
 
@@ -440,7 +425,7 @@ const makeTooltipSticky = () => {
   }
 
   huntInfo.addEventListener('click', () => {
-    isStuck = ! isStuck;
+    isStuck = !isStuck;
     huntInfo.classList.toggle('mh-improved-stick-iceberg-tooltip');
     saveSetting('location-huds.iceberg-sticky-tooltip', isStuck);
   });

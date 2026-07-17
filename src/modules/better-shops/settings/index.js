@@ -14,6 +14,6 @@ export default async () => {
       id: 'better-shops.qty-buttons',
       title: 'Show quantity buttons',
       default: true,
-    }
+    },
   ];
 };

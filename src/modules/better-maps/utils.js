@@ -11,7 +11,7 @@ const getCompletedGoals = (mapData) => {
   const type = mapData?.is_scavenger_hunt ? 'item' : 'mouse';
 
   let goals = mapData?.is_scavenger_hunt ? mapData?.goals?.item : mapData?.goals?.mouse;
-  if (! goals) {
+  if (!goals) {
     return { type, goals: [] };
   }
 
@@ -26,7 +26,7 @@ const getCompletedGoals = (mapData) => {
   }
 
   // filter out completed goals and sort by name
-  goals = goals.filter((goal) => ! completedGoals.includes(goal.unique_id)).sort((a, b) => a.name.localeCompare(b.name));
+  goals = goals.filter((goal) => !completedGoals.includes(goal.unique_id)).sort((a, b) => a.name.localeCompare(b.name));
 
   return { type, goals };
 };
@@ -39,7 +39,7 @@ const getCompletedGoals = (mapData) => {
 const refreshMap = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
 
-  if (! mapId) {
+  if (!mapId) {
     return false;
   }
 
@@ -54,7 +54,7 @@ const refreshMap = async () => {
     return false;
   }
 
-  if (! (newMapData && newMapData?.treasure_map)) {
+  if (!(newMapData && newMapData?.treasure_map)) {
     return false;
   }
 
@@ -79,7 +79,4 @@ const refreshMap = async () => {
   return newMapData;
 };
 
-export {
-  refreshMap,
-  getCompletedGoals
-};
+export { refreshMap, getCompletedGoals };

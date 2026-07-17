@@ -34,9 +34,15 @@ const minAcronymLength = 3;
 const getAcronym = (name) => {
   // Parenthesised asides aren't part of what anyone abbreviates, and letting them through turns
   // 'Satchel of Gold (10,000 gold)' into 'SOG(G'.
-  const words = name.replaceAll(/\(.*?\)/g, ' ').split(' ').filter(Boolean);
+  const words = name
+    .replaceAll(/\(.*?\)/g, ' ')
+    .split(' ')
+    .filter(Boolean);
 
-  const acronym = words.map((word) => word.charAt(0)).join('').toUpperCase();
+  const acronym = words
+    .map((word) => word.charAt(0))
+    .join('')
+    .toUpperCase();
 
   return acronym.length >= minAcronymLength ? acronym : null;
 };
@@ -57,7 +63,7 @@ const getSearchTerms = (type, name) => {
     return abbreviations[type];
   }
 
-  if (! name || excluded.test(name)) {
+  if (!name || excluded.test(name)) {
     return [];
   }
 
@@ -93,7 +99,7 @@ const getSearchTermString = (type, name) => {
  * @return {string} The tagged name, unchanged if the item has no terms or is already tagged.
  */
 const addSearchTermsToName = (type, name) => {
-  if (! name || name.includes(tagStart)) {
+  if (!name || name.includes(tagStart)) {
     return name;
   }
 
@@ -113,9 +119,4 @@ const removeSearchTerms = (text) => {
   return 'string' === typeof text ? text.replaceAll(tagRegex, '') : text;
 };
 
-export {
-  addSearchTermsToName,
-  getSearchTerms,
-  getSearchTermString,
-  removeSearchTerms
-};
+export { addSearchTermsToName, getSearchTerms, getSearchTermString, removeSearchTerms };

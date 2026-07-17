@@ -14,7 +14,7 @@ import {
   onRequest,
   sessionSet,
   sleep,
-  travelTo
+  travelTo,
 } from '@utils';
 
 import styles from './styles.css';
@@ -64,9 +64,7 @@ const dashboardLocations = [
   },
   {
     region: 'Varmint Valley',
-    locations: [
-      { id: 'fort_rox', name: 'Fort Rox', getText: getFortRoxText },
-    ],
+    locations: [{ id: 'fort_rox', name: 'Fort Rox', getText: getFortRoxText }],
   },
   {
     region: 'Sandtail Desert',
@@ -80,17 +78,25 @@ const dashboardLocations = [
   {
     region: 'Rodentia',
     locations: [
-      { id: 'zugzwang_tower', name: 'Zugzwang\'s Tower', getText: getZugzwangTowerText, condition: (quests) => quests?.QuestZugzwangTower?.amp >= 1 },
-      { id: 'seasonal_garden', name: 'Seasonal Garden', getText: getSeasonalGardenText, condition: (quests) => ! (quests?.QuestZugzwangTower?.amp >= 1) },
+      {
+        id: 'zugzwang_tower',
+        name: "Zugzwang's Tower",
+        getText: getZugzwangTowerText,
+        condition: (quests) => quests?.QuestZugzwangTower?.amp >= 1,
+      },
+      {
+        id: 'seasonal_garden',
+        name: 'Seasonal Garden',
+        getText: getSeasonalGardenText,
+        condition: (quests) => !(quests?.QuestZugzwangTower?.amp >= 1),
+      },
       { id: 'iceberg', name: 'Iceberg', getText: getIcebergText },
       { id: 'sunken_city', name: 'Sunken City', getText: getSunkenCityText },
     ],
   },
   {
     region: 'Queso Canyon',
-    locations: [
-      { id: 'queso_geyser', name: 'Queso Geyser', getText: getQuesoGeyserText },
-    ],
+    locations: [{ id: 'queso_geyser', name: 'Queso Geyser', getText: getQuesoGeyserText }],
   },
   {
     region: 'Hollow Heights',
@@ -132,7 +138,7 @@ const dashboardLocations = [
  */
 const cacheLocationData = async () => {
   await sleep(300);
-  if (! user.environment_type || ! user.quests) {
+  if (!user.environment_type || !user.quests) {
     return;
   }
 
@@ -162,7 +168,7 @@ const cacheLocationData = async () => {
   // the last-known cached data instead of letting those wipe it.
   const questsCombined = Object.assign({}, questsCached, user.quests);
   for (const [questKey, questValue] of Object.entries(user.quests)) {
-    const isEmpty = ! questValue || (typeof questValue === 'object' && Object.keys(questValue).length === 0);
+    const isEmpty = !questValue || (typeof questValue === 'object' && Object.keys(questValue).length === 0);
     if (isEmpty && questsCached[questKey]) {
       questsCombined[questKey] = questsCached[questKey];
     }
@@ -220,7 +226,7 @@ const doLocationRefresh = async () => {
   const environmentsToUse = new Set(dashboardLocations.flatMap((region) => region.locations.map((location) => location.id)));
 
   const environmentsToTravel = environments.filter((env) => {
-    return (environmentsToUse.has(env.id) && isUserTitleAtLeast(env.title));
+    return environmentsToUse.has(env.id) && isUserTitleAtLeast(env.title);
   });
 
   debug(`Environments to travel: ${environmentsToTravel.map((env) => env.name).join(', ')}`);
@@ -267,17 +273,17 @@ const doLocationRefresh = async () => {
 
   for (const location of locationProgress) {
     const locationData = environments.find((env) => env.id === location);
-    if (! locationData) {
+    if (!locationData) {
       continue;
     }
 
     const progressItem = document.querySelector(`.location-refresh-item[data-environment-type="${location}"]`);
-    if (! progressItem) {
+    if (!progressItem) {
       continue;
     }
 
     const item = progressItem.querySelector('.locationName');
-    if (! item) {
+    if (!item) {
       return;
     }
 
@@ -316,7 +322,7 @@ const doLocationRefresh = async () => {
  */
 const makeDashboardTab = () => {
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
-  if (! tabsContainer) {
+  if (!tabsContainer) {
     return;
   }
 
@@ -330,7 +336,7 @@ const makeDashboardTab = () => {
     // When opening dashboard
     if (menuTab.classList.contains('expanded')) {
       const dashboardWrapper = document.querySelector('.dashboardWrapper');
-      if (! dashboardWrapper) {
+      if (!dashboardWrapper) {
         return;
       }
 
@@ -411,7 +417,7 @@ const makeDashboardTab = () => {
 const makeRegionMarkup = (name, childContent, appendTo) => {
   // find the child of the first div
   const firstChild = childContent.firstChild;
-  if (! firstChild) {
+  if (!firstChild) {
     return;
   }
 
@@ -439,7 +445,7 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
 const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   const markup = progress(quests);
 
-  if (! markup) {
+  if (!markup) {
     return;
   }
 
@@ -498,7 +504,7 @@ const getDashboardContents = async () => {
     const regionContents = document.createElement('div');
 
     for (const location of region.locations) {
-      if (location.condition && ! location.condition(quests)) {
+      if (location.condition && !location.condition(quests)) {
         continue;
       }
 
@@ -512,7 +518,7 @@ const getDashboardContents = async () => {
     makeRegionMarkup(region.region, regionContents, contentsWrapper);
   }
 
-  if (! hasContent) {
+  if (!hasContent) {
     const noLocation = makeElement('div', 'noLocationDataWrapper');
     makeElement('div', 'noLocationData', 'No location data found. Refresh data to populate the dashboard.', noLocation);
     contentsWrapper.append(noLocation);

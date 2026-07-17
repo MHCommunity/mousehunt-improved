@@ -1,21 +1,14 @@
-import {
-  getData,
-  getMapData,
-  makeElement,
-  onEvent,
-  onRequest,
-  onTravel,
-  onTurn
-} from '@utils';
+import { getData, getMapData, makeElement, onEvent, onRequest, onTravel, onTurn } from '@utils';
 
 import { getCompletedGoals, refreshMap } from '../utils';
 
 const transformName = (name) => {
-  if (! name) {
+  if (!name) {
     return '';
   }
 
-  name = name.replaceAll('Treasure Map', '') // Remove 'Treasure Map' from name.
+  name = name
+    .replaceAll('Treasure Map', '') // Remove 'Treasure Map' from name.
     .replaceAll('Rare M1000 Team Research Expedition', 'Rare M1K Team Research'); // Shorten so it fits better.
 
   // Move toxic spill rank to subtitle.
@@ -38,7 +31,7 @@ const transformName = (name) => {
   const prefixIcons = {
     Halloween: '🎃',
     Birthday: '🎂',
-    Rainbow: '🌈'
+    Rainbow: '🌈',
   };
 
   let prefix = Object.keys(prefixIcons).find((key) => name.includes(key)) || '';
@@ -55,12 +48,12 @@ let doingAddMapToSidebar = false;
  */
 const addMapToSidebar = async () => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
-  if (! sidebar) {
+  if (!sidebar) {
     return;
   }
 
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
-  if (! mapId) {
+  if (!mapId) {
     return;
   }
 
@@ -69,7 +62,7 @@ const addMapToSidebar = async () => {
   }
 
   mapData = await getMapData(mapId, true);
-  if (! mapData) {
+  if (!mapData) {
     doingAddMapToSidebar = true;
     const refreshed = await refreshMap();
     doingAddMapToSidebar = false;
@@ -77,7 +70,7 @@ const addMapToSidebar = async () => {
     mapData = refreshed?.treasure_map || false;
   }
 
-  if (! mapData) {
+  if (!mapData) {
     return;
   }
 
@@ -101,7 +94,7 @@ const addMapToSidebar = async () => {
   mapSidebar.classList.add(`mh-improved-map-sidebar-${mapGoals.type}`);
 
   // make sure goals is iterable
-  if (! goals || ! goals.length) {
+  if (!goals || !goals.length) {
     mapSidebar.remove();
     return;
   }
@@ -155,7 +148,7 @@ const addMapToSidebar = async () => {
  */
 const refreshSidebar = async () => {
   const refreshed = await refreshMap();
-  if (! refreshed) {
+  if (!refreshed) {
     shouldRefresh = false;
     return;
   }

@@ -33,22 +33,26 @@ const maybeRedirectToHunterProfile = (text) => {
 
   // regex out the digits from any text that was pasted
   const id = text.match(/\d+/);
-  if (! id) {
+  if (!id) {
     return;
   }
 
-  if (! hg?.utils?.PageUtil?.setPage) {
+  if (!hg?.utils?.PageUtil?.setPage) {
     return;
   }
 
-  hg.utils.PageUtil.setPage('HunterProfile', {
-    id: id[0],
-  }, (data) => {
-    const snuid = data.tabs.profile.subtabs[0].snuid;
-    if (snuid && hg?.utils?.PageUtil?.showHunterProfile) {
-      hg.utils.PageUtil.showHunterProfile(snuid);
+  hg.utils.PageUtil.setPage(
+    'HunterProfile',
+    {
+      id: id[0],
+    },
+    (data) => {
+      const snuid = data.tabs.profile.subtabs[0].snuid;
+      if (snuid && hg?.utils?.PageUtil?.showHunterProfile) {
+        hg.utils.PageUtil.showHunterProfile(snuid);
+      }
     }
-  });
+  );
 };
 
 /**
@@ -63,11 +67,7 @@ const listenForIDPaste = () => {
   hasPasteListener = true;
   window.addEventListener('paste', (e) => {
     // if we're currently focused in an input, then don't do anything
-    if (
-      document.activeElement instanceof HTMLInputElement ||
-      document.activeElement instanceof HTMLTextAreaElement ||
-      document.activeElement instanceof HTMLSelectElement
-    ) {
+    if (document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement || document.activeElement instanceof HTMLSelectElement) {
       return;
     }
 

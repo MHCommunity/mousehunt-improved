@@ -8,7 +8,7 @@ import styles from './styles.css';
  * @param {Object} model The journal entry model.
  */
 const wrapGoldAndPoints = (model) => {
-  if (! model.html) {
+  if (!model.html) {
     return;
   }
 

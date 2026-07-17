@@ -8,7 +8,7 @@ import styles from './styles.css';
 const addMultiplePlantButtons = async () => {
   await waitForElement('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
 
-  if (! (user?.quests?.QuestForewordFarm?.plots && user?.quests?.QuestForewordFarm?.plots.length >= 3)) {
+  if (!(user?.quests?.QuestForewordFarm?.plots && user?.quests?.QuestForewordFarm?.plots.length >= 3)) {
     return; // only add x3 button if we have 3 plots.
   }
 
@@ -43,7 +43,7 @@ const addMultiplePlantButtons = async () => {
 
       let shouldDisableButton = false;
       // if we can't plant anything in any of the plots, disable the button.
-      const allPlotsFull = user?.quests?.QuestForewordFarm?.plots.every((plot) => ! plot.can_plant_anything && plot.is_queue_full);
+      const allPlotsFull = user?.quests?.QuestForewordFarm?.plots.every((plot) => !plot.can_plant_anything && plot.is_queue_full);
       if (allPlotsFull) {
         shouldDisableButton = true;
       }

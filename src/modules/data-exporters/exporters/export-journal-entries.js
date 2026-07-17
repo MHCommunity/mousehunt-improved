@@ -46,14 +46,7 @@ const exportJournalEntries = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: [
-        'ID',
-        'Date',
-        'Location',
-        'Text',
-        'Type',
-        'Mouse',
-      ]
+      headers: ['ID', 'Date', 'Location', 'Text', 'Type', 'Mouse'],
     },
   });
 };

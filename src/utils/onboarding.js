@@ -63,13 +63,7 @@ const addOnboardingMessage = async (options) => {
     disabled = false,
   } = options;
 
-  if (
-    disabled ||
-    hasAddedOnboardingStep ||
-    hasSeenOnboardingStep(step) ||
-    (page && page !== getCurrentPage()) ||
-    (tab && tab !== getCurrentTab())
-  ) {
+  if (disabled || hasAddedOnboardingStep || hasSeenOnboardingStep(step) || (page && page !== getCurrentPage()) || (tab && tab !== getCurrentTab())) {
     return;
   }
 
@@ -140,7 +134,7 @@ const isTipPreview = () => {
 const canShowOnboardingTip = () => {
   const lastShown = getSetting(TIP_LAST_SHOWN_SETTING, 0);
 
-  return (Date.now() - lastShown) >= TIP_INTERVAL;
+  return Date.now() - lastShown >= TIP_INTERVAL;
 };
 
 /**
@@ -182,23 +176,16 @@ const saveOnboardingTipShown = (step) => {
  *
  * @return {Element|boolean} The tip element, or false if it wasn't shown.
  */
-const addOnboardingTip = ({
-  step,
-  anchor,
-  title,
-  content,
-  position = 'below',
-  dismissOnAnchorClick = true,
-}) => {
+const addOnboardingTip = ({ step, anchor, title, content, position = 'below', dismissOnAnchorClick = true }) => {
   const isPreview = isTipPreview();
-  if (! isPreview && (hasSeenOnboardingStep(step) || ! canShowOnboardingTip())) {
+  if (!isPreview && (hasSeenOnboardingStep(step) || !canShowOnboardingTip())) {
     return false;
   }
 
   // Only ever show one tip at a time, so a page that has a few of them to give
   // doesn't bury the user in bubbles.
   const anchorEl = 'string' === typeof anchor ? document.querySelector(anchor) : anchor;
-  if (! anchorEl || document.querySelector('.mh-improved-tip')) {
+  if (!anchorEl || document.querySelector('.mh-improved-tip')) {
     return false;
   }
 
@@ -226,24 +213,18 @@ const addOnboardingTip = ({
    * Point the tip at the anchor, or tear it down if the anchor is gone.
    */
   const reposition = () => {
-    if (! anchorEl.isConnected) {
+    if (!anchorEl.isConnected) {
       remove();
       return;
     }
 
     const anchorRect = anchorEl.getBoundingClientRect();
     const tipRect = tip.getBoundingClientRect();
-    const anchorCenter = anchorRect.left + (anchorRect.width / 2);
+    const anchorCenter = anchorRect.left + anchorRect.width / 2;
 
-    const left = clamp(
-      anchorCenter - (tipRect.width / 2),
-      TIP_EDGE_MARGIN,
-      Math.max(TIP_EDGE_MARGIN, document.documentElement.clientWidth - tipRect.width - TIP_EDGE_MARGIN)
-    );
+    const left = clamp(anchorCenter - tipRect.width / 2, TIP_EDGE_MARGIN, Math.max(TIP_EDGE_MARGIN, document.documentElement.clientWidth - tipRect.width - TIP_EDGE_MARGIN));
 
-    const top = isAbove
-      ? anchorRect.top - tipRect.height - TIP_ARROW_SIZE
-      : anchorRect.bottom + TIP_ARROW_SIZE;
+    const top = isAbove ? anchorRect.top - tipRect.height - TIP_ARROW_SIZE : anchorRect.bottom + TIP_ARROW_SIZE;
 
     tip.style.left = `${left + window.scrollX}px`;
     tip.style.top = `${top + window.scrollY}px`;
@@ -268,7 +249,7 @@ const addOnboardingTip = ({
    * Dismiss the tip for good.
    */
   const dismiss = () => {
-    if (! isPreview) {
+    if (!isPreview) {
       saveOnboardingStep(step);
     }
 
@@ -301,16 +282,11 @@ const addOnboardingTip = ({
 
   reposition();
 
-  if (! isPreview) {
+  if (!isPreview) {
     saveOnboardingTipShown(step);
   }
 
   return tip;
 };
 
-export {
-  hasSeenOnboardingStep,
-  saveOnboardingStep,
-  addOnboardingMessage,
-  addOnboardingTip
-};
+export { hasSeenOnboardingStep, saveOnboardingStep, addOnboardingMessage, addOnboardingTip };

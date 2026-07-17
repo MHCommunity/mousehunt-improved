@@ -8,11 +8,11 @@ import { formatNumber } from '@utils';
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestBountifulBeanstalk) {
+  if (!quests.QuestBountifulBeanstalk) {
     return '';
   }
 
-  if (! quests?.QuestBountifulBeanstalk?.in_castle) {
+  if (!quests?.QuestBountifulBeanstalk?.in_castle) {
     const room = quests?.QuestBountifulBeanstalk?.beanstalk?.current_zone?.name || '';
     const huntsRemaining = quests?.QuestBountifulBeanstalk?.beanstalk?.hunts_remaining_text || '';
     const isBoss = quests?.QuestBountifulBeanstalk?.beanstalk?.is_boss_encounter || false;
@@ -26,22 +26,16 @@ export default (quests) => {
   const noise = quests?.QuestBountifulBeanstalk?.castle?.noise_level || 0;
   const maxNoise = quests?.QuestBountifulBeanstalk?.castle?.max_noise_level || 0;
 
-  const roomQuality = quests?.QuestBountifulBeanstalk?.castle?.current_room?.type
-    .replace('_room', '')
-    .split('_')
-    .pop()
-    .trim();
+  const roomQuality = quests?.QuestBountifulBeanstalk?.castle?.current_room?.type.replace('_room', '').split('_').pop().trim();
 
   const roomName = quests?.QuestBountifulBeanstalk?.castle?.current_room?.name
     .replace(' Room', '')
     .replace(`${roomQuality.charAt(0).toUpperCase() + roomQuality.slice(1).toLowerCase()} `, '')
     .trim();
 
-  const noiseString = isBoss ? 'Boss' : (isChase ? 'Chase' : `♪ ${formatNumber(noise)}/${formatNumber(maxNoise)}`);
+  const noiseString = isBoss ? 'Boss' : isChase ? 'Chase' : `♪ ${formatNumber(noise)}/${formatNumber(maxNoise)}`;
 
-  const embellishmentsText = quests?.QuestBountifulBeanstalk?.embellishments
-    .filter((item) => item.is_active)
-    .map((item) => `<span class="tile ${item.type}"></span>`);
+  const embellishmentsText = quests?.QuestBountifulBeanstalk?.embellishments.filter((item) => item.is_active).map((item) => `<span class="tile ${item.type}"></span>`);
 
   let returnText = '<div class="dashboard-bb">';
   returnText += `<div class="dashboard-bb-wrap room-name"><span class="tile ${roomQuality}"></span><div class="name">${roomName}</div>`;

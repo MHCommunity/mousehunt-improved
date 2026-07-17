@@ -1,10 +1,4 @@
-import {
-  debug,
-  getCurrentLocation,
-  getSetting,
-  makeElement,
-  saveSetting
-} from '@utils';
+import { debug, getCurrentLocation, getSetting, makeElement, saveSetting } from '@utils';
 
 /**
  * Update the shops markup.
@@ -13,7 +7,7 @@ import {
  */
 const updateShopsMarkup = async (root = document) => {
   const shopsNodeList = root.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
-  if (! shopsNodeList.length) {
+  if (!shopsNodeList.length) {
     return;
   }
 
@@ -23,12 +17,12 @@ const updateShopsMarkup = async (root = document) => {
 
   shops.sort((aEl, bEl) => {
     const a = aEl.querySelector('.treasureMapPopup-shop-environment');
-    if (! a) {
+    if (!a) {
       return 1;
     }
 
     const b = bEl.querySelector('.treasureMapPopup-shop-environment');
-    if (! b) {
+    if (!b) {
       return -1;
     }
 
@@ -38,11 +32,11 @@ const updateShopsMarkup = async (root = document) => {
     const aPinned = getPinnedShops.includes(aEnv);
     const bPinned = getPinnedShops.includes(bEnv);
 
-    if (aPinned && ! bPinned) {
+    if (aPinned && !bPinned) {
       return -1; // a is pinned, b is not
     }
 
-    if (! aPinned && bPinned) {
+    if (!aPinned && bPinned) {
       return 1; // b is pinned, a is not
     }
 
@@ -70,21 +64,21 @@ const updateShopsMarkup = async (root = document) => {
     shopContainer.append(shop);
 
     const environmentEl = shop.querySelector('.treasureMapPopup-shop-environment');
-    if (! environmentEl) {
+    if (!environmentEl) {
       return;
     }
 
     const heading = environmentEl.querySelector('.treasureMapView-block-content-heading');
-    if (! heading) {
+    if (!heading) {
       return;
     }
 
     const container = environmentEl.querySelector('.treasureMapPopup-shop-environmentItems');
-    if (! container) {
+    if (!container) {
       return;
     }
 
-    if (! environmentEl.classList.contains('active')) {
+    if (!environmentEl.classList.contains('active')) {
       container.classList.add('hidden');
     }
 
@@ -136,6 +130,4 @@ const updateShopsMarkup = async (root = document) => {
   }
 };
 
-export {
-  updateShopsMarkup
-};
+export { updateShopsMarkup };

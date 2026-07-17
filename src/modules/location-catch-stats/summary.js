@@ -1,11 +1,4 @@
-import {
-  dataGet,
-  dataSet,
-  doRequest,
-  makeElement,
-  makeElementDraggable,
-  parseNumber
-} from '@utils';
+import { dataGet, dataSet, doRequest, makeElement, makeElementDraggable, parseNumber } from '@utils';
 
 import { getMouseStats, makeMouseList, makeStatsModal } from './stats';
 
@@ -30,7 +23,7 @@ const statsCacheDuration = 30 * 60 * 1000;
  * @return {boolean} Whether the entry is still fresh.
  */
 const isCacheFresh = (cached) => {
-  return Boolean(cached?.updated) && (Date.now() - cached.updated) < statsCacheDuration;
+  return Boolean(cached?.updated) && Date.now() - cached.updated < statsCacheDuration;
 };
 
 /**
@@ -58,7 +51,7 @@ const fetchOverallStats = async () => {
   const locationTab = subtabs.find((subtab) => 'location' === subtab?.subtab_type) || subtabs[1];
   const categories = locationTab?.mouse_list?.categories;
 
-  if (! categories || ! categories.length) {
+  if (!categories || !categories.length) {
     return false;
   }
 
@@ -85,7 +78,7 @@ const fetchOverallStats = async () => {
  * @return {Object|boolean} The summary data, or false if it couldn't be fetched.
  */
 const getOverallStats = async (refresh = false) => {
-  if (! refresh) {
+  if (!refresh) {
     const cached = await dataGet(overallStatsKey);
     if (isCacheFresh(cached)) {
       return cached;
@@ -175,7 +168,7 @@ const makeLocationMarkup = (location, skipCache = false) => {
   // Fetch the details the first time the location is expanded.
   let hasLoaded = false;
   locationEl.addEventListener('toggle', async () => {
-    if (! locationEl.open || hasLoaded) {
+    if (!locationEl.open || hasLoaded) {
       return;
     }
 
@@ -200,7 +193,7 @@ const makeLocationMarkup = (location, skipCache = false) => {
 const renderSummary = (stats, body) => {
   body.replaceChildren();
 
-  if (! stats || ! stats.locations) {
+  if (!stats || !stats.locations) {
     makeElement('div', 'mh-catch-stats-summary-error', 'Could not load the location stats. Please try again.', body);
     return;
   }
@@ -295,6 +288,4 @@ const showSummaryModal = async () => {
   renderSummary(await getOverallStats(), body);
 };
 
-export {
-  showSummaryModal
-};
+export { showSummaryModal };

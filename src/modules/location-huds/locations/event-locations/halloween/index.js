@@ -39,7 +39,4 @@ const halloweenLocation = async () => {
   onRequest('*', unDisableCheese);
 };
 
-export {
-  halloweenGlobal,
-  halloweenLocation
-};
+export { halloweenGlobal, halloweenLocation };

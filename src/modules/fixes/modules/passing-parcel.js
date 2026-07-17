@@ -8,12 +8,12 @@ let handleParcelClick = null;
  */
 const fixPassingParcel = () => {
   const passingParcel = document.querySelector('.inventoryPage-item[data-item-type="passing_parcel_message_item"]');
-  if (! passingParcel) {
+  if (!passingParcel) {
     return;
   }
 
   const quantity = passingParcel.querySelector('.quantity');
-  if (! quantity) {
+  if (!quantity) {
     return;
   }
 
@@ -73,12 +73,15 @@ const cleanupPassingParcel = () => {
  * Initialize the passing parcel fix.
  */
 export default async () => {
-  onNavigation(() => {
-    cleanupPassingParcel();
-    fixPassingParcel();
-  }, {
-    page: 'inventory',
-    tab: 'special',
-    onLoad: true,
-  });
+  onNavigation(
+    () => {
+      cleanupPassingParcel();
+      fixPassingParcel();
+    },
+    {
+      page: 'inventory',
+      tab: 'special',
+      onLoad: true,
+    }
+  );
 };

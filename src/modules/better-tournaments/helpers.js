@@ -6,7 +6,7 @@
  * @return {string|null} Tournament ID.
  */
 const getTournamentId = (href) => {
-  if (! href) {
+  if (!href) {
     return null;
   }
 
@@ -28,7 +28,7 @@ const getTournamentId = (href) => {
 const applyCachedTournamentName = (link, names) => {
   const tournamentId = getTournamentId(link?.href);
   const name = tournamentId ? names.get(tournamentId) : null;
-  if (! name) {
+  if (!name) {
     return false;
   }
 
@@ -47,7 +47,7 @@ const applyCachedTournamentName = (link, names) => {
  * @return {number|null} Duration in minutes, or null when no duration is present.
  */
 const parseTournamentMinutes = (value) => {
-  if (! value) {
+  if (!value) {
     return null;
   }
 
@@ -77,12 +77,12 @@ const parseTournamentMinutes = (value) => {
  */
 const parseTournamentRank = (value) => {
   const match = value?.trim().match(/^([\d,]+)(.*)$/);
-  if (! match) {
+  if (!match) {
     return null;
   }
 
   const rank = Number.parseInt(match[1].replaceAll(',', ''), 10);
-  if (! Number.isFinite(rank)) {
+  if (!Number.isFinite(rank)) {
     return null;
   }
 
@@ -106,23 +106,23 @@ const parseTournamentRank = (value) => {
  * @return {Object|null} Listing dates.
  */
 const getTournamentListingDates = (status, nowTime, countdownMinutes, durationMinutes) => {
-  if (! Number.isFinite(countdownMinutes) || ! Number.isFinite(durationMinutes)) {
+  if (!Number.isFinite(countdownMinutes) || !Number.isFinite(durationMinutes)) {
     return null;
   }
 
-  const statusDate = new Date(nowTime + (countdownMinutes * 60000));
+  const statusDate = new Date(nowTime + countdownMinutes * 60000);
 
   if ('pending' === status) {
     return {
       statusDate,
-      durationDate: new Date(statusDate.getTime() + (durationMinutes * 60000)),
+      durationDate: new Date(statusDate.getTime() + durationMinutes * 60000),
     };
   }
 
   if ('active' === status) {
     return {
       statusDate,
-      durationDate: new Date(statusDate.getTime() - (durationMinutes * 60000)),
+      durationDate: new Date(statusDate.getTime() - durationMinutes * 60000),
     };
   }
 

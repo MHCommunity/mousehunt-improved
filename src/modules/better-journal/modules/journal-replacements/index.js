@@ -3,14 +3,7 @@ import { addStyles, formatNumber, onJournalEntry, parseNumber } from '@utils';
 import replacements from './rules';
 import styles from './styles.css';
 
-const keepOriginalClasses = new Set([
-  'lunar_lantern',
-  'valentines_matchmaker',
-  'vending_machine_purchase',
-  'fullyExplored',
-  'folkloreForest-bookClaimed',
-  'claimBooty',
-]);
+const keepOriginalClasses = new Set(['lunar_lantern', 'valentines_matchmaker', 'vending_machine_purchase', 'fullyExplored', 'folkloreForest-bookClaimed', 'claimBooty']);
 
 /**
  * Whether text replacements should leave an entry untouched.
@@ -32,7 +25,7 @@ const shouldSkip = (model) => {
  * @return {boolean} Whether the rule applies.
  */
 const ruleMatchesEntry = (rule, model) => {
-  if (rule.classes && ! rule.classes.some((entryClass) => model.classes.has(entryClass))) {
+  if (rule.classes && !rule.classes.some((entryClass) => model.classes.has(entryClass))) {
     return false;
   }
 
@@ -90,13 +83,13 @@ const replaceInEntry = (model) => {
  * @param {Object} model The journal entry model.
  */
 const updateKingsReward = (model) => {
-  if (shouldSkip(model) || ! model.classes.has('captchasolved')) {
+  if (shouldSkip(model) || !model.classes.has('captchasolved')) {
     return;
   }
 
   const regex = /i claimed a king's reward worth (\d+(,\d{3})*) gold\./i;
   const match = model.html.match(regex);
-  if (! match || match.length < 2) {
+  if (!match || match.length < 2) {
     return;
   }
 
@@ -110,7 +103,7 @@ const updateKingsReward = (model) => {
  * @param {Object} model The journal entry model.
  */
 const fixAnWording = (model) => {
-  if (! shouldSkip(model)) {
+  if (!shouldSkip(model)) {
     model.setHtml(model.html.replaceAll(/ and caught an ([b-df-hj-np-tv-z])/gi, ' and caught a $1'));
   }
 };

@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  makePage,
-  onActivation,
-  onDeactivation,
-  onEvent
-} from '@utils';
+import { addStyles, makePage, onActivation, onDeactivation, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -43,7 +37,7 @@ const wikiListener = (e) => {
  */
 const addMenuListener = () => {
   const wikiLink = getLink();
-  if (! wikiLink || wikiLink === listener) {
+  if (!wikiLink || wikiLink === listener) {
     return;
   }
 
@@ -59,7 +53,7 @@ const addMenuListener = () => {
  * Remove the click listener from the wiki link in the menu.
  */
 const removeMenuListener = () => {
-  if (! listener) {
+  if (!listener) {
     return;
   }
 

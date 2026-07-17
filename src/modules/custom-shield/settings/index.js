@@ -26,12 +26,12 @@ export default async () => {
         { name: 'Great Winter Hunt', value: 'winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
         { name: 'Halloween (Pumpkins)', value: 'halloween-text' },
-        { name: 'Larry\'s Football Challenge', value: 'larrys_football_challenge' },
+        { name: "Larry's Football Challenge", value: 'larrys_football_challenge' },
         { name: 'Pride (LGS Required)', value: 'pride' },
         { name: 'Remembrance Day', value: 'remembrance_day' },
         { name: 'Spring Egg Hunt (LGS Required)', value: 'spring-egg-hunt' },
         { name: 'Spring Egg Hunt Alt (LGS Required)', value: 'spring-egg-hunt-alt' },
-        { name: 'Valentine\'s', value: 'valentines' },
+        { name: "Valentine's", value: 'valentines' },
       ],
     },
     {
@@ -109,15 +109,9 @@ export default async () => {
     },
   ];
 
-  if (! user.has_shield) {
+  if (!user.has_shield) {
     // If the user doesn't have LGS, they can't do the pride or SEH shields.
-    const toDisable = new Set([
-      'default-no-lgs',
-      'pride',
-      'spring-egg-hunt',
-      'spring-egg-hunt-alt',
-      'Color (LGS required)',
-    ]);
+    const toDisable = new Set(['default-no-lgs', 'pride', 'spring-egg-hunt', 'spring-egg-hunt-alt', 'Color (LGS required)']);
 
     // Set all the options the user can't select as disabled, including all of the "Color (LGS required)" options.
     options = options.map((option) => {
@@ -142,14 +136,16 @@ export default async () => {
     });
   }
 
-  return [{
-    id: 'custom-shield',
-    title: 'Custom Shield <span class="mhui-setting-title-links"><a class="mh-improved-custom-shield-preview">Preview choices</a></span>',
-    default: [options[0]],
-    settings: {
-      type: 'multi-select',
-      number: 1,
-      options,
+  return [
+    {
+      id: 'custom-shield',
+      title: 'Custom Shield <span class="mhui-setting-title-links"><a class="mh-improved-custom-shield-preview">Preview choices</a></span>',
+      default: [options[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options,
+      },
     },
-  }];
+  ];
 };

@@ -9,9 +9,7 @@ import { makeElement, makeLink } from './elements';
  * @return {string} The wiki URL.
  */
 const wikiUrl = (name, encode = true) => {
-  const slug = encode
-    ? encodeURIComponent(name.replaceAll(' ', '_'))
-    : name.replaceAll(' ', '_');
+  const slug = encode ? encodeURIComponent(name.replaceAll(' ', '_')) : name.replaceAll(' ', '_');
 
   return `https://mhwiki.hitgrab.com/wiki/index.php/${slug}`;
 };
@@ -38,8 +36,7 @@ const mhctRedirectUrl = (id, { item = false } = {}) => {
  * @return {string} The link markup.
  */
 const getMouseLinks = (name, id) => {
-  return makeLink('MHCT AR', mhctRedirectUrl(id)) +
-    makeLink('Wiki', wikiUrl(name), true);
+  return makeLink('MHCT AR', mhctRedirectUrl(id)) + makeLink('Wiki', wikiUrl(name), true);
 };
 
 /**
@@ -51,8 +48,7 @@ const getMouseLinks = (name, id) => {
  * @return {string} The link markup.
  */
 const getItemLinks = (name, id) => {
-  return makeLink('MHCT', mhctRedirectUrl(id, { item: true }), true) +
-    makeLink('Wiki', wikiUrl(name), true);
+  return makeLink('MHCT', mhctRedirectUrl(id, { item: true }), true) + makeLink('Wiki', wikiUrl(name), true);
 };
 
 /**
@@ -66,14 +62,18 @@ const getItemLinks = (name, id) => {
  * @param {boolean}  [options.external] Whether the link is external or not.
  */
 const addItemToGameInfoBar = (options) => {
-  const settings = Object.assign({}, {
-    label: '',
-    href: '',
-    class: '',
-    callback: null,
-    external: false,
-    title: '',
-  }, options);
+  const settings = Object.assign(
+    {},
+    {
+      label: '',
+      href: '',
+      class: '',
+      callback: null,
+      external: false,
+      title: '',
+    },
+    options
+  );
 
   const safeLabel = settings.label.replaceAll(/[^\da-z]/gi, '_').toLowerCase();
   const exists = document.querySelector(`#mh-custom-topmenu-${safeLabel}`);
@@ -82,7 +82,7 @@ const addItemToGameInfoBar = (options) => {
   }
 
   const menu = document.querySelector('.mousehuntHud-gameInfo');
-  if (! menu) {
+  if (!menu) {
     return;
   }
 
@@ -144,31 +144,35 @@ const getCleanSubmenuLabel = (label) => {
  */
 const addSubmenuItem = (options) => {
   // Default to sensible values.
-  const settings = Object.assign({}, {
-    id: null,
-    menu: 'kingdom',
-    label: '',
-    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png',
-    href: '',
-    class: '',
-    callback: null,
-    external: false,
-  }, options);
+  const settings = Object.assign(
+    {},
+    {
+      id: null,
+      menu: 'kingdom',
+      label: '',
+      icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png',
+      href: '',
+      class: '',
+      callback: null,
+      external: false,
+    },
+    options
+  );
 
   // Grab the menu item we want to add the submenu to.
   const menuTarget = document.querySelector(`.mousehuntHud-menu .${settings.menu}`);
-  if (! menuTarget) {
+  if (!menuTarget) {
     return;
   }
 
   // If the menu already has a submenu, just add the item to it.
-  if (! menuTarget.classList.contains('hasChildren')) {
+  if (!menuTarget.classList.contains('hasChildren')) {
     menuTarget.classList.add('hasChildren');
   }
 
   let hasSubmenu = true;
   let submenu = menuTarget.querySelector('ul');
-  if (! submenu) {
+  if (!submenu) {
     hasSubmenu = false;
     submenu = document.createElement('ul');
   }
@@ -224,7 +228,7 @@ const addSubmenuItem = (options) => {
   // Add the item to the submenu.
   submenu.append(item);
 
-  if (! hasSubmenu) {
+  if (!hasSubmenu) {
     menuTarget.append(submenu);
   }
 };
@@ -272,7 +276,7 @@ const addSubmenuDivider = (menu, className = '') => {
  */
 const addIconToMenu = (opts) => {
   const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
-  if (! menu) {
+  if (!menu) {
     return;
   }
 
@@ -288,7 +292,7 @@ const addIconToMenu = (opts) => {
 
   const settings = Object.assign({}, defaults, opts);
 
-  if (! settings.classname) {
+  if (!settings.classname) {
     settings.classname = settings.id;
   }
 
@@ -398,5 +402,5 @@ export {
   removeIconFromMenu,
   replaceIconInMenu,
   getExtensionLink,
-  getExtensionLinkText
+  getExtensionLinkText,
 };

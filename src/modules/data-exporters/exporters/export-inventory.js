@@ -95,18 +95,7 @@ const exportInventory = () => {
     fetch: () => recursiveFetch(itemCategories, getData),
     updateSingleTotal: true,
     download: {
-      headers: [
-        'Category',
-        'Item ID',
-        'Item Type',
-        'Item Name',
-        'Classification',
-        'Quantity',
-        'Thumbnail',
-        'Limited Edition',
-        'Tradable',
-        'Givable',
-      ],
+      headers: ['Category', 'Item ID', 'Item Type', 'Item Name', 'Classification', 'Quantity', 'Thumbnail', 'Limited Edition', 'Tradable', 'Givable'],
       reduceResults: true,
     },
   });

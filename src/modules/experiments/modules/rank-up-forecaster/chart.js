@@ -4,14 +4,7 @@ import { shortNumber } from './format';
 
 const DAY = 24 * 60 * 60 * 1000;
 
-const MODEL_COLORS = [
-  '#7d64c3',
-  '#4f7fc3',
-  '#3d9970',
-  '#e08f26',
-  '#c34f4f',
-  '#a08a3c',
-];
+const MODEL_COLORS = ['#7d64c3', '#4f7fc3', '#3d9970', '#e08f26', '#c34f4f', '#a08a3c'];
 
 /**
  * Build the projection series for a forecast model, clipped to the horizon.
@@ -25,7 +18,7 @@ const MODEL_COLORS = [
  * @return {Object|null} A Highcharts series config.
  */
 const buildProjectionSeries = (model, anchor, horizon, target, index) => {
-  if (! model.targetTimestamp || model.targetTimestamp <= anchor.x) {
+  if (!model.targetTimestamp || model.targetTimestamp <= anchor.x) {
     return null;
   }
 
@@ -34,7 +27,7 @@ const buildProjectionSeries = (model, anchor, horizon, target, index) => {
 
   if (endX > horizon) {
     // Clip the projection line at the chart horizon.
-    endY = anchor.y + ((target - anchor.y) * ((horizon - anchor.x) / (endX - anchor.x)));
+    endY = anchor.y + (target - anchor.y) * ((horizon - anchor.x) / (endX - anchor.x));
     endX = horizon;
   }
 
@@ -63,7 +56,7 @@ const buildProjectionSeries = (model, anchor, horizon, target, index) => {
  */
 const renderForecastChart = (container, forecastData) => {
   const { samples, forecasts, consensus, targetRank } = forecastData;
-  if (! container || samples.length < 2) {
+  if (!container || samples.length < 2) {
     return null;
   }
 
@@ -78,14 +71,9 @@ const renderForecastChart = (container, forecastData) => {
   // chart readable when a slow model predicts years out.
   const historySpan = anchor.x - history[0][0];
   const consensusSpan = consensus ? consensus.targetTimestamp - anchor.x : 0;
-  const horizon = anchor.x + Math.min(
-    Math.max(consensusSpan * 1.15, historySpan * 0.25, 7 * DAY),
-    3 * 365 * DAY
-  );
+  const horizon = anchor.x + Math.min(Math.max(consensusSpan * 1.15, historySpan * 0.25, 7 * DAY), 3 * 365 * DAY);
 
-  const projectionSeries = forecasts
-    .map((model, index) => buildProjectionSeries(model, anchor, horizon, targetRank.wisdom, index))
-    .filter(Boolean);
+  const projectionSeries = forecasts.map((model, index) => buildProjectionSeries(model, anchor, horizon, targetRank.wisdom, index)).filter(Boolean);
 
   const reachesTarget = forecasts.some((model) => model.targetTimestamp && model.targetTimestamp <= horizon);
 
@@ -110,18 +98,20 @@ const renderForecastChart = (container, forecastData) => {
       lineColor: gridColor,
       tickColor: gridColor,
       labels: { style: { color: textColor, fontSize: '10px' } },
-      plotLines: [{
-        value: Date.now(),
-        color: gridColor,
-        width: 1,
-        dashStyle: 'Dot',
-        label: {
-          text: 'Now',
-          style: { color: textColor, fontSize: '9px' },
-          rotation: 0,
-          y: 12,
+      plotLines: [
+        {
+          value: Date.now(),
+          color: gridColor,
+          width: 1,
+          dashStyle: 'Dot',
+          label: {
+            text: 'Now',
+            style: { color: textColor, fontSize: '9px' },
+            rotation: 0,
+            y: 12,
+          },
         },
-      }],
+      ],
     },
     yAxis: {
       title: { text: null },
@@ -138,19 +128,21 @@ const renderForecastChart = (container, forecastData) => {
         },
       },
       plotLines: reachesTarget
-        ? [{
-          value: targetRank.wisdom,
-          color: isDarkMode ? '#8fb98f' : '#3d7a3d',
-          width: 1.5,
-          dashStyle: 'Dash',
-          zIndex: 3,
-          label: {
-            text: targetRank.name,
-            align: 'right',
-            x: -4,
-            style: { color: isDarkMode ? '#8fb98f' : '#3d7a3d', fontSize: '10px', fontWeight: 'bold' },
-          },
-        }]
+        ? [
+            {
+              value: targetRank.wisdom,
+              color: isDarkMode ? '#8fb98f' : '#3d7a3d',
+              width: 1.5,
+              dashStyle: 'Dash',
+              zIndex: 3,
+              label: {
+                text: targetRank.name,
+                align: 'right',
+                x: -4,
+                style: { color: isDarkMode ? '#8fb98f' : '#3d7a3d', fontSize: '10px', fontWeight: 'bold' },
+              },
+            },
+          ]
         : [],
     },
     tooltip: {
@@ -179,6 +171,4 @@ const renderForecastChart = (container, forecastData) => {
   });
 };
 
-export {
-  renderForecastChart
-};
+export { renderForecastChart };

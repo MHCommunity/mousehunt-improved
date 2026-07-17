@@ -15,7 +15,7 @@ import {
   onNavigation,
   onOverlayChange,
   onTurn,
-  setPage
+  setPage,
 } from '@utils';
 
 import hoverMice from './modules/hover-mice';
@@ -32,7 +32,7 @@ import styles from './styles.css';
  */
 const addLinks = (id) => {
   const title = document.querySelector('.mouseView-title');
-  if (! title) {
+  if (!title) {
     return;
   }
 
@@ -69,7 +69,7 @@ const isFavorite = async (mouseId) => {
     'page_arguments[snuid]': window.user.sn_user_id,
   });
 
-  if (! favorites?.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns?.favourite_mice.length) {
+  if (!favorites?.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns?.favourite_mice.length) {
     return false;
   }
 
@@ -122,7 +122,7 @@ const addFavoriteButton = async (mouseId, mouseView) => {
 const addMinluck = async (mouseId, mouseView) => {
   // get the description container
   const appendTo = mouseView.querySelector('.mouseView-contentContainer');
-  if (! appendTo) {
+  if (!appendTo) {
     return;
   }
 
@@ -139,7 +139,7 @@ const addMinluck = async (mouseId, mouseView) => {
   // foreach minluck, output the power type and the minluck
   const minluckList = makeElement('ul', 'minluck-list');
 
-  if (! minlucks) {
+  if (!minlucks) {
     minlucks = await getData('minlucks');
   }
 
@@ -150,7 +150,7 @@ const addMinluck = async (mouseId, mouseView) => {
   // We need the keys and values in our loop,
   // so we can't use a for...in loop.
   Object.keys(mouseMinlucks).forEach((powerType) => {
-    if (! mouseMinlucks[powerType] || '∞' === mouseMinlucks[powerType]) {
+    if (!mouseMinlucks[powerType] || '∞' === mouseMinlucks[powerType]) {
       return;
     }
 
@@ -178,11 +178,11 @@ const addMinluck = async (mouseId, mouseView) => {
  */
 const addWisdom = async (mouseId, mouseView) => {
   const values = mouseView.querySelector('.mouseView-values');
-  if (! values) {
+  if (!values) {
     return;
   }
 
-  if (! wisdoms) {
+  if (!wisdoms) {
     wisdoms = await getData('wisdom');
   }
 
@@ -200,17 +200,17 @@ const addWisdom = async (mouseId, mouseView) => {
  */
 const updateMouseView = async () => {
   const mouseView = document.querySelector('#overlayPopup .mouseView');
-  if (! mouseView) {
+  if (!mouseView) {
     return;
   }
 
   const mouseId = mouseView.getAttribute('data-mouse-id');
-  if (! mouseId) {
+  if (!mouseId) {
     return;
   }
 
   const name = mouseView.querySelector('.mouseView-title');
-  if (! name) {
+  if (!name) {
     return;
   }
 
@@ -218,13 +218,7 @@ const updateMouseView = async () => {
   if (catchesEl && catchesEl.length > 0) {
     catchesEl.forEach((el) => {
       // remove the ' catches' from the title and use it as the text
-      const catchesNumber = el
-        .getAttribute('title')
-        .replace(' Catches', '')
-        .replace(' catches', '')
-        .replace(' Misses', '')
-        .replace(' misses', '')
-        .trim();
+      const catchesNumber = el.getAttribute('title').replace(' Catches', '').replace(' catches', '').replace(' Misses', '').replace(' misses', '').trim();
       if (catchesNumber) {
         el.innerText = catchesNumber;
       }
@@ -270,7 +264,7 @@ const updateMouseView = async () => {
   }
 
   const container = mouseView.querySelector('.mouseView-contentContainer');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -289,7 +283,7 @@ const updateMouseView = async () => {
       const weaknesses = weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses-padding');
       weaknesses.forEach((w) => {
         const weakness = w.querySelector('.mouseView-weakness');
-        if (! weakness) {
+        if (!weakness) {
           w.classList.add('mouseview-weakness-empty');
           w.classList.add('hidden');
         }
@@ -320,7 +314,7 @@ const updateMouseView = async () => {
     imageContainer.append(movedContainer);
   }
 
-  if (! getSetting('better-mice.show-attraction-rates', true)) {
+  if (!getSetting('better-mice.show-attraction-rates', true)) {
     return;
   }
 
@@ -342,7 +336,7 @@ const updateMouseView = async () => {
   arWrapper.append(title);
 
   let mhctJson = await getArForMouse(mouseId, 'mouse');
-  if (! mhctJson || mhctJson === undefined || mhctJson.length === 0 || 'error' in mhctJson) {
+  if (!mhctJson || mhctJson === undefined || mhctJson.length === 0 || 'error' in mhctJson) {
     return;
   }
 
@@ -364,10 +358,10 @@ const updateMouseView = async () => {
       stage: 0.6,
       cheese: 0.6,
       keyWidth: 10,
-      ...weights
+      ...weights,
     };
 
-    const availableWidth = 450 - 50 - 10 - (10 * 3) - (hasStages ? 10 : 0);
+    const availableWidth = 450 - 50 - 10 - 10 * 3 - (hasStages ? 10 : 0);
 
     const calculateLengths = (key) => {
       const keyLengths = mhctJson.map((mouseAr) => mouseAr[key]?.length || 0).filter((l) => l > 0);
@@ -375,9 +369,8 @@ const updateMouseView = async () => {
 
       const totalLength = keyLengths.reduce((a, b) => a + b, 0);
       const avgLength = totalLength / keyLengths.length;
-      const medianLength = keyLengths.length % 2 === 0
-        ? (keyLengths[(keyLengths.length / 2) - 1] + keyLengths[keyLengths.length / 2]) / 2
-        : keyLengths[Math.floor(keyLengths.length / 2)];
+      const medianLength =
+        keyLengths.length % 2 === 0 ? (keyLengths[keyLengths.length / 2 - 1] + keyLengths[keyLengths.length / 2]) / 2 : keyLengths[Math.floor(keyLengths.length / 2)];
 
       return {
         avg: avgLength * weights.keyWidth,
@@ -394,26 +387,18 @@ const updateMouseView = async () => {
     };
 
     const weightedWidths = {
-      location: (
-        (lengths.location.avg * weights.average) +
-        (lengths.location.max * weights.max) +
-        (lengths.location.median * weights.median) +
-        (lengths.location.shortest * weights.shortest)
-      ) * weights.location,
+      location:
+        (lengths.location.avg * weights.average + lengths.location.max * weights.max + lengths.location.median * weights.median + lengths.location.shortest * weights.shortest) *
+        weights.location,
 
-      stage: hasStages ? (
-        (lengths.stage.avg * weights.average) +
-        (lengths.stage.max * weights.max) +
-        (lengths.stage.median * weights.median) +
-        (lengths.stage.shortest * weights.shortest)
-      ) * weights.stage : 0,
+      stage: hasStages
+        ? (lengths.stage.avg * weights.average + lengths.stage.max * weights.max + lengths.stage.median * weights.median + lengths.stage.shortest * weights.shortest) *
+          weights.stage
+        : 0,
 
-      cheese: (
-        (lengths.cheese.avg * weights.average) +
-        (lengths.cheese.max * weights.max) +
-        (lengths.cheese.median * weights.median) +
-        (lengths.cheese.shortest * weights.shortest)
-      ) * weights.cheese,
+      cheese:
+        (lengths.cheese.avg * weights.average + lengths.cheese.max * weights.max + lengths.cheese.median * weights.median + lengths.cheese.shortest * weights.shortest) *
+        weights.cheese,
     };
 
     const totalWeightedWidth = weightedWidths.location + weightedWidths.stage + weightedWidths.cheese;
@@ -431,7 +416,7 @@ const updateMouseView = async () => {
   };
 
   let locationWidth, stageWidth, cheeseWidth;
-  if (! getFlag('better-mice-no-new-ar-widths')) {
+  if (!getFlag('better-mice-no-new-ar-widths')) {
     const widths = calculateWidths();
     locationWidth = widths.locationWidth;
     stageWidth = widths.stageWidth;
@@ -440,10 +425,8 @@ const updateMouseView = async () => {
 
   mhctJson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
-    if (! getFlag('better-mice-no-new-ar-widths')) {
-      mouseArWrapper.style.gridTemplateColumns = hasStages
-        ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 50px`
-        : `${locationWidth}px ${cheeseWidth}px 50px`;
+    if (!getFlag('better-mice-no-new-ar-widths')) {
+      mouseArWrapper.style.gridTemplateColumns = hasStages ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 50px` : `${locationWidth}px ${cheeseWidth}px 50px`;
     }
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
@@ -494,7 +477,7 @@ const replaceShowMouseImage = () => {
 
 const addShowMouseToNewJournalEntries = () => {
   const newEntries = document.querySelectorAll('.newEntry');
-  if (! newEntries.length) {
+  if (!newEntries.length) {
     return;
   }
 
@@ -502,7 +485,7 @@ const addShowMouseToNewJournalEntries = () => {
     const mouseType = entry.getAttribute('data-mouse-type');
     const journalImageLink = entry.querySelector('.journalimage a');
 
-    if (! mouseType || ! journalImageLink) {
+    if (!mouseType || !journalImageLink) {
       return;
     }
 
@@ -522,7 +505,7 @@ const copyKingsCrowns = () => {
     }
 
     const mice = document.querySelectorAll('.mouseCrownsView-group-mouse-padding');
-    if (! mice || ! mice.length) {
+    if (!mice || !mice.length) {
       return;
     }
 
@@ -533,13 +516,13 @@ const copyKingsCrowns = () => {
       { name: 'Gold Crown', min: 500, max: 999 },
       { name: 'Silver Crown', min: 100, max: 499 },
       { name: 'Bronze Crown', min: 10, max: 99 },
-      { name: 'No Crown', min: 0, max: 9 }
+      { name: 'No Crown', min: 0, max: 9 },
     ];
 
     // Prepare a map for each crown group
     const grouped = crowns.map((crown) => ({
       ...crown,
-      mice: []
+      mice: [],
     }));
 
     // Collect mouse data and group by crown
@@ -548,11 +531,7 @@ const copyKingsCrowns = () => {
       const name = mouse.querySelector('.mouseCrownsView-group-mouse-name').innerText.trim();
 
       const group = grouped.find((crown) => catches >= crown.min && catches <= crown.max);
-      if (
-        group &&
-        group.mice &&
-        ! group.mice.some((m) => m.name === name && m.catches === catches)
-      ) {
+      if (group && group.mice && !group.mice.some((m) => m.name === name && m.catches === catches)) {
         group.mice.push({ catches, name });
       }
     });
@@ -574,7 +553,7 @@ const copyKingsCrowns = () => {
       });
     });
 
-    if (! lines.length) {
+    if (!lines.length) {
       return;
     }
 
@@ -622,7 +601,7 @@ const main = async () => {
 
   addSubmenuItem({
     menu: 'mice',
-    label: 'King\'s Crowns',
+    label: "King's Crowns",
     icon: 'https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png',
     href: 'https://www.mousehuntgame.com/adversaries.php?tab=kings_crowns',
   });
@@ -651,13 +630,13 @@ const init = () => {
   onNavigation(copyKingsCrowns, {
     page: 'hunterprofile',
     subtab: 'kings_crowns',
-    tab: 'kings_crowns'
+    tab: 'kings_crowns',
   });
 
   onNavigation(copyKingsCrowns, {
     page: 'adversaries',
     subtab: 'kings_crowns',
-    tab: 'kings_crowns'
+    tab: 'kings_crowns',
   });
 
   onTurn(addShowMouseToNewJournalEntries, 100);
@@ -671,7 +650,7 @@ export default {
   name: 'Better Mice',
   type: 'journal-progress-stats',
   default: true,
-  description: 'Add attraction rate stats and links to MH Wiki and MHCT to mouse dialogs. Sort the mouse stats pages and add the King\'s Crown tab to the mouse pages.',
+  description: "Add attraction rate stats and links to MH Wiki and MHCT to mouse dialogs. Sort the mouse stats pages and add the King's Crown tab to the mouse pages.",
   load: init,
   settings,
 };

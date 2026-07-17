@@ -5,9 +5,7 @@
 const skipLinkClassifications = new Set(['weapon', 'base']);
 
 // Specific items that should stay as plain text in journal prose.
-const excludedItemTypes = new Set([
-  'oculus_stat_item',
-]);
+const excludedItemTypes = new Set(['oculus_stat_item']);
 
 /**
  * Whether a journal item mention should stay as plain text instead of a link.
@@ -17,7 +15,7 @@ const excludedItemTypes = new Set([
  * @return {boolean} Whether to skip linking this item.
  */
 const shouldSkipJournalItemLink = (item) => {
-  if (! item) {
+  if (!item) {
     return false;
   }
 

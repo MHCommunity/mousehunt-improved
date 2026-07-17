@@ -1,21 +1,15 @@
-import {
-  addStyles,
-  getCurrentLocation,
-  getData,
-  onEvent,
-  onTravel
-} from '@utils';
+import { addStyles, getCurrentLocation, getData, onEvent, onTravel } from '@utils';
 
 let specialEffects;
 
 const addSpecialEffectsStyles = async () => {
   const styles = [];
 
-  if (! specialEffects) {
+  if (!specialEffects) {
     specialEffects = await getData('trap-special-effects');
   }
 
-  if (! specialEffects) {
+  if (!specialEffects) {
     return;
   }
 
@@ -35,7 +29,8 @@ const addSpecialEffectsStyles = async () => {
 
   const stylesText = styles.join(' .campPage-trap-itemBrowser-item-name::after,');
 
-  addStyles(`${stylesText} .mh-improved-special-effects-highlight {
+  addStyles(
+    `${stylesText} .mh-improved-special-effects-highlight {
     position: absolute;
     top: 4px;
     right: 3px;
@@ -45,7 +40,10 @@ const addSpecialEffectsStyles = async () => {
     content: "";
     background-color: #48b0a9;
     border-radius: 50%;
-  }`, 'trap-selector-special-effects', true);
+  }`,
+    'trap-selector-special-effects',
+    true
+  );
 };
 
 let hasAddedSpecialEffectsStyles = false;
@@ -54,7 +52,7 @@ let hasAddedSpecialEffectsStyles = false;
  */
 const init = async () => {
   onEvent('camp_page_toggle_blueprint', () => {
-    if (! hasAddedSpecialEffectsStyles) {
+    if (!hasAddedSpecialEffectsStyles) {
       addSpecialEffectsStyles();
       hasAddedSpecialEffectsStyles = true;
     }
@@ -70,5 +68,5 @@ export default {
   name: 'Highlight Special Effects in Trap Selector',
   type: 'hunting-setup',
   default: true,
-  load: init
+  load: init,
 };

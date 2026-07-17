@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Mousoleum Map"
-  ],
+  "names": ["Mousoleum Map"],
   "categories": [
     {
       "name": "Mousoleum",
@@ -43,12 +41,7 @@
       "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
       "color": "#a0dcff",
       "color-dark": "#2c6268",
-      "mice": [
-        "monster",
-        "mutated_brown",
-        "mutated_grey",
-        "mutated_white"
-      ]
+      "mice": ["monster", "mutated_brown", "mutated_grey", "mutated_white"]
     },
     {
       "name": "Catacombs",
@@ -56,9 +49,7 @@
       "icon": "https://i.mouse.rip/upscaled/7e0ba173640f397b0383b55e59738fdd.png",
       "color": "#fce5cd",
       "color-dark": "#7a4a21",
-      "mice": [
-        "giant_snail"
-      ]
+      "mice": ["giant_snail"]
     },
     {
       "name": "Forbidden Grove",
@@ -66,9 +57,7 @@
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#e3b5e8",
       "color-dark": "#86388c",
-      "mice": [
-        "black_widow"
-      ]
+      "mice": ["black_widow"]
     }
   ],
   "subcategories": [

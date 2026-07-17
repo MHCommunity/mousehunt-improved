@@ -6,12 +6,12 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests?.QuestSchoolOfSorcery) {
+  if (!quests?.QuestSchoolOfSorcery) {
     return '';
   }
 
   const currentCourse = quests?.QuestSchoolOfSorcery?.current_course;
-  if (! currentCourse && ! currentCourse?.in_course) {
+  if (!currentCourse && !currentCourse?.in_course) {
     return 'Not enrolled';
   }
 

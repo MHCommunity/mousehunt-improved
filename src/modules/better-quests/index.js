@@ -1,16 +1,4 @@
-import {
-  addStyles,
-  getCurrentSubtab,
-  getCurrentTab,
-  getData,
-  getSetting,
-  getUserItems,
-  isUserTitleAtLeast,
-  makeElement,
-  onNavigation,
-  onOverlayChange,
-  onRequest
-} from '@utils';
+import { addStyles, getCurrentSubtab, getCurrentTab, getData, getSetting, getUserItems, isUserTitleAtLeast, makeElement, onNavigation, onOverlayChange, onRequest } from '@utils';
 
 import settings from './settings';
 
@@ -46,13 +34,13 @@ const questAssignments = new Set([
  */
 const updateObjectiveFooterDisplay = () => {
   const footerText = document.querySelector('.campPage-quests-footer-smash');
-  if (! footerText) {
+  if (!footerText) {
     return;
   }
 
   const newHref = footerText.getAttribute('href').replace('subtab', 'sub_tab');
   footerText.setAttribute('href', `${newHref}#smashQuest`);
-  footerText.innerHTML = footerText.innerHTML.replace('Don\'t like an assignment? Cancel it by smashing the assignment ', 'Cancel this assignment by smashing it ');
+  footerText.innerHTML = footerText.innerHTML.replace("Don't like an assignment? Cancel it by smashing the assignment ", 'Cancel this assignment by smashing it ');
 
   footerText.addEventListener('click', (e) => {
     e.preventDefault();
@@ -62,7 +50,7 @@ const updateObjectiveFooterDisplay = () => {
       return quest.is_assignment && quest.type.endsWith('_quest_item');
     });
 
-    if (! assignment) {
+    if (!assignment) {
       return;
     }
 
@@ -82,7 +70,7 @@ const updateObjectiveFooterDisplay = () => {
 const addQuestsTab = () => {
   // Bail if we don't have the tabs.
   const tabs = document.querySelector('.campPage-tabs-tabRow');
-  if (! tabs) {
+  if (!tabs) {
     return;
   }
 
@@ -112,7 +100,7 @@ const addQuestsTab = () => {
 const addQuestTabEventListener = () => {
   // Grab the quest tab content.
   const questTabContent = document.querySelector('.campPage-tabs-tabContent[data-tab="quests"]');
-  if (! questTabContent) {
+  if (!questTabContent) {
     return;
   }
 
@@ -139,16 +127,16 @@ const addResearchSmashWarning = () => {
   }
 
   const confirm = document.querySelector('.inventoryPage-confirmPopup');
-  if (! confirm) {
+  if (!confirm) {
     return;
   }
 
   const type = confirm.getAttribute('data-item-type');
-  if (! type) {
+  if (!type) {
     return;
   }
 
-  if (! questAssignments.has(type)) {
+  if (!questAssignments.has(type)) {
     return;
   }
 
@@ -165,7 +153,7 @@ const addResearchSmashWarning = () => {
  */
 const moveErrorText = () => {
   const errorTextEl = document.querySelectorAll('.questLink .requirements .error');
-  if (! errorTextEl) {
+  if (!errorTextEl) {
     return;
   }
 
@@ -178,16 +166,14 @@ const moveErrorText = () => {
     el.classList.add('hidden');
   });
 
-  if (! errorText) {
+  if (!errorText) {
     return;
   }
 
-  errorText = errorText
-    .replace(/ \d\d seconds/, '')
-    .replace(' before taking', ' for');
+  errorText = errorText.replace(/ \d\d seconds/, '').replace(' before taking', ' for');
 
   const titleBar = document.querySelector('#jsDialogAjaxPrefix h2');
-  if (! titleBar) {
+  if (!titleBar) {
     return;
   }
 
@@ -210,7 +196,7 @@ const removeSmashText = () => {
  */
 const updateAssignmentList = async () => {
   const assignmentList = document.querySelectorAll('#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink');
-  if (! assignmentList) {
+  if (!assignmentList) {
     return;
   }
 
@@ -218,15 +204,15 @@ const updateAssignmentList = async () => {
 
   assignmentList.forEach((questLink) => {
     let type = questLink.getAttribute('data-quest-type');
-    if (! type) {
+    if (!type) {
       // Get the details about the assignment.
       const onclickAttr = questLink.getAttribute('onclick') || '';
-      if (! onclickAttr.includes('hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm')) {
+      if (!onclickAttr.includes('hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm')) {
         return;
       }
 
-      type = onclickAttr.replace('hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(\'', '').replace('\'); return false;', '');
-      if (! type) {
+      type = onclickAttr.replace("hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('", '').replace("'); return false;", '');
+      if (!type) {
         return;
       }
     }
@@ -238,12 +224,12 @@ const updateAssignmentList = async () => {
     }
 
     const content = questLink.querySelector('.content');
-    if (! content) {
+    if (!content) {
       return;
     }
 
     const name = content.querySelector('b');
-    if (! name) {
+    if (!name) {
       return;
     }
 
@@ -341,7 +327,7 @@ const updateAssignmentList = async () => {
 
   // Add our wisdom tomes to the sidebar too.
   const resources = document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources');
-  if (! resources) {
+  if (!resources) {
     return;
   }
 
@@ -354,12 +340,12 @@ const updateAssignmentList = async () => {
     'tome_of_wisdom_blue_convertible',
     'tome_of_wisdom_convertible', // purple.
     'tome_of_wisdom_red_convertible',
-    'tome_of_wisdom_white_convertible' // silver.
+    'tome_of_wisdom_white_convertible', // silver.
   ]);
 
   if (tomeDetails) {
     for (const tome of tomeDetails) {
-      if (! tome.type) {
+      if (!tome.type) {
         continue;
       }
 
@@ -389,7 +375,7 @@ const updateAssignmentList = async () => {
  * Update the assignment list in the popup.
  */
 const modifyAvailableQuestsPopup = () => {
-  if (! document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup')) {
+  if (!document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup')) {
     return;
   }
 
@@ -406,7 +392,7 @@ const modifyAvailableQuestsPopup = () => {
  * Check if we're on the hunter's hammer page with the smashQuest hash.
  */
 const checkForQuestSmash = () => {
-  if (! window.location.hash || '#smashQuest' !== window.location.hash) {
+  if (!window.location.hash || '#smashQuest' !== window.location.hash) {
     return;
   }
 
@@ -415,7 +401,7 @@ const checkForQuestSmash = () => {
   }
 
   const assignment = document.querySelector('.inventoryPage-item.quest[data-produced-item="nothing_stat_item"]');
-  if (! assignment) {
+  if (!assignment) {
     return;
   }
 
@@ -429,12 +415,12 @@ const checkForQuestSmash = () => {
  * @param {Object} data    The data object.
  */
 const restoreQuestTabAfterSmash = (request, data) => {
-  if (! (data && data.item_type && questAssignments.has(data.item_type))) {
+  if (!(data && data.item_type && questAssignments.has(data.item_type))) {
     return;
   }
 
   const questsTab = document.querySelector('.campPage-tabs-tabHeader.quests');
-  if (! questsTab) {
+  if (!questsTab) {
     return;
   }
 
@@ -446,7 +432,7 @@ const restoreQuestTabAfterSmash = (request, data) => {
  * Run the M400 helper if enabled.
  */
 const m400IfEnabled = () => {
-  if (! getSetting('better-quests.m400-helper', true)) {
+  if (!getSetting('better-quests.m400-helper', true)) {
     return;
   }
 
@@ -458,7 +444,7 @@ const m400IfEnabled = () => {
  */
 const main = () => {
   // Don't run if we're not at least a lord.
-  if (! isUserTitleAtLeast('lord')) {
+  if (!isUserTitleAtLeast('lord')) {
     return;
   }
 

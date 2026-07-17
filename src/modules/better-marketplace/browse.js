@@ -1,14 +1,4 @@
-import {
-  abbreviateNumber,
-  formatGold,
-  getData,
-  getSetting,
-  lsGet,
-  lsSet,
-  makeElement,
-  parseGold,
-  waitForElement
-} from '@utils';
+import { abbreviateNumber, formatGold, getData, getSetting, lsGet, lsSet, makeElement, parseGold, waitForElement } from '@utils';
 
 import { calculateEstimatedValue } from './pricing';
 
@@ -47,7 +37,7 @@ const getHeaderRow = (table) => {
  */
 const getOwnedQuantity = (row) => {
   const ownedText = row.querySelector('.marketplaceView-table-quantity')?.textContent?.trim();
-  if (! ownedText || ownedText === '-') {
+  if (!ownedText || ownedText === '-') {
     return 0;
   }
 
@@ -63,7 +53,7 @@ const getOwnedQuantity = (row) => {
  */
 const getAveragePrice = (row) => {
   const priceEl = row.querySelector('.marketplaceView-table-averagePrice .marketplaceView-goldValue');
-  if (! priceEl) {
+  if (!priceEl) {
     return 0;
   }
 
@@ -130,12 +120,12 @@ const sortTableByAttribute = (table, header, attribute, numeric = true) => {
  */
 const ensureFilterWrapper = () => {
   const filterContainer = document.querySelector('.marketplaceView-browse-filterContainer');
-  if (! filterContainer) {
+  if (!filterContainer) {
     return null;
   }
 
   let wrapper = filterContainer.querySelector('.mhui-marketplace-filters');
-  if (! wrapper) {
+  if (!wrapper) {
     wrapper = makeElement('div', 'mhui-marketplace-filters');
 
     // Keep the filters inline with the checkboxes, above the (block) totals
@@ -161,12 +151,12 @@ const ensureFilterWrapper = () => {
  */
 const addTotalsReadout = (totalBuy, totalSell) => {
   const filterContainer = document.querySelector('.marketplaceView-browse-filterContainer');
-  if (! filterContainer) {
+  if (!filterContainer) {
     return;
   }
 
   let total = filterContainer.querySelector('.mhui-marketplace-total-value');
-  if (! total) {
+  if (!total) {
     total = makeElement('div', 'mhui-marketplace-total-value');
     filterContainer.append(total);
   }
@@ -177,7 +167,7 @@ const addTotalsReadout = (totalBuy, totalSell) => {
     total.classList.remove('mhui-hidden');
   } else {
     total.classList.add('mhui-hidden');
-    if (! total.textContent) {
+    if (!total.textContent) {
       total.textContent = 'Estimated value of owned items: 0 gold';
     }
   }
@@ -195,7 +185,7 @@ const addValueColumn = (table, rows) => {
   }
 
   const headerRow = getHeaderRow(table);
-  if (! headerRow) {
+  if (!headerRow) {
     return;
   }
 
@@ -247,7 +237,7 @@ const addValueColumn = (table, rows) => {
  */
 const addTrapFilter = async (rows) => {
   const wrapper = ensureFilterWrapper();
-  if (! wrapper || wrapper.querySelector('.mhui-marketplace-trap-filter')) {
+  if (!wrapper || wrapper.querySelector('.mhui-marketplace-trap-filter')) {
     return;
   }
 
@@ -301,8 +291,8 @@ const addTrapFilter = async (rows) => {
   select.addEventListener('change', () => {
     const value = select.value;
     rows.forEach((row) => {
-      const matches = ! value || row.dataset.mhuiTrap === value;
-      row.classList.toggle('mhui-trap-hidden', ! matches);
+      const matches = !value || row.dataset.mhuiTrap === value;
+      row.classList.toggle('mhui-trap-hidden', !matches);
     });
   });
 };
@@ -337,7 +327,7 @@ const setLastViewed = (category, itemId) => {
  * @param {string}   category The active category name.
  */
 const trackAndHighlightLastViewed = (table, rows, category) => {
-  if (! category) {
+  if (!category) {
     return;
   }
 
@@ -353,12 +343,12 @@ const trackAndHighlightLastViewed = (table, rows, category) => {
   });
 
   const lastId = getLastViewed()[category];
-  if (! lastId) {
+  if (!lastId) {
     return;
   }
 
   const lastRow = table.querySelector(`tr[data-item-id="${lastId}"]`);
-  if (! lastRow) {
+  if (!lastRow) {
     return;
   }
 
@@ -371,13 +361,15 @@ const trackAndHighlightLastViewed = (table, rows, category) => {
  * last-viewed highlighting, based on the enabled settings.
  */
 const enhanceBrowseTable = async () => {
-  const rows = await waitForElement('.marketplaceView-browse-content .marketplaceView-table tr[data-item-id]', { single: false });
-  if (! rows || rows.length === 0) {
+  const rows = await waitForElement('.marketplaceView-browse-content .marketplaceView-table tr[data-item-id]', {
+    single: false,
+  });
+  if (!rows || rows.length === 0) {
     return;
   }
 
   const table = rows[0].closest('table');
-  if (! table) {
+  if (!table) {
     return;
   }
 
@@ -401,7 +393,4 @@ const enhanceBrowseTable = async () => {
   }
 };
 
-export {
-  enhanceBrowseTable,
-  ensureFilterWrapper
-};
+export { enhanceBrowseTable, ensureFilterWrapper };

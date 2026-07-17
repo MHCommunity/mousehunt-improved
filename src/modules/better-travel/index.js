@@ -18,7 +18,7 @@ import {
   removeSubmenuItem,
   sessionGet,
   setTab,
-  travelTo
+  travelTo,
 } from '@utils';
 
 import { getTravelSetting, saveTravelSetting } from './utils';
@@ -102,7 +102,7 @@ const travelClickHandler = (event) => {
  */
 const cloneRegionMenu = () => {
   const regionMenu = document.querySelector('.travelPage-regionMenu');
-  if (! regionMenu) {
+  if (!regionMenu) {
     return false;
   }
 
@@ -136,7 +136,7 @@ const addTab = (id, label) => {
   }
 
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
-  if (! tabContainer) {
+  if (!tabContainer) {
     return;
   }
 
@@ -167,7 +167,7 @@ const addPage = (id, content) => {
   }
 
   const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-  if (! pageContainer) {
+  if (!pageContainer) {
     return;
   }
 
@@ -241,7 +241,7 @@ const addAlphabetizedList = (regionMenu) => {
     lastLetter = firstLetter;
 
     // Check if the link is in the list of environments, if it's not, then it's an event location.
-    if (! environmentIds.has(link.getAttribute('data-environment'))) {
+    if (!environmentIds.has(link.getAttribute('data-environment'))) {
       linkClone.classList.add('event-location');
     }
   });
@@ -255,7 +255,7 @@ const addAlphabetizedList = (regionMenu) => {
 
   const itemCount = sortedLinks.length;
   const rows = Math.ceil(itemCount / 5);
-  const height = 14 + (rows * 29);
+  const height = 14 + rows * 29;
 
   alphaListContent.style.height = `${height}px`;
 
@@ -270,7 +270,11 @@ const addSimpleTravelPage = () => {
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
   if ('not-set' === getSetting('better-travel.default-to-simple-travel', 'not-set')) {
-    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.');
+    const settingTip = makeElement(
+      'div',
+      ['travelPage-map-prefix', 'simple-travel-tip'],
+      'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.'
+    );
     wrapper.append(settingTip);
   }
 
@@ -304,7 +308,7 @@ const addSimpleTravel = () => {
  */
 const updateMapExplorationToggle = (enabled = true) => {
   const toggle = document.querySelector('.mh-improved-map-exploration-toggle');
-  if (! toggle) {
+  if (!toggle) {
     return;
   }
 
@@ -370,7 +374,7 @@ const addMapExplorationToggle = () => {
   }
 
   const mapContainer = document.querySelector('.travelPage-mapContainer.full');
-  if (! mapContainer) {
+  if (!mapContainer) {
     return;
   }
 
@@ -423,15 +427,13 @@ const addToTravelDropdown = async () => {
     combinedEnvironments = [...environments, ...eventEnvironments];
   }
 
-  if (! combinedEnvironments || combinedEnvironments.length === 0) {
+  if (!combinedEnvironments || combinedEnvironments.length === 0) {
     environments = await getData('environments');
     eventEnvironments = await getData('environments-events');
-    combinedEnvironments = eventEnvironments?.length > 0
-      ? [...environments, ...eventEnvironments]
-      : environments;
+    combinedEnvironments = eventEnvironments?.length > 0 ? [...environments, ...eventEnvironments] : environments;
   }
 
-  if (! combinedEnvironments || combinedEnvironments.length === 0) {
+  if (!combinedEnvironments || combinedEnvironments.length === 0) {
     return;
   }
 
@@ -442,13 +444,13 @@ const addToTravelDropdown = async () => {
     return environment.id === currentLocation;
   });
 
-  if (! currentRegion) {
+  if (!currentRegion) {
     return;
   }
 
   // get the other locations in the same region
   const otherRegions = combinedEnvironments.filter((environment) => {
-    if (! environment?.region || ! currentRegion?.region) {
+    if (!environment?.region || !currentRegion?.region) {
       return false;
     }
 
@@ -554,7 +556,7 @@ const onTravelComplete = () => {
 const initSimpleTab = () => {
   if ('simple-travel' === getCurrentTab()) {
     const isActive = document.querySelector('.mousehuntHud-page-tabContent.simple-travel');
-    if (! isActive || (isActive && isActive.classList.contains('active'))) {
+    if (!isActive || (isActive && isActive.classList.contains('active'))) {
       return;
     }
 
@@ -576,7 +578,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  if (! getSetting('better-travel.default-to-simple-travel', false)) {
+  if (!getSetting('better-travel.default-to-simple-travel', false)) {
     return;
   }
 
@@ -588,12 +590,12 @@ const maybeSetTab = () => {
  */
 const addRhToSimpleTravel = async () => {
   const location = await getRelicHunterLocation();
-  if (! location) {
+  if (!location) {
     return;
   }
 
   const travelLink = document.querySelectorAll(`.travelPage-regionMenu-environmentLink[data-environment="${location.id}"]`);
-  if (! travelLink.length) {
+  if (!travelLink.length) {
     return;
   }
 
@@ -608,12 +610,12 @@ const addRhToSimpleTravel = async () => {
  */
 const addRhToMap = async () => {
   const location = await getRelicHunterLocation();
-  if (! location) {
+  if (!location) {
     return;
   }
 
   const mapLocation = document.querySelector(`.travelPage-map-image-environment[data-environment-type="${location.id}"]`);
-  if (! mapLocation) {
+  if (!mapLocation) {
     return;
   }
 
@@ -648,7 +650,7 @@ const listenTabChange = () => {
     return;
   }
 
-  if (! hg?.utils?.PageUtil?.onclickPageTabHandler) {
+  if (!hg?.utils?.PageUtil?.onclickPageTabHandler) {
     return;
   }
 
@@ -722,7 +724,7 @@ const saveLocationFavorites = (favorites) => {
  * @param {string} type The location type.
  */
 const addToLocationFavorites = (type) => {
-  if (! isLocationFavorite(type)) {
+  if (!isLocationFavorite(type)) {
     const faves = getLocationFavorites();
     faves.push(type);
     saveLocationFavorites(faves);
@@ -747,7 +749,7 @@ const removeFromLocationFavorites = (type) => {
  */
 const addFavoriteButtonsToTravelPage = async () => {
   const locations = document.querySelectorAll('.travelPage-map-environment-detailContainer .travelPage-map-environment-detail');
-  if (! locations) {
+  if (!locations) {
     return;
   }
 
@@ -756,7 +758,7 @@ const addFavoriteButtonsToTravelPage = async () => {
 
   locations.forEach((location) => {
     const type = location.getAttribute('data-environment-type');
-    if (! type) {
+    if (!type) {
       return;
     }
 
@@ -800,14 +802,17 @@ const main = () => {
     travelWindow();
   }
 
-  onNavigation(() => {
-    addSimpleTravel();
-    addRhToSimpleTravel();
-    addFavoriteButtonsToTravelPage();
-    addMapExplorationToggle();
-  }, {
-    page: 'travel',
-  });
+  onNavigation(
+    () => {
+      addSimpleTravel();
+      addRhToSimpleTravel();
+      addFavoriteButtonsToTravelPage();
+      addMapExplorationToggle();
+    },
+    {
+      page: 'travel',
+    }
+  );
 
   onPageChange({
     travel: { show: maybeSetTab },
@@ -836,22 +841,21 @@ let eventEnvironments = [];
 const init = () => {
   const stylesJoined = [styles, exploreMapStyles];
 
-  if (! getFlag('no-travel-menu-hiding')) {
+  if (!getFlag('no-travel-menu-hiding')) {
     stylesJoined.push(travelMenuHidingStyles);
   }
 
   addStyles(stylesJoined, 'better-travel');
 
-  Promise.all([
-    getData('environments'),
-    getData('environments-events')
-  ]).then(([envs, eventEnvs]) => {
-    environments = envs;
-    eventEnvironments = eventEnvs;
-    main();
-  }).catch(() => {
-    /* Failed to load environments data for better-travel */
-  });
+  Promise.all([getData('environments'), getData('environments-events')])
+    .then(([envs, eventEnvs]) => {
+      environments = envs;
+      eventEnvironments = eventEnvs;
+      main();
+    })
+    .catch(() => {
+      /* Failed to load environments data for better-travel */
+    });
 };
 
 /**
@@ -862,7 +866,8 @@ export default {
   name: 'Better Travel',
   type: 'locations-maps-travel',
   default: true,
-  description: 'Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
+  description:
+    'Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
   load: init,
   settings,
 };

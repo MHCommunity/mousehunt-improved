@@ -17,14 +17,7 @@ import maintenanceStyles from './styles/page-maintenance.css';
  * @param {string}      [options.type]      Type of message to show (error or success).
  */
 const showErrorMessage = (options) => {
-  const {
-    message,
-    append,
-    before = false,
-    after = false,
-    classname = [],
-    type = 'error',
-  } = options;
+  const { message, append, before = false, after = false, classname = [], type = 'error' } = options;
 
   const typeClass = `mh-ui-${type}-message`;
   const existing = document.querySelector(`.${typeClass}`);
@@ -89,7 +82,12 @@ const showLoadingError = (e) => {
     errorElement.append(errorText);
   }
 
-  makeElement('p', 'mousehunt-improved-error-message', 'There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.', errorElement);
+  makeElement(
+    'p',
+    'mousehunt-improved-error-message',
+    'There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.',
+    errorElement
+  );
 
   const closeButton = makeElement('button', 'mousehunt-improved-error-close', 'Close');
   closeButton.addEventListener('click', () => {
@@ -125,7 +123,7 @@ const maybeDoMaintenance = () => {
     document.head.append(errorPageStylesEl);
   }
 
-  if (! (maintenance || errorLockPage || errorPage)) {
+  if (!(maintenance || errorLockPage || errorPage)) {
     return;
   }
 
@@ -174,7 +172,7 @@ const showLoadingPopup = (title) => {
   popup.show();
 
   const element = document.querySelector('#overlayPopup .jsDialog .title');
-  if (! element) {
+  if (!element) {
     return {
       popup,
       title: null,
@@ -245,11 +243,4 @@ const showLoadingPopup = (title) => {
   };
 };
 
-export {
-  showErrorMessage,
-  showSuccessMessage,
-  showLoadingError,
-  showLoadingPopupError,
-  showLoadingPopup,
-  maybeDoMaintenance
-};
+export { showErrorMessage, showSuccessMessage, showLoadingError, showLoadingPopupError, showLoadingPopup, maybeDoMaintenance };

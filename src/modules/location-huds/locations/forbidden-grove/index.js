@@ -28,7 +28,7 @@ const hud = () => {
   }
 
   const hudBar = document.querySelector('.forbiddenGroveHUD-grovebar');
-  if (! hudBar) {
+  if (!hudBar) {
     return;
   }
 
@@ -42,13 +42,7 @@ const hud = () => {
  */
 export default async () => {
   addHudStyles(styles);
-  addCheeseSelector('forbidden-grove', [
-    'ancient_cheese',
-    'radioactive_blue_cheese',
-    'magical_radioactive_blue_cheese',
-    'moon_cheese',
-    'crescent_cheese',
-  ]);
+  addCheeseSelector('forbidden-grove', ['ancient_cheese', 'radioactive_blue_cheese', 'magical_radioactive_blue_cheese', 'moon_cheese', 'crescent_cheese']);
 
   hud();
 

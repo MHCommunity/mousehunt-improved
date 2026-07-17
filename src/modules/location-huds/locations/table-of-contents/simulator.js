@@ -8,7 +8,7 @@ const MousePool = {
   Encyclopedia: {
     Grammarian: 0.6,
     Mythweaver: 0.4,
-  }
+  },
 };
 
 /**
@@ -29,7 +29,7 @@ const MouseStats = {
     Power: 236_000,
     Eff: 4,
     Points: 1_066_000,
-  }
+  },
 };
 
 /**
@@ -72,7 +72,7 @@ const simulate = (options) => {
     }
 
     const totalVolumes = Math.floor(wordCount / 4000);
-    if (! volumeCountByVolume[totalVolumes]) {
+    if (!volumeCountByVolume[totalVolumes]) {
       volumeCountByVolume[totalVolumes] = 0;
       processorsByVolume[totalVolumes] = 0;
     }
@@ -80,7 +80,7 @@ const simulate = (options) => {
     volumeCountByVolume[totalVolumes] += 1;
     processorsByVolume[totalVolumes] += processors;
 
-    if (! debug[totalVolumes]) {
+    if (!debug[totalVolumes]) {
       debug[totalVolumes] = [];
     }
 
@@ -103,14 +103,14 @@ const simulate = (options) => {
       volume: 0,
       gnawbels: 0,
       words: 0,
-      processors: 0
+      processors: 0,
     },
   };
 
   let cumulativeChance = 1;
 
   for (let volume = minVolume; volume <= maxVolume; volume++) {
-    if (! volumeCountByVolume[volume]) {
+    if (!volumeCountByVolume[volume]) {
       continue;
     }
 
@@ -128,7 +128,7 @@ const simulate = (options) => {
     });
   }
 
-  const mostLikelyVolume = Number(Object.keys(volumeCountByVolume).reduce((a, b) => volumeCountByVolume[a] > volumeCountByVolume[b] ? a : b));
+  const mostLikelyVolume = Number(Object.keys(volumeCountByVolume).reduce((a, b) => (volumeCountByVolume[a] > volumeCountByVolume[b] ? a : b)));
 
   results.mostLikely = {
     volume: mostLikelyVolume,
@@ -177,9 +177,7 @@ const updateWords = (/** @type {Upgrades} */ upgrades) => {
 const updateCR = (power, luck, charmId) => {
   Object.entries(MouseStats).forEach(([key, mouseStats]) => {
     // 1075: Ultimate Charm
-    MouseStats[key].CatchRate = 1075 === charmId
-      ? 1
-      : getCatchRate(mouseStats.Power, mouseStats.Eff, power, luck);
+    MouseStats[key].CatchRate = 1075 === charmId ? 1 : getCatchRate(mouseStats.Power, mouseStats.Eff, power, luck);
   });
 };
 
@@ -194,11 +192,7 @@ const updateCR = (power, luck, charmId) => {
  * @return {number} The catch rate.
  */
 const getCatchRate = (mousePower, effectiveness, power, luck) => {
-  const rate = Math.min(1,
-    ((effectiveness * power) + (
-      2 * Math.pow(Math.floor(Math.min(effectiveness, 1.4) * luck), 2)
-    )) / ((effectiveness * power) + mousePower)
-  );
+  const rate = Math.min(1, (effectiveness * power + 2 * Math.pow(Math.floor(Math.min(effectiveness, 1.4) * luck), 2)) / (effectiveness * power + mousePower));
 
   return rate;
 };

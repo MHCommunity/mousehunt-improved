@@ -1,13 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const cssFilesToFetch = [
-  'great-winter-hunt-global.css',
-  'journal-icons.css',
-  'upscaled-images.css',
-  'upscaled-journal-theme-images.css',
-  'upscaled-mice-images.css',
-];
+const cssFilesToFetch = ['great-winter-hunt-global.css', 'journal-icons.css', 'upscaled-images.css', 'upscaled-journal-theme-images.css', 'upscaled-mice-images.css'];
 
 const onlyIfMissing = process.argv.includes('--skip-external-files');
 

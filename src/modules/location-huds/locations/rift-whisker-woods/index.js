@@ -14,7 +14,7 @@ const showTauntingWarning = () => {
   }
 
   const baitWarning = document.querySelector('.riftWhiskerWoodsHUD-bossBaitWarning');
-  if (! baitWarning) {
+  if (!baitWarning) {
     return;
   }
 
@@ -25,7 +25,7 @@ const showTauntingWarning = () => {
   // clone the existing warning
   const warning = baitWarning.cloneNode(true);
   warning.classList.add('mhui-taunting-warning', 'active');
-  warning.innerHTML = 'You don\'t have a Taunting Charm equipped! You may reset your rage!';
+  warning.innerHTML = "You don't have a Taunting Charm equipped! You may reset your rage!";
 
   const warningClose = makeElement('div', 'mhui-taunting-warning-close');
   warningClose.innerHTML = '×';

@@ -13,7 +13,7 @@ import {
   onEvent,
   onNavigation,
   onRequest,
-  onTravel
+  onTravel,
 } from '@utils';
 import settings from './settings';
 
@@ -50,7 +50,7 @@ const debug = (message, ...args) => {
  */
 const main = () => {
   // If debug is not enabled, return.
-  if (! getSetting('debug', false)) {
+  if (!getSetting('debug', false)) {
     return;
   }
 
@@ -130,7 +130,7 @@ const main = () => {
     }
 
     if (ignoredEvents.length > 0) {
-      events = events.filter((event) => ! ignoredEvents.includes(event));
+      events = events.filter((event) => !ignoredEvents.includes(event));
     }
 
     if (hasSingleEvent) {
@@ -164,9 +164,10 @@ export default {
   id: 'debug',
   name: 'Debug',
   type: 'advanced',
-  description: 'Various <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/debug-logging.md" target="_blank" rel="noreferrer">debugging</a> tools for developers and advanced users.',
+  description:
+    'Various <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/debug-logging.md" target="_blank" rel="noreferrer">debugging</a> tools for developers and advanced users.',
   default: false,
   order: 900,
   load: init,
-  settings
+  settings,
 };

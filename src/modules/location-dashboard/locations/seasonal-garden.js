@@ -6,14 +6,14 @@
  * @return {string} The dashboard output.
  */
 const getSeasonalGardenText = (quests) => {
-  if (! quests.QuestSeasonalGarden) {
+  if (!quests.QuestSeasonalGarden) {
     return '';
   }
 
   const amp = quests.QuestSeasonalGarden?.amp || 0;
   const max = quests.QuestSeasonalGarden?.max || 0;
 
-  return (amp === 0 && max === 0) ? 'Amp: 0%' : `Amp: ${amp}% / ${max}%`;
+  return amp === 0 && max === 0 ? 'Amp: 0%' : `Amp: ${amp}% / ${max}%`;
 };
 
 /**
@@ -40,7 +40,4 @@ const setSeasonalGardenData = () => {
   return quest;
 };
 
-export {
-  getSeasonalGardenText,
-  setSeasonalGardenData
-};
+export { getSeasonalGardenText, setSeasonalGardenData };

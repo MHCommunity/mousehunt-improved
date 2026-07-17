@@ -1,10 +1,4 @@
-import {
-  addSettingPreview,
-  flattenSettingOptions,
-  getSetting,
-  onEvent,
-  onNavigation
-} from '@utils';
+import { addSettingPreview, flattenSettingOptions, getSetting, onEvent, onNavigation } from '@utils';
 
 import settings from './settings';
 
@@ -96,22 +90,27 @@ const persistBackground = () => {
     }
   });
 
-  onNavigation(() => {
-    getPreviewItems().then((items) => {
-      addSettingPreview({
-        id: 'custom-hud',
-        selector: '.mh-improved-custom-hud-preview',
-        inputSelector: '#mousehunt-improved-settings-custom-hud select',
-        items,
-        previewCallback: (selected) => addStyleEl(selected),
-      });
-    }).catch(() => {
-      /* Failed to load HUD settings values */
-    });
-  }, {
-    page: 'preferences',
-    onLoad: true,
-  });
+  onNavigation(
+    () => {
+      getPreviewItems()
+        .then((items) => {
+          addSettingPreview({
+            id: 'custom-hud',
+            selector: '.mh-improved-custom-hud-preview',
+            inputSelector: '#mousehunt-improved-settings-custom-hud select',
+            items,
+            previewCallback: (selected) => addStyleEl(selected),
+          });
+        })
+        .catch(() => {
+          /* Failed to load HUD settings values */
+        });
+    },
+    {
+      page: 'preferences',
+      onLoad: true,
+    }
+  );
 };
 
 /**

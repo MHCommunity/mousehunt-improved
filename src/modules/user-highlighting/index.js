@@ -1,12 +1,4 @@
-import {
-  addStyles,
-  debug,
-  fetchMouseRip,
-  makeElement,
-  onNavigation,
-  sessionGet,
-  sessionSet
-} from '@utils';
+import { addStyles, debug, fetchMouseRip, makeElement, onNavigation, sessionGet, sessionSet } from '@utils';
 
 import profileStyles from './profile.css';
 import styles from './styles.css';
@@ -21,18 +13,18 @@ import styles from './styles.css';
 const getUserHighlightingShield = (type) => {
   let text = '';
   switch (type) {
-  case 'developer':
-    text = 'MH Improved Developer';
-    break;
-  case 'contributor':
-    text = 'MH Improved Contributor';
-    break;
-  case 'supporter':
-    text = 'MH Improved Supporter';
-    break;
-  case 'banned':
-    text = 'Banned User';
-    break;
+    case 'developer':
+      text = 'MH Improved Developer';
+      break;
+    case 'contributor':
+      text = 'MH Improved Contributor';
+      break;
+    case 'supporter':
+      text = 'MH Improved Supporter';
+      break;
+    case 'banned':
+      text = 'Banned User';
+      break;
   }
 
   const wrapper = makeElement('div', ['blackTooltip', 'mh-improved-user-shield']);
@@ -54,12 +46,15 @@ const addDiscordBanWarning = (reason) => {
   }
 
   const idCardBlock = document.querySelector('.hunterInfoView-left .hunterInfoView-idCardBlock');
-  if (! idCardBlock) {
+  if (!idCardBlock) {
     return;
   }
 
-  const warning = makeElement('div', ['hunterInfoView-accountStatusWarning', 'mh-improved-discord-ban-warning'],
-    `This hunter has the following restrictions:<ul><li>${reason || 'Banned'}</li></ul>`);
+  const warning = makeElement(
+    'div',
+    ['hunterInfoView-accountStatusWarning', 'mh-improved-discord-ban-warning'],
+    `This hunter has the following restrictions:<ul><li>${reason || 'Banned'}</li></ul>`
+  );
   makeElement('div', 'mh-improved-discord-ban-warning-note', 'This is a ban from the community-run MouseHunt Discord server.', warning);
 
   idCardBlock.after(warning);
@@ -82,17 +77,17 @@ const highlightUsers = async () => {
   }
 
   const id = document.querySelector('.hunterInfoView-hunterId-idText span');
-  if (! id) {
+  if (!id) {
     return;
   }
 
   const profilePage = document.querySelector('#mousehuntContainer.PageHunterProfile');
-  if (! profilePage) {
+  if (!profilePage) {
     return;
   }
 
   const idHeader = document.querySelector('.hunterInfoView-idCardBlock-secondaryHeader');
-  if (! idHeader) {
+  if (!idHeader) {
     return;
   }
 
@@ -104,10 +99,10 @@ const highlightUsers = async () => {
   // query api.mouse.rip/highlight-user/:id to get the user highlighting data
 
   let data = sessionGet(`mh-improved-user-highlighting-${userId}`);
-  if (! data) {
+  if (!data) {
     try {
       data = await fetchMouseRip(`highlight-user/${userId}`);
-      if (! data) {
+      if (!data) {
         throw new Error('Unexpected user highlighting response');
       }
 
@@ -124,12 +119,12 @@ const highlightUsers = async () => {
     addDiscordBanWarning(data.reason);
   }
 
-  if (! data || ! data?.highlighted) {
+  if (!data || !data?.highlighted) {
     return;
   }
 
   const type = data.type;
-  if (! ['developer', 'contributor', 'supporter'].includes(type)) {
+  if (!['developer', 'contributor', 'supporter'].includes(type)) {
     return;
   }
 

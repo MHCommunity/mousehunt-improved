@@ -1,11 +1,4 @@
-import {
-  addSettingPreview,
-  addStyles,
-  flattenSettingOptions,
-  getSetting,
-  onEvent,
-  onNavigation
-} from '@utils';
+import { addSettingPreview, addStyles, flattenSettingOptions, getSetting, onEvent, onNavigation } from '@utils';
 
 import gradients from '@data/backgrounds.json';
 
@@ -59,7 +52,7 @@ let possibleClasses = [];
  */
 const addBodyClass = (preview = false) => {
   const body = document.querySelector('body');
-  if (! body) {
+  if (!body) {
     return;
   }
 
@@ -86,16 +79,16 @@ const addBodyClass = (preview = false) => {
   const background = `mh-improved-bg-${setting}`;
 
   body.classList.add(background);
-  if (! setting.startsWith('background-color-')) {
+  if (!setting.startsWith('background-color-')) {
     body.classList.add(setting);
   }
 
-  if (! gradients) {
+  if (!gradients) {
     return;
   }
 
   const gradient = gradients.find((g) => g.id === setting);
-  if (! gradient) {
+  if (!gradient) {
     return;
   }
 
@@ -143,17 +136,19 @@ const getPreviewItems = async () => {
 };
 
 const addPreview = () => {
-  getPreviewItems().then((items) => {
-    addSettingPreview({
-      id: 'custom-background',
-      selector: '.mh-improved-custom-bg-preview',
-      inputSelector: '#mousehunt-improved-settings-custom-background select',
-      items,
-      previewCallback: (selected) => addBodyClass(selected),
+  getPreviewItems()
+    .then((items) => {
+      addSettingPreview({
+        id: 'custom-background',
+        selector: '.mh-improved-custom-bg-preview',
+        inputSelector: '#mousehunt-improved-settings-custom-background select',
+        items,
+        previewCallback: (selected) => addBodyClass(selected),
+      });
+    })
+    .catch(() => {
+      /* Failed to load background settings values */
     });
-  }).catch(() => {
-    /* Failed to load background settings values */
-  });
 };
 
 /**
@@ -183,13 +178,15 @@ const persistBackground = () => {
 const init = () => {
   addStyles(styles, 'custom-background');
 
-  settings().then((theSettings) => {
-    possibleClasses = flattenSettingOptions(theSettings[0].settings.options).map((option) => option.value);
-    persistBackground();
-  }).catch(() => {
-    persistBackground();
-    /* Failed to load settings for custom-background */
-  });
+  settings()
+    .then((theSettings) => {
+      possibleClasses = flattenSettingOptions(theSettings[0].settings.options).map((option) => option.value);
+      persistBackground();
+    })
+    .catch(() => {
+      persistBackground();
+      /* Failed to load settings for custom-background */
+    });
 };
 
 /**

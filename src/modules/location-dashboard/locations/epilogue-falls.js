@@ -6,13 +6,13 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestEpilogueFalls) {
+  if (!quests.QuestEpilogueFalls) {
     return '';
   }
 
   const quest = quests.QuestEpilogueFalls;
 
-  if (! quest.on_rapids) {
+  if (!quest.on_rapids) {
     return 'Building Barrel';
   }
 
@@ -30,9 +30,8 @@ export default (quests) => {
 
   const speed = rapids.barrel_speed || 0;
   const movement = rapids.movement_per_catch || 0;
-  const directionText = rapids.movement_direction === 'forward'
-    ? `Speed: ${speed}m/s · Movement: +${movement}m →`
-    : `Speed: ${speed}m/s · Movement: -${movement.toString().replace('-', '')}m ←`;
+  const directionText =
+    rapids.movement_direction === 'forward' ? `Speed: ${speed}m/s · Movement: +${movement}m →` : `Speed: ${speed}m/s · Movement: -${movement.toString().replace('-', '')}m ←`;
 
   return `${rapids.zone_data?.name || ''} (${rapids?.position || 0}m)
   <div class="stats">${barrelText}</div>

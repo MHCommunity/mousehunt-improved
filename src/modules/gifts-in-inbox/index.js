@@ -1,13 +1,4 @@
-import {
-  addStyles,
-  debug,
-  humanizeTime,
-  lsGet,
-  lsSet,
-  makeElement,
-  onDeactivation,
-  waitForElement
-} from '@utils';
+import { addStyles, debug, humanizeTime, lsGet, lsSet, makeElement, onDeactivation, waitForElement } from '@utils';
 
 import fallbackGiftImage from '@images/icons/icon-64.png';
 
@@ -95,7 +86,7 @@ const isNewGift = (link) => {
     return false;
   }
 
-  return ! link.timestamp || (Date.now() - link.timestamp) <= NEW_GIFT_MAX_AGE;
+  return !link.timestamp || Date.now() - link.timestamp <= NEW_GIFT_MAX_AGE;
 };
 
 /**
@@ -109,7 +100,7 @@ const isNewGift = (link) => {
  * @return {boolean} Whether the link counts as unseen.
  */
 const isUnseenGift = (link) => {
-  return isNewGift(link) && ! isInState(link.code, 'seen');
+  return isNewGift(link) && !isInState(link.code, 'seen');
 };
 
 /**
@@ -120,12 +111,7 @@ const isUnseenGift = (link) => {
  * @return {string} The escaped value.
  */
 const escapeHtml = (value = '') => {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll('\'', '&#039;');
+  return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 };
 
 /**
@@ -143,7 +129,7 @@ const formatMessageDate = (timestamp) => {
   const day = validDate.getDate();
   const minutes = validDate.getMinutes().toString().padStart(2, '0');
   const ampm = validDate.getHours() >= 12 ? 'pm' : 'am';
-  const hours = (validDate.getHours() % 12) || 12;
+  const hours = validDate.getHours() % 12 || 12;
 
   return `${month} ${day} - ${hours}:${minutes} ${ampm}`;
 };
@@ -168,7 +154,7 @@ const getGiftName = (link) => {
  */
 const getFinderText = (link) => {
   const finder = link.finderName || link.finder;
-  if (! finder) {
+  if (!finder) {
     return '';
   }
 
@@ -183,7 +169,7 @@ const getFinderText = (link) => {
  * @return {string} The expiry text, or an empty string if there is no expiry.
  */
 const getExpiresText = (link) => {
-  if (! link.expiresAt) {
+  if (!link.expiresAt) {
     return '';
   }
 
@@ -203,7 +189,7 @@ const getExpiresText = (link) => {
  * @return {Object} The `giftId` and `giftHash`, either of which may be null.
  */
 const parseGiftCredentials = (url) => {
-  if (! url) {
+  if (!url) {
     return { giftId: null, giftHash: null };
   }
 
@@ -261,17 +247,18 @@ const normalizeLink = (link) => {
  * @return {Promise<Array>} The gift links.
  */
 const fetchRewardLinks = async (force = false) => {
-  if (! force && cachedLinks.length && (Date.now() - cacheTime) < 10 * 60 * 1000) { // 10 minutes.
+  if (!force && cachedLinks.length && Date.now() - cacheTime < 10 * 60 * 1000) {
+    // 10 minutes.
     return cachedLinks;
   }
 
   try {
     const response = await fetch('https://api.mouse.rip/gift-links', {
       credentials: 'omit',
-      cache: 'no-store'
+      cache: 'no-store',
     });
 
-    if (! response.ok) {
+    if (!response.ok) {
       throw new Error(`Reward link API returned ${response.status}`);
     }
 
@@ -346,9 +333,7 @@ const buildMessage = (link) => {
 
   makeElement('span', 'messageText', `<b>${escapeHtml(getGiftName(link))}</b> from Larry the Friendly Knight!`, clearBlock);
 
-  const metaParts = [getFinderText(link), getExpiresText(link)]
-    .filter(Boolean)
-    .map((part) => escapeHtml(part));
+  const metaParts = [getFinderText(link), getExpiresText(link)].filter(Boolean).map((part) => escapeHtml(part));
   if (metaParts.length) {
     makeElement('div', 'mh-improved-gift-meta', metaParts.join('<span class="mh-improved-gift-meta-separator">-</span>'), clearBlock);
   }
@@ -416,12 +401,12 @@ const showClaimError = (message, claimButton, errorText) => {
   }
 
   const actions = claimButton.closest('.actions') || message;
-  if (! actions) {
+  if (!actions) {
     return;
   }
 
   let error = actions.querySelector('.mh-improved-gift-claim-error');
-  if (! error) {
+  if (!error) {
     error = makeElement('div', 'mh-improved-gift-claim-error', '', actions);
   }
 
@@ -429,7 +414,7 @@ const showClaimError = (message, claimButton, errorText) => {
   error.hidden = false;
 
   let markClaimed = actions.querySelector('.mh-improved-gift-mark-claimed');
-  if (! markClaimed) {
+  if (!markClaimed) {
     markClaimed = makeElement('a', 'mh-improved-gift-mark-claimed', 'Mark as claimed');
     markClaimed.href = '#';
     markClaimed.setAttribute('data-mhi-gift-mark-claimed', claimButton.dataset.mhiGiftClaim);
@@ -469,7 +454,7 @@ const claimGiftInPlace = (claimButton) => {
   const message = claimButton.closest('.message.mh-improved-gift-link');
 
   // If we can't claim directly, fall back to opening the claim page in a new tab.
-  if (! giftId || ! giftHash || ! hg?.utils?.SocialGift?.claimGift) {
+  if (!giftId || !giftHash || !hg?.utils?.SocialGift?.claimGift) {
     markState(code, 'claimed');
     message?.classList.remove('new');
     refreshGiftTabState();
@@ -514,7 +499,7 @@ const claimGiftInPlace = (claimButton) => {
  */
 const markGiftsSeen = () => {
   const panel = document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`);
-  if (! panel) {
+  if (!panel) {
     return;
   }
 
@@ -523,7 +508,7 @@ const markGiftsSeen = () => {
 
   panel.querySelectorAll('.message.mh-improved-gift-link').forEach((message) => {
     const code = message.getAttribute('data-mhi-gift-code');
-    if (code && ! state.seen[code]) {
+    if (code && !state.seen[code]) {
       state.seen[code] = new Date().toISOString();
       changed = true;
     }
@@ -580,7 +565,7 @@ const hasOtherUnreadMessages = () => {
 const refreshGiftTabState = () => {
   const tab = document.querySelector(`#messengerUINotification .tabs a[data-tab="${TAB_TYPE}"]`);
   const panel = document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`);
-  if (! tab || ! panel) {
+  if (!tab || !panel) {
     return;
   }
 
@@ -595,7 +580,7 @@ const refreshGiftTabState = () => {
   tab.classList.toggle('new', newCount > 0);
   tab.classList.toggle('empty', messages.length === 0);
 
-  if (messages.length === 0 && ! panel.querySelector('.empty')) {
+  if (messages.length === 0 && !panel.querySelector('.empty')) {
     makeElement('div', 'empty', 'You have no gift links right now.', panel);
   }
 };
@@ -608,20 +593,20 @@ const refreshGiftTabState = () => {
 const renderGiftTab = async () => {
   const tabsBar = document.querySelector('#messengerUINotification .notificationHeader .tabs');
   const list = document.querySelector('#messengerUINotification .notificationMessageList');
-  if (! tabsBar || ! list) {
+  if (!tabsBar || !list) {
     return 0;
   }
 
   const allLinks = await fetchRewardLinks();
   const links = allLinks
     .filter((link) => link?.code && link?.url)
-    .filter((link) => ! link.expired)
-    .filter((link) => ! isInState(link.code, 'hidden'))
+    .filter((link) => !link.expired)
+    .filter((link) => !isInState(link.code, 'hidden'))
     .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
   // Build (or find) the tab anchor, matching the game's inbox tab markup.
   let tab = tabsBar.querySelector(`a[data-tab="${TAB_TYPE}"]`);
-  if (! tab) {
+  if (!tab) {
     tab = makeElement('a', 'tab');
     tab.href = '#';
     tab.setAttribute('data-tab', TAB_TYPE);
@@ -641,7 +626,7 @@ const renderGiftTab = async () => {
 
   // Build (or find) the message panel.
   let panel = list.querySelector(`.tab[data-tab="${TAB_TYPE}"]`);
-  if (! panel) {
+  if (!panel) {
     panel = makeElement('div', 'tab');
     panel.setAttribute('data-tab', TAB_TYPE);
     list.append(panel);
@@ -718,33 +703,35 @@ const bindClickTracking = () => {
  * Hook the inbox open to render the gift links tab.
  */
 const hookInbox = () => {
-  if (! messenger?.UI?.notification?.togglePopup) {
+  if (!messenger?.UI?.notification?.togglePopup) {
     return;
   }
 
-  if (! _togglePopup) {
+  if (!_togglePopup) {
     _togglePopup = messenger.UI.notification.togglePopup;
   }
 
   messenger.UI.notification.togglePopup = function (...args) {
     const result = _togglePopup.apply(this, args);
 
-    waitForElement('#messengerUINotification .notificationHeader .tabs a').then(async (found) => {
-      if (! found) {
+    waitForElement('#messengerUINotification .notificationHeader .tabs a')
+      .then(async (found) => {
+        if (!found) {
+          return found;
+        }
+
+        const unseenCount = await renderGiftTab();
+
+        // If there are new, unseen gift links and nothing unread in any of the
+        // game's own tabs, jump straight to the gift links tab.
+        if (unseenCount > 0 && !hasOtherUnreadMessages()) {
+          messenger.UI.notification.showTab(TAB_TYPE);
+          markGiftsSeen();
+        }
+
         return found;
-      }
-
-      const unseenCount = await renderGiftTab();
-
-      // If there are new, unseen gift links and nothing unread in any of the
-      // game's own tabs, jump straight to the gift links tab.
-      if (unseenCount > 0 && ! hasOtherUnreadMessages()) {
-        messenger.UI.notification.showTab(TAB_TYPE);
-        markGiftsSeen();
-      }
-
-      return found;
-    }).catch((error) => debug('Unable to render gift links tab', error));
+      })
+      .catch((error) => debug('Unable to render gift links tab', error));
 
     return result;
   };

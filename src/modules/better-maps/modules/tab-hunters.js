@@ -111,9 +111,19 @@ const makeUserTable = async (hunters, id, title, appendTo, mapData = {}) => {
         const snuid = Number.parseInt(button.dataset.snuid, 10);
 
         if (button.classList.contains('accept-invite-request')) {
-          hg.utils.TreasureMapUtil.acceptInviteRequests(mapper('mapData').map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.acceptInviteRequests(
+            mapper('mapData').map_id,
+            [snuid],
+            () => {},
+            () => {}
+          );
         } else {
-          hg.utils.TreasureMapUtil.declineInviteRequests(mapper('mapData').map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.declineInviteRequests(
+            mapper('mapData').map_id,
+            [snuid],
+            () => {},
+            () => {}
+          );
         }
       });
     });
@@ -192,13 +202,13 @@ const getUserData = async (userId) => {
  */
 const updateJoinedHuntersList = async (mapData) => {
   const hunterSlots = document.querySelectorAll('.mh-ui-hunters--block .treasureMapView-allyCell.name');
-  if (! hunterSlots || hunterSlots.length === 0) {
+  if (!hunterSlots || hunterSlots.length === 0) {
     return;
   }
 
   let shouldRemove = false;
   for (const slot of hunterSlots) {
-    if ((slot.textContent === 'The map owner can invite more hunters.') || (slot.textContent === 'Click to invite a friend.')) {
+    if (slot.textContent === 'The map owner can invite more hunters.' || slot.textContent === 'Click to invite a friend.') {
       if (shouldRemove) {
         shouldRemove.parentNode.remove();
       }
@@ -211,7 +221,7 @@ const updateJoinedHuntersList = async (mapData) => {
   for (const slot of hunterSlots) {
     const nameEl = slot.querySelector('.treasureMapView-ally-name');
     const name = nameEl ? nameEl.textContent.trim() : null;
-    if (! name) {
+    if (!name) {
       continue;
     }
 
@@ -232,7 +242,7 @@ const updateJoinedHuntersList = async (mapData) => {
 const getLeftHunters = (mapData) => {
   const huntersLeft = [];
   mapData.hunters.forEach((hunter) => {
-    if (! hunter.is_active) {
+    if (!hunter.is_active) {
       huntersLeft.push(hunter);
     }
   });
@@ -296,7 +306,7 @@ const showHuntersTab = async (mapData) => {
   fixPluralInvites();
 
   const leftBlock = document.querySelector('.treasureMapView-leftBlock');
-  if (! leftBlock) {
+  if (!leftBlock) {
     return;
   }
 
@@ -318,6 +328,4 @@ const showHuntersTab = async (mapData) => {
   }
 };
 
-export {
-  showHuntersTab
-};
+export { showHuntersTab };

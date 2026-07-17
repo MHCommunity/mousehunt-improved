@@ -1,25 +1,12 @@
 {
-  "names": [
-    "Tribal and Shelder Map"
-  ],
+  "names": ["Tribal and Shelder Map"],
   "categories": [
     {
       "name": "Cape Clawed",
       "id": "ts-cape-clawed",
       "color": "#eaf2d3",
       "color-dark": "#4a5d23",
-      "mice": [
-        "alchemist",
-        "caretaker",
-        "healer",
-        "narrator",
-        "pathfinder",
-        "scout",
-        "shipwrecked",
-        "taleweaver",
-        "trailblazer",
-        "wordsmith"
-      ]
+      "mice": ["alchemist", "caretaker", "healer", "narrator", "pathfinder", "scout", "shipwrecked", "taleweaver", "trailblazer", "wordsmith"]
     },
     {
       "name": "S.S. Huntington IV",
@@ -65,49 +52,28 @@
       "icon": "/items/bait/large/2c9fcbe1de5c565ebde5fe5f8b96aa26.png",
       "color": "#e3b5e8",
       "color-dark": "#86388c",
-      "mice": [
-        "brimstone",
-        "davy_jones",
-        "enslaved_spirit",
-        "riptide",
-        "tidal_fisher",
-        "twisted_fiend"
-      ]
+      "mice": ["brimstone", "davy_jones", "enslaved_spirit", "riptide", "tidal_fisher", "twisted_fiend"]
     },
     {
       "name": "Derr Dunes",
       "id": "ts-derr-dunes",
       "color": "#b6d7a8",
       "color-dark": "#38761d",
-      "mice": [
-        "grunt",
-        "mintaka",
-        "renegade",
-        "seer",
-        "spellbinder"
-      ]
+      "mice": ["grunt", "mintaka", "renegade", "seer", "spellbinder"]
     },
     {
       "name": "Nerg Plains",
       "id": "ts-nerg-plains",
       "color": "#ffe599",
       "color-dark": "#7f6000",
-      "mice": [
-        "alnilam",
-        "beast_tamer",
-        "conjurer",
-        "finder"
-      ]
+      "mice": ["alnilam", "beast_tamer", "conjurer", "finder"]
     },
     {
       "name": "Jungle of Dread",
       "id": "ts-jungle-of-dread",
       "color": "#ea9999",
       "color-dark": "#85200c",
-      "mice": [
-        "pigmy_swarm",
-        "pygmy_wrangler"
-      ]
+      "mice": ["pigmy_swarm", "pygmy_wrangler"]
     },
     {
       "name": "Lagoon",
@@ -115,9 +81,7 @@
       "icon": "https://i.mouse.rip/upscaled/2682bc940071eb73a0a26a231cca3a59.png",
       "color": "#a4c2f4",
       "color-dark": "#1c4587",
-      "mice": [
-        "water_nymph"
-      ]
+      "mice": ["water_nymph"]
     }
   ],
   "subcategories": [

@@ -26,12 +26,7 @@ const showModal = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    styles,
-    summaryStyles,
-    getSetting('location-catch-stats.crown-colored-rows', false) ? crownColoredRowsStyles : null
-  ]
-  , 'location-catch-stats');
+  addStyles([styles, summaryStyles, getSetting('location-catch-stats.crown-colored-rows', false) ? crownColoredRowsStyles : null], 'location-catch-stats');
 
   addSubmenuItem({
     menu: 'mice',

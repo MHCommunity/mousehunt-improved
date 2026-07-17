@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Corsair Chaser Map"
-  ],
+  "names": ["Corsair Chaser Map"],
   "categories": [
     {
       "name": "Dock",
@@ -76,10 +74,7 @@
       "icon": "/items/bait/transparent_thumb/967aaef6b2d53486157eb5de2a8a4641.png",
       "color": "#fde671",
       "color-dark": "#996126",
-      "mice": [
-        "quarrelsome_quartermaster",
-        "captain_crook"
-      ]
+      "mice": ["quarrelsome_quartermaster", "captain_crook"]
     },
     {
       "name": "Floating Islands",
@@ -107,11 +102,7 @@
       "icon": "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png",
       "color": "#a3fec4",
       "color-dark": "#18587e",
-      "mice": [
-        "empyrean_treasure_guardian",
-        "empyrean_law_mouse",
-        "empyrean_pirate"
-      ]
+      "mice": ["empyrean_treasure_guardian", "empyrean_law_mouse", "empyrean_pirate"]
     },
     {
       "name": "Pirates",
@@ -119,14 +110,7 @@
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
       "color": "#f173bf",
       "color-dark": "#ab377d",
-      "mice": [
-        "admiral_cloudbeard",
-        "cutthroat_cannoneer",
-        "cutthroat_pirate",
-        "mairitime_pirate",
-        "scarlet_revenger",
-        "suave_pirate"
-      ]
+      "mice": ["admiral_cloudbeard", "cutthroat_cannoneer", "cutthroat_pirate", "mairitime_pirate", "scarlet_revenger", "suave_pirate"]
     },
     {
       "name": "Wardens",
@@ -134,12 +118,7 @@
       "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
       "color": "#d3bdd3",
       "color-dark": "#664f68",
-      "mice": [
-        "fog_warden",
-        "frost_warden",
-        "rain_warden",
-        "wind_warden"
-      ]
+      "mice": ["fog_warden", "frost_warden", "rain_warden", "wind_warden"]
     }
   ],
   "subcategories": [

@@ -14,7 +14,7 @@ const initItems = async () => {
   // for an array: calling .map() on the {} would throw and take every search surface down with it,
   // including the two that don't need item data at all.
   const items = await getData('items');
-  if (! Array.isArray(items)) {
+  if (!Array.isArray(items)) {
     return;
   }
 
@@ -44,8 +44,4 @@ const getItemType = (id) => {
   return typesById.get(Number.parseInt(id, 10)) || '';
 };
 
-export {
-  getItemName,
-  getItemType,
-  initItems
-};
+export { getItemName, getItemType, initItems };

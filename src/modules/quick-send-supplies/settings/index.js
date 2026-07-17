@@ -10,31 +10,33 @@ export default async () => {
 
   tradableItems.unshift({ name: 'None', value: 'none' }, { seperator: true });
 
-  return [{
-    id: 'quick-send-supplies.items',
-    title: 'Items shown in popup',
-    default: [
-      {
-        name: 'SUPER|brie+',
-        value: 'super_brie_cheese',
+  return [
+    {
+      id: 'quick-send-supplies.items',
+      title: 'Items shown in popup',
+      default: [
+        {
+          name: 'SUPER|brie+',
+          value: 'super_brie_cheese',
+        },
+        {
+          name: 'Rare Map Dust',
+          value: 'rare_map_dust_stat_item',
+        },
+        {
+          name: 'Adorned Empyrean Jewel',
+          value: 'floating_trap_upgrade_stat_item',
+        },
+        {
+          name: 'Rift-torn Roots',
+          value: 'rift_torn_roots_crafting_item',
+        },
+      ],
+      settings: {
+        type: 'multi-select',
+        number: 4,
+        options: tradableItems,
       },
-      {
-        name: 'Rare Map Dust',
-        value: 'rare_map_dust_stat_item',
-      },
-      {
-        name: 'Adorned Empyrean Jewel',
-        value: 'floating_trap_upgrade_stat_item',
-      },
-      {
-        name: 'Rift-torn Roots',
-        value: 'rift_torn_roots_crafting_item',
-      },
-    ],
-    settings: {
-      type: 'multi-select',
-      number: 4,
-      options: tradableItems,
     },
-  }];
+  ];
 };

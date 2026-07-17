@@ -10,7 +10,7 @@ import {
   isUserTitleAtLeast,
   onDialogHide,
   onEvent,
-  travelTo
+  travelTo,
 } from '@utils';
 
 import { getTravelSetting, saveTravelSetting } from '../../utils';
@@ -61,7 +61,7 @@ const hideLocation = (location) => {
  */
 const unhideLocation = (location) => {
   const hiddenLocations = getHiddenLocations();
-  if (! hiddenLocations.includes(location)) {
+  if (!hiddenLocations.includes(location)) {
     return;
   }
 
@@ -112,14 +112,14 @@ const openTravelWindow = async () => {
   const locationsToRemove = ['acolyte_realm'];
 
   environments = environments.map((env) => {
-    if (! isUserTitleAtLeast(env.title)) {
+    if (!isUserTitleAtLeast(env.title)) {
       locationsToRemove.push(env.id);
     }
 
     return env;
   });
 
-  environments = environments.filter((env) => ! locationsToRemove.includes(env.id));
+  environments = environments.filter((env) => !locationsToRemove.includes(env.id));
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
@@ -138,9 +138,10 @@ const openTravelWindow = async () => {
   const hasTitles = false;
 
   // Locations.
-  content += '<div class="greatWinterHuntGolemDestinationView__environmentsContainer"><div class="greatWinterHuntGolemDestinationView__environmentsScroller"><div class="greatWinterHuntGolemDestinationView__regionList">';
+  content +=
+    '<div class="greatWinterHuntGolemDestinationView__environmentsContainer"><div class="greatWinterHuntGolemDestinationView__environmentsScroller"><div class="greatWinterHuntGolemDestinationView__regionList">';
 
-  if (! hasTitles) {
+  if (!hasTitles) {
     content += `<div class="greatWinterHuntGolemDestinationView__regionGroup" data-region-type="all">
       <div class="greatWinterHuntGolemDestinationView__regionEnvironments">`;
   }
@@ -180,7 +181,7 @@ const openTravelWindow = async () => {
     }
   }
 
-  if (! hasTitles) {
+  if (!hasTitles) {
     content += '</div></div>';
   }
 
@@ -214,22 +215,22 @@ const openTravelWindow = async () => {
   popup.show();
 
   const travelWindow = document.querySelector('.mh-improved-travel-window');
-  if (! travelWindow) {
+  if (!travelWindow) {
     return;
   }
 
   const editButton = document.querySelector('.mh-improved-travel-window-edit');
-  if (! editButton) {
+  if (!editButton) {
     return;
   }
 
   const editButtonSpan = editButton.querySelector('span');
-  if (! editButtonSpan) {
+  if (!editButtonSpan) {
     return;
   }
 
   const environmentButtons = document.querySelectorAll('.greatWinterHuntGolemDestinationView__environment');
-  if (! environmentButtons) {
+  if (!environmentButtons) {
     return;
   }
 
@@ -271,7 +272,7 @@ const openTravelWindow = async () => {
   }
 
   editButton.addEventListener('click', () => {
-    isEditing = ! isEditing;
+    isEditing = !isEditing;
     if (isEditing) {
       travelWindow.classList.add('mh-improved-travel-window--editing');
       editButtonSpan.textContent = 'Save';
@@ -303,7 +304,7 @@ const openTravelWindow = async () => {
   });
 
   const search = document.querySelector('.mh-improved-travel-window-search-input');
-  if (! search) {
+  if (!search) {
     return;
   }
 
@@ -324,7 +325,7 @@ const openTravelWindow = async () => {
   search.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       const visibleButton = document.querySelector('.greatWinterHuntGolemDestinationView__environment[style="display: block;"]');
-      if (visibleButton && ! visibleButton.classList.contains('greatWinterHuntGolemDestinationView__environment--active')) {
+      if (visibleButton && !visibleButton.classList.contains('greatWinterHuntGolemDestinationView__environment--active')) {
         visibleButton.click();
       }
     }
@@ -352,7 +353,7 @@ const makeMenuItem = () => {
  */
 const addEnvironmentIconListener = () => {
   const environmentIcon = document.querySelector('.mousehuntHud-environmentIcon');
-  if (! environmentIcon) {
+  if (!environmentIcon) {
     return;
   }
 
@@ -367,7 +368,7 @@ const addEnvironmentIconListener = () => {
     step: 'better-travel-environment-icon',
     anchor: environmentIcon,
     title: 'Travel from anywhere',
-    content: 'Click your location icon to open the Travel Window without leaving the page you\'re on.',
+    content: "Click your location icon to open the Travel Window without leaving the page you're on.",
   });
 };
 

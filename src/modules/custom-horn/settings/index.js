@@ -27,7 +27,7 @@ export default async () => {
         {
           name: 'Spring Egg Hunt',
           value: 'huntersHornView--seasonalEvent-springEggHunt',
-        }
+        },
       ],
     },
     {
@@ -46,14 +46,17 @@ export default async () => {
     },
   ];
 
-  return [{
-    id: 'custom-horn',
-    title: 'Custom Horn <span class="mhui-setting-title-links"><a class="mh-improved-custom-horn-show-horn">Show Horn</a><span class="seperator">·</span><a class="mh-improved-custom-horn-preview">Preview choices</a></span>',
-    default: [options[0]],
-    settings: {
-      type: 'multi-select',
-      number: 1,
-      options,
+  return [
+    {
+      id: 'custom-horn',
+      title:
+        'Custom Horn <span class="mhui-setting-title-links"><a class="mh-improved-custom-horn-show-horn">Show Horn</a><span class="seperator">·</span><a class="mh-improved-custom-horn-preview">Preview choices</a></span>',
+      default: [options[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options,
+      },
     },
-  }];
+  ];
 };

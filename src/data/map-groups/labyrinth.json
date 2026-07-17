@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Labyrinth Map"
-  ],
+  "names": ["Labyrinth Map"],
   "categories": [
     {
       "name": "Hallways",
@@ -9,12 +7,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/stats/large/c79d65023eb8e3fa146a963edec2d273.png",
       "color": "#e6d2b8",
       "color-dark": "#694b25",
-      "mice": [
-        "lost_legionnaire",
-        "lost",
-        "corridor_bruiser",
-        "mist_stalker"
-      ]
+      "mice": ["lost_legionnaire", "lost", "corridor_bruiser", "mist_stalker"]
     },
     {
       "name": "Farming District",
@@ -22,13 +15,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/075a2bbef9d263b41822be1c318e9ee0.png",
       "color": "#11f400",
       "color-dark": "#087a00",
-      "mice": [
-        "mushroom_harvester",
-        "nightshade_nanny",
-        "mush_monster",
-        "reanimated_carver",
-        "nightshade_fungalmancer"
-      ]
+      "mice": ["mushroom_harvester", "nightshade_nanny", "mush_monster", "reanimated_carver", "nightshade_fungalmancer"]
     },
     {
       "name": "Treasury District",
@@ -36,12 +23,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/a819e8cc5a7a9cada4a0cedb151e66f4.png",
       "color": "#ffe400",
       "color-dark": "#836f00",
-      "mice": [
-        "mimic",
-        "hired_eidolon",
-        "treasure_brawler",
-        "matron_of_wealth"
-      ]
+      "mice": ["mimic", "hired_eidolon", "treasure_brawler", "matron_of_wealth"]
     },
     {
       "name": "Fealty District",
@@ -49,14 +31,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/c431568f0a90e77fcabc4de14009555f.png",
       "color": "#d851ff",
       "color-dark": "#6c147f",
-      "mice": [
-        "drudge",
-        "masked_pikeman",
-        "dark_templar",
-        "mind_tearer",
-        "solemn_soldier",
-        "manaforge_weapon_master"
-      ]
+      "mice": ["drudge", "masked_pikeman", "dark_templar", "mind_tearer", "solemn_soldier", "manaforge_weapon_master"]
     },
     {
       "name": "Scholar District",
@@ -64,14 +39,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/600254a937f618200c8e8fb9b3aeaefe.png",
       "color": "#e96300",
       "color-dark": "#843800",
-      "mice": [
-        "summoning_scholar",
-        "sanguinarian",
-        "mystic_scholar",
-        "mystic_herald",
-        "mystic_guardian",
-        "soul_binder"
-      ]
+      "mice": ["summoning_scholar", "sanguinarian", "mystic_scholar", "mystic_herald", "mystic_guardian", "soul_binder"]
     },
     {
       "name": "Tech District",
@@ -79,14 +47,7 @@
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/b52aff1549b63c0b00983f0a78aa8363.png",
       "color": "#21e2ff",
       "color-dark": "#08758a",
-      "mice": [
-        "rr_8",
-        "ash_golem",
-        "fungal_technomorph",
-        "automated_stone_sentry",
-        "tech_golem",
-        "manaforge_smith"
-      ]
+      "mice": ["rr_8", "ash_golem", "fungal_technomorph", "automated_stone_sentry", "tech_golem", "manaforge_smith"]
     }
   ]
 }

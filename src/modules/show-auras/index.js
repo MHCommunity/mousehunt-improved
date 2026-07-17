@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  getCurrentPage,
-  getSetting,
-  humanizeTime,
-  makeElement,
-  onNavigation
-} from '@utils';
+import { addStyles, getCurrentPage, getSetting, humanizeTime, makeElement, onNavigation } from '@utils';
 
 import settings from './settings';
 
@@ -23,10 +16,12 @@ import styles from './styles/styles.css';
  */
 const getExpiryFormatted = (time) => {
   const date = new Date(time);
-  return date.toLocaleDateString(new Intl.DateTimeFormat('en', {
-    dateStyle: 'short',
-    timeStyle: 'short',
-  }));
+  return date.toLocaleDateString(
+    new Intl.DateTimeFormat('en', {
+      dateStyle: 'short',
+      timeStyle: 'short',
+    })
+  );
 };
 
 /**
@@ -73,7 +68,7 @@ const addTrapBlock = () => {
   isAppending = true;
 
   const trapSummary = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-  if (! trapSummary) {
+  if (!trapSummary) {
     return;
   }
 
@@ -153,29 +148,26 @@ const getAuras = () => {
   }
 
   const auras = document.querySelectorAll('.trapSelectorView .trapImageView-trapAuraContainer .trapImageView-trapAura.active');
-  if (! auras) {
+  if (!auras) {
     return;
   }
 
   aurasExpiry = [];
   auras.forEach((aura) => {
     const typeEl = aura.querySelector('.trapImageView-tooltip-trapAura-title');
-    if (! typeEl) {
+    if (!typeEl) {
       return;
     }
 
     const type = typeEl.textContent.replaceAll('You have the ', '').replaceAll('Aura!', '').trim();
     const expiryEl = aura.querySelector('.trapImageView-tooltip-trapAura-expiry span');
 
-    if (! expiryEl || ! type) {
+    if (!expiryEl || !type) {
       return;
     }
 
     // calculate the expiry time from "September 11, 2025 @ 3:41pm (Local Time)" to a date object
-    const origExpiryText = expiryEl.textContent
-      .replaceAll('(Local Time)', '')
-      .replaceAll('  ', ' ')
-      .trim();
+    const origExpiryText = expiryEl.textContent.replaceAll('(Local Time)', '').replaceAll('  ', ' ').trim();
 
     let expiryText = origExpiryText;
 
@@ -189,7 +181,7 @@ const getAuras = () => {
       const minutes = timeParts[1].replace(/(am|pm)/i, '').trim();
       const isPM = timeParts[1].toLowerCase().includes('pm');
 
-      if (hours === 12 && ! isPM) {
+      if (hours === 12 && !isPM) {
         hours = 0; // 12 AM.
       } else if (hours !== 12 && isPM) {
         hours += 12; // PM.
@@ -231,11 +223,14 @@ const init = async () => {
 
   addStyles(stylesToUse, 'show-auras');
 
-  onNavigation(() => {
-    setTimeout(getAuras, 1000);
-    setTimeout(addExpiryWarning, 1100);
-    setTimeout(addTrapBlock, 1200);
-  }, { page: 'camp' });
+  onNavigation(
+    () => {
+      setTimeout(getAuras, 1000);
+      setTimeout(addExpiryWarning, 1100);
+      setTimeout(addTrapBlock, 1200);
+    },
+    { page: 'camp' }
+  );
 };
 
 /**
@@ -248,5 +243,5 @@ export default {
   default: true,
   description: 'Show auras and their expiry time below the trap stats.',
   load: init,
-  settings
+  settings,
 };

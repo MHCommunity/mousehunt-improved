@@ -8,13 +8,13 @@ import styles from './styles.css';
  */
 const toggleBigTimer = () => {
   const timer = document.querySelector('.huntersHornView__timer');
-  if (! timer) {
+  if (!timer) {
     return;
   }
 
   let isBigTimer = timer.classList.contains('big-timer');
   timer.addEventListener('click', () => {
-    isBigTimer = ! isBigTimer;
+    isBigTimer = !isBigTimer;
     timer.classList.toggle('big-timer', isBigTimer);
   });
 };
@@ -23,10 +23,7 @@ const toggleBigTimer = () => {
  * Initialize the module.
  */
 const init = () => {
-  addStyles([
-    styles,
-    isLegacyHUD() ? legacyStyles : '',
-  ], 'experiment-big-timer');
+  addStyles([styles, isLegacyHUD() ? legacyStyles : ''], 'experiment-big-timer');
 
   toggleBigTimer();
   setTimeout(toggleBigTimer, 1000);

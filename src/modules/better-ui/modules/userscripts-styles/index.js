@@ -33,7 +33,7 @@ export default async () => {
   }
 
   userscriptStyles.forEach((userscript) => {
-    if (! getFlag(userscript.id)) {
+    if (!getFlag(userscript.id)) {
       addStyles(userscript.styles, userscript.id);
     }
   });

@@ -1,10 +1,4 @@
-import {
-  addIconToMenu,
-  getCurrentLocation,
-  getData,
-  getSetting,
-  saveSetting
-} from '@utils';
+import { addIconToMenu, getCurrentLocation, getData, getSetting, saveSetting } from '@utils';
 
 /**
  * Get the current location.
@@ -49,7 +43,7 @@ const getIconSettings = async () => {
      */
     action: (e, icon) => {
       value = getSetting(key, true);
-      saveSetting(key, ! value);
+      saveSetting(key, !value);
 
       if (value) {
         icon.textContent = 'Enable HUD';
@@ -62,7 +56,7 @@ const getIconSettings = async () => {
       }
 
       window.location.reload();
-    }
+    },
   };
 };
 

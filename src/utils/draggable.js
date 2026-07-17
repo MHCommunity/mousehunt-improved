@@ -12,12 +12,12 @@ import { dataGet, dataSet } from './data';
  */
 const makeElementDraggable = async (dragTarget, dragHandle, defaultX = null, defaultY = null, storageKey = null, savePosition = true) => {
   const modal = document.querySelector(dragTarget);
-  if (! modal) {
+  if (!modal) {
     return;
   }
 
   const handle = document.querySelector(dragHandle);
-  if (! handle) {
+  if (!handle) {
     return;
   }
 
@@ -34,8 +34,8 @@ const makeElementDraggable = async (dragTarget, dragHandle, defaultX = null, def
       return value < -20 ? -20 : value;
     }
 
-    if (value < (handle.offsetWidth * -1) + 20) {
-      return (handle.offsetWidth * -1) + 20;
+    if (value < handle.offsetWidth * -1 + 20) {
+      return handle.offsetWidth * -1 + 20;
     }
 
     if (value > document.body.clientWidth - 20) {
@@ -109,7 +109,7 @@ const makeElementDraggable = async (dragTarget, dragHandle, defaultX = null, def
   let startY = defaultY || 0;
 
   // If the storageKey was passed in, get the position from local storage.
-  if (! storageKey) {
+  if (!storageKey) {
     storageKey = `mh-draggable-${dragTarget.replaceAll(/[^\da-z]/gi, '-')}`;
   }
 
@@ -136,6 +136,4 @@ const makeElementDraggable = async (dragTarget, dragHandle, defaultX = null, def
   handle.onmousedown = onMouseDown;
 };
 
-export {
-  makeElementDraggable
-};
+export { makeElementDraggable };

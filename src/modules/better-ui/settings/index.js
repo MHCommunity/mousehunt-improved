@@ -44,12 +44,11 @@ export default async () => {
       id: 'better-ui.codex-at-bottom',
       title: 'Trap Selector: Move the codex to the bottom of the trap view',
       default: true,
-
     },
     {
       id: 'better-ui.square-profile-pics',
       title: 'Square profile pics',
       default: false,
-    }
+    },
   ];
 };

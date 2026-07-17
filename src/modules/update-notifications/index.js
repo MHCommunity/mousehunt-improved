@@ -41,9 +41,7 @@ const compareVersions = (a, b) => {
  */
 const getSummariesSince = (from) => {
   return updateSummaries
-    .filter((summary) => summary?.version &&
-      compareVersions(summary.version, from) > 0 &&
-      compareVersions(summary.version, mhImprovedVersion) <= 0)
+    .filter((summary) => summary?.version && compareVersions(summary.version, from) > 0 && compareVersions(summary.version, mhImprovedVersion) <= 0)
     .sort((a, b) => compareVersions(b.version, a.version));
 };
 
@@ -57,14 +55,17 @@ const getSummariesSince = (from) => {
  * @return {string} The markup.
  */
 const makeDetailsList = (modules) => {
-  return modules.map((module) =>
-    `<div class="update-list-section">
+  return modules
+    .map(
+      (module) =>
+        `<div class="update-list-section">
       ${module.title ? `<h3>${module.title}</h3>` : ''}
       <ul>
         ${module.items.map((item) => `<li>${item}</li>`).join('')}
       </ul>
     </div>`
-  ).join('');
+    )
+    .join('');
 };
 
 /**
@@ -96,7 +97,7 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
   // When forced, show everything we ship rather than nothing.
   const summaries = getSummariesSince(force ? '0.0.0' : from);
 
-  if (! summaries.length && ! force) {
+  if (!summaries.length && !force) {
     return;
   }
 
@@ -129,7 +130,7 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
   popup.show();
 
   const dismiss = document.querySelector('#mh-improved-dismiss-popup');
-  if (! dismiss) {
+  if (!dismiss) {
     return;
   }
 

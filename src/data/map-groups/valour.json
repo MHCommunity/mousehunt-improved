@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Valour Map"
-  ],
+  "names": ["Valour Map"],
   "categories": [
     {
       "name": "King's Gauntlet — Tier 1",
@@ -9,14 +7,7 @@
       "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
       "color": "#fff2cc",
       "color-dark": "#725c1d",
-      "mice": [
-        "toy_sylvan",
-        "wound_up_white",
-        "carved_hapless_puppet",
-        "sock_puppet_ghost",
-        "clockwork_samurai",
-        "puppet_master"
-      ]
+      "mice": ["toy_sylvan", "wound_up_white", "carved_hapless_puppet", "sock_puppet_ghost", "clockwork_samurai", "puppet_master"]
     },
     {
       "name": "King's Gauntlet — Tier 2",
@@ -24,14 +15,7 @@
       "icon": "/items/bait/large/fd9e5944ccb9aac2e05fabfdc04cc980.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
-      "mice": [
-        "lockpick",
-        "impersonator",
-        "bandit",
-        "stealth",
-        "escape_artist",
-        "rogue"
-      ]
+      "mice": ["lockpick", "impersonator", "bandit", "stealth", "escape_artist", "rogue"]
     },
     {
       "name": "King's Gauntlet — Tier 3",
@@ -39,14 +23,7 @@
       "icon": "/items/bait/large/ff00a71af130ccccbbfab56801a56631.png",
       "color": "#f4cccc",
       "color-dark": "#721d1d",
-      "mice": [
-        "fencer",
-        "page",
-        "berserker",
-        "phanlanx",
-        "knight",
-        "cavalier"
-      ]
+      "mice": ["fencer", "page", "berserker", "phanlanx", "knight", "cavalier"]
     },
     {
       "name": "King's Gauntlet — Tier 4",
@@ -54,13 +31,7 @@
       "icon": "/items/bait/large/abd347c07173879d446132b1b689a156.png",
       "color": "#ead1dc",
       "color-dark": "#622d44",
-      "mice": [
-        "cowbell",
-        "drummer",
-        "fiddler",
-        "guqin_player",
-        "dancer"
-      ]
+      "mice": ["cowbell", "drummer", "fiddler", "guqin_player", "dancer"]
     },
     {
       "name": "King's Gauntlet — Tier 5",
@@ -68,13 +39,7 @@
       "icon": "/items/bait/large/3471b3ff8591fd3c2d1882c1af8d2c85.png",
       "color": "#d0e0e3",
       "color-dark": "#32565d",
-      "mice": [
-        "ignis",
-        "terra",
-        "zephyr",
-        "aquos",
-        "black_mage"
-      ]
+      "mice": ["ignis", "terra", "zephyr", "aquos", "black_mage"]
     },
     {
       "name": "King's Arms & Town of Gnawnia",
@@ -82,20 +47,7 @@
       "icon": "/items/bait/large/5323995408d3da7afea190628b53bd03.png",
       "color": "#e6d5b8",
       "color-dark": "#6a5025",
-      "mice": [
-        "gold",
-        "diamond",
-        "scruffy",
-        "pugilist",
-        "longtail_mouse",
-        "burglar",
-        "tiny",
-        "magic",
-        "nibbler",
-        "fast",
-        "flying_mouse",
-        "black_widow"
-      ]
+      "mice": ["gold", "diamond", "scruffy", "pugilist", "longtail_mouse", "burglar", "tiny", "magic", "nibbler", "fast", "flying_mouse", "black_widow"]
     }
   ]
 }

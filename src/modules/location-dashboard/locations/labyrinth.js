@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestLabyrinth) {
+  if (!quests.QuestLabyrinth) {
     return '';
   }
 
@@ -20,9 +20,7 @@ export default (quests) => {
   if (quest.clues) {
     const clueTexts = [];
     quest.clues.forEach((clue) => {
-      const clueName = clue.name
-        .replace('Farming', 'Farm')
-        .replace('Dead End', 'DEC');
+      const clueName = clue.name.replace('Farming', 'Farm').replace('Dead End', 'DEC');
       clueTexts.push(`${clue.quantity} ${clueName}`);
     });
 
@@ -32,7 +30,7 @@ export default (quests) => {
   }
 
   const hallwayName = quest.hallway_name.replace(' Hallway', '');
-  const currentLocation = (quest.status === 'intersection') ? 'Intersection' : hallwayName;
+  const currentLocation = quest.status === 'intersection' ? 'Intersection' : hallwayName;
 
   return `${currentLocation}${clueText}`;
 };

@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Folklore Forest Prelude Map"
-  ],
+  "names": ["Folklore Forest Prelude Map"],
   "categories": [
     {
       "name": "Farm",
@@ -52,11 +50,7 @@
       "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
       "color": "#fbc3fa",
       "color-dark": "#7a2e79",
-      "mice": [
-        "pompous_perch",
-        "careless_catfish",
-        "melodramatic_minnow"
-      ]
+      "mice": ["pompous_perch", "careless_catfish", "melodramatic_minnow"]
     },
     {
       "name": "Prologue Pond",
@@ -65,11 +59,7 @@
       "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
       "color": "#f3e0ff",
       "color-dark": "#5d2e7a",
-      "mice": [
-        "nefarious_nautilus",
-        "vicious_vampire_squid",
-        "sinister_squid"
-      ]
+      "mice": ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"]
     },
     {
       "name": "Table of Contents",
@@ -95,11 +85,7 @@
       "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
       "color": "#e9c390",
       "color-dark": "#73542b",
-      "mice": [
-        "humphrey_dumphrey",
-        "little_bo_squeak",
-        "little_miss_fluffet"
-      ]
+      "mice": ["humphrey_dumphrey", "little_bo_squeak", "little_miss_fluffet"]
     },
     {
       "name": "Table of Contents",
@@ -108,11 +94,7 @@
       "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
       "color": "#b18457",
       "color-dark": "#61472d",
-      "mice": [
-        "fibbocchio",
-        "pinkielina",
-        "princess_and_the_olive"
-      ]
+      "mice": ["fibbocchio", "pinkielina", "princess_and_the_olive"]
     },
     {
       "name": "Table of Contents",
@@ -121,11 +103,7 @@
       "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
       "color": "#d0accc",
       "color-dark": "#5c3158",
-      "mice": [
-        "flamboyant_flautist",
-        "greenbeard",
-        "ice_regent"
-      ]
+      "mice": ["flamboyant_flautist", "greenbeard", "ice_regent"]
     },
     {
       "name": "Bosses",
@@ -133,12 +111,7 @@
       "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
       "color": "#fde671",
       "color-dark": "#645a26",
-      "mice": [
-        "bitter_grammarian",
-        "mythweaver",
-        "monstrous_midge",
-        "architeuthulhu_of_the_abyss"
-      ]
+      "mice": ["bitter_grammarian", "mythweaver", "monstrous_midge", "architeuthulhu_of_the_abyss"]
     }
   ],
   "subcategories": [

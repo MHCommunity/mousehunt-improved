@@ -1,28 +1,11 @@
-import {
-  addSettingPreview,
-  addStyles,
-  getSetting,
-  getUserTitle,
-  makeElement,
-  onNavigation,
-  setMultipleTimeout
-} from '@utils';
+import { addSettingPreview, addStyles, getSetting, getUserTitle, makeElement, onNavigation, setMultipleTimeout } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
 import cottonCandyStyles from './cotton-candy.css';
 
-const timerColorClasses = [
-  'color-blue',
-  'color-cyan',
-  'color-faded',
-  'color-green',
-  'color-pink',
-  'color-purple',
-  'color-rainbow',
-  'color-red',
-];
+const timerColorClasses = ['color-blue', 'color-cyan', 'color-faded', 'color-green', 'color-pink', 'color-purple', 'color-rainbow', 'color-red'];
 
 /**
  * Add or remove a class from an element.
@@ -37,20 +20,20 @@ const doClass = (el, shieldClass, verb) => {
     shieldClass = shieldClass.join(' ');
   }
 
-  if (! shieldClass) {
+  if (!shieldClass) {
     return;
   }
 
   let classToAdd = shieldClass.replace('.', ' ');
   classToAdd = classToAdd.split(' ');
 
-  if (! Array.isArray(classToAdd)) {
+  if (!Array.isArray(classToAdd)) {
     classToAdd = [classToAdd];
   }
 
   classToAdd.forEach((className) => {
     if (el && el.classList && el.classList[verb]) {
-      if ('remove' === verb && ! el.classList.contains(className)) {
+      if ('remove' === verb && !el.classList.contains(className)) {
         return;
       }
 
@@ -89,14 +72,14 @@ const removeTimerClasses = (timer) => {
  */
 const changeShield = () => {
   const shieldEl = document.querySelector('.mousehuntHud-shield');
-  if (! shieldEl) {
+  if (!shieldEl) {
     return;
   }
 
   let timer = document.querySelector('.huntersHornView__timer--default');
-  if (! timer) {
+  if (!timer) {
     timer = document.querySelector('.huntersHornView__timer--legacy');
-    if (! timer) {
+    if (!timer) {
       return;
     }
   }
@@ -108,7 +91,7 @@ const changeShield = () => {
   const classesToKeep = new Set(['mousehuntHud-shield', 'golden']);
   const classes = [...shieldEl.classList];
   classes.forEach((className) => {
-    if (! classesToKeep.has(className)) {
+    if (!classesToKeep.has(className)) {
       shieldEl.classList.remove(className);
     }
   });
@@ -166,7 +149,7 @@ const changeShield = () => {
  */
 const watchForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-custom-shield select');
-  if (! input) {
+  if (!input) {
     return;
   }
 
@@ -186,10 +169,7 @@ const watchForPreferenceChanges = () => {
 };
 
 const shieldPreview = (shield) => {
-  const shieldClass = shield.id
-    .replaceAll('color-', ' default color-')
-    .replaceAll('-alt', ' alt')
-    .replaceAll('.', ' ');
+  const shieldClass = shield.id.replaceAll('color-', ' default color-').replaceAll('-alt', ' alt').replaceAll('.', ' ');
 
   return `<div class="mh-improved-custom-shield-item-preview ${shield.id}"><a class="mousehuntHud-shield golden ${shieldClass}"></a>
 </div>`;
@@ -197,28 +177,31 @@ const shieldPreview = (shield) => {
 
 const getShieldSettingsValues = async () => {
   const settingsValues = await settings();
-  const shields = settingsValues[0].settings.options.reduce((acc, option) => {
-    if (option.options && Array.isArray(option.options)) {
-      return [...acc, ...option.options];
-    }
+  const shields = settingsValues[0].settings.options
+    .reduce((acc, option) => {
+      if (option.options && Array.isArray(option.options)) {
+        return [...acc, ...option.options];
+      }
 
-    if (option.value && option.name) {
-      return [...acc, option];
-    }
+      if (option.value && option.name) {
+        return [...acc, option];
+      }
 
-    return acc;
-  }, []).filter((option) => {
-    if (! option?.value || 'title' === option.value || 'default-normal' === option.value || 'color-cotton-candy' === option.value) {
-      return false;
-    }
+      return acc;
+    }, [])
+    .filter((option) => {
+      if (!option?.value || 'title' === option.value || 'default-normal' === option.value || 'color-cotton-candy' === option.value) {
+        return false;
+      }
 
-    return ! option.value.includes('-timer');
-  }).map((option) => {
-    return {
-      id: option.value,
-      name: option.name.replaceAll('(LGS Required)', ''),
-    };
-  });
+      return !option.value.includes('-timer');
+    })
+    .map((option) => {
+      return {
+        id: option.value,
+        name: option.name.replaceAll('(LGS Required)', ''),
+      };
+    });
 
   return shields;
 };
@@ -234,25 +217,30 @@ const init = () => {
     changeShield();
   }
 
-  onNavigation(() => {
-    setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);
+  onNavigation(
+    () => {
+      setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);
 
-    getShieldSettingsValues().then((shields) => {
-      addSettingPreview({
-        id: 'custom-shield',
-        selector: '.mh-improved-custom-shield-preview',
-        inputSelector: '#mousehunt-improved-settings-custom-shield select',
-        preview: false,
-        items: shields,
-        itemPreviewCallback: shieldPreview,
-      });
-    }).catch(() => {
-      /* Failed to load shield settings values */
-    });
-  }, {
-    page: 'preferences',
-    onLoad: true,
-  });
+      getShieldSettingsValues()
+        .then((shields) => {
+          addSettingPreview({
+            id: 'custom-shield',
+            selector: '.mh-improved-custom-shield-preview',
+            inputSelector: '#mousehunt-improved-settings-custom-shield select',
+            preview: false,
+            items: shields,
+            itemPreviewCallback: shieldPreview,
+          });
+        })
+        .catch(() => {
+          /* Failed to load shield settings values */
+        });
+    },
+    {
+      page: 'preferences',
+      onLoad: true,
+    }
+  );
 };
 
 /**

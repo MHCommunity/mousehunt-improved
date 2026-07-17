@@ -1,14 +1,4 @@
-import {
-  addHudStyles,
-  doRequest,
-  formatNumber,
-  getSetting,
-  makeElement,
-  onRequest,
-  onTurn,
-  saveSetting,
-  setMultipleTimeout
-} from '@utils';
+import { addHudStyles, doRequest, formatNumber, getSetting, makeElement, onRequest, onTurn, saveSetting, setMultipleTimeout } from '@utils';
 
 import addCraftingButtons from '../../shared/crafting-buttons';
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
@@ -22,7 +12,7 @@ import styles from './styles.css';
  */
 const keepRoomDataToggled = async () => {
   const roomData = document.querySelector('.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer');
-  if (! roomData) {
+  if (!roomData) {
     return;
   }
 
@@ -53,7 +43,7 @@ const keepRoomDataToggled = async () => {
  */
 const keepTooltipToggled = async () => {
   const tooltip = document.querySelector('.bountifulBeanstalkCastleView__plinthOverlay.mousehuntTooltipParent .mousehuntTooltip');
-  if (! tooltip) {
+  if (!tooltip) {
     return;
   }
 
@@ -69,7 +59,7 @@ const keepTooltipToggled = async () => {
  */
 const funTime = async () => {
   const meter = document.querySelector('.bountifulBeanstalkCastleView__noiseMeterFrame');
-  if (! meter) {
+  if (!meter) {
     return;
   }
 
@@ -101,7 +91,7 @@ const funTime = async () => {
  */
 const makeGiantMoreVisible = async () => {
   const background = document.querySelector('.bountifulBeanstalkCastleView__background');
-  if (! background) {
+  if (!background) {
     return;
   }
 
@@ -118,12 +108,12 @@ const makeGiantMoreVisible = async () => {
  */
 const toggleFuelWithIcon = async () => {
   const icon = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelContainer');
-  if (! icon) {
+  if (!icon) {
     return;
   }
 
   const button = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelToggleButton');
-  if (! button) {
+  if (!button) {
     return;
   }
 
@@ -177,7 +167,7 @@ const addQuickHarpToggleButton = async () => {
   }
 
   const autoharp = document.querySelector('.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton');
-  if (! autoharp) {
+  if (!autoharp) {
     return;
   }
 
@@ -187,12 +177,12 @@ const addQuickHarpToggleButton = async () => {
   }
 
   const autoharpText = autoharp.querySelector('.headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText');
-  if (! autoharpText) {
+  if (!autoharpText) {
     return;
   }
 
   const noiseFrame = document.querySelector('.bountifulBeanstalkCastleView__autoHarpNoiseMeterFrame');
-  if (! noiseFrame) {
+  if (!noiseFrame) {
     return;
   }
 
@@ -287,7 +277,7 @@ export default async () => {
       royal_beanster_cheese: {
         amounts: [2, 18, 20],
         shop: 'royal_beanster_pack_small_convertible',
-      }
+      },
     },
     selectors: {
       baits: '.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer',

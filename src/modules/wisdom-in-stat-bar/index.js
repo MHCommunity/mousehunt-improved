@@ -1,15 +1,4 @@
-import {
-  addStyles,
-  dataGet,
-  dataSet,
-  formatNumber,
-  getSetting,
-  getUserItems,
-  isLegacyHUD,
-  makeElement,
-  onDeactivation,
-  onTurn
-} from '@utils';
+import { addStyles, dataGet, dataSet, formatNumber, getSetting, getUserItems, isLegacyHUD, makeElement, onDeactivation, onTurn } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -91,7 +80,7 @@ const addWisdomToStatBar = (wisdom) => {
   }
 
   const pointsRow = document.querySelector(legacyHudMenu ? '.headsup > div:nth-child(5) ul li:nth-child(2)' : '.mousehuntHud-userStat-row.points');
-  if (! pointsRow) {
+  if (!pointsRow) {
     return;
   }
 
@@ -115,7 +104,7 @@ const updateWisdom = async () => {
  */
 const addRefreshListener = () => {
   const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
-  if (! wisdomRow) {
+  if (!wisdomRow) {
     return;
   }
 

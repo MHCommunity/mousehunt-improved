@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Fungal Cavern Map"
-  ],
+  "names": ["Fungal Cavern Map"],
   "categories": [
     {
       "name": "Gouda",
@@ -9,18 +7,7 @@
       "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
       "color": "#cfe8c6",
       "color-dark": "#396529",
-      "mice": [
-        "funglore",
-        "mush",
-        "floating_spore",
-        "quillback",
-        "mushroom_sprite",
-        "bitter_root",
-        "spiked_burrower",
-        "sporeticus",
-        "mouldy_mole",
-        "spore_muncher"
-      ]
+      "mice": ["funglore", "mush", "floating_spore", "quillback", "mushroom_sprite", "bitter_root", "spiked_burrower", "sporeticus", "mouldy_mole", "spore_muncher"]
     },
     {
       "name": "SUPER|brie+",
@@ -28,10 +15,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ffe1ad",
       "color-dark": "#84570a",
-      "mice": [
-        "nightshade_masquerade",
-        "lumahead"
-      ]
+      "mice": ["nightshade_masquerade", "lumahead"]
     },
     {
       "name": "Mineral",
@@ -39,13 +23,7 @@
       "icon": "/items/crafting_items/large/8d20efa4683a73181ec6aff1056c1cb2.png",
       "color": "#a0dcff",
       "color-dark": "#0a5784",
-      "mice": [
-        "crystal_controller",
-        "gemorpher",
-        "crystalback",
-        "stalagmite",
-        "crystal_cave_worm"
-      ]
+      "mice": ["crystal_controller", "gemorpher", "crystalback", "stalagmite", "crystal_cave_worm"]
     },
     {
       "name": "Gemstone",
@@ -53,12 +31,7 @@
       "icon": "/items/crafting_items/large/896e06fde8c1931d810cfb58f9cf6b83.png",
       "color": "#e3b5e8",
       "color-dark": "#65216c",
-      "mice": [
-        "crystal_queen",
-        "crystal_lurker",
-        "crystal_golem",
-        "crystal_observer"
-      ]
+      "mice": ["crystal_queen", "crystal_lurker", "crystal_golem", "crystal_observer"]
     },
     {
       "name": "Glowing Gruyere",
@@ -66,16 +39,7 @@
       "icon": "/items/bait/large/9f8190c4aa5465cf36eddbc11e8f49e7.png",
       "color": "#b6d7a8",
       "color-dark": "#3c612c",
-      "mice": [
-        "crystalline_slasher",
-        "dirt_thing",
-        "crag_elder",
-        "stone_maiden",
-        "cavern_crumbler",
-        "splintered_stone_sentry",
-        "shattered_obsidian",
-        "gemstone_worshipper"
-      ]
+      "mice": ["crystalline_slasher", "dirt_thing", "crag_elder", "stone_maiden", "cavern_crumbler", "splintered_stone_sentry", "shattered_obsidian", "gemstone_worshipper"]
     },
     {
       "name": "Diamond",
@@ -83,9 +47,7 @@
       "icon": "/items/crafting_items/large/5a934d4f696aca2796b2c81a0f2a6e0a.png",
       "color": "#c9daf8",
       "color-dark": "#10387e",
-      "mice": [
-        "crystal_behemoth"
-      ]
+      "mice": ["crystal_behemoth"]
     }
   ]
 }

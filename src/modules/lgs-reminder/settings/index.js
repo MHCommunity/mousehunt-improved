@@ -12,6 +12,6 @@ export default async () => {
     {
       id: 'lgs-reminder.days-and-lower',
       title: 'Display time in days only',
-    }
+    },
   ];
 };

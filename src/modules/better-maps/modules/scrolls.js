@@ -9,7 +9,7 @@ const boundSubtabs = new WeakSet();
  */
 const updateScrollContent = (scroll) => {
   const content = scroll.querySelector('.treasureMapInventoryView-scrollCase-content');
-  if (! content) {
+  if (!content) {
     return;
   }
 
@@ -22,7 +22,7 @@ const updateScrollContent = (scroll) => {
   if (matches && matches.length > 1) {
     let replacements = matches.map((match) => match.replaceAll(/<b>• (.*?)<\/b>/g, '$1'));
     const last = replacements.pop();
-    replacements = replacements.map((replacement, index) => index < replacements.length - 1 ? replacement + ',' : replacement + ', and');
+    replacements = replacements.map((replacement, index) => (index < replacements.length - 1 ? replacement + ',' : replacement + ', and'));
     replacements.push(last);
 
     let replacementIndex = 0;
@@ -58,7 +58,7 @@ const updateScrollContent = (scroll) => {
     aurasEl.forEach((aura) => {
       const title = aura.querySelector('b');
       if (title) {
-        title.textContent = title.textContent.replace('Opening this map\'s reward will give hunters ', 'This map\'s reward gives you ');
+        title.textContent = title.textContent.replace("Opening this map's reward will give hunters ", "This map's reward gives you ");
       }
 
       aura.innerHTML = aura.innerHTML
@@ -84,7 +84,7 @@ const maybeLockAndHide = (scroll, action, scrollType) => {
     hidden: [],
     lockedTypes: [],
     hiddenTypes: [],
-    ...lockAndHide
+    ...lockAndHide,
   };
 
   const locked = lockAndHide?.lockedTypes?.includes(scrollType);
@@ -112,13 +112,13 @@ const maybeLockAndHide = (scroll, action, scrollType) => {
  */
 const updateScrollsMarkup = (root = document) => {
   const scrolls = root.querySelectorAll('.treasureMapInventoryView-scrollCase');
-  if (! scrolls.length) {
+  if (!scrolls.length) {
     return;
   }
 
   scrolls.forEach((scroll) => {
     const action = scroll.querySelector('.treasureMapInventoryView-scrollCase-action');
-    if (! action) {
+    if (!action) {
       return;
     }
 
@@ -155,7 +155,4 @@ const updateSubTabListeners = async () => {
   });
 };
 
-export {
-  updateScrollsMarkup,
-  updateSubTabListeners
-};
+export { updateScrollsMarkup, updateSubTabListeners };

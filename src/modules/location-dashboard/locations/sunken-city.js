@@ -6,14 +6,14 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestSunkenCity) {
+  if (!quests.QuestSunkenCity) {
     return '';
   }
 
   const quest = quests.QuestSunkenCity;
   const oxygen = quest?.items?.oxygen_stat_item || 0;
 
-  if (! quest?.is_diving) {
+  if (!quest?.is_diving) {
     const canDive = quest?.can_dive ? 'can dive' : 'cannot dive';
     return `Docked (${canDive}), ${oxygen} O₂`;
   }

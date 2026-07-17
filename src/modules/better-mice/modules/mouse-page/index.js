@@ -1,14 +1,4 @@
-import {
-  doRequest,
-  getCurrentPage,
-  getCurrentSubtab,
-  getCurrentTab,
-  makeElement,
-  onNavigation,
-  sessionGet,
-  sessionSet,
-  waitForElement
-} from '@utils';
+import { doRequest, getCurrentPage, getCurrentSubtab, getCurrentTab, makeElement, onNavigation, sessionGet, sessionSet, waitForElement } from '@utils';
 
 /**
  * Make the King's Crowns tab.
@@ -17,7 +7,7 @@ import {
  */
 const makeKingsCrownsTab = () => {
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
-  if (! tabContainer) {
+  if (!tabContainer) {
     return false;
   }
 
@@ -27,7 +17,7 @@ const makeKingsCrownsTab = () => {
   }
 
   const kingsCrownsTab = makeElement('a', ['mousehuntHud-page-tabHeader', 'groups', 'kings-crowns-tab']);
-  makeElement('span', '', 'King\'s Crowns', kingsCrownsTab);
+  makeElement('span', '', "King's Crowns", kingsCrownsTab);
 
   kingsCrownsTab.setAttribute('data-tab', 'kings_crowns');
   kingsCrownsTab.setAttribute('data-legacy-mode', '');
@@ -48,7 +38,7 @@ const makeKingsCrownsTabContentContent = () => {
   }
 
   const tabContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-  if (! tabContentContainer) {
+  if (!tabContentContainer) {
     return;
   }
 
@@ -102,7 +92,7 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
 
   const list = makeElement('div', 'mouseCrownsView-group-mice');
   mice.forEach((mouse) => {
-    if (! mouse.id) {
+    if (!mouse.id) {
       return;
     }
 
@@ -161,11 +151,7 @@ const makeKingsCrownsTabContent = async () => {
   let crowns = [];
   const cachedCrowns = sessionGet('kings-crowns-data');
   const cachedCrownsTime = sessionGet('kings-crowns-time');
-  if (
-    cachedCrowns &&
-    cachedCrownsTime &&
-    (Date.now() - cachedCrownsTime) < 300000
-  ) {
+  if (cachedCrowns && cachedCrownsTime && Date.now() - cachedCrownsTime < 300000) {
     crowns = cachedCrowns;
   } else {
     const crownsReq = await doRequest('managers/ajax/pages/page.php', {
@@ -183,7 +169,7 @@ const makeKingsCrownsTabContent = async () => {
   }
 
   const tabInnerContent = document.querySelector('.mousehuntHud-page-tabContent.kings_crowns');
-  if (! tabInnerContent) {
+  if (!tabInnerContent) {
     return;
   }
 
@@ -239,7 +225,7 @@ const parseImperialWeight = (weightText) => {
   const ozSplit = weightText.innerText.split('oz.');
   const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
 
-  return (Number.parseInt(lbs) * 16) + Number.parseInt(oz);
+  return Number.parseInt(lbs) * 16 + Number.parseInt(oz);
 };
 
 /**
@@ -286,15 +272,15 @@ const getSetRowValue = (row, type) => {
  * @param {boolean} reverse If the sort should be reversed.
  */
 const sortStats = (type, reverse = false) => {
-  reverse = ! reverse;
+  reverse = !reverse;
 
   let rows = document.querySelectorAll(`${getSelectorPrefix()} .active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
-  if (! rows.length) {
+  if (!rows.length) {
     return;
   }
 
   const headerRow = document.querySelector(`${getSelectorPrefix()} .active  .mouseListView-categoryContent-subgroup-mouse:first-child`);
-  if (! headerRow) {
+  if (!headerRow) {
     return;
   }
 
@@ -311,12 +297,12 @@ const sortStats = (type, reverse = false) => {
     // sort by value. If the values are the same, then sort by name
     if (aVal === bVal || type === 'name') {
       const aNameEl = a.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name');
-      if (! aNameEl) {
+      if (!aNameEl) {
         return 0;
       }
 
       const bNameEl = b.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name');
-      if (! bNameEl) {
+      if (!bNameEl) {
         return 0;
       }
 
@@ -404,13 +390,7 @@ const getSelectorPrefix = () => {
  * @param {number} retries The number of retries.
  */
 const addSortingToCat = async (cat, retries = 0) => {
-  const cats = [
-    'name',
-    'catches',
-    'misses',
-    'average_weight',
-    'heaviest_catch',
-  ];
+  const cats = ['name', 'catches', 'misses', 'average_weight', 'heaviest_catch'];
 
   const selector = `${getSelectorPrefix()} .mouseListView-categoryContent-category[data-category="${cat}"]`;
 
@@ -418,7 +398,7 @@ const addSortingToCat = async (cat, retries = 0) => {
 
   const category = document.querySelector(selector);
   // if the category has the loading class, then we wait for the content to load
-  if (! category || (category && category.classList.contains('loading'))) {
+  if (!category || (category && category.classList.contains('loading'))) {
     if (retries > 10) {
       return;
     }
@@ -432,7 +412,9 @@ const addSortingToCat = async (cat, retries = 0) => {
   }
 
   cats.forEach((mCat) => {
-    const els = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mCat}`);
+    const els = category.querySelectorAll(
+      `${getSelectorPrefix()} .mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mCat}`
+    );
     if (els.length) {
       addSortButton(els, mCat);
     }
@@ -442,13 +424,13 @@ const addSortingToCat = async (cat, retries = 0) => {
 
   // Get all the rows and add the crown classes to them.
   const rows = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
-  if (! rows.length) {
+  if (!rows.length) {
     return;
   }
 
   rows.forEach((row) => {
     const catches = row.querySelector(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse-stats.catches`);
-    if (! catches) {
+    if (!catches) {
       return;
     }
 
@@ -497,7 +479,7 @@ const addSortingTabClickListeners = () => {
  */
 const clickCurrentTab = async () => {
   const currentCategoryTab = await waitForElement('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
-  if (! currentCategoryTab) {
+  if (!currentCategoryTab) {
     return;
   }
 

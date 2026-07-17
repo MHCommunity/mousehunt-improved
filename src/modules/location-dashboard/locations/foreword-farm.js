@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestForewordFarm) {
+  if (!quests.QuestForewordFarm) {
     return '';
   }
   const recipes = user.enviroment_atts?.recipes || [];

@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestFloatingIslands || ! quests.QuestFloatingIslands.hunting_site_atts) {
+  if (!quests.QuestFloatingIslands || !quests.QuestFloatingIslands.hunting_site_atts) {
     return '';
   }
 
@@ -33,7 +33,7 @@ export default (quests) => {
     wardens_caught: quests?.QuestFloatingIslands?.hunting_site_atts?.sky_wardens_caught || 0,
   };
 
-  quest.isLai = ! quest.isHai && ! quest.isSp;
+  quest.isLai = !quest.isHai && !quest.isSp;
 
   const isLaunchPad = quest.island_power_type === 'launch_pad_island';
   if (isLaunchPad) {
@@ -67,7 +67,7 @@ export default (quests) => {
   if (quest.isLai) {
     returnText += `<div class="stats">${quest.hunts_remaining} hunts remaining · ${quest.wardens_caught} wardens caught</div>`;
   } else {
-    return returnText += `${quest.hunts_remaining} hunts remaining`;
+    return (returnText += `${quest.hunts_remaining} hunts remaining`);
   }
 
   return returnText;

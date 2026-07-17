@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Whisker Woods Map"
-  ],
+  "names": ["Whisker Woods Map"],
   "categories": [
     {
       "name": "Standard Cheese",
@@ -40,18 +38,7 @@
       "icon": "https://i.mouse.rip/upscaled/2682bc940071eb73a0a26a231cca3a59.png",
       "color": "#b6d7a8",
       "color-dark": "#3c612c",
-      "mice": [
-        "centaur",
-        "curious_chemist",
-        "eagle_owl",
-        "fairy",
-        "foxy",
-        "goblin",
-        "nomad",
-        "tiger",
-        "troll",
-        "water_nymph"
-      ]
+      "mice": ["centaur", "curious_chemist", "eagle_owl", "fairy", "foxy", "goblin", "nomad", "tiger", "troll", "water_nymph"]
     },
     {
       "name": "Wicked Gnarly Cheese",
@@ -60,10 +47,7 @@
       "icon": "https://i.mouse.rip/upscaled/1ffa990ec8e9f6842dda44191aa7326f.png",
       "color": "#93c47d",
       "color-dark": "#3d622c",
-      "mice": [
-        "hydra",
-        "silth"
-      ]
+      "mice": ["hydra", "silth"]
     },
     {
       "name": "Cherry Cheese",
@@ -72,11 +56,7 @@
       "icon": "https://i.mouse.rip/upscaled/dd8efaed19bf744fa1cc5d48dfb4e37b.png",
       "color": "#ea9999",
       "color-dark": "#761818",
-      "mice": [
-        "bear",
-        "cherry",
-        "shaman"
-      ]
+      "mice": ["bear", "cherry", "shaman"]
     }
   ],
   "subcategories": [

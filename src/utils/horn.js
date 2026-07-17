@@ -35,7 +35,7 @@ import { makeElement } from './elements';
  */
 const showHornMessage = (options) => {
   const huntersHornView = document.querySelector('.huntersHornView__messageContainer');
-  if (! huntersHornView) {
+  if (!huntersHornView) {
     return false;
   }
 
@@ -84,7 +84,7 @@ const showHornMessage = (options) => {
     'huntersHornMessageView',
     'huntersHornMessageView--shadow',
     `huntersHornMessageView--${settings.type}`,
-    settings.color ? `huntersHornMessageView--color-${settings.color}` : ''
+    settings.color ? `huntersHornMessageView--color-${settings.color}` : '',
   ]);
 
   makeElement('div', 'huntersHornMessageView__title', settings.title, message);
@@ -182,6 +182,4 @@ const showHornMessage = (options) => {
   return messageWrapper;
 };
 
-export {
-  showHornMessage
-};
+export { showHornMessage };

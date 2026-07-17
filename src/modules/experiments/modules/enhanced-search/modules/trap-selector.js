@@ -43,10 +43,7 @@ const addSearchTermsToResponse = (response) => {
  */
 const interceptComponents = () => {
   $.ajaxPrefilter((options, originalOptions) => {
-    if (
-      ! options.url.includes('users/gettrapcomponents.php') &&
-      ! options.url.includes('users/changetrap.php')
-    ) {
+    if (!options.url.includes('users/gettrapcomponents.php') && !options.url.includes('users/changetrap.php')) {
       return;
     }
 
@@ -89,7 +86,7 @@ const tooltipObserver = new MutationObserver((mutations) => {
  */
 const observeTooltip = () => {
   const tooltip = document.querySelector('.campPage-trap-itemBrowser-itemDescriptionHover');
-  if (! tooltip) {
+  if (!tooltip) {
     return;
   }
 

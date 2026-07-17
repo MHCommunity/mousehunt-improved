@@ -12,27 +12,32 @@ let hasInitialized = false;
  * @param {string} [options.mode]  Difficulty mode (`easy`, `hard`, `extreme`, `nope`).
  */
 const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'easy' }) => {
-  if (! hasInitialized) {
+  if (!hasInitialized) {
     addStyles(styles, 'mh-improved-memory-game');
     hasInitialized = true;
   }
 
-  if (! items.length) {
+  if (!items.length) {
     return;
   }
 
   let cardCount = 8; // Default to easy mode
   switch (mode) {
-  case 'hard':
-    cardCount = 4 * 4; break;
-  case 'extreme':
-    cardCount = 4 * 6; break;
-  case 'nope':
-    cardCount = 70; break;
+    case 'hard':
+      cardCount = 4 * 4;
+      break;
+    case 'extreme':
+      cardCount = 4 * 6;
+      break;
+    case 'nope':
+      cardCount = 70;
+      break;
   }
 
   const createGameOverlay = () => {
-    return makeElement('div', ['mh-improved-memory-game', `mh-improved-memory-game-${mode}`],
+    return makeElement(
+      'div',
+      ['mh-improved-memory-game', `mh-improved-memory-game-${mode}`],
       `<div class="mh-improved-memory-game-header">
         <h1>${title}</h1>
         <svg class="mh-improved-memory-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -67,7 +72,9 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'e
     // Clear and repopulate the grid
     grid.innerHTML = '';
     cards.forEach((item, index) => {
-      const card = makeElement('div', 'mh-improved-memory-card',
+      const card = makeElement(
+        'div',
+        'mh-improved-memory-card',
         `<div class="mh-improved-card-front">?</div>
         <div class="mh-improved-card-back">
           <img src="${item.image || item.images.upscaled || item.images.best}" alt="${item.name}" title="${item.name}" />
@@ -90,15 +97,10 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'e
 
   // Create or reuse the game overlay
   let gameOverlay = document.querySelector('.mh-improved-memory-game');
-  if (! gameOverlay) {
+  if (!gameOverlay) {
     gameOverlay = createGameOverlay();
     document.body.append(gameOverlay);
-    makeElementDraggable(
-      `.mh-improved-memory-game-${mode}`,
-      '.mh-improved-memory-game-header',
-      mode === 'nope' ? 95 : 200,
-      mode === 'nope' ? 20 : 100
-    );
+    makeElementDraggable(`.mh-improved-memory-game-${mode}`, '.mh-improved-memory-game-header', mode === 'nope' ? 95 : 200, mode === 'nope' ? 20 : 100);
   }
 
   const grid = gameOverlay.querySelector('.mh-improved-memory-grid');
@@ -148,7 +150,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'e
 
     unmatchedCards.forEach((card) => {
       const symbol = card.dataset.symbol;
-      if (! symbols.has(symbol)) {
+      if (!symbols.has(symbol)) {
         symbols.add(symbol);
         const pair = unmatchedCards.filter((c) => c.dataset.symbol === symbol);
         if (pair.length === 2) {

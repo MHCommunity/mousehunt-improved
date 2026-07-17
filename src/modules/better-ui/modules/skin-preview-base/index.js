@@ -5,18 +5,26 @@ import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 const run = async () => {
   const id = 'mh-improved-better-ui-skin-preview-base';
   const baseEl = document.querySelector('.trapImageView-layer.base');
-  if (! baseEl || ! baseEl.style.backgroundImage) {
+  if (!baseEl || !baseEl.style.backgroundImage) {
     return;
   }
 
   if (getSetting('better-ui.trap-gradient-background', false)) {
-    addModuleStyles(`.itembrowser-skin-image-wrapper {
+    addModuleStyles(
+      `.itembrowser-skin-image-wrapper {
       background-image: ${baseEl.style.backgroundImage}, linear-gradient(0deg, #eee2b4 0%, #b1e0d1 100%);
-    }`, id, true);
+    }`,
+      id,
+      true
+    );
   } else {
-    addModuleStyles(`.itembrowser-skin-image-wrapper {
+    addModuleStyles(
+      `.itembrowser-skin-image-wrapper {
       background-image: ${baseEl.style.backgroundImage};
-    }`, id, true);
+    }`,
+      id,
+      true
+    );
   }
 };
 

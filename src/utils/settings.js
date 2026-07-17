@@ -59,7 +59,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     console.error('Error parsing settings:', error); // eslint-disable-line no-console
   });
 
-  if (! settings || 'object' !== typeof settings) {
+  if (!settings || 'object' !== typeof settings) {
     settings = {};
   }
 
@@ -77,12 +77,12 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
   }
 
   // If we didn't get a key passed in, we want all the settings.
-  if (! key) {
+  if (!key) {
     return settings;
   }
 
   // If the key contains a period, then it's a group and key, otherwise it's just a key.
-  if (! key.includes('.')) {
+  if (!key.includes('.')) {
     if (settings[key] === undefined) {
       return defaultValue;
     }
@@ -92,7 +92,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
 
   const groupAndKey = getGroupAndKey(key);
 
-  if (! groupAndKey.group) {
+  if (!groupAndKey.group) {
     if (settings[groupAndKey.key] === undefined) {
       return defaultValue;
     }
@@ -127,7 +127,7 @@ const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings
   const groupAndKey = getGroupAndKey(key);
 
   if (groupAndKey.group) {
-    if (! settings[groupAndKey.group]) {
+    if (!settings[groupAndKey.group]) {
       settings[groupAndKey.group] = {};
     }
 
@@ -229,7 +229,7 @@ const getSettings = () => {
   }
 
   const settings = localStorage.getItem('mousehunt-improved-settings');
-  if (! settings) {
+  if (!settings) {
     return {};
   }
 
@@ -254,13 +254,4 @@ const saveSetting = (key, value) => {
   return value;
 };
 
-export {
-  parseEncodedValue,
-  getSettingDirect,
-  saveSettingDirect,
-  getSetting,
-  saveSetting,
-  migrateSetting,
-  getSettings,
-  deleteSetting
-};
+export { parseEncodedValue, getSettingDirect, saveSettingDirect, getSetting, saveSetting, migrateSetting, getSettings, deleteSetting };

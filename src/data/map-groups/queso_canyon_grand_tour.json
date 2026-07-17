@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Queso Canyon Grand Tour Map"
-  ],
+  "names": ["Queso Canyon Grand Tour Map"],
   "categories": [
     {
       "name": "KSS",
@@ -9,10 +7,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#96b9dc",
       "color-dark": "#2e547a",
-      "mice": [
-        "geyser_eruption_dragon_wildfire",
-        "geyser_eruption_dragon_epic"
-      ]
+      "mice": ["geyser_eruption_dragon_wildfire", "geyser_eruption_dragon_epic"]
     },
     {
       "name": "Cinder-Brut",
@@ -20,10 +15,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#7fff66",
       "color-dark": "#326827",
-      "mice": [
-        "geyser_eruption_dragon_large",
-        "geyser_eruption_dragon_flaming"
-      ]
+      "mice": ["geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming"]
     },
     {
       "name": "BE Trio",
@@ -31,11 +23,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#ffb1b1",
       "color-dark": "#7a2e2e",
-      "mice": [
-        "geyser_eruption_dragon_hot",
-        "geyser_eruption_dragon_medium",
-        "geyser_eruption_dragon_medium_spice"
-      ]
+      "mice": ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"]
     },
     {
       "name": "Sizzle Mild",
@@ -43,10 +31,7 @@
       "icon": "/powertypes/draconic.png",
       "color": "#ffc816",
       "color-dark": "#685827",
-      "mice": [
-        "geyser_eruption_dragon_small",
-        "geyser_eruption_dragon_mild"
-      ]
+      "mice": ["geyser_eruption_dragon_small", "geyser_eruption_dragon_mild"]
     },
     {
       "name": "Pressure Set",
@@ -84,13 +69,7 @@
       "icon": "/powertypes/law.png",
       "color": "#89e8a9",
       "color-dark": "#27683d",
-      "mice": [
-        "croquet_crusher",
-        "pump_raider",
-        "queso_river_boss",
-        "sleepy_merchant",
-        "tiny_saboteur"
-      ]
+      "mice": ["croquet_crusher", "pump_raider", "queso_river_boss", "sleepy_merchant", "tiny_saboteur"]
     },
     {
       "name": "Prickly Plains",

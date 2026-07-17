@@ -12,17 +12,17 @@ const addQuickReinforce = () => {
 
 const addQuickReinforceReal = () => {
   const wrapper = document.querySelector('.draconicDepthsCavernView__reinforceCavernContainer');
-  if (! wrapper) {
+  if (!wrapper) {
     return;
   }
 
   const reinforceButton = wrapper.querySelector('.draconicDepthsCavernView__reinforceCavernButton');
-  if (! reinforceButton) {
+  if (!reinforceButton) {
     return;
   }
 
   const quest = user?.quests?.QuestDraconicDepths;
-  if (! quest) {
+  if (!quest) {
     return;
   }
 
@@ -61,7 +61,7 @@ const addQuickReinforceReal = () => {
     reinforceButton.click();
 
     const reinforceInput = await waitForElement('.draconicDepthsReinforceCavernDialogView__reinforceInputBox');
-    if (! reinforceInput) {
+    if (!reinforceInput) {
       if (window.activejsdialog) {
         window.activejsdialog.hide();
       }
@@ -76,7 +76,7 @@ const addQuickReinforceReal = () => {
     reinforceInput.dispatchEvent(event);
 
     const reinforceDialogButton = document.querySelector('.draconicDepthsReinforceCavernDialogView__reinforceButton');
-    if (! reinforceDialogButton) {
+    if (!reinforceDialogButton) {
       if (window.activejsdialog) {
         window.activejsdialog.hide();
       }
@@ -94,10 +94,7 @@ const addQuickReinforceReal = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles([
-    regionStyles,
-    styles
-  ]);
+  addHudStyles([regionStyles, styles]);
 
   keepInventoryToggled({
     setting: 'location-huds.prologue-pond-inventory-toggled',
@@ -128,7 +125,7 @@ export default async () => {
         amounts: [10, 24, 50],
         shopNormal: 'elemental_emmental_cheese',
         shop: 'elemental_emmental_pack_small_convertible',
-      }
+      },
     },
     selectors: {
       baits: '.headsUpDisplayDraconicDepthsView__baitCraftableContainer',

@@ -19,6 +19,6 @@ export default async () => {
       id: 'better-mice.show-sidebar',
       title: 'Show available mice in sidebar',
       default: true,
-    }
+    },
   ];
 };

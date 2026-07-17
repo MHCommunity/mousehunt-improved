@@ -19,7 +19,7 @@ const getRelicHunterLocation = async () => {
 
   try {
     const data = await fetch('https://api.mouse.rip/relic-hunter', { headers: getHeaders() });
-    if (! data.ok) {
+    if (!data.ok) {
       throw new Error(`Error fetching Relic Hunter location: ${data.statusText}`);
     }
 
@@ -38,12 +38,12 @@ const getRelicHunterLocation = async () => {
  * @param {string} location The location to travel to.
  */
 const travelTo = async (location) => {
-  if (! app?.pages?.TravelPage?.travel) {
+  if (!app?.pages?.TravelPage?.travel) {
     return;
   }
 
   const header = document.querySelector('.mousehuntHeaderView');
-  if (! header) {
+  if (!header) {
     return;
   }
 
@@ -64,7 +64,4 @@ const travelTo = async (location) => {
   }
 };
 
-export {
-  getRelicHunterLocation,
-  travelTo
-};
+export { getRelicHunterLocation, travelTo };

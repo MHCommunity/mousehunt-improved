@@ -17,7 +17,4 @@ const getCurrentLocationName = () => {
   return user?.environment_name || getCurrentLocation();
 };
 
-export {
-  getCurrentLocation,
-  getCurrentLocationName
-};
+export { getCurrentLocation, getCurrentLocationName };

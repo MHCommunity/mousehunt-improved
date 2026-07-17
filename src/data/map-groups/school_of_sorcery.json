@@ -1,7 +1,5 @@
 {
-  "names": [
-    "School of Sorcery Map"
-  ],
+  "names": ["School of Sorcery Map"],
   "categories": [
     {
       "name": "Arcane Arts",
@@ -105,11 +103,7 @@
       "icon": "/ui/hud/school_of_sorcery/exam_icon.png",
       "color": "#a88bff",
       "color-dark": "#3d2d6a",
-      "mice": [
-        "arcane_sorcerer",
-        "shadow_sorcerer",
-        "mythical_master_sorcerer"
-      ]
+      "mice": ["arcane_sorcerer", "shadow_sorcerer", "mythical_master_sorcerer"]
     }
   ],
   "subcategories": [

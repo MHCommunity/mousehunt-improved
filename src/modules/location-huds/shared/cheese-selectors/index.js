@@ -1,11 +1,4 @@
-import {
-  doEvent,
-  formatNumber,
-  getCurrentLocation,
-  getUserItems,
-  makeElement,
-  onRequest
-} from '@utils';
+import { doEvent, formatNumber, getCurrentLocation, getUserItems, makeElement, onRequest } from '@utils';
 
 /**
  * Makes the cheese selector element.
@@ -65,7 +58,7 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
   }
 
   const hud = document.querySelector('#hudLocationContent');
-  if (! hud) {
+  if (!hud) {
     return;
   }
 
@@ -89,12 +82,7 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
  * @return {Array} Array of cheese types to use.
  */
 const getCheeses = (cheeses) => {
-  const defaultCheeses = [
-    'cheddar_cheese',
-    'brie_cheese',
-    'gouda_cheese',
-    'super_brie_cheese',
-  ];
+  const defaultCheeses = ['cheddar_cheese', 'brie_cheese', 'gouda_cheese', 'super_brie_cheese'];
 
   // Append cheeses to make the array 4 items long.
   while (cheeses.length < 4) {

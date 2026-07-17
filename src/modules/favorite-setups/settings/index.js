@@ -20,6 +20,6 @@ export default async () => {
       title: 'Use generated names for setups',
       description: 'If enabled, setups will be named based on their components and location via an AI model.',
       default: true,
-    }
+    },
   ];
 };

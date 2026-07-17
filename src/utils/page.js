@@ -39,7 +39,7 @@ const setTab = (tab, ...args) => {
  * @return {string} The page tab.
  */
 const getCurrentTab = () => {
-  if (! hg?.utils?.PageUtil?.getCurrentPageTab) {
+  if (!hg?.utils?.PageUtil?.getCurrentPageTab) {
     return getCurrentPage();
   }
 
@@ -59,7 +59,7 @@ const getCurrentTab = () => {
  */
 const getCurrentSubtab = () => {
   const subtab = hg.utils.PageUtil.getCurrentPageSubTab();
-  if (! subtab || subtab.length <= 0) {
+  if (!subtab || subtab.length <= 0) {
     return getCurrentTab();
   }
 
@@ -73,7 +73,7 @@ const getCurrentSubtab = () => {
  */
 const getCurrentDialog = () => {
   const overlay = document.querySelector('#overlayPopup');
-  if (! overlay || ! overlay.classList || overlay.classList.length <= 0) {
+  if (!overlay || !overlay.classList || overlay.classList.length <= 0) {
     return '';
   }
 
@@ -95,7 +95,11 @@ const getCurrentDialog = () => {
     MHCheckout: 'premiumShop',
   };
 
-  const overlayType = overlay.classList.value.split(' ').map((cls) => replaceMap[cls] || cls).join(' ').trim();
+  const overlayType = overlay.classList.value
+    .split(' ')
+    .map((cls) => replaceMap[cls] || cls)
+    .join(' ')
+    .trim();
 
   return 'Popup' === overlayType ? '' : overlayType;
 };
@@ -112,27 +116,20 @@ const getCurrentDialog = () => {
  *
  * @return {boolean} True if the page matches, false otherwise.
  */
-const isCurrentPage = (
-  targetPage = null,
-  targetTab = null,
-  targetSubtab = null,
-  forceCurrentPage = null,
-  forceCurrentTab = null,
-  forceCurrentSubtab = null
-) => {
-  if (! targetPage) {
+const isCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null, forceCurrentPage = null, forceCurrentTab = null, forceCurrentSubtab = null) => {
+  if (!targetPage) {
     return false;
   }
 
   // Only targetPage is being checked.
   const currentPage = forceCurrentPage || getCurrentPage();
-  if (! targetTab) {
+  if (!targetTab) {
     return currentPage === targetPage;
   }
 
   // Only targetTab is being checked.
   const currentTab = forceCurrentTab || getCurrentTab();
-  if (! targetSubtab) {
+  if (!targetSubtab) {
     return currentPage === targetPage && currentTab === targetTab;
   }
 
@@ -145,11 +142,4 @@ const isCurrentPage = (
   return currentPage === targetPage && currentTab === targetTab && currentSubtab === targetSubtab;
 };
 
-export {
-  getCurrentTab,
-  getCurrentSubtab,
-  getCurrentDialog,
-  isCurrentPage,
-  setPage,
-  setTab
-};
+export { getCurrentTab, getCurrentSubtab, getCurrentDialog, isCurrentPage, setPage, setTab };

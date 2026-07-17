@@ -7,14 +7,15 @@ import { randomizeAirship } from '../../../location-huds/shared/airship-randomiz
  */
 const init = () => {
   // Equip a random look for every island.
-  onRequest('environment/floating_islands.php', (response, data) => {
-    if (
-      'launch' === data?.action ||
-      'launch_vault' === data?.action
-    ) {
-      randomizeAirship();
-    }
-  }, true);
+  onRequest(
+    'environment/floating_islands.php',
+    (response, data) => {
+      if ('launch' === data?.action || 'launch_vault' === data?.action) {
+        randomizeAirship();
+      }
+    },
+    true
+  );
 };
 
 /**

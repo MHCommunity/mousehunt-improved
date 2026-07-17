@@ -6,13 +6,13 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestTableOfContents) {
+  if (!quests.QuestTableOfContents) {
     return '';
   }
 
   const q = quests.QuestTableOfContents;
 
-  if (! q?.is_writing) {
+  if (!q?.is_writing) {
     return 'Not writing';
   }
 

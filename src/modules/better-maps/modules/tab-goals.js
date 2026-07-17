@@ -12,7 +12,7 @@ import {
   sessionGet,
   sessionSet,
   showErrorMessage,
-  wikiUrl
+  wikiUrl,
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
@@ -29,7 +29,7 @@ let allMiceData;
  * @return {string} The link markup.
  */
 const getLinkMarkup = (name, mouseType) => {
-  if (! allMiceData) {
+  if (!allMiceData) {
     return '';
   }
 
@@ -37,14 +37,13 @@ const getLinkMarkup = (name, mouseType) => {
   if (mouse) {
     name = mouse.name
       .replaceAll(' ', '_')
-      .replaceAll('\'', '%27')
+      .replaceAll("'", '%27')
       .replaceAll('"', '%22')
       .replaceAll(/(^\w|\s\w)/g, (m) => m.toUpperCase())
       .replaceAll(' ', '_');
   }
 
-  return makeLink('MHCT AR', mhctRedirectUrl(mouseType)) +
-    makeLink('Wiki', wikiUrl(name, false));
+  return makeLink('MHCT AR', mhctRedirectUrl(mouseType)) + makeLink('Wiki', wikiUrl(name, false));
 };
 
 /**
@@ -56,8 +55,7 @@ const getLinkMarkup = (name, mouseType) => {
  */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
-  return makeLink('MHCT DR', mhctRedirectUrl(name, { item: true }), true) +
-    makeLink('Wiki', wikiUrl(name, false), true);
+  return makeLink('MHCT DR', mhctRedirectUrl(name, { item: true }), true) + makeLink('Wiki', wikiUrl(name, false), true);
 };
 
 /**
@@ -65,17 +63,17 @@ const getItemLinkMarkup = (name) => {
  */
 const addMouseLinksToMap = async () => {
   const overlay = document.querySelector('#overlayPopup');
-  if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
+  if (!(overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
   }
 
   const mouseIcon = document.querySelectorAll('.treasureMapView-goals-group-goal');
-  if (! (mouseIcon && mouseIcon.length > 0)) {
+  if (!(mouseIcon && mouseIcon.length > 0)) {
     return;
   }
 
   const mapViewClasses = document.querySelector('.treasureMapView');
-  if (! mapViewClasses) {
+  if (!mapViewClasses) {
     return;
   }
 
@@ -101,12 +99,12 @@ const addMouseLinksToMap = async () => {
 
     mouse.addEventListener('click', async () => {
       const highlight = document.querySelector('.treasureMapView-highlight.active');
-      if (! highlight) {
+      if (!highlight) {
         return;
       }
 
       const title = highlight.querySelector('.treasureMapView-highlight-name');
-      if (! title) {
+      if (!title) {
         return;
       }
 
@@ -148,7 +146,7 @@ const addMouseLinksToMap = async () => {
       }
 
       let appendMHCTto = document.querySelector('.treasureMapView-highlight-weaknessContainer');
-      if (! appendMHCTto) {
+      if (!appendMHCTto) {
         appendMHCTto = document.querySelector('.mh-ui-mouse-links-map');
       }
 
@@ -182,7 +180,7 @@ const addClassesToGroups = (mapData) => {
   const groups = document.querySelectorAll('.treasureMapView-goals-groups');
   groups.forEach((group) => {
     const title = group.querySelector('.treasureMapView-block-content-heading');
-    if (! title) {
+    if (!title) {
       return;
     }
 
@@ -200,48 +198,41 @@ const addClassesToGroups = (mapData) => {
       countText = count.innerText;
     }
 
-    if (! completed) {
+    if (!completed) {
       return;
     }
     // get the hunter name by removing the count and the 'found these mice' text
-    const hunterName = title.innerText
-      .replace(countText, '')
-      .replace(' found these mice:', '')
-      .replace(' found this mouse:', '')
-      .trim();
+    const hunterName = title.innerText.replace(countText, '').replace(' found these mice:', '').replace(' found this mouse:', '').trim();
 
     // find the hunter in the list of hunters but looking at mapData.hunters and finding the matching name
     let hunter = mapData.hunters.find((h) => h.name.trim() === hunterName);
-    if (! hunter) {
+    if (!hunter) {
       // match the hunter using the image url
       const image = group.querySelector('.treasureMapView-block-content-heading-image');
-      if (! image) {
+      if (!image) {
         return;
       }
 
       // get the style property of the image and get the url from it
-      const url = image.getAttribute('style')
-        .replace('background-image:url(', '')
-        .replace('background-image: url(', '')
-        .replace(');', '');
+      const url = image.getAttribute('style').replace('background-image:url(', '').replace('background-image: url(', '').replace(');', '');
 
       hunter = mapData.hunters.find((h) => h.profile_pic === url);
     }
 
     // Finally, fallback to trying to match the hunter name to the user's name in case of weirdness idk.
-    if (! hunter && (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`)) {
+    if (!hunter && (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`)) {
       hunter = {
         name: `${user.firstname} ${user.lastname}`,
         sn_user_id: user.sn_user_id,
       };
     }
 
-    if (! hunter) {
+    if (!hunter) {
       return;
     }
 
     const image = group.querySelector('.treasureMapView-block-content-heading-image');
-    if (! image) {
+    if (!image) {
       image.title = `Go to ${hunter.name}'s profile`;
       image.classList.add('mh-ui-goals-group-completed-image');
 
@@ -351,12 +342,12 @@ const moveLeaveButton = async (mapData) => {
   }
 
   const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
-  if (! leaveButton) {
+  if (!leaveButton) {
     return;
   }
 
   const actions = document.querySelector('.treasureMapView-mapMenu-group-actions');
-  if (! actions) {
+  if (!actions) {
     return;
   }
 
@@ -384,7 +375,7 @@ const moveLeaveButton = async (mapData) => {
  */
 const addQuickInvite = async (mapData) => {
   const sidebar = document.querySelector('.treasureMapView-rightBlock.treasureMapView-goalSidebar');
-  if (! sidebar) {
+  if (!sidebar) {
     return;
   }
 
@@ -394,12 +385,12 @@ const addQuickInvite = async (mapData) => {
   }
 
   // Check if we're the current map owner.
-  if (! mapData?.is_owner) {
+  if (!mapData?.is_owner) {
     return;
   }
 
   const mapId = mapData?.map_id;
-  if (! mapId) {
+  if (!mapId) {
     return;
   }
 
@@ -436,7 +427,7 @@ const addQuickInvite = async (mapData) => {
 
     showErrorMessage({
       message,
-      append: inviteWrapper
+      append: inviteWrapper,
     });
 
     return false;
@@ -459,7 +450,7 @@ const addQuickInvite = async (mapData) => {
 
     const hunterId = Number.parseInt(inviteInput.value, 10);
 
-    if (! hunterId) {
+    if (!hunterId) {
       return inviteError('Invalid hunter ID');
     }
 
@@ -549,17 +540,17 @@ const addQuickInvite = async (mapData) => {
  */
 const addSidebarToggle = async () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
   const rightBlock = mapView.querySelector('.treasureMapView-rightBlock');
-  if (! rightBlock) {
+  if (!rightBlock) {
     return;
   }
 
   const leftBlock = mapView.querySelector('.treasureMapView-leftBlock');
-  if (! leftBlock) {
+  if (!leftBlock) {
     return;
   }
 
@@ -616,7 +607,7 @@ const addSidebarToggle = async () => {
 
 const addPreviewClass = async () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
@@ -627,7 +618,7 @@ const addPreviewClass = async () => {
   }
 
   const previewClass = mapView.querySelector('.treasureMapView-previewBar');
-  if (! previewClass) {
+  if (!previewClass) {
     return;
   }
 
@@ -640,17 +631,17 @@ const addPreviewClass = async () => {
 
 const moveAuras = async () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
   const mapName = mapView.querySelector('.treasureMapView-mapName');
-  if (! mapName) {
+  if (!mapName) {
     return;
   }
 
   const auras = mapView.querySelectorAll('.treasureMapView-mapMenu-auraIconContainer');
-  if (! auras) {
+  if (!auras) {
     return;
   }
 
@@ -677,7 +668,7 @@ const addMapSolverLinks = async (mapData) => {
   const mapFooter = document.querySelector('.treasureMapView-mapLeaveContainer');
   const mice = mapData?.goals?.mouse;
 
-  if (! mapFooter || ! Array.isArray(mice) || ! mice.length) {
+  if (!mapFooter || !Array.isArray(mice) || !mice.length) {
     return;
   }
 
@@ -715,7 +706,7 @@ const addMapSolverLinks = async (mapData) => {
     form.remove();
   });
 
-  const tsituButton = createSolverButton('Tsitu\'s Map Solver', 'mh-ui-map-solver-tsitu-link', () => {
+  const tsituButton = createSolverButton("Tsitu's Map Solver", 'mh-ui-map-solver-tsitu-link', () => {
     const url = `https://tsitu.github.io/MH-Tools/map.html?mice=${encodeURIComponent(mouseNames)}`;
     window.open(url, '_tsitu-map-solver');
   });
@@ -726,12 +717,12 @@ const addMapSolverLinks = async (mapData) => {
 };
 
 const addInfoToCompletedMap = async (mapData) => {
-  if (! mapData?.is_complete) {
+  if (!mapData?.is_complete) {
     return;
   }
 
   const mapEl = document.querySelector('.treasureMapView-mapMenu-group.allies');
-  if (! mapEl) {
+  if (!mapEl) {
     return;
   }
 
@@ -741,7 +732,7 @@ const addInfoToCompletedMap = async (mapData) => {
   }
 
   const maptain = mapData.hunters.find((h) => h.captain);
-  if (! maptain) {
+  if (!maptain) {
     return;
   }
 
@@ -750,7 +741,7 @@ const addInfoToCompletedMap = async (mapData) => {
     duster = mapData.hunters.find((h) => h.upgrader);
   }
 
-  const maptainIsDuster = duster && (maptain.sn_user_id === duster.sn_user_id);
+  const maptainIsDuster = duster && maptain.sn_user_id === duster.sn_user_id;
   const maptainDusterWrapper = makeElement('div', 'mh-ui-completed-maptain-duster-wrapper');
 
   const maptainWrapper = makeElement('div', ['mh-ui-completed-info-wrapper', 'mh-ui-completed-maptain-wrapper']);
@@ -767,7 +758,7 @@ const addInfoToCompletedMap = async (mapData) => {
 
   maptainDusterWrapper.append(maptainWrapper);
 
-  if (duster && ! maptainIsDuster) {
+  if (duster && !maptainIsDuster) {
     const dusterWrapper = makeElement('div', ['mh-ui-completed-info-wrapper', 'mh-ui-completed-duster-wrapper']);
 
     makeElement('div', 'mh-ui-completed-info-label', 'Duster:', dusterWrapper);
@@ -808,7 +799,7 @@ const showGoalsTab = async (mapData) => {
     addMapSolverLinks(mapData);
   }
 
-  if (! allMiceData) {
+  if (!allMiceData) {
     allMiceData = await getData('mice');
   }
 };
@@ -820,7 +811,4 @@ const hideGoalsTab = () => {
   removeArToggle();
 };
 
-export {
-  showGoalsTab,
-  hideGoalsTab
-};
+export { showGoalsTab, hideGoalsTab };

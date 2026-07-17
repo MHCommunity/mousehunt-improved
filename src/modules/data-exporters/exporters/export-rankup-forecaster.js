@@ -47,7 +47,4 @@ const exportRankupForecaster = () => {
   });
 };
 
-export {
-  exportRankupForecaster,
-  hasRankupForecaster
-};
+export { exportRankupForecaster, hasRankupForecaster };

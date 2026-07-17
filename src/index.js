@@ -19,7 +19,7 @@ import {
   onNavigation,
   saveSetting,
   setGlobal,
-  showLoadingError
+  showLoadingError,
 } from '@utils';
 
 import update from './updates/index.js';
@@ -70,7 +70,7 @@ const migrateBaseItemCountersSetting = () => {
  * @param {Object} module The module to validate.
  */
 const validateModuleMetadata = (module) => {
-  if (! module?.id || ! module?.type || 'function' !== typeof module?.load) {
+  if (!module?.id || !module?.type || 'function' !== typeof module?.load) {
     throw new Error(`Invalid module definition: ${module?.id || 'unknown module'}`);
   }
 };
@@ -90,7 +90,7 @@ const getCategoriesWithModules = () => {
     validateModuleMetadata(module);
 
     const category = categoriesWithModules.find((item) => item.id === module.type);
-    if (! category) {
+    if (!category) {
       debug(`Unknown module category: ${module.type}`);
       return;
     }
@@ -145,24 +145,21 @@ const loadModules = async (categoriesWithModules = getCategoriesWithModules()) =
       }
 
       // If the module is always loaded, or if the category is required, or if the module is enabled, load it.
-      if (
-        module.alwaysLoad ||
-        'required' === category.id ||
-        getSetting(module.id, module.default) ||
-        getFlag(`load-${module.id}`)
-      ) {
-        load.push(Promise.resolve()
-          .then(() => module.load())
-          .then(() => {
-            loadedModules.push(module.id);
-            allLoadedModules.push(module.id);
-            return module.id;
-          })
-          .catch((error) => {
-            moduleErrors.push({ module, error });
-            debug(`Error loading "${module.id}"`, error);
-            return null;
-          }));
+      if (module.alwaysLoad || 'required' === category.id || getSetting(module.id, module.default) || getFlag(`load-${module.id}`)) {
+        load.push(
+          Promise.resolve()
+            .then(() => module.load())
+            .then(() => {
+              loadedModules.push(module.id);
+              allLoadedModules.push(module.id);
+              return module.id;
+            })
+            .catch((error) => {
+              moduleErrors.push({ module, error });
+              debug(`Error loading "${module.id}"`, error);
+              return null;
+            })
+        );
       }
     }
 
@@ -204,14 +201,14 @@ const init = async () => {
   }
 
   // Make sure the global MouseHunt functions are available.
-  if (! isApp()) {
+  if (!isApp()) {
     maybeDoMaintenance();
     debug('Global MouseHunt functions not found.');
     return;
   }
 
   // Make sure the event registry is available.
-  if (! eventRegistry) {
+  if (!eventRegistry) {
     debug('Event registry not found.');
     return;
   }
@@ -232,7 +229,7 @@ const init = async () => {
           version: mhImprovedVersion,
         },
         user: {
-          id: await getAnonymousUserHash()
+          id: await getAnonymousUserHash(),
         },
       },
       allowUrls: [
@@ -254,10 +251,7 @@ const init = async () => {
       }
 
       reportedDatabaseIssues.add(key);
-      Sentry.captureMessage(
-        `IndexedDB ${context} for "${databaseName}"${errorName ? `: ${errorName}` : ''}${errorMessage ? `: ${errorMessage}` : ''}`,
-        'warning'
-      );
+      Sentry.captureMessage(`IndexedDB ${context} for "${databaseName}"${errorName ? `: ${errorName}` : ''}${errorMessage ? `: ${errorMessage}` : ''}`, 'warning');
     });
   }
 
@@ -265,7 +259,7 @@ const init = async () => {
   const previousVersion = getSetting('mh-improved-version', '0.0.0');
   if (previousVersion !== mhImprovedVersion) {
     const updated = await update(previousVersion, mhImprovedVersion);
-    if (! updated) {
+    if (!updated) {
       return;
     }
   }
@@ -313,14 +307,17 @@ const init = async () => {
     doEvent('mh-improved-init', mhImprovedVersion);
 
     // Add the settings for each module.
-    onNavigation(async () => {
-      for (const module of categoriesWithModules) {
-        await addSettingForModule(module);
+    onNavigation(
+      async () => {
+        for (const module of categoriesWithModules) {
+          await addSettingForModule(module);
+        }
+      },
+      {
+        page: 'preferences',
+        tab: 'mousehunt-improved-settings',
       }
-    }, {
-      page: 'preferences',
-      tab: 'mousehunt-improved-settings',
-    });
+    );
   } catch (error) {
     showLoadingError(error);
   }

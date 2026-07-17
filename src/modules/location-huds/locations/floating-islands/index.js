@@ -12,7 +12,7 @@ import {
   saveSetting,
   setMultipleTimeout,
   showHornMessage,
-  waitForElement
+  waitForElement,
 } from '@utils';
 
 import { addAirshipRandomizer } from '../../shared/airship-randomizer';
@@ -43,12 +43,12 @@ const toggleFuelClass = (fuelCount, isActive) => {
  */
 const toggleFuel = () => {
   const fuel = document.querySelector('.floatingIslandsHUD-fuel-button');
-  if (! fuel) {
+  if (!fuel) {
     return;
   }
 
   const fuelCount = document.querySelector('.floatingIslandsHUD-fuel-quantity');
-  if (! fuelCount) {
+  if (!fuelCount) {
     return;
   }
 
@@ -80,7 +80,7 @@ const addBossCountdown = async () => {
   }
 
   const atts = user?.quests?.QuestFloatingIslands?.hunting_site_atts || {};
-  if (! atts.has_enemy) {
+  if (!atts.has_enemy) {
     return;
   }
 
@@ -119,7 +119,7 @@ const addBossCountdown = async () => {
 const addEnemyClass = async () => {
   const name = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.name || false;
   const type = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.type || false;
-  if (! name || ! type) {
+  if (!name || !type) {
     return;
   }
 
@@ -128,7 +128,7 @@ const addEnemyClass = async () => {
     exists.innerText = name;
   } else {
     const enemyContainer = document.querySelector('.floatingIslandsHUD-islandTitle');
-    if (! enemyContainer) {
+    if (!enemyContainer) {
       return;
     }
 
@@ -145,24 +145,24 @@ const addEnemyClass = async () => {
  */
 const getNextOcUpgradeCost = (ocLevel) => {
   switch (Number.parseInt(ocLevel, 10)) {
-  case 1:
-    return '35';
-  case 2:
-    return '150';
-  case 3:
-    return '500';
-  case 4:
-    return '1.2k';
-  case 5:
-    return '2k';
-  case 6:
-    return '3.5k';
-  case 7:
-    return '8k';
-  case 8:
-    return '10k';
-  default:
-    return false;
+    case 1:
+      return '35';
+    case 2:
+      return '150';
+    case 3:
+      return '500';
+    case 4:
+      return '1.2k';
+    case 5:
+      return '2k';
+    case 6:
+      return '3.5k';
+    case 7:
+      return '8k';
+    case 8:
+      return '10k';
+    default:
+      return false;
   }
 };
 
@@ -173,7 +173,7 @@ const showGloreProgress = async () => {
   const glass = document.querySelector('.floatingIslandsHUD-craftingItem.floating_islands_cloud_gem_stat_item');
   const ore = document.querySelector('.floatingIslandsHUD-craftingItem.floating_islands_sky_ore_stat_item');
 
-  if (! glass || ! ore) {
+  if (!glass || !ore) {
     return;
   }
 
@@ -186,7 +186,7 @@ const showGloreProgress = async () => {
 
   const nextUpgrade = getNextOcUpgradeCost(user?.quests?.QuestFloatingIslands?.airship?.oculus_level || 0);
 
-  if (! nextUpgrade) {
+  if (!nextUpgrade) {
     return;
   }
 
@@ -201,7 +201,7 @@ const showGloreProgress = async () => {
  */
 const onSkyMapShow = () => {
   const roll = document.querySelector('.floatingIslandsAdventureBoardSkyMap-rerollButton');
-  if (! roll) {
+  if (!roll) {
     return;
   }
 
@@ -219,14 +219,14 @@ const onSkyMapShow = () => {
  */
 const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
-  const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
+  const bwOff = !user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
   const bw = user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity || '0';
   const hasBw = parseNumber(bw) >= 50;
 
   if (isStart && bwOff && hasBw) {
     showHornMessage({
       title: 'Bottled Wind Reminder',
-      text: 'Don\'t forget to activate your Bottled Wind!',
+      text: "Don't forget to activate your Bottled Wind!",
       button: 'Activate',
       /**
        * Action to click the Bottled Wind button.
@@ -250,9 +250,9 @@ const showBWReminder = () => {
  */
 const maybeChangeWarning = async () => {
   const isLAI = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_low_tier_island;
-  const isAtBoss = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_encountered_enemy && ! user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_defeated_enemy;
+  const isAtBoss = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_encountered_enemy && !user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_defeated_enemy;
 
-  if (! isLAI || ! isAtBoss) {
+  if (!isLAI || !isAtBoss) {
     return;
   }
 
@@ -269,23 +269,23 @@ const maybeChangeWarning = async () => {
  */
 const updateJetstreamTime = async () => {
   const container = document.querySelector('.floatingIslandsHUD-jetstream-time');
-  if (! container) {
+  if (!container) {
     return;
   }
 
-  if (! user?.quests?.QuestFloatingIslands?.jet_stream_active) {
+  if (!user?.quests?.QuestFloatingIslands?.jet_stream_active) {
     container.innerHTML = '';
     return;
   }
 
   const expiry = document.querySelector('.floatingIslandsHUD-jetstream .trapImageView-tooltip-trapAura-expiry span');
-  if (! expiry || ! expiry.innerText) {
+  if (!expiry || !expiry.innerText) {
     container.innerHTML = '';
     return;
   }
 
   const dateParts = expiry.innerText.split(' ');
-  if (! dateParts.length || dateParts.length < 5) {
+  if (!dateParts.length || dateParts.length < 5) {
     container.innerHTML = '';
     return;
   }
@@ -334,7 +334,7 @@ const showJetstream = async () => {
     exists.remove();
   }
 
-  if (! user?.quests?.QuestFloatingIslands?.jet_stream_active) {
+  if (!user?.quests?.QuestFloatingIslands?.jet_stream_active) {
     return;
   }
 
@@ -344,14 +344,14 @@ const showJetstream = async () => {
   }
 
   const container = document.querySelector('.floatingIslandsHUD');
-  if (! container) {
+  if (!container) {
     return;
   }
 
   let hudAura;
   if ('camp' === getCurrentPage()) {
     const aura = document.querySelector('.trapImageView-trapAura.mousehuntTooltipParent.QuestJetStreamAura.active');
-    if (! aura) {
+    if (!aura) {
       return;
     }
 
@@ -362,7 +362,7 @@ const showJetstream = async () => {
     hudAura = jsClone;
   }
 
-  if (! hudAura) {
+  if (!hudAura) {
     return;
   }
 
@@ -388,7 +388,7 @@ const showJetstream = async () => {
  */
 const makeAirshipDraggable = () => {
   const airship = document.querySelector('.floatingIslandsHUD-airshipContainer');
-  if (! airship) {
+  if (!airship) {
     return;
   }
 
@@ -398,7 +398,7 @@ const makeAirshipDraggable = () => {
   }
 
   const airshipBox = airship.querySelector('.floatingIslandsHUD-airship-boundingBox');
-  if (! airshipBox) {
+  if (!airshipBox) {
     return;
   }
 
@@ -419,7 +419,7 @@ const makeAirshipDraggable = () => {
 
   // Define the event handlers as named functions to reference them later for removal
   const mousemove = (e) => {
-    if (! isDragging) {
+    if (!isDragging) {
       return;
     }
     const dx = e.clientX - startX;
@@ -517,7 +517,7 @@ const hud = () => {
     setTimeout(run, 300);
   });
 
-  if (! hasJetstreamTimeListener) {
+  if (!hasJetstreamTimeListener) {
     hasJetstreamTimeListener = true;
     document.addEventListener('horn-countdown-tick-minute', updateJetstreamTime);
   }

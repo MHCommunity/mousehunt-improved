@@ -1,33 +1,19 @@
 {
-  "names": [
-    "Rift Stalker Map"
-  ],
+  "names": ["Rift Stalker Map"],
   "categories": [
     {
       "name": "Gnawnia Rift",
       "id": "gnawnia-rift",
       "color": "#f7e8f9",
       "color-dark": "#712e7a",
-      "mice": [
-        "rift_white",
-        "rift_dwarf",
-        "rift_diamond",
-        "rift_gold"
-      ]
+      "mice": ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"]
     },
     {
       "name": "Furoma Rift: Training Grounds",
       "id": "furoma-rift-outside",
       "color": "#e5a571",
       "color-dark": "#7a502e",
-      "mice": [
-        "rift_samurai",
-        "rift_kung_fu",
-        "rift_worker",
-        "rift_ninja",
-        "rift_dumpling_chef",
-        "rift_archer"
-      ]
+      "mice": ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"]
     },
     {
       "name": "Furoma Rift: Pagoda",
@@ -53,11 +39,7 @@
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#eaf2d3",
       "color-dark": "#4a5d23",
-      "mice": [
-        "rift_golem",
-        "rift_scavenger",
-        "rift_spider"
-      ]
+      "mice": ["rift_golem", "rift_scavenger", "rift_spider"]
     },
     {
       "name": "BW Rift: Gearworks",
@@ -65,11 +47,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#a0dcff",
       "color-dark": "#2c6268",
-      "mice": [
-        "rift_keeper",
-        "rift_keepers_assistant",
-        "rift_terror_knight"
-      ]
+      "mice": ["rift_keeper", "rift_keepers_assistant", "rift_terror_knight"]
     },
     {
       "name": "BW Rift: Timewarp",
@@ -77,10 +55,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#fce5cd",
       "color-dark": "#7a4a21",
-      "mice": [
-        "rift_chrono",
-        "rift_wight"
-      ]
+      "mice": ["rift_chrono", "rift_wight"]
     },
     {
       "name": "BW Rift: Acolyte",
@@ -88,10 +63,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#e3b5e8",
       "color-dark": "#86388c",
-      "mice": [
-        "rift_acolyte",
-        "rift_reaper"
-      ]
+      "mice": ["rift_acolyte", "rift_reaper"]
     },
     {
       "name": "BW Rift: Runic Laboratory",
@@ -99,10 +71,7 @@
       "icon": "/items/bait/large/a7c9ed8c6f30ddf29c6cac2d501aba87.png",
       "color": "#b6d7a8",
       "color-dark": "#38761d",
-      "mice": [
-        "rift_sorcerer",
-        "rift_spectre"
-      ]
+      "mice": ["rift_sorcerer", "rift_spectre"]
     },
     {
       "name": "BW Rift: Hidden Treasury",
@@ -110,10 +79,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ffe599",
       "color-dark": "#7f6000",
-      "mice": [
-        "rift_gorgon",
-        "rift_lich"
-      ]
+      "mice": ["rift_gorgon", "rift_lich"]
     },
     {
       "name": "BW Rift: Entrance",
@@ -121,9 +87,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ea9999",
       "color-dark": "#85200c",
-      "mice": [
-        "rift_gargoyle"
-      ]
+      "mice": ["rift_gargoyle"]
     },
     {
       "name": "BW Rift: Furnace Room",
@@ -131,9 +95,7 @@
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#a4c2f4",
       "color-dark": "#1c4587",
-      "mice": [
-        "rift_skeleton"
-      ]
+      "mice": ["rift_skeleton"]
     },
     {
       "name": "BW Rift: Frozen Alcove",
@@ -141,9 +103,7 @@
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#d5a6bd",
       "color-dark": "#741b47",
-      "mice": [
-        "rift_ooze"
-      ]
+      "mice": ["rift_ooze"]
     }
   ]
 }

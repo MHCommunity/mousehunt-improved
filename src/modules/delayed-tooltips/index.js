@@ -17,7 +17,7 @@ const init = () => {
 
   // When the shift key is released, remove 'no-delayed-tooltips' from the body, which will have the effect of re-enabling the delayed tooltips.
   document.addEventListener('keyup', (e) => {
-    if (! e.shiftKey) {
+    if (!e.shiftKey) {
       document.body.classList.remove('no-delayed-tooltips');
     }
   });

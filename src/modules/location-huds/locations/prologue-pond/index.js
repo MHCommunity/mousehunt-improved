@@ -10,7 +10,7 @@ import styles from './styles.css';
  */
 const addDisarmedClass = () => {
   const hud = document.querySelector('#hudLocationContent');
-  if (! hud) {
+  if (!hud) {
     return;
   }
 
@@ -29,7 +29,7 @@ const updatePondLootQuantity = () => {
   const lootMax = user?.quests?.QuestProloguePond?.current_loot_range?.max || 0;
 
   const lootMaxEl = document.querySelector('.prologuePondView-currentLoot-value-max');
-  if (! lootMaxEl) {
+  if (!lootMaxEl) {
     return;
   }
 

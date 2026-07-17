@@ -17,13 +17,13 @@ const buildArchive = async () => {
 };
 
 const fetchExternalFiles = async (skipExternalFiles = false) => {
-  if (! skipExternalFiles) {
+  if (!skipExternalFiles) {
     console.log(`${dot} Fetching external CSS...`); // eslint-disable-line no-console
   }
 
   await $`bun run scripts/fetch-external-files.mjs ${skipExternalFiles ? '--skip-external-files' : ''}`;
 
-  if (! skipExternalFiles) {
+  if (!skipExternalFiles) {
     console.log(`${check} External CSS fetched`); // eslint-disable-line no-console
   }
 };
@@ -44,7 +44,7 @@ const buildUserscript = async () => {
 const buildZip = async (platform) => {
   const output = fs.createWriteStream(path.join(process.cwd(), `dist/mousehunt-improved-${platform}.zip`));
   const archive = archiver('zip', {
-    zlib: { level: 9 }
+    zlib: { level: 9 },
   });
 
   archive.on('error', function (err) {
@@ -76,11 +76,9 @@ if (type === 'archive') {
   process.exit(0); // eslint-disable-line unicorn/no-process-exit
 } else if (type === 'css') {
   await fetchExternalFiles();
-} if (type === 'extension') {
-  await Promise.all([
-    buildExtension('chrome'),
-    buildExtension('firefox'),
-  ]);
+}
+if (type === 'extension') {
+  await Promise.all([buildExtension('chrome'), buildExtension('firefox')]);
 } else if (type === 'chrome') {
   await buildExtension('chrome');
 } else if (type === 'firefox') {
@@ -93,12 +91,7 @@ if (type === 'archive') {
 } else {
   await fetchExternalFiles(process.argv.includes('--skip-external-files'));
 
-  await Promise.all([
-    buildArchive(),
-    buildExtension('chrome'),
-    buildExtension('firefox'),
-    buildUserscript(),
-  ]);
+  await Promise.all([buildArchive(), buildExtension('chrome'), buildExtension('firefox'), buildUserscript()]);
 
   await buildZips();
 }

@@ -25,22 +25,22 @@ const isEventLocation = (location) => eventLocationIds.has(location);
  */
 const activateEventLocation = (location) => {
   switch (location) {
-  case 'halloween_event_location':
-    halloweenLocation();
-    break;
-  case 'winter_hunt_grove':
-  case 'winter_hunt_workshop':
-  case 'winter_hunt_fortress':
-    greatWinterHuntLocation();
-    break;
-  case 'super_brie_factory':
-    birthdayLocation();
-    break;
-  case 'ronzas_traveling_shoppe':
-    ronzaLocation();
-    break;
-  default:
-    break;
+    case 'halloween_event_location':
+      halloweenLocation();
+      break;
+    case 'winter_hunt_grove':
+    case 'winter_hunt_workshop':
+    case 'winter_hunt_fortress':
+      greatWinterHuntLocation();
+      break;
+    case 'super_brie_factory':
+      birthdayLocation();
+      break;
+    case 'ronzas_traveling_shoppe':
+      ronzaLocation();
+      break;
+    default:
+      break;
   }
 };
 
@@ -77,8 +77,4 @@ const initializeEventGlobals = () => {
   });
 };
 
-export {
-  activateEventLocation,
-  initializeEventGlobals,
-  isEventLocation
-};
+export { activateEventLocation, initializeEventGlobals, isEventLocation };

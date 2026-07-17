@@ -1,42 +1,14 @@
-import {
-  addStyles,
-  debuglog,
-  formatNumber,
-  getData,
-  makeElement,
-  onJournalEntry,
-  unpluralize
-} from '@utils';
+import { addStyles, debuglog, formatNumber, getData, makeElement, onJournalEntry, unpluralize } from '@utils';
 
 import { LOOT_INTRO_PHRASES } from '../../shared/loot-intros';
 import { shouldSkipJournalItemLink } from '../../shared/item-linking';
 import styles from './styles.css';
 
 const classTypeMap = Object.entries({
-  loot: [
-    'bonuscatchsuccess',
-    'catchsuccess',
-    'catchsuccessprize',
-    'catchsuccessloot',
-    'luckycatchsuccess',
-    'catchsuccessprize',
-    'relicHunter_catch',
-  ],
-  convertible: [
-    'convertible_open'
-  ],
-  other: [
-    'iceberg_defeated',
-    'dailyreward',
-    'claimGolemReward',
-    'folkloreForest-bookClaimed',
-    'gloomyGreenwood-incense',
-  ],
-  hasListNeedsClasses: [
-    'schoolOfSorcery-completed',
-    'schoolOfSorcery-droppedOut',
-    'epilogueFalls-finishRiverRun',
-  ],
+  loot: ['bonuscatchsuccess', 'catchsuccess', 'catchsuccessprize', 'catchsuccessloot', 'luckycatchsuccess', 'catchsuccessprize', 'relicHunter_catch'],
+  convertible: ['convertible_open'],
+  other: ['iceberg_defeated', 'dailyreward', 'claimGolemReward', 'folkloreForest-bookClaimed', 'gloomyGreenwood-incense'],
+  hasListNeedsClasses: ['schoolOfSorcery-completed', 'schoolOfSorcery-droppedOut', 'epilogueFalls-finishRiverRun'],
 }).reduce((acc, [k, arr]) => {
   arr.forEach((c) => {
     acc[c] = k;
@@ -44,30 +16,18 @@ const classTypeMap = Object.entries({
   return acc;
 }, {});
 
-const classesToSkip = new Set([
-  'mountain-boulderLooted',
-  'labyrinth-exitMaze',
-  'festiveSpiritLootBoost',
-  'spring_hunt_charge_trinket_effect',
-  'harbour',
-]);
+const classesToSkip = new Set(['mountain-boulderLooted', 'labyrinth-exitMaze', 'festiveSpiritLootBoost', 'spring_hunt_charge_trinket_effect', 'harbour']);
 
 /**
  * Entries that mention items only in prose: link the items so they get our
  * icons and hover cards, but don't reformat the entry as a list.
  */
-const linkifyOnlySelectors = [
-  '.dirigibleTravel',
-  '.short.craft.item',
-  '.short.hammer',
-];
+const linkifyOnlySelectors = ['.dirigibleTravel', '.short.craft.item', '.short.hammer'];
 
 /**
  * Entries that mention items in prose but should also be formatted as a list.
  */
-const linkifyAndListSelectors = [
-  '[class*="refractorBaseEffect"]',
-];
+const linkifyAndListSelectors = ['[class*="refractorBaseEffect"]'];
 
 /**
  * Whether the entry should only have its items linked, not be list-ified.
@@ -104,13 +64,13 @@ let itemLookup = null; // { lowerName: item, singularLowerName: item }
 const buildItemLookup = (items) => {
   const map = Object.create(null);
 
-  if (! items || ! Array.isArray(items)) {
+  if (!items || !Array.isArray(items)) {
     return map;
   }
 
   for (const it of items) {
     const name = (it.name || '').trim();
-    if (! name) {
+    if (!name) {
       continue;
     }
     map[name.toLowerCase()] = it;
@@ -129,13 +89,16 @@ const buildItemLookup = (items) => {
  * @return {Array} The item fragments.
  */
 const splitText = (raw) => {
-  if (! raw) {
+  if (!raw) {
     return [];
   }
   // Normalize <br> to newline, then split on newline or ", " or " and " when followed by digit
   const norm = raw.replaceAll(/<br\s*\/?>/gi, '\n');
   // split keeping meaningful fragments
-  const parts = norm.split(/\n|,\s+(?=\d)|\s+and\s+(?=\d)/i).map((s) => s.trim()).filter(Boolean);
+  const parts = norm
+    .split(/\n|,\s+(?=\d)|\s+and\s+(?=\d)/i)
+    .map((s) => s.trim())
+    .filter(Boolean);
   return parts;
 };
 
@@ -147,15 +110,15 @@ const splitText = (raw) => {
  * @return {Object|boolean} Object with `quantity` and `link` properties, or false if not matched/resolved.
  */
 const convertTextToItemLink = (textLike) => {
-  const text = (typeof textLike === 'string') ? textLike : (textLike.textContent || '');
+  const text = typeof textLike === 'string' ? textLike : textLike.textContent || '';
   const m = text.match(/^\s*(\d+)\s*x\s*(.+?)\s*$/i);
-  if (! m) {
+  if (!m) {
     return false;
   }
   const name = m[2].trim();
   const key = name.toLowerCase();
   const item = itemLookup[key] || itemLookup[unpluralize(name).toLowerCase()] || itemLookup[key.replace(/s$/, '')];
-  if (! item) {
+  if (!item) {
     return false;
   }
 
@@ -208,7 +171,7 @@ const findItemsInText = (text) => {
 
     for (const part of words) {
       phrase += part;
-      if (! part.trim()) {
+      if (!part.trim()) {
         continue;
       }
 
@@ -224,14 +187,14 @@ const findItemsInText = (text) => {
       }
     }
 
-    if (! best) {
+    if (!best) {
       continue;
     }
 
     // Only link single words when they directly follow a quantity.
     const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
     if (best.words > 1 || precededByQuantity) {
-      if (! shouldSkipJournalItemLink(best.item)) {
+      if (!shouldSkipJournalItemLink(best.item)) {
         matches.push(best);
       }
 
@@ -272,7 +235,7 @@ const linkifyItemsInText = (textEl) => {
   for (const node of textNodes) {
     const text = node.textContent;
     const found = findItemsInText(text);
-    if (! found.length) {
+    if (!found.length) {
       continue;
     }
 
@@ -305,7 +268,7 @@ const linkifyItemsInText = (textEl) => {
  */
 const makeListItems = (itemList) => {
   const list = makeElement('ul', 'better-journal-list');
-  if (! itemList || itemList.length === 0) {
+  if (!itemList || itemList.length === 0) {
     return list;
   }
 
@@ -320,7 +283,10 @@ const makeListItems = (itemList) => {
       li.append(conv.link);
     } else {
       // preserve original trimmed text, stripping "N x" quantity prefix
-      li.innerHTML = cleaned.replace(/,$/, '').replace(/^(\d+)\s+x\s+/, '$1 ').trim();
+      li.innerHTML = cleaned
+        .replace(/,$/, '')
+        .replace(/^(\d+)\s+x\s+/, '$1 ')
+        .trim();
     }
     frag.append(li);
   }
@@ -347,7 +313,7 @@ const listifyAfterColon = (textEl) => {
     }
   }
 
-  if (! colonNode) {
+  if (!colonNode) {
     return;
   }
 
@@ -363,7 +329,7 @@ const listifyAfterColon = (textEl) => {
     .map((fragment) => fragment.replace(/[!.]+$/, '').trim())
     .filter(Boolean);
 
-  if (! list.length) {
+  if (!list.length) {
     return;
   }
 
@@ -389,7 +355,7 @@ const handleFolkloreBookClaim = (textEl) => {
   const html = textEl.innerHTML;
   const marker = 'earned me the following rewards:';
   const afterMarker = '<br><br>I looted the following items while writing:<br><br>';
-  if (! html.includes(marker) && ! html.includes(afterMarker)) {
+  if (!html.includes(marker) && !html.includes(afterMarker)) {
     return false;
   }
 
@@ -417,7 +383,10 @@ const handleFolkloreBookClaim = (textEl) => {
   let rewardsHTML = '';
   if (rewardsRaw) {
     const cleaned = rewardsRaw.replace(/^<br><br>/, '').replace(/<br><br>$/, '');
-    const lines = cleaned.split('<br>').map((s) => s.replace(/^•&nbsp;?/, '').trim()).filter(Boolean);
+    const lines = cleaned
+      .split('<br>')
+      .map((s) => s.replace(/^•&nbsp;?/, '').trim())
+      .filter(Boolean);
     if (lines.length) {
       const ul = makeElement('ul', 'better-journal-list');
       const frag = document.createDocumentFragment();
@@ -468,7 +437,7 @@ const getItemsFromText = (type, textEl) => {
           const right = parts[1];
           list = splitText(right);
           newText = `${parts[0]}${chk.replaceAll(/<\/?b>/g, '')}`.trimEnd();
-          if (! newText.endsWith(':')) {
+          if (!newText.endsWith(':')) {
             newText += ':';
           }
           break;
@@ -556,7 +525,7 @@ const getItemsFromText = (type, textEl) => {
  * @return {Promise<void>} Resolves when done.
  */
 const formatAsList = async (model) => {
-  if (! itemLookup) {
+  if (!itemLookup) {
     return;
   }
 
@@ -583,7 +552,7 @@ const formatAsList = async (model) => {
     if (classesToSkip.has(cls)) {
       return;
     }
-    if (! type && classTypeMap[cls]) {
+    if (!type && classTypeMap[cls]) {
       type = classTypeMap[cls];
     }
   }

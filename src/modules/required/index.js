@@ -10,7 +10,7 @@ import {
   onEvent,
   onNavigation,
   onRequest,
-  onTravel
+  onTravel,
 } from '@utils';
 
 import chromeIcon from '@images/chrome.svg';
@@ -65,7 +65,7 @@ const addJournalProcessingEvents = async () => {
 const addDialogListeners = () => {
   let currentDialog = null;
   onEvent('js_dialog_hide', () => {
-    if (! currentDialog) {
+    if (!currentDialog) {
       return;
     }
 
@@ -89,13 +89,18 @@ const addDialogListeners = () => {
  */
 const addSupportLink = () => {
   const description = document.querySelector('#overlayPopup .jsDialogContainer .contactUsForm .description');
-  if (! description) {
+  if (!description) {
     return;
   }
 
   const supportWrap = makeElement('div', 'support-link');
 
-  makeElement('p', '', 'Before contacting support, please make sure that the issue isn\'t caused by MouseHunt Improved. If it is, please report it on the GitHub page.', supportWrap);
+  makeElement(
+    'p',
+    '',
+    "Before contacting support, please make sure that the issue isn't caused by MouseHunt Improved. If it is, please report it on the GitHub page.",
+    supportWrap
+  );
   const supportLink = makeElement('a', '', 'Visit the MouseHunt Improved GitHub page');
   supportLink.href = 'https://github.com/MHCommunity/mousehunt-improved/issues';
   supportLink.target = '_blank';

@@ -6,7 +6,7 @@
  */
 export default (quests) => {
   const quest = quests?.QuestDraconicDepths;
-  if (! quest) {
+  if (!quest) {
     return '';
   }
 
@@ -21,7 +21,7 @@ export default (quests) => {
       1: '0-100',
       2: '100-250',
       3: '250-750',
-      4: '750+'
+      4: '750+',
     };
 
     return `
@@ -39,12 +39,14 @@ export default (quests) => {
   const crucibles = crucibleForge.crucibles;
   const completed = crucibles.filter((c) => c.is_max_progress).length;
 
-  const crucibleStatus = crucibles.map((crucible) => {
-    return `<div class="dashboard-crucible">
+  const crucibleStatus = crucibles
+    .map((crucible) => {
+      return `<div class="dashboard-crucible">
       <div class="dashboard-crucible-type dashboard-crucible-${crucible.type}"></div>
       <div class="dashboard-crucible-progress">${crucible.is_max_progress ? 'Ready' : `${crucible.progress || 0}/${crucible.max_progress || 25}`}</div>
     </div>`;
-  }).join('');
+    })
+    .join('');
 
   return `Crucible Forge · ${completed}/${crucibles.length} crucibles ready
     <div class="stats">${crucibleStatus}</div>

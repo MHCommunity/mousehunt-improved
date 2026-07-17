@@ -33,8 +33,8 @@ const loader = [
   `// @require     https://unpkg.com/mousehunt-improved@${version}/dist/mousehunt-improved.min.js`,
   '// ==/UserScript==',
   '//',
-  'if (\'undefined\' === typeof mhui) {',
-  '  console.error(\'MouseHunt Improved failed to load. Check that unpkg.com is not being blocked, or reinstall from https://greasyfork.org/en/scripts/465139-mousehunt-improved\');',
+  "if ('undefined' === typeof mhui) {",
+  "  console.error('MouseHunt Improved failed to load. Check that unpkg.com is not being blocked, or reinstall from https://greasyfork.org/en/scripts/465139-mousehunt-improved');",
   '}',
   '',
 ].join('\n');

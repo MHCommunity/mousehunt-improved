@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  onNavigation,
-  parseNumber,
-  waitForElement
-} from '@utils';
+import { addStyles, getSetting, onNavigation, parseNumber, waitForElement } from '@utils';
 
 import settings from './settings';
 
@@ -18,7 +12,7 @@ import onlyOpenMultipleStyles from './styles/only-open-multiple.css';
  */
 const useConvertible = async (element, type) => {
   const typeOptions = new Set(['one', 'all-but-one', 'all']);
-  if (! typeOptions.has(element.getAttribute('data-item-action')) || ! typeOptions.has(type)) {
+  if (!typeOptions.has(element.getAttribute('data-item-action')) || !typeOptions.has(type)) {
     return;
   }
 
@@ -58,45 +52,42 @@ const useConvertible = async (element, type) => {
  * Add the 'Open All but One' buttons to convertible items.
  */
 const addOpenButtons = () => {
-  const convertibles = document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="convertibles"] .inventoryPage-item.convertible[data-item-classification="convertible"]');
-  const chests = document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="treasure_chests"] .inventoryPage-item.convertible[data-item-classification="convertible"]');
+  const convertibles = document.querySelectorAll(
+    '.inventoryPage-tagContent-tagGroup[data-tag="convertibles"] .inventoryPage-item.convertible[data-item-classification="convertible"]'
+  );
+  const chests = document.querySelectorAll(
+    '.inventoryPage-tagContent-tagGroup[data-tag="treasure_chests"] .inventoryPage-item.convertible[data-item-classification="convertible"]'
+  );
 
   const allItems = [...convertibles, ...chests];
 
   allItems.forEach((item) => {
-    if (! item) {
+    if (!item) {
       return;
     }
 
     const button = item.querySelector('.inventoryPage-item-button[data-item-action="single"]');
-    if (! button) {
+    if (!button) {
       return;
     }
 
     const itemType = item.getAttribute('data-item-type');
-    if (! itemType) {
+    if (!itemType) {
       return;
     }
 
     const quantity = item.querySelector('.quantity');
-    if (! quantity) {
+    if (!quantity) {
       return;
     }
 
     const makeNewButton = (text) => {
       const action = text.toLowerCase().replaceAll(' ', '-');
 
-      const itemsToSkip = new Set([
-        'kilohertz_processor_convertible',
-        'dragon_skull_convertible',
-        'cursed_skull_convertible',
-      ]);
+      const itemsToSkip = new Set(['kilohertz_processor_convertible', 'dragon_skull_convertible', 'cursed_skull_convertible']);
 
       // Dont add the all or all but one buttons to specific items.
-      if (
-        ('all-but-one' === action || 'all' === action) &&
-        itemsToSkip.has(itemType)
-      ) {
+      if (('all-but-one' === action || 'all' === action) && itemsToSkip.has(itemType)) {
         return;
       }
 
@@ -139,7 +130,7 @@ const addOpenButtons = () => {
 const addClickListener = () => {
   document.addEventListener('click', (event) => {
     const button = event.target;
-    if (! button?.classList?.contains('mh-improved-open-button')) {
+    if (!button?.classList?.contains('mh-improved-open-button')) {
       return;
     }
 
@@ -156,11 +147,7 @@ const init = () => {
     addStyles(onlyOpenMultipleStyles, 'inventory-buttons');
   }
 
-  if (
-    getSetting('inventory-buttons.open-one', true) ||
-    getSetting('inventory-buttons.open-all-but-one', false) ||
-    getSetting('inventory-buttons.open-all', true)
-  ) {
+  if (getSetting('inventory-buttons.open-one', true) || getSetting('inventory-buttons.open-all-but-one', false) || getSetting('inventory-buttons.open-all', true)) {
     addClickListener();
 
     onNavigation(addOpenButtons, {

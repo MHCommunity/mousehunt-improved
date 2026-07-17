@@ -13,7 +13,7 @@ const addArDataToMap = async (mapData) => {
 
   const mice = mapData?.goals?.[type] || [];
 
-  if (! mice || mice.length === 0) {
+  if (!mice || mice.length === 0) {
     return;
   }
 
@@ -36,7 +36,7 @@ const addArDataToMap = async (mapData) => {
 
   mice.forEach(async (mouse) => {
     const arEl = await getArEl(mouse.type ?? mouse.unique_id, type);
-    if (! arEl) {
+    if (!arEl) {
       return;
     }
 
@@ -44,12 +44,12 @@ const addArDataToMap = async (mapData) => {
     // remove an old badge until this fetch has resolved, so the last completed
     // session replaces the previous badge instead of appending a duplicate.
     const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
-    if (! mouseEl || mouseEl.classList.contains('complete')) {
+    if (!mouseEl || mouseEl.classList.contains('complete')) {
       return;
     }
 
     const name = mouseEl.querySelector('.treasureMapView-goals-group-goal-name');
-    if (! name) {
+    if (!name) {
       return;
     }
 
@@ -65,12 +65,12 @@ const addArDataToMap = async (mapData) => {
  */
 const toggleAr = async () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
   const toggle = mapView.querySelector('.mh-ui-toggle-ar-button');
-  if (! toggle) {
+  if (!toggle) {
     return;
   }
 
@@ -78,7 +78,7 @@ const toggleAr = async () => {
   toggle.classList.add('disabled');
 
   const text = toggle.querySelector('span');
-  if (! text) {
+  if (!text) {
     return;
   }
 
@@ -113,12 +113,12 @@ const toggleAr = async () => {
  */
 const clickArToggle = () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
   const toggle = mapView.querySelector('.mh-ui-toggle-ar-button');
-  if (! toggle) {
+  if (!toggle) {
     return;
   }
 
@@ -130,24 +130,20 @@ const clickArToggle = () => {
  */
 const maybeClickArToggle = () => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
   const toggle = mapView.querySelector('.mh-ui-toggle-ar-button');
-  if (! toggle) {
+  if (!toggle) {
     return;
   }
 
   const showing = mapView.classList.contains('mh-ui-ar-showing');
-  const currentButtonState = toggle
-    .querySelector('span')
-    .innerText.replace('AR', '')
-    .replace('DR', '')
-    .trim();
+  const currentButtonState = toggle.querySelector('span').innerText.replace('AR', '').replace('DR', '').trim();
   if (showing && currentButtonState !== 'Hide') {
     clickArToggle();
-  } else if (! showing && currentButtonState !== 'Show') {
+  } else if (!showing && currentButtonState !== 'Show') {
     clickArToggle();
   }
 };
@@ -161,7 +157,7 @@ let isAdding = false;
  */
 const addArToggle = async (tab = 'goals') => {
   const mapView = document.querySelector('.treasureMapView');
-  if (! mapView) {
+  if (!mapView) {
     return;
   }
 
@@ -185,7 +181,7 @@ const addArToggle = async (tab = 'goals') => {
   }
 
   const wrapper = document.querySelector('.treasureMapRootView-subTabRow');
-  if (! wrapper) {
+  if (!wrapper) {
     isAdding = false;
     return;
   }
@@ -203,7 +199,7 @@ const addArToggle = async (tab = 'goals') => {
     title: `Show ${arTitle}`,
     className: 'mh-ui-toggle-ar-button',
     callback: toggleAr,
-    appendTo: wrapper
+    appendTo: wrapper,
   });
 
   await toggleAr();
@@ -223,8 +219,4 @@ const removeArToggle = () => {
   }
 };
 
-export {
-  addArToggle,
-  removeArToggle,
-  clickArToggle
-};
+export { addArToggle, removeArToggle, clickArToggle };

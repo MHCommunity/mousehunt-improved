@@ -8,7 +8,7 @@ import { formatNumber } from '@utils';
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestPollutionOutbreak) {
+  if (!quests.QuestPollutionOutbreak) {
     return '';
   }
 

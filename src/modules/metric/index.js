@@ -11,15 +11,15 @@ import { onDialogShow, onRequest } from '@utils';
 const imperialToMetric = (text) => {
   const lb = text.match(/(\d+? )lb./i);
   const oz = text.match(/(\d+? )oz./i);
-  if (! (lb || oz)) {
+  if (!(lb || oz)) {
     return text;
   }
 
   // Convert the lb. and oz. values to metric.
   const lbValue = lb ? lb[1] : 0;
   const ozValue = oz ? oz[1] : 0;
-  const totalWeight = Number.parseInt(lbValue) + (Number.parseInt(ozValue) / 16);
-  const totalWeightMetric = (Math.round((totalWeight * 0.45359237) * 100) / 100).toString();
+  const totalWeight = Number.parseInt(lbValue) + Number.parseInt(ozValue) / 16;
+  const totalWeightMetric = (Math.round(totalWeight * 0.45359237 * 100) / 100).toString();
 
   // Replace the lb. and oz. values with the metric values.
   return text.replace(/(\d+? lb.\s)?(\d+? oz.)/i, totalWeightMetric + ' kg. ');
@@ -50,7 +50,7 @@ const convertInDialog = () => {
  */
 const replaceInJournal = () => {
   const entries = document.querySelectorAll('.journal .entry .journalbody .journaltext');
-  if (! entries.length) {
+  if (!entries.length) {
     return;
   }
 
@@ -68,7 +68,7 @@ const replaceInJournal = () => {
 const replaceOnMousePage = () => {
   // Check for the mouse page stats.
   const mouseWeightsStats = document.querySelectorAll('.mouseListView-categoryContent-subgroupContainer .mouseListView-categoryContent-subgroup-mouse-stats');
-  if (! mouseWeightsStats.length) {
+  if (!mouseWeightsStats.length) {
     return;
   }
 

@@ -8,5 +8,5 @@ export default {
   type: 'locations-maps-travel',
   alwaysLoad: true,
   settings,
-  load: () => {}
+  load: () => {},
 };

@@ -14,7 +14,7 @@ const getActiveDialog = () => {
  */
 const hidePopup = () => {
   const dialog = getActiveDialog();
-  if (! dialog?.hide || ! dialog?.getAttributes) {
+  if (!dialog?.hide || !dialog?.getAttributes) {
     return;
   }
 

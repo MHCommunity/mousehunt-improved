@@ -10,11 +10,7 @@
  * @return {string} The formatted duration.
  */
 function humanizeTime(time, options = {}) {
-  const {
-    units = ['d', 'h', 'm', 's'],
-    spacer = ' ',
-    delimiter = ' ',
-  } = options || {};
+  const { units = ['d', 'h', 'm', 's'], spacer = ' ', delimiter = ' ' } = options || {};
 
   const unitMs = {
     y: 365 * 24 * 60 * 60 * 1000,
@@ -55,8 +51,4 @@ function humanizeTime(time, options = {}) {
 const humanizer = humanizeTime;
 const plainHumanizer = humanizeTime;
 
-export {
-  humanizeTime,
-  humanizer,
-  plainHumanizer
-};
+export { humanizeTime, humanizer, plainHumanizer };

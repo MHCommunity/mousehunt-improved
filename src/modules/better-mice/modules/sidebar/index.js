@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  getSetting,
-  makeElement,
-  onRequest
-} from '@utils';
+import { addStyles, doRequest, getSetting, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -29,11 +23,11 @@ const updateSidebarListFromMiceEff = async (data) => {
  */
 const updateSidebarList = async (data = null, isFromMiceEff = false) => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
-  if (! sidebar) {
+  if (!sidebar) {
     return;
   }
 
-  if (! data || ! isFromMiceEff) {
+  if (!data || !isFromMiceEff) {
     data = await doRequest('managers/ajax/users/getmiceeffectiveness.php');
   }
 
@@ -45,7 +39,7 @@ const updateSidebarList = async (data = null, isFromMiceEff = false) => {
 
   const existingList = document.querySelector('.mh-improved-mice-sidebar-list');
 
-  if (! mice) {
+  if (!mice) {
     if (existingList) {
       existingList.remove();
     }

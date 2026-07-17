@@ -47,16 +47,7 @@ const exportFavoriteSetups = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: [
-        'ID',
-        'Name',
-        'Location',
-        'Bait ID',
-        'Base ID',
-        'Trinket ID',
-        'Weapon ID',
-        'Power Type',
-      ],
+      headers: ['ID', 'Name', 'Location', 'Bait ID', 'Base ID', 'Trinket ID', 'Weapon ID', 'Power Type'],
     },
   });
 };

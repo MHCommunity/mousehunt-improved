@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  getCurrentPage,
-  getData,
-  getSetting,
-  onJournalEntry,
-  onNavigation
-} from '@utils';
+import { addStyles, getCurrentPage, getData, getSetting, onJournalEntry, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -36,24 +29,27 @@ const declared = new Set();
  * @param {Object} mouse Mouse to declare, from the mice-silhouettes data.
  */
 const declareSilhouette = (mouse) => {
-  if (declared.has(mouse.type) || ! mouse.large) {
+  if (declared.has(mouse.type) || !mouse.large) {
     return;
   }
 
   declared.add(mouse.type);
 
-  if (! sheet) {
+  if (!sheet) {
     const element = document.createElement('style');
     element.id = 'mh-improved-styles-native-dark-mode-silhouettes';
     document.head.append(element);
     sheet = element.sheet;
   }
 
-  sheet.insertRule(`[data-mh-mouse="${mouse.type}"] {
+  sheet.insertRule(
+    `[data-mh-mouse="${mouse.type}"] {
     --mh-silhouette-large: url("${mouse.large}");
     --mh-silhouette-medium: url("${mouse.medium}");
     --mh-art: url("${mouse.art}");
-  }`, sheet.cssRules.length);
+  }`,
+    sheet.cssRules.length
+  );
 };
 
 /**
@@ -67,7 +63,7 @@ const declareSilhouette = (mouse) => {
  */
 const setSilhouette = (element, mouse) => {
   // Mice with no silhouette to overlay are only here for their uncaught blend mode.
-  if (! mouse.large) {
+  if (!mouse.large) {
     return;
   }
 
@@ -85,7 +81,7 @@ const setSilhouette = (element, mouse) => {
 const updateMouseList = () => {
   // The popup observer fires for every kind of popup, so bail before searching the
   // whole document on pages that have no mouse list at all.
-  if (! document.querySelector('.mouseListView')) {
+  if (!document.querySelector('.mouseListView')) {
     return;
   }
 
@@ -96,17 +92,17 @@ const updateMouseList = () => {
     tile.setAttribute('data-mh-checked', '');
 
     const type = tile.getAttribute('onclick')?.match(/MouseView\.show\('([^']+)'/)?.[1];
-    if (! type) {
+    if (!type) {
       continue;
     }
 
     const mouse = silhouettes.get(type);
-    if (! mouse) {
+    if (!mouse) {
       continue;
     }
 
     const image = tile.querySelector('.mouseListView-categoryContent-subgroup-mouse-margin');
-    if (! image) {
+    if (!image) {
       continue;
     }
 
@@ -129,24 +125,24 @@ const updateMouseList = () => {
  */
 const updateMouseView = () => {
   const view = document.querySelector('#overlayPopup .mouseView[data-type]');
-  if (! view) {
+  if (!view) {
     return;
   }
 
   const image = view.querySelector('.mouseView-imageContainer .mouseView-image:not([data-mh-mouse])');
-  if (! image) {
+  if (!image) {
     return;
   }
 
   // The popup renders in a loading state before the mouse itself arrives, and has a
   // spinner rather than the art until it does. It's left alone until there's something
   // to knock the background out of, and picked up on the re-render.
-  if (! image.style.backgroundImage) {
+  if (!image.style.backgroundImage) {
     return;
   }
 
   const mouse = silhouettes.get(view.getAttribute('data-type'));
-  if (! mouse?.large) {
+  if (!mouse?.large) {
     return;
   }
 
@@ -165,17 +161,15 @@ const updateMouseView = () => {
  */
 const updateJournalMouseImage = (model) => {
   const entry = model.el;
-  const isCatchEntry = entry.classList.contains('catchsuccessloot') ||
-    entry.classList.contains('catchsuccess') ||
-    entry.classList.contains('catchsuccessprize');
+  const isCatchEntry = entry.classList.contains('catchsuccessloot') || entry.classList.contains('catchsuccess') || entry.classList.contains('catchsuccessprize');
 
-  if (! isCatchEntry || ! model.mouseType) {
+  if (!isCatchEntry || !model.mouseType) {
     return;
   }
 
   const image = entry.querySelector('.journalimage img');
   const mouse = silhouettes.get(model.mouseType);
-  if (! image || ! mouse?.large) {
+  if (!image || !mouse?.large) {
     return;
   }
 
@@ -220,7 +214,7 @@ const watchMouseList = () => {
   }
 
   const container = document.querySelector('#mousehuntContainer');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -236,7 +230,7 @@ const watchMouseList = () => {
  * queueing updates for a list that isn't on the page.
  */
 const unwatchMouseList = () => {
-  if (! listObserver) {
+  if (!listObserver) {
     return;
   }
 
@@ -251,7 +245,7 @@ export default async () => {
   addStyles(styles, 'native-dark-mode-mice-images');
 
   let mice = await getData('mice-silhouettes');
-  if (! Array.isArray(mice)) {
+  if (!Array.isArray(mice)) {
     return;
   }
 
@@ -259,7 +253,7 @@ export default async () => {
   // after it first shipped. A copy cached before then still satisfies the popup (which
   // only needs the silhouette) but would quietly drop the list back to the old blend, so
   // it's refetched rather than left to expire on its own.
-  if (mice.some((mouse) => mouse.large && ! mouse.art)) {
+  if (mice.some((mouse) => mouse.large && !mouse.art)) {
     mice = await getData('mice-silhouettes', true);
   }
 

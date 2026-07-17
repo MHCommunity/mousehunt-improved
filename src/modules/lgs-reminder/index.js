@@ -1,12 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  humanizeTime,
-  makeElement,
-  onActivation,
-  onDeactivation,
-  onSettingsChange
-} from '@utils';
+import { addStyles, getSetting, humanizeTime, makeElement, onActivation, onDeactivation, onSettingsChange } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -27,8 +19,8 @@ const isExact = () => {
  */
 const getShieldEndDateTime = () => {
   const shieldExpiry = user.shield_expiry;
-  if (! shieldExpiry) {
-    return new Date(Date.now() - (60 * 1000)); // 1 minute ago to make it expired.
+  if (!shieldExpiry) {
+    return new Date(Date.now() - 60 * 1000); // 1 minute ago to make it expired.
   }
 
   // make a new date object
@@ -50,7 +42,7 @@ const getShieldTime = () => {
   const now = new Date();
 
   // get the difference in seconds
-  return Math.floor((expiry - now));
+  return Math.floor(expiry - now);
 };
 
 /**
@@ -60,7 +52,7 @@ const getShieldTime = () => {
  */
 const getShieldTimeFormatted = () => {
   const time = getShieldTime();
-  if (! time) {
+  if (!time) {
     return '';
   }
 
@@ -105,7 +97,7 @@ const updateLgsReminder = (el) => {
  */
 const main = () => {
   const shieldEl = document.querySelector('.mousehuntHud-shield.golden');
-  if (! shieldEl) {
+  if (!shieldEl) {
     return;
   }
 
@@ -179,7 +171,7 @@ let offset;
  */
 const init = async () => {
   // Only load if the user has LGS.
-  if (! user.has_shield) {
+  if (!user.has_shield) {
     return;
   }
 
@@ -189,11 +181,7 @@ const init = async () => {
   main();
 
   onSettingsChange('lgs-reminder.new-style', () => {
-    const selectors = [
-      '.mousehunt-improved-lgs-reminder',
-      '.mousehunt-improved-lgs-reminder-new',
-      '.mousehunt-improved-lgs-reminder-wrapper',
-    ];
+    const selectors = ['.mousehunt-improved-lgs-reminder', '.mousehunt-improved-lgs-reminder-new', '.mousehunt-improved-lgs-reminder-wrapper'];
 
     selectors.forEach((selector) => {
       const el = document.querySelector(selector);

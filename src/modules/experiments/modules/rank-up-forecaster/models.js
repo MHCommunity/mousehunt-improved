@@ -8,7 +8,7 @@ const DAY = 24 * 60 * 60 * 1000;
  * @return {number|null} The median value, or null if there are no values.
  */
 const median = (values) => {
-  if (! values.length) {
+  if (!values.length) {
     return null;
   }
 
@@ -26,7 +26,7 @@ const median = (values) => {
  * @return {Array} Points with x in days and y in wisdom.
  */
 const toDayPoints = (samples) => {
-  if (! samples.length) {
+  if (!samples.length) {
     return [];
   }
 
@@ -62,13 +62,13 @@ const leastSquares = (points) => {
   });
 
   const count = points.length;
-  const denominator = (count * xxSum) - (xSum * xSum);
-  if (! denominator) {
+  const denominator = count * xxSum - xSum * xSum;
+  if (!denominator) {
     return null;
   }
 
-  const slope = ((count * xySum) - (xSum * ySum)) / denominator;
-  const intercept = (ySum / count) - ((slope * xSum) / count);
+  const slope = (count * xySum - xSum * ySum) / denominator;
+  const intercept = ySum / count - (slope * xSum) / count;
 
   return { slope, intercept };
 };
@@ -87,7 +87,7 @@ const leastSquares = (points) => {
  * @return {Object|null} The forecast result, or null for a non-positive rate.
  */
 const makePerDayForecast = ({ id, label, description, samples, ratePerDay, wisdomRemaining }) => {
-  if (! ratePerDay || ratePerDay <= 0 || ! Number.isFinite(ratePerDay)) {
+  if (!ratePerDay || ratePerDay <= 0 || !Number.isFinite(ratePerDay)) {
     return null;
   }
 
@@ -102,7 +102,7 @@ const makePerDayForecast = ({ id, label, description, samples, ratePerDay, wisdo
     rate: ratePerDay,
     ratePerDay,
     daysRemaining,
-    targetTimestamp: Date.now() + (daysRemaining * DAY),
+    targetTimestamp: Date.now() + daysRemaining * DAY,
   };
 };
 
@@ -121,7 +121,7 @@ const linearModel = (samples, wisdomRemaining, options = {}) => {
   }
 
   const regression = leastSquares(toDayPoints(samples));
-  if (! regression) {
+  if (!regression) {
     return null;
   }
 
@@ -203,7 +203,7 @@ const weightedPaceModel = (samples, wisdomRemaining, halfLifeDays = 7) => {
     weightedDays += durationDays * decay;
   }
 
-  if (! weightedDays) {
+  if (!weightedDays) {
     return null;
   }
 
@@ -239,7 +239,7 @@ const resampleDaily = (samples) => {
   const values = [];
   let cursor = 0;
   for (let day = 0; day <= days; day++) {
-    const time = first + (day * DAY);
+    const time = first + day * DAY;
     while (cursor < samples.length - 2 && samples[cursor + 1].timestamp <= time) {
       cursor++;
     }
@@ -248,7 +248,7 @@ const resampleDaily = (samples) => {
     const b = samples[cursor + 1];
     const span = b.timestamp - a.timestamp;
     const progress = span > 0 ? Math.min(1, Math.max(0, (time - a.timestamp) / span)) : 0;
-    values.push(a.wisdom + ((b.wisdom - a.wisdom) * progress));
+    values.push(a.wisdom + (b.wisdom - a.wisdom) * progress);
   }
 
   return values;
@@ -277,8 +277,8 @@ const holtTrendModel = (samples, wisdomRemaining, alpha = 0.4, beta = 0.15) => {
 
   for (let i = 1; i < series.length; i++) {
     const previousLevel = level;
-    level = (alpha * series[i]) + ((1 - alpha) * (level + trend));
-    trend = (beta * (level - previousLevel)) + ((1 - beta) * trend);
+    level = alpha * series[i] + (1 - alpha) * (level + trend);
+    trend = beta * (level - previousLevel) + (1 - beta) * trend;
   }
 
   return makePerDayForecast({
@@ -307,12 +307,14 @@ const perHuntModel = (samples, wisdomRemaining) => {
   }
 
   const origin = turnSamples[0].totalTurns;
-  const regression = leastSquares(turnSamples.map((sample) => ({
-    x: sample.totalTurns - origin,
-    y: sample.wisdom,
-  })));
+  const regression = leastSquares(
+    turnSamples.map((sample) => ({
+      x: sample.totalTurns - origin,
+      y: sample.wisdom,
+    }))
+  );
 
-  if (! regression || regression.slope <= 0) {
+  if (!regression || regression.slope <= 0) {
     return null;
   }
 
@@ -334,7 +336,7 @@ const perHuntModel = (samples, wisdomRemaining) => {
     huntsRemaining,
     huntsPerDay,
     daysRemaining,
-    targetTimestamp: daysRemaining === null ? null : Date.now() + (daysRemaining * DAY),
+    targetTimestamp: daysRemaining === null ? null : Date.now() + daysRemaining * DAY,
   };
 };
 
@@ -348,7 +350,7 @@ const perHuntModel = (samples, wisdomRemaining) => {
  * @return {Array} The recent samples.
  */
 const getRecentSamples = (samples, days = 14) => {
-  const cutoff = Date.now() - (days * DAY);
+  const cutoff = Date.now() - days * DAY;
   const recent = samples.filter((sample) => sample.timestamp >= cutoff);
   return recent.length >= 2 ? recent : samples.slice(-10);
 };
@@ -377,11 +379,9 @@ const buildForecasts = (samples, wisdomRemaining) => {
     perHuntModel(recent, wisdomRemaining),
   ].filter(Boolean);
 
-  const days = models
-    .map((model) => model.daysRemaining)
-    .filter((value) => value !== null && Number.isFinite(value));
+  const days = models.map((model) => model.daysRemaining).filter((value) => value !== null && Number.isFinite(value));
 
-  if (! days.length) {
+  if (!days.length) {
     return { models, consensus: null };
   }
 
@@ -403,9 +403,9 @@ const buildForecasts = (samples, wisdomRemaining) => {
     models,
     consensus: {
       daysRemaining,
-      targetTimestamp: Date.now() + (daysRemaining * DAY),
-      earliestTimestamp: Date.now() + (earliestDays * DAY),
-      latestTimestamp: Date.now() + (latestDays * DAY),
+      targetTimestamp: Date.now() + daysRemaining * DAY,
+      earliestTimestamp: Date.now() + earliestDays * DAY,
+      latestTimestamp: Date.now() + latestDays * DAY,
       ratePerDay: daysRemaining > 0 ? wisdomRemaining / daysRemaining : null,
       confidence,
       modelCount: models.length,
@@ -413,7 +413,4 @@ const buildForecasts = (samples, wisdomRemaining) => {
   };
 };
 
-export {
-  buildForecasts,
-  getRecentSamples
-};
+export { buildForecasts, getRecentSamples };

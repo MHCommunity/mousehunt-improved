@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  formatGold,
-  getCurrentPage,
-  getSetting,
-  onNavigation,
-  onRequest
-} from '@utils';
+import { addStyles, formatGold, getCurrentPage, getSetting, onNavigation, onRequest } from '@utils';
 
 import settings from './settings';
 
@@ -22,7 +15,7 @@ const styles = imported;
  */
 const updateInputField = async () => {
   const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');
-  if (! purchaseBlocks) {
+  if (!purchaseBlocks) {
     return;
   }
 
@@ -30,12 +23,12 @@ const updateInputField = async () => {
 
   purchaseBlocks.forEach((block) => {
     const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
-    if (! qty) {
+    if (!qty) {
       return;
     }
 
     const input = block.querySelector('input');
-    if (! input) {
+    if (!input) {
       return;
     }
 
@@ -62,15 +55,19 @@ const updateInputField = async () => {
       };
 
       input.addEventListener('keydown', onKeydown);
-      input.addEventListener('blur', () => {
-        input.removeEventListener('keydown', onKeydown);
-        delete input.dataset.mhiShopEnter;
-      }, { once: true });
+      input.addEventListener(
+        'blur',
+        () => {
+          input.removeEventListener('keydown', onKeydown);
+          delete input.dataset.mhiShopEnter;
+        },
+        { once: true }
+      );
     }
 
     if (addQuantityButtons) {
       const container = block.closest('.itemPurchaseView-container');
-      if (! container || container.classList.contains('lil_jill') || container.classList.contains('big_jack')) {
+      if (!container || container.classList.contains('lil_jill') || container.classList.contains('big_jack')) {
         return;
       }
       qtyButtons(block, input, maxQty);
@@ -83,7 +80,7 @@ const updateInputField = async () => {
  */
 const main = () => {
   const body = document.querySelector('body');
-  if (! body) {
+  if (!body) {
     return;
   }
 
@@ -102,7 +99,7 @@ const main = () => {
         gold.textContent = gold.textContent.replace('Cost:', '');
       }
 
-      if (! gold.textContent.length) {
+      if (!gold.textContent.length) {
         // get the the nearest parent element with the class 'itemPurchaseView-container'
         const container = gold.closest('.itemPurchaseView-container');
         if (container) {
@@ -163,7 +160,7 @@ const main = () => {
   }
 
   const shopQty = document.querySelectorAll('.itemPurchaseView-action-quantity input');
-  if (! shopQty) {
+  if (!shopQty) {
     return;
   }
 

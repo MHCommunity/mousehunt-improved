@@ -20,10 +20,10 @@ export default async () => {
         { name: 'Birthday', value: 'birthday' },
         { name: 'Great Winter Hunt', value: 'great_winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
-        { name: 'King\'s Giveaway', value: 'kings_giveaway' },
+        { name: "King's Giveaway", value: 'kings_giveaway' },
         { name: 'Lunar New Year', value: 'lunar_new_year' },
         { name: 'Spring Egg Hunt', value: 'spring_hunt' },
-        { name: 'Valentine\'s', value: 'valentines' },
+        { name: "Valentine's", value: 'valentines' },
       ],
     },
     {
@@ -46,14 +46,16 @@ export default async () => {
     },
   ];
 
-  return [{
-    id: 'custom-background',
-    title: 'Custom Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-bg-preview">Preview choices</a></span>',
-    default: [options[0]],
-    settings: {
-      type: 'multi-select',
-      number: 1,
-      options,
+  return [
+    {
+      id: 'custom-background',
+      title: 'Custom Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-bg-preview">Preview choices</a></span>',
+      default: [options[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options,
+      },
     },
-  }];
+  ];
 };

@@ -9,7 +9,7 @@ import { getCurrentLocation } from '@utils';
  * @return {string} The dashboard output.
  */
 const getFieryWarpathText = (quests) => {
-  if (! quests.QuestFieryWarpath) {
+  if (!quests.QuestFieryWarpath) {
     return '';
   }
 
@@ -48,11 +48,8 @@ const setFieryWarpathData = () => {
     wave,
     streak: getFieryWarpathStreak(),
     remaining: getFieryWarpathRemainingInWave(wave),
-    percent: getFieryWarpathPercent()
+    percent: getFieryWarpathPercent(),
   };
 };
 
-export {
-  getFieryWarpathText,
-  setFieryWarpathData
-};
+export { getFieryWarpathText, setFieryWarpathData };

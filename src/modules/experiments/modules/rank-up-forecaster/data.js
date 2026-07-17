@@ -1,12 +1,4 @@
-import {
-  dataGet,
-  dataSet,
-  dbGet,
-  dbGetAll,
-  dbSet,
-  doRequest,
-  getUserItems
-} from '@utils';
+import { dataGet, dataSet, dbGet, dbGetAll, dbSet, doRequest, getUserItems } from '@utils';
 
 import { buildForecasts } from './models';
 
@@ -79,7 +71,7 @@ const saveWisdomSetting = (key, value) => {
 };
 
 const getWisdom = async (forceUpdate = false) => {
-  if (! forceUpdate) {
+  if (!forceUpdate) {
     const cachedWisdom = await getWisdomSetting('value');
     const lastUpdated = await getWisdomSetting('last-updated');
 
@@ -104,10 +96,7 @@ const getTotalTurns = async () => {
     return currentTurns;
   }
 
-  const [cachedTurns, lastChecked] = await Promise.all([
-    dataGet('rank-up-forecaster-total-turns'),
-    dataGet('rank-up-forecaster-total-turns-last-checked'),
-  ]);
+  const [cachedTurns, lastChecked] = await Promise.all([dataGet('rank-up-forecaster-total-turns'), dataGet('rank-up-forecaster-total-turns-last-checked')]);
   const parsedCachedTurns = Number.parseInt(cachedTurns, 10) || null;
 
   if (lastChecked && Date.now() - lastChecked < TOTAL_TURNS_REFRESH_INTERVAL) {
@@ -202,15 +191,11 @@ const setMeta = async (meta) => {
 };
 
 const hasLegacyData = () => {
-  return Boolean(
-    localStorage.getItem('Chro-forecaster-time') ||
-    localStorage.getItem('Chro-forecaster-all-area') ||
-    localStorage.getItem('Chro-forecaster-current-area')
-  );
+  return Boolean(localStorage.getItem('Chro-forecaster-time') || localStorage.getItem('Chro-forecaster-all-area') || localStorage.getItem('Chro-forecaster-current-area'));
 };
 
 const safeParse = (value, fallback = null) => {
-  if (! value) {
+  if (!value) {
     return fallback;
   }
 
@@ -223,7 +208,7 @@ const safeParse = (value, fallback = null) => {
 
 const migrateLegacyData = async () => {
   const meta = await getMeta();
-  if (meta.legacyMigratedAt || ! hasLegacyData()) {
+  if (meta.legacyMigratedAt || !hasLegacyData()) {
     return false;
   }
 
@@ -232,7 +217,7 @@ const migrateLegacyData = async () => {
   for (const row of legacySamples) {
     const timestamp = new Date(row[0]).getTime();
     const wisdom = Number.parseInt(row[1], 10);
-    if (! timestamp || ! Number.isFinite(wisdom)) {
+    if (!timestamp || !Number.isFinite(wisdom)) {
       continue;
     }
 
@@ -255,7 +240,7 @@ const migrateLegacyData = async () => {
     const locationName = row[0] || '';
     const wisdomGained = Number.parseInt(row[1], 10);
     const hunts = Number.parseInt(row[2], 10);
-    if (! locationName || ! Number.isFinite(wisdomGained) || ! Number.isFinite(hunts)) {
+    if (!locationName || !Number.isFinite(wisdomGained) || !Number.isFinite(hunts)) {
       continue;
     }
 
@@ -298,7 +283,7 @@ const migrateLegacyData = async () => {
 };
 
 const sameLocation = (a, b) => {
-  if (! a || ! b) {
+  if (!a || !b) {
     return false;
   }
 
@@ -306,11 +291,11 @@ const sameLocation = (a, b) => {
 };
 
 const saveLocationSegment = async (previous, sample) => {
-  if (! previous || ! sample || ! sameLocation(previous.location, sample.location)) {
+  if (!previous || !sample || !sameLocation(previous.location, sample.location)) {
     return;
   }
 
-  if (! previous.totalTurns || ! sample.totalTurns || sample.totalTurns <= previous.totalTurns) {
+  if (!previous.totalTurns || !sample.totalTurns || sample.totalTurns <= previous.totalTurns) {
     return;
   }
 
@@ -351,7 +336,7 @@ const recordSample = async (source = 'automatic', options = {}) => {
   }
 
   const wisdom = await getWisdom(forceWisdomUpdate);
-  if (! wisdom) {
+  if (!wisdom) {
     return {
       saved: false,
       reason: 'wisdom',
@@ -362,11 +347,7 @@ const recordSample = async (source = 'automatic', options = {}) => {
   // This returns immediately from the daily cache for ordinary samples and
   // only makes a userData.php request once the cache is a day old.
   const refreshedTotalTurns = await getTotalTurns();
-  const recordedTotalTurns = Math.max(
-    totalTurns || 0,
-    refreshedTotalTurns || 0,
-    latest?.totalTurns || 0
-  ) || null;
+  const recordedTotalTurns = Math.max(totalTurns || 0, refreshedTotalTurns || 0, latest?.totalTurns || 0) || null;
 
   const sample = {
     id: `sample:${now}`,
@@ -400,7 +381,7 @@ const getForecasts = async (targetRankId = null) => {
   const targetRank = getRankById(targetRankId);
   const currentRank = getCurrentRank();
 
-  if (! latest) {
+  if (!latest) {
     return {
       targetRank,
       currentRank,
@@ -419,9 +400,7 @@ const getForecasts = async (targetRankId = null) => {
   // Progress from the current rank's threshold toward the target rank.
   const baseWisdom = Math.min(currentRank.wisdom, targetRank.wisdom);
   const span = targetRank.wisdom - baseWisdom;
-  const progressPercent = span > 0
-    ? Math.min(100, Math.max(0, ((latest.wisdom - baseWisdom) / span) * 100))
-    : 100;
+  const progressPercent = span > 0 ? Math.min(100, Math.max(0, ((latest.wisdom - baseWisdom) / span) * 100)) : 100;
 
   return {
     targetRank,
@@ -478,5 +457,5 @@ export {
   getRankById,
   getSamples,
   migrateLegacyData,
-  recordSample
+  recordSample,
 };

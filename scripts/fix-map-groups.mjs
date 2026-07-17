@@ -14,7 +14,7 @@ import { readFile } from 'node:fs/promises';
  */
 const loadFile = async (filePath) => {
   const file = path.resolve(filePath);
-  if (! fs.existsSync(file)) {
+  if (!fs.existsSync(file)) {
     console.log(`${filePath} does not exist`);
     throw new Error(`${filePath} does not exist`);
   }
@@ -146,7 +146,10 @@ const getReplacements = async () => {
 
 const mapGroupsPath = './src/data/map-groups';
 const mapGroups = {};
-for (const file of fs.readdirSync(mapGroupsPath).filter((f) => f.endsWith('.json')).sort()) {
+for (const file of fs
+  .readdirSync(mapGroupsPath)
+  .filter((f) => f.endsWith('.json'))
+  .sort()) {
   mapGroups[path.basename(file, '.json')] = await loadFile(path.resolve(mapGroupsPath, file));
 }
 

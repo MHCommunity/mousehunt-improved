@@ -1,10 +1,4 @@
-import {
-  addBodyClass,
-  addStyles,
-  onActivation,
-  onDeactivation,
-  removeBodyClass
-} from '@utils';
+import { addBodyClass, addStyles, onActivation, onDeactivation, removeBodyClass } from '@utils';
 
 import styles from './styles.css';
 

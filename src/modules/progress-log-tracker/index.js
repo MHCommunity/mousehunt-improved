@@ -13,7 +13,7 @@ import {
   onNavigation,
   onRequest,
   parseNumber,
-  saveSetting
+  saveSetting,
 } from '@utils';
 
 import settings from './settings';
@@ -72,12 +72,12 @@ const pageAnchors = new Map();
  */
 const isOwnJournal = () => {
   const container = document.querySelector('#journalContainer');
-  if (! container) {
+  if (!container) {
     return false;
   }
 
   const owner = container.getAttribute('data-owner');
-  return ! owner || `${owner}` === `${user.user_id}`;
+  return !owner || `${owner}` === `${user.user_id}`;
 };
 
 /**
@@ -90,12 +90,12 @@ const getJournalPage = () => {
   // The current section renders "Page N of M", so read just the N span —
   // parsing the whole section's text would mash the two numbers together.
   const current = document.querySelector('#journalContainer .pagerView-section-currentPage');
-  if (! current) {
+  if (!current) {
     return null;
   }
 
   const page = Number.parseInt(current.textContent.replaceAll(/\D/g, ''), 10);
-  return (Number.isNaN(page) || page < 1) ? 1 : page;
+  return Number.isNaN(page) || page < 1 ? 1 : page;
 };
 
 /**
@@ -104,14 +104,14 @@ const getJournalPage = () => {
  * @param {Object} data The request response.
  */
 const captureExactTimestamps = (data) => {
-  if (! data?.journal_markup?.length) {
+  if (!data?.journal_markup?.length) {
     return;
   }
 
   for (const markup of data.journal_markup) {
     const id = Number.parseInt(markup?.render_data?.entry_id, 10);
     const timestamp = Number.parseInt(markup?.render_data?.entry_timestamp, 10);
-    if (! id || ! timestamp) {
+    if (!id || !timestamp) {
       continue;
     }
 
@@ -134,13 +134,13 @@ const captureExactTimestamps = (data) => {
  */
 const parseTimeOfDay = (entry) => {
   const dateEl = entry.querySelector('.journaldate');
-  if (! dateEl) {
+  if (!dateEl) {
     return null;
   }
 
   const text = dateEl.textContent.split('-')[0].trim().toLowerCase().replaceAll(' ', '');
   const parts = /^(\d{1,2}):(\d{2})(am|pm)$/.exec(text);
-  if (! parts) {
+  if (!parts) {
     return null;
   }
 
@@ -206,7 +206,7 @@ const refreshLogsCache = async () => {
  */
 const parseEntry = (entry, timestamp, estimated) => {
   const id = Number.parseInt(entry.dataset.entryId, 10);
-  if (! id) {
+  if (!id) {
     return null;
   }
 
@@ -233,7 +233,7 @@ const parseEntry = (entry, timestamp, estimated) => {
     const cells = tableBody.querySelectorAll('.leftSide, .rightSide');
     cells.forEach((cell) => {
       const next = cell.nextSibling;
-      if (! next || ! next.innerHTML) {
+      if (!next || !next.innerHTML) {
         return;
       }
 
@@ -281,7 +281,7 @@ const parseEntry = (entry, timestamp, estimated) => {
  */
 const scrapeJournal = async () => {
   const container = document.querySelector('#journalContainer');
-  if (! container || ! isOwnJournal()) {
+  if (!container || !isOwnJournal()) {
     return false;
   }
 
@@ -301,7 +301,7 @@ const scrapeJournal = async () => {
   let added = false;
   for (const entry of entries) {
     const id = Number.parseInt(entry.dataset.entryId, 10);
-    if (! id) {
+    if (!id) {
       continue;
     }
 
@@ -311,7 +311,7 @@ const scrapeJournal = async () => {
     if (exact) {
       cursor = exact;
       anchored = true;
-    } else if (existing && ! existing.estimated) {
+    } else if (existing && !existing.estimated) {
       cursor = existing.timestamp;
       anchored = true;
     } else {
@@ -321,17 +321,17 @@ const scrapeJournal = async () => {
       }
     }
 
-    if (! entry.classList.contains('log_summary')) {
+    if (!entry.classList.contains('log_summary')) {
       continue;
     }
 
     // Without an anchor the walk can only ever under-count the days it spans,
     // and reconstruction past one log interval needs entries dense enough to
     // show every midnight. Neither is something we can verify here.
-    const estimated = ! exact && (! anchored || (Date.now() - cursor) > LOG_INTERVAL_MS);
+    const estimated = !exact && (!anchored || Date.now() - cursor > LOG_INTERVAL_MS);
 
     // Never downgrade a log we already dated confidently.
-    if (existing && (! existing.estimated || estimated)) {
+    if (existing && (!existing.estimated || estimated)) {
       continue;
     }
 
@@ -365,12 +365,12 @@ const scrapeJournal = async () => {
  * @return {Object|null} `{ nextTimestamp, msUntil, isDue }` or null if no logs.
  */
 const getNextLogInfo = () => {
-  const latest = cachedLogs.find((log) => log.timestamp && ! log.estimated);
-  if (! latest) {
+  const latest = cachedLogs.find((log) => log.timestamp && !log.estimated);
+  if (!latest) {
     return null;
   }
 
-  const nextTimestamp = latest.timestamp + (LOG_INTERVAL_HOURS * 60 * 60 * 1000);
+  const nextTimestamp = latest.timestamp + LOG_INTERVAL_HOURS * 60 * 60 * 1000;
   const msUntil = nextTimestamp - Date.now();
 
   return {
@@ -415,12 +415,12 @@ const formatCountdown = (ms, short = true) => {
  * @return {string} The button label.
  */
 const getButtonLabel = () => {
-  if (! getSetting(`${MODULE_ID}.show-countdown`, true)) {
+  if (!getSetting(`${MODULE_ID}.show-countdown`, true)) {
     return 'Journal Logs';
   }
 
   const info = getNextLogInfo();
-  if (! info) {
+  if (!info) {
     return 'Journal Logs';
   }
 
@@ -458,7 +458,7 @@ const formatDate = (timestamp) => {
  * @param {string} onclick The stored onclick attribute string.
  */
 const openLogSummary = (onclick) => {
-  if (! onclick) {
+  if (!onclick) {
     return;
   }
 
@@ -481,17 +481,17 @@ const showButton = () => {
     return;
   }
 
-  if (! isOwnJournal()) {
+  if (!isOwnJournal()) {
     return;
   }
 
   const target = document.querySelector('#journalContainer .top');
-  if (! target) {
+  if (!target) {
     return;
   }
 
   let button = target.querySelector('.mh-jlt-button');
-  if (! button) {
+  if (!button) {
     button = makeElement('a', ['journalContainer-selectTheme', 'mh-jlt-button']);
     button.href = '#';
     button.addEventListener('click', (event) => {
@@ -505,7 +505,7 @@ const showButton = () => {
 
   // Keep the countdown updated while the button is on screen. Timers only
   // show minutes, so updating once a minute is enough.
-  if (! buttonInterval) {
+  if (!buttonInterval) {
     buttonInterval = setInterval(() => {
       const current = document.querySelector('.mh-jlt-button');
       if (current) {
@@ -525,8 +525,10 @@ const showButton = () => {
  */
 const makeSummaryMarkup = () => {
   const info = getNextLogInfo();
-  if (! info) {
-    return cachedLogs.length ? '<div class="mh-jlt-summary is-unknown"><div class="mh-jlt-summary-sub">The next log time is unknown until a new log summary is tracked.</div></div>' : '';
+  if (!info) {
+    return cachedLogs.length
+      ? '<div class="mh-jlt-summary is-unknown"><div class="mh-jlt-summary-sub">The next log time is unknown until a new log summary is tracked.</div></div>'
+      : '';
   }
 
   const time = info.isDue ? 'Due now' : formatCountdown(info.msUntil, false);
@@ -548,11 +550,7 @@ const makeSummaryMarkup = () => {
  * @return {string} The escaped string.
  */
 const escapeHtml = (value) => {
-  return `${value}`
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;');
+  return `${value}`.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 };
 
 /**
@@ -563,7 +561,7 @@ const escapeHtml = (value) => {
  * @return {string} The cell markup.
  */
 const makeCell = (value) => {
-  return `<td>${(null === value || undefined === value) ? '-' : escapeHtml(value)}</td>`;
+  return `<td>${null === value || undefined === value ? '-' : escapeHtml(value)}</td>`;
 };
 
 /**
@@ -574,7 +572,7 @@ const makeCell = (value) => {
  * @return {string} The cell markup.
  */
 const makeNumberCell = (value) => {
-  return `<td>${(null === value || undefined === value) ? '-' : formatNumber(value)}</td>`;
+  return `<td>${null === value || undefined === value ? '-' : formatNumber(value)}</td>`;
 };
 
 /**
@@ -583,28 +581,30 @@ const makeNumberCell = (value) => {
  * @return {string} The table markup.
  */
 const makeTableMarkup = () => {
-  if (! cachedLogs.length) {
+  if (!cachedLogs.length) {
     return '<div class="mh-jlt-empty">No journal logs tracked yet. Visit your journal to start tracking your log summaries.</div>';
   }
 
   const headings = ['Date & Time', 'Duration', 'Catches', 'FTC', 'FTA', 'Gold', 'Points'];
   const headerCells = headings.map((heading) => `<th>${heading}</th>`).join('');
 
-  const rows = cachedLogs.map((log) => {
-    const dateClass = log.estimated ? 'mh-jlt-open mh-jlt-estimated' : 'mh-jlt-open';
-    const dateTitle = log.estimated ? ' title="This date is an estimate — the journal only shows a time of day."' : '';
+  const rows = cachedLogs
+    .map((log) => {
+      const dateClass = log.estimated ? 'mh-jlt-open mh-jlt-estimated' : 'mh-jlt-open';
+      const dateTitle = log.estimated ? ' title="This date is an estimate — the journal only shows a time of day."' : '';
 
-    let row = '<tr>';
-    row += `<td><a href="#" class="${dateClass}" data-log-id="${log.id}"${dateTitle}>${formatDate(log.timestamp)}</a></td>`;
-    row += makeCell(log.duration || '-');
-    row += makeCell(log.catches);
-    row += makeCell(log.ftc);
-    row += makeCell(log.fta);
-    row += makeNumberCell(log.gold);
-    row += makeNumberCell(log.points);
-    row += '</tr>';
-    return row;
-  }).join('');
+      let row = '<tr>';
+      row += `<td><a href="#" class="${dateClass}" data-log-id="${log.id}"${dateTitle}>${formatDate(log.timestamp)}</a></td>`;
+      row += makeCell(log.duration || '-');
+      row += makeCell(log.catches);
+      row += makeCell(log.ftc);
+      row += makeCell(log.fta);
+      row += makeNumberCell(log.gold);
+      row += makeNumberCell(log.points);
+      row += '</tr>';
+      return row;
+    })
+    .join('');
 
   return `<table class="mh-jlt-table">
     <thead><tr>${headerCells}</tr></thead>
@@ -629,7 +629,7 @@ const makePopupMarkup = () => {
  */
 const bindPopupEvents = () => {
   const popup = document.querySelector('.mh-jlt-popup');
-  if (! popup) {
+  if (!popup) {
     return;
   }
 
@@ -652,7 +652,7 @@ const bindPopupEvents = () => {
  */
 const refreshOpenPopup = () => {
   const content = document.querySelector('.mh-jlt-popup');
-  if (! content) {
+  if (!content) {
     return;
   }
 
@@ -713,7 +713,7 @@ const migrateFromUserscript = async () => {
   const parsed = lsGet(USERSCRIPT_KEY, null);
 
   // Mark as migrated even when there's nothing to import, so we don't keep checking.
-  if (! parsed) {
+  if (!parsed) {
     saveSetting(`${MODULE_ID}.migrated`, true);
     return;
   }
@@ -723,7 +723,7 @@ const migrateFromUserscript = async () => {
 
   for (const [key, value] of Object.entries(parsed.logs || {})) {
     const id = Number.parseInt(key, 10);
-    if (! id || known.has(id)) {
+    if (!id || known.has(id)) {
       continue;
     }
 

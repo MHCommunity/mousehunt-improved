@@ -26,7 +26,7 @@ export default {
     for (const file of files) {
       try {
         const data = await getData(file, true);
-        if (! data) {
+        if (!data) {
           await sleep(1000);
           await getData(file, true);
         }
@@ -35,5 +35,5 @@ export default {
         console.error(`Error preloading data for ${file}:`, error);
       }
     }
-  }
+  },
 };

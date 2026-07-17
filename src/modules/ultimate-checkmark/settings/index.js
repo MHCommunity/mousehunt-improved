@@ -25,14 +25,16 @@ export default async () => {
     });
   });
 
-  return [{
-    id: 'ultimate-checkmark.show',
-    title: 'Ultimate Checkmark',
-    default: [],
-    description: 'Add more items to collect on your Hunter profile.',
-    settings: {
-      type: 'multi-toggle',
-      options,
-    }
-  }];
+  return [
+    {
+      id: 'ultimate-checkmark.show',
+      title: 'Ultimate Checkmark',
+      default: [],
+      description: 'Add more items to collect on your Hunter profile.',
+      settings: {
+        type: 'multi-toggle',
+        options,
+      },
+    },
+  ];
 };

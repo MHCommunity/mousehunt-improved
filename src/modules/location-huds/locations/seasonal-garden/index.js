@@ -7,12 +7,12 @@ import styles from './styles.css';
  */
 const makeProgressDraggable = () => {
   const progressBar = document.querySelector('.seasonalGardenHUD-amplifierProgress');
-  if (! progressBar) {
+  if (!progressBar) {
     return;
   }
 
   const progressBarMarker = document.querySelector('.seasonalGardenHUD-amplifierProgress-bar');
-  if (! progressBarMarker) {
+  if (!progressBarMarker) {
     return;
   }
 
@@ -44,12 +44,12 @@ const makeProgressDraggable = () => {
  */
 const changeBarColor = () => {
   const trigger = document.querySelector('.seasonalGardenHUD-season');
-  if (! trigger) {
+  if (!trigger) {
     return;
   }
 
   const bar = document.querySelector('.seasonalGardenHUD-amplifierProgress-bar');
-  if (! bar) {
+  if (!bar) {
     return;
   }
 

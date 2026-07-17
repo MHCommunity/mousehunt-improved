@@ -1,11 +1,4 @@
-import {
-  debuglog,
-  getCurrentLocation,
-  getMapData,
-  onEvent,
-  onRequest,
-  waitForElement
-} from '@utils';
+import { debuglog, getCurrentLocation, getMapData, onEvent, onRequest, waitForElement } from '@utils';
 import { refreshMap } from '../utils';
 
 const toHighlight = new Set([
@@ -36,18 +29,18 @@ const getSkyMapMice = () => {
     }
   }
 
-  return goals.filter((goal) => ! completedGoals.includes(goal.unique_id) && toHighlight.has(goal.type));
+  return goals.filter((goal) => !completedGoals.includes(goal.unique_id) && toHighlight.has(goal.type));
 };
 
 const highlightSkyMap = async () => {
   await waitForElement('floatingIslandsAdventureBoardSkyMap', { maxAttempts: 100, delay: 100 });
-  if (! mapGoals) {
+  if (!mapGoals) {
     main();
     return;
   }
 
   // check if any of the goals on the map are paragons and if not, return.
-  if (! mapGoals.some((goal) => goal.type.endsWith('paragon'))) {
+  if (!mapGoals.some((goal) => goal.type.endsWith('paragon'))) {
     return; // TODO: also add check for wardens.
   }
 
@@ -55,16 +48,20 @@ const highlightSkyMap = async () => {
   const grid = [...document.querySelectorAll('.floatingIslandsAdventureBoardSkyMap-islandModContainer .floatingIslandsAdventureBoardSkyMap-islandMod')];
 
   // if any of the grid doesnt include the paragon tiles, return.
-  if (! grid.some((tile) => {
-    if (tile.classList.contains('paragon_cache_a') ||
-      tile.classList.contains('paragon_cache_b') ||
-      tile.classList.contains('paragon_cache_c') ||
-      tile.classList.contains('paragon_cache_d')) {
-      return true;
-    }
+  if (
+    !grid.some((tile) => {
+      if (
+        tile.classList.contains('paragon_cache_a') ||
+        tile.classList.contains('paragon_cache_b') ||
+        tile.classList.contains('paragon_cache_c') ||
+        tile.classList.contains('paragon_cache_d')
+      ) {
+        return true;
+      }
 
-    return false;
-  })) {
+      return false;
+    })
+  ) {
     return;
   }
 
@@ -133,7 +130,7 @@ const highlightSkyMap = async () => {
 
     const powerType = mouse.type.replaceAll('_paragon', '');
     if (powerType && mapByPowerType[powerType]) {
-      if (! mapByPowerType[powerType].edge) {
+      if (!mapByPowerType[powerType].edge) {
         return;
       }
 
@@ -145,12 +142,14 @@ const highlightSkyMap = async () => {
         tile.classList.add('highlight-for-map');
 
         const mod = tile.querySelector('.floatingIslandsHUD-mod');
-        if (index === 0 && mod && (
-          mod.classList.contains('paragon_cache_a') ||
-          mod.classList.contains('paragon_cache_b') ||
-          mod.classList.contains('paragon_cache_c') ||
-          mod.classList.contains('paragon_cache_d')
-        )) {
+        if (
+          index === 0 &&
+          mod &&
+          (mod.classList.contains('paragon_cache_a') ||
+            mod.classList.contains('paragon_cache_b') ||
+            mod.classList.contains('paragon_cache_c') ||
+            mod.classList.contains('paragon_cache_d'))
+        ) {
           shouldHighlightRowExtra = true;
         }
 
@@ -174,19 +173,19 @@ const main = async () => {
   }
 
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
-  if (! mapId) {
+  if (!mapId) {
     return;
   }
 
   // See sidebar.js: this read targeted a sessionStorage key nothing writes any more, and
   // refreshMap() never handed its data back, so mapData was always unset here.
   mapData = await getMapData(mapId, true);
-  if (! mapData) {
+  if (!mapData) {
     const refreshed = await refreshMap();
     mapData = refreshed?.treasure_map || false;
   }
 
-  if (! mapData) {
+  if (!mapData) {
     return;
   }
 

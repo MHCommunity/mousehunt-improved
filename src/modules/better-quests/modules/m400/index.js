@@ -1,11 +1,4 @@
-import {
-  doEvent,
-  getCurrentLocation,
-  getData,
-  makeMhButton,
-  onNavigation,
-  travelTo
-} from '@utils';
+import { doEvent, getCurrentLocation, getData, makeMhButton, onNavigation, travelTo } from '@utils';
 
 /**
  * Link the mice named in the quest objectives, so they get hover cards and
@@ -13,12 +6,12 @@ import {
  */
 const linkMiceInObjectives = async () => {
   const tasks = document.querySelectorAll('.mh-m400-quest .campPage-quests-objective-task');
-  if (! tasks.length) {
+  if (!tasks.length) {
     return;
   }
 
   const allMice = await getData('mice');
-  if (! allMice) {
+  if (!allMice) {
     return;
   }
 
@@ -29,12 +22,12 @@ const linkMiceInObjectives = async () => {
     }
 
     const match = task.innerText.match(/from (.+?) Mice/);
-    if (! match) {
+    if (!match) {
       return;
     }
 
     const mouse = allMice.find((m) => m.abbreviated_name === match[1] || m.name === `${match[1]} Mouse`);
-    if (! mouse) {
+    if (!mouse) {
       return;
     }
 
@@ -61,7 +54,7 @@ const linkMiceInObjectives = async () => {
  */
 const renderButton = (location) => {
   const title = document.querySelector('.campPage-quests-title');
-  if (! title) {
+  if (!title) {
     return;
   }
 
@@ -84,10 +77,10 @@ const renderButton = (location) => {
 
   button.addEventListener('click', (e) => {
     let clickedLocation = e.target.getAttribute('data-location');
-    if (! clickedLocation) {
+    if (!clickedLocation) {
       // get the parent element.
       const parent = e.target.parentElement;
-      if (! parent) {
+      if (!parent) {
         return;
       }
 
@@ -105,24 +98,24 @@ const renderButton = (location) => {
  */
 const main = async () => {
   const questTitle = document.querySelector('.campPage-quests-title');
-  if (! questTitle) {
+  if (!questTitle) {
     return;
   }
 
   const isM400 = user.quests?.QuestLibraryM400Research?.is_assignment || user.quests.QuestLibraryM400Research?.is_bait_assignment; // TODO: get the bait assignment quest here.
-  if (! isM400) {
+  if (!isM400) {
     return;
   }
 
   const container = document.querySelector('.campPage-quests-container');
-  if (! container) {
+  if (!container) {
     return;
   }
 
   container.classList.add('mh-m400-quest');
 
   const allTasks = document.querySelectorAll('.campPage-quests-objective-container');
-  if (! allTasks) {
+  if (!allTasks) {
     return;
   }
 
@@ -141,16 +134,16 @@ const main = async () => {
 
   // get the last task that doesn't have the 'locked' or 'complete' class.
   const last = [...allTasks].reverse().find((task) => {
-    return ! task.classList.contains('locked') && ! task.classList.contains('complete');
+    return !task.classList.contains('locked') && !task.classList.contains('complete');
   });
 
-  if (! last) {
+  if (!last) {
     return;
   }
 
   // Get the text that comes at the end of the objective.
   const objective = last.querySelector('.campPage-quests-objective-task');
-  if (! objective) {
+  if (!objective) {
     return;
   }
 
@@ -173,7 +166,7 @@ const main = async () => {
     return locations[key].includes(location);
   });
 
-  if (! locationKey) {
+  if (!locationKey) {
     return;
   }
 

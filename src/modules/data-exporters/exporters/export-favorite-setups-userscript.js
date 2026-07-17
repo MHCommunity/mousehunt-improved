@@ -60,21 +60,9 @@ const exportFavoriteSetupsUserscript = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: [
-        'Name',
-        'Bait',
-        'Base',
-        'Weapon',
-        'Trinket',
-        'Skin',
-        'Location',
-        'Sort',
-      ],
+      headers: ['Name', 'Bait', 'Base', 'Weapon', 'Trinket', 'Skin', 'Location', 'Sort'],
     },
   });
 };
 
-export {
-  exportFavoriteSetupsUserscript,
-  hasFavoriteSetupsUserscript
-};
+export { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript };

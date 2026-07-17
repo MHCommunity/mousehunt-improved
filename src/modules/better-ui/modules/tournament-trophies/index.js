@@ -37,7 +37,7 @@ const getItemType = (trophy) => {
  * @param {string}                   itemType The item type to open.
  */
 const openItem = (event, itemType) => {
-  if ('keydown' === event.type && ! ['Enter', ' '].includes(event.key)) {
+  if ('keydown' === event.type && !['Enter', ' '].includes(event.key)) {
     return;
   }
 
@@ -57,7 +57,7 @@ const addTrophyLinks = () => {
     }
 
     const itemType = getItemType(trophy);
-    if (! itemType) {
+    if (!itemType) {
       return;
     }
 

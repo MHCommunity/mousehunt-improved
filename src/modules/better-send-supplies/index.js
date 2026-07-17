@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  makeElement,
-  makeMathButtons,
-  makeMhButton,
-  onNavigation
-} from '@utils';
+import { addStyles, getSetting, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -15,11 +8,11 @@ import styles from './styles.css';
  */
 const processSearch = () => {
   const currentValue = document.querySelector('#mhui-supply-search-input');
-  if (! currentValue) {
+  if (!currentValue) {
     return;
   }
 
-  if (! currentValue.value) {
+  if (!currentValue.value) {
     // remove the hidden class from all items
     items.forEach((item) => {
       item.classList.remove('hidden');
@@ -47,7 +40,7 @@ const addSearch = () => {
   }
 
   const container = document.querySelector('#supplytransfer .tabContent.item');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -111,19 +104,19 @@ const resortItems = (sortType = 'alpha') => {
     const bText = b.querySelector(sortSelector).textContent;
 
     switch (sortType) {
-    case 'alpha':
-      return aText.localeCompare(bText);
+      case 'alpha':
+        return aText.localeCompare(bText);
 
-    case 'alpha-reverse':
-      return bText.localeCompare(aText);
+      case 'alpha-reverse':
+        return bText.localeCompare(aText);
 
-    case 'qty':
-      return asNum(bText) - asNum(aText);
+      case 'qty':
+        return asNum(bText) - asNum(aText);
 
-    case 'qty-reverse':
-      return asNum(aText) - asNum(bText);
+      case 'qty-reverse':
+        return asNum(aText) - asNum(bText);
 
-    // No default
+      // No default
     }
 
     return 0;
@@ -151,7 +144,7 @@ const addSortButtons = () => {
   }
 
   const container = document.querySelector('.mhui-supply-search');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -206,12 +199,12 @@ const highlightFavoritedItems = () => {
  */
 const addQuickQuantityButtons = () => {
   const input = document.querySelector('#supplytransfer-confirm-text input');
-  if (! input) {
+  if (!input) {
     return;
   }
 
   const maxquantity = document.querySelector('#supplytransfer-confirm-text .userQuantity');
-  if (! maxquantity) {
+  if (!maxquantity) {
     return;
   }
 
@@ -274,9 +267,13 @@ const upgradeSendSupplies = (initial = false) => {
     const users = document.querySelectorAll('#supplytransfer .friendList .element.recipient');
     for (const user of users) {
       // add an event listener to the click so we can apply the item changes
-      user.addEventListener('click', () => {
-        upgradeSendSupplies();
-      }, { once: true });
+      user.addEventListener(
+        'click',
+        () => {
+          upgradeSendSupplies();
+        },
+        { once: true }
+      );
 
       const search = document.querySelector('.searchContainer input');
       if (search) {
@@ -287,7 +284,7 @@ const upgradeSendSupplies = (initial = false) => {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
     highlightFavoritedItems();
 
-    if (initial || ! hasSorted) {
+    if (initial || !hasSorted) {
       hasSorted = true;
       resortItems('alpha'); // default to alpha sort
     }
@@ -308,22 +305,34 @@ const upgradeSendSupplies = (initial = false) => {
 
   const categories = document.querySelectorAll('#supplytransfer .categoryMenu a');
   for (const category of categories) {
-    category.addEventListener('click', () => {
-      // re-sort the pinned items
-      highlightFavoritedItems();
-    }, { once: true });
+    category.addEventListener(
+      'click',
+      () => {
+        // re-sort the pinned items
+        highlightFavoritedItems();
+      },
+      { once: true }
+    );
   }
 
   if (sendTo) {
-    sendTo.addEventListener('click', () => {
-      upgradeSendSupplies();
-    }, { once: true });
+    sendTo.addEventListener(
+      'click',
+      () => {
+        upgradeSendSupplies();
+      },
+      { once: true }
+    );
   }
 
   if (sending) {
-    sending.addEventListener('click', () => {
-      upgradeSendSupplies();
-    }, { once: true });
+    sending.addEventListener(
+      'click',
+      () => {
+        upgradeSendSupplies();
+      },
+      { once: true }
+    );
   }
 };
 

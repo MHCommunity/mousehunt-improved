@@ -13,12 +13,17 @@ import { getCurrentPage } from './page-current';
 const getUserItems = async (items, forceUpdate = false) => {
   return new Promise((resolve, reject) => {
     try {
-      hg.utils.UserInventory.getItems(items, (resp) => {
-        resolve(resp);
-      }, (err) => {
-        console.error('Error getting user items:', items, err); // eslint-disable-line no-console
-        reject(err);
-      }, forceUpdate);
+      hg.utils.UserInventory.getItems(
+        items,
+        (resp) => {
+          resolve(resp);
+        },
+        (err) => {
+          console.error('Error getting user items:', items, err); // eslint-disable-line no-console
+          reject(err);
+        },
+        forceUpdate
+      );
     } catch (error) {
       console.error('Error getting user items:', items, error); // eslint-disable-line no-console
       reject(error);
@@ -97,7 +102,7 @@ const getUserSetupDetails = () => {
   }
 
   const calculations = document.querySelectorAll('.campPage-trap-trapStat');
-  if (! calculations) {
+  if (!calculations) {
     return setup;
   }
 
@@ -108,7 +113,7 @@ const getUserSetupDetails = () => {
 
     const type = calculation.classList[1];
     const math = calculation.querySelectorAll('.math .campPage-trap-trapStat-mathRow');
-    if (! math) {
+    if (!math) {
       return;
     }
 
@@ -120,7 +125,7 @@ const getUserSetupDetails = () => {
       let value = row.querySelector('.campPage-trap-trapStat-mathRow-value')?.innerText || '0';
       const name = row.querySelector('.campPage-trap-trapStat-mathRow-name')?.innerText;
 
-      if (! name) {
+      if (!name) {
         return;
       }
 
@@ -153,7 +158,7 @@ const getUserSetupDetails = () => {
         setup.stats.cheeseEffect = 'No Effect';
       } else {
         let auraType = name.replace(' Aura', '');
-        if (! auraType) {
+        if (!auraType) {
           return;
         }
 
@@ -272,7 +277,7 @@ const isUserTitleAtLeast = (title) => {
  * @return {string} The user's hash.
  */
 const getAnonymousUserHash = async () => {
-  if (! user?.user_id) {
+  if (!user?.user_id) {
     return '';
   }
 
@@ -300,13 +305,7 @@ const getUserTitle = () => {
     title = title.split('/')[0];
   }
 
-  return title
-    .toLowerCase()
-    .replaceAll('lady', 'lord')
-    .replace('wo', '')
-    .replace('ess', '')
-    .replace('duch', 'duke')
-    .trim();
+  return title.toLowerCase().replaceAll('lady', 'lord').replace('wo', '').replace('ess', '').replace('duch', 'duke').trim();
 };
 
 /**
@@ -317,7 +316,7 @@ const getUserTitle = () => {
  * @return {string|boolean} The title shield URL or false if not found.
  */
 const getUserTitleShield = (titleId = null) => {
-  if (! titleId) {
+  if (!titleId) {
     titleId = getUserTitle();
   }
 
@@ -364,12 +363,4 @@ const getUserData = async (fields = [], userId = 'me') => {
   return data.json();
 };
 
-export {
-  getUserItems,
-  getAnonymousUserHash,
-  getUserSetupDetails,
-  isUserTitleAtLeast,
-  getUserTitle,
-  getUserTitleShield,
-  getUserData
-};
+export { getUserItems, getAnonymousUserHash, getUserSetupDetails, isUserTitleAtLeast, getUserTitle, getUserTitleShield, getUserData };

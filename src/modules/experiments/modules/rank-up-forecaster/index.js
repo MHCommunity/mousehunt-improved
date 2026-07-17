@@ -1,23 +1,6 @@
-import {
-  addStyles,
-  addSubmenuItem,
-  createPopup,
-  getSetting,
-  onTravel,
-  onTurn,
-  saveSetting
-} from '@utils';
+import { addStyles, addSubmenuItem, createPopup, getSetting, onTravel, onTurn, saveSetting } from '@utils';
 
-import {
-  RANKS,
-  getForecasts,
-  getLatestSample,
-  getLocationSummaries,
-  getNextRank,
-  getSamples,
-  migrateLegacyData,
-  recordSample
-} from './data';
+import { RANKS, getForecasts, getLatestSample, getLocationSummaries, getNextRank, getSamples, migrateLegacyData, recordSample } from './data';
 
 import { renderForecastChart } from './chart';
 
@@ -29,8 +12,7 @@ const buildRankOptions = (targetRankId) => {
   const nextRank = getNextRank();
   const nextIndex = RANKS.findIndex((rank) => rank.id === nextRank.id);
 
-  return RANKS
-    .filter((rank, index) => index >= nextIndex || rank.id === 'fabled')
+  return RANKS.filter((rank, index) => index >= nextIndex || rank.id === 'fabled')
     .map((rank) => `<option value="${rank.id}" ${rank.id === targetRankId ? 'selected' : ''}>${rank.name}</option>`)
     .join('');
 };
@@ -97,66 +79,77 @@ const buildStatCards = (forecastData) => {
   ];
 
   return `<div class="rank-up-forecaster-stats">
-    ${cards.map((card) => `<div ${card.title ? `title="${card.title}"` : ''}>
+    ${cards
+      .map(
+        (card) => `<div ${card.title ? `title="${card.title}"` : ''}>
       <span>${card.label}</span>
       <strong>${card.value}</strong>
       ${card.sub ? `<em>${card.sub}</em>` : ''}
-    </div>`).join('')}
+    </div>`
+      )
+      .join('')}
   </div>`;
 };
 
 const buildModelRows = (forecasts) => {
-  if (! forecasts.length) {
+  if (!forecasts.length) {
     return '<tr><td colspan="4">Need at least two saved samples to forecast.</td></tr>';
   }
 
-  return forecasts.map((forecast) => {
-    const rate = forecast.kind === 'wisdom-per-hunt'
-      ? `${formatNumber(forecast.rate, 1)} / hunt`
-      : `${formatNumber(forecast.rate)} / day`;
+  return forecasts
+    .map((forecast) => {
+      const rate = forecast.kind === 'wisdom-per-hunt' ? `${formatNumber(forecast.rate, 1)} / hunt` : `${formatNumber(forecast.rate)} / day`;
 
-    return `<tr>
+      return `<tr>
       <td><span class="rank-up-forecaster-model-label" title="${forecast.description || ''}">${forecast.label}</span></td>
       <td>${rate}</td>
       <td>${formatDuration(forecast.daysRemaining)}</td>
       <td>${formatDate(forecast.targetTimestamp)}</td>
     </tr>`;
-  }).join('');
+    })
+    .join('');
 };
 
 const buildLocationRows = (locations) => {
-  if (! locations.length) {
+  if (!locations.length) {
     return '<tr><td colspan="4">No location data yet. Wisdom gains are attributed to a location once you hunt there across two samples.</td></tr>';
   }
 
-  return locations.slice(0, 15).map((summary) => {
-    const wisdomPerHunt = summary.hunts ? summary.wisdomGained / summary.hunts : null;
+  return locations
+    .slice(0, 15)
+    .map((summary) => {
+      const wisdomPerHunt = summary.hunts ? summary.wisdomGained / summary.hunts : null;
 
-    return `<tr>
+      return `<tr>
       <td>${summary.location?.name || '-'}</td>
       <td>${formatNumber(summary.wisdomGained)}</td>
       <td>${formatNumber(summary.hunts)}</td>
       <td>${formatNumber(wisdomPerHunt, 1)}</td>
     </tr>`;
-  }).join('');
+    })
+    .join('');
 };
 
 const buildHistoryRows = (samples) => {
-  if (! samples.length) {
+  if (!samples.length) {
     return '<tr><td colspan="4">No samples saved yet.</td></tr>';
   }
 
-  return samples.slice(-15).reverse().map((sample, index, shown) => {
-    const previous = shown[index + 1] || null;
-    const wisdomGain = previous ? sample.wisdom - previous.wisdom : null;
+  return samples
+    .slice(-15)
+    .reverse()
+    .map((sample, index, shown) => {
+      const previous = shown[index + 1] || null;
+      const wisdomGain = previous ? sample.wisdom - previous.wisdom : null;
 
-    return `<tr>
+      return `<tr>
       <td>${formatDate(sample.timestamp, true)}</td>
       <td>${formatNumber(sample.wisdom)}</td>
       <td>${wisdomGain === null ? '-' : `+${formatNumber(wisdomGain)}`}</td>
       <td>${sample.location?.name || '-'}</td>
     </tr>`;
-  }).join('');
+    })
+    .join('');
 };
 
 const buildDetailsPanel = ({ title, headings, rows, footnote = '', open = false }) => {
@@ -191,7 +184,9 @@ const buildPopupMarkup = ({ forecastData, samples, locations, targetRankId }) =>
       <button type="button" class="mousehuntActionButton tiny" id="rank-up-forecaster-refresh"><span>Refresh samples</span></button>
     </div>
 
-    ${samples.length >= 2 ? `<section class="rank-up-forecaster-panel rank-up-forecaster-chart-panel">
+    ${
+      samples.length >= 2
+        ? `<section class="rank-up-forecaster-panel rank-up-forecaster-chart-panel">
       <div class="rank-up-forecaster-panel-heading">
         <div>
           <h3>Forecast chart</h3>
@@ -199,30 +194,32 @@ const buildPopupMarkup = ({ forecastData, samples, locations, targetRankId }) =>
         </div>
       </div>
       <div class="rank-up-forecaster-chart" id="rank-up-forecaster-chart"></div>
-    </section>` : ''}
+    </section>`
+        : ''
+    }
 
     ${buildDetailsPanel({
-    title: 'Forecast models',
-    subtitle: 'Compare each estimate used for the headline ETA',
-    headings: ['Model', 'Rate', 'Time Left', 'ETA'],
-    rows: buildModelRows(forecastData.forecasts),
-    footnote: 'The headline estimate is the median of these models. Hover a model name for how it works.',
-    open: true,
-  })}
+      title: 'Forecast models',
+      subtitle: 'Compare each estimate used for the headline ETA',
+      headings: ['Model', 'Rate', 'Time Left', 'ETA'],
+      rows: buildModelRows(forecastData.forecasts),
+      footnote: 'The headline estimate is the median of these models. Hover a model name for how it works.',
+      open: true,
+    })}
 
     ${buildDetailsPanel({
-    title: 'Wisdom by location',
-    subtitle: 'Where your tracked wisdom gains have come from recently',
-    headings: ['Location', 'Wisdom', 'Hunts', 'Wisdom/Hunt'],
-    rows: buildLocationRows(locations),
-  })}
+      title: 'Wisdom by location',
+      subtitle: 'Where your tracked wisdom gains have come from recently',
+      headings: ['Location', 'Wisdom', 'Hunts', 'Wisdom/Hunt'],
+      rows: buildLocationRows(locations),
+    })}
 
     ${buildDetailsPanel({
-    title: 'Recent samples',
-    subtitle: 'The latest stored snapshots used to build the forecast',
-    headings: ['Date', 'Wisdom', 'Gain', 'Location'],
-    rows: buildHistoryRows(samples),
-  })}
+      title: 'Recent samples',
+      subtitle: 'The latest stored snapshots used to build the forecast',
+      headings: ['Date', 'Wisdom', 'Gain', 'Location'],
+      rows: buildHistoryRows(samples),
+    })}
   </div>`;
 };
 
@@ -248,7 +245,7 @@ const hydratePopup = (targetRankId, forecastData) => {
 
 const getSavedTargetRank = () => {
   const saved = getSetting('rank-up-forecaster.target-rank', null);
-  if (! saved) {
+  if (!saved) {
     return null;
   }
 
@@ -284,13 +281,8 @@ const showForecasterPopup = async (targetRankId = null, refresh = true) => {
 };
 
 const addStatBarListener = () => {
-  const legacyPointsLabel = [...document.querySelectorAll('.hudstatlabel')]
-    .find((label) => ['points', 'rank'].includes(label.textContent.trim().toLowerCase()));
-  const statRows = [
-    document.querySelector('.mousehuntHud-userStat-row.points'),
-    document.querySelector('.mousehuntHud-userStat-row.title'),
-    legacyPointsLabel,
-  ].filter(Boolean);
+  const legacyPointsLabel = [...document.querySelectorAll('.hudstatlabel')].find((label) => ['points', 'rank'].includes(label.textContent.trim().toLowerCase()));
+  const statRows = [document.querySelector('.mousehuntHud-userStat-row.points'), document.querySelector('.mousehuntHud-userStat-row.title'), legacyPointsLabel].filter(Boolean);
 
   statRows.forEach((row) => {
     if (row.dataset.rankUpForecasterListener) {

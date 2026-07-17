@@ -8,7 +8,7 @@ import { uppercaseFirstLetter } from '@utils';
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! (quests.QuestMoussuPicchu && quests.QuestMoussuPicchu.elements)) {
+  if (!(quests.QuestMoussuPicchu && quests.QuestMoussuPicchu.elements)) {
     return '';
   }
 

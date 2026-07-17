@@ -33,6 +33,6 @@ export default async () => {
       id: 'location-huds.table-of-contents-scrambles',
       title: 'Location HUDs - Table of Contents: Show Scrambles quote on blank page',
       default: true,
-    }
+    },
   ];
 };

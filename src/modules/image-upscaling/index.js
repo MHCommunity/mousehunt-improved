@@ -1,15 +1,4 @@
-import {
-  addExternalStyles,
-  addStyles,
-  debounce,
-  doInternalEvent,
-  getData,
-  getFlag,
-  onDialogShow,
-  onEvent,
-  onNavigation,
-  onRequest
-} from '@utils';
+import { addExternalStyles, addStyles, debounce, doInternalEvent, getData, getFlag, onDialogShow, onEvent, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 import viewsStyles from './views.css';
@@ -68,7 +57,7 @@ class ImageUpscaler {
    * @return {string} The stripped URL.
    */
   stripUrl(url) {
-    if (! url) {
+    if (!url) {
       return '';
     }
 
@@ -93,12 +82,12 @@ class ImageUpscaler {
    * @return {string} The mapped URL.
    */
   getMappedUrl(strippedUrl) {
-    if (! strippedUrl) {
+    if (!strippedUrl) {
       return '';
     }
 
     const mappedUrl = this.mapping[strippedUrl];
-    if (! mappedUrl) {
+    if (!mappedUrl) {
       return '';
     }
 
@@ -121,9 +110,7 @@ class ImageUpscaler {
    * @return {string} The hash of the image sources.
    */
   hashImages(items) {
-    return [...items]
-      .map((item) => item.getAttribute('src') || '')
-      .join(',');
+    return [...items].map((item) => item.getAttribute('src') || '').join(',');
   }
 
   /**
@@ -161,7 +148,7 @@ class ImageUpscaler {
    */
   upscaleImageElements() {
     const images = document.querySelectorAll('img');
-    if (! images) {
+    if (!images) {
       return;
     }
 
@@ -210,18 +197,16 @@ class ImageUpscaler {
         if (
           mutation.target &&
           mutation.target.classList &&
-          (
-            mutation.target.classList.contains('huntersHornView__timerState') || // Horn countdown.
+          (mutation.target.classList.contains('huntersHornView__timerState') || // Horn countdown.
             mutation.target.classList.contains('huntersHornView__timer') || // Legacy horn countdown.
-            mutation.target.classList.contains('mousehuntHeaderView-newsTicker') // News ticker.
-          )
+            mutation.target.classList.contains('mousehuntHeaderView-newsTicker')) // News ticker.
         ) {
           shouldUpscale = false;
           break;
         }
       }
 
-      if (! shouldUpscale) {
+      if (!shouldUpscale) {
         return;
       }
 
@@ -288,24 +273,17 @@ class ImageUpscaler {
         'highcharts-axis-labels',
       ]);
 
-      const skipIds = new Set([
-        'mh-improved-cre',
-        'mhhh_flast_message_div',
-      ]);
+      const skipIds = new Set(['mh-improved-cre', 'mhhh_flast_message_div']);
 
-      const skipElements = new Set([
-        'head',
-        'title',
-        'optgroup',
-        'option',
-      ]);
+      const skipElements = new Set(['head', 'title', 'optgroup', 'option']);
 
       for (const mutation of mutations) {
-        if ((mutation.type === 'childList' || mutation.type === 'attributes') && (
-          (mutation.target.classList && [...mutation.target.classList].some((c) => skipClasses.has(c))) ||
-          (mutation.target.id && skipIds.has(mutation.target.id)) ||
-          (mutation.target.nodeName && skipElements.has(mutation.target.nodeName.toLowerCase()))
-        )) {
+        if (
+          (mutation.type === 'childList' || mutation.type === 'attributes') &&
+          ((mutation.target.classList && [...mutation.target.classList].some((c) => skipClasses.has(c))) ||
+            (mutation.target.id && skipIds.has(mutation.target.id)) ||
+            (mutation.target.nodeName && skipElements.has(mutation.target.nodeName.toLowerCase())))
+        ) {
           continue;
         }
 
@@ -326,11 +304,11 @@ class ImageUpscaler {
    */
   async handleUpscalingImages() {
     try {
-      if (! this.observer) {
+      if (!this.observer) {
         await this.start();
       }
 
-      if (! this.isUpscaling) {
+      if (!this.isUpscaling) {
         await this.upscaleImages(document.querySelector('body'));
       }
     } catch (error) {
@@ -346,7 +324,7 @@ class ImageUpscaler {
  * anywhere else.
  */
 const addJournalThemeStyles = () => {
-  if (! document.querySelector('#journalContainer')) {
+  if (!document.querySelector('#journalContainer')) {
     return;
   }
 
@@ -384,7 +362,7 @@ const init = async () => {
   onEvent('mh-improved-init', imageUpscaler.handleUpscalingImages);
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
-  if (! getFlag('no-image-upscaling-journal-themes')) {
+  if (!getFlag('no-image-upscaling-journal-themes')) {
     addJournalThemeStyles();
     onNavigation(addJournalThemeStyles);
   }

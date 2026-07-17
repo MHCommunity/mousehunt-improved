@@ -19,11 +19,11 @@ const getModuleTitle = (module) => module.title || module.name || module.id || '
  * @param {Object} module The experiment module to load.
  */
 const loadExperimentModule = (module) => {
-  if (! module.load || loadedExperimentModules.has(module.id)) {
+  if (!module.load || loadedExperimentModules.has(module.id)) {
     return;
   }
 
-  if (module.showIf && ! module.showIf()) {
+  if (module.showIf && !module.showIf()) {
     return;
   }
 
@@ -39,18 +39,18 @@ const init = () => {
     {
       id: 'better-maps.draggable-highlight',
       title: 'Better Maps: Draggable highlight',
-      load: () => {}
+      load: () => {},
     },
     {
       id: 'better-marketplace.price-history-chart',
       title: 'Better Marketplace: Show Markethunt price history charts',
-      load: () => {}
+      load: () => {},
     },
     {
       id: 'better-inventory.add-trap-sorting',
       title: 'Better Inventory: Add trap sorting',
-      load: () => {}
-    }
+      load: () => {},
+    },
   ];
 
   onlySettings.forEach((module) => {
@@ -64,11 +64,11 @@ const init = () => {
     const aHasColon = aTitle.includes(':');
     const bHasColon = bTitle.includes(':');
 
-    if (aHasColon && ! bHasColon) {
+    if (aHasColon && !bHasColon) {
       return -1;
     }
 
-    if (! aHasColon && bHasColon) {
+    if (!aHasColon && bHasColon) {
       return 1;
     }
 
@@ -93,7 +93,7 @@ const init = () => {
   });
 
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
-    if (! value) {
+    if (!value) {
       return;
     }
 
@@ -117,7 +117,7 @@ export default {
   load: init,
   settings: async () => {
     const moduleSettings = [];
-    const availableModules = modules.filter((module) => ! module.showIf || module.showIf());
+    const availableModules = modules.filter((module) => !module.showIf || module.showIf());
 
     for (const module of availableModules) {
       const settings = module.settings ? await module.settings() : null;

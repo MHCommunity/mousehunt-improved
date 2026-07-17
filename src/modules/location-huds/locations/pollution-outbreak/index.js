@@ -4,14 +4,14 @@ import styles from './styles.css';
 
 const addWidthToPollutinumBar = () => {
   const gauge = document.querySelector('.pollutionOutbreakHUD-scumContainer');
-  if (! gauge) {
+  if (!gauge) {
     return;
   }
 
   const quantityEl = gauge.querySelector('.quantity');
   const maxQuantityEl = gauge.querySelector('.maxQuantity');
 
-  if (! quantityEl || ! maxQuantityEl) {
+  if (!quantityEl || !maxQuantityEl) {
     return;
   }
 

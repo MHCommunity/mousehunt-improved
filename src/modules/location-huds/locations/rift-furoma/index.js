@@ -1,11 +1,4 @@
-import {
-  addHudStyles,
-  formatNumber,
-  makeElement,
-  onTurn,
-  parseNumber,
-  replaceOrAppend
-} from '@utils';
+import { addHudStyles, formatNumber, makeElement, onTurn, parseNumber, replaceOrAppend } from '@utils';
 
 import styles from './styles.css';
 

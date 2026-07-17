@@ -1,15 +1,4 @@
-import {
-  addBodyClass,
-  addIconToMenu,
-  addStyles,
-  getSetting,
-  makeElement,
-  onActivation,
-  onDeactivation,
-  onRequest,
-  onSettingsChange,
-  removeBodyClass
-} from '@utils';
+import { addBodyClass, addIconToMenu, addStyles, getSetting, makeElement, onActivation, onDeactivation, onRequest, onSettingsChange, removeBodyClass } from '@utils';
 
 import settings from './settings';
 
@@ -23,17 +12,17 @@ const MODULE_ID = 'journal-privacy';
  * Apply a class to names in the journal.
  */
 const applyClassToNames = () => {
-  if (! isPrivacyEnabled) {
+  if (!isPrivacyEnabled) {
     return;
   }
 
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
-  if (! entries) {
+  if (!entries) {
     return;
   }
 
   entries.forEach((entry) => {
-    if (! entry || ! entry.textContent) {
+    if (!entry || !entry.textContent) {
       return;
     }
 
@@ -66,12 +55,12 @@ const removeClassFromNames = () => {
   }
 
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
-  if (! entries) {
+  if (!entries) {
     return;
   }
 
   entries.forEach((entry) => {
-    if (! entry || ! entry.textContent) {
+    if (!entry || !entry.textContent) {
       return;
     }
 
@@ -111,7 +100,7 @@ const disablePrivacy = () => {
  * Add the toggle icon to the menu.
  */
 const addIcon = () => {
-  if (! getSetting('journal-privacy.show-toggle-icon', true)) {
+  if (!getSetting('journal-privacy.show-toggle-icon', true)) {
     return;
   }
 
@@ -131,7 +120,7 @@ const addIcon = () => {
      * Toggle the privacy.
      */
     action: () => {
-      isPrivacyEnabled = ! isPrivacyEnabled;
+      isPrivacyEnabled = !isPrivacyEnabled;
 
       if (isPrivacyEnabled) {
         enablePrivacy();
@@ -159,7 +148,7 @@ let isPrivacyEnabled = true;
  * Sync the privacy state with current settings.
  */
 const syncPrivacyState = () => {
-  if (! getSetting(MODULE_ID, false)) {
+  if (!getSetting(MODULE_ID, false)) {
     isPrivacyEnabled = false;
     removeIcon();
     disablePrivacy();
@@ -182,10 +171,7 @@ const syncPrivacyState = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    getSetting('journal-privacy.transparent', false) ? stylesTransparent : styles,
-    iconStyles
-  ], MODULE_ID);
+  addStyles([getSetting('journal-privacy.transparent', false) ? stylesTransparent : styles, iconStyles], MODULE_ID);
 
   syncPrivacyState();
 

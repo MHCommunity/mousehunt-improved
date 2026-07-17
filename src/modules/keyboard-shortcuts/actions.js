@@ -188,7 +188,7 @@ export default () => {
       description: 'Open Favorite Setups',
       action: () => doEvent('mh-improved-toggle-favorite-setups'),
       category: 'trap-setup',
-    }
+    },
   ];
 
   if (hasMiniCRE()) {

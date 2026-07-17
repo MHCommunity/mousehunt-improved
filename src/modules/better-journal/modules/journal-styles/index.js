@@ -9,16 +9,18 @@ const styles = imported;
  * @param {Object} model The journal entry model.
  */
 const cleanBadgeText = (model) => {
-  if (! model.classes.has('badge')) {
+  if (!model.classes.has('badge')) {
     return;
   }
 
-  model.setHtml(model.html
-    .replace('I can view my trophy crowns on my', '')
-    .replace('<a href="https://www.mousehuntgame.com/hunterprofile.php?tab=kings_crowns">hunter profile</a>', '')
-    .replace('<br>', '')
-    .replace('.', '')
-    .trim());
+  model.setHtml(
+    model.html
+      .replace('I can view my trophy crowns on my', '')
+      .replace('<a href="https://www.mousehuntgame.com/hunterprofile.php?tab=kings_crowns">hunter profile</a>', '')
+      .replace('<br>', '')
+      .replace('.', '')
+      .trim()
+  );
 };
 
 /**
@@ -28,19 +30,16 @@ const cleanBadgeText = (model) => {
  */
 const addBadgeClass = (model) => {
   const entry = model.el;
-  if (! model.classes.has('badge')) {
+  if (!model.classes.has('badge')) {
     return;
   }
 
   const badgeType = entry.querySelector('.journalimage img');
-  if (! badgeType) {
+  if (!badgeType) {
     return;
   }
 
-  const badgeTypeClass = badgeType.src
-    .replace('https://www.mousehuntgame.com/images/ui/crowns/crown_', '')
-    .replace('.png', '')
-    .trim();
+  const badgeTypeClass = badgeType.src.replace('https://www.mousehuntgame.com/images/ui/crowns/crown_', '').replace('.png', '').trim();
 
   entry.classList.add(`better-journal-styles-badge-${badgeTypeClass}`);
 };
@@ -51,18 +50,18 @@ const addBadgeClass = (model) => {
  * @param {Object} model The journal entry model.
  */
 const updateRankUpIcon = (model) => {
-  if (! model.classes.has('titlechange')) {
+  if (!model.classes.has('titlechange')) {
     return;
   }
 
   const entry = model.el;
   const rankUp = entry.querySelector('.journalimage img');
-  if (! rankUp) {
+  if (!rankUp) {
     return;
   }
 
   const shield = getUserTitleShield(getUserTitle());
-  if (! shield) {
+  if (!shield) {
     return;
   }
 
@@ -76,11 +75,11 @@ const updateRankUpIcon = (model) => {
  */
 const addTravelEntryToggle = (model) => {
   const entry = model.el;
-  if (! model.classes.has('floatingIslands')) {
+  if (!model.classes.has('floatingIslands')) {
     return;
   }
 
-  if (! (model.classes.has('skyPalaceTravel') || model.classes.has('dirigibleTravel'))) {
+  if (!(model.classes.has('skyPalaceTravel') || model.classes.has('dirigibleTravel'))) {
     return;
   }
 
@@ -101,7 +100,7 @@ const addTravelEntryToggle = (model) => {
  */
 const addGiftEntryToggle = (model) => {
   const entry = model.el;
-  if (! model.classes.has('socialGift-send')) {
+  if (!model.classes.has('socialGift-send')) {
     return;
   }
 

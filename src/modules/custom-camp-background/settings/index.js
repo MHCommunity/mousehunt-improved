@@ -38,14 +38,16 @@ export default async () => {
     },
   ];
 
-  return [{
-    id: 'custom-camp-background',
-    title: 'Custom Camp Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-camp-bg-preview">Preview choices</a></span>',
-    default: [options[0]],
-    settings: {
-      type: 'multi-select',
-      number: 1,
-      options,
+  return [
+    {
+      id: 'custom-camp-background',
+      title: 'Custom Camp Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-camp-bg-preview">Preview choices</a></span>',
+      default: [options[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options,
+      },
     },
-  }];
+  ];
 };

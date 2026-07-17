@@ -1,15 +1,4 @@
-import {
-  abbreviateNumber,
-  formatGold,
-  formatNumber,
-  getSetting,
-  makeElement,
-  makeMathButtons,
-  makeMhButton,
-  parseGold,
-  parseNumber,
-  waitForElement
-} from '@utils';
+import { abbreviateNumber, formatGold, formatNumber, getSetting, makeElement, makeMathButtons, makeMhButton, parseGold, parseNumber, waitForElement } from '@utils';
 
 import { MAX_TRANSACTION_PRICE, calculateTariff, computePriceSteps } from './pricing';
 
@@ -42,7 +31,7 @@ const setOrderQuantity = (quantity) => {
  */
 const getActionType = () => {
   const actionType = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
-  if (! actionType) {
+  if (!actionType) {
     return '';
   }
 
@@ -64,13 +53,11 @@ const getActionType = () => {
  */
 const getBasePrice = (type, itemId) => {
   const view = hg?.views?.MarketplaceView;
-  if (! view) {
+  if (!view) {
     return 0;
   }
 
-  const price = type === 'sell'
-    ? view.getBestBuyPrice?.(itemId)
-    : view.getBestSalePrice?.(itemId);
+  const price = type === 'sell' ? view.getBestBuyPrice?.(itemId) : view.getBestSalePrice?.(itemId);
 
   return price || 0;
 };
@@ -145,7 +132,7 @@ const addQuickPriceLinks = (type, itemId) => {
   // The unit price suggestions live in a per-state container so they only show
   // for the active buy/sell state.
   const container = document.querySelector(`.marketplaceView-item-input.unitPrice .marketplaceView-item-input-suggested .marketplaceView-item-state.${type}`);
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -156,7 +143,7 @@ const addQuickPriceLinks = (type, itemId) => {
 
   const prices = getListingPrices(type);
   const best = prices[0] || getBasePrice(type, itemId);
-  if (! best || best <= 0) {
+  if (!best || best <= 0) {
     return;
   }
 
@@ -222,17 +209,15 @@ const getCurrentQuantity = () => {
  */
 const addQuantityButtons = (type) => {
   const wrapper = document.querySelector('.marketplaceView-item-input.quantity');
-  if (! wrapper || wrapper.querySelector('.mhui-marketplace-quantity-links')) {
+  if (!wrapper || wrapper.querySelector('.mhui-marketplace-quantity-links')) {
     return;
   }
 
   // When selling, reuse the existing (visible) suggested area; when buying the
   // game doesn't add one, so create our own positioned container.
-  let host = type === 'sell'
-    ? wrapper.querySelector('.marketplaceView-item-state.sell .marketplaceView-item-input-suggested')
-    : null;
+  let host = type === 'sell' ? wrapper.querySelector('.marketplaceView-item-state.sell .marketplaceView-item-input-suggested') : null;
 
-  if (! host) {
+  if (!host) {
     host = makeElement('div', ['marketplaceView-item-input-suggested', 'mhui-marketplace-quantity-suggested']);
     wrapper.append(host);
   }
@@ -273,7 +258,7 @@ const addTariffInfo = () => {
   rows.forEach((row) => {
     const priceEl = row.querySelector('.marketplaceView-table-listing-unitPrice a');
     const quantityEl = row.querySelector('.marketplaceView-table-listing-quantity');
-    if (! priceEl || ! quantityEl || quantityEl.dataset.mhuiTariff) {
+    if (!priceEl || !quantityEl || quantityEl.dataset.mhuiTariff) {
       return;
     }
 
@@ -302,7 +287,7 @@ const enhanceItemView = async (itemId, isCurrent) => {
   // Wait for the quick listings to load (the best-price row appears once they
   // have rendered), so the game's best-price helpers have data to work with.
   const listings = await waitForElement('.marketplaceView-item-quickListings .bestPrice');
-  if (! listings) {
+  if (!listings) {
     return;
   }
 
@@ -310,7 +295,7 @@ const enhanceItemView = async (itemId, isCurrent) => {
   // catch a buy/sell toggle on the same item, whose stale run would otherwise
   // duplicate the quantity buttons, price links, and tariff info.
   const currentItem = document.querySelector('.marketplaceView-item[data-item-id]');
-  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && ! isCurrent())) {
+  if (currentItem?.dataset.itemId !== String(itemId) || (isCurrent && !isCurrent())) {
     return;
   }
 
@@ -325,6 +310,4 @@ const enhanceItemView = async (itemId, isCurrent) => {
   addTariffInfo();
 };
 
-export {
-  enhanceItemView
-};
+export { enhanceItemView };

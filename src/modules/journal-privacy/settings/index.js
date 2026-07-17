@@ -14,6 +14,6 @@ export default async () => {
       id: 'journal-privacy.transparent',
       title: 'Hide text, rather than blur',
       default: false,
-    }
+    },
   ];
 };

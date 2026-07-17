@@ -1,19 +1,12 @@
 {
-  "names": [
-    "Fort Rox Map"
-  ],
+  "names": ["Fort Rox Map"],
   "categories": [
     {
       "name": "Night",
       "id": "night",
       "color": "#d0d0d0",
       "color-dark": "#545454",
-      "mice": [
-        "were_alpha",
-        "moonstone_slinger",
-        "mischievous_wereminer",
-        "wealthy_werewarrior"
-      ]
+      "mice": ["were_alpha", "moonstone_slinger", "mischievous_wereminer", "wealthy_werewarrior"]
     },
     {
       "name": "First Light / Utter Darkness",
@@ -21,14 +14,7 @@
       "icon": "/powertypes/arcane.png",
       "color": "#dc8ec7",
       "color-dark": "#7a2e66",
-      "mice": [
-        "arcane_summoner",
-        "cursed_taskmaster",
-        "moonstone_golem",
-        "moonstone_mystic",
-        "night_watcher",
-        "nightfire_wallbreak"
-      ]
+      "mice": ["arcane_summoner", "cursed_taskmaster", "moonstone_golem", "moonstone_mystic", "night_watcher", "nightfire_wallbreak"]
     },
     {
       "name": "Twilight, Midnight, Pitch",
@@ -36,13 +22,7 @@
       "icon": "/powertypes/shadow.png",
       "color": "#84c3ff",
       "color-dark": "#2e557a",
-      "mice": [
-        "good_supply_night",
-        "nightmancer",
-        "reveling_lycanthrope",
-        "werehauler",
-        "wereminer"
-      ]
+      "mice": ["good_supply_night", "nightmancer", "reveling_lycanthrope", "werehauler", "wereminer"]
     },
     {
       "name": "Dawn",
@@ -50,10 +30,7 @@
       "icon": "/powertypes/arcane.png",
       "color": "#f9d65a",
       "color-dark": "#685927",
-      "mice": [
-        "dawn_guardian",
-        "monster_of_the_meteor"
-      ]
+      "mice": ["dawn_guardian", "monster_of_the_meteor"]
     },
     {
       "name": "Day",
@@ -61,13 +38,7 @@
       "icon": "/powertypes/law.png",
       "color": "#ffdb9c",
       "color-dark": "#6f562a",
-      "mice": [
-        "hardworking_hauler",
-        "moonstone_snacker",
-        "moonstone_miner",
-        "good_supply_day",
-        "mischievous_moonstone_miner"
-      ]
+      "mice": ["hardworking_hauler", "moonstone_snacker", "moonstone_miner", "good_supply_day", "mischievous_moonstone_miner"]
     }
   ]
 }

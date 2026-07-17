@@ -1,10 +1,4 @@
-import {
-  getCurrentPage,
-  onDialogHide,
-  onDialogShow,
-  onNavigation,
-  setMultipleTimeout
-} from '@utils';
+import { getCurrentPage, onDialogHide, onDialogShow, onNavigation, setMultipleTimeout } from '@utils';
 
 /**
  * Fix the item page.
@@ -15,14 +9,14 @@ const fixItemPage = () => {
   }
 
   const currentType = document.querySelector('.itemViewContainer');
-  if (! currentType) {
+  if (!currentType) {
     return;
   }
 
   // get the classlist as a string.
   const classes = currentType.classList.toString();
   const type = classes.replace('itemViewContainer ', '').split(' ');
-  if (! type || ! type[0]) {
+  if (!type || !type[0]) {
     return;
   }
 
@@ -31,19 +25,19 @@ const fixItemPage = () => {
   }
 
   const link = document.querySelector(`.itemView-header-classification-link.${type[0]} a`);
-  if (! link) {
+  if (!link) {
     return;
   }
 
   // get the onclick attribute, remove 'hg.views.ItemView.hide()', then set the onclick attribute
   const onclick = link.getAttribute('onclick');
-  if (! onclick) {
+  if (!onclick) {
     return;
   }
 
   // get the page title and tab via regex
   const page = onclick.match(/setPage\('(.+?)'.+tab:'(.+)'/);
-  if (! page) {
+  if (!page) {
     return;
   }
 
@@ -77,7 +71,7 @@ const fixItemPageReceiver = () => {
   const params = new URLSearchParams(window.location.search);
   const itemId = params.get('viewing-item-id');
 
-  if (! itemId) {
+  if (!itemId) {
     return;
   }
 
@@ -99,7 +93,7 @@ const updateUrlForItemDialog = () => {
 
   setMultipleTimeout(() => {
     const itemView = document.querySelector('.itemViewContainer');
-    if (! itemView) {
+    if (!itemView) {
       return;
     }
 

@@ -1,13 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  hasSeenOnboardingStep,
-  makeElement,
-  onEvent,
-  saveOnboardingStep,
-  saveSetting,
-  setPage
-} from '@utils';
+import { addStyles, getSetting, hasSeenOnboardingStep, makeElement, onEvent, saveOnboardingStep, saveSetting, setPage } from '@utils';
 
 import styles from './styles.css';
 
@@ -30,17 +21,14 @@ const isWelcomePreview = () => {
  * @return {boolean} Whether the welcome should be shown.
  */
 const shouldShowWelcome = () => {
-  return isWelcomePreview() || (
-    getSetting('onboarding.fresh-install', false) &&
-    ! hasSeenOnboardingStep(WELCOME_STEP)
-  );
+  return isWelcomePreview() || (getSetting('onboarding.fresh-install', false) && !hasSeenOnboardingStep(WELCOME_STEP));
 };
 
 /**
  * Show the first-install welcome panel.
  */
 const showWelcome = () => {
-  if (! shouldShowWelcome()) {
+  if (!shouldShowWelcome()) {
     return;
   }
 
@@ -75,7 +63,7 @@ const showWelcome = () => {
   document.body.append(overlay);
 
   const completeWelcome = () => {
-    if (! isWelcomePreview()) {
+    if (!isWelcomePreview()) {
       saveOnboardingStep(WELCOME_STEP);
       saveSetting('onboarding.fresh-install', false);
     }
@@ -102,7 +90,7 @@ const showWelcome = () => {
     if (event.shiftKey && dialog.ownerDocument.activeElement === first) {
       event.preventDefault();
       last.focus();
-    } else if (! event.shiftKey && dialog.ownerDocument.activeElement === last) {
+    } else if (!event.shiftKey && dialog.ownerDocument.activeElement === last) {
       event.preventDefault();
       first.focus();
     }
@@ -132,7 +120,7 @@ const showWelcome = () => {
 };
 
 const init = async () => {
-  if (! shouldShowWelcome()) {
+  if (!shouldShowWelcome()) {
     return;
   }
 

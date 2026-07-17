@@ -78,7 +78,7 @@ const exportDataPopup = async () => {
       id: 'favorite-setups',
       name: 'Favorite Setups',
       callback: exportFavoriteSetups,
-    }
+    },
   ];
 
   if (hasFavoriteSetupsUserscript()) {

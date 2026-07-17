@@ -1,16 +1,10 @@
-import {
-  addOnboardingMessage,
-  addStyles,
-  getSetting,
-  makeElement,
-  saveSetting
-} from '@utils';
+import { addOnboardingMessage, addStyles, getSetting, makeElement, saveSetting } from '@utils';
 
 import styles from './styles.css';
 
 const addToggleListener = (wrapper) => {
   const container = document.querySelector('.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer');
-  if (! container || ! wrapper) {
+  if (!container || !wrapper) {
     return;
   }
 
@@ -47,7 +41,7 @@ const addToggleListener = (wrapper) => {
 
 const reformatRonzaView = (wrapper) => {
   const main = wrapper.querySelector('.headsUpDisplayRonzasTravelingShoppeView__contentContainer');
-  if (! main) {
+  if (!main) {
     return;
   }
 
@@ -65,11 +59,11 @@ const reformatRonzaView = (wrapper) => {
     wrapper.querySelector('.headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.fiery_fontina_ingredient_stat_item'), // Fire Worm.
     wrapper.querySelector('.headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.dragonbane_trinket'), // Dragonbane Charms.
     wrapper.querySelector('.headsUpDisplayRonzasTravelingShoppeView__altInventoryBlock[data-item-type="dragonhide_sliver_stat_item"]'), // Slivers.
-    ...baits
+    ...baits,
   ];
 
   toClone.forEach((item) => {
-    if (item && ! item.classList.contains('ronza-miniview__item')) {
+    if (item && !item.classList.contains('ronza-miniview__item')) {
       const clone = item.cloneNode(true);
       clone.classList.add('ronza-miniview__item');
       newContainer.append(clone);
@@ -105,7 +99,4 @@ const ronzaLocation = async () => {
   }
 };
 
-export {
-  ronzaGlobal,
-  ronzaLocation
-};
+export { ronzaGlobal, ronzaLocation };

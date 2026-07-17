@@ -10,5 +10,5 @@ export default {
     migrateSetting('wisdom-in-stat-bar-auto-refresh', 'wisdom-in-stat-bar.auto-refresh');
 
     migrateFlag('rankup-forecaster', 'userscript-styles-no-rankup-forecaster');
-  }
+  },
 };

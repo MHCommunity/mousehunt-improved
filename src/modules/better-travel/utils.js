@@ -22,7 +22,4 @@ const saveTravelSetting = (settingName, value) => {
   saveSetting(`better-travel.${settingName}`, value);
 };
 
-export {
-  getTravelSetting,
-  saveTravelSetting
-};
+export { getTravelSetting, saveTravelSetting };

@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! (quests.QuestRiftWhiskerWoods && quests.QuestRiftWhiskerWoods.zones)) {
+  if (!(quests.QuestRiftWhiskerWoods && quests.QuestRiftWhiskerWoods.zones)) {
     return '';
   }
 

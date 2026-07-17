@@ -9,17 +9,17 @@ let start;
  */
 const spinNeedle = () => {
   const needle = document.querySelector('.windmillHud-needle');
-  if (! needle) {
+  if (!needle) {
     return;
   }
 
   const speed = document.querySelector('.windmillHud-speed');
-  if (! speed) {
+  if (!speed) {
     return;
   }
 
   start = needle.style.transform.match(/rotate\(([^)]+)\)/);
-  if (! start.length > 1) {
+  if (!start.length > 1) {
     return;
   }
 
@@ -29,7 +29,7 @@ const spinNeedle = () => {
   let spins = 1;
   speed.addEventListener('click', () => {
     needle.style.transition = 'transform 0.4s';
-    needle.style.transform = `rotate(${start + (360 * spins)}deg)`;
+    needle.style.transform = `rotate(${start + 360 * spins}deg)`;
 
     spins += 1;
 

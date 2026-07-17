@@ -61,21 +61,9 @@ const exportJournalLogs = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: [
-        'ID',
-        'Date',
-        'Duration',
-        'Catches',
-        'FTC',
-        'FTA',
-        'Gold',
-        'Points',
-      ]
+      headers: ['ID', 'Date', 'Duration', 'Catches', 'FTC', 'FTA', 'Gold', 'Points'],
     },
   });
 };
 
-export {
-  exportJournalLogs,
-  hasJournalLogs
-};
+export { exportJournalLogs, hasJournalLogs };

@@ -8,14 +8,11 @@ import { getSetting } from './settings';
  * @return {boolean} Whether debug logs should be displayed.
  */
 const shouldLogDebug = (context) => {
-  if (! getSetting('debug', false)) {
+  if (!getSetting('debug', false)) {
     return false;
   }
 
-  return getSetting('debug.all', false) ||
-    getSetting(`debug.${context}`, false) ||
-    getGlobal('mh-improved-updating') ||
-    getGlobal('mh-improved-debug');
+  return getSetting('debug.all', false) || getSetting(`debug.${context}`, false) || getGlobal('mh-improved-updating') || getGlobal('mh-improved-debug');
 };
 
 /**
@@ -32,12 +29,7 @@ const shouldLogDebug = (context) => {
 const debug = (message, ...args) => {
   if (shouldLogDebug('module')) {
     // eslint-disable-next-line no-console
-    console.log(
-      `%cMH Improved%c: ${message}`,
-      'color: #90588c; font-weight: 900',
-      'color: inherit; font-weight: inherit',
-      ...args
-    );
+    console.log(`%cMH Improved%c: ${message}`, 'color: #90588c; font-weight: 900', 'color: inherit; font-weight: inherit', ...args);
   }
 };
 
@@ -56,17 +48,8 @@ const debug = (message, ...args) => {
 const debuglog = (module, message, ...args) => {
   if (shouldLogDebug(module)) {
     // eslint-disable-next-line no-console
-    console.log(
-      `%cMH Improved %c${module}%c ${message}`,
-      'color: #90588c; font-weight: 900',
-      'color: #90588c; font-weight: 400',
-      'color: inherit; font-weight: inherit',
-      ...args
-    );
+    console.log(`%cMH Improved %c${module}%c ${message}`, 'color: #90588c; font-weight: 900', 'color: #90588c; font-weight: 400', 'color: inherit; font-weight: inherit', ...args);
   }
 };
 
-export {
-  debug,
-  debuglog
-};
+export { debug, debuglog };

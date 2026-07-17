@@ -35,7 +35,7 @@ const exportRankupForecasterData = () => {
  */
 const exportRankupForecasterDataAsCsv = (append = null) => {
   const time = localStorage.getItem('Chro-forecaster-time');
-  if (! time) {
+  if (!time) {
     showErrorMessage({
       message: 'No rank-up forecaster history was found to export.',
       append,
@@ -97,7 +97,7 @@ const importRankupForecasterData = (append = null) => {
 
   input.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    if (! file) {
+    if (!file) {
       return;
     }
 
@@ -146,14 +146,14 @@ const importRankupForecasterData = (append = null) => {
  */
 const addRankupForecasterButtons = () => {
   const forecastOpen = document.querySelector('.mousehuntHud-userStat-row.points');
-  if (! forecastOpen) {
+  if (!forecastOpen) {
     return;
   }
 
   forecastOpen.addEventListener('click', () => {
     setTimeout(() => {
       const rankup = document.querySelector('#forecaster-content-div');
-      if (! rankup) {
+      if (!rankup) {
         return;
       }
 
@@ -185,14 +185,17 @@ const addRankupForecasterButtons = () => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(`.mh-ui-forecaster-buttons {
+  addStyles(
+    `.mh-ui-forecaster-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     justify-content: space-around;
     max-width: 180px;
     margin-top: 10px;
-  }`, 'rank-up-forecaster');
+  }`,
+    'rank-up-forecaster'
+  );
 
   addRankupForecasterButtons();
 };

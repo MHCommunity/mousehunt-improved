@@ -1,14 +1,7 @@
 import Highcharts from 'highcharts';
 import 'highcharts/modules/stock'; // eslint-disable-line import/no-unassigned-import, sort-imports
 
-import {
-  cacheGet,
-  cacheSet,
-  debuglog,
-  getSetting,
-  isDarkMode,
-  makeElement
-} from '@utils';
+import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeElement } from '@utils';
 
 /**
  * Price history charts for the marketplace item view, using data from
@@ -43,7 +36,7 @@ const utcDateToMillis = (dateStr) => {
 const fetchMarkethunt = async (path) => {
   try {
     const response = await fetch(`https://${apiDomain}/${path}?plugin_ver=mhi-${mhImprovedVersion}`);
-    if (! response.ok) {
+    if (!response.ok) {
       return null;
     }
 
@@ -67,7 +60,7 @@ const getEvents = async () => {
   }
 
   const events = await fetchMarkethunt('events');
-  if (! events || ! Array.isArray(events)) {
+  if (!events || !Array.isArray(events)) {
     return [];
   }
 
@@ -142,16 +135,16 @@ const toPlotBands = (events, colors, minTimestamp = null, maxTimestamp = null) =
     color: colors.eventBand,
     label: showLabels
       ? {
-        text: event.short_name,
-        rotation: 270,
-        textAlign: 'right',
-        x: 4,
-        y: 5,
-        style: {
-          color: colors.faded,
-          fontSize: '10px',
-        },
-      }
+          text: event.short_name,
+          rotation: 270,
+          textAlign: 'right',
+          x: 4,
+          y: 5,
+          style: {
+            color: colors.faded,
+            fontSize: '10px',
+          },
+        }
       : null,
   }));
 };
@@ -276,7 +269,7 @@ const getXAxisOptions = (plotBands, colors, minRange = dayInMs) => {
     },
     dateTimeLabelFormats: {
       day: '%b %e',
-      week: '%b %e, \'%y',
+      week: "%b %e, '%y",
       month: '%b %Y',
       year: '%Y',
     },
@@ -358,182 +351,188 @@ const renderPriceChart = (itemId, container, marketData, plotBands, colors) => {
     dailySbPrices.push([date, Number.isFinite(sbPrice) && sbPrice > 0 ? sbPrice : null]);
   });
 
-  return Highcharts.stockChart(container, Highcharts.merge(getBaseChartOptions(colors), {
-    plotOptions: {
-      series: {
-        dataGrouping: {
-          // SUPER|brie+ has enough history that grouping keeps it readable.
-          enabled: 114 === Number(itemId),
-          units: [['day', [1]], ['week', [1]]],
-          groupPixelWidth: 3,
+  return Highcharts.stockChart(
+    container,
+    Highcharts.merge(getBaseChartOptions(colors), {
+      plotOptions: {
+        series: {
+          dataGrouping: {
+            // SUPER|brie+ has enough history that grouping keeps it readable.
+            enabled: 114 === Number(itemId),
+            units: [
+              ['day', [1]],
+              ['week', [1]],
+            ],
+            groupPixelWidth: 3,
+          },
         },
       },
-    },
-    rangeSelector: {
-      buttons: [
-        { type: 'month', count: 1, text: '1M' },
-        { type: 'month', count: 3, text: '3M' },
-        { type: 'month', count: 6, text: '6M' },
-        { type: 'year', count: 1, text: '1Y' },
-        { type: 'all', text: 'All' },
+      rangeSelector: {
+        buttons: [
+          { type: 'month', count: 1, text: '1M' },
+          { type: 'month', count: 3, text: '3M' },
+          { type: 'month', count: 6, text: '6M' },
+          { type: 'year', count: 1, text: '1Y' },
+          { type: 'all', text: 'All' },
+        ],
+        selected: 3,
+      },
+      tooltip: { xDateFormat: '%b %e, %Y' },
+      xAxis: getXAxisOptions(plotBands, colors, 7 * dayInMs),
+      yAxis: [
+        {
+          alignTicks: false,
+          startOnTick: false,
+          endOnTick: false,
+          crosshair: {
+            dashStyle: 'ShortDot',
+            color: colors.crosshair,
+          },
+          gridLineColor: colors.grid,
+          labels: {
+            /**
+             * Format the gold axis labels.
+             *
+             * @return {string} The formatted label.
+             */
+            formatter() {
+              return `${this.value.toLocaleString()}g`;
+            },
+            style: {
+              color: colors.text,
+              fontSize: '10px',
+            },
+            x: -8,
+            y: 3,
+          },
+          opposite: false,
+          showLastLabel: true,
+        },
+        {
+          alignTicks: false,
+          endOnTick: false,
+          gridLineWidth: 0,
+          startOnTick: false,
+          visible: false,
+          labels: {
+            /**
+             * Format the SB axis labels.
+             *
+             * @return {string} The formatted label.
+             */
+            formatter() {
+              return `${this.value.toLocaleString()} SB`;
+            },
+            style: {
+              color: colors.sb,
+              fontSize: '10px',
+            },
+            x: 5,
+            y: 3,
+          },
+          opposite: true,
+          showLastLabel: true,
+        },
+        getSubAxisOptions(),
       ],
-      selected: 3,
-    },
-    tooltip: { xDateFormat: '%b %e, %Y' },
-    xAxis: getXAxisOptions(plotBands, colors, 7 * dayInMs),
-    yAxis: [
-      {
-        alignTicks: false,
-        startOnTick: false,
-        endOnTick: false,
-        crosshair: {
-          dashStyle: 'ShortDot',
-          color: colors.crosshair,
-        },
-        gridLineColor: colors.grid,
-        labels: {
-          /**
-           * Format the gold axis labels.
-           *
-           * @return {string} The formatted label.
-           */
-          formatter() {
-            return `${this.value.toLocaleString()}g`;
+      series: [
+        {
+          color: colors.price,
+          data: dailyPrices,
+          dataGrouping: {
+            approximation: 'average',
           },
-          style: {
-            color: colors.text,
-            fontSize: '10px',
+          fillOpacity: 0.08,
+          id: 'dailyPrice',
+          lineWidth: 2,
+          marker: { states: { hover: { lineWidth: 0 } } },
+          name: 'Average price',
+          states: getLineHoverStates(),
+          tooltip: {
+            /**
+             * Format the price point tooltip.
+             *
+             * @return {string} The tooltip markup.
+             */
+            pointFormatter() {
+              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString()}g</b><br/>`;
+            },
           },
-          x: -8,
-          y: 3,
+          type: 'area',
+          yAxis: 0,
+          zIndex: 1,
         },
-        opposite: false,
-        showLastLabel: true,
-      },
-      {
-        alignTicks: false,
-        endOnTick: false,
-        gridLineWidth: 0,
-        startOnTick: false,
-        visible: false,
-        labels: {
-          /**
-           * Format the SB axis labels.
-           *
-           * @return {string} The formatted label.
-           */
-          formatter() {
-            return `${this.value.toLocaleString()} SB`;
+        {
+          borderWidth: 0,
+          color: colors.volume,
+          data: dailyVolumes,
+          dataGrouping: {
+            approximation: 'sum',
           },
-          style: {
-            color: colors.sb,
-            fontSize: '10px',
+          groupPadding: 0,
+          name: 'Volume',
+          pointPadding: 0,
+          tooltip: {
+            /**
+             * Format the volume point tooltip.
+             *
+             * @return {string} The tooltip markup.
+             */
+            pointFormatter() {
+              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y ? this.y.toLocaleString() : 'n/a'}</b><br/>`;
+            },
           },
-          x: 5,
-          y: 3,
+          type: 'column',
+          yAxis: 2,
+          zIndex: 0,
         },
-        opposite: true,
-        showLastLabel: true,
-      },
-      getSubAxisOptions(),
-    ],
-    series: [
-      {
-        color: colors.price,
-        data: dailyPrices,
-        dataGrouping: {
-          approximation: 'average',
-        },
-        fillOpacity: 0.08,
-        id: 'dailyPrice',
-        lineWidth: 2,
-        marker: { states: { hover: { lineWidth: 0 } } },
-        name: 'Average price',
-        states: getLineHoverStates(),
-        tooltip: {
-          /**
-           * Format the price point tooltip.
-           *
-           * @return {string} The tooltip markup.
-           */
-          pointFormatter() {
-            return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString()}g</b><br/>`;
+        {
+          color: colors.sb,
+          data: dailySbPrices,
+          dataGrouping: {
+            approximation: 'average',
           },
-        },
-        type: 'area',
-        yAxis: 0,
-        zIndex: 1,
-      },
-      {
-        borderWidth: 0,
-        color: colors.volume,
-        data: dailyVolumes,
-        dataGrouping: {
-          approximation: 'sum',
-        },
-        groupPadding: 0,
-        name: 'Volume',
-        pointPadding: 0,
-        tooltip: {
-          /**
-           * Format the volume point tooltip.
-           *
-           * @return {string} The tooltip markup.
-           */
-          pointFormatter() {
-            return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y ? this.y.toLocaleString() : 'n/a'}</b><br/>`;
+          events: {
+            hide() {
+              this.chart.yAxis[1].update({ visible: false }, false);
+              this.chart.redraw();
+            },
+            show() {
+              this.chart.yAxis[1].update({ visible: true }, false);
+              this.chart.redraw();
+            },
           },
-        },
-        type: 'column',
-        yAxis: 2,
-        zIndex: 0,
-      },
-      {
-        color: colors.sb,
-        data: dailySbPrices,
-        dataGrouping: {
-          approximation: 'average',
-        },
-        events: {
-          hide() {
-            this.chart.yAxis[1].update({ visible: false }, false);
-            this.chart.redraw();
-          },
-          show() {
-            this.chart.yAxis[1].update({ visible: true }, false);
-            this.chart.redraw();
-          },
-        },
-        id: 'sbi',
-        lineWidth: 1.5,
-        marker: { states: { hover: { lineWidth: 0 } } },
-        name: 'SB price',
-        states: getLineHoverStates(),
-        tooltip: {
-          /**
-           * Format the SB price point tooltip.
-           *
-           * @return {string} The tooltip markup.
-           */
-          pointFormatter() {
-            let digits = 3;
-            if (this.y >= 1000) {
-              digits = 0;
-            } else if (this.y >= 100) {
-              digits = 1;
-            } else if (this.y >= 10) {
-              digits = 2;
-            }
+          id: 'sbi',
+          lineWidth: 1.5,
+          marker: { states: { hover: { lineWidth: 0 } } },
+          name: 'SB price',
+          states: getLineHoverStates(),
+          tooltip: {
+            /**
+             * Format the SB price point tooltip.
+             *
+             * @return {string} The tooltip markup.
+             */
+            pointFormatter() {
+              let digits = 3;
+              if (this.y >= 1000) {
+                digits = 0;
+              } else if (this.y >= 100) {
+                digits = 1;
+              } else if (this.y >= 10) {
+                digits = 2;
+              }
 
-            return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits })} SB</b><br/>`;
+              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits })} SB</b><br/>`;
+            },
           },
+          visible: false,
+          yAxis: 1,
+          zIndex: 2,
         },
-        visible: false,
-        yAxis: 1,
-        zIndex: 2,
-      },
-    ],
-  }));
+      ],
+    })
+  );
 };
 
 /**
@@ -570,119 +569,126 @@ const renderStockChart = (container, stockData, plotBands, colors) => {
     supplyData.push([dataPoint.timestamp, Number.isFinite(supply) ? supply : null]);
   });
 
-  return Highcharts.stockChart(container, Highcharts.merge(getBaseChartOptions(colors), {
-    plotOptions: {
-      series: {
-        dataGrouping: {
-          enabled: true,
-          units: [['hour', [2, 4, 6]], ['day', [1]], ['week', [1]]],
-          groupPixelWidth: 2,
-          dateTimeLabelFormats: {
-            hour: ['%b %e, %Y %H:%M UTC', '%b %e, %Y %H:%M UTC'],
-            day: ['%b %e, %Y'],
+  return Highcharts.stockChart(
+    container,
+    Highcharts.merge(getBaseChartOptions(colors), {
+      plotOptions: {
+        series: {
+          dataGrouping: {
+            enabled: true,
+            units: [
+              ['hour', [2, 4, 6]],
+              ['day', [1]],
+              ['week', [1]],
+            ],
+            groupPixelWidth: 2,
+            dateTimeLabelFormats: {
+              hour: ['%b %e, %Y %H:%M UTC', '%b %e, %Y %H:%M UTC'],
+              day: ['%b %e, %Y'],
+            },
           },
         },
       },
-    },
-    rangeSelector: {
-      buttons: [
-        { type: 'day', count: 7, text: '7D' },
-        { type: 'month', count: 1, text: '1M' },
-        { type: 'month', count: 3, text: '3M' },
-        { type: 'month', count: 6, text: '6M' },
-        { type: 'year', count: 1, text: '1Y' },
-        { type: 'all', text: 'All' },
+      rangeSelector: {
+        buttons: [
+          { type: 'day', count: 7, text: '7D' },
+          { type: 'month', count: 1, text: '1M' },
+          { type: 'month', count: 3, text: '3M' },
+          { type: 'month', count: 6, text: '6M' },
+          { type: 'year', count: 1, text: '1Y' },
+          { type: 'all', text: 'All' },
+        ],
+        selected: 1,
+      },
+      tooltip: { xDateFormat: '%b %e, %Y %H:%M UTC' },
+      xAxis: getXAxisOptions(plotBands, colors),
+      yAxis: [
+        {
+          alignTicks: false,
+          endOnTick: false,
+          gridLineColor: colors.grid,
+          startOnTick: false,
+          labels: {
+            /**
+             * Format the gold axis labels.
+             *
+             * @return {string} The formatted label.
+             */
+            formatter() {
+              return `${this.value.toLocaleString()}g`;
+            },
+            style: {
+              color: colors.text,
+              fontSize: '10px',
+            },
+            x: -8,
+            y: 3,
+          },
+          opposite: false,
+          showLastLabel: true,
+        },
+        getSubAxisOptions(),
       ],
-      selected: 1,
-    },
-    tooltip: { xDateFormat: '%b %e, %Y %H:%M UTC' },
-    xAxis: getXAxisOptions(plotBands, colors),
-    yAxis: [
-      {
-        alignTicks: false,
-        endOnTick: false,
-        gridLineColor: colors.grid,
-        startOnTick: false,
-        labels: {
-          /**
-           * Format the gold axis labels.
-           *
-           * @return {string} The formatted label.
-           */
-          formatter() {
-            return `${this.value.toLocaleString()}g`;
+      series: [
+        {
+          color: colors.ask,
+          data: askData,
+          dataGrouping: {
+            approximation: 'average',
           },
-          style: {
-            color: colors.text,
-            fontSize: '10px',
+          id: 'ask',
+          lineWidth: 1.5,
+          marker: { states: { hover: { lineWidth: 0 } } },
+          name: 'Ask (sellers)',
+          states: getLineHoverStates(),
+          tooltip: { pointFormatter: goldPointFormatter },
+          yAxis: 0,
+          zIndex: 1,
+        },
+        {
+          color: colors.bid,
+          data: bidData,
+          dataGrouping: {
+            approximation: 'average',
           },
-          x: -8,
-          y: 3,
+          id: 'bid',
+          lineWidth: 1.5,
+          marker: { states: { hover: { lineWidth: 0 } } },
+          name: 'Bid (buyers)',
+          states: getLineHoverStates(),
+          tooltip: { pointFormatter: goldPointFormatter },
+          yAxis: 0,
+          zIndex: 2,
         },
-        opposite: false,
-        showLastLabel: true,
-      },
-      getSubAxisOptions(),
-    ],
-    series: [
-      {
-        color: colors.ask,
-        data: askData,
-        dataGrouping: {
-          approximation: 'average',
-        },
-        id: 'ask',
-        lineWidth: 1.5,
-        marker: { states: { hover: { lineWidth: 0 } } },
-        name: 'Ask (sellers)',
-        states: getLineHoverStates(),
-        tooltip: { pointFormatter: goldPointFormatter },
-        yAxis: 0,
-        zIndex: 1,
-      },
-      {
-        color: colors.bid,
-        data: bidData,
-        dataGrouping: {
-          approximation: 'average',
-        },
-        id: 'bid',
-        lineWidth: 1.5,
-        marker: { states: { hover: { lineWidth: 0 } } },
-        name: 'Bid (buyers)',
-        states: getLineHoverStates(),
-        tooltip: { pointFormatter: goldPointFormatter },
-        yAxis: 0,
-        zIndex: 2,
-      },
-      {
-        color: colors.supply,
-        data: supplyData,
-        dataGrouping: {
-          approximation: 'average',
-        },
-        fillOpacity: 0.15,
-        id: 'supply',
-        lineWidth: 1.5,
-        marker: { states: { hover: { lineWidth: 0 } } },
-        name: 'Supply',
-        states: getLineHoverStates(),
-        tooltip: {
-          /**
-           * Format the supply point tooltip.
-           *
-           * @return {string} The tooltip markup.
-           */
-          pointFormatter() {
-            return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString(undefined, { maximumFractionDigits: 0 })}</b><br/>`;
+        {
+          color: colors.supply,
+          data: supplyData,
+          dataGrouping: {
+            approximation: 'average',
           },
+          fillOpacity: 0.15,
+          id: 'supply',
+          lineWidth: 1.5,
+          marker: { states: { hover: { lineWidth: 0 } } },
+          name: 'Supply',
+          states: getLineHoverStates(),
+          tooltip: {
+            /**
+             * Format the supply point tooltip.
+             *
+             * @return {string} The tooltip markup.
+             */
+            pointFormatter() {
+              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString(undefined, { maximumFractionDigits: 0 })}</b><br/>`;
+            },
+          },
+          type: 'area',
+          yAxis: 1,
+          zIndex: 0,
         },
-        type: 'area',
-        yAxis: 1,
-        zIndex: 0,
-      },
-    ],
-  }));
+      ],
+    })
+  );
 };
 
 /**
@@ -711,36 +717,28 @@ const destroyCharts = () => {
  */
 const showStockChart = async (itemId, area) => {
   const container = area.querySelector('.mhui-marketplace-chart-stock');
-  if (! container || stockChart || area.dataset.stockLoading) {
+  if (!container || stockChart || area.dataset.stockLoading) {
     return;
   }
 
   area.dataset.stockLoading = 'true';
   makeElement('div', 'mhui-marketplace-chart-loading', 'Loading bid & ask history…', container);
 
-  const [response, events] = await Promise.all([
-    fetchMarkethunt(`items/${itemId}/stock`),
-    getEvents(),
-  ]);
+  const [response, events] = await Promise.all([fetchMarkethunt(`items/${itemId}/stock`), getEvents()]);
 
   delete area.dataset.stockLoading;
 
-  if (! area.isConnected) {
+  if (!area.isConnected) {
     return;
   }
 
-  if (! response?.stock_data?.length) {
+  if (!response?.stock_data?.length) {
     container.textContent = 'No bid & ask history available for this item.';
     return;
   }
 
   const colors = getColors();
-  stockChart = renderStockChart(
-    container,
-    response.stock_data,
-    toPlotBands(events, colors, response.stock_data[0].timestamp, response.stock_data.at(-1).timestamp),
-    colors
-  );
+  stockChart = renderStockChart(container, response.stock_data, toPlotBands(events, colors, response.stock_data[0].timestamp, response.stock_data.at(-1).timestamp), colors);
 };
 
 /**
@@ -752,7 +750,7 @@ const showStockChart = async (itemId, area) => {
 const addPriceChart = async (itemId) => {
   const item = document.querySelector('.marketplaceView-item[data-item-id]');
   const description = item?.querySelector(':scope > .marketplaceView-item-description');
-  if (! item || ! description) {
+  if (!item || !description) {
     return;
   }
 
@@ -767,7 +765,7 @@ const addPriceChart = async (itemId) => {
 
   destroyCharts();
 
-  if (! zoomLabelHidden) {
+  if (!zoomLabelHidden) {
     // Hide the range selector's "Zoom" label; it can only be set globally.
     Highcharts.setOptions({ lang: { rangeSelectorZoom: '' } });
     zoomLabelHidden = true;
@@ -811,17 +809,14 @@ const addPriceChart = async (itemId) => {
 
   description.before(area);
 
-  const [response, events] = await Promise.all([
-    fetchMarkethunt(`items/${itemId}`),
-    getEvents(),
-  ]);
+  const [response, events] = await Promise.all([fetchMarkethunt(`items/${itemId}`), getEvents()]);
 
-  if (! area.isConnected || area.dataset.itemId !== String(itemId)) {
+  if (!area.isConnected || area.dataset.itemId !== String(itemId)) {
     return;
   }
 
   const priceContainer = area.querySelector('.mhui-marketplace-chart-price');
-  if (! response?.market_data?.length) {
+  if (!response?.market_data?.length) {
     priceContainer.textContent = 'No price history available for this item.';
     return;
   }
@@ -831,16 +826,9 @@ const addPriceChart = async (itemId) => {
     itemId,
     priceContainer,
     response.market_data,
-    toPlotBands(
-      events,
-      colors,
-      utcDateToMillis(response.market_data[0].date),
-      utcDateToMillis(response.market_data.at(-1).date)
-    ),
+    toPlotBands(events, colors, utcDateToMillis(response.market_data[0].date), utcDateToMillis(response.market_data.at(-1).date)),
     colors
   );
 };
 
-export {
-  addPriceChart
-};
+export { addPriceChart };

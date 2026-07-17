@@ -15,7 +15,7 @@ const createLocationHudRuntime = () => {
   let activeKey = null;
 
   const deactivate = () => {
-    if (! activeKey) {
+    if (!activeKey) {
       return;
     }
 
@@ -33,9 +33,9 @@ const createLocationHudRuntime = () => {
     }
 
     let active = lifecycles.get(key);
-    const isFirstActivation = ! active;
+    const isFirstActivation = !active;
 
-    if (! active) {
+    if (!active) {
       active = { lifecycle: createLifecycle(`location-hud:${key}`) };
       lifecycles.set(key, active);
     }

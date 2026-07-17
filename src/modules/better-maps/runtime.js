@@ -1,10 +1,4 @@
-const MAP_RENDER_STAGES = [
-  'structure',
-  'state-classes',
-  'navigation',
-  'content',
-  'interactions',
-];
+const MAP_RENDER_STAGES = ['structure', 'state-classes', 'navigation', 'content', 'interactions'];
 
 /**
  * Create the ordered Better Maps render runtime.
@@ -36,7 +30,7 @@ const createMapRuntime = (dependencies = {}) => {
     const root = getRoot();
     const content = root?.querySelector('.treasureMapRootView-content');
     const mapView = content?.querySelector('.treasureMapView');
-    return root && content && mapView && ! content.classList.contains('loading') ? { root, content } : null;
+    return root && content && mapView && !content.classList.contains('loading') ? { root, content } : null;
   };
 
   const disconnectObserver = () => {
@@ -83,7 +77,7 @@ const createMapRuntime = (dependencies = {}) => {
   };
 
   const waitUntilReady = () => {
-    if (observer || ! document.body) {
+    if (observer || !document.body) {
       return;
     }
 
@@ -115,7 +109,7 @@ const createMapRuntime = (dependencies = {}) => {
     }
 
     const ready = isReady();
-    if (! ready) {
+    if (!ready) {
       waitUntilReady();
       return;
     }
@@ -135,7 +129,7 @@ const createMapRuntime = (dependencies = {}) => {
     try {
       for (const stage of MAP_RENDER_STAGES) {
         for (const { callback, id } of stages.get(stage)) {
-          if (! model.isCurrent()) {
+          if (!model.isCurrent()) {
             return;
           }
 
@@ -156,7 +150,7 @@ const createMapRuntime = (dependencies = {}) => {
   }
 
   const register = (stage, id, callback) => {
-    if (! stages.has(stage)) {
+    if (!stages.has(stage)) {
       throw new Error(`Unknown map render stage: ${stage}`);
     }
 
@@ -179,7 +173,4 @@ const createMapRuntime = (dependencies = {}) => {
   };
 };
 
-export {
-  MAP_RENDER_STAGES,
-  createMapRuntime
-};
+export { MAP_RENDER_STAGES, createMapRuntime };

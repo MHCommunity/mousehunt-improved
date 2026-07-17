@@ -6,7 +6,7 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestAncientCity) {
+  if (!quests.QuestAncientCity) {
     return '';
   }
 
@@ -15,7 +15,7 @@ export default (quests) => {
     remaining: quests?.QuestAncientCity?.remaining || null,
   };
 
-  if (! quest.district_name || ! quest.remaining) {
+  if (!quest.district_name || !quest.remaining) {
     return '';
   }
 

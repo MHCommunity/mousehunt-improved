@@ -1,23 +1,6 @@
-import {
-  addEvent,
-  addStyles,
-  doRequest,
-  getSetting,
-  makeElement,
-  onEvent,
-  onNavigation,
-  onRequest,
-  sessionGet,
-  sessionSet
-} from '@utils';
+import { addEvent, addStyles, doRequest, getSetting, makeElement, onEvent, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
 
-import {
-  applyCachedTournamentName,
-  getTournamentId,
-  getTournamentListingDates,
-  parseTournamentMinutes,
-  parseTournamentRank
-} from './helpers';
+import { applyCachedTournamentName, getTournamentId, getTournamentListingDates, parseTournamentMinutes, parseTournamentRank } from './helpers';
 import settings from './settings';
 import styles from './styles.css';
 
@@ -61,7 +44,7 @@ const getTournamentData = async (tournamentId, skipCache = false) => {
 
   try {
     const data = await request;
-    if (! data?.page) {
+    if (!data?.page) {
       tournamentDataCache.delete(tournamentId);
       return data;
     }
@@ -87,7 +70,7 @@ const getTournamentData = async (tournamentId, skipCache = false) => {
  * @param {string} name         Full tournament name.
  */
 const cacheTournamentName = (tournamentId, name) => {
-  if (! tournamentId || ! name || tournamentNames.get(tournamentId) === name) {
+  if (!tournamentId || !name || tournamentNames.get(tournamentId) === name) {
     return;
   }
 
@@ -112,7 +95,7 @@ const cacheTournamentNameFromUser = () => {
 const restoreTournamentName = () => {
   const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
   const hud = activeTourney?.closest('#tournamentStatusHud');
-  if (! activeTourney || ! hud || hud.classList.contains('trainStationHUD')) {
+  if (!activeTourney || !hud || hud.classList.contains('trainStationHUD')) {
     return;
   }
 
@@ -135,7 +118,7 @@ const observeTournamentHud = () => {
   tournamentHudObserver = null;
   observedTournamentHud = hud;
 
-  if (! hud) {
+  if (!hud) {
     return;
   }
 
@@ -168,17 +151,17 @@ const observeTournamentHud = () => {
  */
 const updateTournamentHud = async (skipCache = false) => {
   const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
-  if (! activeTourney) {
+  if (!activeTourney) {
     return;
   }
 
   const hud = activeTourney.closest('#tournamentStatusHud');
-  if (! hud || hud.classList.contains('trainStationHUD')) {
+  if (!hud || hud.classList.contains('trainStationHUD')) {
     return;
   }
 
   const tourneyId = getTournamentId(activeTourney.href);
-  if (! tourneyId) {
+  if (!tourneyId) {
     return;
   }
 
@@ -188,7 +171,7 @@ const updateTournamentHud = async (skipCache = false) => {
 
   const tourneyData = await getTournamentData(tourneyId, skipCache);
 
-  if (! tourneyData?.page) {
+  if (!tourneyData?.page) {
     return;
   }
 
@@ -199,11 +182,7 @@ const updateTournamentHud = async (skipCache = false) => {
   // The request can finish after the game has replaced the HUD or moved the
   // player into a different tournament. Never update that newer HUD with stale data.
   const currentTourney = document.querySelector('#tournamentStatusHud > a.name');
-  if (
-    currentTourney !== activeTourney ||
-    ! activeTourney.isConnected ||
-    getTournamentId(currentTourney?.href) !== tourneyId
-  ) {
+  if (currentTourney !== activeTourney || !activeTourney.isConnected || getTournamentId(currentTourney?.href) !== tourneyId) {
     return;
   }
 
@@ -312,7 +291,7 @@ const updateTournamentHud = async (skipCache = false) => {
  */
 const updateTournamentList = () => {
   const tournamentRows = document.querySelectorAll(tournamentRowSelector);
-  if (! tournamentRows.length) {
+  if (!tournamentRows.length) {
     return;
   }
 
@@ -331,7 +310,7 @@ const updateTournamentList = () => {
     const valueColumns = row.querySelectorAll(':scope > .tournamentPage-tournament-column.value');
     const statusColumn = valueColumns[0];
     const durationColumn = valueColumns[1];
-    if (! statusColumn || ! durationColumn) {
+    if (!statusColumn || !durationColumn) {
       return;
     }
 
@@ -349,7 +328,7 @@ const updateTournamentList = () => {
     const durationHours = Number.parseFloat(row.dataset.duration);
     const durationMinutes = Number.isFinite(durationHours) ? durationHours * 60 : parseTournamentMinutes(durationColumn.textContent);
     const dates = getTournamentListingDates(status, nowTime, countdownMinutes, durationMinutes);
-    if (! dates) {
+    if (!dates) {
       return;
     }
 
@@ -376,7 +355,7 @@ const observeTournamentList = () => {
   tournamentListObserver = null;
 
   const listing = document.querySelector('.tournamentPage-viewState.listing');
-  if (! listing) {
+  if (!listing) {
     return;
   }
 
@@ -406,7 +385,7 @@ const updateScoreboard = () => {
   const getRanks = document.querySelectorAll('.scoreboardTableView[data-category="tournament"] .tournament-team-rank:not(.updated)');
   getRanks.forEach((rank) => {
     const parsedRank = parseTournamentRank(rank.innerText);
-    if (! parsedRank) {
+    if (!parsedRank) {
       return;
     }
 
@@ -432,7 +411,7 @@ const observeScoreboard = () => {
   scoreboardObserver = null;
 
   const scoreboard = document.querySelector('.scoreboardTableView[data-category="tournament"]');
-  if (! scoreboard) {
+  if (!scoreboard) {
     return;
   }
 
@@ -496,5 +475,5 @@ export default {
   default: true,
   description: 'Update the Tournaments UI to show information on hover and make various small interface tweaks.',
   load: init,
-  settings
+  settings,
 };

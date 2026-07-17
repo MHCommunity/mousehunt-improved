@@ -23,7 +23,7 @@ const areaHighlightingVrift = () => {
   }
 
   const floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-vrift-${currentFloorState}`);
-  if (! floorCategory) {
+  if (!floorCategory) {
     return false;
   }
 
@@ -60,7 +60,7 @@ const areaHighlightingFrox = () => {
   }
 
   const floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-${mapArea}`);
-  if (! floorCategory) {
+  if (!floorCategory) {
     return false;
   }
 
@@ -103,8 +103,11 @@ const areaHighlightingFloatingIslands = () => {
 
   const islandPowerType = powerTypeMappings[fiAtts.island_power_type] || '';
 
-  const floorCategory = 'sp' === islandType ? document.querySelector('.mouse-category-wrapper.mouse-category-esp-sky_palace') : document.querySelector(`.mouse-category-wrapper.mouse-category-esp-${islandPowerType}`);
-  if (! floorCategory) {
+  const floorCategory =
+    'sp' === islandType
+      ? document.querySelector('.mouse-category-wrapper.mouse-category-esp-sky_palace')
+      : document.querySelector(`.mouse-category-wrapper.mouse-category-esp-${islandPowerType}`);
+  if (!floorCategory) {
     return false;
   }
 
@@ -123,7 +126,7 @@ const areaHighlightingSchoolOfSorcery = () => {
     return false;
   }
 
-  if (! user?.quests?.QuestSchoolOfSorcery?.in_course) {
+  if (!user?.quests?.QuestSchoolOfSorcery?.in_course) {
     return false;
   }
 
@@ -137,12 +140,12 @@ const areaHighlightingSchoolOfSorcery = () => {
     3704: 'mmc',
   };
 
-  if (! powerType || ! baitIds[bait]) {
+  if (!powerType || !baitIds[bait]) {
     return false;
   }
 
   const floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-sos-${powerType}-${baitIds[bait]}`);
-  if (! floorCategory) {
+  if (!floorCategory) {
     return false;
   }
 
@@ -158,12 +161,12 @@ const areaHighlightingWarpath = () => {
 
   const wave = Number.parseInt(user?.quests?.QuestFieryWarpath?.wave, 10) || 0;
 
-  if (! wave) {
+  if (!wave) {
     return false;
   }
 
   const waveCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-warpath-wave-${wave}`);
-  if (! waveCategory) {
+  if (!waveCategory) {
     return false;
   }
 
@@ -206,7 +209,7 @@ const areaHighlightingCeruleanSkyport = () => {
   }
 
   const quest = user?.quests?.QuestCeruleanSkyport;
-  if (! quest) {
+  if (!quest) {
     return false;
   }
 
@@ -232,12 +235,12 @@ const areaHighlightingCeruleanSkyport = () => {
     area = baitToCategory[user.bait_item_id || 0] || 'standard';
   }
 
-  if (! area) {
+  if (!area) {
     return false;
   }
 
   const areaCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-cs-${area}`);
-  if (! areaCategory) {
+  if (!areaCategory) {
     return false;
   }
 
@@ -293,7 +296,7 @@ const addProfilePicToCurrentFloor = async () => {
  */
 export default () => {
   const data = mapData();
-  if (! data) {
+  if (!data) {
     return;
   }
 
@@ -311,32 +314,32 @@ export default () => {
 
   let added = false;
   switch (mapType) {
-  case 'sky_palace':
-    added = areaHighlightingFloatingIslands();
-    break;
-  case 'fort_rox':
-    added = areaHighlightingFrox();
-    break;
-  case 'valour_rift':
-    added = areaHighlightingVrift();
-    break;
-  case 'school_of_sorcery':
-    added = areaHighlightingSchoolOfSorcery();
-    break;
-  case 'warpath':
-    added = areaHighlightingWarpath();
-    break;
-  case 'halloween_trick_2021':
-    added = areaHighlightingHalloween();
-    break;
-  case 'halloween_treat_2021':
-    added = areaHighlightingHalloween();
-    break;
-  case 'cerulean_skyport':
-    added = areaHighlightingCeruleanSkyport();
-    break;
-  default:
-    break;
+    case 'sky_palace':
+      added = areaHighlightingFloatingIslands();
+      break;
+    case 'fort_rox':
+      added = areaHighlightingFrox();
+      break;
+    case 'valour_rift':
+      added = areaHighlightingVrift();
+      break;
+    case 'school_of_sorcery':
+      added = areaHighlightingSchoolOfSorcery();
+      break;
+    case 'warpath':
+      added = areaHighlightingWarpath();
+      break;
+    case 'halloween_trick_2021':
+      added = areaHighlightingHalloween();
+      break;
+    case 'halloween_treat_2021':
+      added = areaHighlightingHalloween();
+      break;
+    case 'cerulean_skyport':
+      added = areaHighlightingCeruleanSkyport();
+      break;
+    default:
+      break;
   }
 
   if (added) {

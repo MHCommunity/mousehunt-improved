@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Muridae Protector Map"
-  ],
+  "names": ["Muridae Protector Map"],
   "categories": [
     {
       "name": "Fiery Warpath: Wave 1",
@@ -9,11 +7,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#f1d16f",
       "color-dark": "#6b5b29",
-      "mice": [
-        "desert_archer_weak",
-        "desert_scout_weak",
-        "desert_warrior_weak"
-      ]
+      "mice": ["desert_archer_weak", "desert_scout_weak", "desert_warrior_weak"]
     },
     {
       "name": "Fiery Warpath: Wave 2",
@@ -21,13 +15,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ea947b",
       "color-dark": "#7a3f2e",
-      "mice": [
-        "desert_archer",
-        "desert_cavalry",
-        "desert_mage",
-        "desert_scout",
-        "desert_warrior"
-      ]
+      "mice": ["desert_archer", "desert_cavalry", "desert_mage", "desert_scout", "desert_warrior"]
     },
     {
       "name": "Fiery Warpath: Wave 3",
@@ -35,14 +23,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ff835f",
       "color-dark": "#7a3f2e",
-      "mice": [
-        "desert_archer_epic",
-        "desert_artillery",
-        "desert_cavalry_strong",
-        "desert_mage_strong",
-        "desert_scout_epic",
-        "desert_warrior_epic"
-      ]
+      "mice": ["desert_archer_epic", "desert_artillery", "desert_cavalry_strong", "desert_mage_strong", "desert_scout_epic", "desert_warrior_epic"]
     },
     {
       "name": "Fiery Warpath: Wave 4",
@@ -50,10 +31,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ffc8c8",
       "color-dark": "#7a2e2e",
-      "mice": [
-        "desert_boss",
-        "desert_elite_gaurd"
-      ]
+      "mice": ["desert_boss", "desert_elite_gaurd"]
     },
     {
       "name": "Fiery Warpath: Any Wave",
@@ -61,11 +39,7 @@
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#e9e0e0",
       "color-dark": "#624646",
-      "mice": [
-        "desert_beast",
-        "desert_general",
-        "desert_supply"
-      ]
+      "mice": ["desert_beast", "desert_general", "desert_supply"]
     },
     {
       "name": "Muridae Market",

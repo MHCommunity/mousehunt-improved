@@ -10,6 +10,6 @@ export default async () => {
       title: 'Mice Page Image enhancements',
       description: 'Modify the image display on the mice page',
       default: true,
-    }
+    },
   ];
 };

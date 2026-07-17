@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Bristle Woods Rift Map"
-  ],
+  "names": ["Bristle Woods Rift Map"],
   "categories": [
     {
       "name": "Ancient Lab",
@@ -9,11 +7,7 @@
       "icon": "/items/bait/large/a7c9ed8c6f30ddf29c6cac2d501aba87.png",
       "color": "#eaf2d3",
       "color-dark": "#4a5d23",
-      "mice": [
-        "rift_golem",
-        "rift_scavenger",
-        "rift_spider"
-      ]
+      "mice": ["rift_golem", "rift_scavenger", "rift_spider"]
     },
     {
       "name": "Gearworks",
@@ -21,11 +15,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#a0dcff",
       "color-dark": "#2c6268",
-      "mice": [
-        "rift_keeper",
-        "rift_keepers_assistant",
-        "rift_terror_knight"
-      ]
+      "mice": ["rift_keeper", "rift_keepers_assistant", "rift_terror_knight"]
     },
     {
       "name": "Timewarp",
@@ -33,10 +23,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#fce5cd",
       "color-dark": "#7a4a21",
-      "mice": [
-        "rift_chrono",
-        "rift_wight"
-      ]
+      "mice": ["rift_chrono", "rift_wight"]
     },
     {
       "name": "Acolyte",
@@ -44,10 +31,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#e3b5e8",
       "color-dark": "#86388c",
-      "mice": [
-        "rift_acolyte",
-        "rift_reaper"
-      ]
+      "mice": ["rift_acolyte", "rift_reaper"]
     },
     {
       "name": "Runic Laboratory",
@@ -55,10 +39,7 @@
       "icon": "/items/bait/large/a7c9ed8c6f30ddf29c6cac2d501aba87.png",
       "color": "#b6d7a8",
       "color-dark": "#38761d",
-      "mice": [
-        "rift_sorcerer",
-        "rift_spectre"
-      ]
+      "mice": ["rift_sorcerer", "rift_spectre"]
     },
     {
       "name": "Hidden Treasury",
@@ -66,10 +47,7 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ffe599",
       "color-dark": "#7f6000",
-      "mice": [
-        "rift_gorgon",
-        "rift_lich"
-      ]
+      "mice": ["rift_gorgon", "rift_lich"]
     },
     {
       "name": "Entrance",
@@ -77,27 +55,21 @@
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ea9999",
       "color-dark": "#85200c",
-      "mice": [
-        "rift_gargoyle"
-      ]
+      "mice": ["rift_gargoyle"]
     },
     {
       "name": "Furnace Room",
       "id": "bwr-furnace-room",
       "color": "#a4c2f4",
       "color-dark": "#1c4587",
-      "mice": [
-        "rift_skeleton"
-      ]
+      "mice": ["rift_skeleton"]
     },
     {
       "name": "Frozen Alcove",
       "id": "bwr-frozen-alcove",
       "color": "#d5a6bd",
       "color-dark": "#741b47",
-      "mice": [
-        "rift_ooze"
-      ]
+      "mice": ["rift_ooze"]
     }
   ]
 }

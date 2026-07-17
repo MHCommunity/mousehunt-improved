@@ -1,11 +1,4 @@
-import {
-  getCurrentPage,
-  getSetting,
-  onNavigation,
-  onRequest,
-  saveSetting,
-  waitForElement
-} from '@utils';
+import { getCurrentPage, getSetting, onNavigation, onRequest, saveSetting, waitForElement } from '@utils';
 
 /**
  * Reorder the blocks on the friends page.
@@ -16,12 +9,12 @@ const reorderBlocks = () => {
   }
 
   const reordered = document.querySelector('.mousehuntHud-page-subTabContent.community');
-  if (! reordered || reordered.getAttribute('data-reordered')) {
+  if (!reordered || reordered.getAttribute('data-reordered')) {
     return;
   }
 
   const blocks = document.querySelectorAll('.friendsPage-community-channel');
-  if (! blocks || blocks.length < 3) {
+  if (!blocks || blocks.length < 3) {
     return;
   }
 
@@ -46,7 +39,7 @@ const reorderBlocks = () => {
  */
 const autofocusIdSearch = () => {
   const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
-  if (! input) {
+  if (!input) {
     return;
   }
 
@@ -55,7 +48,7 @@ const autofocusIdSearch = () => {
 
 const addCampFriendsListener = () => {
   const button = document.querySelector('.campPage-trap-friendContainer-toggleFriendsButton');
-  if (! button) {
+  if (!button) {
     return;
   }
 
@@ -92,7 +85,7 @@ const toggleEnvironment = (event) => {
 const updateCampFriends = async () => {
   await waitForElement('.campPage-trap-friendContainer-environment');
   const environments = document.querySelectorAll('.campPage-trap-friendContainer-environment');
-  if (! environments) {
+  if (!environments) {
     return;
   }
 
@@ -101,7 +94,7 @@ const updateCampFriends = async () => {
   environments.forEach((environment) => {
     const title = environment.querySelector('.campPage-trap-friendContainer-environment-title');
     const friends = environment.querySelectorAll('a');
-    if (! title || ! friends) {
+    if (!title || !friends) {
       return;
     }
 

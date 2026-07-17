@@ -18,7 +18,7 @@ const fetch = async () => {
 
   const badgeGroups = crownsData?.page?.tabs?.kings_crowns?.subtabs?.[0]?.mouse_crowns?.badge_groups;
 
-  if (! badgeGroups) {
+  if (!badgeGroups) {
     return [];
   }
 
@@ -45,7 +45,7 @@ const fetch = async () => {
 
 const afterFetch = () => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  if (! totalItemsEl) {
+  if (!totalItemsEl) {
     return;
   }
 

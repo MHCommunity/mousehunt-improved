@@ -10,7 +10,7 @@ import {
   mapData,
   mapModel,
   showTravelConfirmation,
-  showTravelConfirmationNoDetails
+  showTravelConfirmationNoDetails,
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
@@ -48,7 +48,7 @@ let mapNameIndex = null;
  * @return {Object|boolean} The map group, or false if there's no match.
  */
 const getGroupForMap = (map) => {
-  if (! map) {
+  if (!map) {
     return false;
   }
 
@@ -56,11 +56,11 @@ const getGroupForMap = (map) => {
     return mouseGroups[map.map_type];
   }
 
-  if (! map.name) {
+  if (!map.name) {
     return false;
   }
 
-  if (! mapNameIndex) {
+  if (!mapNameIndex) {
     mapNameIndex = new Map();
     for (const group of Object.values(mouseGroups)) {
       for (const name of group.names || []) {
@@ -100,7 +100,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
 
   // Remove the caught mice from the unsorted mice.
   unsortedMice = unsortedMice.filter((mouse) => {
-    return ! caughtMice.includes(mouse.unique_id);
+    return !caughtMice.includes(mouse.unique_id);
   });
 
   // Get the categories.
@@ -132,7 +132,7 @@ let minlucksData = null;
  * @return {Promise<Array>} The minlucks list.
  */
 const getMinlucks = async () => {
-  if (! minlucksData) {
+  if (!minlucksData) {
     minlucksData = await getData('minlucks');
   }
 
@@ -152,7 +152,7 @@ const addMinluckData = async (mouse, appendTo) => {
 
   const minlucks = await getMinlucks();
   const mouseMinlucks = minlucks.find((m) => m.type === (mouse.type ?? mouse.unique_id))?.minlucks;
-  if (! mouseMinlucks) {
+  if (!mouseMinlucks) {
     return;
   }
 
@@ -160,7 +160,7 @@ const addMinluckData = async (mouse, appendTo) => {
     .filter(([, value]) => value && value > 0)
     .sort((a, b) => a[1] - b[1]);
 
-  if (! values.length) {
+  if (!values.length) {
     return;
   }
 
@@ -372,14 +372,14 @@ const makeSortedMiceList = async (sortedPage) => {
   // Get the current map data. Read this map's cache entry only -- without `strict` a miss
   // falls back to whichever map was viewed last, which would quietly fill this page with a
   // different map's mice. The map being shown is the correct fallback.
-  const currentMapData = await getMapData(mapData().map_id, true) || mapData();
+  const currentMapData = (await getMapData(mapData().map_id, true)) || mapData();
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
   const allMice = [...unsortedMice];
 
   // Scope to this page rather than the document: a second render can replace the container
   // while this one is awaiting, and a global lookup would spill these mice into its page.
   const target = sortedPage.querySelector('.sorted-page-content');
-  if (! target) {
+  if (!target) {
     return [];
   }
 
@@ -413,7 +413,7 @@ const makeSortedMiceList = async (sortedPage) => {
       const categoryIcon = makeElement('img', 'mouse-category-icon');
 
       // if the string starts with a /, then it's a relative path, otherwise it's a full path
-      categoryIcon.src = (category.icon.indexOf('/') === 0) ? `https://www.mousehuntgame.com/images${category.icon}` : category.icon;
+      categoryIcon.src = category.icon.indexOf('/') === 0 ? `https://www.mousehuntgame.com/images${category.icon}` : category.icon;
 
       iconTitleWrapper.append(categoryIcon);
     }
@@ -464,7 +464,7 @@ const makeSortedMiceList = async (sortedPage) => {
       const mouseDiv = await makeMouseDiv(unsortedMice[mouseIndex]);
 
       if (hasSubCat) {
-        if (! addToSubCat[hasSubCat]) {
+        if (!addToSubCat[hasSubCat]) {
           addToSubCat[hasSubCat] = [];
         }
 
@@ -573,9 +573,7 @@ const getArForElement = (mouse) => {
  */
 const sortMiceByAr = (mice, direction) => {
   return mice.sort((a, b) => {
-    return 'ascending' === direction
-      ? getArForElement(a) - getArForElement(b)
-      : getArForElement(b) - getArForElement(a);
+    return 'ascending' === direction ? getArForElement(a) - getArForElement(b) : getArForElement(b) - getArForElement(a);
   });
 };
 
@@ -592,7 +590,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
   target.setAttribute('data-scavenger-sort-direction', 'descending');
 
   const container = target.querySelector('.sorted-page-content');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -655,7 +653,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
   };
 
   const environments = await getData('environments');
-  if (! environments) {
+  if (!environments) {
     return;
   }
 
@@ -678,14 +676,14 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
       const mouseType = mouse.getAttribute('data-mouse-type');
       let mouseLocations = await getLocationsForMouse(mouseType, type);
 
-      if (! mouseLocations.length) {
+      if (!mouseLocations.length) {
         mouseLocations = [{ id: 'other', name: 'Other' }];
       }
 
       for (const [index, location] of mouseLocations.entries()) {
         locations[location.id] = location;
 
-        if (! miceByLocation[location.id]) {
+        if (!miceByLocation[location.id]) {
           miceByLocation[location.id] = [];
         }
 
@@ -837,7 +835,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
         button.classList.remove('disabled');
       }
     },
-    appendTo: toggleWrapper
+    appendTo: toggleWrapper,
   });
 
   makeMhButton({
@@ -853,7 +851,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
         button.classList.remove('disabled');
       }
     },
-    appendTo: toggleWrapper
+    appendTo: toggleWrapper,
   });
 
   makeMhButton({
@@ -869,7 +867,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
         button.classList.remove('disabled');
       }
     },
-    appendTo: toggleWrapper
+    appendTo: toggleWrapper,
   });
 
   const sortedContainer = target.closest('#sorted-mice-container');
@@ -883,7 +881,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
   const resortWhenArsArrive = async () => {
     await Promise.allSettled(pendingArFills);
 
-    if (! target.isConnected) {
+    if (!target.isConnected) {
       return;
     }
 
@@ -911,12 +909,12 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
 const makeGenericSortedPage = async (isNormal, sortedPage) => {
   // Scope to this page -- see makeSortedMiceList.
   const target = sortedPage.querySelector('.sorted-page-content');
-  if (! target) {
+  if (!target) {
     return;
   }
 
   // See makeSortedMiceList: `strict` keeps a cache miss from returning the last map's data.
-  const currentMapData = await getMapData(mapData().map_id, true) || mapData();
+  const currentMapData = (await getMapData(mapData().map_id, true)) || mapData();
 
   const type = isNormal ? 'mouse' : 'item';
   target.classList.add('treasureMapView-block-content', 'scavenger-sorted-page');
@@ -957,12 +955,12 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
  */
 const moveTabToBody = () => {
   const sortedMiceContainer = document.querySelector('#sorted-mice-container');
-  if (! sortedMiceContainer) {
+  if (!sortedMiceContainer) {
     return;
   }
 
   const body = document.querySelector('body');
-  if (! body) {
+  if (!body) {
     return;
   }
 
@@ -983,12 +981,12 @@ const processSortedTabClick = async (force = false) => {
   // Get the current map data.
   const currentMapData = mapData();
 
-  if (! currentMapData || ! currentMapData.goals) {
+  if (!currentMapData || !currentMapData.goals) {
     return;
   }
 
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
-  if (currentlyActive && ! force && `${renderedMapId}` === `${currentMapData.map_id}`) {
+  if (currentlyActive && !force && `${renderedMapId}` === `${currentMapData.map_id}`) {
     return;
   }
 
@@ -1013,7 +1011,7 @@ const processSortedTabClick = async (force = false) => {
   }
 
   const mapContainer = document.querySelector('.treasureMapView-blockWrapper');
-  if (! mapContainer) {
+  if (!mapContainer) {
     return;
   }
 
@@ -1070,7 +1068,7 @@ const processSortedTabClick = async (force = false) => {
  */
 const addSortedMapTab = async () => {
   const mapTabs = document.querySelector('.treasureMapRootView-subTabContainer');
-  if (! mapTabs || mapTabs.length <= 0) {
+  if (!mapTabs || mapTabs.length <= 0) {
     return false;
   }
 
@@ -1120,9 +1118,4 @@ const mapHasGroup = (map) => {
   return Boolean(getGroupForMap(map));
 };
 
-export {
-  addSortedMapTab,
-  hideSortedTab,
-  mapHasGroup,
-  showSortedTab
-};
+export { addSortedMapTab, hideSortedTab, mapHasGroup, showSortedTab };

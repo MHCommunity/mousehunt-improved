@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  onEvent,
-  onRequest,
-  setMultipleTimeout
-} from '@utils';
+import { addStyles, doRequest, onEvent, onRequest, setMultipleTimeout } from '@utils';
 
 import styles from './styles.css';
 
@@ -14,11 +8,11 @@ let _togglePopup;
  * Replace the inbox open function.
  */
 const replaceInboxOpen = () => {
-  if (! messenger || ! messenger?.UI?.notification?.togglePopup) {
+  if (!messenger || !messenger?.UI?.notification?.togglePopup) {
     return;
   }
 
-  if (! _togglePopup) {
+  if (!_togglePopup) {
     _togglePopup = messenger.UI.notification.togglePopup;
   }
 
@@ -39,11 +33,15 @@ const replaceInboxOpen = () => {
 
     messenger.UI.notification.setActiveTab('general');
     messenger.UI.notification.showTab('general');
-    onEvent('ajax_response', () => {
-      setMultipleTimeout(() => {
-        messenger.UI.notification.showTab('general');
-      }, [10, 100]);
-    }, true);
+    onEvent(
+      'ajax_response',
+      () => {
+        setMultipleTimeout(() => {
+          messenger.UI.notification.showTab('general');
+        }, [10, 100]);
+      },
+      true
+    );
 
     return result;
   };
@@ -66,23 +64,23 @@ const removeDailyDrawNotifications = async (data) => {
     return;
   }
 
-  if (! data?.messageData || ! data?.messageData?.notification) {
+  if (!data?.messageData || !data?.messageData?.notification) {
     return;
   }
 
   lastRequest = Date.now();
 
   const messageBar = document.querySelector('#hgbar_messages');
-  if (! messageBar) {
+  if (!messageBar) {
     return;
   }
 
-  if (! messageBar.classList.contains('new')) {
+  if (!messageBar.classList.contains('new')) {
     return;
   }
 
   const displayedNotificationsEl = messageBar.querySelector('.mousehuntHeaderView-menu-notification');
-  if (! displayedNotificationsEl) {
+  if (!displayedNotificationsEl) {
     return;
   }
 
@@ -108,7 +106,7 @@ const removeDailyDrawNotifications = async (data) => {
   let notificationsToSubtract = 0;
 
   notificationData?.messageData?.notification?.messages.forEach((message) => {
-    if (! message?.isNew) {
+    if (!message?.isNew) {
       return;
     }
 

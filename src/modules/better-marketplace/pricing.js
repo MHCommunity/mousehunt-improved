@@ -30,7 +30,7 @@ const calculateQuickSell = ({ owned, available, unitPrice }) => {
 const computePriceSteps = (best, second) => {
   const notes = new Map();
   const add = (amount, note = '') => {
-    if (amount > 0 && (! notes.has(amount) || (note && ! notes.get(amount)))) {
+    if (amount > 0 && (!notes.has(amount) || (note && !notes.get(amount)))) {
       notes.set(amount, note);
     }
   };
@@ -57,10 +57,4 @@ const computePriceSteps = (best, second) => {
     .slice(0, MAX_PRICE_LINKS);
 };
 
-export {
-  MAX_TRANSACTION_PRICE,
-  calculateEstimatedValue,
-  calculateQuickSell,
-  calculateTariff,
-  computePriceSteps
-};
+export { MAX_TRANSACTION_PRICE, calculateEstimatedValue, calculateQuickSell, calculateTariff, computePriceSteps };

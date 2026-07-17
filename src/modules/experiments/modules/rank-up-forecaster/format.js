@@ -25,7 +25,7 @@ const formatNumber = (value, digits = 0) => {
  * @return {string} The shortened value.
  */
 const shortNumber = (value) => {
-  if (value === null || value === undefined || ! Number.isFinite(value)) {
+  if (value === null || value === undefined || !Number.isFinite(value)) {
     return '-';
   }
 
@@ -53,7 +53,7 @@ const shortNumber = (value) => {
  * @return {string} The formatted date.
  */
 const formatDate = (timestamp, withTime = false) => {
-  if (! timestamp || ! Number.isFinite(timestamp)) {
+  if (!timestamp || !Number.isFinite(timestamp)) {
     return '-';
   }
 
@@ -93,7 +93,7 @@ const formatDateRange = (start, end) => {
  * @return {string} The formatted duration.
  */
 const formatDuration = (days) => {
-  if (days === null || days === undefined || ! Number.isFinite(days)) {
+  if (days === null || days === undefined || !Number.isFinite(days)) {
     return '-';
   }
 
@@ -112,10 +112,4 @@ const formatDuration = (days) => {
   return `${(days / 365.25).toLocaleString(undefined, { maximumFractionDigits: 1 })} years`;
 };
 
-export {
-  formatDate,
-  formatDateRange,
-  formatDuration,
-  formatNumber,
-  shortNumber
-};
+export { formatDate, formatDateRange, formatDuration, formatNumber, shortNumber };

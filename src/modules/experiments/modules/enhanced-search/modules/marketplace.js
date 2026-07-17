@@ -12,7 +12,7 @@ import { getSearchTermString } from '../search-terms';
  * @param {Object} data The template data for the search terms.
  */
 const addSearchTerms = (data) => {
-  if (! data?.search_terms) {
+  if (!data?.search_terms) {
     return;
   }
 

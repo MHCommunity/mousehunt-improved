@@ -1,26 +1,12 @@
 {
-  "names": [
-    "Gnawnia Rift Map"
-  ],
+  "names": ["Gnawnia Rift Map"],
   "categories": [
     {
       "name": "Gnawnia Rift",
       "id": "gr-gnawnia-rift",
       "color": "#cfe2f3",
       "color-dark": "#1c4972",
-      "mice": [
-        "rift_cowardly",
-        "rift_lightning",
-        "rift_spotted",
-        "rift_brown",
-        "rift_grey",
-        "rift_white",
-        "rift_flying",
-        "rift_mole",
-        "rift_tiny",
-        "rift_diamond",
-        "rift_gold"
-      ]
+      "mice": ["rift_cowardly", "rift_lightning", "rift_spotted", "rift_brown", "rift_grey", "rift_white", "rift_flying", "rift_mole", "rift_tiny", "rift_diamond", "rift_gold"]
     },
     {
       "name": "Specialty Cheese",

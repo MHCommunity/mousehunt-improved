@@ -20,10 +20,7 @@ export default defineRules('events', [
   ['into my brew queue for Cauldron', 'to the queue for Cauldron'],
   ['I finished brewing ', 'I brewed '],
   ['I also finished brewing ', 'I brewed '],
-  [
-    'My Boiling Cauldron Trap summoned additional arcane energy from my Alchemist\'s Cookbook Base and brewed',
-    'My Boiling Cauldron Trap with my Alchemist\'s Cookbook Base brewed ',
-  ],
+  ["My Boiling Cauldron Trap summoned additional arcane energy from my Alchemist's Cookbook Base and brewed", "My Boiling Cauldron Trap with my Alchemist's Cookbook Base brewed "],
   [
     'Hunting with Festive Spirit conjured 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>',
     'My Festive Spirit made 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>.',

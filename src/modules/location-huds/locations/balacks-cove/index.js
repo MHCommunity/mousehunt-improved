@@ -10,17 +10,17 @@ import addCheeseSelector from '../../shared/cheese-selectors';
  */
 const updateClosingTime = () => {
   const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
-  if (! hudBar) {
+  if (!hudBar) {
     return;
   }
 
   const rotation = getLocationRotation('balacks_cove');
-  if (! rotation) {
+  if (!rotation) {
     return;
   }
 
   // Mid Tide happens twice a rotation, so skip the one that's the tide we're already in.
-  const [next, following] = rotation.upcoming.filter((stage) => ! stage.isSameLevel);
+  const [next, following] = rotation.upcoming.filter((stage) => !stage.isSameLevel);
 
   let timeLeftText = `${formatRotationTime(next.minutes)} until ${next.name}`;
   if (following) {
@@ -40,10 +40,7 @@ const updateClosingTime = () => {
  */
 export default async () => {
   addHudStyles(styles);
-  addCheeseSelector('balacks-cove', [
-    'vanilla_stilton_cheese',
-    'vengeful_vanilla_stilton_cheese',
-  ]);
+  addCheeseSelector('balacks-cove', ['vanilla_stilton_cheese', 'vengeful_vanilla_stilton_cheese']);
 
   updateClosingTime();
   document.addEventListener('horn-countdown-tick-minute', updateClosingTime);

@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  getCurrentPage,
-  makeElement,
-  onEvent,
-  onRequest
-} from '@utils';
+import { addStyles, getCurrentPage, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -15,7 +9,7 @@ let startY, initialTranslateY;
  */
 const dragMapPopup = async () => {
   const map = document.querySelector('.lunarNewYearCampPopupContainer .lunarNewYearCampHUD-window-background');
-  if (! map) {
+  if (!map) {
     return;
   }
 
@@ -27,7 +21,7 @@ const dragMapPopup = async () => {
  */
 const dragMapCamp = async () => {
   const map = document.querySelector('.lunarNewYearCampHUD-window .lunarNewYearCampHUD-window-background');
-  if (! map) {
+  if (!map) {
     return;
   }
 
@@ -44,7 +38,7 @@ const dragMapCamp = async () => {
 const dragMap = async (args) => {
   const { map, maxHeight } = args;
 
-  if (! map) {
+  if (!map) {
     return;
   }
 
@@ -115,12 +109,12 @@ const triggerFireworks = () => {
   }
 
   const fireworks = document.querySelector('.lunarNewYearCampHUD-container .lunarNewYearCampHUD-window-fireworksContainer');
-  if (! fireworks) {
+  if (!fireworks) {
     return;
   }
 
   const statsContainer = document.querySelector('.lunarNewYearCampHUD-container .lunarNewYearCampHUD-statsContainer');
-  if (! statsContainer) {
+  if (!statsContainer) {
     return;
   }
 
@@ -170,7 +164,4 @@ const lunarNewYearLocation = async () => {
   // no-op.
 };
 
-export {
-  lunarNewYearGlobal,
-  lunarNewYearLocation
-};
+export { lunarNewYearGlobal, lunarNewYearLocation };

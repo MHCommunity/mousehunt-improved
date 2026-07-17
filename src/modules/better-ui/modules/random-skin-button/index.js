@@ -5,8 +5,10 @@ import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 import styles from './styles.css';
 
 const addRandomSkinButton = () => {
-  const header = document.querySelector('.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer');
-  if (! header) {
+  const header = document.querySelector(
+    '.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer'
+  );
+  if (!header) {
     return;
   }
 
@@ -29,7 +31,7 @@ const addRandomSkinButton = () => {
 
     const randomIndex = Math.floor(Math.random() * skins.length);
     const skin = skins[randomIndex];
-    if (! skin) {
+    if (!skin) {
       return;
     }
 
@@ -39,7 +41,7 @@ const addRandomSkinButton = () => {
     skin.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
-      container: 'nearest'
+      container: 'nearest',
     });
 
     skin.click();

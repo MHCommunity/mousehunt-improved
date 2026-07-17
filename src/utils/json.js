@@ -27,6 +27,4 @@ const safeJsonParse = (value, defaultValue = null, onError = null) => {
   }
 };
 
-export {
-  safeJsonParse
-};
+export { safeJsonParse };

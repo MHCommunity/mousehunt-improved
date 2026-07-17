@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Living Garden Map"
-  ],
+  "names": ["Living Garden Map"],
   "categories": [
     {
       "name": "Living Garden",
@@ -9,16 +7,7 @@
       "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
       "color": "#bde5bd",
       "color-dark": "#286628",
-      "mice": [
-        "carmine",
-        "shroom",
-        "camoflower",
-        "thistle",
-        "bark",
-        "calalilly",
-        "strawberry_hotcakes",
-        "thirsty"
-      ]
+      "mice": ["carmine", "shroom", "camoflower", "thistle", "bark", "calalilly", "strawberry_hotcakes", "thirsty"]
     },
     {
       "name": "Sand Dunes",
@@ -47,14 +36,7 @@
       "icon": "https://i.mouse.rip/upscaled/347b62ad43e15bb3ebd898f64d402d42.png",
       "color": "#e6d2b8",
       "color-dark": "#694b25",
-      "mice": [
-        "cursed",
-        "ethereal_enchanter",
-        "ethereal_librarian",
-        "essence_collector",
-        "ethereal_engineer",
-        "ethereal_thief"
-      ]
+      "mice": ["cursed", "ethereal_enchanter", "ethereal_librarian", "essence_collector", "ethereal_engineer", "ethereal_thief"]
     },
     {
       "name": "Twisted Garden",
@@ -62,16 +44,7 @@
       "icon": "https://i.mouse.rip/upscaled/7bf9f9bb5394d44f3ef50a7105d04931.png",
       "color": "#a2cfa4",
       "color-dark": "#305e32",
-      "mice": [
-        "camofusion",
-        "fungal_spore",
-        "twisted_carmine",
-        "barkshell",
-        "twisted_lilly",
-        "thorn",
-        "twisted_hotcakes",
-        "dehydrated"
-      ]
+      "mice": ["camofusion", "fungal_spore", "twisted_carmine", "barkshell", "twisted_lilly", "thorn", "twisted_hotcakes", "dehydrated"]
     },
     {
       "name": "Sand Crypts",
@@ -96,14 +69,7 @@
       "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
       "color": "#d19cd1",
       "color-dark": "#612d61",
-      "mice": [
-        "cursed_librarian",
-        "cursed_thief",
-        "cursed_enchanter",
-        "cursed_engineer",
-        "essence_guardian",
-        "corrupt"
-      ]
+      "mice": ["cursed_librarian", "cursed_thief", "cursed_enchanter", "cursed_engineer", "essence_guardian", "corrupt"]
     }
   ],
   "subcategories": [

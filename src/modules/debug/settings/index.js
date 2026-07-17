@@ -7,47 +7,47 @@ export default async () => {
   return [
     {
       id: 'debug.utils-data',
-      title: 'Log data caching activity'
+      title: 'Log data caching activity',
     },
     {
       id: 'debug.events',
-      title: 'Log events'
+      title: 'Log events',
     },
     {
       id: 'debug.all-events',
-      title: 'Log all events'
+      title: 'Log all events',
     },
     {
       id: 'debug.dialog',
-      title: 'Log IDs of opening and closing dialogs/popups'
+      title: 'Log IDs of opening and closing dialogs/popups',
     },
     {
       id: 'debug.all',
-      title: 'Log module debug messages'
+      title: 'Log module debug messages',
     },
     {
       id: 'debug.module-loading',
-      title: 'Log module loading'
+      title: 'Log module loading',
     },
     {
       id: 'debug.navigation',
-      title: 'Log page, tab, and subtab navigation'
+      title: 'Log page, tab, and subtab navigation',
     },
     {
       id: 'debug.request',
-      title: 'Log remote requests and responses'
+      title: 'Log remote requests and responses',
     },
     {
       id: 'debug.sentry',
-      title: 'Set Sentry to debug mode'
+      title: 'Set Sentry to debug mode',
     },
     {
       id: 'debug.hover-popups',
-      title: 'Prevent hover popups from closing'
+      title: 'Prevent hover popups from closing',
     },
     {
       id: 'debug.disable-cache',
       title: 'Disable caching of data and settings',
-    }
+    },
   ];
 };

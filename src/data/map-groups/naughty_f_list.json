@@ -1,7 +1,5 @@
 {
-  "names": [
-    "Naughty List"
-  ],
+  "names": ["Naughty List"],
   "categories": [
     {
       "name": "Bosses",
@@ -46,15 +44,7 @@
       "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
-      "mice": [
-        "snowball_hoarder",
-        "golem_jockey",
-        "sporty_ski_instructor",
-        "wreath_thief",
-        "nitro_racer",
-        "double_black_diamond",
-        "winter_boss_2015"
-      ]
+      "mice": ["snowball_hoarder", "golem_jockey", "sporty_ski_instructor", "wreath_thief", "nitro_racer", "double_black_diamond", "winter_boss_2015"]
     },
     {
       "name": "Cinnamon Hill",
@@ -63,10 +53,7 @@
       "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
       "color": "#acf28d",
       "color-dark": "#37721d",
-      "mice": [
-        "candy_cane",
-        "snow_scavenger"
-      ]
+      "mice": ["candy_cane", "snow_scavenger"]
     },
     {
       "name": "Golem Workshop",
@@ -97,17 +84,7 @@
       "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#c9daf8",
       "color-dark": "#1d3c72",
-      "mice": [
-        "slay",
-        "winter_boss_2016",
-        "squeaker_claws",
-        "snowball_bully",
-        "winter_boss_2017",
-        "winter_boss_2018",
-        "snow_fort",
-        "snowball_general_two",
-        "builder"
-      ]
+      "mice": ["slay", "winter_boss_2016", "squeaker_claws", "snowball_bully", "winter_boss_2017", "winter_boss_2018", "snow_fort", "snowball_general_two", "builder"]
     },
     {
       "name": "Ice Fortress",
@@ -116,10 +93,7 @@
       "icon": "/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png",
       "color": "#d0e0e3",
       "color-dark": "#32565d",
-      "mice": [
-        "snowblower",
-        "missle_toe"
-      ]
+      "mice": ["snowblower", "missle_toe"]
     }
   ],
   "subcategories": [

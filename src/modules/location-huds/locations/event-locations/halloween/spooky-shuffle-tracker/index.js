@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  lsGet,
-  lsSet,
-  makeElement,
-  onRequest
-} from '@utils';
+import { addStyles, lsGet, lsSet, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -20,12 +14,12 @@ const saveCard = (card, savedCards) => {
 };
 
 const renderSavedCard = (card) => {
-  if (! card) {
+  if (!card) {
     return;
   }
 
   const cardElement = document.querySelector(`.halloweenMemoryGame-card-container[data-card-id="${card.id}"]`);
-  if (! cardElement) {
+  if (!cardElement) {
     return;
   }
 
@@ -33,7 +27,7 @@ const renderSavedCard = (card) => {
 
   const cardFront = cardElement.querySelector('.halloweenMemoryGame-card-front');
   const flipper = cardElement.querySelector('.halloweenMemoryGame-card-flipper');
-  if (! cardFront || ! flipper) {
+  if (!cardFront || !flipper) {
     return;
   }
 
@@ -70,7 +64,7 @@ const cleanUpCompleteGame = () => {
 };
 
 const processRequest = (req) => {
-  if (! req || ! req.memory_game) {
+  if (!req || !req.memory_game) {
     return;
   }
 
@@ -99,7 +93,7 @@ const processRequest = (req) => {
   }
 
   // Get the new card.
-  const newCard = req.memory_game.cards.filter((card) => card.is_revealed && ! card.is_matched);
+  const newCard = req.memory_game.cards.filter((card) => card.is_revealed && !card.is_matched);
 
   // Render the saved cards.
   getSavedCards().forEach((card) => {
@@ -108,7 +102,7 @@ const processRequest = (req) => {
 
   if (newCard.length) {
     // if the new card's name matches an already revealed card, then we have a match
-    const matchingCard = savedCards.filter((card) => (card?.name === newCard[0].name) && (card.id !== newCard[0].id) && ! card.is_matched);
+    const matchingCard = savedCards.filter((card) => card?.name === newCard[0].name && card.id !== newCard[0].id && !card.is_matched);
     if (matchingCard.length && matchingCard[0].id !== false) {
       const matchingCardEl = document.querySelector(`.halloweenMemoryGame-card-container[data-card-id="${matchingCard[0].id}"]`);
       if (matchingCardEl) {

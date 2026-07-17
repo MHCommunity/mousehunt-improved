@@ -29,7 +29,7 @@ const maybeShowInvitesTab = async () => {
 
 const onInvitesTab = () => {
   const title = document.querySelector('.treasureMapInvitesView .treasureMapView-title');
-  if (! title) {
+  if (!title) {
     return;
   }
 
@@ -45,22 +45,23 @@ const onInvitesTab = () => {
     refreshButton.classList.add('loading');
 
     e.preventDefault();
-    hg.utils.TreasureMapUtil.getInvites(() => {
-      const inviteTab = document.querySelector('.treasureMapRootView-tabRow .treasureMapRootView-tab[data-type="show_invites"]');
-      if (inviteTab) {
-        inviteTab.click();
-      }
+    hg.utils.TreasureMapUtil.getInvites(
+      () => {
+        const inviteTab = document.querySelector('.treasureMapRootView-tabRow .treasureMapRootView-tab[data-type="show_invites"]');
+        if (inviteTab) {
+          inviteTab.click();
+        }
 
-      refreshButton.classList.remove('loading');
-      maybeShowInvitesTab();
-    }, () => {
-      refreshButton.classList.remove('loading');
-      maybeShowInvitesTab();
-    });
+        refreshButton.classList.remove('loading');
+        maybeShowInvitesTab();
+      },
+      () => {
+        refreshButton.classList.remove('loading');
+        maybeShowInvitesTab();
+      }
+    );
   });
   title.append(refreshButton);
 };
 
-export {
-  maybeShowInvitesTab
-};
+export { maybeShowInvitesTab };

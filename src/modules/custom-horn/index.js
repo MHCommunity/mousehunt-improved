@@ -1,11 +1,4 @@
-import {
-  addSettingPreview,
-  addStyles,
-  flattenSettingOptions,
-  getSetting,
-  onNavigation,
-  setMultipleTimeout
-} from '@utils';
+import { addSettingPreview, addStyles, flattenSettingOptions, getSetting, onNavigation, setMultipleTimeout } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -27,12 +20,12 @@ const handlePreferenceChange = () => {
  */
 const addHornClass = (preview = false) => {
   const hornView = document.querySelector('.huntersHornView');
-  if (! hornView) {
+  if (!hornView) {
     return;
   }
 
   const horn = document.querySelector('.huntersHornView__horn');
-  if (! horn) {
+  if (!horn) {
     return;
   }
 
@@ -68,7 +61,7 @@ const addHornClass = (preview = false) => {
  */
 const listenForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-custom-horn select');
-  if (! input) {
+  if (!input) {
     return;
   }
 
@@ -94,12 +87,12 @@ const toggleHornPreview = (e) => {
   e.stopPropagation();
 
   const horn = document.querySelector('.huntersHornView__horn');
-  if (! horn) {
+  if (!horn) {
     return;
   }
 
   const backdrop = document.querySelector('.huntersHornView__backdrop');
-  if (! backdrop) {
+  if (!backdrop) {
     return;
   }
 
@@ -131,7 +124,7 @@ const toggleHornPreview = (e) => {
  */
 const addShowHorn = () => {
   const previewLink = document.querySelector('.mh-improved-custom-horn-show-horn');
-  if (! previewLink) {
+  if (!previewLink) {
     return;
   }
 
@@ -197,28 +190,33 @@ const init = () => {
 
   persistHornClass();
 
-  onNavigation(() => {
-    setMultipleTimeout(() => {
-      listenForPreferenceChanges();
-      addShowHorn();
-    }, [250, 500, 1000, 2000, 5000]);
+  onNavigation(
+    () => {
+      setMultipleTimeout(() => {
+        listenForPreferenceChanges();
+        addShowHorn();
+      }, [250, 500, 1000, 2000, 5000]);
 
-    getHornSettingsValues().then((horns) => {
-      addSettingPreview({
-        id: 'custom-horn',
-        selector: '.mh-improved-custom-horn-preview',
-        inputSelector: '#mousehunt-improved-settings-custom-horn select',
-        preview: false,
-        items: horns,
-        itemPreviewCallback: hornPreview,
-      });
-    }).catch(() => {
-      /* Failed to load horn settings values */
-    });
-  }, {
-    page: 'preferences',
-    onLoad: true,
-  });
+      getHornSettingsValues()
+        .then((horns) => {
+          addSettingPreview({
+            id: 'custom-horn',
+            selector: '.mh-improved-custom-horn-preview',
+            inputSelector: '#mousehunt-improved-settings-custom-horn select',
+            preview: false,
+            items: horns,
+            itemPreviewCallback: hornPreview,
+          });
+        })
+        .catch(() => {
+          /* Failed to load horn settings values */
+        });
+    },
+    {
+      page: 'preferences',
+      onLoad: true,
+    }
+  );
 };
 
 /**

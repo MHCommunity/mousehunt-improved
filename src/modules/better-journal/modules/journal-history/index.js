@@ -12,7 +12,7 @@ import {
   onJournalEntry,
   onNavigation,
   onRequest,
-  processJournalEntries
+  processJournalEntries,
 } from '@utils';
 
 import styles from './styles.css';
@@ -25,55 +25,59 @@ import styles from './styles.css';
  * @return {string} The markup.
  */
 const makeEntriesMarkup = (entries) => {
-  return entries.map((entry) => {
-    if (entry.data) {
-      entry = entry.data;
-    }
-
-    entry = {
-      id: entry?.id || 0,
-      timestamp: entry?.timestamp || 0,
-      date: entry?.date || '0:00',
-      location: entry?.location || '',
-      text: entry?.text || '',
-      type: entry?.type || [],
-      image: entry?.image || '',
-    };
-
-    if (
-      (
-        entry.type.includes('catchsuccess') ||
-        entry.type.includes('catchsuccessloot') ||
-        entry.type.includes('bonuscatchsuccess') ||
-        entry.type.includes('luckycatchsuccess') ||
-        entry.type.includes('bonuscatchsuccess')
-      ) && ! entry.mouse
-    ) {
-      // get the mouse type by parsing the link for hg.views.MouseView.show
-      const mouseLink = entry.text.match(/hg\.views\.MouseView\.show\('([^']+)'\)/);
-      if (mouseLink && mouseLink[1]) {
-        entry.mouse = mouseLink[1];
+  return entries
+    .map((entry) => {
+      if (entry.data) {
+        entry = entry.data;
       }
-    }
 
-    let html = `<div class="${entry.type.filter((cls) => ! ['newEntry', 'animate'].includes(cls)).join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
-    if (entry.mouse && miceThumbs.length) {
-      const mouseImages = miceThumbsMap ? miceThumbsMap.get(entry.mouse) : miceThumbs.find((mouse) => mouse.type === entry.mouse);
-      if (mouseImages) {
-        html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" alt="${mouseImages.name}" title="${mouseImages.name}" /></a></div>`;
+      entry = {
+        id: entry?.id || 0,
+        timestamp: entry?.timestamp || 0,
+        date: entry?.date || '0:00',
+        location: entry?.location || '',
+        text: entry?.text || '',
+        type: entry?.type || [],
+        image: entry?.image || '',
+      };
+
+      if (
+        (entry.type.includes('catchsuccess') ||
+          entry.type.includes('catchsuccessloot') ||
+          entry.type.includes('bonuscatchsuccess') ||
+          entry.type.includes('luckycatchsuccess') ||
+          entry.type.includes('bonuscatchsuccess')) &&
+        !entry.mouse
+      ) {
+        // get the mouse type by parsing the link for hg.views.MouseView.show
+        const mouseLink = entry.text.match(/hg\.views\.MouseView\.show\('([^']+)'\)/);
+        if (mouseLink && mouseLink[1]) {
+          entry.mouse = mouseLink[1];
+        }
       }
-    }
 
-    if (entry.image && ! entry.mouse) {
-      html += `<div class="journalimage">${entry.image}</div>`;
-    }
+      let html = `<div class="${entry.type.filter((cls) => !['newEntry', 'animate'].includes(cls)).join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
+      if (entry.mouse && miceThumbs.length) {
+        const mouseImages = miceThumbsMap ? miceThumbsMap.get(entry.mouse) : miceThumbs.find((mouse) => mouse.type === entry.mouse);
+        if (mouseImages) {
+          html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" alt="${mouseImages.name}" title="${mouseImages.name}" /></a></div>`;
+        }
+      }
 
-    let timestamp = '';
-    if (entry.timestamp) {
-      timestamp = new Date(entry.timestamp).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    }
+      if (entry.image && !entry.mouse) {
+        html += `<div class="journalimage">${entry.image}</div>`;
+      }
 
-    html += `<div class="journalbody">
+      let timestamp = '';
+      if (entry.timestamp) {
+        timestamp = new Date(entry.timestamp).toLocaleString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+      }
+
+      html += `<div class="journalbody">
         <div class="journalactions"></div>
         <div class="journalenvdate">
           <div class="journaldate">${entry.date} - </div>
@@ -84,8 +88,9 @@ const makeEntriesMarkup = (entries) => {
       </div>
     </div>`;
 
-    return html;
-  }).join('');
+      return html;
+    })
+    .join('');
 };
 
 /**
@@ -104,13 +109,13 @@ const doPageStuff = async (page, event = null) => {
     event.stopPropagation();
   }
 
-  if (! journalEntries.length) {
+  if (!journalEntries.length) {
     await getAllEntries();
   }
 
   const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
   const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
-  if (! journalEntriesForPage.length || ! journalEntryContainer) {
+  if (!journalEntriesForPage.length || !journalEntryContainer) {
     return;
   }
 
@@ -125,11 +130,11 @@ const doPageStuff = async (page, event = null) => {
  * @return {Promise<Array>} Journal entries.
  */
 const getAllEntries = async () => {
-  if (! journalEntries.length) {
+  if (!journalEntries.length) {
     journalEntries = await dbGetAll('journal');
   }
 
-  if (! journalEntries.length) {
+  if (!journalEntries.length) {
     return [];
   }
 
@@ -158,7 +163,7 @@ let lastDate = '';
  */
 const saveToDatabase = async (model) => {
   const entry = model.el;
-  if (! entry || ! entry.classList) {
+  if (!entry || !entry.classList) {
     return;
   }
 
@@ -167,11 +172,11 @@ const saveToDatabase = async (model) => {
   }
 
   const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
-  if (! entryId) {
+  if (!entryId) {
     return;
   }
 
-  if (! model.textEl) {
+  if (!model.textEl) {
     return;
   }
 
@@ -198,7 +203,7 @@ const saveToDatabase = async (model) => {
     date: date[0] ? date[0].trim() : '0:00',
     location: location ? location.innerText : '',
     text: model.html,
-    type: [...model.classes].filter((cls) => ! ['newEntry', 'animate'].includes(cls)),
+    type: [...model.classes].filter((cls) => !['newEntry', 'animate'].includes(cls)),
     mouse: model.mouseType || null,
     image: entryImage ? entryImage.innerHTML : null,
   };
@@ -208,7 +213,7 @@ const saveToDatabase = async (model) => {
 
 const addPageSelector = () => {
   const current = document.querySelector('.pagerView-section.current');
-  if (! current) {
+  if (!current) {
     return;
   }
 
@@ -282,7 +287,7 @@ const addPageSelector = () => {
 
 const getPager = () => {
   const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
-  if (! journalPageLink) {
+  if (!journalPageLink) {
     return;
   }
 
@@ -295,18 +300,18 @@ const getPager = () => {
  * Handle the journal history.
  */
 const doJournalHistory = async () => {
-  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
+  if (!('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
   }
 
-  const perPage = ('journal' === getCurrentPage()) ? 24 : 12;
-  const defaultPages = ('journal' === getCurrentPage()) ? 3 : 6;
+  const perPage = 'journal' === getCurrentPage() ? 24 : 12;
+  const defaultPages = 'journal' === getCurrentPage() ? 3 : 6;
 
-  if (! pager) {
+  if (!pager) {
     getPager();
   }
 
-  if (! pager || ! pager.getTotalItems()) {
+  if (!pager || !pager.getTotalItems()) {
     return;
   }
 
@@ -320,7 +325,7 @@ const doJournalHistory = async () => {
 
   addPageSelector();
 
-  if (! pager || ! pager.setTotalItems) {
+  if (!pager || !pager.setTotalItems) {
     return;
   }
 
@@ -335,11 +340,11 @@ const doJournalHistory = async () => {
 const doJournalHistoryRequest = async () => {
   doJournalHistory();
 
-  if (! pager) {
+  if (!pager) {
     doJournalHistory();
   }
 
-  if (! pager) {
+  if (!pager) {
     return;
   }
 

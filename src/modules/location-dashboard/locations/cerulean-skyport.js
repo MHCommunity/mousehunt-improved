@@ -7,7 +7,7 @@
  */
 export default (quests) => {
   const quest = quests?.QuestCeruleanSkyport;
-  if (! quest) {
+  if (!quest) {
     return '';
   }
 
@@ -38,20 +38,18 @@ export default (quests) => {
 
   const raidCount = quest.num_raids_available || 0;
   const raidLabel = 1 === raidCount ? 'raid' : 'raids';
-  const resourceTypes = [
-    'dirigible_debris_stat_item',
-    'atmospherium_gas_stat_item',
-    'unrefined_cloudstone_stat_item',
-    'aurora_spice_stat_item',
-  ];
-  const resources = resourceTypes.map((type) => {
-    const item = quest.items?.[type];
-    if (! item?.thumb_transparent) {
-      return '';
-    }
+  const resourceTypes = ['dirigible_debris_stat_item', 'atmospherium_gas_stat_item', 'unrefined_cloudstone_stat_item', 'aurora_spice_stat_item'];
+  const resources = resourceTypes
+    .map((type) => {
+      const item = quest.items?.[type];
+      if (!item?.thumb_transparent) {
+        return '';
+      }
 
-    return `<span class="dashboard-cerulean-skyport-resource"><img class="dashboard-cerulean-skyport-icon" src="${item.thumb_transparent}" alt="" title="${item.name}: ${item.quantity}" />${item.quantity}</span>`;
-  }).filter(Boolean).join('<span class="dashboard-cerulean-skyport-arrow">→</span>');
+      return `<span class="dashboard-cerulean-skyport-resource"><img class="dashboard-cerulean-skyport-icon" src="${item.thumb_transparent}" alt="" title="${item.name}: ${item.quantity}" />${item.quantity}</span>`;
+    })
+    .filter(Boolean)
+    .join('<span class="dashboard-cerulean-skyport-arrow">→</span>');
 
   return `<div class="dashboard-cerulean-skyport-title"><span class="dashboard-cerulean-skyport-resources">${resources}</span></div><div class="stats">${raidCount} ${raidLabel} available</div>`;
 };

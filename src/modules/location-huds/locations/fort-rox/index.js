@@ -48,12 +48,12 @@ const makeTooltip = (text, direction = 'top', customClass = []) => {
  */
 const updateNightBar = () => {
   const bar = document.querySelector('.fortRoxHUD-timeline-phases');
-  if (! bar) {
+  if (!bar) {
     return;
   }
 
   const phaseBars = bar.querySelectorAll('.fortRoxHUD-timeline-phase-marker');
-  if (! phaseBars.length) {
+  if (!phaseBars.length) {
     return;
   }
 
@@ -70,7 +70,7 @@ const updateNightBar = () => {
     });
 
     const phaseInfo = phaseLengths[phaseClass];
-    if (! phaseInfo) {
+    if (!phaseInfo) {
       return;
     }
 
@@ -84,12 +84,10 @@ const updateNightBar = () => {
     const isPast = phaseBar.classList.contains('past');
 
     // Show the hunts remaining on the active phase, the full length otherwise.
-    const countText = isActive && ! Number.isNaN(huntsUntilNext)
-      ? `${huntsUntilNext} hunts`
-      : String(length);
+    const countText = isActive && !Number.isNaN(huntsUntilNext) ? `${huntsUntilNext} hunts` : String(length);
 
     let timeEl = phaseBar.querySelector('.fortRoxHUD-timeline-phase-time');
-    if (! timeEl) {
+    if (!timeEl) {
       timeEl = makeElement('div', 'fortRoxHUD-timeline-phase-time');
       phaseBar.append(timeEl);
     }
@@ -120,7 +118,7 @@ const updateNightBar = () => {
  */
 const updateUpgradeTooltips = () => {
   const upgradeTooltips = document.querySelectorAll('.fortRoxHUD-fort-upgrade-boundingBox');
-  if (! upgradeTooltips.length) {
+  if (!upgradeTooltips.length) {
     return;
   }
 
@@ -133,7 +131,11 @@ const updateUpgradeTooltips = () => {
 
   upgradeTooltips.forEach((tooltip) => {
     // get the type from the onclick attribute
-    const type = tooltip.getAttribute('onclick').replace('app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm(\'upgradeFort\', ', '').replace('); return false;', '').replaceAll('\'', '');
+    const type = tooltip
+      .getAttribute('onclick')
+      .replace("app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm('upgradeFort', ", '')
+      .replace('); return false;', '')
+      .replaceAll("'", '');
     const upgradeProgress = user?.quests?.QuestFortRox?.upgrades[type];
 
     // cycle through the keys in the upgradeProgress object and count how many have a value of 'complete'
@@ -169,7 +171,7 @@ const updateWallHP = () => {
   }
 
   const hpBox = document.querySelector('.fortRoxHUD-hp');
-  if (! hpBox) {
+  if (!hpBox) {
     return;
   }
 
@@ -184,13 +186,7 @@ const updateWallHP = () => {
 
   hpBox.append(wrapper);
 
-  hpBox.classList.remove(
-    'frox-wall-very-low',
-    'frox-wall-low',
-    'frox-wall-medium',
-    'frox-wall-high',
-    'frox-wall-perfect'
-  );
+  hpBox.classList.remove('frox-wall-very-low', 'frox-wall-low', 'frox-wall-medium', 'frox-wall-high', 'frox-wall-perfect');
   const hp = Number.parseInt(`${wallHpPercent}`, 10);
 
   if (hp === 100) {
@@ -211,7 +207,7 @@ const updateWallHP = () => {
  */
 const addPortalClass = () => {
   const portal = document.querySelector('.fortRoxHUD.dawn .fortRoxHUD-enterLairButton');
-  if (! portal) {
+  if (!portal) {
     return;
   }
 
@@ -230,7 +226,7 @@ const addBossHp = () => {
   }
 
   const bossHpBox = document.querySelector('.fortRoxHUD-lairBossProgress');
-  if (! bossHpBox) {
+  if (!bossHpBox) {
     return;
   }
 

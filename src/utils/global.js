@@ -5,7 +5,7 @@
  * @param {any}    value Value to add.
  */
 const setGlobal = (key, value) => {
-  if (! app.mhui) {
+  if (!app.mhui) {
     app.mhui = {};
   }
 
@@ -31,7 +31,4 @@ const getGlobal = (key) => {
   return false;
 };
 
-export {
-  setGlobal,
-  getGlobal
-};
+export { setGlobal, getGlobal };

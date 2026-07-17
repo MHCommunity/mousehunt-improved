@@ -1,7 +1,7 @@
 import defineRules from './define';
 
 export default defineRules('hunt', [
-  ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
+  ["I sounded the Hunter's Horn and was successful in the hunt!", ''],
   ['where I was successful in my hunt! I', 'and'],
   ['I went on a hunt with', 'I hunted with'],
   [/\d+? oz. /i, ''],

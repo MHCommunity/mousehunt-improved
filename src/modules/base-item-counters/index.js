@@ -4,13 +4,13 @@ const COUNTERS = [
   {
     baseIds: [3628, 3683],
     baseSlugs: ['naughty_list_printing_press_base', 'folklore_printing_press_base'],
-    itemId: 'printing_press_charge_stat_item'
+    itemId: 'printing_press_charge_stat_item',
   },
   {
     baseIds: [3023, 2647],
     baseSlugs: ['upgraded_denture_base', 'denture_base'],
-    itemId: 'fulmina_charged_tooth_stat_item'
-  }
+    itemId: 'fulmina_charged_tooth_stat_item',
+  },
 ];
 
 /**

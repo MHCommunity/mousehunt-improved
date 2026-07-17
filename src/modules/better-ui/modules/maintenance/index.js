@@ -5,7 +5,7 @@ import { makeElement, onNavigation, sessionGet, sessionSet } from '@utils';
  */
 const addMaintenanceClasses = () => {
   const banner = document.querySelector('div[style="background: #f2f27c; border:1px solid #555; border-radius: 3px; text-align: center; font-size: 12px; padding: 6px 3px"]');
-  if (! banner) {
+  if (!banner) {
     return;
   }
 

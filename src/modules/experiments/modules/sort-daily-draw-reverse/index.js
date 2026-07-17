@@ -5,7 +5,7 @@ const reversedContainers = new WeakMap();
  */
 const reverseDailyDrawElements = () => {
   const container = document.querySelector('.daily_draw')?.parentElement;
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -33,7 +33,7 @@ const reverseDailyDrawElements = () => {
 
   reversedContainers.set(container, {
     first: lastEntry,
-    last: firstEntry
+    last: firstEntry,
   });
 };
 
@@ -43,7 +43,7 @@ let _originalTogglePopup;
  * Initialize the module.
  */
 const init = async () => {
-  if (_originalTogglePopup || ! messenger?.UI?.notification) {
+  if (_originalTogglePopup || !messenger?.UI?.notification) {
     return;
   }
 

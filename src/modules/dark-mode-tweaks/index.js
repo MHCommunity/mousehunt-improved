@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  getSetting,
-  isDarkMode,
-  onNavigation,
-  onRequest
-} from '@utils';
+import { addStyles, getSetting, isDarkMode, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -14,7 +8,7 @@ import styles from './styles.css';
  * @return {boolean} Whether the body class was added.
  */
 const checkForDarkModeAndAddBodyClass = () => {
-  if (! isDarkMode()) {
+  if (!isDarkMode()) {
     return false;
   }
 
@@ -29,10 +23,10 @@ const checkForDarkModeAndAddBodyClass = () => {
 const addDarkModeBodyClass = () => {
   let added = checkForDarkModeAndAddBodyClass();
   // add a delay to make sure the body class is added before the styles are applied.
-  if (! added) {
+  if (!added) {
     setTimeout(() => {
       added = checkForDarkModeAndAddBodyClass();
-      if (! added) {
+      if (!added) {
         setTimeout(checkForDarkModeAndAddBodyClass, 1000);
       }
     }, 500);

@@ -24,43 +24,49 @@ const addSkin = (skin) => {
     </div>${markup}`;
   }
 
-  const skinEl = makeElement('div', [
-    'mh-unowned-skin-item',
-    'campPage-trap-itemBrowser-item',
-    'loaded',
-    'skin',
-    'cannotArm',
-    'cannotDisarm', // TODO: this makes it black and white
-    type,
-    tradeable ? 'canBuy' : 'cannotBuy',
-  ], markup);
+  const skinEl = makeElement(
+    'div',
+    [
+      'mh-unowned-skin-item',
+      'campPage-trap-itemBrowser-item',
+      'loaded',
+      'skin',
+      'cannotArm',
+      'cannotDisarm', // TODO: this makes it black and white
+      type,
+      tradeable ? 'canBuy' : 'cannotBuy',
+    ],
+    markup
+  );
   skinEl.setAttribute('data-item-id', id);
   appendTo.append(skinEl);
 };
 
 const addUnownedSkins = async () => {
-  const header = document.querySelector('.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer');
-  if (! header) {
+  const header = document.querySelector(
+    '.trapSelectorView__itemBrowserContainer.trapSelectorView__outerBlock.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer'
+  );
+  if (!header) {
     return;
   }
 
   // getData() resolves to {} when the fetch fails, so this can't assume an array.
   const items = await getData('items');
-  if (! Array.isArray(items) || 0 === items.length) {
+  if (!Array.isArray(items) || 0 === items.length) {
     return;
   }
 
   const currentTrap = items.find((item) => item.id === user.weapon_item_id);
-  if (! currentTrap) {
+  if (!currentTrap) {
     return;
   }
 
-  if (! currentTrap.skins || currentTrap.skins.length === 0) {
+  if (!currentTrap.skins || currentTrap.skins.length === 0) {
     return;
   }
 
   const container = document.querySelector('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-tagGroup');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -74,12 +80,12 @@ const addUnownedSkins = async () => {
 
   let unownedSkins = [...currentTrap.skins];
   for (const skinEl of existingSkins) {
-    unownedSkins = unownedSkins.filter((skinType) => ! [...skinEl.classList].includes(skinType));
+    unownedSkins = unownedSkins.filter((skinType) => ![...skinEl.classList].includes(skinType));
   }
 
   for (const skin of unownedSkins) {
     const skinItem = items.find((item) => item.type === skin);
-    if (! skinItem) {
+    if (!skinItem) {
       continue;
     }
 

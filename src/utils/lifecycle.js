@@ -48,11 +48,11 @@ const runInLifecycle = (lifecycle, callback, register = true) => {
  * @return {Object} Registration metadata.
  */
 const prepareLifecycleCallback = (callback, type) => {
-  if (! currentLifecycle) {
+  if (!currentLifecycle) {
     return { callback, id: null, skip: false };
   }
 
-  if (! currentLifecycle.register) {
+  if (!currentLifecycle.register) {
     return { callback, id: null, skip: true };
   }
 
@@ -69,8 +69,4 @@ const prepareLifecycleCallback = (callback, type) => {
   };
 };
 
-export {
-  createLifecycle,
-  prepareLifecycleCallback,
-  runInLifecycle
-};
+export { createLifecycle, prepareLifecycleCallback, runInLifecycle };

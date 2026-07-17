@@ -1,13 +1,4 @@
-import {
-  getSetting,
-  makeElement,
-  makeMhButton,
-  onDialogHide,
-  onDialogShow,
-  onRequest,
-  onTurn,
-  saveSetting
-} from '@utils';
+import { getSetting, makeElement, makeMhButton, onDialogHide, onDialogShow, onRequest, onTurn, saveSetting } from '@utils';
 
 /**
  * Save the hidden state of an upgrade.
@@ -92,12 +83,12 @@ const isUnlocked = (upgradeId) => {
     return false;
   }
 
-  if (! userQuest || ! userQuest.upgrades) {
+  if (!userQuest || !userQuest.upgrades) {
     return false;
   }
 
   const upgrade = userQuest.upgrades.find((u) => u.type === upgradeId);
-  if (! upgrade) {
+  if (!upgrade) {
     return false;
   }
 
@@ -113,9 +104,9 @@ const isUnlocked = (upgradeId) => {
 const hideOrShowBlock = (blockId, isBlockToggled) => {
   const mapping = getToggleVisibilityMapping();
 
-  if (! mapping[blockId]) {
+  if (!mapping[blockId]) {
     const quill = document.querySelector('.tableOfContentsProgressView-quillContainer');
-    if (! quill) {
+    if (!quill) {
       return;
     }
     // if it's a quill, we need to remove the 'quill--gold' or 'quill--silver' class from the quill.
@@ -140,21 +131,21 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
     return;
   }
 
-  if (! isUnlocked(blockId)) {
+  if (!isUnlocked(blockId)) {
     return;
   }
 
   const selector = mapping[blockId];
-  if (! selector) {
+  if (!selector) {
     return;
   }
 
   const element = document.querySelector(selector);
-  if (! element) {
+  if (!element) {
     return;
   }
 
-  element.classList.toggle('active', ! isBlockToggled);
+  element.classList.toggle('active', !isBlockToggled);
 };
 
 /**
@@ -168,12 +159,7 @@ const addToggle = (upgradeBlock) => {
   }
 
   const classList = upgradeBlock.classList.value;
-  const blockId = classList
-    .replace('folkloreForestRegionView-dialog-block', '')
-    .replace('active', '')
-    .replace('prologue_pond', '')
-    .replace('table_of_contents', '')
-    .trim();
+  const blockId = classList.replace('folkloreForestRegionView-dialog-block', '').replace('active', '').replace('prologue_pond', '').replace('table_of_contents', '').trim();
   let isBlockToggled = isHidden(blockId);
 
   const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
@@ -185,7 +171,7 @@ const addToggle = (upgradeBlock) => {
   });
 
   togglebutton.addEventListener('click', () => {
-    isBlockToggled = ! isBlockToggled;
+    isBlockToggled = !isBlockToggled;
     saveHidden(blockId, isBlockToggled);
 
     const toggleText = togglebutton.querySelector('span');
@@ -215,7 +201,7 @@ const addUpgradeVisibilityToggles = () => {
   const pondUpgrades = document.querySelectorAll('.folkloreForestRegionView-dialog-blockContainer.upgrades .folkloreForestRegionView-dialog-block.prologue_pond.active');
   const bookUpgrades = document.querySelectorAll('.folkloreForestRegionView-dialog-blockContainer.upgrades .folkloreForestRegionView-dialog-block.table_of_contents.active');
 
-  if (! pondUpgrades || ! bookUpgrades) {
+  if (!pondUpgrades || !bookUpgrades) {
     return;
   }
 
@@ -230,7 +216,7 @@ const addUpgradeVisibilityToggles = () => {
 
 const addCloseToWarning = () => {
   const warning = document.querySelector('.folkloreForestRegionView-trapWarningContainer.active');
-  if (! warning) {
+  if (!warning) {
     return;
   }
 

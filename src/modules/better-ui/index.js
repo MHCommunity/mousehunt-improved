@@ -16,11 +16,11 @@ const init = () => {
   }
 
   for (const feature of featureManifest) {
-    if (feature.condition && ! feature.condition()) {
+    if (feature.condition && !feature.condition()) {
       continue;
     }
 
-    if (feature.setting && ! getSetting(feature.setting, feature.default)) {
+    if (feature.setting && !getSetting(feature.setting, feature.default)) {
       continue;
     }
 

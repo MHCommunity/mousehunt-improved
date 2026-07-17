@@ -6,14 +6,14 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (! quests.QuestLostCity) {
+  if (!quests.QuestLostCity) {
     return '';
   }
 
   const quest = quests.QuestLostCity;
   const twistedText = quest.is_normal ? 'Not twisted' : 'Twisted';
 
-  if (! quest?.minigame?.is_cursed) {
+  if (!quest?.minigame?.is_cursed) {
     return `${twistedText} · Not cursed`;
   }
 

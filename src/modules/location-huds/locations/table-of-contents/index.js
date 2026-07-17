@@ -1,14 +1,4 @@
-import {
-  addHudStyles,
-  createPopup,
-  fetchMouseRip,
-  formatNumber,
-  getSetting,
-  makeElement,
-  onDialogShow,
-  onRequest,
-  onTurn
-} from '@utils';
+import { addHudStyles, createPopup, fetchMouseRip, formatNumber, getSetting, makeElement, onDialogShow, onRequest, onTurn } from '@utils';
 import folkloreForest from '../../shared/folklore-forest';
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
 import simulate from './simulator';
@@ -100,21 +90,21 @@ const displayResults = (results, timeTaken) => {
 
     let classname = 'normal';
     switch (true) {
-    case chancePercent >= 99:
-      classname = 'guaranteed';
-      break;
-    case chancePercent >= 75:
-      classname = 'good';
-      break;
-    case chancePercent >= 30:
-      classname = 'maybe';
-      break;
-    case chancePercent <= 2:
-      classname = 'worst';
-      break;
-    case chancePercent <= 10:
-      classname = 'bad';
-      break;
+      case chancePercent >= 99:
+        classname = 'guaranteed';
+        break;
+      case chancePercent >= 75:
+        classname = 'good';
+        break;
+      case chancePercent >= 30:
+        classname = 'maybe';
+        break;
+      case chancePercent <= 2:
+        classname = 'worst';
+        break;
+      case chancePercent <= 10:
+        classname = 'bad';
+        break;
     }
 
     if (chance.volume === expectedVolume) {
@@ -168,7 +158,7 @@ const getOptions = () => {
       WordsWritten: user?.quests?.QuestTableOfContents?.current_book.word_count || 0,
       FuelEnabled: user?.quests?.QuestTableOfContents?.is_fuel_enabled || false,
       M1KMode: user?.bait_name === 'Thousandth Draft Derby Cheese' || false,
-    }
+    },
   };
 };
 
@@ -206,7 +196,7 @@ const triggerSimPopup = () => {
  */
 const doSimulation = (selector) => {
   const simPopup = document.querySelector(selector);
-  if (! simPopup) {
+  if (!simPopup) {
     return;
   }
 
@@ -226,7 +216,7 @@ const addSimulatorEvents = () => {
  */
 const addSimulatorIcon = () => {
   const bookHud = document.querySelector('.folkloreForestRegionView-environmentHud');
-  if (! bookHud) {
+  if (!bookHud) {
     return;
   }
 
@@ -253,7 +243,7 @@ const addSimulatorIcon = () => {
  */
 const updateWordLootQuantity = () => {
   const lootSpan = document.querySelector('.tableOfContentsView-wordMeter-value');
-  if (! lootSpan) {
+  if (!lootSpan) {
     return;
   }
 
@@ -271,7 +261,7 @@ const updateWordLootQuantity = () => {
  */
 const updateNextWordCount = () => {
   const wordsRequired = document.querySelector('.tableOfContentsProgressView-nextBook-wordsRequired');
-  if (! wordsRequired) {
+  if (!wordsRequired) {
     return;
   }
 
@@ -290,9 +280,12 @@ const splitLine = (line) => {
 
 const updateClaimDialog = () => {
   const stats = document.querySelector('.tableOfContentsClaimDialogView-bestStats');
-  if (stats && ! stats.querySelector('.mh-best-stats-wrapper')) {
+  if (stats && !stats.querySelector('.mh-best-stats-wrapper')) {
     const text = stats.innerHTML.replaceAll(/<br\s*\/?>/gi, '\n');
-    const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+    const lines = text
+      .split('\n')
+      .map((l) => l.trim())
+      .filter(Boolean);
 
     const longestLine = lines.find((l) => /longest book/i.test(l)) || lines[0] || '';
     const numWordsLine = lines.find((l) => /num words/i.test(l)) || lines[1] || '';
@@ -318,9 +311,12 @@ const updateClaimDialog = () => {
   }
 
   const bookStats = document.querySelector('.tableOfContentsClaimDialogView-bookStats');
-  if (bookStats && ! bookStats.querySelector('.mh-book-stats-wrapper')) {
+  if (bookStats && !bookStats.querySelector('.mh-book-stats-wrapper')) {
     const text = bookStats.innerHTML.replaceAll(/<br\s*\/?>/gi, '\n');
-    const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+    const lines = text
+      .split('\n')
+      .map((l) => l.trim())
+      .filter(Boolean);
 
     const bookWrapper = makeElement('div', 'tableOfContentsClaimDialogView-bookStats');
 
@@ -343,12 +339,12 @@ const updateBlankPage = async () => {
   }
 
   const blankPage = document.querySelector('.blank_page .tableOfContentsProgressView-rowContainer');
-  if (! blankPage) {
+  if (!blankPage) {
     return;
   }
 
   const scramblesQuote = await fetchMouseRip(`consult-scrambles?t=${Date.now()}`, { json: false });
-  if (! scramblesQuote) {
+  if (!scramblesQuote) {
     return;
   }
 

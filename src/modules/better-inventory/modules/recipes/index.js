@@ -1,14 +1,4 @@
-import {
-  addStyles,
-  cacheGet,
-  cacheSet,
-  getCurrentSubtab,
-  getCurrentTab,
-  getUserItems,
-  makeElement,
-  onEvent,
-  onNavigation
-} from '@utils';
+import { addStyles, cacheGet, cacheSet, getCurrentSubtab, getCurrentTab, getUserItems, makeElement, onEvent, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -23,18 +13,11 @@ import styles from './styles.css';
 const recipeGroups = [
   {
     label: 'Dragon Slayer Cannon',
-    items: [
-      'draconic_geyser_chassis_crafting_item',
-      'draconic_geyser_chassis_i_crafting_item',
-      'geyser_draconic_weapon',
-    ],
+    items: ['draconic_geyser_chassis_crafting_item', 'draconic_geyser_chassis_i_crafting_item', 'geyser_draconic_weapon'],
   },
   {
     label: 'S.S. Huntington',
-    items: [
-      'unchristened_ship_craft_item',
-      'huntington_map_piece',
-    ],
+    items: ['unchristened_ship_craft_item', 'huntington_map_piece'],
   },
 ];
 
@@ -50,7 +33,7 @@ const recipesMeConversion = {
     'limelight_cheese_6',
     'radioactive_blue_cheese_potion',
     'runic_cheese_2_pieces',
-    'runic_cheese_potion'
+    'runic_cheese_potion',
   ],
   maybe: [
     'ancient_string_cheese_potion',
@@ -63,8 +46,8 @@ const recipesMeConversion = {
     'rain_cheese_potion',
     'vengeful_vanilla_stilton_magic_essence',
     'wicked_gnarly_potion',
-    'wind_cheese_potion'
-  ]
+    'wind_cheese_potion',
+  ],
 };
 
 /**
@@ -75,10 +58,7 @@ const recipesMeConversion = {
  * @return {string} The normalized value.
  */
 const normalizeSortValue = (value) => {
-  return `${value || ''}`
-    .trim()
-    .replaceAll(/\s+/g, ' ')
-    .toLocaleLowerCase();
+  return `${value || ''}`.trim().replaceAll(/\s+/g, ' ').toLocaleLowerCase();
 };
 
 /**
@@ -104,7 +84,7 @@ const getRecipeName = (recipe) => {
  */
 const getProducedItemTypes = (recipe) => {
   const producedItems = recipe.getAttribute('data-produced-item');
-  if (! producedItems) {
+  if (!producedItems) {
     return [];
   }
 
@@ -124,9 +104,11 @@ const getProducedItemTypes = (recipe) => {
 const getRecipeGroup = (recipe) => {
   const producedItems = getProducedItemTypes(recipe);
 
-  return recipeGroups.find((group) => {
-    return group.items.some((item) => producedItems.includes(item));
-  }) || null;
+  return (
+    recipeGroups.find((group) => {
+      return group.items.some((item) => producedItems.includes(item));
+    }) || null
+  );
 };
 
 /**
@@ -139,9 +121,7 @@ const getRecipeGroup = (recipe) => {
  */
 const getRecipeGroupPosition = (recipe, group) => {
   const producedItems = getProducedItemTypes(recipe);
-  const positions = producedItems
-    .map((item) => group.items.indexOf(item))
-    .filter((position) => -1 !== position);
+  const positions = producedItems.map((item) => group.items.indexOf(item)).filter((position) => -1 !== position);
 
   return positions.length ? Math.min(...positions) : Number.MAX_SAFE_INTEGER;
 };
@@ -250,7 +230,7 @@ const sortRecipeContainer = (recipesContainer) => {
  * @param {string} tag The recipe category tag.
  */
 const updateRecipesOnPage = (tag) => {
-  if (! tag || 'recommended' === tag) {
+  if (!tag || 'recommended' === tag) {
     return;
   }
 
@@ -275,7 +255,7 @@ const scheduleRecipeUpdate = (tag) => {
  */
 const cleanUpRecipeBook = () => {
   const recipeBook = document.querySelector('.mousehuntHud-page-subTabContent.recipe');
-  if (! recipeBook) {
+  if (!recipeBook) {
     return;
   }
 
@@ -288,7 +268,7 @@ const cleanUpRecipeBook = () => {
   const tagLinks = recipeBook.querySelectorAll('a.inventoryPage-tagDirectory-tag');
   tagLinks.forEach((tagLink) => {
     const tag = tagLink.getAttribute('data-tag');
-    if (! tag) {
+    if (!tag) {
       return;
     }
 
@@ -326,7 +306,7 @@ const cleanUpRecipeBook = () => {
  */
 const showCraftWarning = (text) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
-  if (! confirm) {
+  if (!confirm) {
     return;
   }
 
@@ -346,7 +326,7 @@ const showCraftWarning = (text) => {
  */
 const warnOnBadCrafts = (limit = 0) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
-  if (! confirm) {
+  if (!confirm) {
     if (limit <= 3) {
       setTimeout(warnOnBadCrafts, 250, limit + 1);
     }
@@ -355,21 +335,21 @@ const warnOnBadCrafts = (limit = 0) => {
   }
 
   const type = confirm.getAttribute('data-confirm-type');
-  if (! type) {
+  if (!type) {
     return;
   }
 
-  if (! ('recipe' === type || 'potion' === type)) {
+  if (!('recipe' === type || 'potion' === type)) {
     return;
   }
 
   const popup = document.querySelector('.inventoryPage-confirmPopup');
-  if (! popup) {
+  if (!popup) {
     return;
   }
 
   const recipe = popup.getAttribute('data-item-type');
-  if (! recipe) {
+  if (!recipe) {
     return;
   }
 
@@ -384,7 +364,7 @@ const warnOnBadCrafts = (limit = 0) => {
       }
     });
 
-    if (! hasSB) {
+    if (!hasSB) {
       return;
     }
   }
@@ -405,19 +385,19 @@ const modifySmashableTooltip = async () => {
   }
 
   const items = document.querySelectorAll('.inventoryPage-item');
-  if (! items) {
+  if (!items) {
     return;
   }
 
   items.forEach(async (item) => {
     const tooltip = item.querySelector('.tooltip');
-    if (! tooltip) {
+    if (!tooltip) {
       return;
     }
 
     // get the data for the data-produced-item attribute
     let producedItem = item.getAttribute('data-produced-item');
-    if (! producedItem) {
+    if (!producedItem) {
       return;
     }
 
@@ -440,18 +420,18 @@ const modifySmashableTooltip = async () => {
       item.classList.add('new-tooltip-loading');
 
       let itemData = await cacheGet(`smashable-${producedItem.join('-')}`);
-      if (! itemData) {
+      if (!itemData) {
         itemData = await getUserItems(producedItem);
         cacheSet(`smashable-${producedItem.join('-')}`, itemData, 6 * 30 * 24 * 60 * 60 * 1000); // Cache for 6 months.
       }
 
-      if (! itemData || ! itemData[0]) {
+      if (!itemData || !itemData[0]) {
         return;
       }
 
       // get the formatted_parts attribute from the itemData array where the type matches the itemType
       const formattedParts = itemData.find((itemDataItem) => itemDataItem.type === itemType).formatted_parts;
-      if (! formattedParts) {
+      if (!formattedParts) {
         return;
       }
 
@@ -460,7 +440,7 @@ const modifySmashableTooltip = async () => {
       itemData.forEach((itemDataItem) => {
         // get the data in formattedParts where the type matches the itemDataItem.type
         const formattedPart = formattedParts.find((formattedPartItem) => formattedPartItem.type === itemDataItem.type);
-        if (! formattedPart) {
+        if (!formattedPart) {
           return;
         }
 
@@ -474,7 +454,10 @@ const modifySmashableTooltip = async () => {
           quantity = quantityInt >= 1000000 ? `${Math.floor(quantityInt / 100000) / 10}m` : quantity.toLocaleString();
         }
 
-        makeElement('div', ['new-tooltip-item', 'inventoryPage-item'], `
+        makeElement(
+          'div',
+          ['new-tooltip-item', 'inventoryPage-item'],
+          `
         <div class="inventoryPage-item-margin clear-block hidden">
           <div class="inventoryPage-item-imageContainer">
             <div class="itemImage"><img src="${thumb}" alt="${name}" title="${name}" /></div>
@@ -486,7 +469,9 @@ const modifySmashableTooltip = async () => {
               <span>${name}</span>
             </div>
           </div>
-        </div>`, tooltipWrapper);
+        </div>`,
+          tooltipWrapper
+        );
       });
 
       tooltip.parentNode.insertBefore(tooltipWrapper, tooltip.nextSibling);

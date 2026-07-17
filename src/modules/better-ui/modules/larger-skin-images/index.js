@@ -1,11 +1,4 @@
-import {
-  addStyles,
-  dbGet,
-  dbSet,
-  debounce,
-  fetchMouseRip,
-  makeElement
-} from '@utils';
+import { addStyles, dbGet, dbSet, debounce, fetchMouseRip, makeElement } from '@utils';
 
 import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 
@@ -37,24 +30,24 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
 
   try {
     const blueprint = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
-    if (! blueprint) {
+    if (!blueprint) {
       return;
     }
 
-    if (! force) {
+    if (!force) {
       const type = blueprint.getAttribute('data-blueprint-type');
-      if (! type || type !== 'skin') {
+      if (!type || type !== 'skin') {
         return;
       }
     }
 
     const items = document.querySelectorAll('.campPage-trap-itemBrowser-item.skin');
-    if (! items.length) {
+    if (!items.length) {
       return;
     }
 
     for (const item of items) {
-      if (! isCurrent()) {
+      if (!isCurrent()) {
         return;
       }
 
@@ -62,12 +55,12 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
         continue;
       }
 
-      if (! isCurrent()) {
+      if (!isCurrent()) {
         return;
       }
 
       const id = item.getAttribute('data-item-id');
-      if (! id) {
+      if (!id) {
         continue;
       }
 
@@ -82,7 +75,7 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
         } else {
           const itemData = await fetchMouseRip(`item/${id}`);
 
-          if (! itemData?.images?.trap) {
+          if (!itemData?.images?.trap) {
             continue;
           }
 
@@ -90,7 +83,7 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
 
           dbSet('cache', {
             id: `skin-image-${id}`,
-            skin
+            skin,
           });
         }
 
@@ -105,17 +98,20 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
       imageWrapper.append(imageEl);
 
       const existingImage = item.querySelector('.itembrowser-skin-image-wrapper');
-      if (! existingImage) {
+      if (!existingImage) {
         item.insertBefore(imageWrapper, item.firstChild);
       }
     }
 
     const searchInput = document.querySelector('.campPage-trap-itemBrowser-filter input');
-    if (searchInput && ! boundSearchInputs.has(searchInput)) {
+    if (searchInput && !boundSearchInputs.has(searchInput)) {
       boundSearchInputs.add(searchInput);
-      searchInput.addEventListener('keyup', debounce(() => {
-        addSkinImages('item_browser', true);
-      }, 300));
+      searchInput.addEventListener(
+        'keyup',
+        debounce(() => {
+          addSkinImages('item_browser', true);
+        }, 300)
+      );
     }
   } finally {
     isAdding = false;
@@ -127,7 +123,7 @@ const addSkinImages = async (panel, force = false, isCurrent = () => true) => {
  */
 const triggerFromClick = () => {
   const button = document.querySelector('.trapSelectorView__armedItem[data-item-classification=skin]');
-  if (button && ! boundSkinButtons.has(button)) {
+  if (button && !boundSkinButtons.has(button)) {
     boundSkinButtons.add(button);
     button.addEventListener('click', () => {
       addSkinImages('item_browser', true);

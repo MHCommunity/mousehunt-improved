@@ -24,11 +24,7 @@ const init = async () => {
 
   await initItems();
 
-  await Promise.all(
-    surfaces
-      .filter(({ id }) => getSetting(`enhanced-search.${id}`, true))
-      .map(({ load }) => load())
-  );
+  await Promise.all(surfaces.filter(({ id }) => getSetting(`enhanced-search.${id}`, true)).map(({ load }) => load()));
 };
 
 /**
@@ -38,5 +34,5 @@ export default {
   id: 'enhanced-search',
   name: 'Enhanced Search',
   description: 'Find items by their abbreviations, so searching "ESB" turns up Empowered SUPER|brie+.',
-  load: init
+  load: init,
 };

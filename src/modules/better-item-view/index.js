@@ -12,7 +12,7 @@ import {
   makeTooltip,
   onNavigation,
   onOverlayChange,
-  onRender
+  onRender,
 } from '@utils';
 
 import hoverItem from './modules/hover-item';
@@ -26,7 +26,7 @@ import styles from './styles.css';
  */
 const addLinks = (itemId) => {
   const title = document.querySelector('.itemView-header-name');
-  if (! title) {
+  if (!title) {
     return;
   }
 
@@ -56,7 +56,7 @@ let items;
  * @return {Promise<Array>} The item metadata.
  */
 const getItems = async () => {
-  if (! items) {
+  if (!items) {
     items = await getData('items');
   }
 
@@ -78,17 +78,17 @@ const isCurrentItemView = (itemView, itemId) => {
 const updateForAirshipParts = async (itemId, itemView) => {
   await getItems();
 
-  if (! items) {
+  if (!items) {
     return;
   }
 
   const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
-  if (! item || ! item.is_airship_part || ! item.airship_part_type) {
+  if (!item || !item.is_airship_part || !item.airship_part_type) {
     return;
   }
 
   const thumbnail = itemView.querySelector('.itemView-thumbnail');
-  if (! thumbnail) {
+  if (!thumbnail) {
     return;
   }
 
@@ -110,17 +110,17 @@ const updateForAirshipParts = async (itemId, itemView) => {
 
 const addQuantityButtons = (itemView) => {
   const quantityForm = itemView.querySelector('.itemView-action-convertForm');
-  if (! quantityForm) {
+  if (!quantityForm) {
     return;
   }
 
   const input = quantityForm.querySelector('.itemView-action-convert-quantity');
-  if (! input) {
+  if (!input) {
     return;
   }
 
   const quantity = quantityForm.innerText.split('/');
-  if (! quantity || quantity.length !== 2) {
+  if (!quantity || quantity.length !== 2) {
     return;
   }
 
@@ -152,7 +152,7 @@ const addQuantityButtons = (itemView) => {
       openMaxButtonText.innerText = 'Reset';
     }
 
-    hasMaxed = ! hasMaxed;
+    hasMaxed = !hasMaxed;
   });
 
   quantityForm.append(openControls);
@@ -178,14 +178,14 @@ const showDropRates = async (itemId, itemView) => {
   }
 
   let mhctJson = await getArForMouse(itemId, 'item');
-  if (! mhctJson || mhctJson === undefined) {
+  if (!mhctJson || mhctJson === undefined) {
     return;
   }
 
   itemView.classList.add('mouseview-has-mhct');
 
   const container = itemView.querySelector('.itemView-padding');
-  if (! container) {
+  if (!container) {
     return;
   }
 
@@ -215,9 +215,7 @@ const showDropRates = async (itemId, itemView) => {
   }
 
   // shrink the mhct json array to only include items with non-zero drop rates and a maximum of 15 items
-  mhctJson = mhctJson
-    .filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0)
-    .slice(0, 10);
+  mhctJson = mhctJson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 10);
 
   mhctJson.forEach((itemAr) => {
     const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
@@ -247,17 +245,17 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
   await getItems();
 
   const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
-  if (! (item && 'convertible' === item?.classification && item?.tags?.includes('scroll_case'))) {
+  if (!(item && 'convertible' === item?.classification && item?.tags?.includes('scroll_case'))) {
     return;
   }
 
   const scrollsToMaps = await getData('scrolls-to-maps');
-  if (! scrollsToMaps || ! scrollsToMaps[item.type] || ! scrollsToMaps[item.type].length) {
+  if (!scrollsToMaps || !scrollsToMaps[item.type] || !scrollsToMaps[item.type].length) {
     return;
   }
 
   const itemViewDescription = itemView.querySelector('.itemView-description');
-  if (! itemViewDescription) {
+  if (!itemViewDescription) {
     return;
   }
 
@@ -266,7 +264,7 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
 
   if (singleMap) {
     const map = scrollsToMaps[item.type][0];
-    if (! map.name || ! map.mhctId) {
+    if (!map.name || !map.mhctId) {
       mapLink.remove();
       return;
     }
@@ -291,7 +289,7 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
   const mapList = makeElement('ul', 'mh-improved-scroll-to-map-multiple-list');
   let hasShownMaps = false;
   scrollsToMaps[item.type].forEach((map) => {
-    if (! map.name || ! map.mhctId) {
+    if (!map.name || !map.mhctId) {
       return;
     }
 
@@ -305,7 +303,7 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
     mapList.append(listItem);
   });
 
-  if (! hasShownMaps) {
+  if (!hasShownMaps) {
     mapLink.remove();
     return;
   }
@@ -339,12 +337,12 @@ const formatRewardQuantity = (min, max) => {
 const addConvertibleContents = async (itemId, itemView) => {
   await getItems();
   const item = items.find((candidate) => candidate.id === Number.parseInt(itemId, 10));
-  if (item?.classification !== 'convertible' || ! isCurrentItemView(itemView, itemId)) {
+  if (item?.classification !== 'convertible' || !isCurrentItemView(itemView, itemId)) {
     return;
   }
 
   const padding = itemView.querySelector('.itemView-padding');
-  if (! padding || itemView.querySelector('.mh-improved-convertible-contents')) {
+  if (!padding || itemView.querySelector('.mh-improved-convertible-contents')) {
     return;
   }
 
@@ -369,7 +367,7 @@ const addConvertibleContents = async (itemId, itemView) => {
   padding.append(section);
 
   const contents = await fetchMouseRip(`convertible/${itemId}`);
-  if (! isCurrentItemView(itemView, itemId) || ! Array.isArray(contents) || ! contents.length) {
+  if (!isCurrentItemView(itemView, itemId) || !Array.isArray(contents) || !contents.length) {
     section.remove();
     return;
   }
@@ -385,7 +383,7 @@ const addConvertibleContents = async (itemId, itemView) => {
       list.append(row);
     });
 
-  if (! list.children.length) {
+  if (!list.children.length) {
     section.remove();
     return;
   }
@@ -400,7 +398,7 @@ const updateDescription = (itemView) => {
   ];
 
   const description = itemView.querySelector('.itemView-description');
-  if (! description) {
+  if (!description) {
     return;
   }
 
@@ -427,12 +425,12 @@ const updateDescription = (itemView) => {
  */
 const updateItemView = async () => {
   const itemView = document.querySelector('.itemViewContainer');
-  if (! itemView) {
+  if (!itemView) {
     return;
   }
 
   const itemId = itemView.getAttribute('data-item-id');
-  if (! itemId) {
+  if (!itemId) {
     return;
   }
 
@@ -447,13 +445,13 @@ const updateItemView = async () => {
     if (smashing) {
       sidebar.append(smashing);
 
-      if (! smashing.getAttribute('data-has-changed-title')) {
+      if (!smashing.getAttribute('data-has-changed-title')) {
         const smashingTitle = smashing.querySelector('b');
         if (smashingTitle) {
-          smashingTitle.innerText = 'Hunter\'s Hammer to get:';
+          smashingTitle.innerText = "Hunter's Hammer to get:";
           smashing.setAttribute('data-has-changed-title', 'true');
 
-          smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
+          smashing.innerHtml = smashing.innerHTML.replace("If you smash it, you'll get:", '');
         }
       }
     }
@@ -503,10 +501,8 @@ const shortenRecipeGoldHint = () => {
       layout,
       after: true,
       callback: (data, results) => {
-        return results
-          .replaceAll('gold per piece', 'gold each')
-          .replaceAll('One potion converts ', '');
-      }
+        return results.replaceAll('gold per piece', 'gold each').replaceAll('One potion converts ', '');
+      },
     });
   });
 };
@@ -524,7 +520,7 @@ const init = () => {
   shortenRecipeGoldHint();
   onNavigation(shortenRecipeGoldHint, {
     page: 'inventory',
-    tab: 'potions'
+    tab: 'potions',
   });
 
   onOverlayChange({ item: { show: updateItemView } });

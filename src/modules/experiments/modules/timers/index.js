@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  addSubmenuItem,
-  createPopup,
-  getData,
-  travelTo
-} from '@utils';
+import { addStyles, addSubmenuItem, createPopup, getData, travelTo } from '@utils';
 
 import { formatRotationTime, getLocationRotation, rotationLocations } from '@utils/shared/location-rotations';
 
@@ -24,9 +18,7 @@ let lastStages = '';
  * @return {Array} The rotation state for each location.
  */
 const getRotations = () => {
-  return rotationLocations
-    .map((location) => getLocationRotation(location))
-    .filter(Boolean);
+  return rotationLocations.map((location) => getLocationRotation(location)).filter(Boolean);
 };
 
 /**
@@ -55,12 +47,15 @@ const buildLocationMarkup = (rotation) => {
   const environment = environments.find((env) => env.id === rotation.id);
   const image = environment?.image ? `<div class="mh-timers-image" style="background-image: url(${environment.image});"></div>` : '';
 
-  const stages = rotation.upcoming.slice(0, upcomingLimit).map((stage) => {
-    return `<div class="mh-timers-stage">
+  const stages = rotation.upcoming
+    .slice(0, upcomingLimit)
+    .map((stage) => {
+      return `<div class="mh-timers-stage">
       <div class="mh-timers-stage-name">${getStageLabel(stage)}</div>
       <div class="mh-timers-stage-time" data-stage-time="${rotation.id}">${formatRotationTime(stage.minutes)}</div>
     </div>`;
-  }).join('');
+    })
+    .join('');
 
   return `<div class="mh-timers-location">
     <div class="mh-timers-header">
@@ -103,7 +98,7 @@ const getStageSignature = (rotations) => {
  */
 const tick = () => {
   const wrapper = document.querySelector('.mh-timers');
-  if (! wrapper) {
+  if (!wrapper) {
     return;
   }
 
@@ -143,7 +138,7 @@ const showTimersPopup = () => {
     content: `<div class="mh-timers">${buildLocationsMarkup(rotations)}</div>`,
   });
 
-  if (! popup) {
+  if (!popup) {
     return;
   }
 
@@ -151,7 +146,7 @@ const showTimersPopup = () => {
   if (wrapper) {
     wrapper.addEventListener('click', (e) => {
       const travel = e.target.closest('[data-travel-to]');
-      if (! travel) {
+      if (!travel) {
         return;
       }
 
@@ -190,6 +185,6 @@ const init = async () => {
 export default {
   id: 'timers',
   name: 'Timers',
-  description: 'Adds a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack\'s Cove, Seasonal Garden, and Toxic Spill.',
+  description: "Adds a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.",
   load: init,
 };

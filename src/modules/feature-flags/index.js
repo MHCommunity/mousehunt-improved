@@ -14,7 +14,7 @@ const init = () => {
     socialNoop();
   }
 
-  if (! getFlag('userscript-styles-no-rankup-forecaster')) {
+  if (!getFlag('userscript-styles-no-rankup-forecaster')) {
     rankupForecaster();
   }
 
