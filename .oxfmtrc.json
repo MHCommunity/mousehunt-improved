@@ -1,0 +1,6 @@
+{
+  "printWidth": 180,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "ignorePatterns": ["**/*.css", "**/*.html", "src/extension/static"]
+}

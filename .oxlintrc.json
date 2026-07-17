@@ -4,6 +4,26 @@
     "browser": true,
     "es2021": true
   },
+  "globals": {
+    "$": "readonly",
+    "SocialFramework": "readonly",
+    "WebKitCSSMatrix": "readonly",
+    "activejsDialog": "readonly",
+    "app": "readonly",
+    "blinkText": "readonly",
+    "callbackurl": "readonly",
+    "chrome": "readonly",
+    "eventRegistry": "readonly",
+    "hg": "readonly",
+    "imageUpscaler": "writable",
+    "jsDialog": "readonly",
+    "lastReadJournalEntryId": "readonly",
+    "messenger": "readonly",
+    "mhImprovedPlatform": "readonly",
+    "mhImprovedVersion": "readonly",
+    "user": "readonly",
+    "walkValue": "readonly"
+  },
   "plugins": ["import", "jsdoc", "promise", "unicorn", "oxc"],
   "categories": {
     "correctness": "error",
@@ -61,7 +81,7 @@
     "no-multi-str": "error",
     "no-shadow": "error",
     "no-template-curly-in-string": "error",
-    "no-undef": "off",
+    "no-undef": "error",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "error",
     "no-unused-labels": "off",
@@ -87,5 +107,16 @@
     "unicorn/prefer-dom-node-text-content": "off",
     "unicorn/switch-case-braces": ["warn", "avoid"],
     "unicorn/numeric-separators-style": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["scripts/**"],
+      "env": {
+        "node": true
+      },
+      "globals": {
+        "Bun": "readonly"
+      }
+    }
+  ]
 }
