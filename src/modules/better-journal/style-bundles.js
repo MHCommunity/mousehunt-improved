@@ -2,7 +2,6 @@ import { addStyles, getSetting } from '@utils';
 
 import colors from '@data/journal-item-colors.json';
 
-import fullMiceImagesNoBorderStyles from './modules/full-mice-images-no-border/styles.css';
 import highlightRareMiceStyles from './modules/journal-highlight-rare-mice/styles.css';
 import minimalIconStyles from './modules/journal-icons-minimal/styles.css';
 import tagStyles from './modules/journal-tags/styles.css';
@@ -45,11 +44,6 @@ export default () => {
       enabled: getSetting('better-journal.icons-minimal', false),
       id: 'better-journal-icons-minimal',
       styles: minimalIconStyles,
-    },
-    {
-      enabled: getSetting('better-journal.full-mice-images-no-border', false) && !getSetting('native-dark-mode', false),
-      id: 'full-mice-images-no-border',
-      styles: fullMiceImagesNoBorderStyles,
     },
   ];
 

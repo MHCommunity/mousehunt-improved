@@ -16,7 +16,6 @@
   height: auto;
   padding: 0;
   background-color: #fff;
-  border: 1px solid #000;
 }
 
 .mh-dark .entry.relicHunter_catch .journalimage img,
@@ -24,7 +23,26 @@
 .mh-dark .entry.catchsuccessloot .journalimage img,
 .mh-dark .entry.catchsuccessprize .journalimage img {
   background-color: var(--d);
-  border: 0;
+}
+
+/* The mouse art is a JPEG on a white background. Where the browser can composite
+masks, the white is cut out with the mouse's silhouette — the same technique as
+native-dark-mode/mice-images — so the art sits directly on the journal entry.
+Mice without silhouette data keep the plain white background above. */
+
+@supports (mask-composite: subtract) {
+  .journal .entry .journalimage img[data-mh-mask] {
+    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-mode: luminance;
+    mask-repeat: no-repeat;
+    mask-position:
+      0 0,
+      50% 50%;
+    mask-size:
+      100% 100%,
+      contain;
+    mask-composite: subtract, add;
+  }
 }
 
 .journal .content .entry.relicHunter_catch,
@@ -51,24 +69,11 @@
 
 /**
  * Fixes for some mice. might break depending on other module enabled.
- * When adding, also undo it in better-journal/modules/full-mice-images-no-border.
  */
 .entry.catchsuccess[data-mouse-type="pirate"] .journalimage img,
 .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage img {
   position: relative;
   margin-left: -20px;
-}
-
-.entry.catchsuccess[data-mouse-type="pirate"] .journalimage::after,
-.entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
-  position: absolute;
-  top: calc(50% - 47px);
-  left: 10px;
-  display: block;
-  width: 0;
-  height: 92px;
-  content: "";
-  border-left: 1px solid #000;
 }
 
 /* Relic Hunter */
@@ -94,9 +99,4 @@
 .PageHunterProfile .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage img {
   position: initial;
   margin-left: initial;
-}
-
-.PageHunterProfile .entry.catchsuccess[data-mouse-type="pirate"] .journalimage::after,
-.PageHunterProfile .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
-  display: none;
 }

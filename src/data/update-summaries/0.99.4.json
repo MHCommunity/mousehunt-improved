@@ -8,6 +8,7 @@
         "Location HUDs - Cerulean Skyport: Added 'View Ledger button to journal entry",
         "Better Maps: Updated Cerulean Skyport map groups and added current area highlighting",
         "Better Maps: Fixed several Sorted tab issues",
+        "Better Journal: Full mice images no longer have a border or white background",
         "Minor style tweaks"
       ]
     }

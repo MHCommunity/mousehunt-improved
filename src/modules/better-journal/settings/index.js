@@ -50,11 +50,6 @@ export default async () => {
       default: false,
     },
     {
-      id: 'better-journal.full-mice-images-no-border',
-      title: 'Full mice images (no border)',
-      default: false,
-    },
-    {
       id: 'better-journal.highlight-rare-mice',
       title: 'Highlight rare mice catches (currently only Black Widow)',
       default: false,

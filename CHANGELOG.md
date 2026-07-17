@@ -6,6 +6,7 @@
 - Better Maps: Added current area highlighting to the Sorted tab on Cerulean Skyport maps, marking the area you're hunting in and its boss when using Aurora Bocconcini Cheese, and merged the Port group into Dock for Cerulean Skyport and Corsair Chaser maps
 - Better Maps: Fixed several Sorted tab issues — getting stuck loading, showing the previously viewed map's mice, and sorting by attraction rate in the location view
 - Better Maps: Fixed "Show map goals in sidebar" adding goals to the sidebar when the setting was turned off, and improved reliability of sidebar map goals and Floating Islands map handling
+- Better Journal: Full mice images now mask out the white image background instead of drawing a border, and the separate "Full mice images (no border)" setting has been removed
 - Minor style tweaks
 
 ## Version 0.99.3

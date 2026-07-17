@@ -1,4 +1,4 @@
-import { addStyles, getCurrentPage, getData, getSetting, onJournalEntry, onNavigation } from '@utils';
+import { addStyles, getCurrentPage, getData, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -152,32 +152,6 @@ const updateMouseView = () => {
 };
 
 /**
- * Resolve the silhouette for a full-size mouse image in a journal entry.
- *
- * This runs after the journal's image stage, where Better Journal replaces the
- * thumbnail with the full-size art.
- *
- * @param {Object} model Journal entry model.
- */
-const updateJournalMouseImage = (model) => {
-  const entry = model.el;
-  const isCatchEntry = entry.classList.contains('catchsuccessloot') || entry.classList.contains('catchsuccess') || entry.classList.contains('catchsuccessprize');
-
-  if (!isCatchEntry || !model.mouseType) {
-    return;
-  }
-
-  const image = entry.querySelector('.journalimage img');
-  const mouse = silhouettes.get(model.mouseType);
-  if (!image || !mouse?.large) {
-    return;
-  }
-
-  setSilhouette(image, mouse);
-  image.setAttribute('data-mh-mask', '');
-};
-
-/**
  * Re-resolve both surfaces on the next frame.
  *
  * Both are cheap and idempotent, as they skip anything already resolved, so they're
@@ -258,15 +232,6 @@ export default async () => {
   }
 
   silhouettes = new Map(mice.map((mouse) => [mouse.type, mouse]));
-
-  // Full-size mouse art is supplied by Better Journal's images stage. Register in
-  // the following stage so only that optional presentation receives the mask.
-  if (getSetting('better-journal.full-mice-images', false)) {
-    onJournalEntry(updateJournalMouseImage, {
-      id: 'native-dark-mode-journal-mice-images',
-      stage: 'interactions',
-    });
-  }
 
   // The popup can be opened from any page, so it's always watched. The list only
   // exists on the mice pages, so the observer for it is only attached there.
