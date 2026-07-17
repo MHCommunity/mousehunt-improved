@@ -5,10 +5,9 @@
     {
       "title": "",
       "items": [
-        "Cerulean Skyport: Added a \"View Ledger\" button to completed shipment journal entries, and clicking the airship now opens the shipment log",
-        "Better Maps: The Sorted tab on Cerulean Skyport maps now highlights the area you're hunting in, and its boss when using Aurora Bocconcini Cheese, and the Port group has been merged into Dock for Cerulean Skyport and Corsair Chaser maps",
-        "Better Maps: Fixed several Sorted tab issues — getting stuck loading, showing the previously viewed map's mice, and sorting by attraction rate in the location view",
-        "Better Maps: Fixed \"Show map goals in sidebar\" adding goals to the sidebar when the setting was turned off, and improved reliability of sidebar map goals and Floating Islands map handling",
+        "Location HUDs - Cerulean Skyport: Added 'View Ledger button to journal entry",
+        "Better Maps: Updated Cerulean Skyport map groups and added current area highlighting",
+        "Better Maps: Fixed several Sorted tab issues",
         "Minor style tweaks"
       ]
     }
