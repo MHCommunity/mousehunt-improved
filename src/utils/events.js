@@ -276,6 +276,34 @@ const getDialogMapping = () => {
 };
 
 /**
+ * Check whether a shown dialog matches a registered overlay.
+ *
+ * Match the full dialog type, its mapped name, or any single class of a compound type, so
+ * 'floatingIslandsWorkshop' matches a dialog type like
+ * 'floatingIslandsWorkshop.floatingIslandsDialog'.
+ *
+ * Shared by the show and hide listeners: the dialog type comes from the dialog's classes
+ * ('treasureMapPopup') while a registered overlay is the mapped name ('map'), so both sides
+ * have to translate between them the same way.
+ *
+ * @param {string|null} dialogType The dialog type taken from the dialog's classes.
+ * @param {string|null} overlay    The overlay that was registered for.
+ *
+ * @return {boolean} Whether the dialog matches the overlay.
+ */
+const dialogMatchesOverlay = (dialogType, overlay) => {
+  if (! dialogType || ! overlay) {
+    return false;
+  }
+
+  const dialogMapping = getDialogMapping();
+
+  return overlay === dialogType ||
+    overlay === dialogMapping[dialogType] ||
+    dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
+};
+
+/**
  * When the dialog is shown, run the callback.
  *
  * @param {string}   overlay  The overlay to check for.
@@ -338,16 +366,7 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       return lifecycleCallback.callback();
     }
 
-    const dialogMapping = getDialogMapping();
-
-    // Match the full dialog type, its mapped name, or any single class of a
-    // compound type, so 'floatingIslandsWorkshop' matches a dialog type like
-    // 'floatingIslandsWorkshop.floatingIslandsDialog'.
-    const isMatch = overlay === dialogType ||
-      overlay === dialogMapping[dialogType] ||
-      dialogType.split('.').some((part) => part === overlay || dialogMapping[part] === overlay);
-
-    if ('function' === typeof callback && isMatch) {
+    if ('function' === typeof callback && dialogMatchesOverlay(dialogType, overlay)) {
       return lifecycleCallback.callback();
     }
   }, null, once, 0, identifier);
@@ -413,7 +432,9 @@ const onDialogHide = (callback, overlay = null) => {
     }
 
     dialogHideCallbacks.forEach((item) => {
-      if (lastDialog === item.overlay || 'all' === item.overlay) {
+      // `lastDialog` is the raw dialog type ('treasureMapPopup') while `item.overlay` has
+      // been normalized ('map'), so these can't be compared directly.
+      if ('all' === item.overlay || dialogMatchesOverlay(lastDialog, item.overlay)) {
         item.callback();
       }
     });
