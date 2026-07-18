@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        🐭️ MouseHunt Improved
 // @description Improve your MouseHunt experience. Please only use this when the extension is not available.
-// @version     0.99.5
+// @version     0.99.6
 // @license     MIT
 // @author      bradp
 // @namespace   bradp
@@ -9,7 +9,7 @@
 // @icon        https://i.mouse.rip/mh-improved/icon-64.png
 // @run-at      document-end
 // @grant       none
-// @require     https://unpkg.com/mousehunt-improved@0.99.5/dist/mousehunt-improved.min.js
+// @require     https://unpkg.com/mousehunt-improved@0.99.6/dist/mousehunt-improved.min.js
 // ==/UserScript==
 //
 if ('undefined' === typeof mhui) {
