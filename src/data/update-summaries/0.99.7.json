@@ -1,0 +1,10 @@
+{
+  "version": "0.99.7",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Fixed the refresh button missing from the My Invites tab of the map popup"]
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.99.7
+
+- Better Maps: Fixed the refresh button missing from the My Invites tab
+
 ## Version 0.99.6
 
 - Added the **Skyport Star Tracker** module (off by default): a draggable panel showing which mice you still need to catch for each Cerulean Skyport raid, with per-raid progress added to the View Raid Intel dialog, live updates as you hunt, and a Crownstar mode that tracks 10 catches of each mouse instead of 1

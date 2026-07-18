@@ -320,6 +320,10 @@ const intercept = (retries = 0) => {
       // arms a whole-document observer that can never become ready.
       if (activeMapId) {
         runMapEnhancements();
+      } else if (document.querySelector('.treasureMapRootView')) {
+        // The My Invites fetch also posts here, and the Community page can be open
+        // without an active map. This only polls the DOM, so it doesn't arm the runtime.
+        maybeShowInvitesTab();
       }
     },
     true
@@ -447,7 +451,6 @@ const configureMapRuntime = () => {
   mapRuntime.register('content', 'map-content', ({ root }) => {
     addBlockClasses(root);
     enhancePreviewButton();
-    maybeShowInvitesTab();
   });
 
   mapRuntime.register('interactions', 'default-tab', async (model) => {
@@ -628,6 +631,10 @@ const runMapEnhancements = () => {
   const isStale = map && activeMapId && !isActiveMap(map.map_id);
 
   mapRuntime.queueRender({ map: isStale ? null : map, reason: 'enhancement-requested' });
+
+  // The Community page's My Invites view never mounts a .treasureMapView, so the runtime's
+  // ready check keeps its stages from running there. Run the invites enhancement directly.
+  maybeShowInvitesTab();
 };
 
 /**
