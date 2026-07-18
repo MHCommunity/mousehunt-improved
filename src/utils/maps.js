@@ -1,4 +1,5 @@
 import { cacheGet, cacheGetNoExpiration, cacheSet, cacheSetNoExpiration, getData, getHeaders } from './data';
+import { doRequest } from './utils';
 import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
@@ -128,7 +129,7 @@ const setExtraMapData = async (mapId, theMapData) => {
  * @return {string} Last maptain.
  */
 const getLastMaptain = async () => {
-  return (await cacheGet('map-last-maptain')) || '';
+  return (await cacheGetNoExpiration('map-last-maptain')) || '';
 };
 
 /**
@@ -137,26 +138,48 @@ const getLastMaptain = async () => {
  * @param {string} id ID to set as the last maptain.
  */
 const setLastMaptain = (id) => {
-  cacheSet('map-last-maptain', id);
+  cacheSetNoExpiration('map-last-maptain', id);
 };
 
 /**
  * Cache the finished map.
  */
 const cacheFinishedMap = async () => {
-  const completedMap = user.quests.QuestRelicHunter.maps.find((map) => map.is_complete);
+  const completedMap = user?.quests?.QuestRelicHunter?.maps?.find((map) => map.is_complete);
   if (!completedMap?.map_id) {
     return;
   }
 
-  const data = await getMapData(completedMap.map_id);
-  if (!data) {
+  const savedForMap = await cacheGetNoExpiration('map-last-maptain-map-id');
+  if (`${savedForMap}` === `${completedMap.map_id}`) {
     return;
   }
 
-  const maptain = data.hunters.find((hunter) => hunter.captain);
+  // Only trust the cache entry for this exact map -- the non-strict fallback returns
+  // whichever map was viewed last, which can have a different captain.
+  let data = await getMapData(completedMap.map_id, true);
 
-  setLastMaptain(maptain.user_id || '');
+  if (!data?.hunters?.length) {
+    // Better Maps caches map data as it's fetched, but when it's disabled (or hasn't seen
+    // this map yet) nothing is cached, so fetch the map directly.
+    const response = await doRequest('managers/ajax/users/treasuremap_v2.php', {
+      action: 'map_info',
+      map_id: completedMap.map_id,
+    });
+
+    if (response?.treasure_map?.hunters) {
+      data = response.treasure_map;
+      await setMapData(data.map_id, data);
+    }
+  }
+
+  const maptain = data?.hunters?.find((hunter) => hunter.captain);
+  if (!maptain?.user_id) {
+    return;
+  }
+
+  setLastMaptain(maptain.user_id);
+  await cacheSetNoExpiration('map-last-maptain-map-id', completedMap.map_id);
 };
 
 /**

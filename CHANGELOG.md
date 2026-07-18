@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.99.6
+
+- Added the **Skyport Star Tracker** module (off by default): a draggable panel showing which mice you still need to catch for each Cerulean Skyport raid, with per-raid progress added to the View Raid Intel dialog, live updates as you hunt, and a Crownstar mode that tracks 10 catches of each mouse instead of 1
+- Cerulean Skyport: Added raid favorites — star raids in the raid choice dialog and the ships heading to a favorited raid's location are highlighted when choosing a ship
+- Cerulean Skyport: The View Ledger journal button now also appears on completed raid entries, not just shipments
+- FLRT Helper: Fixed sending items doing nothing when the maptain hadn't been auto-detected — items now go to whoever is shown in the hunter search, the maptain lookup no longer requires Better Maps to have cached the map (or expires after a few days), Magic Essence correctly shows as sendable SUPER|brie+, failed sends are now marked instead of showing as sent, and the popup explains itself when there's nothing tradable or no maptain found
+- Better Journal: Fixed full-size mice images sometimes showing a thin border at some zoom levels
+- Better Journal: Fixed catch entries reading "an Captain Crook" — removing the mouse's weight now corrects the "a"/"an" to match the mouse name
+- Dark Mode: Fixed a handful of dark mode styles applying even when dark mode was off
+- Minor style tweaks
+
 ## Version 0.99.5
 
 - Better Maps: Split the Port group back out of Dock on Cerulean Skyport and Corsair Chaser maps, with the Quarrelsome Quartermaster marked as a Sky Raider Romano catch

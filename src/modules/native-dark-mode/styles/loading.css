@@ -41,7 +41,7 @@
   opacity: 0.7;
 }
 
-.treasureMapView-block-content.loading::after {
+.mh-dark .treasureMapView-block-content.loading::after {
   background-color: transparent;
 }
 

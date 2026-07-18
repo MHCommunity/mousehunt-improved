@@ -1,5 +1,6 @@
 import { addStyles, formatNumber, onJournalEntry, parseNumber } from '@utils';
 
+import { articleFor } from './articles';
 import replacements from './rules';
 import styles from './styles.css';
 
@@ -98,14 +99,31 @@ const updateKingsReward = (model) => {
 };
 
 /**
- * Correct the game's "an" wording before consonants.
+ * Correct the game's "a"/"an" wording to match the mouse name's pronunciation.
  *
  * @param {Object} model The journal entry model.
  */
 const fixAnWording = (model) => {
-  if (!shouldSkip(model)) {
-    model.setHtml(model.html.replaceAll(/ and caught an ([b-df-hj-np-tv-z])/gi, ' and caught a $1'));
+  if (shouldSkip(model)) {
+    return;
   }
+
+  const fixed = model.html.replaceAll(
+    / and caught (an?) ((?:<[^>]*>)*)([a-z][\w'-]*)/gi,
+    /**
+     * Rewrite the article to match the mouse name.
+     *
+     * @param {string} match   The full match.
+     * @param {string} article The original article.
+     * @param {string} tags    Any markup between the article and the name.
+     * @param {string} word    The first word of the mouse name.
+     *
+     * @return {string} The corrected phrase.
+     */
+    (match, article, tags, word) => ` and caught ${articleFor(word)} ${tags}${word}`
+  );
+
+  model.setHtml(fixed);
 };
 
 /**

@@ -11,11 +11,11 @@
   filter: invert(1);
 }
 
-.marketplaceView-item-averagePrice.infobox-stat img {
+.mh-dark .marketplaceView-item-averagePrice.infobox-stat img {
   display: none;
 }
 
-.marketplaceView-item-averagePrice.infobox-stat #infoboxSbPrice::after {
+.mh-dark .marketplaceView-item-averagePrice.infobox-stat #infoboxSbPrice::after {
   display: inline-block;
   width: 16px;
   height: 16px;

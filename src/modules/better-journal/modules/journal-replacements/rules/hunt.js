@@ -1,9 +1,30 @@
 import defineRules from './define';
 
+import { articleFor } from '../articles';
+
 export default defineRules('hunt', [
   ["I sounded the Hunter's Horn and was successful in the hunt!", ''],
   ['where I was successful in my hunt! I', 'and'],
   ['I went on a hunt with', 'I hunted with'],
+  // The article agrees with the weight ("an 8 oz. Captain Crook"), so stripping the
+  // weight has to re-match it to the mouse name that follows.
+  [
+    /\b(an?) \d+ (?:lb\. \d+ oz\.|(?:oz|lb)\.) ((?:<[^>]*>)*)([a-z][\w'-]*)/gi,
+    /**
+     * Strip the weight and correct the article for the mouse name.
+     *
+     * @param {string} match   The full match.
+     * @param {string} article The original article.
+     * @param {string} tags    Any markup between the weight and the name.
+     * @param {string} word    The first word of the mouse name.
+     *
+     * @return {string} The corrected article and name start.
+     */
+    (match, article, tags, word) => {
+      const fixed = articleFor(word);
+      return `${'A' === article[0] ? fixed[0].toUpperCase() + fixed.slice(1) : fixed} ${tags}${word}`;
+    },
+  ],
   [/\d+? oz. /i, ''],
   [/\d+? lb. /i, ''],
   [/from (\d+?) x/i, 'from $1'],

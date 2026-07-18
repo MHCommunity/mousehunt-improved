@@ -1,18 +1,18 @@
-.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd) {
+.mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd) {
   background-color: var(--d-bg-alt);
 }
 
-.mh-catch-stats {
+.mh-dark .mh-catch-stats {
   color: var(--d-text);
   background-color: var(--d-bg);
 }
 
-.mh-catch-stats-header {
+.mh-dark .mh-catch-stats-header {
   background-color: var(--d-alt);
   border-color: var(--d-border);
 }
 
-.mh-catch-stats-wrapper {
+.mh-dark .mh-catch-stats-wrapper {
   background-color: var(--d-bg);
   border-color: var(--d-border);
   box-shadow:
@@ -20,47 +20,47 @@
     1px 3px 5px #6a6969;
 }
 
-.mh-catch-stats:hover,
-.mh-catch-stats-wrapper .mh-catch-stats:hover,
-.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,
-.mh-catch-stats:focus,
-.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {
+.mh-dark .mh-catch-stats:hover,
+.mh-dark .mh-catch-stats-wrapper .mh-catch-stats:hover,
+.mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,
+.mh-dark .mh-catch-stats:focus,
+.mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {
   color: var(--d-text);
   background-color: var(--d-action);
   outline-color: var(--d-border);
 }
 
-.mh-catch-stats-summary-meta,
-.mh-catch-stats-summary-group > summary,
-.mh-catch-stats-summary-location > summary,
-.mh-catch-stats-summary-location-body,
-.mh-catch-stats-list-header {
+.mh-dark .mh-catch-stats-summary-meta,
+.mh-dark .mh-catch-stats-summary-group > summary,
+.mh-dark .mh-catch-stats-summary-location > summary,
+.mh-dark .mh-catch-stats-summary-location-body,
+.mh-dark .mh-catch-stats-list-header {
   border-color: var(--d-border);
 }
 
-.mh-catch-stats-summary-progress {
+.mh-dark .mh-catch-stats-summary-progress {
   background-color: var(--d-bg-alt);
 }
 
-.mh-catch-stats-summary-progress-fill {
+.mh-dark .mh-catch-stats-summary-progress-fill {
   background-color: var(--d-green);
 }
 
-.mh-catch-stats-summary-locations-complete {
+.mh-dark .mh-catch-stats-summary-locations-complete {
   color: var(--d-text-muted);
 }
 
-.mh-catch-stats-summary-group > summary,
-.mh-catch-stats-summary-location-current > summary {
+.mh-dark .mh-catch-stats-summary-group > summary,
+.mh-dark .mh-catch-stats-summary-location-current > summary {
   background-color: var(--d-bg-alt);
 }
 
-.mh-catch-stats-summary-updated,
-.mh-catch-stats-summary-loading-text,
-.mh-catch-stats-summary-error {
+.mh-dark .mh-catch-stats-summary-updated,
+.mh-dark .mh-catch-stats-summary-loading-text,
+.mh-dark .mh-catch-stats-summary-error {
   color: var(--d-text-muted);
 }
 
-.mh-catch-stats-summary-location-complete .mh-catch-stats-summary-location-count {
+.mh-dark .mh-catch-stats-summary-location-complete .mh-catch-stats-summary-location-count {
   color: var(--d-green);
 }

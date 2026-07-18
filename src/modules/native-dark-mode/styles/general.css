@@ -210,8 +210,8 @@ body.mh-dark {
   color: var(--d-red-dark);
 }
 
-.claimGiftPage__giftQuantity,
-.claimGiftPage__giftDescription {
+.mh-dark .claimGiftPage__giftQuantity,
+.mh-dark .claimGiftPage__giftDescription {
   color: var(--d-text-dark);
 }
 

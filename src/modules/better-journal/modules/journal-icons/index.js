@@ -1,6 +1,8 @@
-import { addExternalStyles, addStyles, onNavigation } from '@utils';
+import { addExternalStyles, addStyles, onJournalEntry, onNavigation } from '@utils';
 
 import styles from './styles.css';
+
+let hasAddedIconStyles = false;
 
 /**
  * Add the journal icon styles, but only once a journal is actually on the page.
@@ -10,10 +12,11 @@ import styles from './styles.css';
  * from parsing it.
  */
 const addIconStyles = () => {
-  if (!document.querySelector('#journalContainer')) {
+  if (hasAddedIconStyles || !document.querySelector('#journalContainer, .journal .entry, .journalEntries .entry, .jsingle .entry')) {
     return;
   }
 
+  hasAddedIconStyles = true;
   addExternalStyles('journal-icons.css');
 };
 
@@ -30,4 +33,8 @@ export default async () => {
 
   addIconStyles();
   onNavigation(addIconStyles);
+
+  // Journal entries can appear outside `#journalContainer` — e.g. the Hunter's
+  // Journal overlay on the mouse stats pages — where navigation never fires.
+  onJournalEntry(addIconStyles, { id: 'better-journal-icons-styles' });
 };

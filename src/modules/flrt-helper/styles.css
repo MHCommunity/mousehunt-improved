@@ -176,6 +176,23 @@
   background-color: #3fcd84;
 }
 
+.mh-improved-flrt-helper-popup .flrt-item.flrt-item-send-error {
+  background-color: #f8d7da;
+  border-color: #d9534f;
+}
+
+.mh-improved-flrt-helper-popup .flrt-no-items {
+  padding: 20px 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+.mh-improved-flrt-helper-popup .flrt-hint {
+  padding: 5px 10px;
+  font-size: 11px;
+  font-style: italic;
+}
+
 .mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent-success::after {
   position: absolute;
   right: 55px;
@@ -222,6 +239,11 @@
 .mh-dark .mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent {
   color: var(--d-text-dark);
   background-color: var(--d-green);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .flrt-item.flrt-item-send-error {
+  color: var(--d-text-dark);
+  background-color: var(--d-red);
 }
 
 .mh-dark .mh-improved-flrt-helper-popup .friendsPage-community-hunterResult .error {

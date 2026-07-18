@@ -212,6 +212,9 @@ The `src/data/` folder contains JSON data files that are used by the extension a
     - `{ "id": "a-gradient", "name": "A Gradient", "css": "linear-gradient(90deg, #ff0000, #00ff00)" }`
 - `journal-item-colors.json` - Used by Better Journal's 'Unique item colors' setting to color code journal items.
 - `map-groups/<map-id>.json` - One file per map, used by Better Maps to categorize mice on the Sorted map tab. The files are combined into a single `map-groups.json` at build time, keyed by filename.
+- `skyport-raids.json` - Used by Skyport Star Tracker to group the Cerulean Skyport raid mice and identify the cheese that attracts them.
+  - `raids` contains each raid's `id`, display `name`, and `mice`. Each mouse has its game `type`, display `name`, and a `cheese` key.
+  - `cheeses` maps those cheese keys to their short `label` and full `name`.
 - `ultimate-checkmark.json` - Used by Ultimate Checkmark to populate the list of items for each category.
 - `update-summaries/<version>.json` - One file per released version, used to provide a summary of the changes with each update. Each file must contain a `version` key matching its filename, a `summary` string, and a `details` array. On update, every summary newer than the version the user is coming from is shown, so someone updating from 0.97.0 to 0.98.1 sees both the 0.98.0 and 0.98.1 summaries. Old files can be deleted once they're no longer worth showing.
 

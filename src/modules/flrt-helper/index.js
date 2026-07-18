@@ -16,6 +16,10 @@ const addFlrtButtonToConvertible = async (response) => {
 
   const tradableItems = await getData('items-tradable');
 
+  // If the tradable item data failed to load, don't filter anything out. getData returns an
+  // empty object on failure, so check for an actual list rather than truthiness.
+  const hasTradableData = Array.isArray(tradableItems) && tradableItems.length > 0;
+
   // Convert the items into a format that flrtPopup can use.
   for (const element of response.convertible_open.items) {
     const itemData = {
@@ -32,17 +36,9 @@ const addFlrtButtonToConvertible = async (response) => {
       itemData.image = 'https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png';
     }
 
-    // Skip items that are not tradable.
-    if (tradableItems) {
-      const tradable = tradableItems.find((tradableItem) => {
-        return tradableItem.type === element.type;
-      });
-
-      if (tradable) {
-        items.push(itemData);
-      }
-    } else {
-      // If we don't have the data for tradable items, just add them all.
+    // Skip items that are not tradable. Check the transformed type so the Magic Essence to
+    // SB conversion matches SB's tradability rather than Magic Essence's.
+    if (!hasTradableData || tradableItems.some((tradableItem) => tradableItem.type === itemData.type)) {
       items.push(itemData);
     }
   }
@@ -74,6 +70,10 @@ const flrtPopup = async (items) => {
   const lastMaptain = await getLastMaptain();
 
   let itemContent = '';
+  if (!items.length) {
+    itemContent = '<div class="flrt-no-items">No tradable items were found in this chest.</div>';
+  }
+
   items.forEach((item) => {
     itemContent += `<div class="flrt-item" data-item-type="${item.type}" data-item-quantity="${item.quantity}">
       <div class="itemImage">
@@ -99,6 +99,7 @@ const flrtPopup = async (items) => {
             <input type="number" value="${lastMaptain || ''}" name="user_id" maxlength="10" class="friendsPage-community-hunterIdForm-input">
             <a class="mousehuntActionButton small search-for-hunter" href="#" onclick="app.pages.FriendsPage.triggerHunterForm(this); return false;"><span>Search</span></a>
           </form>
+        ${lastMaptain ? '' : '<div class="flrt-hint">Enter your maptain’s hunter ID and hit Search to enable sending.</div>'}
         <div class="friendsPage-community-hunterResult"></div>
       </div>
       <div class="flrt-items-to-send">
@@ -111,26 +112,28 @@ const flrtPopup = async (items) => {
   popup.addToken('{*suffix*}', '');
   popup.show();
 
-  const search = document.querySelector('.search-for-hunter');
-  if (!search) {
+  const overlay = document.querySelector('#overlayPopup.flrt-helper-popup');
+  const search = overlay?.querySelector('.search-for-hunter');
+  const hunterIdInput = overlay?.querySelector('.friendsPage-community-hunterIdForm-input');
+  if (!overlay || !search || !hunterIdInput) {
     return;
   }
 
-  hasFoundMaptain = !!lastMaptain;
+  validatedReceiver = '';
 
   if (lastMaptain) {
     app.pages.FriendsPage.triggerHunterForm(search);
   }
 
-  const flrtItems = document.querySelectorAll('.flrt-item');
+  const flrtItems = overlay.querySelectorAll('.flrt-item');
 
   search.addEventListener('click', () => {
-    const id = document.querySelector('.friendsPage-community-hunterIdForm-input');
-    if (!id) {
-      return;
-    }
+    app.pages.FriendsPage.submitHunterIdForm(hunterIdInput);
+  });
 
-    app.pages.FriendsPage.submitHunterIdForm(id);
+  hunterIdInput.addEventListener('input', () => {
+    validatedReceiver = '';
+    setSendButtonsEnabled(overlay, false);
   });
 
   flrtItems.forEach((item) => {
@@ -140,7 +143,7 @@ const flrtPopup = async (items) => {
     }
 
     sendButton.addEventListener('click', async () => {
-      if (!hasFoundMaptain) {
+      if (!validatedReceiver) {
         return;
       }
 
@@ -153,46 +156,65 @@ const flrtPopup = async (items) => {
 
       item.classList.add('flrt-item-sending');
 
-      await doRequest('managers/ajax/users/supplytransfer.php', {
+      const response = await doRequest('managers/ajax/users/supplytransfer.php', {
         item: type,
         item_quantity: quantity,
-        receiver: lastMaptain,
+        receiver: validatedReceiver,
       });
 
       item.classList.remove('flrt-item-sending');
-      item.classList.add('flrt-item-sent');
-      item.classList.add('flrt-item-sent-success');
-      setTimeout(() => item.classList.remove(), 1500, 'flrt-item-sent-success');
 
-      sendButton.disabled = true;
-      sendButton.classList.add('disabled');
-      sendButton.setAttribute('data-item-sent', 'true');
+      if (response?.success) {
+        item.classList.add('flrt-item-sent');
+        item.classList.add('flrt-item-sent-success');
+        setTimeout(() => item.classList.remove('flrt-item-sent-success'), 1500);
+
+        sendButton.disabled = true;
+        sendButton.classList.add('disabled');
+        sendButton.setAttribute('data-item-sent', 'true');
+      } else {
+        item.classList.add('flrt-item-send-error');
+        setTimeout(() => item.classList.remove('flrt-item-send-error'), 2500);
+      }
     });
   });
 };
 
-let hasFoundMaptain = false;
-const updateSendButtons = async (resp) => {
-  hasFoundMaptain = Boolean(resp.friend && resp.friend.sn_user_id);
+let validatedReceiver = '';
 
+/**
+ * Enable or disable every unsent item button in the FLRT popup.
+ *
+ * @param {Element} overlay The FLRT popup.
+ * @param {boolean} enabled Whether sending should be enabled.
+ */
+const setSendButtonsEnabled = (overlay, enabled) => {
+  const flrtSendButtons = overlay.querySelectorAll('.flrt-item-send');
+
+  flrtSendButtons.forEach((button) => {
+    if ('true' === button.getAttribute('data-item-sent')) {
+      return;
+    }
+
+    button.disabled = !enabled;
+    button.classList.toggle('disabled', !enabled);
+  });
+};
+
+/**
+ * Capture the validated hunter returned by the search and update the send controls.
+ *
+ * @param {Object} resp The hunter search response.
+ */
+const updateSendButtons = (resp) => {
   const overlay = document.querySelector('#overlayPopup.flrt-helper-popup');
   if (!overlay) {
     return;
   }
 
-  const flrtSendButtons = document.querySelectorAll('.flrt-item-send');
-  if (!flrtSendButtons) {
-    return;
-  }
+  validatedReceiver = resp?.friend?.sn_user_id ? `${resp.friend.sn_user_id}` : '';
 
-  flrtSendButtons.forEach((button) => {
-    if (button.getAttribute('data-item-sent') === 'true') {
-      return;
-    }
-
-    button.disabled = !hasFoundMaptain;
-    button.classList.toggle('disabled', !hasFoundMaptain);
-  });
+  setSendButtonsEnabled(overlay, Boolean(validatedReceiver));
 };
 
 /**

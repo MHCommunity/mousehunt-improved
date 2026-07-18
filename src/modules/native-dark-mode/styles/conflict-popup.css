@@ -25,7 +25,7 @@
 
 .mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup h2,
 .mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup h3,
-#overlayPopup.mh-improved-darkmode-conflict-popup .title {
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .title {
   font-size: 18px;
   color: var(--d-text);
 }

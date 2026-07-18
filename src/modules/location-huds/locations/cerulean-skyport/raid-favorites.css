@@ -1,0 +1,38 @@
+.ceruleanSkyportRaidChoiceDialogView__raidBlock {
+  position: relative;
+}
+
+.mh-improved-skyport-raid-favorite-star {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 5;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.mh-improved-skyport-raid-favorite-star:hover,
+.mh-improved-skyport-raid-favorite-star:focus,
+.mh-improved-skyport-raid-favorite-star.active,
+.mh-improved-skyport-raid-favorite-star.busy,
+.ceruleanSkyportRaidChoiceDialogView__raidBlock:hover .mh-improved-skyport-raid-favorite-star {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mh-improved-skyport-raid-favorite-star.active {
+  z-index: 1;
+}
+
+.mh-dark .mh-improved-skyport-raid-favorite-star.custom-favorite-button:hover {
+  background-color: transparent;
+  outline-color: #ccc;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock.mh-improved-skyport-raid-favorite {
+  border-radius: 6px;
+  outline: 3px solid #f7c22b;
+  outline-offset: -1px;
+  box-shadow: 0 0 12px rgb(247 194 43 / 60%);
+}

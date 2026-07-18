@@ -321,3 +321,17 @@ slowly, and wisps of cloud blow past the windows. */
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
 }
+
+.headsUpDisplayCeruleanSkyportView__trapWarningContainer.active {
+  top: 40%;
+}
+
+.ceruleanSkyportRaidView__raidHuntsRemainingText {
+  top: 12px;
+  left: 18px;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock button.ceruleanSkyportRaidChoiceDialogView__selectRaidButton {
+  top: 70px;
+  height: 35px;
+}

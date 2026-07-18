@@ -1,0 +1,15 @@
+{
+  "version": "0.99.6",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Add \"Skyport Star Tracker\": a new module for tracking which mice you still need from each Cerulean Skyport raid",
+        "Location HUDs - Cerulean Skyport: Favorite raid locations to highlight their ships when choosing, updated \"View Ledger\" to raid completion journal entries",
+        "Fixed FLRT Helper sometimes failing silently",
+        "Fixed a few Cerulean Skyport, journal, and dark mode issues"
+      ]
+    }
+  ]
+}

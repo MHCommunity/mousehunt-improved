@@ -2,7 +2,7 @@ import { addStyles, dbGet, dbSet, formatNumber, makeElement, onJournalEntry, onR
 
 import styles from './ledger.css';
 
-const shipmentFinishedClass = 'ceruleanSkyport-shipmentFinished';
+const finishedClasses = ['ceruleanSkyport-shipmentFinished', 'ceruleanSkyport-raidFinished'];
 const pendingShipments = new Map();
 
 /**
@@ -35,7 +35,7 @@ const getSavedShipment = async (entryId) => {
 };
 
 /**
- * Save a finished shipment's ledger against the journal entry announcing it.
+ * Save a finished shipment or raid's ledger against the journal entry announcing it.
  *
  * The quest only ever holds the most recently finished shipment's ledger, so it
  * has to be captured from the turn that finished the shipment or the next one
@@ -45,7 +45,8 @@ const getSavedShipment = async (entryId) => {
  */
 const saveShipment = async (response) => {
   const finished = (response?.journal_markup || []).find((markup) => {
-    return markup?.render_data?.css_class?.includes(shipmentFinishedClass);
+    const cssClass = markup?.render_data?.css_class || '';
+    return finishedClasses.some((finishedClass) => cssClass.includes(finishedClass));
   });
 
   const entryId = finished?.render_data?.entry_id;
@@ -175,12 +176,13 @@ const showLedger = (shipment) => {
 };
 
 /**
- * Add a button to a finished-shipment journal entry that opens its ledger.
+ * Add a button to a finished-shipment or finished-raid journal entry that opens
+ * its ledger.
  *
  * @param {Object} model The journal entry model.
  */
 const addLedgerButton = async (model) => {
-  if (!model.id || !model.classes.has(shipmentFinishedClass)) {
+  if (!model.id || !finishedClasses.some((finishedClass) => model.classes.has(finishedClass))) {
     return;
   }
 

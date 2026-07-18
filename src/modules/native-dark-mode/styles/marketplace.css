@@ -50,7 +50,7 @@
   box-shadow: none;
 }
 
-.marketplaceHome-blockMenu.active,
+.mh-dark .marketplaceHome-blockMenu.active,
 .mh-dark .marketplaceHome-blockMenu:hover {
   color: var(--d-link);
   border-color: var(--d-purple);

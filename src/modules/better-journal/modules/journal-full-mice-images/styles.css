@@ -28,7 +28,12 @@
 /* The mouse art is a JPEG on a white background. Where the browser can composite
 masks, the white is cut out with the mouse's silhouette — the same technique as
 native-dark-mode/mice-images — so the art sits directly on the journal entry.
-Mice without silhouette data keep the plain white background above. */
+Mice without silhouette data keep the plain white background above.
+
+The silhouette has the same dimensions as the art, and the art fills the img box,
+so the silhouette layer is stretched to the box too. Sizing it with `contain`
+instead computes the fit from the intrinsic ratio and leaves sub-pixel letterbox
+slivers at fractional rendered sizes, which show up as borders on the image. */
 
 @supports (mask-composite: subtract) {
   .journal .entry .journalimage img[data-mh-mask] {
@@ -40,7 +45,7 @@ Mice without silhouette data keep the plain white background above. */
       50% 50%;
     mask-size:
       100% 100%,
-      contain;
+      100% 100%;
     mask-composite: subtract, add;
   }
 }

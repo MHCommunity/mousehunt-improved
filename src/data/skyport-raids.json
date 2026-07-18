@@ -1,0 +1,538 @@
+{
+  "raids": [
+    {
+      "id": "tribal_isles_raid",
+      "name": "Tribal Isles",
+      "mice": [
+        {
+          "type": "alchemist",
+          "name": "Alchemist",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "scout",
+          "name": "Scout",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "taleweaver",
+          "name": "Taleweaver",
+          "cheese": "abc"
+        },
+        {
+          "type": "healer",
+          "name": "Healer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "trailblazer",
+          "name": "Trailblazer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wordsmith",
+          "name": "Wordsmith",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "caretaker",
+          "name": "Caretaker",
+          "cheese": "abc"
+        },
+        {
+          "type": "pathfinder",
+          "name": "Pathfinder",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "narrator",
+          "name": "Narrator",
+          "cheese": "sps-srr"
+        }
+      ]
+    },
+    {
+      "id": "fiery_warpath_raid",
+      "name": "Fiery Warpath",
+      "mice": [
+        {
+          "type": "desert_archer_weak",
+          "name": "Desert Archer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_warrior_weak",
+          "name": "Desert Soldier",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_scout_weak",
+          "name": "Vanguard",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_archer",
+          "name": "Flame Archer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_warrior",
+          "name": "Flame Warrior",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_scout",
+          "name": "Sentinel",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_archer_epic",
+          "name": "Crimson Ranger",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_warrior_epic",
+          "name": "Crimson Titan",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "desert_scout_epic",
+          "name": "Crimson Watch",
+          "cheese": "abc"
+        }
+      ]
+    },
+    {
+      "id": "living_garden_raid",
+      "name": "Living Garden",
+      "mice": [
+        {
+          "type": "shroom",
+          "name": "Shroom",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "calalilly",
+          "name": "Calalilly",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "camoflower",
+          "name": "Camoflower",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "strawberry_hotcakes",
+          "name": "Strawberry Hotcakes",
+          "cheese": "abc"
+        },
+        {
+          "type": "bark",
+          "name": "Bark",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "thistle",
+          "name": "Thistle",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "fungal_spore",
+          "name": "Fungal Spore",
+          "cheese": "abc"
+        },
+        {
+          "type": "twisted_lilly",
+          "name": "Twisted Lilly",
+          "cheese": "abc"
+        },
+        {
+          "type": "camofusion",
+          "name": "Camofusion",
+          "cheese": "abc"
+        },
+        {
+          "type": "twisted_hotcakes",
+          "name": "Twisted Hotcakes",
+          "cheese": "abc"
+        },
+        {
+          "type": "barkshell",
+          "name": "Barkshell",
+          "cheese": "abc"
+        },
+        {
+          "type": "thorn",
+          "name": "Thorn",
+          "cheese": "sps-srr"
+        }
+      ]
+    },
+    {
+      "id": "fort_rox_raid",
+      "name": "Fort Rox",
+      "mice": [
+        {
+          "type": "moonstone_snacker",
+          "name": "Meteorite Snacker",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "good_supply_day",
+          "name": "Mining Materials Manager",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "hardworking_hauler",
+          "name": "Hardworking Hauler",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "moonstone_miner",
+          "name": "Meteorite Miner",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "mischievous_moonstone_miner",
+          "name": "Mischievous Meteorite Miner",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "good_supply_night",
+          "name": "Night Shift Materials Manager",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "werehauler",
+          "name": "Werehauler",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wealthy_werewarrior",
+          "name": "Wealthy Werewarrior",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "mischievous_wereminer",
+          "name": "Mischievous Wereminer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "were_alpha",
+          "name": "Alpha Weremouse",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "reveling_lycanthrope",
+          "name": "Reveling Lycanthrope",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wereminer",
+          "name": "Wereminer",
+          "cheese": "sps-srr"
+        }
+      ]
+    },
+    {
+      "id": "queso_geyser_raid",
+      "name": "Queso Geyser",
+      "mice": [
+        {
+          "type": "geyser_cork_dropper_bland",
+          "name": "Fuzzy Drake",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_cork_dropper_mild",
+          "name": "Cork Defender",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_cork_dropper_medium",
+          "name": "Burly Bruiser",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_cork_dropper_rare",
+          "name": "Corky the Collector",
+          "cheese": "abc"
+        },
+        {
+          "type": "geyser_cork_dropper_hot",
+          "name": "Horned Cork Hoarder",
+          "cheese": "abc"
+        },
+        {
+          "type": "geyser_pressure_builder_mild",
+          "name": "Steam Sailor",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_pressure_builder_medium",
+          "name": "Warming Wyvern",
+          "cheese": "abc"
+        },
+        {
+          "type": "geyser_pressure_builder_hot",
+          "name": "Vaporior",
+          "cheese": "abc"
+        },
+        {
+          "type": "geyser_eruption_dragon_mild",
+          "name": "Mild Spicekin",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_eruption_dragon_medium_spice",
+          "name": "Smoldersnap",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_eruption_dragon_hot",
+          "name": "Ignatia",
+          "cheese": "abc"
+        },
+        {
+          "type": "geyser_eruption_dragon_small",
+          "name": "Sizzle Pup",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "geyser_eruption_dragon_large",
+          "name": "Cinderstorm",
+          "cheese": "abc"
+        }
+      ]
+    },
+    {
+      "id": "zokor_raid",
+      "name": "Zokor",
+      "mice": [
+        {
+          "type": "summoning_scholar",
+          "name": "Summoning Scholar",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "sanguinarian",
+          "name": "Sanguinarian",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "mystic_guardian",
+          "name": "Mystic Guardian",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "ethereal_guardian",
+          "name": "Ethereal Guardian",
+          "cheese": "abc"
+        },
+        {
+          "type": "rr_8",
+          "name": "RR-8",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "ash_golem",
+          "name": "Ash Golem",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "tech_golem",
+          "name": "Tech Golem",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "exo_tech",
+          "name": "Exo-Tech",
+          "cheese": "abc"
+        },
+        {
+          "type": "drudge",
+          "name": "Drudge",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "masked_pikeman",
+          "name": "Masked Pikeman",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "solemn_soldier",
+          "name": "Solemn Soldier",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "battle_cleric",
+          "name": "Battle Cleric",
+          "cheese": "abc"
+        }
+      ]
+    },
+    {
+      "id": "moussu_picchu_raid",
+      "name": "Moussu Picchu",
+      "mice": [
+        {
+          "type": "nightshade_maiden",
+          "name": "Nightshade Maiden",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "spore_salesman",
+          "name": "Spore Salesman",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "nightshade_flower_girl",
+          "name": "Nightshade Flower Girl",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wind_gatherer",
+          "name": "Breeze Borrower",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wind_harvester",
+          "name": "Windy Farmer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "cloud_collector",
+          "name": "Cloud Collector",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "rain_purifier",
+          "name": "Rainwater Purifier",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "homeopathic_apothecary",
+          "name": "Homeopathic Apothecary",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "wind_watcher",
+          "name": "Wind Watcher",
+          "cheese": "abc"
+        },
+        {
+          "type": "charming_chimer",
+          "name": "Charming Chimer",
+          "cheese": "abc"
+        },
+        {
+          "type": "fluttering_flutist",
+          "name": "Fluttering Flutist",
+          "cheese": "abc"
+        },
+        {
+          "type": "cycloness",
+          "name": "Cycloness",
+          "cheese": "abc"
+        },
+        {
+          "type": "wind_warrior",
+          "name": "Wind Warrior",
+          "cheese": "abc"
+        }
+      ]
+    },
+    {
+      "id": "floating_islands_raid",
+      "name": "Floating Islands",
+      "mice": [
+        {
+          "type": "suave_pirate",
+          "name": "Suave Pirate",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "cutthroat_pirate",
+          "name": "Cutthroat Pirate",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "cutthroat_cannoneer",
+          "name": "Cutthroat Cannoneer",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "scarlet_revenger",
+          "name": "Scarlet Revenger",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "mairitime_pirate",
+          "name": "Mairitime Pirate",
+          "cheese": "sps-srr"
+        }
+      ]
+    },
+    {
+      "id": "table_of_contents_raid",
+      "name": "Table of Contents",
+      "mice": [
+        {
+          "type": "hans_cheesetian_squeakersen",
+          "name": "Hans Cheesetian Squeakersen",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "brothers_grimmaus",
+          "name": "Brothers Grimmaus",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "madame_dormouse",
+          "name": "Madame d'Ormouse",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "humphrey_dumphrey",
+          "name": "Humphrey Dumphrey",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "little_bo_squeak",
+          "name": "Little Bo Squeak",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "little_miss_fluffet",
+          "name": "Little Miss Fluffet",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "princess_and_the_olive",
+          "name": "Princess and the Olive",
+          "cheese": "abc"
+        },
+        {
+          "type": "pinkielina",
+          "name": "Pinkielina",
+          "cheese": "sps-srr"
+        },
+        {
+          "type": "fibbocchio",
+          "name": "Fibbocchio",
+          "cheese": "sps-srr"
+        }
+      ]
+    }
+  ],
+  "cheeses": {
+    "sps-srr": {
+      "label": "SPS/SRR",
+      "name": "Sky Pirate Swiss / Sky Raider Romano"
+    },
+    "abc": {
+      "label": "ABC",
+      "name": "Aurora Bocconcini"
+    }
+  }
+}

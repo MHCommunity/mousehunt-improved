@@ -33,6 +33,6 @@
   border-color: var(--d-border);
 }
 
-.hd-table .hd-table-footer-tr {
+.mh-dark .hd-table .hd-table-footer-tr {
   background-color: var(--d-yellow) !important;
 }

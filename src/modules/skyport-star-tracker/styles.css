@@ -1,0 +1,282 @@
+#custom-submenu-item-skyport-star-tracker .icon {
+  filter: saturate(0.1) sepia(1);
+}
+
+#mh-skyport-star-tracker {
+  position: absolute;
+  z-index: 150;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .mh-skyport-star-tracker-wrapper {
+    transition: none;
+  }
+}
+
+.mh-skyport-star-tracker-wrapper {
+  width: 275px;
+  background: #f6f3eb;
+  border: 1px solid #534022;
+  box-shadow:
+    1px 1px 1px 0 #9d917f,
+    1px 3px 5px 0 #6a6969;
+  transition: box-shadow 0.25s;
+}
+
+.mh-dark .mh-skyport-star-tracker-wrapper {
+  background: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow:
+    1px 1px 1px var(--d-transparent-50),
+    1px 3px 5px #6a6969;
+}
+
+.mh-is-dragging .mh-skyport-star-tracker-wrapper {
+  box-shadow:
+    1px 1px 1px 0 #9d917f,
+    0 7px 9px 2px #6a6969;
+}
+
+.mh-skyport-star-tracker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: #f6f3eb;
+  background-color: #8e6642;
+  border-bottom: 1px solid #ceb7a6;
+}
+
+.mh-dark .mh-skyport-star-tracker-header {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-skyport-star-tracker-header:hover {
+  cursor: grab;
+}
+
+.mh-skyport-star-tracker-header:active {
+  cursor: grabbing;
+}
+
+.mh-skyport-star-tracker-header h1 {
+  color: #f6f3eb;
+}
+
+.mh-skyport-star-tracker-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mh-skyport-star-tracker-close {
+  cursor: pointer;
+}
+
+.mh-skyport-star-tracker-close:hover,
+.mh-skyport-star-tracker-close:focus {
+  color: #8e6642;
+  background-color: #eee;
+  border-radius: 50%;
+  outline: 1px solid #ccc;
+}
+
+.mh-dark .mh-skyport-star-tracker-close:hover,
+.mh-dark .mh-skyport-star-tracker-close:focus {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  outline-color: var(--d-border);
+}
+
+.mh-skyport-star-tracker-body {
+  max-height: 85vh;
+  overflow: hidden auto;
+}
+
+.mh-skyport-star-tracker-progress {
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+.mh-dark .mh-skyport-star-tracker-progress {
+  color: var(--d-text);
+}
+
+.mh-skyport-star-tracker-raid-header {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 10px 4px 6px;
+  font-size: 12px;
+  color: #f6f3eb;
+  cursor: pointer;
+  user-select: none;
+  background: #a58160;
+}
+
+.mh-skyport-star-tracker-raid-header:hover,
+.mh-skyport-star-tracker-raid-header:focus {
+  color: #f6f3eb;
+  text-decoration: none;
+  background: #8e6642;
+}
+
+.mh-dark .mh-skyport-star-tracker-raid-header {
+  color: var(--d-text);
+  background: var(--d-alt);
+}
+
+.mh-dark .mh-skyport-star-tracker-raid-header:hover,
+.mh-dark .mh-skyport-star-tracker-raid-header:focus {
+  color: var(--d-text);
+  background: var(--d-action);
+}
+
+.mh-skyport-star-tracker-raid-collapse-icon {
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentcolor;
+  transition: transform 0.15s ease;
+  transform: rotate(90deg);
+}
+
+.mh-skyport-star-tracker-raid-section.collapsed .mh-skyport-star-tracker-raid-collapse-icon {
+  transform: rotate(0deg);
+}
+
+.mh-skyport-star-tracker-raid-section.collapsed .mh-skyport-star-tracker-raid-mice {
+  display: none;
+}
+
+.mh-skyport-star-tracker-raid-title {
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.mh-skyport-star-tracker-raid-progress {
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.mh-skyport-star-tracker-raid-complete .mh-skyport-star-tracker-raid-progress {
+  padding-right: 15px;
+  background: url(https://www.mousehuntgame.com/images/icons/checkmark_greenplain.png) no-repeat right center;
+  background-size: 11px;
+}
+
+.mh-skyport-star-tracker-mouse {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 10px;
+  color: #000;
+}
+
+.mh-skyport-star-tracker-mouse.odd {
+  background-color: #e8e3d7;
+}
+
+.mh-dark .mh-skyport-star-tracker-mouse {
+  color: var(--d-text-link);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mh-skyport-star-tracker-mouse.odd {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-skyport-star-tracker-mouse:hover,
+.mh-skyport-star-tracker-mouse:focus {
+  text-decoration: none;
+  outline: 1px solid #646464;
+}
+
+.mh-dark .mh-skyport-star-tracker-mouse:hover,
+.mh-dark .mh-skyport-star-tracker-mouse:focus {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  outline-color: var(--d-border);
+}
+
+.mh-skyport-star-tracker-mouse-image {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #ddd6c5;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+}
+
+.mh-skyport-star-tracker-mouse-name {
+  flex-grow: 1;
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-skyport-star-tracker-mouse-cheese {
+  flex-shrink: 0;
+  padding: 1px 4px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #222;
+  border-radius: 3px;
+}
+
+.mh-skyport-star-tracker-mouse-cheese-abc {
+  background: #40e2c9;
+}
+
+.mh-skyport-star-tracker-mouse-catches {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mh-skyport-star-tracker-mouse-complete {
+  opacity: 0.55;
+}
+
+.mh-skyport-star-tracker-mouse-complete:hover,
+.mh-skyport-star-tracker-mouse-complete:focus {
+  opacity: 1;
+}
+
+.mh-skyport-star-tracker-mouse-check {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  background: url(https://www.mousehuntgame.com/images/icons/checkmark_greenplain.png) no-repeat center;
+  background-size: 12px;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock {
+  position: relative;
+}
+
+.mh-skyport-star-tracker-raid-intel {
+  position: absolute;
+  top: 53px;
+  right: 0;
+  z-index: 2;
+  padding: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #000;
+  pointer-events: auto;
+  background: #fff;
+  border-radius: 0 0 0 4px;
+}
+
+.mh-skyport-star-tracker-raid-intel.mh-skyport-star-tracker-raid-complete {
+  padding-left: 18px;
+  background:
+    url(https://www.mousehuntgame.com/images/icons/checkmark_greenplain.png) no-repeat left 4px center / 10px,
+    #fff;
+}
