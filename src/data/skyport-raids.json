@@ -32,17 +32,17 @@
         {
           "type": "wordsmith",
           "name": "Wordsmith",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "caretaker",
           "name": "Caretaker",
-          "cheese": "abc"
+          "cheese": "sps-srr"
         },
         {
           "type": "pathfinder",
           "name": "Pathfinder",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "narrator",
@@ -88,12 +88,12 @@
         {
           "type": "desert_archer_epic",
           "name": "Crimson Ranger",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "desert_warrior_epic",
           "name": "Crimson Titan",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "desert_scout_epic",
@@ -124,7 +124,7 @@
         {
           "type": "strawberry_hotcakes",
           "name": "Strawberry Hotcakes",
-          "cheese": "abc"
+          "cheese": "sps-srr"
         },
         {
           "type": "bark",
@@ -164,7 +164,7 @@
         {
           "type": "thorn",
           "name": "Thorn",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         }
       ]
     },
@@ -200,37 +200,37 @@
         {
           "type": "good_supply_night",
           "name": "Night Shift Materials Manager",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "werehauler",
           "name": "Werehauler",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "wealthy_werewarrior",
           "name": "Wealthy Werewarrior",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "mischievous_wereminer",
           "name": "Mischievous Wereminer",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "were_alpha",
           "name": "Alpha Weremouse",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "reveling_lycanthrope",
           "name": "Reveling Lycanthrope",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "wereminer",
           "name": "Wereminer",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         }
       ]
     },
@@ -271,7 +271,7 @@
         {
           "type": "geyser_pressure_builder_medium",
           "name": "Warming Wyvern",
-          "cheese": "abc"
+          "cheese": "sps-srr"
         },
         {
           "type": "geyser_pressure_builder_hot",
@@ -464,12 +464,12 @@
         {
           "type": "scarlet_revenger",
           "name": "Scarlet Revenger",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "mairitime_pirate",
           "name": "Mairitime Pirate",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         }
       ]
     },
@@ -515,12 +515,12 @@
         {
           "type": "pinkielina",
           "name": "Pinkielina",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         },
         {
           "type": "fibbocchio",
           "name": "Fibbocchio",
-          "cheese": "sps-srr"
+          "cheese": "abc"
         }
       ]
     }

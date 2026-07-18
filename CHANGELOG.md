@@ -1,8 +1,9 @@
 # Changelog
 
-## Version 0.99.7
+## Version 0.99.8
 
 - Better Maps: Fixed the refresh button missing from the My Invites tab
+- Skyport Star Tracker: Corrected which raid mice require Aurora Bocconcini
 
 ## Version 0.99.6
 
