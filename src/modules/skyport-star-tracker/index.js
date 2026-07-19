@@ -1,6 +1,7 @@
 import {
   addStyles,
   addSubmenuItem,
+  debuglog,
   doRequest,
   getCurrentLocation,
   getSetting,
@@ -86,6 +87,8 @@ const fetchCatches = async (force = false) => {
       thumbnails = new Map(mice.filter((mouse) => mouse.image).map((mouse) => [mouse.type, mouse.image]));
       catchesFetchedAt = Date.now();
     }
+  } catch (error) {
+    debuglog('skyport-star-tracker', 'Failed to fetch catch data', error);
   } finally {
     isFetching = false;
   }
@@ -274,7 +277,7 @@ const render = () => {
   list.innerHTML = '';
 
   if (!catches) {
-    progress.textContent = 'No catch data yet.';
+    progress.textContent = "Couldn't load catch data — tap ⟳ to retry.";
     return;
   }
 
@@ -317,6 +320,61 @@ const closePanel = () => {
 };
 
 /**
+ * Make an SVG icon button for the panel header.
+ *
+ * @param {string} className The class name for the icon.
+ * @param {string} pathData  The SVG path data.
+ * @param {string} label     The accessible label.
+ *
+ * @return {Element} The icon.
+ */
+const makeHeaderIcon = (className, pathData, label) => {
+  const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  icon.classList.add(className);
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('width', '18');
+  icon.setAttribute('height', '18');
+  icon.setAttribute('fill', 'none');
+  icon.setAttribute('stroke', 'currentColor');
+  icon.setAttribute('stroke-width', '1.5');
+  icon.setAttribute('role', 'button');
+  icon.setAttribute('aria-label', label);
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', pathData);
+  icon.append(path);
+
+  return icon;
+};
+
+/**
+ * Force a refetch of the catch data and re-render the panel.
+ */
+const refreshCatches = async () => {
+  if (isFetching || !panel) {
+    return;
+  }
+
+  const icon = panel.querySelector('.mh-skyport-star-tracker-refresh');
+  if (icon) {
+    icon.classList.add('mh-skyport-star-tracker-refreshing');
+  }
+
+  const progress = panel.querySelector('.mh-skyport-star-tracker-progress');
+  if (progress) {
+    progress.textContent = 'Refreshing…';
+  }
+
+  await fetchCatches(true);
+
+  if (icon) {
+    icon.classList.remove('mh-skyport-star-tracker-refreshing');
+  }
+
+  render();
+};
+
+/**
  * Build the tracker panel, using the same frame styling as the Location Catch Stats modal.
  *
  * @return {Element} The panel.
@@ -335,19 +393,11 @@ const buildPanel = () => {
 
   const buttons = makeElement('div', 'mh-skyport-star-tracker-buttons');
 
-  const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  closeIcon.classList.add('mh-skyport-star-tracker-close');
-  closeIcon.setAttribute('viewBox', '0 0 24 24');
-  closeIcon.setAttribute('width', '18');
-  closeIcon.setAttribute('height', '18');
-  closeIcon.setAttribute('fill', 'none');
-  closeIcon.setAttribute('stroke', 'currentColor');
-  closeIcon.setAttribute('stroke-width', '1.5');
+  const refreshIcon = makeHeaderIcon('mh-skyport-star-tracker-refresh', 'M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4', 'Refresh catch data');
+  refreshIcon.addEventListener('click', refreshCatches);
+  buttons.append(refreshIcon);
 
-  const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.append(closePath);
-
+  const closeIcon = makeHeaderIcon('mh-skyport-star-tracker-close', 'M18 6L6 18M6 6l12 12', 'Close');
   closeIcon.addEventListener('click', closePanel);
   buttons.append(closeIcon);
 

@@ -70,12 +70,15 @@
   align-items: center;
 }
 
-.mh-skyport-star-tracker-close {
+.mh-skyport-star-tracker-close,
+.mh-skyport-star-tracker-refresh {
   cursor: pointer;
 }
 
 .mh-skyport-star-tracker-close:hover,
-.mh-skyport-star-tracker-close:focus {
+.mh-skyport-star-tracker-close:focus,
+.mh-skyport-star-tracker-refresh:hover,
+.mh-skyport-star-tracker-refresh:focus {
   color: #8e6642;
   background-color: #eee;
   border-radius: 50%;
@@ -83,10 +86,30 @@
 }
 
 .mh-dark .mh-skyport-star-tracker-close:hover,
-.mh-dark .mh-skyport-star-tracker-close:focus {
+.mh-dark .mh-skyport-star-tracker-close:focus,
+.mh-dark .mh-skyport-star-tracker-refresh:hover,
+.mh-dark .mh-skyport-star-tracker-refresh:focus {
   color: var(--d-text);
   background-color: var(--d-action);
   outline-color: var(--d-border);
+}
+
+.mh-skyport-star-tracker-refreshing {
+  pointer-events: none;
+  animation: mh-skyport-star-tracker-spin 1s linear infinite;
+}
+
+@keyframes mh-skyport-star-tracker-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .mh-skyport-star-tracker-refreshing {
+    opacity: 0.5;
+    animation: none;
+  }
 }
 
 .mh-skyport-star-tracker-body {

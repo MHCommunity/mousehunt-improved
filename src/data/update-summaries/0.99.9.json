@@ -1,0 +1,13 @@
+{
+  "version": "0.99.9",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "FLRT Helper: Fixed the Return to Maptain button not appearing when opening a chest from the map screen",
+        "Skyport Star Tracker: Added a refresh button to the tracker panel"
+      ]
+    }
+  ]
+}

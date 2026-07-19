@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.99.9
+
+- FLRT Helper: Fixed the Return to Maptain button not appearing when opening a chest from the map screen
+- Skyport Star Tracker: Added a refresh button to the tracker panel and a clearer retry message when catch data fails to load
+
 ## Version 0.99.8
 
 - Better Maps: Fixed the refresh button missing from the My Invites tab

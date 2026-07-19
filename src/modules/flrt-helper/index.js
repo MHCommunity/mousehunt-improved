@@ -1,4 +1,4 @@
-import { addStyles, cacheFinishedMap, createPopup, doRequest, getData, getLastMaptain, makeMhButton, onDialogShow, onRequest } from '@utils';
+import { addStyles, cacheFinishedMap, createPopup, doRequest, getData, getLastMaptain, makeMhButton, onDialogShow, onRequest, waitForElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -43,22 +43,32 @@ const addFlrtButtonToConvertible = async (response) => {
     }
   }
 
-  const buttons = document.querySelector('.jsDialogContainer .suffix');
-  if (!buttons) {
+  // Chests opened from the map screen show their loot in a treasure map dialog that the game
+  // only renders after this request finishes, so wait for its action row to appear. Chests
+  // opened from inventory land in the standard item popup, which is already in the DOM.
+  let buttons;
+  if (document.querySelector('.treasureMapDialogView-overlay.active')) {
+    buttons = await waitForElement('.treasureMapDialogView.wide.acknowledge .treasureMapDialogView-actions');
+  } else {
+    buttons = document.querySelector('.jsDialogContainer .suffix');
+  }
+
+  if (!buttons || buttons.querySelector('.mh-improved-flrt-button')) {
     return;
   }
 
   // Make the button and add it to the dialog.
-  makeMhButton({
+  const flrtButton = makeMhButton({
     element: 'button',
     text: 'Return to Maptain',
     size: 'small',
-    className: ['button'],
+    className: ['button', 'mh-improved-flrt-button'],
     callback: () => {
       flrtPopup(items);
     },
-    prependTo: buttons,
   });
+
+  buttons.prepend(flrtButton);
 };
 
 /**
