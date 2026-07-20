@@ -1,0 +1,13 @@
+{
+  "version": "0.99.10",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Cerulean Skyport: The raid intel dialog now highlights your current raid",
+        "Better Tournaments: Fixed hovering over your rank to see your scoreboard page only working on tournament scoreboards"
+      ]
+    }
+  ]
+}

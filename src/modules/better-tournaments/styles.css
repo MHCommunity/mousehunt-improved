@@ -785,7 +785,7 @@ img.pointsMouseIcon {
 }
 
 /* when hovering over your place, it will show what page you are on */
-.scoreboardTableView[data-category="tournament"] .viewer .tournament-team-rank.updated:hover::after {
+.scoreboardTableView .viewer .tournament-team-rank.updated:hover::after {
   position: absolute;
   inset: 14px 20px 14px 10px;
   display: flex;
@@ -800,7 +800,7 @@ img.pointsMouseIcon {
   border-radius: 5px;
 }
 
-.scoreboardTableView[data-category="tournament"] .scoreboardTableView-row-rank {
+.scoreboardTableView .scoreboardTableView-row-rank {
   position: relative;
 }
 

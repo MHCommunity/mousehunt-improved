@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.99.10
+
+- Cerulean Skyport: The raid intel dialog now highlights your current raid
+- Better Tournaments: Fixed hovering over your rank to see your scoreboard page only working on tournament scoreboards instead of all of them
+
 ## Version 0.99.9
 
 - FLRT Helper: Fixed the Return to Maptain button not appearing when opening a chest from the map screen

@@ -382,7 +382,7 @@ const observeTournamentList = () => {
  * Update the scoreboard.
  */
 const updateScoreboard = () => {
-  const getRanks = document.querySelectorAll('.scoreboardTableView[data-category="tournament"] .tournament-team-rank:not(.updated)');
+  const getRanks = document.querySelectorAll('.scoreboardTableView .tournament-team-rank:not(.updated)');
   getRanks.forEach((rank) => {
     const parsedRank = parseTournamentRank(rank.innerText);
     if (!parsedRank) {
@@ -403,23 +403,25 @@ const updateScoreboard = () => {
 };
 
 /**
- * Watch the tournament scoreboard because the game can replace cached pages
+ * Watch the scoreboard because the game can replace cached pages
  * without making another request.
  */
 const observeScoreboard = () => {
   scoreboardObserver?.disconnect();
   scoreboardObserver = null;
 
-  const scoreboard = document.querySelector('.scoreboardTableView[data-category="tournament"]');
-  if (!scoreboard) {
+  const scoreboards = document.querySelectorAll('.scoreboardTableView');
+  if (!scoreboards.length) {
     return;
   }
 
   updateScoreboard();
   scoreboardObserver = new MutationObserver(updateScoreboard);
-  scoreboardObserver.observe(scoreboard, {
-    childList: true,
-    subtree: true,
+  scoreboards.forEach((scoreboard) => {
+    scoreboardObserver.observe(scoreboard, {
+      childList: true,
+      subtree: true,
+    });
   });
 };
 
