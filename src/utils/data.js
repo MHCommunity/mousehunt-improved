@@ -225,6 +225,29 @@ const hasValidData = (data) => {
 };
 
 /**
+ * Check whether a value is worth persisting to the cache.
+ *
+ * Primitives (booleans, numbers, non-empty strings) are always fine, but empty
+ * objects and empty arrays are refused so a failed fetch can't overwrite good
+ * data with `{}` — the shape that breaks callers expecting a populated array.
+ *
+ * @param {*} value Value to check.
+ *
+ * @return {boolean} Whether the value should be cached.
+ */
+const isCacheableValue = (value) => {
+  if (value === null || value === undefined) {
+    return false;
+  }
+
+  if (typeof value === 'object') {
+    return hasValidData(value);
+  }
+
+  return true;
+};
+
+/**
  * Fetch the content versions for all extension data files.
  *
  * @return {Promise<Object|null>} The version map, or null on failure.
@@ -570,6 +593,11 @@ const lsSet = (key, value) => {
  * @return {Promise<Object>} The value that was set.
  */
 const cacheSet = async (key, value, expiration = null, version = null) => {
+  if (!isCacheableValue(value)) {
+    debuglog('utils-data', `Refusing to cache empty value for ${key}`);
+    return value;
+  }
+
   await Promise.all([dbSet('cache', { id: key, value, version }), cacheSetExpiration(key, expiration)]);
 
   return value;

@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.99.11
+
+- Better Journal: Fixed an error that could break journal mouse images when mouse data failed to load
+- Better Journal: Hid the date on Cerulean Skyport chrome trigger entries
+- Fixed failed data fetches being cached as empty, which could cause errors until the next refresh
+
 ## Version 0.99.10
 
 - Cerulean Skyport: The raid intel dialog now highlights your current raid

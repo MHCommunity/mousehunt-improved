@@ -70,6 +70,7 @@
 .journal .entry.labyrinth-base-burnClue .journalenvdate,
 .journal .entry.labyrinth-clue .journalenvdate,
 .journal .entry.bountifulBeanstalk-goldenHarpStrings .journalenvdate,
+.journal .entry.cerulean_chrome_base_trigger .journalenvdate,
 .journal .entry.riftFuroma-energyLost .journalenvdate {
   display: none !important;
 }

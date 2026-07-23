@@ -2,7 +2,7 @@ import { addStyles, getData, onJournalEntry } from '@utils';
 
 import styles from './styles.css';
 
-let mice;
+let mice = [];
 let silhouettes = new Map();
 
 let sheet = null;
@@ -110,7 +110,7 @@ export default async () => {
 
   const [miceData, silhouetteData] = await Promise.all([getData('mice'), getData('mice-silhouettes')]);
 
-  mice = miceData;
+  mice = Array.isArray(miceData) ? miceData : [];
   if (Array.isArray(silhouetteData)) {
     silhouettes = new Map(silhouetteData.map((mouse) => [mouse.type, mouse]));
   }
