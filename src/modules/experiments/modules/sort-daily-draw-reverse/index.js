@@ -1,63 +1,80 @@
 const reversedContainers = new WeakMap();
-
-/**
- * Reverse daily_draw elements.
- */
-const reverseDailyDrawElements = () => {
-  const container = document.querySelector('.daily_draw')?.parentElement;
-  if (!container) {
-    return;
-  }
-
-  const dailyDrawDivs = [...container.querySelectorAll('.daily_draw')];
-  if (dailyDrawDivs.length < 2) {
-    return;
-  }
-
-  const firstEntry = dailyDrawDivs[0];
-  const lastEntry = dailyDrawDivs.at(-1);
-  const reversedOrder = reversedContainers.get(container);
-  if (reversedOrder?.first === firstEntry && reversedOrder?.last === lastEntry) {
-    return;
-  }
-
-  const emptyDiv = container.querySelector('.empty');
-
-  dailyDrawDivs.reverse().forEach((div) => {
-    if (emptyDiv) {
-      emptyDiv.before(div);
-    } else {
-      container.append(div);
-    }
-  });
-
-  reversedContainers.set(container, {
-    first: lastEntry,
-    last: firstEntry,
-  });
-};
-
-let _originalTogglePopup;
+let originalTogglePopup;
 
 /**
  * Initialize the module.
  */
-const init = async () => {
-  if (_originalTogglePopup || !messenger?.UI?.notification) {
+const init = () => {
+  if (originalTogglePopup) {
     return;
   }
 
-  _originalTogglePopup = messenger.UI.notification.togglePopup;
+  // Check if messenger exists (it should if loaded after page load, usually)
+  if (!messenger?.UI?.notification) {
+    return;
+  }
+
+  originalTogglePopup = messenger.UI.notification.togglePopup;
 
   messenger.UI.notification.togglePopup = function (...args) {
-    const result = _originalTogglePopup.apply(this, args);
-    setTimeout(reverseDailyDrawElements, 400);
+    // Run the original function
+    const result = originalTogglePopup.apply(this, args);
+
+    // Start observing specifically for the daily draw to appear
+    const observer = new MutationObserver((_mutations, obs) => {
+      const dailyDraw = document.querySelector('.daily_draw');
+      if (dailyDraw) {
+        const container = dailyDraw.parentElement;
+        if (!container) {
+          return;
+        }
+
+        const dailyDrawDivs = [...container.querySelectorAll('.daily_draw')];
+        if (dailyDrawDivs.length === 0) {
+          return;
+        }
+
+        // Check if sorted
+        const lastSorted = reversedContainers.get(container);
+        if (lastSorted && lastSorted.length === dailyDrawDivs.length && lastSorted.every((el, index) => el === dailyDrawDivs[index])) {
+          obs.disconnect();
+          return;
+        }
+
+        const emptyDiv = container.querySelector('.empty');
+
+        // Reverse
+        dailyDrawDivs.reverse().forEach((div) => {
+          if (emptyDiv) {
+            emptyDiv.before(div);
+          } else {
+            container.append(div);
+          }
+        });
+
+        // Store the new sorted elements order in our WeakMap to avoid DOM pollution
+        reversedContainers.set(container, [...container.querySelectorAll('.daily_draw')]);
+        obs.disconnect();
+      }
+    });
+
+    // Observe body to catch wherever it gets inserted
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Timeout to stop observing if it never appears
+    setTimeout(() => {
+      observer.disconnect();
+    }, 5000);
+
     return result;
   };
 };
 
 /**
- * Module definition.
+ * Initialize the module.
  */
 export default {
   id: 'reverse-daily-draw-order',
