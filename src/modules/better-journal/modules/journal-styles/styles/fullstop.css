@@ -91,11 +91,19 @@
   content: "";
 }
 
+.journal .content .entry .journaltext .lucky::after {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  filter: opacity(0.6);
+}
+
 .entry.floatingIslands.fullyExplored .journaltext .item:last-of-type::after {
   content: "";
 }
 
 .journaltext .lucky:last-of-type::after,
 .journaltext .lucky::after {
-  display: none;
+  display: block;
 }

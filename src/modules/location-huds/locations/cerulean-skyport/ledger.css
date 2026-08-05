@@ -27,5 +27,9 @@
 }
 
 .mh-dark .mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__logDialogItemContainer .name {
-  color: var(--color-text-dark);
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-skyport-ledger-overlay .headsUpDisplayCeruleanSkyportView__logDialogItemContainer .special .name {
+  color: var(--d-text-dark);
 }

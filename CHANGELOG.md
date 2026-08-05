@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.99.12
+
+- Cerulean Skyport: HUD animations are now disabled when the game's Stabilize Airship option is checked
+- Favorite Setups: Setups with items you no longer own are now flagged — missing items are highlighted in red, and arming a setup with missing items shows a warning instead of the game throwing an error
+- Favorite Setups: Updated styles
+- Gifts in Inbox: Fixed the Gift Links tab disappearing after sending a raffle ballot or claiming a tournament prize from the inbox
+- Journal icon and upscaled image styles now update automatically between releases, with the bundled copies kept as a fallback
+- Stopped downloading the unused map-groups and ultimate-checkmark data files, and cleaned up their cached copies
+- Minor style tweaks
+
 ## Version 0.99.11
 
 - Better Journal: Fixed an error that could break journal mouse images when mouse data failed to load

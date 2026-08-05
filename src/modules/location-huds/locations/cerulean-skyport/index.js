@@ -1,4 +1,4 @@
-import { addHudStyles } from '@utils';
+import { addHudStyles, onRequest } from '@utils';
 
 import { addAirshipRandomizer } from '../../shared/airship-randomizer';
 import { addHullClick } from './ledger';
@@ -9,6 +9,15 @@ import fullWidthAirshipStyles from '../floating-islands/full-width-airship.css';
 import styles from './styles.css';
 
 /**
+ * Toggle our HUD animations off when the hunter has checked the game's
+ * Stabilize Airship option.
+ */
+const updateAnimationState = () => {
+  const isDisabled = user?.quests?.QuestCeruleanSkyport?.airship?.is_animation_disabled ?? false;
+  document.body.classList.toggle('mh-improved-skyport-animations-disabled', Boolean(isDisabled));
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
@@ -17,4 +26,7 @@ export default async () => {
   addHullClick();
   initRaidFavorites();
   initCurrentRaidIndicator();
+
+  updateAnimationState();
+  onRequest('*', updateAnimationState);
 };

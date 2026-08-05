@@ -1,0 +1,16 @@
+{
+  "version": "0.99.12",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Cerulean Skyport: Animations now turn off when the Stabilize Airship option is checked",
+        "Favorite Setups: Updated styles",
+        "Gifts in Inbox: Fixed the Gift Links tab disappearing after sending a raffle ballot",
+        "Journal icon and upscaled image styles can now update between releases without needing a new version",
+        "Minor style tweaks"
+      ]
+    }
+  ]
+}

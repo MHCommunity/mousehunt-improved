@@ -18,7 +18,9 @@ import {
   makeMhButton,
   onEvent,
   onNavigation,
+  onRequest,
   saveSetting,
+  sessionDelete,
   sessionGet,
   sessionSet,
   toggleBlueprint,
@@ -290,7 +292,7 @@ let itemThumbs;
  */
 const addImage = async (type, id, appendTo) => {
   const wrapper = makeElement('div', 'campPage-trap-itemBrowser-favorite-item');
-  wrapper.setAttribute('data-item-id', id);
+  wrapper.setAttribute('data-item-id', id || '');
   wrapper.setAttribute('data-item-type', type);
 
   wrapper.setAttribute('title', `Click to change ${type}`);
@@ -362,6 +364,156 @@ const getPowerTypeId = (powerType) => {
   return data[powerType] || powerType;
 };
 
+const componentsCacheKey = 'mh-improved-favorite-setups-components';
+
+let componentsRequest;
+
+/**
+ * Get the trap components that the user currently has, cached for the session.
+ *
+ * @return {Promise<Array>} The trap components.
+ */
+const getTrapComponents = async () => {
+  const cached = sessionGet(componentsCacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  if (!componentsRequest) {
+    componentsRequest = doRequest('managers/ajax/users/gettrapcomponents.php')
+      .then((response) => {
+        const components = response?.components || [];
+
+        // re-sort the items by item name.
+        components.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+
+          if (a.name > b.name) {
+            return 1;
+          }
+
+          return 0;
+        });
+
+        sessionSet(componentsCacheKey, components);
+        componentsRequest = null;
+
+        return components;
+      })
+      .catch(() => {
+        componentsRequest = null;
+
+        return [];
+      });
+  }
+
+  return componentsRequest;
+};
+
+/**
+ * Clear the cached trap components so they're fetched again when next needed.
+ */
+const clearTrapComponents = () => {
+  sessionDelete(componentsCacheKey);
+  componentsRequest = null;
+};
+
+/**
+ * Get the IDs of every item that can currently be armed.
+ *
+ * @return {Promise<Set<string>>} The armable item IDs.
+ */
+const getArmableItemIds = async () => {
+  const components = await getTrapComponents();
+
+  const ids = new Set();
+  for (const item of components) {
+    if (!item?.item_id) {
+      continue;
+    }
+
+    // Bait and trinkets are consumed, so having none of them left is the same as not having them.
+    const isConsumable = 'bait' === item.classification || 'trinket' === item.classification;
+    if (isConsumable && undefined !== item.quantity && Number.parseInt(item.quantity, 10) <= 0) {
+      continue;
+    }
+
+    ids.add(item.item_id.toString());
+  }
+
+  return ids;
+};
+
+/**
+ * Get the item types in a setup that can't currently be armed.
+ *
+ * @param {FavoriteSetup}  setup   The setup to check.
+ * @param {Set<string>}    armable The armable item IDs.
+ *
+ * @return {string[]} The item types that are missing.
+ */
+const getMissingItemTypes = (setup, armable) => {
+  return ['bait', 'base', 'weapon', 'trinket'].filter((type) => {
+    const itemId = setup?.[`${type}_id`];
+
+    return itemId && !armable.has(itemId.toString());
+  });
+};
+
+/**
+ * Highlight any items in the given setup rows that the user no longer has.
+ *
+ * @param {Element[]|NodeList} rows The setup rows to check.
+ */
+const highlightMissingItems = async (rows) => {
+  if (!rows.length) {
+    return;
+  }
+
+  const armable = await getArmableItemIds();
+  if (!armable.size) {
+    // The request failed, so don't flag everything as missing.
+    return;
+  }
+
+  rows.forEach((row) => {
+    const missing = [];
+
+    const images = row.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
+    images.forEach((image) => {
+      const itemId = image.getAttribute('data-item-id');
+      const itemType = image.getAttribute('data-item-type');
+
+      if (itemId && !armable.has(itemId.toString())) {
+        missing.push(itemType);
+        image.classList.add('missing-item');
+        image.setAttribute('title', `You don't have this ${itemType} anymore. Click to change ${itemType}`);
+      } else {
+        image.classList.remove('missing-item');
+        image.setAttribute('title', `Click to change ${itemType}`);
+      }
+    });
+
+    row.classList.toggle('has-missing-items', missing.length > 0);
+
+    const armButton = row.querySelector('.action.arm');
+    if (armButton) {
+      armButton.setAttribute('title', missing.length ? `You don't have the ${missing.join(', ')} for this setup anymore.` : '');
+    }
+  });
+};
+
+/**
+ * Highlight any items that the user no longer has in every setup row in a container.
+ *
+ * @param {Element} container The container with the setup rows.
+ */
+const highlightMissingItemsInContainer = async (container) => {
+  await highlightMissingItems(container.querySelectorAll('.row[data-setup-id]:not([data-setup-id="current"])'));
+};
+
 /**
  * Make the component picker for editing a setup.
  *
@@ -371,30 +523,7 @@ const getPowerTypeId = (powerType) => {
  * @param {Function} callback  The callback to run when an item is selected.
  */
 const makeImagePicker = async (setupId, type, currentId, callback) => {
-  let components;
-  const cached = sessionGet('mh-improved-favorite-setups-components');
-  if (cached) {
-    components = cached;
-  } else {
-    const response = await doRequest('managers/ajax/users/gettrapcomponents.php');
-
-    components = response?.components || [];
-
-    // re-sort the items by item name.
-    components.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-
-      if (a.name > b.name) {
-        return 1;
-      }
-
-      return 0;
-    });
-
-    sessionSet('mh-improved-favorite-setups-components', components);
-  }
+  const components = await getTrapComponents();
 
   const items = components.filter((item) => item.classification === type);
 
@@ -405,7 +534,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   content +=
     '<div class="mh-improved-favorites-setups-component-picker-popup-use-current mousehuntActionButton" title="Use current item"><span>Use currently armed item</span></div>';
   content += '</div>';
-  content += '<div class="mh-improved-favorite-setups-component-picker-popup-body-items">';
+  content += `<div class="mh-improved-favorite-setups-component-picker-popup-body-items ${type}">`;
   for (const item of items) {
     /**
      * Get the markup for a stat row.
@@ -837,6 +966,22 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           return;
         }
 
+        // Don't try to arm items that we don't have, since the game will just throw an error.
+        const armable = await getArmableItemIds();
+        if (armable.size) {
+          const missing = getMissingItemTypes(thisSetup, armable);
+          if (missing.length) {
+            await highlightMissingItems([setupContainer]);
+
+            setupContainer.classList.add('flash-error');
+            setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
+
+            armButton.classList.remove('loading');
+
+            return;
+          }
+        }
+
         const toArm = [];
 
         // eslint-disable-next-line eqeqeq
@@ -860,7 +1005,20 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         }
 
         if (toArm.length) {
-          await armItem(toArm);
+          try {
+            await armItem(toArm);
+          } catch {
+            // The arm failed, so refresh what we have and highlight anything that's missing.
+            clearTrapComponents();
+            await highlightMissingItems([setupContainer]);
+
+            setupContainer.classList.add('flash-error');
+            setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
+
+            armButton.classList.remove('loading');
+
+            return;
+          }
         }
 
         const currentSetupRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="current"]');
@@ -1034,6 +1192,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
             // update the setup.
             newSetup[`${itemType}_id`] = newItemId;
+            image.setAttribute('data-item-id', newItemId);
 
             // remove the new-item-id attribute.
             image.removeAttribute('data-new-item-id');
@@ -1062,6 +1221,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           }
 
           updateFavoriteSetupName();
+
+          await highlightMissingItems([setupContainer]);
 
           stopEditing();
         },
@@ -1257,6 +1418,10 @@ const makeBlueprintContainer = async () => {
   // Initialize drag and drop functionality
   makeSortable(body);
 
+  // Flag any items that we don't have anymore. This isn't awaited so that the container can be
+  // shown right away, since it may need to make a request to get the components.
+  highlightMissingItemsInContainer(body);
+
   return container;
 };
 
@@ -1429,6 +1594,11 @@ const init = async () => {
     // Set a new timeout to call the function after 500ms
     timeoutId = setTimeout(updateFavoriteSetupName, 500);
   });
+
+  // The game only requests a single classification at a time, so rather than merging it into our
+  // cache, just drop the cache and grab the full list again the next time we need it.
+  onRequest('users/gettrapcomponents.php', clearTrapComponents);
+  onRequest('users/changetrap.php', clearTrapComponents);
 
   if (getSetting('experiments.favorite-setups-toggle', false)) {
     addIcon();

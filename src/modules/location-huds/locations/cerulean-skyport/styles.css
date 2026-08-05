@@ -240,6 +240,25 @@ slowly, and wisps of cloud blow past the windows. */
   }
 }
 
+/* Respect the game's Stabilize Airship option. */
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon,
+body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView__airship .floatingIslandsAirship.animate,
+body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView__logDialogHeaderColonelAirship,
+body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView__logDialogHeaderDirigible,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportShippingView__currentShipmentDirigible,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportRaidView__raidForeground,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportRaidView__raidBackground,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportRaidView__raidBackground::before,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportRaidView__raidBackground::after,
+body.mh-improved-skyport-animations-disabled .ceruleanSkyportRaidView__raidProgressBar::after,
+body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView__fuelContainer.active .headsUpDisplayCeruleanSkyportView__fuelToggleButton {
+  animation: none;
+}
+
+body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView__childView:hover .ceruleanSkyportShippingView__foreground {
+  transform: none;
+}
+
 .headsUpDisplayCeruleanSkyportView__logDialogLootContainer {
   max-width: 115px;
 }
@@ -271,9 +290,12 @@ slowly, and wisps of cloud blow past the windows. */
   text-align: right;
 }
 
-.headsUpDisplayCeruleanSkyportView__raidInfoContainer .headsUpDisplayCeruleanSkyportView__currentRaidThumbnail {
-  width: 40px;
-  height: 40px;
+.headsUpDisplayCeruleanSkyportView__currentRaidThumbnail {
+  filter: drop-shadow(1px 1px 3px #330448);
+}
+
+.headsUpDisplayCeruleanSkyportView__raidInfoContainer .headsUpDisplayCeruleanSkyportView__currentRaidFlavorText {
+  text-shadow: 0 0 3px #240025;
 }
 
 .headsUpDisplayCeruleanSkyportView__header {

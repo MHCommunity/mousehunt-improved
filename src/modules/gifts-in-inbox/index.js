@@ -14,6 +14,7 @@ const TAB_NAME = 'Gift Links';
 const NEW_GIFT_MAX_AGE = 5 * 24 * 60 * 60 * 1000;
 
 let _togglePopup = null;
+let _renderTabs = null;
 let didBindClicks = false;
 let cachedLinks = [];
 let cacheTime = 0;
@@ -735,6 +736,29 @@ const hookInbox = () => {
 
     return result;
   };
+
+  // The game rebuilds the whole tabs bar after some inbox actions (sending a
+  // raffle ballot, claiming a tournament prize), which wipes our injected tab —
+  // re-add it after every rebuild.
+  if (!_renderTabs) {
+    _renderTabs = messenger.UI.notification.renderTabs;
+  }
+
+  messenger.UI.notification.renderTabs = function (...args) {
+    const wasActive = Boolean(document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"].active`));
+
+    const result = _renderTabs.apply(this, args);
+
+    renderGiftTab()
+      .then(() => {
+        if (wasActive) {
+          showGiftTab();
+        }
+      })
+      .catch((error) => debug('Unable to re-render gift links tab', error));
+
+    return result;
+  };
 };
 
 /**
@@ -755,6 +779,11 @@ const init = () => {
     if (_togglePopup && messenger?.UI?.notification) {
       messenger.UI.notification.togglePopup = _togglePopup;
       _togglePopup = null;
+    }
+
+    if (_renderTabs && messenger?.UI?.notification) {
+      messenger.UI.notification.renderTabs = _renderTabs;
+      _renderTabs = null;
     }
 
     document.querySelector(`#messengerUINotification .tabs a[data-tab="${TAB_TYPE}"]`)?.remove();

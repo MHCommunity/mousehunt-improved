@@ -14,7 +14,6 @@ const validDataFiles = new Set([
   'items-tradable',
   'items',
   'library-assignments',
-  'map-groups',
   'm400-locations',
   'marketplace-hidden-items',
   'mice-groups',
@@ -30,23 +29,11 @@ const validDataFiles = new Set([
   'scrolls-to-maps',
   'titles',
   'trap-special-effects',
-  'ultimate-checkmark',
   'upscaled-images',
   'wisdom',
 ]);
 
-const dataFilesToPreload = [
-  'environments-events',
-  'environments',
-  'item-thumbnails',
-  'items',
-  'map-groups',
-  'mice-groups',
-  'mice-regions',
-  'mice-thumbnails',
-  'mice',
-  'upscaled-images',
-];
+const dataFilesToPreload = ['environments-events', 'environments', 'item-thumbnails', 'items', 'mice-groups', 'mice-regions', 'mice-thumbnails', 'mice', 'upscaled-images'];
 
 /**
  * Build the normalized session storage key.

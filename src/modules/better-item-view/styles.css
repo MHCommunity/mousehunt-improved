@@ -73,6 +73,10 @@
   border-bottom-color: var(--d-bg-alt);
 }
 
+.ar-title {
+  margin-left: 5px;
+}
+
 .mouseview-has-mhct .ar-link {
   font-size: 9px;
 }
@@ -317,7 +321,7 @@ input.itemView-action-convert-quantity {
 
 .mh-improved-convertible-contents .item-ar-wrapper {
   max-height: 250px;
-  overflow-y: auto;
+  overflow: hidden auto;
 }
 
 .mh-improved-item-open-controls {

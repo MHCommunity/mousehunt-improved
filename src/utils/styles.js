@@ -175,13 +175,18 @@ const getExtensionBaseUrl = () => {
 /**
  * Add external styles to the page.
  *
+ * All platforms load from api.mouse.rip so server-side updates are picked up
+ * without a release; extensions fall back to their bundled static copy if the
+ * remote fetch fails. The cache-buster includes the date so the browser
+ * revalidates at most daily rather than caching until the next version bump.
+ *
  * @param {string} filename The filename of the external styles from the static server.
  *
  * @return {Element} The style element.
  */
 const addExternalStyles = async (filename) => {
   const identifier = filename.split('.').shift();
-  filename = `${filename}?v=${mhImprovedVersion}`;
+  const cacheBuster = `?v=${mhImprovedVersion}-${new Date().toISOString().slice(0, 10)}`;
 
   const existingStyles = document.querySelector(`#${identifier}-external`);
 
@@ -192,11 +197,17 @@ const addExternalStyles = async (filename) => {
   const style = document.createElement('link');
   style.rel = 'stylesheet';
   style.id = `${identifier}-external`;
-  style.href = `https://api.mouse.rip/${filename}`;
+  style.href = `https://api.mouse.rip/${filename}${cacheBuster}`;
 
-  // If we're in an extension, then we can use the extension base URL.
-  if ('userscript' !== mhImprovedPlatform) {
-    style.href = `${getExtensionBaseUrl()}static/${filename}`;
+  excludeFromUserscript: {
+    // Extensions ship a build-time snapshot in static/ — use it if the remote fails.
+    style.addEventListener(
+      'error',
+      () => {
+        style.href = `${getExtensionBaseUrl()}static/${filename}?v=${mhImprovedVersion}`;
+      },
+      { once: true }
+    );
   }
 
   document.head.append(style);
