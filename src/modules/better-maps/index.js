@@ -434,7 +434,7 @@ const configureMapRuntime = () => {
     // Map responses can re-run this render session without rebuilding the Goals
     // tab. Its setup is not a refresh hook, so run it once per tab instance;
     // subsequent user clicks still flow through the delegated navigation handler.
-    const goalsTab = root.querySelector('.treasureMapRootView-subTab[data-type="goals"]');
+    const goalsTab = root.querySelector('.treasureMapRootView-subTab[data-type="show_goals"]');
     if (goalsTab && !initializedGoalsTabs.has(goalsTab)) {
       initializedGoalsTabs.add(goalsTab);
       doEvent('map_show_goals_tab_click', map);

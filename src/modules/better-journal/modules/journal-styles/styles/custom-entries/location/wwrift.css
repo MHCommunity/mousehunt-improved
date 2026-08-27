@@ -2,6 +2,10 @@
   padding: 6px 0;
 }
 
+.mh-dark .journal .rift-whisker-woods-increase {
+  box-shadow: 0 -1px 20px -3px var(--d-yellow) inset;
+}
+
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody {
   margin: 0 15px;
   font-size: 10px;

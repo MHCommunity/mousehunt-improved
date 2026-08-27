@@ -16,6 +16,9 @@ const LOOT_INTRO_PHRASES = [
   'scared up an additional:',
   'the following bonus loot:',
   "knocked loose additional loot from the Sky Raiders' airships:",
+  // Shortened form produced by the journal-replacements rule for the phrase
+  // above; must come after it so the full phrase wins when replacements are off.
+  'knocked loose',
 ];
 
 export { LOOT_INTRO_PHRASES, RAW_LOOT_INTRO_PHRASES };

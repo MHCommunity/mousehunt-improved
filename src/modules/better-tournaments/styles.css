@@ -49,6 +49,10 @@
   margin-left: -5px;
 }
 
+.PageTeam .tournamentPage-tournament-column.value.teamMembers.members_5 {
+  display: block;
+}
+
 .tournamentPage-tournamentContainer-labels {
   display: grid;
   grid-template-columns: 305px 100px 80px 55px;

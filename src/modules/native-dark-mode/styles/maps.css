@@ -161,6 +161,11 @@
   color: var(--d-text);
 }
 
+.mh-dark .treasureMapView-consolationPrizeButton.mh-improved-confirm-claim span {
+  color: var(--d-text);
+  background-color: var(--d-red-darker);
+}
+
 .mh-dark .treasureMapRootView-subTab-spacer {
   width: 1px;
 }

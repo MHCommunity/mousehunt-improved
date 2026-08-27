@@ -109,10 +109,6 @@
   color: #424242;
 }
 
-.newsPostBody #news-post-responsive section.text-image-inline img:first-of-type {
-  max-width: 60px;
-}
-
 .newsPostBody #news-post-responsive .feature-cards-section.large .feature-card img {
   max-width: 70px;
   padding-top: 10px;

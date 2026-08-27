@@ -2,14 +2,12 @@ import {
   addOnboardingTip,
   addStyles,
   createPopup,
-  getCurrentLocation,
   getCurrentPage,
   getCurrentSubtab,
   getCurrentTab,
   getData,
   getSetting,
   makeElement,
-  makeMhButton,
   onNavigation,
   onOverlayChange,
   onRequest,
@@ -357,6 +355,22 @@ const getInventoryItemQuantity = (el) => {
 let specialEffectItems = null;
 
 /**
+ * Make a pill option styled like the game's native inventory filter pills.
+ *
+ * @param {string} text  The option text.
+ * @param {string} title Tooltip text.
+ *
+ * @return {HTMLElement} The option link.
+ */
+const makeFilterOption = (text, title) => {
+  const option = makeElement('a', ['mousehuntHud-page-subTabContent-prefix-filter-option', 'mh-inventory-option'], text);
+  option.setAttribute('href', '#');
+  option.setAttribute('title', title);
+
+  return option;
+};
+
+/**
  * Add sorting and filtering controls to the inventory traps tab.
  */
 const addTrapSorting = async () => {
@@ -373,12 +387,12 @@ const addTrapSorting = async () => {
     specialEffectItems = await getData('trap-special-effects');
   }
 
-  // An item has a special effect if it always does (`all`) or does in the
-  // current location — matching the trap-selector-special-effects module.
-  const specialTypes = new Set([...(specialEffectItems?.all || []), ...(specialEffectItems?.[getCurrentLocation()] || [])]);
+  // Unlike the location-scoped trap-selector-special-effects module, the inventory
+  // filter counts an item as special if it has an effect anywhere in the game.
+  const specialTypes = new Set(Object.values(specialEffectItems || {}).flat());
 
   // Remove any existing controls (this also drops their click listeners).
-  document.querySelectorAll('.mh-inventory-sort-row').forEach((el) => el.remove());
+  document.querySelectorAll('.mh-inventory-controls').forEach((el) => el.remove());
 
   let itemClass = getCurrentSubtab();
   if ('traps' === itemClass) {
@@ -395,14 +409,26 @@ const addTrapSorting = async () => {
 
   // --- Filters ---
   const filters = { le: 'all', effects: 'all' };
+  const sortState = { type: null, order: null };
+  let filterCountEl = null;
 
   const applyFilters = () => {
-    getEntries().forEach(({ el, type, item }) => {
+    const entries = getEntries();
+    let shown = 0;
+
+    entries.forEach(({ el, type, item }) => {
       const leOk = filters.le === 'all' || (filters.le === 'le' ? Boolean(item?.is_limited_edition) : !item?.is_limited_edition);
       const effectsOk = filters.effects === 'all' || (filters.effects === 'special' ? specialTypes.has(type) : !specialTypes.has(type));
+      const visible = leOk && effectsOk;
 
-      el.classList.toggle('mh-inventory-item-hidden', !(leOk && effectsOk));
+      shown += visible ? 1 : 0;
+      el.classList.toggle('mh-inventory-item-hidden', !visible);
     });
+
+    if (filterCountEl) {
+      const isFiltered = 'all' !== filters.le || 'all' !== filters.effects;
+      filterCountEl.textContent = isFiltered ? `Showing ${shown} of ${entries.length}` : '';
+    }
   };
 
   // --- Sorting ---
@@ -437,10 +463,17 @@ const addTrapSorting = async () => {
     return statValue(a) - statValue(b);
   };
 
+  // Captured before the first sort so the Clear button can restore the game's own ordering.
+  let originalOrder = null;
+
   const doSort = (sortType, order) => {
     const entries = getEntries();
     if (!entries.length) {
       return;
+    }
+
+    if (!originalOrder) {
+      originalOrder = entries.map(({ el }) => ({ el, parent: el.parentElement }));
     }
 
     const container = entries[0].el.parentElement;
@@ -457,10 +490,24 @@ const addTrapSorting = async () => {
   };
 
   // --- Build the controls ---
-  const sortRow = makeElement('div', 'mh-inventory-sort-row');
+  // Reuses the game's own subtab filter pill styling (the Owned/All pills on the charms
+  // tab) so the controls match the native UI in both light and dark mode.
+  const controls = makeElement('div', 'mh-inventory-controls');
 
-  const sortGroup = makeElement('div', 'mh-inventory-control-group', '', sortRow);
-  makeElement('span', 'mh-inventory-control-label', 'Sort', sortGroup);
+  // Show the Reset link only when a sort or filter is active.
+  const updateActiveState = () => {
+    const hasActive = null !== sortState.type || 'all' !== filters.le || 'all' !== filters.effects;
+    controls.classList.toggle('mh-inventory-has-active', hasActive);
+  };
+
+  const sortRow = makeElement('div', 'mh-inventory-controls-row');
+  controls.append(sortRow);
+
+  const sortLabel = makeElement('div', 'mousehuntHud-page-subTabHeader-prefix', 'Sort:');
+  sortRow.append(sortLabel);
+
+  const sortOptions = makeElement('div', ['mousehuntHud-page-subTabContent-prefix-filter-options', 'mh-inventory-sort-options']);
+  sortRow.append(sortOptions);
 
   const sortTypes = [
     { name: 'Name', type: 'name' },
@@ -473,71 +520,129 @@ const addTrapSorting = async () => {
     { name: 'Cheese Effect', type: 'cheese_effect' },
   ];
 
-  const sortButtons = [];
+  const sortChips = [];
   sortTypes.forEach((sortDef) => {
-    const button = makeMhButton({
-      text: sortDef.name,
-      className: ['mh-inventory-sort-button', 'lightBlue'],
-      appendTo: sortGroup,
-    });
-    sortButtons.push(button);
+    const chip = makeFilterOption(sortDef.name, `Sort by ${sortDef.name}`);
+    sortOptions.append(chip);
+    sortChips.push(chip);
 
-    button.addEventListener('click', (event) => {
+    chip.addEventListener('click', (event) => {
       event.preventDefault();
 
-      const isActive = button.classList.contains('active');
-      const order = isActive && button.getAttribute('data-sort-order') === 'desc' ? 'asc' : 'desc';
+      // Clicking the active sort flips the direction.
+      const isActive = chip.classList.contains('active');
+      const order = isActive && chip.getAttribute('data-sort-order') === 'desc' ? 'asc' : 'desc';
 
-      sortButtons.forEach((other) => {
-        other.classList.toggle('active', other === button);
-        if (other !== button) {
+      sortState.type = sortDef.type;
+      sortState.order = order;
+
+      sortChips.forEach((other) => {
+        other.classList.toggle('active', other === chip);
+        if (other !== chip) {
           other.removeAttribute('data-sort-order');
+          other.setAttribute('title', `Sort by ${other.textContent}`);
         }
       });
-      button.setAttribute('data-sort-order', order);
+      chip.setAttribute('data-sort-order', order);
+      chip.setAttribute('title', `Sorted by ${sortDef.name}, ${'desc' === order ? 'highest' : 'lowest'} first — click to reverse`);
 
       doSort(sortDef.type, order);
+      updateActiveState();
     });
   });
 
-  const filterGroup = makeElement('div', 'mh-inventory-control-group', '', sortRow);
-  makeElement('span', 'mh-inventory-control-label', 'Filter', filterGroup);
+  const filterRow = makeElement('div', 'mh-inventory-controls-row');
+  controls.append(filterRow);
 
-  const filterDefs = [
-    { group: 'le', value: 'le', name: 'LE' },
-    { group: 'le', value: 'non-le', name: 'Non-LE' },
-    { group: 'effects', value: 'special', name: 'Special' },
-    { group: 'effects', value: 'normal', name: 'Normal' },
+  const filterLabel = makeElement('div', 'mousehuntHud-page-subTabHeader-prefix', 'Filter:');
+  filterRow.append(filterLabel);
+
+  const filterGroups = [
+    {
+      key: 'le',
+      chips: [
+        { value: 'all', name: 'All', title: 'Show both Limited Edition and regular items' },
+        { value: 'le', name: 'LE', title: 'Show only Limited Edition items' },
+        { value: 'non-le', name: 'Non-LE', title: 'Hide Limited Edition items' },
+      ],
+    },
+    {
+      key: 'effects',
+      chips: [
+        { value: 'all', name: 'All', title: 'Show items with and without special effects' },
+        { value: 'special', name: 'Special', title: 'Show only items with special effects' },
+        { value: 'normal', name: 'Normal', title: 'Show only items without special effects' },
+      ],
+    },
   ];
 
-  const filterButtons = [];
-  filterDefs.forEach((filterDef) => {
-    const button = makeMhButton({
-      text: filterDef.name,
-      className: ['mh-inventory-filter-button', 'lightBlue'],
-      appendTo: filterGroup,
-    });
-    button.setAttribute('data-filter-group', filterDef.group);
-    button.setAttribute('data-filter-value', filterDef.value);
-    filterButtons.push(button);
+  const resetFilterChips = [];
+  filterGroups.forEach((group) => {
+    const segment = makeElement('div', 'mousehuntHud-page-subTabContent-prefix-filter-options');
+    filterRow.append(segment);
 
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
+    group.chips.forEach((chipDef) => {
+      const chip = makeFilterOption(chipDef.name, chipDef.title);
+      segment.append(chip);
+      chip.classList.toggle('active', filters[group.key] === chipDef.value);
 
-      // Toggle: clicking the active value clears the group; otherwise select it.
-      filters[filterDef.group] = filters[filterDef.group] === filterDef.value ? 'all' : filterDef.value;
+      if ('all' === chipDef.value) {
+        resetFilterChips.push(chip);
+      }
 
-      filterButtons.forEach((other) => {
-        if (other.getAttribute('data-filter-group') === filterDef.group) {
-          other.classList.toggle('active', other.getAttribute('data-filter-value') === filters[filterDef.group]);
-        }
+      chip.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        filters[group.key] = chipDef.value;
+
+        segment.querySelectorAll('.mh-inventory-option').forEach((other) => {
+          other.classList.toggle('active', other === chip);
+        });
+
+        applyFilters();
+        updateActiveState();
       });
-
-      applyFilters();
     });
   });
 
-  header.append(sortRow);
+  filterCountEl = makeElement('span', 'mh-inventory-filter-count');
+  filterRow.append(filterCountEl);
+
+  const resetLink = makeElement('a', 'mh-inventory-reset', 'Reset');
+  filterRow.append(resetLink);
+  resetLink.setAttribute('href', '#');
+  resetLink.setAttribute('title', 'Clear sorting and filters');
+
+  resetLink.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    filters.le = 'all';
+    filters.effects = 'all';
+    sortState.type = null;
+    sortState.order = null;
+
+    sortChips.forEach((chip) => {
+      chip.classList.remove('active');
+      chip.removeAttribute('data-sort-order');
+      chip.setAttribute('title', `Sort by ${chip.textContent}`);
+    });
+
+    resetFilterChips.forEach((allChip) => {
+      allChip.parentElement.querySelectorAll('.mh-inventory-option').forEach((chip) => {
+        chip.classList.toggle('active', chip === allChip);
+      });
+    });
+
+    if (originalOrder) {
+      originalOrder.forEach(({ el, parent }) => parent?.append(el));
+      originalOrder = null;
+    }
+
+    applyFilters();
+    updateActiveState();
+  });
+
+  header.append(controls);
 };
 
 const go = () => {

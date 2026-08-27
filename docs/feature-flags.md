@@ -19,6 +19,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 ### Module Flags
 
+#### Better Journal
+
+|Flag|Description|
+|---|---|
+|`show-lucky-icon`|Shows the luck stat icon after "lucky" text in journal entries.|
+
 #### Better Mice
 
 |Flag|Description|

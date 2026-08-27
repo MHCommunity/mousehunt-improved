@@ -6,9 +6,22 @@
   transition: 0.5s ease;
 }
 
+.ceruleanSkyportInventoryView {
+  right: 14px;
+  bottom: 12px;
+  gap: 5px;
+  width: auto;
+  height: auto;
+  padding: 3px;
+  border-color: #8a8293;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: -2px -2px 1px -1px #516073;
+}
+
 .ceruleanSkyportInventoryView__inventoryBlockImage {
-  width: 33px;
-  height: 34px;
+  width: 35px;
+  height: 35px;
 }
 
 .headsUpDisplayCeruleanSkyportView__basicBaitContainer .headsUpDisplayCeruleanSkyportView__basicBait,
@@ -317,7 +330,11 @@ body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView_
 }
 
 .ceruleanSkyportInventoryView__inventoryBlockQuantity.quantity {
-  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  font-size: 10px;
 }
 
 .headsUpDisplayCeruleanSkyportView__logDialogLootQuantity.quantity {

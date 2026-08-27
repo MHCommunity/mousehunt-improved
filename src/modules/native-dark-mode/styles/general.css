@@ -241,6 +241,16 @@ body.mh-dark {
   color: var(--d-text);
 }
 
+.mh-dark #OnboardArrow.onboardPopup .introPopupContent a {
+  color: var(--d-link);
+}
+
+.mh-dark #OnboardArrow.onboardPopup.top .canShare .larryTip {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border: none;
+}
+
 .mh-dark #OnboardArrow.onboardPopup.left {
   background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_left.png);
 }

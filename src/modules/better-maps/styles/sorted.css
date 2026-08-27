@@ -2,6 +2,12 @@
   margin: 20px 5px;
 }
 
+/* While the sorted view is shown, the native goal/environment highlight popup has no
+   visible anchor and no mouseout to dismiss it, so keep it from floating over the mice. */
+.treasureMapView-blockWrapper:has(#sorted-mice-container) .treasureMapView-highlight {
+  display: none !important;
+}
+
 #sorted-mice-container .mouse-category-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -190,6 +196,7 @@
 
 #sorted-mice-container .mouse-minluck {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   justify-content: center;
@@ -391,7 +398,7 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
 
 .mh-ui-goals-group-toggle {
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 10px;
   width: 15px;
   height: 15px;

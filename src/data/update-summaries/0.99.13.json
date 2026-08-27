@@ -1,0 +1,22 @@
+{
+  "version": "0.99.13",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Mice: Prize mice now show catch history and cooldown status, and the Prize History page has been updated",
+        "Better UI: The Team page shows member journals outside of tournaments and visual trap setups",
+        "Better Journal: Items mentioned in entries are now linked, and inline loot (like the Polar Vortex Trap) is shown as a list",
+        "Better Quests: The M400 helper now supports the Bait Research assignment",
+        "Better Inventory: Trap sort and filter controls now match the game's style, show how many items match, and have a Reset link",
+        "Location Catch Stats: Added a refresh button",
+        "Quick Filters and Sort: Cheese can now be sorted by quantity",
+        "Better Maps: Fixed the mouse info popup getting stuck over the mice list",
+        "Better Maps: Claiming a consolation prize now asks you to confirm, since it can't be undone",
+        "Table of Contents: The simulator now counts the Gold Foil Printing upgrade when estimating Gnawbels",
+        "Minor fixes and style tweaks"
+      ]
+    }
+  ]
+}

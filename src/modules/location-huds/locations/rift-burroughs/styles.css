@@ -148,6 +148,10 @@
   background-color: rgb(255 255 255 / 75%);
 }
 
+.riftBurroughsHud .baitOption .toolTip .arrow {
+  pointer-events: none;
+}
+
 .riftBurroughsHud .baitWarning {
   top: 36px;
   left: 275px;

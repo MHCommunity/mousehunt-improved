@@ -1,6 +1,11 @@
 #mh-improved-m400-travel {
-  left: 15px;
   cursor: pointer;
+}
+
+.mh-m400-quest .campPage-quests-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .m400-helper-hidden,
@@ -23,6 +28,44 @@
   width: 100%;
   margin: 0 auto;
   opacity: 0.4;
+}
+
+.campPage-quests-container {
+  padding: 10px;
+}
+
+.campPage-quests-objective-progress {
+  position: absolute;
+  right: 40px;
+  width: unset;
+}
+
+.campPage-quests-objective-progressBar {
+  margin-right: 5px;
+}
+
+.complete .campPage-quests-objective-progressBar span {
+  background: #33cc69;
+  box-shadow:
+    0 -2px 1px #60cf17 inset,
+    3px 0 3px #666;
+}
+
+.complete .campPage-quests-objective-progress {
+  display: none;
+}
+
+.mh-dark .campPage-quests-objective-progressBar {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+  box-shadow: 0 -1px 3px -1px #9b9b9b inset;
+}
+
+.mh-dark .complete .campPage-quests-objective-progressBar span {
+  background: var(--d-green);
+  box-shadow:
+    0 -2px 1px var(--d-green-dark) inset,
+    3px 0 3px var(--d-black);
 }
 
 .campPage-quests-footer-smash {
@@ -135,8 +178,8 @@
   margin-left: 10px;
 }
 
-.mh-m400-quest .campPage-quests-objective-progress,
-.mh-m400-quest .campPage-quests-objective-progressBar {
+.mh-m400-quest:not(.mh-m400-bait-quest) .campPage-quests-objective-progress,
+.mh-m400-quest:not(.mh-m400-bait-quest) .campPage-quests-objective-progressBar {
   display: none;
 }
 
@@ -250,4 +293,8 @@ ul.mh-ui-assignment-details-task-list {
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .content {
   padding: 10px 10px 0;
+}
+
+.mh-dark .campPage-quests-objective-content a {
+  color: var(--d-link);
 }

@@ -190,14 +190,43 @@ const makeMouseList = (mice) => {
 };
 
 /**
- * Build the modal frame: wrapper, draggable header with title and close button, and body.
+ * Make an SVG icon button for the modal header.
  *
- * @param {string} id    The ID for the modal wrapper.
- * @param {string} title The title to show in the header.
+ * @param {string} className The class name for the icon.
+ * @param {string} pathData  The SVG path data.
+ * @param {string} label     The accessible label.
+ *
+ * @return {Element} The icon.
+ */
+const makeHeaderIcon = (className, pathData, label) => {
+  const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  icon.classList.add(className);
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('width', '18');
+  icon.setAttribute('height', '18');
+  icon.setAttribute('fill', 'none');
+  icon.setAttribute('stroke', 'currentColor');
+  icon.setAttribute('stroke-width', '1.5');
+  icon.setAttribute('role', 'button');
+  icon.setAttribute('aria-label', label);
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', pathData);
+  icon.append(path);
+
+  return icon;
+};
+
+/**
+ * Build the modal frame: wrapper, draggable header with title, refresh, and close buttons, and body.
+ *
+ * @param {string}   id        The ID for the modal wrapper.
+ * @param {string}   title     The title to show in the header.
+ * @param {Function} onRefresh Handler for the header refresh button, which spins until it resolves.
  *
  * @return {Object} The wrapper, modal, header, and body elements.
  */
-const makeStatsModal = (id, title) => {
+const makeStatsModal = (id, title, onRefresh = false) => {
   // Remove the existing modal.
   const existing = document.querySelector(`#${id}`);
   if (existing) {
@@ -219,28 +248,31 @@ const makeStatsModal = (id, title) => {
   titleEl.textContent = title;
   header.append(titleEl);
 
-  // Create a close button icon.
-  const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  closeIcon.classList.add('mh-catch-stats-close');
-  closeIcon.setAttribute('viewBox', '0 0 24 24');
-  closeIcon.setAttribute('width', '18');
-  closeIcon.setAttribute('height', '18');
-  closeIcon.setAttribute('fill', 'none');
-  closeIcon.setAttribute('stroke', 'currentColor');
-  closeIcon.setAttribute('stroke-width', '1.5');
+  const buttons = makeElement('div', 'mh-catch-stats-buttons');
 
-  // Create the path.
-  const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.append(closePath);
+  if (onRefresh) {
+    const refreshIcon = makeHeaderIcon('mh-catch-stats-refresh', 'M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4', 'Refresh');
+    refreshIcon.addEventListener('click', async () => {
+      if (refreshIcon.classList.contains('mh-catch-stats-refreshing')) {
+        return;
+      }
+
+      refreshIcon.classList.add('mh-catch-stats-refreshing');
+      await onRefresh();
+      refreshIcon.classList.remove('mh-catch-stats-refreshing');
+    });
+
+    buttons.append(refreshIcon);
+  }
 
   // Close the modal when the icon is clicked.
+  const closeIcon = makeHeaderIcon('mh-catch-stats-close', 'M18 6L6 18M6 6l12 12', 'Close');
   closeIcon.addEventListener('click', () => {
     wrapper.remove();
   });
 
-  // Append the button.
-  header.append(closeIcon);
+  buttons.append(closeIcon);
+  header.append(buttons);
 
   // Add the header to the modal.
   modal.append(header);
@@ -259,14 +291,22 @@ const makeStatsModal = (id, title) => {
  * Show catch stats for the current location using the original simplified view.
  */
 const showSimplifiedModal = async () => {
-  const { wrapper, body } = makeStatsModal('mh-catch-stats', 'Location Catch Stats');
+  /**
+   * Fetch the stats and render the mouse rows.
+   */
+  const renderStats = async () => {
+    const mouseStats = await getMouseStats();
+    modal.body.replaceChildren();
+    mouseStats.forEach((mouse) => {
+      modal.body.append(buildMouseMarkup(mouse));
+    });
+  };
 
-  const mouseStats = await getMouseStats();
-  mouseStats.forEach((mouse) => {
-    body.append(buildMouseMarkup(mouse));
-  });
+  const modal = makeStatsModal('mh-catch-stats', 'Location Catch Stats', renderStats);
 
-  document.body.append(wrapper);
+  await renderStats();
+
+  document.body.append(modal.wrapper);
   makeElementDraggable('#mh-catch-stats', '#mh-catch-stats .mh-catch-stats-header', 25, 25);
 };
 

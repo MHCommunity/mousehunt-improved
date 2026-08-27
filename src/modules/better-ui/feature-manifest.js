@@ -11,6 +11,7 @@ import maintenance from './modules/maintenance';
 import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
+import team from './modules/team';
 import tournamentTrophies from './modules/tournament-trophies';
 import userscriptStyles from './modules/userscripts-styles';
 
@@ -27,6 +28,7 @@ const featureManifest = [
   { id: 'userscript-styles', load: userscriptStyles },
   { id: 'random-skin-button', load: randomSkinButton },
   { id: 'skin-preview-base', load: skinPreviewBase },
+  { id: 'team', load: team },
   { id: 'tournament-trophies', load: tournamentTrophies },
   { id: 'codex-at-bottom', setting: 'better-ui.codex-at-bottom', default: true, load: codexAtBottom },
   { id: 'hud', setting: 'better-ui.hud-changes', default: true, load: hud },

@@ -22,6 +22,7 @@ import hoverMice from './modules/hover-mice';
 import mousePage from './modules/mouse-page';
 import settings from './settings';
 import sidebar from './modules/sidebar';
+import { addPrizeInfo, isPrizeMouse, prizeInfo } from './modules/prize-info';
 
 import styles from './styles.css';
 
@@ -233,6 +234,8 @@ const updateMouseView = async () => {
 
   addWisdom(mouseId, mouseView);
 
+  addPrizeInfo(mouseId, mouseView);
+
   mouseView.classList.add('mouseview-has-mhct');
 
   const group = document.querySelector('.mouseView-group');
@@ -314,7 +317,8 @@ const updateMouseView = async () => {
     imageContainer.append(movedContainer);
   }
 
-  if (!getSetting('better-mice.show-attraction-rates', true)) {
+  // Prize mice show cooldown info instead of attraction rates.
+  if (isPrizeMouse(mouseId) || !getSetting('better-mice.show-attraction-rates', true)) {
     return;
   }
 
@@ -616,6 +620,7 @@ const init = () => {
   addStyles(styles, 'better-mice');
   main();
   mousePage();
+  prizeInfo();
 
   if (getSetting('better-mice.show-mouse-hover', true)) {
     excludeFromStandaloneUserscript: hoverMice();

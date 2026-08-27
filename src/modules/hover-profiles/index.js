@@ -124,6 +124,8 @@ const ensurePanel = () => {
   // Track pointer state over the panel
   p.addEventListener('mouseenter', () => {
     overPanel = true;
+    // Cancel any pending show from links crossed on the way to the panel
+    clearTimeout(showTimer);
     clearTimeout(hideTimer);
   });
   p.addEventListener('mouseleave', () => {
@@ -372,6 +374,7 @@ const bindListeners = () => {
 
     link.addEventListener('mouseleave', () => {
       overAnchor = false;
+      clearTimeout(showTimer);
       scheduleHide();
     });
 
@@ -382,6 +385,7 @@ const bindListeners = () => {
 
     link.addEventListener('blur', () => {
       overAnchor = false;
+      clearTimeout(showTimer);
       scheduleHide();
     });
   });

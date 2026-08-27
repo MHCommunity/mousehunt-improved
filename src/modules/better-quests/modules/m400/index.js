@@ -102,8 +102,9 @@ const main = async () => {
     return;
   }
 
-  const isM400 = user.quests?.QuestLibraryM400Research?.is_assignment || user.quests.QuestLibraryM400Research?.is_bait_assignment; // TODO: get the bait assignment quest here.
-  if (!isM400) {
+  const isM400 = user.quests?.QuestLibraryM400Research?.is_assignment;
+  const isM400Bait = user.quests?.QuestLibraryM400BaitResearch?.is_assignment;
+  if (!(isM400 || isM400Bait)) {
     return;
   }
 
@@ -113,36 +114,43 @@ const main = async () => {
   }
 
   container.classList.add('mh-m400-quest');
+  if (isM400Bait) {
+    container.classList.add('mh-m400-bait-quest');
+  }
 
   const allTasks = document.querySelectorAll('.campPage-quests-objective-container');
-  if (!allTasks) {
+  if (!allTasks.length) {
     return;
   }
 
   const taskNames = document.querySelectorAll('.campPage-quests-objective-task');
-  if (taskNames) {
-    taskNames.forEach((task) => {
-      const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect Intel');
-      // Only write when something changed, so the mouse links don't get wiped.
-      if (newText !== task.innerText) {
-        task.innerText = newText;
-      }
-    });
-  }
+  taskNames.forEach((task) => {
+    const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect Intel');
+    // Only write when something changed, so the mouse links don't get wiped.
+    if (newText !== task.innerText) {
+      task.innerText = newText;
+    }
+  });
 
   await linkMiceInObjectives();
 
-  // get the last task that doesn't have the 'locked' or 'complete' class.
-  const last = [...allTasks].reverse().find((task) => {
+  // get the first task that doesn't have the 'locked' or 'complete' class.
+  const next = [...allTasks].find((task) => {
     return !task.classList.contains('locked') && !task.classList.contains('complete');
   });
 
-  if (!last) {
+  if (!next) {
+    // Everything is done, so remove the travel button if it's there.
+    const existingButton = document.querySelector('#mh-improved-m400-travel');
+    if (existingButton) {
+      existingButton.remove();
+    }
+
     return;
   }
 
   // Get the text that comes at the end of the objective.
-  const objective = last.querySelector('.campPage-quests-objective-task');
+  const objective = next.querySelector('.campPage-quests-objective-task');
   if (!objective) {
     return;
   }

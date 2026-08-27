@@ -52,10 +52,19 @@
   flex-direction: column;
   align-items: center;
   width: 90px;
+  border-radius: 10px;
+}
+
+.mh-dark .mouseView-weaknessContainer {
+  background-color: var(--d-bg-alt);
 }
 
 .mouseview-has-mhct .mouseView-categoryContent-subgroup-mouse-weaknesses {
   width: 100%;
+}
+
+.mouseView-categoryContent-subgroup-mouse-weaknesses {
+  margin-top: 3px;
 }
 
 .mouseview-has-mhct .mouseView-socialContainer {
@@ -66,6 +75,12 @@
   display: flex;
   align-items: stretch;
   width: 155px;
+}
+
+.mouseView-statsContainer-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .mouseview-has-mhct .mouseView-statsContainer-block-padding {
@@ -352,6 +367,56 @@ ul.minluck-list {
 
 .mh-dark .mouseview-relicHunter {
   background-color: var(--d-purple-dark);
+}
+
+.mouseview-prize-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 12px;
+  background-color: #fdf3d4;
+  border-radius: 10px;
+}
+
+.mh-dark .mouseview-prize-info {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+}
+
+.mouseview-prize-info-cooldown {
+  font-weight: 700;
+  color: #a94442;
+}
+
+.mh-dark .mouseview-prize-info-cooldown {
+  color: #e58f8f;
+}
+
+.mouseview-prize-info-ready {
+  font-weight: 700;
+  color: #3c763d;
+}
+
+.mh-dark .mouseview-prize-info-ready {
+  color: #8fce90;
+}
+
+.mouseview-prize-info-footer {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.mouseview-prize-info-link {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.mh-dark .mouseview-prize-info-link {
+  color: var(--d-link);
 }
 
 .mouseListView-categoryContent-subgroup-mouse-stats.catches,

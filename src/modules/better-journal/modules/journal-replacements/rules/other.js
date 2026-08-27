@@ -19,8 +19,8 @@ export default defineRules('other', [
   [/i can go to my .+? to open it/i, ''],
   ['The mouse stole', ' The mouse stole'],
   ['Chest, I can', 'Chest, '],
-  ['<br>I should ', 'I can '],
-  ['<br>I can ', 'I can '],
+  ['<br>I should ', ' I can '],
+  ['<br>I can ', ' I can '],
   [' I replaced my bait since it seemed to be stale.', ''],
   ['*POP* Your Unstable Charm pops off your trap and has', 'My Unstable Charm'],
   ['You quickly add it to your inventory!', ''],
@@ -68,6 +68,7 @@ export default defineRules('other', [
     'My $3 gave me an additional $1<a href="https://www.mousehuntgame.com/item.php?item_type=combat_energy_stat_item" onclick="hg.views.ItemView.show(\'combat_energy_stat_item\'); return false;">Enerchi</a>.',
   ],
   ["my Skyfarer's Oculus and discovered the following loot:", "my Skyfarer's Oculus and discovered: "],
+  ["knocked loose additional loot from the Sky Raiders' airships:", 'knocked loose'],
   ['focussed the light from my ', 'focused the light from my '],
   [
     'Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> to smithereens, revealing',
@@ -85,6 +86,6 @@ export default defineRules('other', [
   ],
   ['Here is the summary of loot that I earned during my studies:<br><br>', 'I earned the following loot during my studies:'],
   ['The aura will last until', 'The aura expires on'],
-  ['The last of the mist dissipated from the atmosphere.I can obtain more Mist Canisters and begin misting again.', 'The last of the mist dissipated.'],
+  [/The last of the mist dissipated from the atmosphere\. ?I can obtain more Mist Canisters and begin misting again\./, 'The last of the mist dissipated.'],
   ['My Printing Press Base printed through a roll of', 'My Printing Press Base used a roll of'],
 ]);

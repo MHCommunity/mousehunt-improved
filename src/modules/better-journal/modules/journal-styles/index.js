@@ -1,4 +1,4 @@
-import { addStyles, getUserTitle, getUserTitleShield, onJournalEntry } from '@utils';
+import { addStyles, getFlag, getUserTitle, getUserTitleShield, makeElement, onJournalEntry } from '@utils';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -69,6 +69,47 @@ const updateRankUpIcon = (model) => {
 };
 
 /**
+ * The fullstop styles hide the first <br> in fullyExplored entries, which glues
+ * the sentences of single-line entries together ("vault!I can continue"), so
+ * swap a lone <br> for a space. Entries with more <br>s keep a visible break.
+ *
+ * @param {Object} model The journal entry model.
+ */
+const fixFullyExploredSpacing = (model) => {
+  if (!(model.classes.has('floatingIslands') && model.classes.has('fullyExplored'))) {
+    return;
+  }
+
+  const brs = model.html.match(/<br\s*\/?>/gi);
+  if (brs && 1 === brs.length) {
+    model.setHtml(model.html.replace(brs[0], ' '));
+  }
+};
+
+/**
+ * The Polar Vortex Trap's squall entry (noelWeaponEffect) ships without a
+ * journal image, so add the weapon's image to lay it out like a normal entry.
+ *
+ * @param {Object} model The journal entry model.
+ */
+const addNoelWeaponImage = (model) => {
+  if (!model.classes.has('noelWeaponEffect')) {
+    return;
+  }
+
+  const entry = model.el;
+  if (entry.querySelector('.journalimage')) {
+    return;
+  }
+
+  const image = makeElement('div', 'journalimage');
+  const img = document.createElement('img');
+  img.src = 'https://www.mousehuntgame.com/images/items/weapons/63ed8bbae283944bba2268a8444f65c6.jpg';
+  image.append(img);
+  entry.prepend(image);
+};
+
+/**
  * Toggle the expanded state of collapsed travel entries on click.
  *
  * @param {Object} model The journal entry model.
@@ -120,8 +161,17 @@ const addGiftEntryToggle = (model) => {
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 
+  if (!getFlag('show-lucky-icon')) {
+    addStyles('.journal .content .entry .journaltext .lucky::after { display: none; }', 'better-journal-styles-hide-lucky-icon');
+  }
+
   onJournalEntry(cleanBadgeText, {
     id: 'better-journal-styles-badge-text',
+    stage: 'text',
+  });
+
+  onJournalEntry(fixFullyExploredSpacing, {
+    id: 'better-journal-styles-fully-explored-spacing',
     stage: 'text',
   });
 
@@ -132,6 +182,11 @@ export default async () => {
 
   onJournalEntry(updateRankUpIcon, {
     id: 'better-journal-styles-rankup',
+    stage: 'images',
+  });
+
+  onJournalEntry(addNoelWeaponImage, {
+    id: 'better-journal-styles-noel-weapon-image',
     stage: 'images',
   });
 

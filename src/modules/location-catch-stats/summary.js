@@ -278,7 +278,10 @@ const renderSummary = (stats, body) => {
  * Show the summary modal.
  */
 const showSummaryModal = async () => {
-  const { wrapper, body } = makeStatsModal('mh-catch-stats-summary', 'Location Catch Stats');
+  const { wrapper, body } = makeStatsModal('mh-catch-stats-summary', 'Location Catch Stats', async () => {
+    body.replaceChildren(makeElement('div', 'mh-catch-stats-summary-loading-text', 'Loading…'));
+    renderSummary(await getOverallStats(true), body);
+  });
 
   makeElement('div', 'mh-catch-stats-summary-loading-text', 'Loading…', body);
 

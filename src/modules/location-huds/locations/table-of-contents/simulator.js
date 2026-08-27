@@ -43,6 +43,9 @@ const simulate = (options) => {
   updateWords(options.Upgrades);
   updateCR(options.TrapPower, options.TrapLuck, options.TrapCharmId);
 
+  // Gold Foil Printing doubles the Gnawbel Prizes awarded by book rewards.
+  const gnawbelsPerVolume = options.Upgrades.HasGoldFoilPrinting ? 108 : 54;
+
   const debug = {};
 
   /** @type {Object<number, number>} */
@@ -120,7 +123,7 @@ const simulate = (options) => {
 
     results.chances.push({
       volume,
-      gnawbels: volume * 54,
+      gnawbels: volume * gnawbelsPerVolume,
       words: volume * 4000,
       processors,
       chance,
@@ -132,7 +135,7 @@ const simulate = (options) => {
 
   results.mostLikely = {
     volume: mostLikelyVolume,
-    gnawbels: mostLikelyVolume * 54,
+    gnawbels: mostLikelyVolume * gnawbelsPerVolume,
     words: mostLikelyVolume * 4000,
     processors: Math.floor(processorsByVolume[mostLikelyVolume] / volumeCountByVolume[mostLikelyVolume]),
   };

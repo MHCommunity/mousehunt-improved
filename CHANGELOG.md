@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 0.99.13
+
+- Better Mice: Prize mice (Leprechaun, Mobster, High Roller, Snooty, and Treasurer) now show their catch history and cooldown status in the mouse view, and the Prize History page has been updated
+- Better UI: The Team page now shows member journals even when the team isn't in a tournament, and members' trap setups are shown as images instead of a text list
+- Better UI: Added an experiment that adds an "On Maps" tab to the Friends page showing which friends are currently on treasure maps
+- Better Journal: Item names mentioned in entry text now get links, icons, and hover cards, loot listed inline after a colon (like the Polar Vortex Trap squall or the refractor bases) is formatted as a list, Polar Vortex Trap entries now show the trap image with the standard entry layout, and fixed the missing space after "secured this vault!" when defeating the Empyrean Empress
+- Better Journal: Added a `show-lucky-icon` feature flag to show the luck icon after lucky catch text
+- Better Quests: The M400 helper now also supports the M400 Bait Research assignment, the travel button now points at your next incomplete step, and assignment progress bars got improved styles and dark mode support
+- Better Inventory: The trap sort and filter controls now match the game's native filter pills, show how many items match the current filters, and have a Reset link; the Special filter now includes items that have a special effect in any location, not just your current one
+- Location Catch Stats: Added a refresh button to the stats popups
+- Quick Filters and Sort: Cheese can now be sorted by quantity in the trap selector
+- Hover Profiles: Fixed profile hover cards sometimes appearing after the cursor had already moved away
+- Better Maps: Fixed Goals tab enhancements not loading after a game update renamed the tab
+- Better Maps: Fixed the mouse/environment info popup getting stuck on screen and covering the mice list when the map opened straight to the Sorted tab
+- Better Maps: Claiming a consolation prize now asks for a confirming second click, since it removes you from the map and can't be undone
+- Table of Contents: The encyclopedia simulator now accounts for the Gold Foil Printing upgrade, which doubles the Gnawbels earned from book rewards
+- Ultimate Checkmark: The 2023 Gilded Treasure Chest and its rare version are no longer counted as required chests, since they can no longer be obtained
+- Minor style tweaks
+
 ## Version 0.99.12
 
 - Cerulean Skyport: HUD animations are now disabled when the game's Stabilize Airship option is checked
@@ -476,7 +495,7 @@ Updated Dark Mode tournament journal entry styling
 - Better UI: Added setting to disable styles
 - Better UI: Added 'Random' button to skin browser
 - Better UI: Updated styles
-- Better Inventory: Updated styles
+- Better Inventory: The trap sort and filter controls now match the game's native filter pills, show how many items match the current filters, and have a Reset link; the Special filter now includes items that have a special effect in any location, not just your current one
 - Better Items: Improved performance of hover item views, added support for more journal entry types
 - Better Journal: Added Highlight rare mice feature, currently only highlights Black Widow
 - Better Journal: Improved Journal History performance

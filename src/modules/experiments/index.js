@@ -51,6 +51,11 @@ const init = () => {
       title: 'Better Inventory: Add trap sorting',
       load: () => {},
     },
+    {
+      id: 'better-ui.friends-on-maps',
+      title: 'Better UI: Show an "On Maps" tab on the Friends page',
+      load: () => {},
+    },
   ];
 
   onlySettings.forEach((module) => {

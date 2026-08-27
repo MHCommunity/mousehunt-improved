@@ -951,6 +951,26 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
 };
 
 /**
+ * Dismiss the native goal/environment highlight popup.
+ *
+ * The game only hides it on mouseout of the goal or environment that opened it. Hiding
+ * those elements while one is hovered — which is exactly what showing the sorted view
+ * does — means that mouseout never fires, and the popup is left floating over the sorted
+ * mice list with nothing left to dismiss it.
+ */
+const clearNativeHighlight = () => {
+  const highlight = document.querySelector('.treasureMapView-highlight');
+  if (highlight) {
+    highlight.classList.remove('sticky', 'active');
+  }
+
+  const stickyGoals = document.querySelectorAll('.treasureMapView-goals-group-goal.sticky');
+  stickyGoals.forEach((goal) => {
+    goal.classList.remove('sticky');
+  });
+};
+
+/**
  * Move the sorted tab to the body.
  */
 const moveTabToBody = () => {
@@ -984,6 +1004,10 @@ const processSortedTabClick = async (force = false) => {
   if (!currentMapData || !currentMapData.goals) {
     return;
   }
+
+  // The Goals view renders before the sorted view swaps in, so a hovered goal or
+  // environment can leave its highlight popup stranded on top of the sorted mice.
+  clearNativeHighlight();
 
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
   if (currentlyActive && !force && `${renderedMapId}` === `${currentMapData.map_id}`) {

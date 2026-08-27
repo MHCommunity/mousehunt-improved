@@ -19,36 +19,12 @@ const classTypeMap = Object.entries({
 const classesToSkip = new Set(['mountain-boulderLooted', 'labyrinth-exitMaze', 'festiveSpiritLootBoost', 'spring_hunt_charge_trinket_effect', 'harbour']);
 
 /**
- * Entries that mention items only in prose: link the items so they get our
- * icons and hover cards, but don't reformat the entry as a list.
+ * Item mentions that should stay plain text in specific entries, keyed by
+ * entry class: the Polar Vortex squall entry mentions the consumed Cyclone
+ * Stone, which is trap setup rather than loot.
  */
-const linkifyOnlySelectors = ['.dirigibleTravel', '.short.craft.item', '.short.hammer'];
-
-/**
- * Entries that mention items in prose but should also be formatted as a list.
- */
-const linkifyAndListSelectors = ['[class*="refractorBaseEffect"]'];
-
-/**
- * Whether the entry should only have its items linked, not be list-ified.
- *
- * @param {HTMLElement} entry The journal entry element.
- *
- * @return {boolean} Whether to only link the items.
- */
-const shouldOnlyLinkItems = (entry) => {
-  return linkifyOnlySelectors.some((selector) => entry.matches(selector));
-};
-
-/**
- * Whether the entry should have its items linked and be formatted as a list.
- *
- * @param {HTMLElement} entry The journal entry element.
- *
- * @return {boolean} Whether to link the items and make a list.
- */
-const shouldLinkAndList = (entry) => {
-  return linkifyAndListSelectors.some((selector) => entry.matches(selector));
+const skipTextLinksByClass = {
+  noelWeaponEffect: ['cyclone stone'],
 };
 
 let allItems = null;
@@ -152,11 +128,12 @@ const makeItemLink = (item, name) => {
  * quantity, so common words that happen to be item names (Gold, Points, Gift)
  * aren't linked in regular prose.
  *
- * @param {string} text The text to search.
+ * @param {string} text      The text to search.
+ * @param {Set}    skipNames Lower-cased item names to leave as plain text.
  *
  * @return {Array} Matches as `{ start, name, item }`, in order.
  */
-const findItemsInText = (text) => {
+const findItemsInText = (text, skipNames) => {
   const matches = [];
   const wordStart = /[A-Z][\w'+|’-]*/g;
 
@@ -194,7 +171,7 @@ const findItemsInText = (text) => {
     // Only link single words when they directly follow a quantity.
     const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
     if (best.words > 1 || precededByQuantity) {
-      if (!shouldSkipJournalItemLink(best.item)) {
+      if (!shouldSkipJournalItemLink(best.item) && !skipNames?.has(best.item.name.toLowerCase())) {
         matches.push(best);
       }
 
@@ -211,9 +188,10 @@ const findItemsInText = (text) => {
  * Wrap known item names in loot links within an element's text, so entries
  * that only mention items in prose still get icons and hover cards.
  *
- * @param {HTMLElement} textEl The text element.
+ * @param {HTMLElement} textEl    The text element.
+ * @param {Set}         skipNames Lower-cased item names to leave as plain text.
  */
-const linkifyItemsInText = (textEl) => {
+const linkifyItemsInText = (textEl, skipNames) => {
   const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT, {
     /**
      * Skip text that's already inside a link.
@@ -234,7 +212,7 @@ const linkifyItemsInText = (textEl) => {
 
   for (const node of textNodes) {
     const text = node.textContent;
-    const found = findItemsInText(text);
+    const found = findItemsInText(text, skipNames);
     if (!found.length) {
       continue;
     }
@@ -295,21 +273,29 @@ const makeListItems = (itemList) => {
 };
 
 /**
- * Format the items that follow the intro's colon as a list (for entries like
- * the refractor base effect, where the loot is listed inline after a colon).
+ * Format the items that follow a colon as a list (for entries like the
+ * refractor base or Polar Vortex Trap, where the loot is listed inline after
+ * a colon). Only converts when everything after the colon reads as item
+ * quantities and links, so prose colons stay untouched.
  *
  * @param {HTMLElement} textEl The text element.
  */
 const listifyAfterColon = (textEl) => {
-  // Find the colon in the entry's text — searching the HTML instead would
-  // match the "https:" inside link attributes and mangle the markup.
+  // Find a colon in the entry's text — searching the HTML instead would match
+  // the "https:" inside link attributes and mangle the markup. Skip colons
+  // that follow a digit so times like "3:00pm" aren't treated as intros.
   const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT);
 
   let colonNode = null;
-  while (walker.nextNode()) {
-    if (walker.currentNode.textContent.includes(':')) {
-      colonNode = walker.currentNode;
-      break;
+  let colonIndex = -1;
+  while (!colonNode && walker.nextNode()) {
+    const text = walker.currentNode.textContent;
+    for (let i = text.indexOf(':'); i !== -1; i = text.indexOf(':', i + 1)) {
+      if (!/\d/.test(text.charAt(i - 1))) {
+        colonNode = walker.currentNode;
+        colonIndex = i;
+        break;
+      }
     }
   }
 
@@ -317,9 +303,9 @@ const listifyAfterColon = (textEl) => {
     return;
   }
 
-  // Everything after the colon is the item list.
+  // Everything after the colon is the item list candidate.
   const range = document.createRange();
-  range.setStart(colonNode, colonNode.textContent.indexOf(':') + 1);
+  range.setStart(colonNode, colonIndex + 1);
   range.setEnd(textEl, textEl.childNodes.length);
 
   const rest = makeElement('div');
@@ -329,7 +315,10 @@ const listifyAfterColon = (textEl) => {
     .map((fragment) => fragment.replace(/[!.]+$/, '').trim())
     .filter(Boolean);
 
-  if (!list.length) {
+  // Every fragment must be a quantity followed by a linked item, so regular
+  // sentences that happen to contain a colon are left alone.
+  const isItemList = list.length > 0 && list.every((fragment) => /^\d[\d,]*\s*(x\s*)?<a\s[^>]*>[^<]*<\/a>$/i.test(fragment));
+  if (!isItemList) {
     return;
   }
 
@@ -533,20 +522,6 @@ const formatAsList = async (model) => {
   const textEl = makeElement('div');
   textEl.innerHTML = model.html;
 
-  // Entries with items in prose get links (and thereby icons), and some of
-  // them also get formatted as a list.
-  const linkAndList = shouldLinkAndList(entry);
-  if (linkAndList || shouldOnlyLinkItems(entry)) {
-    linkifyItemsInText(textEl);
-
-    if (linkAndList) {
-      listifyAfterColon(textEl);
-    }
-
-    model.setHtml(textEl.innerHTML);
-    return;
-  }
-
   let type;
   for (const cls of entry.classList) {
     if (classesToSkip.has(cls)) {
@@ -569,6 +544,16 @@ const formatAsList = async (model) => {
     return;
   }
 
+  // Link item mentions in the text first, so entries that only mention items
+  // in prose get icons and hover cards, and lists built below keep the links.
+  const skipNames = new Set();
+  for (const cls of entry.classList) {
+    if (Object.hasOwn(skipTextLinksByClass, cls)) {
+      skipTextLinksByClass[cls].forEach((name) => skipNames.add(name));
+    }
+  }
+  linkifyItemsInText(textEl, skipNames);
+
   const { newText, list } = getItemsFromText(type, textEl);
   if (list.length > 0 && newText !== textEl.innerHTML) {
     // replace text content and append list
@@ -577,6 +562,10 @@ const formatAsList = async (model) => {
       const listItems = makeListItems(list);
       textEl.append(listItems);
     }
+  } else if ('hasListNeedsClasses' !== type) {
+    // No recognized loot phrasing: entries that list their loot inline after
+    // a colon (like the Polar Vortex Trap squall) still become a list.
+    listifyAfterColon(textEl);
   }
 
   model.setHtml(textEl.innerHTML);

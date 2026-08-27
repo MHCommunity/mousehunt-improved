@@ -1,0 +1,16 @@
+.journal .content .entry.minimalJournal.noelWeaponEffect .journalbody {
+  margin-left: 75px;
+}
+
+.journal .content .entry.noelWeaponEffect .journalimage img {
+  width: 55px;
+  border-radius: 4px;
+}
+
+.journal .content .entry.noelWeaponEffect .journaltext > br:first-of-type {
+  display: block;
+}
+
+.journal .entry.minimalJournal.noelWeaponEffect .journalenvironment {
+  display: flex;
+}

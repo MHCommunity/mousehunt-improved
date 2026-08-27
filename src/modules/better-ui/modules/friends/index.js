@@ -1,5 +1,7 @@
 import { getCurrentPage, getSetting, onNavigation, onRequest, saveSetting, waitForElement } from '@utils';
 
+import mapActivity from './map-activity';
+
 /**
  * Reorder the blocks on the friends page.
  */
@@ -117,6 +119,10 @@ const updateCampFriends = async () => {
  * Initialize the module.
  */
 export default async () => {
+  if (getSetting('better-ui.friends-on-maps', false)) {
+    mapActivity();
+  }
+
   onNavigation(reorderBlocks, {
     page: 'friends',
   });

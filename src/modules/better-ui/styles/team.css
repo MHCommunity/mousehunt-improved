@@ -65,11 +65,6 @@
   color: #575757;
 }
 
-.teamPage-memberJournal-list {
-  height: unset;
-  min-height: 30px;
-}
-
 .teamPage-memberJournals {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -183,4 +178,8 @@
 
 .tournamentPage-tournament-column.teamMembers .tournament-team-rank {
   padding: 0 10px;
+}
+
+.teamPage-profile-openTeam {
+  border: none;
 }

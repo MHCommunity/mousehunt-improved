@@ -779,7 +779,7 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-previewBar {
   display: flex;
-  height: 20px;
+  height: 40px;
   padding-left: 15px;
   margin: 0;
   margin-top: -10px;
@@ -792,7 +792,7 @@ input.treasureMapView-block-search-text {
   right: 0;
   display: block;
   width: 100px;
-  height: 40px;
+  height: 60px;
   content: "";
   background: #d9ffbf url(https://www.mousehuntgame.com/images/ui/elements/larry_circle_large.gif) 0 -16px no-repeat;
   background-size: 90px;
@@ -818,6 +818,10 @@ input.treasureMapView-block-search-text {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.treasureMapView-previewBar-actions .mousehuntActionButton.treasureMapView-requestInviteButton {
+  width: unset !important;
 }
 
 .mh-improved-map-listing-last-active-wrapper {
@@ -986,6 +990,11 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-consolationPrizeButton {
   margin-bottom: 5px;
+}
+
+.treasureMapView-consolationPrizeButton.mh-improved-confirm-claim span {
+  color: #fff;
+  background-color: #b52d2d;
 }
 
 .treasureMapView-block-search-clear {

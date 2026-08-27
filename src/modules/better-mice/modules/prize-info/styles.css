@@ -1,0 +1,171 @@
+.mh-improved-prize-history-hidden,
+.PagePrizeClaim .mousehuntHud-page-tabContentContainer > p,
+.PagePrizeClaim .mousehuntHud-page-tabContentContainer > h1 {
+  display: none;
+}
+
+.mh-improved-prize-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.mh-improved-prize-history-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  width: 175px;
+  padding: 8px;
+  text-align: center;
+  background-color: #d5c8a5;
+  border: 1px solid #b5a271;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
+
+.mh-dark .mh-improved-prize-history-card {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-improved-prize-history-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #b5a271;
+  border-radius: 6px;
+}
+
+.mh-dark .mh-improved-prize-history-card-image-wrapper {
+  border-color: var(--d-border);
+}
+
+.mh-improved-prize-history-card-image-wrapper:hover {
+  background-color: #eee;
+  border-color: #333;
+}
+
+.mh-dark .mh-improved-prize-history-card-image-wrapper:hover {
+  border-color: var(--d-text-muted);
+}
+
+.mh-improved-prize-history-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.mh-improved-prize-history-card-catches {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.mh-dark .mh-improved-prize-history-card-catches {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-improved-prize-history-card[class*="crown-"] .mh-improved-prize-history-card-catches::after {
+  width: 18px;
+  height: 18px;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+}
+
+.mh-improved-prize-history-card.crown-bronze .mh-improved-prize-history-card-catches::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_bronze.png);
+}
+
+.mh-improved-prize-history-card.crown-silver .mh-improved-prize-history-card-catches::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png);
+}
+
+.mh-improved-prize-history-card.crown-gold .mh-improved-prize-history-card-catches::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_gold.png);
+}
+
+.mh-improved-prize-history-card.crown-platinum .mh-improved-prize-history-card-catches::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_platinum.png);
+}
+
+.mh-improved-prize-history-card.crown-diamond .mh-improved-prize-history-card-catches::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_diamond.png);
+}
+
+.mh-improved-prize-history-card-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mh-dark .mh-improved-prize-history-card-name {
+  color: var(--d-link);
+}
+
+.mh-improved-prize-history-card-status {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.mh-improved-prize-history-card-status.is-cooldown {
+  color: #a94442;
+  background-color: #f2dede;
+}
+
+.mh-dark .mh-improved-prize-history-card-status.is-cooldown {
+  color: #e58f8f;
+  background-color: var(--d-red-dark);
+}
+
+.mh-improved-prize-history-card-stats {
+  width: 100%;
+  padding: 3px 8px;
+  background-color: rgb(255 255 255 / 45%);
+  border-radius: 6px;
+}
+
+.mh-dark .mh-improved-prize-history-card-stats {
+  background-color: rgb(0 0 0 / 20%);
+}
+
+.mh-improved-prize-history-card-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 11px;
+}
+
+.mh-improved-prize-history-card-row-label {
+  color: #5f5233;
+}
+
+.mh-dark .mh-improved-prize-history-card-row-label {
+  color: var(--d-text-muted);
+}
+
+.mh-improved-prize-history-card-row-value {
+  font-weight: 700;
+}

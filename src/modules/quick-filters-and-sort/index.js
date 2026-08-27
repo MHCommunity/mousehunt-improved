@@ -96,7 +96,7 @@ const addQuickLinksToTrap = async () => {
     .replaceAll(' ', '')
     .trim();
 
-  if (!type || 'bai' === type) {
+  if (!type) {
     return;
   }
 
@@ -154,7 +154,7 @@ const addQuickLinksToTrap = async () => {
     },
   ];
 
-  if ('trinket' === type) {
+  if ('trinket' === type || 'bait' === type) {
     links.push({
       id: 'quantity',
       name: 'Quantity',
@@ -163,6 +163,14 @@ const addQuickLinksToTrap = async () => {
   }
 
   const sortByInput = document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
+
+  // The game only renders a Quantity option in the sort dropdown for trinkets, so add it for bait.
+  if ('bait' === type && sortByInput && !sortByInput.querySelector('option[value="quantity"]')) {
+    const quantityOption = document.createElement('option');
+    quantityOption.value = 'quantity';
+    quantityOption.textContent = 'Quantity';
+    sortByInput.append(quantityOption);
+  }
   links.forEach((link) => {
     addItemToQuickLinks(link, quickLinks, 'sortBy', { sortInput: sortByInput });
   });

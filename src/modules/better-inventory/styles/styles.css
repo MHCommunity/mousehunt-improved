@@ -722,43 +722,53 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   margin-top: 10px;
 }
 
-.mh-inventory-sort-row {
+.mh-inventory-controls {
+  margin-top: 10px;
+}
+
+.mh-inventory-controls-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
+  gap: 5px;
   align-items: center;
   justify-content: center;
-  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
-.mh-inventory-control-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  align-items: center;
+.mh-inventory-controls-row .mousehuntHud-page-subTabHeader-prefix {
+  margin-right: 0;
+  line-height: normal;
 }
 
-.mh-inventory-control-label {
-  margin-right: 3px;
-  font-weight: 700;
-}
-
-a.mh-inventory-sort-button.mousehuntActionButton,
-a.mh-inventory-filter-button.mousehuntActionButton {
-  margin: 0;
-}
-
-.mh-inventory-sort-button.active,
-.mh-inventory-filter-button.active {
-  box-shadow: 0 0 0 2px #2b6cb0;
-}
-
-.mh-inventory-sort-button.active[data-sort-order="desc"] span::after {
+/* Direction arrow on the active sort pill */
+.mh-inventory-sort-options .mh-inventory-option[data-sort-order="desc"]::after {
+  font-size: 9px;
   content: " ▼";
 }
 
-.mh-inventory-sort-button.active[data-sort-order="asc"] span::after {
+.mh-inventory-sort-options .mh-inventory-option[data-sort-order="asc"]::after {
+  font-size: 9px;
   content: " ▲";
+}
+
+.mh-inventory-filter-count {
+  font-size: 11px;
+  font-style: italic;
+  color: #6a5d4e;
+}
+
+.mh-inventory-reset {
+  display: none;
+  font-size: 11px;
+}
+
+.mh-inventory-has-active .mh-inventory-reset {
+  display: inline;
+}
+
+.mh-dark .mh-inventory-filter-count,
+.mh-dark-mode .mh-inventory-filter-count {
+  color: #b0a690;
 }
 
 .inventoryPage-item.mh-inventory-item-hidden {

@@ -305,8 +305,24 @@ a.random-title.loading::after {
 }
 
 .mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-statContainer {
+  display: flex;
   width: 100%;
   margin-top: 5px;
+}
+
+.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-stat {
+  flex: 1 1 0;
+  float: none;
+  width: auto;
+  background-position: center bottom;
+}
+
+.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-stat .value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
 }
 
 .mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-content {

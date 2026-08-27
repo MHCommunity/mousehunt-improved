@@ -60,12 +60,21 @@
   color: #f6f3eb;
 }
 
-.mh-catch-stats-close {
+.mh-catch-stats-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mh-catch-stats-close,
+.mh-catch-stats-refresh {
   cursor: pointer;
 }
 
 .mh-catch-stats-close:hover,
-.mh-catch-stats-close:focus {
+.mh-catch-stats-close:focus,
+.mh-catch-stats-refresh:hover,
+.mh-catch-stats-refresh:focus {
   color: #8e6642;
   background-color: #eee;
   border-radius: 50%;
@@ -73,10 +82,30 @@
 }
 
 .mh-dark .mh-catch-stats-close:hover,
-.mh-dark .mh-catch-stats-close:focus {
+.mh-dark .mh-catch-stats-close:focus,
+.mh-dark .mh-catch-stats-refresh:hover,
+.mh-dark .mh-catch-stats-refresh:focus {
   color: var(--d-text);
   background-color: var(--d-action);
   outline-color: var(--d-border);
+}
+
+.mh-catch-stats-refreshing {
+  pointer-events: none;
+  animation: mh-catch-stats-spin 1s linear infinite;
+}
+
+@keyframes mh-catch-stats-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .mh-catch-stats-refreshing {
+    opacity: 0.5;
+    animation: none;
+  }
 }
 
 .mh-catch-stats-body {
