@@ -1,4 +1,4 @@
-import { addStyles, getData, makeElement, onNavigation, sessionGet, sessionSet } from '@utils';
+import { addStyles, getData, makeElement, onNavigation, parseMouseHuntDate, sessionGet, sessionSet } from '@utils';
 
 import styles from './styles.css';
 
@@ -29,33 +29,6 @@ const dayInMs = 24 * 60 * 60 * 1000;
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 /**
- * Parse a date string from the Prize History page into a timestamp.
- *
- * @param {string} text A date like "Wednesday, July 8th 2026 @ 10:02:41 PM (UTC)".
- *
- * @return {number|null} The timestamp, or null if the text isn't a date.
- */
-const parsePrizeDate = (text) => {
-  const match = text.match(/(\w+) (\d{1,2})(?:st|nd|rd|th)? (\d{4}) @ (\d{1,2}):(\d{2}):(\d{2}) (AM|PM)/);
-  if (!match) {
-    return null;
-  }
-
-  const [, month, day, year, hour, minute, second, meridiem] = match;
-  const monthIndex = monthNames.indexOf(month);
-  if (-1 === monthIndex) {
-    return null;
-  }
-
-  let hour24 = Number.parseInt(hour, 10) % 12;
-  if ('PM' === meridiem) {
-    hour24 += 12;
-  }
-
-  return Date.UTC(Number.parseInt(year, 10), monthIndex, Number.parseInt(day, 10), hour24, Number.parseInt(minute, 10), Number.parseInt(second, 10));
-};
-
-/**
  * Normalize a mouse name from the Prize History page for lookups.
  *
  * @param {string} name The mouse name, e.g. "Mobster Mouse" or "Mobster".
@@ -74,9 +47,9 @@ const normalizeName = (name) => {
  *
  * @param {Document} page The Prize History page document.
  *
- * @return {Object} Cooldown lengths and catch history keyed by normalized mouse name.
+ * @return {Promise<Object>} Cooldown lengths and catch history keyed by normalized mouse name.
  */
-const parsePrizeHistory = (page) => {
+const parsePrizeHistory = async (page) => {
   const data = {
     cooldowns: {},
     mice: {},
@@ -91,18 +64,18 @@ const parsePrizeHistory = (page) => {
   }
 
   const rows = page.querySelectorAll('table tbody tr');
-  rows.forEach((row) => {
+  for (const row of rows) {
     const cells = row.querySelectorAll('td');
     if (cells.length < 4) {
-      return;
+      continue;
     }
 
     data.mice[normalizeName(cells[0].textContent)] = {
       catches: Number.parseInt(cells[1].textContent.replaceAll(',', ''), 10) || 0,
-      lastCaught: parsePrizeDate(cells[2].textContent),
-      cooldownExpires: parsePrizeDate(cells[3].textContent),
+      lastCaught: await parseMouseHuntDate(cells[2].textContent),
+      cooldownExpires: await parseMouseHuntDate(cells[3].textContent),
     };
-  });
+  }
 
   return data;
 };
@@ -126,7 +99,7 @@ const getPrizeHistory = async () => {
     return null;
   }
 
-  const data = parsePrizeHistory(new DOMParser().parseFromString(text, 'text/html'));
+  const data = await parsePrizeHistory(new DOMParser().parseFromString(text, 'text/html'));
 
   sessionSet('prize-history', { time: Date.now(), data });
 
