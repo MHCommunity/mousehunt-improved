@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts';
 import 'highcharts/modules/stock'; // eslint-disable-line import/no-unassigned-import, sort-imports
 
-import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeElement } from '@utils';
+import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeElement, saveSetting } from '@utils';
 
 /**
  * Price history charts for the marketplace item view, using data from
@@ -14,6 +14,8 @@ const dayInMs = 24 * 60 * 60 * 1000;
 let priceChart = null;
 let stockChart = null;
 let zoomLabelHidden = false;
+
+const collapsedSettingKey = 'better-marketplace.price-history-chart-collapsed';
 
 /**
  * Convert a UTC ISO date string (YYYY-MM-DD) to milliseconds since epoch.
@@ -742,6 +744,59 @@ const showStockChart = async (itemId, area) => {
 };
 
 /**
+ * Fetch and render the price history chart into the chart area, once.
+ *
+ * @param {string|number} itemId The item ID.
+ * @param {Element}       area   The chart area element.
+ */
+const showPriceChart = async (itemId, area) => {
+  const container = area.querySelector('.mhui-marketplace-chart-price');
+  if (!container || priceChart || area.dataset.priceLoading) {
+    return;
+  }
+
+  area.dataset.priceLoading = 'true';
+  container.innerHTML = '';
+  makeElement('div', 'mhui-marketplace-chart-loading', 'Loading price history…', container);
+
+  const [response, events] = await Promise.all([fetchMarkethunt(`items/${itemId}`), getEvents()]);
+
+  delete area.dataset.priceLoading;
+
+  if (!area.isConnected || area.dataset.itemId !== String(itemId)) {
+    return;
+  }
+
+  if (!response?.market_data?.length) {
+    container.textContent = 'No price history available for this item.';
+    return;
+  }
+
+  const colors = getColors();
+  priceChart = renderPriceChart(
+    itemId,
+    container,
+    response.market_data,
+    toPlotBands(events, colors, utcDateToMillis(response.market_data[0].date), utcDateToMillis(response.market_data.at(-1).date)),
+    colors
+  );
+};
+
+/**
+ * Load whichever chart the active tab is showing.
+ *
+ * @param {string|number} itemId The item ID.
+ * @param {Element}       area   The chart area element.
+ */
+const showActiveChart = (itemId, area) => {
+  if (area.classList.contains('mhui-marketplace-chart-show-stock')) {
+    showStockChart(itemId, area);
+  } else {
+    showPriceChart(itemId, area);
+  }
+};
+
+/**
  * Add the price history chart to the marketplace item view. Called after the
  * game has rendered the item view.
  *
@@ -782,12 +837,52 @@ const addPriceChart = async (itemId) => {
       <a href="#" class="active" data-chart="price">Price history</a>
       <a href="#" data-chart="stock">Bid &amp; ask</a>
     </div>
-    <a class="mhui-marketplace-chart-source" href="https://markethunt.win/index.php?item_id=${Number(itemId)}" target="_blank" rel="noopener noreferrer">View on Markethunt →</a>
+    <div class="mhui-marketplace-chart-toolbar-actions">
+      <a class="mhui-marketplace-chart-source" href="https://markethunt.win/index.php?item_id=${Number(itemId)}" target="_blank" rel="noopener noreferrer">View on Markethunt →</a>
+      <a href="#" class="mhui-marketplace-chart-toggle" role="button"></a>
+    </div>
   </div>
   <div class="mhui-marketplace-chart-charts">
-    <div class="mhui-marketplace-chart-price"><div class="mhui-marketplace-chart-loading">Loading price history…</div></div>
+    <div class="mhui-marketplace-chart-price"></div>
     <div class="mhui-marketplace-chart-stock"></div>
   </div>`;
+
+  const toggle = area.querySelector('.mhui-marketplace-chart-toggle');
+
+  const expand = () => {
+    area.classList.remove('mhui-marketplace-chart-collapsed');
+    toggle.classList.remove('collapsed');
+    toggle.classList.add('expanded');
+    toggle.setAttribute('title', 'Minimize chart');
+    toggle.setAttribute('aria-label', 'Minimize chart');
+    toggle.setAttribute('aria-expanded', 'true');
+
+    // Charts rendered while hidden have no size, so we only load once visible.
+    showActiveChart(itemId, area);
+    [priceChart, stockChart].forEach((chart) => chart?.reflow());
+  };
+
+  const collapse = () => {
+    area.classList.add('mhui-marketplace-chart-collapsed');
+    toggle.classList.remove('expanded');
+    toggle.classList.add('collapsed');
+    toggle.setAttribute('title', 'Expand chart');
+    toggle.setAttribute('aria-label', 'Expand chart');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const isCollapsed = area.classList.contains('mhui-marketplace-chart-collapsed');
+    saveSetting(collapsedSettingKey, !isCollapsed);
+
+    if (isCollapsed) {
+      expand();
+    } else {
+      collapse();
+    }
+  });
 
   const tabs = area.querySelectorAll('.mhui-marketplace-chart-tabs a');
   tabs.forEach((tab) => {
@@ -801,34 +896,24 @@ const addPriceChart = async (itemId) => {
       tabs.forEach((otherTab) => otherTab.classList.toggle('active', otherTab === tab));
       area.classList.toggle('mhui-marketplace-chart-show-stock', 'stock' === tab.dataset.chart);
 
-      if ('stock' === tab.dataset.chart) {
-        showStockChart(itemId, area);
+      if (area.classList.contains('mhui-marketplace-chart-collapsed')) {
+        // Switching tabs while minimized re-opens the chart so the click does something visible.
+        saveSetting(collapsedSettingKey, false);
+        expand();
+        return;
       }
+
+      showActiveChart(itemId, area);
     });
   });
 
   description.before(area);
 
-  const [response, events] = await Promise.all([fetchMarkethunt(`items/${itemId}`), getEvents()]);
-
-  if (!area.isConnected || area.dataset.itemId !== String(itemId)) {
-    return;
+  if (getSetting(collapsedSettingKey, false)) {
+    collapse();
+  } else {
+    expand();
   }
-
-  const priceContainer = area.querySelector('.mhui-marketplace-chart-price');
-  if (!response?.market_data?.length) {
-    priceContainer.textContent = 'No price history available for this item.';
-    return;
-  }
-
-  const colors = getColors();
-  priceChart = renderPriceChart(
-    itemId,
-    priceContainer,
-    response.market_data,
-    toPlotBands(events, colors, utcDateToMillis(response.market_data[0].date), utcDateToMillis(response.market_data.at(-1).date)),
-    colors
-  );
 };
 
 export { addPriceChart };
