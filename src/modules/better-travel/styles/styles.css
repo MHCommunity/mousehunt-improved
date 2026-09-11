@@ -356,6 +356,17 @@
   white-space: nowrap;
 }
 
+#mh-simple-travel-page .travelPage-regionMenu-item.mh-improved-better-travel-favorites .travelPage-regionMenu-item-contents::before {
+  display: block;
+  height: 20px;
+  content: "";
+  background-color: #d8d8d8;
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-item.mh-improved-better-travel-favorites .travelPage-regionMenu-item-contents::before {
+  background-color: var(--d-alt);
+}
+
 /* Fix it so that the icon is clickable */
 .mousehuntHud-environmentName {
   padding-top: 0;

@@ -91,7 +91,7 @@ const expandTravelRegions = () => {
  */
 const travelClickHandler = (event) => {
   if (app?.pages?.TravelPage?.travel) {
-    travelTo(event.target.getAttribute('data-environment'));
+    travelTo(event.currentTarget.getAttribute('data-environment'));
   }
 };
 
@@ -107,6 +107,7 @@ const cloneRegionMenu = () => {
   }
 
   const regionMenuClone = regionMenu.cloneNode(true);
+  regionMenuClone.querySelector('.mh-improved-better-travel-favorites')?.remove();
   const travelLinks = regionMenuClone.querySelectorAll('.travelPage-regionMenu-environmentLink');
 
   if (travelLinks && travelLinks.length > 0) {
@@ -117,6 +118,69 @@ const cloneRegionMenu = () => {
   }
 
   return regionMenuClone;
+};
+
+/**
+ * Add the favorite locations as the first region in a travel menu.
+ *
+ * @param {Element} regionMenu The travel menu to update.
+ */
+const addFavoriteLocationsToRegionMenu = (regionMenu) => {
+  regionMenu.querySelector('.mh-improved-better-travel-favorites')?.remove();
+
+  const linksByEnvironment = new Map();
+  const locationLinks = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+
+  locationLinks.forEach((link) => {
+    const environment = link.getAttribute('data-environment');
+    if (environment && !linksByEnvironment.has(environment)) {
+      linksByEnvironment.set(environment, link);
+    }
+  });
+
+  const favoriteLinks = getLocationFavorites()
+    .map((favorite) => linksByEnvironment.get(favorite))
+    .filter(Boolean);
+
+  if (favoriteLinks.length === 0) {
+    return;
+  }
+
+  const favoritesRegion = makeElement('div', ['travelPage-regionMenu-item', 'active', 'mh-improved-better-travel-favorites']);
+  favoritesRegion.setAttribute('data-region', 'favorites');
+
+  const favoritesHeader = makeElement('a', 'travelPage-regionMenu-regionLink', 'Favorites');
+  favoritesHeader.setAttribute('href', '#');
+  favoritesHeader.setAttribute('onclick', 'return false;');
+  favoritesRegion.append(favoritesHeader);
+
+  const favoritesContents = makeElement('div', 'travelPage-regionMenu-item-contents');
+  const favoritesList = makeElement('div', 'travelPage-regionMenu-environments');
+  const isSimpleTravel = Boolean(regionMenu.closest('#mh-simple-travel-page'));
+
+  favoriteLinks.forEach((link) => {
+    const linkClone = link.cloneNode(true);
+
+    if (isSimpleTravel) {
+      linkClone.setAttribute('onclick', 'return false;');
+      linkClone.addEventListener('click', travelClickHandler);
+    }
+
+    favoritesList.append(linkClone);
+  });
+
+  favoritesContents.append(favoritesList);
+  favoritesRegion.append(favoritesContents);
+  regionMenu.prepend(favoritesRegion);
+};
+
+/**
+ * Refresh the favorite location sections on the map and Simple Travel pages.
+ */
+const addFavoriteLocationsToTravelPages = () => {
+  const regionMenus = document.querySelectorAll('.mousehuntHud-page-tabContent.map .travelPage-regionMenu, #mh-simple-travel-page .travelPage-wrapper > .travelPage-regionMenu');
+
+  regionMenus.forEach(addFavoriteLocationsToRegionMenu);
 };
 
 /**
@@ -782,6 +846,7 @@ const addFavoriteButtonsToTravelPage = async () => {
       onActivate: () => {
         addToLocationFavorites(type);
         addToTravelDropdown();
+        addFavoriteLocationsToTravelPages();
       },
       /**
        * Callback for when the favorite button is deactivated.
@@ -789,6 +854,7 @@ const addFavoriteButtonsToTravelPage = async () => {
       onDeactivate: () => {
         removeFromLocationFavorites(type);
         removeSubmenuItem(type);
+        addFavoriteLocationsToTravelPages();
       },
     });
   });
@@ -805,6 +871,7 @@ const main = () => {
   onNavigation(
     () => {
       addSimpleTravel();
+      addFavoriteLocationsToTravelPages();
       addRhToSimpleTravel();
       addFavoriteButtonsToTravelPage();
       addMapExplorationToggle();
