@@ -46,6 +46,27 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
 };
 
 /**
+ * Make an element, append it to a parent, and return the new element.
+ *
+ * (makeElement returns the parent when given one, which is easy to trip over here.)
+ *
+ * @param {string}      tag      The tag name.
+ * @param {string|Array} classes Classes for the element.
+ * @param {string}      text     Text content.
+ * @param {HTMLElement} appendTo Optional parent.
+ *
+ * @return {HTMLElement} The new element.
+ */
+const make = (tag, classes = '', text = '', appendTo = null) => {
+  const element = makeElement(tag, Array.isArray(classes) ? classes.filter(Boolean) : classes, text);
+  if (appendTo) {
+    appendTo.append(element);
+  }
+
+  return element;
+};
+
+/**
  * Replace an existing element (matched within a container) with a new element,
  * or append the new element to the container if no match exists.
  *
@@ -642,10 +663,11 @@ const updateTrapStatsDisplay = (selector, pbStats) => {
 
 export {
   createPopup,
+  make,
   makeButton,
   makeElement,
-  replaceOrAppend,
   makeLink,
+  replaceOrAppend,
   makeFavoriteButton,
   makeTooltip,
   makePage,
