@@ -3,6 +3,11 @@ import { addStyles, getFlag, getUserTitle, getUserTitleShield, makeElement, onJo
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
+const thiefBaseImages = {
+  normal: 'https://www.mousehuntgame.com/images/items/bases/97f154ce0952303b5669a54597045aa8_vstealth.jpg',
+  chrome: 'https://www.mousehuntgame.com/images/items/bases/7fa1ec55bb30282811d4bfc55b6c653e_vstealth.jpg',
+};
+
 /**
  * Add a class to show the badge type.
  *
@@ -87,6 +92,21 @@ const fixFullyExploredSpacing = (model) => {
 };
 
 /**
+ * The fullstop styles hide the first and last <br> in an entry, which glues the
+ * sentences of Zokor stealth-loss entries together ("ruckus!I lost 2 Stealth").
+ * They read best as a single compact line, so swap every <br> for a space.
+ *
+ * @param {Object} model The journal entry model.
+ */
+const fixAncientStealthSpacing = (model) => {
+  if (!model.classes.has('ancient-stealth')) {
+    return;
+  }
+
+  model.setHtml(model.html.replaceAll(/<br\s*\/?>/gi, ' '));
+};
+
+/**
  * The Polar Vortex Trap's squall entry (noelWeaponEffect) ships without a
  * journal image, so add the weapon's image to lay it out like a normal entry.
  *
@@ -107,6 +127,36 @@ const addNoelWeaponImage = (model) => {
   img.src = 'https://www.mousehuntgame.com/images/items/weapons/63ed8bbae283944bba2268a8444f65c6.jpg';
   image.append(img);
   entry.prepend(image);
+};
+
+/**
+ * The Zokor stealth-loss entries can omit their journal image, so add the
+ * regular Thief Base as a Stealth-loss marker. Entries that name the Chrome
+ * Thief Base receive its matching variant.
+ *
+ * @param {Object} model The journal entry model.
+ */
+const addThiefBaseImage = (model) => {
+  if (!model.classes.has('ancient-stealth')) {
+    return;
+  }
+
+  const entry = model.el;
+  let image = entry.querySelector('.journalimage');
+  if (image?.querySelector('img')) {
+    return;
+  }
+
+  const text = entry.querySelector('.journaltext')?.textContent || '';
+
+  if (!image) {
+    image = makeElement('div', 'journalimage');
+    entry.prepend(image);
+  }
+
+  const img = document.createElement('img');
+  img.src = /my chrome thief base made a ruckus/i.test(text) ? thiefBaseImages.chrome : thiefBaseImages.normal;
+  image.append(img);
 };
 
 /**
@@ -175,6 +225,11 @@ export default async () => {
     stage: 'text',
   });
 
+  onJournalEntry(fixAncientStealthSpacing, {
+    id: 'better-journal-styles-ancient-stealth-spacing',
+    stage: 'text',
+  });
+
   onJournalEntry(addBadgeClass, {
     id: 'better-journal-styles-badges',
     stage: 'style-classes',
@@ -187,6 +242,11 @@ export default async () => {
 
   onJournalEntry(addNoelWeaponImage, {
     id: 'better-journal-styles-noel-weapon-image',
+    stage: 'images',
+  });
+
+  onJournalEntry(addThiefBaseImage, {
+    id: 'better-journal-styles-thief-base-image',
     stage: 'images',
   });
 

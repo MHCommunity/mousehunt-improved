@@ -40,6 +40,7 @@ export default defineRules('hunt', [
   ['found that I had caught a mouse! I', ''],
   ['found that I had caught a mouse! <p>I', ''],
   ['I checked my trap and caught', 'I checked my trap and found'],
+  ['I checked my trap and found that I was', 'I checked my trap and I was'],
   ['I returned to check my trap, but it appeared', 'I checked my trap, but'],
   ['was successful in the hunt! I', ''],
   ['my efforts were fruitless. A', 'a'],

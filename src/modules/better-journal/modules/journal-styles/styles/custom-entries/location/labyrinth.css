@@ -4,8 +4,30 @@
   align-items: center;
 }
 
+.journal .content .entry.ancient-stealth {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+}
+
 .journal .content .entry.ancient-stealth .journalbody {
   margin-left: 20px;
+}
+
+/* Better Journal adds a Thief Base image to Stealth-loss entries. */
+.journal .content .entry.ancient-stealth .journalimage {
+  width: 50px;
+  margin: 0 0 0 8px;
+}
+
+.journal .content .entry.ancient-stealth .journalimage img {
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+}
+
+.journal .content .entry.ancient-stealth:has(.journalimage img) .journalbody {
+  margin-left: 75px;
 }
 
 .journal .content .entry.ancient-stealth .journaldate {
