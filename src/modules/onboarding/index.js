@@ -1,4 +1,4 @@
-import { addStyles, getSetting, hasSeenOnboardingStep, makeElement, onEvent, saveOnboardingStep, saveSetting, setPage } from '@utils';
+import { addStyles, deferOnboardingTips, getSetting, hasSeenOnboardingStep, isLoggedIn, makeElement, onEvent, saveOnboardingStep, saveSetting, setPage } from '@utils';
 
 import styles from './styles.css';
 
@@ -21,6 +21,12 @@ const isWelcomePreview = () => {
  * @return {boolean} Whether the welcome should be shown.
  */
 const shouldShowWelcome = () => {
+  // The welcome points at the menu of a game the visitor isn't signed into yet,
+  // so there's nothing for them to explore until they log in.
+  if (!isLoggedIn()) {
+    return false;
+  }
+
   return isWelcomePreview() || (getSetting('onboarding.fresh-install', false) && !hasSeenOnboardingStep(WELCOME_STEP));
 };
 
@@ -66,6 +72,7 @@ const showWelcome = () => {
     if (!isWelcomePreview()) {
       saveOnboardingStep(WELCOME_STEP);
       saveSetting('onboarding.fresh-install', false);
+      deferOnboardingTips();
     }
 
     document.removeEventListener('keydown', handleKeydown, true);

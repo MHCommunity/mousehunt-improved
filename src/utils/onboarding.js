@@ -3,6 +3,7 @@ import { makeElement, waitForElement } from './elements';
 import { addStylesDirect } from './styles';
 import { getCurrentPage } from './page-current';
 import { getCurrentTab } from './page';
+import { isLoggedIn } from './utils';
 
 import tipStyles from './styles/onboarding-tip.css';
 
@@ -63,7 +64,7 @@ const addOnboardingMessage = async (options) => {
     disabled = false,
   } = options;
 
-  if (disabled || hasAddedOnboardingStep || hasSeenOnboardingStep(step) || (page && page !== getCurrentPage()) || (tab && tab !== getCurrentTab())) {
+  if (disabled || !isLoggedIn() || hasAddedOnboardingStep || hasSeenOnboardingStep(step) || (page && page !== getCurrentPage()) || (tab && tab !== getCurrentTab())) {
     return;
   }
 
@@ -132,6 +133,10 @@ const isTipPreview = () => {
  * @return {boolean} Whether a tip can be shown right now.
  */
 const canShowOnboardingTip = () => {
+  if (getSetting('onboarding.fresh-install', false)) {
+    return false;
+  }
+
   const lastShown = getSetting(TIP_LAST_SHOWN_SETTING, 0);
 
   return Date.now() - lastShown >= TIP_INTERVAL;
@@ -157,6 +162,13 @@ const saveOnboardingTipShown = (step) => {
 };
 
 /**
+ * Delay quick tips until the normal interval has elapsed.
+ */
+const deferOnboardingTips = () => {
+  saveSetting(TIP_LAST_SHOWN_SETTING, Date.now());
+};
+
+/**
  * Add a one-time tip pointing at an element, explaining a feature we've added.
  *
  * The tip is positioned against the anchor's on-screen box rather than being
@@ -177,6 +189,12 @@ const saveOnboardingTipShown = (step) => {
  * @return {Element|boolean} The tip element, or false if it wasn't shown.
  */
 const addOnboardingTip = ({ step, anchor, title, content, position = 'below', dismissOnAnchorClick = true }) => {
+  // Tips explain features that only mean something once you're playing, so a
+  // logged-out visitor doesn't get any of them.
+  if (!isLoggedIn()) {
+    return false;
+  }
+
   const isPreview = isTipPreview();
   if (!isPreview && (hasSeenOnboardingStep(step) || !canShowOnboardingTip())) {
     return false;
@@ -289,4 +307,4 @@ const addOnboardingTip = ({ step, anchor, title, content, position = 'below', di
   return tip;
 };
 
-export { hasSeenOnboardingStep, saveOnboardingStep, addOnboardingMessage, addOnboardingTip };
+export { hasSeenOnboardingStep, saveOnboardingStep, addOnboardingMessage, addOnboardingTip, deferOnboardingTips };
