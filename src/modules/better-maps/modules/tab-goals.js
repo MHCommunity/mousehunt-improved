@@ -16,6 +16,7 @@ import {
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
+import { getCompletedGoals } from '../utils';
 import addConsolationPrizes from './consolation-prizes';
 
 let allMiceData;
@@ -660,15 +661,16 @@ const moveAuras = async () => {
 };
 
 const addMapSolverLinks = async (mapData) => {
-  const existing = document.querySelector('.mh-ui-map-solver-links-container');
+  // Rebuild rather than bail so the links don't keep completed goals after a refresh.
+  const existing = document.querySelector('.mh-ui-map-solver-links');
   if (existing) {
-    return;
+    existing.remove();
   }
 
   const mapFooter = document.querySelector('.treasureMapView-mapLeaveContainer');
-  const mice = mapData?.goals?.mouse;
+  const { type, goals: mice } = getCompletedGoals(mapData);
 
-  if (!mapFooter || !Array.isArray(mice) || !mice.length) {
+  if (!mapFooter || 'mouse' !== type || !Array.isArray(mice) || !mice.length) {
     return;
   }
 
