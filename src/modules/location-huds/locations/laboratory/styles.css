@@ -1,3 +1,7 @@
+.laboratoryHUD::before {
+  filter: brightness(0.8);
+}
+
 .laboratoryHUD .mousehuntItem-image {
   background-color: transparent;
 }
