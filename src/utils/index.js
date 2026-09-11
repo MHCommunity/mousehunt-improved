@@ -1,6 +1,7 @@
 export * from './blueprint';
 export * from './db';
 export * from './data';
+export * from './date';
 export * from './debug';
 export * from './draggable';
 export * from './elements';
