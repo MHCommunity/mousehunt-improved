@@ -22,6 +22,7 @@ import {
 import settings from './settings';
 
 import { addSortedMapTab, hideSortedTab, mapHasGroup, showSortedTab } from './modules/tab-sorted';
+import { addPlanMapTab, hidePlanTab, showPlanTab } from './modules/tab-plan';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
@@ -426,6 +427,8 @@ const configureMapRuntime = () => {
         defaultedRoots.delete(root);
       }
 
+      addPlanMapTab();
+
       if (mapHasGroup(map)) {
         addSortedTabNotice();
       }
@@ -653,6 +656,10 @@ const init = () => {
     addInfoClasses(map);
     showGoalsTab(map);
   });
+  eventRegistry.addEventListener('map_plan_tab_click', (map) => {
+    addInfoClasses(map);
+    showPlanTab(map);
+  });
   eventRegistry.addEventListener('map_manage_allies_tab_click', (map) => {
     addInfoClasses(map);
     showHuntersTab(map);
@@ -660,6 +667,7 @@ const init = () => {
   eventRegistry.addEventListener('map_tab_click', (map) => {
     hideGoalsTab(map);
     hideSortedTab(map);
+    hidePlanTab();
     clearStickyMouse();
     addInfoClasses(map);
   });

@@ -42,6 +42,12 @@ const init = () => {
       load: () => {},
     },
     {
+      id: 'better-maps.plan-tab',
+      title: 'Better Maps: Show Plan tab',
+      description: 'Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.',
+      load: () => {},
+    },
+    {
       id: 'better-marketplace.price-history-chart',
       title: 'Better Marketplace: Show Markethunt price history charts',
       load: () => {},
