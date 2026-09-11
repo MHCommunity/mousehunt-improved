@@ -249,3 +249,28 @@ span.ancientCityHUD-alertLevel {
   max-width: 459px;
   background-color: #ffbfbf;
 }
+
+.ancientCityHUD-thiefBaseControls a div::after {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  left: 0;
+  font-size: 1.25em;
+  font-weight: 900;
+  color: #dfa3df;
+  text-align: center;
+  text-shadow:
+    1px 1px #000,
+    -1px -1px #000,
+    1px -1px #000,
+    -1px 1px #000,
+    0 0 #000;
+  content: "Thief Mode";
+  filter: drop-shadow(0 4px 2px #000);
+  transition: 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s;
+}
+
+.ancientCityHUD-thiefBaseControls a.heist div::after {
+  color: #b1d0ef;
+  content: "Heist Mode";
+}
