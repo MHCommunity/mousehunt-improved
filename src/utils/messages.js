@@ -4,6 +4,9 @@ import { makeElement } from './elements';
 import errorPageStyles from './styles/page-error.css';
 import errorStyles from './styles/errors.css';
 import maintenanceStyles from './styles/page-maintenance.css';
+import staticErrorPageStyles from './styles/page-static-error.css';
+
+import favicon from '@images/icons/favicon-32x32.png';
 
 /**
  * Show an error message appended to the given element.
@@ -106,6 +109,58 @@ const showLoadingError = (e) => {
   hadAddedErrorStyles = true;
 };
 
+const staticErrorPageImages = new Map([['https://services.hitgrab.com/images/grubling_herder.jpg', 'https://i.mouse.rip/grubling_herder.png']]);
+
+/**
+ * Improve the static error pages served from /errors/, which are plain HTML
+ * without any of the game's markup, styles, or globals.
+ *
+ * @return {boolean} Whether the current page is a static error page.
+ */
+const maybeDoStaticErrorPage = () => {
+  if (!window.location.pathname.startsWith('/errors/')) {
+    return false;
+  }
+
+  document.querySelectorAll('img').forEach((image) => {
+    const replacement = staticErrorPageImages.get(image.src);
+    if (replacement) {
+      image.src = replacement;
+    }
+
+    image.removeAttribute('style');
+    image.classList.add('mh-improved-static-error-image');
+  });
+
+  const content = document.querySelector('body > div h2')?.parentElement || document.querySelector('body > div');
+  if (content) {
+    content.removeAttribute('style');
+    content.classList.add('mh-improved-static-error-content');
+  }
+
+  // The page ships without a viewport meta tag, so it renders zoomed out on mobile.
+  if (!document.querySelector('meta[name="viewport"]')) {
+    const viewport = makeElement('meta');
+    viewport.setAttribute('name', 'viewport');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1');
+    document.head.append(viewport);
+  }
+
+  // The page ships without a favicon, so add the one the rest of the game uses.
+  if (!document.querySelector('link[rel="icon"]')) {
+    const icon = makeElement('link');
+    icon.setAttribute('rel', 'icon');
+    icon.setAttribute('type', 'image/png');
+    icon.setAttribute('href', favicon);
+    document.head.append(icon);
+  }
+
+  document.body.classList.add('mh-improved-static-error');
+  document.head.append(makeElement('style', 'mh-improved-static-error-styles', staticErrorPageStyles));
+
+  return true;
+};
+
 /**
  * Check if the page is in maintenance mode or an error page and apply styles.
  */
@@ -123,7 +178,9 @@ const maybeDoMaintenance = () => {
     document.head.append(errorPageStylesEl);
   }
 
-  if (!(maintenance || errorLockPage || errorPage)) {
+  const staticErrorPage = maybeDoStaticErrorPage();
+
+  if (!(maintenance || errorLockPage || errorPage || staticErrorPage)) {
     return;
   }
 

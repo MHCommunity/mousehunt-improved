@@ -55,7 +55,7 @@ const isLegacyHUD = () => {
  * @return {boolean} True if the user is logged in, false otherwise.
  */
 const isLoggedIn = () => {
-  return user && user.user_id && 'login' !== getCurrentPage();
+  return !!(window.user?.user_id && 'login' !== getCurrentPage());
 };
 
 /**

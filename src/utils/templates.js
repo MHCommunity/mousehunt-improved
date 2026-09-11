@@ -22,9 +22,23 @@ let hasExtendedRender = false;
 const onRenderCallbacks = {};
 
 /**
+ * Check if the game's template utilities are available. They aren't on pages
+ * that the game serves without its own scripts, like the error pages.
+ *
+ * @return {boolean} Whether the template utilities can be extended.
+ */
+const hasTemplateUtils = () => {
+  return 'undefined' !== typeof hg && Boolean(hg?.utils?.TemplateUtil);
+};
+
+/**
  * Initialize template extensions immediately when module loads.
  */
 const initializeTemplateExtensions = () => {
+  if (!hasTemplateUtils()) {
+    return;
+  }
+
   if (!hasExtendedRenderFromFile) {
     extenderRenderFromFile();
     hasExtendedRenderFromFile = true;
@@ -47,15 +61,7 @@ const initializeTemplateExtensions = () => {
  * @param {boolean}  [options.after]  Whether to run the callback after the template is rendered.
  */
 const onRender = ({ group, layout = 'layout', callback, before = false, after = false }) => {
-  if (!hasExtendedRenderFromFile) {
-    extenderRenderFromFile();
-    hasExtendedRenderFromFile = true;
-  }
-
-  if (!hasExtendedRender) {
-    extendRender();
-    hasExtendedRender = true;
-  }
+  initializeTemplateExtensions();
 
   if (!onRenderCallbacks[group]) {
     onRenderCallbacks[group] = {};
