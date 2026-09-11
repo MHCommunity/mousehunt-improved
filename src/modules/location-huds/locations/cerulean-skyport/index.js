@@ -3,6 +3,7 @@ import { addHudStyles, onRequest } from '@utils';
 import { addAirshipRandomizer } from '../../shared/airship-randomizer';
 import { addHullClick } from './ledger';
 import { initCurrentRaidIndicator } from './current-raid';
+import { initIntelProgressBars } from './intel-progress';
 import { initRaidFavorites } from './raid-favorites';
 
 import fullWidthAirshipStyles from '../floating-islands/full-width-airship.css';
@@ -26,6 +27,7 @@ export default async () => {
   addHullClick();
   initRaidFavorites();
   initCurrentRaidIndicator();
+  initIntelProgressBars();
 
   updateAnimationState();
   onRequest('*', updateAnimationState);

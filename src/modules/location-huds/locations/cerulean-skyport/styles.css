@@ -41,6 +41,22 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
   right: 5px;
 }
 
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBar[data-intel-level="low"] {
+  background-color: #cf554c;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBar[data-intel-level="medium"] {
+  background-color: #e2b72f;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBar[data-intel-level="near"] {
+  background-color: #7be2fd;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBar[data-intel-level="high"] {
+  background-color: #55ad64;
+}
+
 .ceruleanSkyportShippingView__huntsRemainingContainer:hover .ceruleanSkyportShippingView__hourglassIcon {
   animation: mh-improved-shake 0.5s infinite;
 }
