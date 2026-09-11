@@ -9,6 +9,7 @@ import {
   onRequest,
   onTravel,
   parseNumber,
+  parseMouseHuntDate,
   saveSetting,
   setMultipleTimeout,
   showHornMessage,
@@ -284,32 +285,13 @@ const updateJetstreamTime = async () => {
     return;
   }
 
-  const dateParts = expiry.innerText.split(' ');
-  if (!dateParts.length || dateParts.length < 5) {
+  const expiryTimestamp = await parseMouseHuntDate(expiry.innerText);
+  if (null === expiryTimestamp) {
     container.innerHTML = '';
     return;
   }
 
-  const month = dateParts[0];
-  const day = dateParts[1].replace(',', '');
-  const year = dateParts[2];
-  const timeParts = dateParts[4].split(':');
-  let hours = Number.parseInt(timeParts[0]);
-  const minutes = timeParts[1].slice(0, 2); // remove 'am' or 'pm'
-
-  if (dateParts[4].includes('pm') && hours !== 12) {
-    hours += 12;
-  } else if (dateParts[4].includes('am') && hours === 12) {
-    hours = 0;
-  }
-
-  const expiryDate = Date.parse(`${month} ${day}, ${year} ${hours}:${minutes}`);
-  if (Number.isNaN(expiryDate)) {
-    return;
-  }
-
-  const now = new Date();
-  const timeRemaining = expiryDate - now;
+  const timeRemaining = Math.max(0, expiryTimestamp - Date.now());
 
   const duration = humanizeTime(timeRemaining, {
     units: ['d', 'h', 'm'],
