@@ -241,3 +241,19 @@
 .mh-dark .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding::after {
   background-color: var(--d-blue-dark);
 }
+
+.mh-dark .giftSelectorView-content-viewState.selectFriends .favorite .giftSelectorView-friend-padding {
+  background-color: var(--d-alt);
+  color: var(--d-link);
+}
+
+.mh-dark .giftSelectorView-content-viewState.selectFriends .selected .giftSelectorView-friend-padding {
+  background-color: var(--d-blue);
+  color: var(--d-white);
+}
+
+.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding,
+.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
+  background-color: var(--d-blue);
+  color: var(--d-white);
+}

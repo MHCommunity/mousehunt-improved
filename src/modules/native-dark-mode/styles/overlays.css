@@ -120,13 +120,38 @@
   color: var(--d-text-muted);
 }
 
-.mh-dark .inventoryPage-confirmPopup-itemTable {
+/* Inventory confirm popup (brew / open / use) has no popup class, so match on its content. */
+.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer,
+.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .prefix,
+.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .content {
+  color: var(--d-text);
   background-color: var(--d-bg);
 }
 
-.mh-dark .inventoryPage-confirmPopup-itemContainer.received {
+.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer h2 {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+}
+
+.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemContainer {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemTable {
+  background-color: var(--d);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemTable-title {
+  color: var(--d-text);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemRow-description-content {
+  color: var(--d-text-muted);
 }
 
 .mh-dark .inventoryPage-confirmPopup-suffix-quantityContainer input {

@@ -56,3 +56,7 @@
   background: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_bubble.gif?asset_cache_version=6) 50% 43% no-repeat;
   filter: invert(1);
 }
+
+.mh-dark .new-tooltip-loading::after {
+  filter: invert(1);
+}

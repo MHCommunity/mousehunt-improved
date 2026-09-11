@@ -277,7 +277,9 @@
 .mh-dark input.mhui-marketplace-quick-sell-quantity {
   color: var(--d-text);
   background-color: var(--d);
-  border-color: var(--d-border);
+  border: 1px solid var(--d-border);
+  border-radius: 3px;
+  outline: none;
 }
 
 .mh-dark input.mhui-marketplace-quick-sell-quantity:focus,
