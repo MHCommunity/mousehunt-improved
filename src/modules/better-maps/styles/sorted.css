@@ -108,8 +108,12 @@
 #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
   position: fixed;
   z-index: 10;
+  box-sizing: border-box;
   display: block;
   width: 350px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
   background-color: #eaeaea;
   border: 1px solid #666;
   border-radius: 3px;

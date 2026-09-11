@@ -297,21 +297,18 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
     mouseExtraInfoWrapper.style.top = `${top}px`;
     mouseExtraInfoWrapper.style.left = `${left}px`;
 
-    // Measure where it actually ended up and nudge it back into the viewport.
+    // Measure where it actually ended up, then keep it within the viewport.
     const popupRect = mouseExtraInfoWrapper.getBoundingClientRect();
     const margin = 10;
-
-    if (popupRect.right > window.innerWidth - margin) {
-      left -= popupRect.right - (window.innerWidth - margin);
-    }
-
-    if (popupRect.left < margin) {
-      left += margin - popupRect.left;
-    }
+    const leftOffset = popupRect.left - left;
+    const topOffset = popupRect.top - top;
 
     if (popupRect.bottom > window.innerHeight - margin) {
-      top = Math.max(margin, rect.top - popupRect.height - 5);
+      top = rect.top - popupRect.height - 5 - topOffset;
     }
+
+    left = Math.min(Math.max(left, margin - leftOffset), window.innerWidth - margin - popupRect.width - leftOffset);
+    top = Math.min(Math.max(top, margin - topOffset), window.innerHeight - margin - popupRect.height - topOffset);
 
     mouseExtraInfoWrapper.style.top = `${top}px`;
     mouseExtraInfoWrapper.style.left = `${left}px`;
@@ -1142,4 +1139,4 @@ const mapHasGroup = (map) => {
   return Boolean(getGroupForMap(map));
 };
 
-export { addSortedMapTab, hideSortedTab, mapHasGroup, showSortedTab };
+export { addSortedMapTab, getMouseDataForMap, hideSortedTab, mapHasGroup, showSortedTab };
