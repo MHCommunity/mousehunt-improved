@@ -21,33 +21,66 @@ const recipeGroups = [
   },
 ];
 
+/**
+ * Magic Essence crafting recommendations, from Greytyphoon's "Should I use ME?" chart.
+ *
+ * Keys are the confirmation popup's `data-item-type`, which is the recipe type for
+ * recipe crafts and the potion's item type for potion crafts. Values are an optional
+ * note appended to the warning. Anything the chart marks as worth crafting is left
+ * out so that it doesn't warn.
+ */
 const recipesMeConversion = {
-  no: [
-    'abominable_asiago_cheese_magic',
-    'ancient_cheese_6_pieces',
-    'ancient_cheese_potion',
-    'cherry_potion',
-    'corrupted_radioactive_blue_cheese_potion',
-    'gnarled_cheese_potion',
-    'greater_radioactive_blue_cheese_potion',
-    'limelight_cheese_6',
-    'radioactive_blue_cheese_potion',
-    'runic_cheese_2_pieces',
-    'runic_cheese_potion',
-  ],
-  maybe: [
-    'ancient_string_cheese_potion',
-    'crimson_cheese_magic_essence_recipe',
-    'gauntlet_potion_2',
-    'gauntlet_potion_3',
-    'gauntlet_potion_4',
-    'glowing_gruyere_cheese_5_pieces',
-    'greater_wicked_gnarly_potion',
-    'rain_cheese_potion',
-    'vengeful_vanilla_stilton_magic_essence',
-    'wicked_gnarly_potion',
-    'wind_cheese_potion',
-  ],
+  no: {
+    abominable_asiago_cheese_magic: '',
+    ancient_cheese_6_pieces: '',
+    ancient_cheese_potion: '',
+    ancient_string_cheese_potion: 'Buy it from the Marketplace instead.',
+    beanster_recipe: 'Buy it from the Marketplace instead.',
+    cherry_potion: '',
+    clamembert_recipe: '',
+    corrupted_radioactive_blue_cheese_potion: '',
+    crimson_cheese_magic_essence_recipe: '',
+    first_draft_recipe: '',
+    gauntlet_bait_recipe: 'Buy it from the Marketplace instead.',
+    gauntlet_potion_2: '',
+    gauntlet_potion_3: '',
+    gauntlet_potion_4: '',
+    gauntlet_potion_8: '',
+    glowing_gruyere_cheese_3_pieces: 'Buy it from the Marketplace instead.',
+    glowing_gruyere_cheese_5_pieces: 'Buy it from the Marketplace instead.',
+    gnarled_cheese_potion: '',
+    greater_radioactive_blue_cheese_potion: '',
+    greater_wicked_gnarly_potion: '',
+    grubeen_recipe: 'You can use KC instead.',
+    limelight_cheese_6: '',
+    radioactive_blue_cheese_potion: '',
+    rain_cheese_potion: 'Use Gouda instead.',
+    runic_cheese_2_pieces: '',
+    runic_cheese_potion: '',
+    sky_cheese_recipe: 'Buy it from the Marketplace instead.',
+    string_undead_emmental_potion: 'Buy it from the Marketplace instead.',
+    wicked_gnarly_potion: '',
+    wind_cheese_potion: 'Use Gouda instead.',
+  },
+  maybe: {
+    fiery_fontina_recipe: 'Ashes are usually the better option.',
+    gauntlet_potion_5: '',
+    gauntlet_potion_6: '',
+    gauntlet_potion_7: '',
+    gnawnia_boss_cheese_plus_recipe: '',
+    gnawnia_boss_cheese_recipe: '',
+    icy_isabirra_recipe: 'Ashes are usually the better option.',
+    medium_queso_cheese_recipe_magic_essence: '',
+    mild_queso_cheese_recipe_magic_essence: '',
+    mineral_cheese_3_pieces: '',
+    mineral_cheese_6_pieces: '',
+    poisonous_provolone_recipe: 'Ashes are usually the better option.',
+    polluted_parmesan_potion: '',
+    resonator_recipe: '',
+    riftiago_potion: '',
+    terre_ricotta_potion: '',
+    vengeful_vanilla_stilton_magic_essence: '',
+  },
 };
 
 /**
@@ -303,8 +336,9 @@ const cleanUpRecipeBook = () => {
  * Show a warning when crafting a recipe that may not be worth it.
  *
  * @param {string} text The warning text.
+ * @param {string} note An optional note about the better alternative.
  */
-const showCraftWarning = (text) => {
+const showCraftWarning = (text, note = '') => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
   if (!confirm) {
     return;
@@ -315,7 +349,7 @@ const showCraftWarning = (text) => {
     existing.remove();
   }
 
-  const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', text);
+  const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', note ? `${text} ${note}` : text);
   confirm.parentNode.append(tooltip);
 };
 
@@ -369,10 +403,10 @@ const warnOnBadCrafts = (limit = 0) => {
     }
   }
 
-  if (recipesMeConversion.no.includes(recipe)) {
-    showCraftWarning('This is not worth crafting using Magic Essence.');
-  } else if (recipesMeConversion.maybe.includes(recipe)) {
-    showCraftWarning('Check the price of SUPER|brie+ before using Magic Essence.');
+  if (Object.hasOwn(recipesMeConversion.no, recipe)) {
+    showCraftWarning('This is not worth crafting using Magic Essence.', recipesMeConversion.no[recipe]);
+  } else if (Object.hasOwn(recipesMeConversion.maybe, recipe)) {
+    showCraftWarning('Check the price of SUPER|brie+ before using Magic Essence.', recipesMeConversion.maybe[recipe]);
   }
 };
 
