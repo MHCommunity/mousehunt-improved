@@ -788,6 +788,22 @@ a.update-data-link.updating {
   background: #000;
 }
 
+/* The game info bar copy of the icon, used while the onboarding tutorial hides
+   the header menu the icon normally lives in. */
+.mousehuntHud-gameInfo .menuItem.mousehunt-improved-icon-menu {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  margin: -5px 5px;
+  vertical-align: text-bottom;
+  background: url(https://i.mouse.rip/mh-improved/icon.png) no-repeat center;
+  background-size: contain;
+}
+
+.mousehuntHud-gameInfo .menuItem.mousehunt-improved-icon-menu:hover {
+  filter: brightness(1.15);
+}
+
 /* Dark mode */
 .mh-dark .mousehunt-improved-settings {
   --mhui-settings-border: var(--d-border, #111);

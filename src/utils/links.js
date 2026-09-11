@@ -263,23 +263,51 @@ const addSubmenuDivider = (menu, className = '') => {
 };
 
 /**
- * Add the icon to the menu.
+ * Check whether the game is running its onboarding tutorial, which hides the
+ * header menu entirely.
  *
- * @param {Object}   opts             The options for the menu item.
- * @param {string}   [opts.id]        The id for the menu item.
- * @param {string}   [opts.classname] The class for the menu item.
- * @param {string}   [opts.href]      The href for the menu item.
- * @param {string}   [opts.title]     The title for the menu item.
- * @param {string}   [opts.text]      The text for the menu item.
- * @param {Function} [opts.action]    The action for the menu item.
- * @param {string}   [opts.position]  The position for the menu item.
+ * @return {boolean} Whether the onboarding tutorial is running.
  */
-const addIconToMenu = (opts) => {
-  const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
-  if (!menu) {
-    return;
+const isOnboardingTutorial = () => {
+  return !!document.querySelector('#mousehuntContainer')?.classList.contains('onboarding');
+};
+
+/**
+ * Get the element to put a menu icon in.
+ *
+ * The header menu is hidden for the whole of the game's onboarding tutorial, so
+ * an icon that opted into the fallback goes in the HUD's game info bar instead
+ * of being added somewhere the user can't see it.
+ *
+ * @param {boolean} gameInfoFallback Whether to fall back to the game info bar.
+ *
+ * @return {Element|null} The element to put the icon in, if there is one.
+ */
+const getIconMenu = (gameInfoFallback) => {
+  if (gameInfoFallback && isOnboardingTutorial()) {
+    const gameInfo = document.querySelector('.mousehuntHud-gameInfo');
+    if (gameInfo) {
+      return gameInfo;
+    }
   }
 
+  return document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
+};
+
+/**
+ * Add the icon to the menu.
+ *
+ * @param {Object}   opts                    The options for the menu item.
+ * @param {string}   [opts.id]               The id for the menu item.
+ * @param {string}   [opts.classname]        The class for the menu item.
+ * @param {string}   [opts.href]             The href for the menu item.
+ * @param {string}   [opts.title]            The title for the menu item.
+ * @param {string}   [opts.text]             The text for the menu item.
+ * @param {Function} [opts.action]           The action for the menu item.
+ * @param {string}   [opts.position]         The position for the menu item.
+ * @param {boolean}  [opts.gameInfoFallback] Whether to use the game info bar when the header menu is hidden.
+ */
+const addIconToMenu = (opts) => {
   const defaults = {
     id: '',
     classname: '',
@@ -288,9 +316,17 @@ const addIconToMenu = (opts) => {
     text: '',
     action: null,
     position: 'prepend',
+    gameInfoFallback: false,
   };
 
   const settings = Object.assign({}, defaults, opts);
+
+  const menu = getIconMenu(settings.gameInfoFallback);
+  if (!menu) {
+    return;
+  }
+
+  const isGameInfo = menu.classList.contains('mousehuntHud-gameInfo');
 
   if (!settings.classname) {
     settings.classname = settings.id;
@@ -312,9 +348,27 @@ const addIconToMenu = (opts) => {
   if (settings.id) {
     const exists = document.querySelector(`#${settings.id}`);
     if (exists) {
-      exists.replaceWith(icon);
-      return;
+      // Only swap it in place if it's already where it belongs, otherwise the
+      // icon would stay in a menu we've since decided against.
+      if (exists.parentElement === menu) {
+        exists.replaceWith(icon);
+        return;
+      }
+
+      exists.remove();
     }
+  }
+
+  if (isGameInfo) {
+    // Sit alongside the HUD's own links rather than in front of them.
+    const firstLink = menu.querySelector('a');
+    if (firstLink) {
+      firstLink.after(icon);
+    } else {
+      menu.prepend(icon);
+    }
+
+    return;
   }
 
   if ('prepend' === settings.position) {

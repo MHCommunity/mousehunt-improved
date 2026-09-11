@@ -753,6 +753,7 @@ const addMhImprovedIconToMenu = () => {
     href: 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings',
     title: 'MouseHunt Improved Settings',
     position: 'append',
+    gameInfoFallback: true,
 
     /**
      * The action to perform when the icon is clicked.
