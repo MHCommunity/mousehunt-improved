@@ -57,6 +57,21 @@ const buildItemLookup = (items) => {
   }
   return map;
 };
+
+/**
+ * Resolve a name to a known item, trying the irregular singular and then a
+ * plain trailing "s"/"es" strip so "Golden Goose Eggs" finds "Golden Goose Egg".
+ *
+ * @param {string} name The item name as it appears in the text.
+ *
+ * @return {Object|undefined} The item, if known.
+ */
+const lookupItem = (name) => {
+  const key = name.toLowerCase();
+
+  return itemLookup[key] || itemLookup[unpluralize(name).toLowerCase()] || itemLookup[key.replace(/s$/, '')] || itemLookup[key.replace(/es$/, '')];
+};
+
 /**
  * Split raw text into item fragments.
  *
@@ -92,8 +107,7 @@ const convertTextToItemLink = (textLike) => {
     return false;
   }
   const name = m[2].trim();
-  const key = name.toLowerCase();
-  const item = itemLookup[key] || itemLookup[unpluralize(name).toLowerCase()] || itemLookup[key.replace(/s$/, '')];
+  const item = lookupItem(name);
   if (!item) {
     return false;
   }
@@ -158,7 +172,7 @@ const findItemsInText = (text, skipNames) => {
       }
 
       const cleaned = phrase.replace(/[!,.:;]+$/, '');
-      const item = itemLookup[cleaned.toLowerCase()] || itemLookup[unpluralize(cleaned).toLowerCase()];
+      const item = lookupItem(cleaned);
       if (item) {
         best = { start, name: cleaned, item, words: wordCount };
       }
