@@ -1,4 +1,4 @@
-import { addStyles, getCurrentPage, getSetting, humanizeTime, makeElement, onNavigation } from '@utils';
+import { addStyles, getCurrentPage, getSetting, humanizeTime, makeElement, onNavigation, parseMouseHuntDate } from '@utils';
 
 import settings from './settings';
 
@@ -67,13 +67,23 @@ const addTrapBlock = () => {
 
   isAppending = true;
 
+  // With no active auras there's nothing to list, so clear out any block we
+  // left behind rather than leaving an empty section under the trap stats.
+  if (0 === aurasExpiry.length) {
+    document.querySelector('#mh-improved-aura-view')?.remove();
+    isAppending = false;
+    return;
+  }
+
   const trapSummary = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
   if (!trapSummary) {
+    isAppending = false;
     return;
   }
 
   let existing = document.querySelector('#mh-improved-aura-view');
   if (existing) {
+    isAppending = false;
     return;
   }
 
@@ -142,7 +152,7 @@ const addTrapBlock = () => {
 /**
  * Get the auras.
  */
-const getAuras = () => {
+const getAuras = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
   }
@@ -152,58 +162,40 @@ const getAuras = () => {
     return;
   }
 
-  aurasExpiry = [];
-  auras.forEach((aura) => {
-    const typeEl = aura.querySelector('.trapImageView-tooltip-trapAura-title');
-    if (!typeEl) {
-      return;
-    }
-
-    const type = typeEl.textContent.replaceAll('You have the ', '').replaceAll('Aura!', '').trim();
-    const expiryEl = aura.querySelector('.trapImageView-tooltip-trapAura-expiry span');
-
-    if (!expiryEl || !type) {
-      return;
-    }
-
-    // calculate the expiry time from "September 11, 2025 @ 3:41pm (Local Time)" to a date object
-    const origExpiryText = expiryEl.textContent.replaceAll('(Local Time)', '').replaceAll('  ', ' ').trim();
-
-    let expiryText = origExpiryText;
-
-    const dateParts = expiryText.split('@');
-    if (dateParts.length > 1) {
-      expiryText = dateParts[0].trim();
-      const time = dateParts[1].trim();
-
-      const timeParts = time.split(':');
-      let hours = Number.parseInt(timeParts[0], 10);
-      const minutes = timeParts[1].replace(/(am|pm)/i, '').trim();
-      const isPM = timeParts[1].toLowerCase().includes('pm');
-
-      if (hours === 12 && !isPM) {
-        hours = 0; // 12 AM.
-      } else if (hours !== 12 && isPM) {
-        hours += 12; // PM.
+  const parsedAuras = await Promise.all(
+    [...auras].map(async (aura) => {
+      const typeEl = aura.querySelector('.trapImageView-tooltip-trapAura-title');
+      if (!typeEl) {
+        return null;
       }
 
-      expiryText = `${expiryText} ${hours}:${minutes}`;
-    }
+      const type = typeEl.textContent.replaceAll('You have the ', '').replaceAll('Aura!', '').trim();
+      const expiryEl = aura.querySelector('.trapImageView-tooltip-trapAura-expiry span');
 
-    const expiry = new Date(Date.parse(expiryText));
-    const now = new Date();
+      if (!expiryEl || !type) {
+        return null;
+      }
 
-    // get the difference in seconds
-    const remaining = Math.floor((expiry - now) / 1000);
+      const expiryText = expiryEl.textContent.replaceAll('  ', ' ').trim();
+      const expiry = await parseMouseHuntDate(expiryText);
+      if (null === expiry) {
+        return null;
+      }
 
-    aurasExpiry.push({
-      type,
-      remaining,
-      expiry,
-      expiryText: origExpiryText,
-      element: aura,
-    });
-  });
+      // get the difference in seconds
+      const remaining = Math.max(0, Math.floor((expiry - Date.now()) / 1000));
+
+      return {
+        type,
+        remaining,
+        expiry,
+        expiryText: expiryText.replace('(Local Time)', '').trim(),
+        element: aura,
+      };
+    })
+  );
+
+  aurasExpiry = parsedAuras.filter(Boolean);
 };
 
 let aurasExpiry = [];
@@ -225,9 +217,11 @@ const init = async () => {
 
   onNavigation(
     () => {
-      setTimeout(getAuras, 1000);
-      setTimeout(addExpiryWarning, 1100);
-      setTimeout(addTrapBlock, 1200);
+      setTimeout(async () => {
+        await getAuras();
+        addExpiryWarning();
+        addTrapBlock();
+      }, 1000);
     },
     { page: 'camp' }
   );
