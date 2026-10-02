@@ -8,15 +8,21 @@ import { makeElement, makeMathButtons, makeMhButton } from '@utils';
  * @param {number}  maxQty The maximum quantity.
  */
 export default async (block, input, maxQty) => {
-  const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
-  if (existingButtons) {
-    existingButtons.remove();
-  }
-
   // if max qty has a comma, remove it
   maxQty = `${maxQty}`.replaceAll(',', '');
 
+  // Only rebuild the buttons if the max changed, since each math button adds window listeners.
+  const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
+  if (existingButtons) {
+    if (existingButtons.dataset.maxQty === maxQty) {
+      return;
+    }
+
+    existingButtons.remove();
+  }
+
   const buyControls = makeElement('div', ['mh-improved-shop-buy-controls']);
+  buyControls.dataset.maxQty = maxQty;
 
   makeMathButtons([1, 10, 50, 100, 1000], {
     appendTo: buyControls,
@@ -44,6 +50,9 @@ export default async (block, input, maxQty) => {
     }
 
     hasMaxed = !hasMaxed;
+
+    // Let the game know the quantity changed.
+    input.dispatchEvent(new Event('keyup'));
   });
 
   // Find the closest parent element with the class 'itemPurchaseView-action-form' and append the buyControls to it.

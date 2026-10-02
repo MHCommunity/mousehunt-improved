@@ -55,14 +55,6 @@ const updateInputField = async () => {
       };
 
       input.addEventListener('keydown', onKeydown);
-      input.addEventListener(
-        'blur',
-        () => {
-          input.removeEventListener('keydown', onKeydown);
-          delete input.dataset.mhiShopEnter;
-        },
-        { once: true }
-      );
     }
 
     if (addQuantityButtons) {
@@ -81,11 +73,6 @@ const updateInputField = async () => {
 const main = () => {
   const body = document.querySelector('body');
   if (!body) {
-    return;
-  }
-
-  if ('item' === getCurrentPage()) {
-    body.classList.remove('shopCustomization');
     return;
   }
 
@@ -139,9 +126,10 @@ const main = () => {
         return;
       }
 
-      // oops that's not pretty.
-      const container = ownedItem.parentNode.parentNode.parentNode.parentNode.parentNode;
-      const nameEl = container.querySelector('.itemPurchaseView-content-name');
+      const nameEl = ownedItem.closest('.itemPurchaseView-container')?.querySelector('.itemPurchaseView-content-name');
+      if (!nameEl) {
+        return;
+      }
 
       ownedItem.setAttribute('data-moved-to-title', 'true');
 
@@ -213,6 +201,13 @@ const init = () => {
 
   onNavigation(main, {
     page: 'shops',
+  });
+
+  // The shop styles aren't all scoped to the shop page, so drop the class when leaving it.
+  onNavigation(() => {
+    if ('shops' !== getCurrentPage()) {
+      document.body.classList.remove('shopCustomization');
+    }
   });
 
   onRequest('purchases/itempurchase.php', updateInputField);

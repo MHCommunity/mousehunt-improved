@@ -181,6 +181,10 @@ a.itemPurchaseView-content-skin-link {
   border-bottom: 1px solid #ccc;
 }
 
+.mh-dark .shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
+  border-color: var(--d-border);
+}
+
 .shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
   width: auto;
   max-width: 150px;
@@ -450,17 +454,6 @@ a.shopsPage-kingsCalibratorPromo {
 .mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat {
   background-color: #3d3d3d;
   border-color: #606060;
-}
-
-.shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType {
-  position: absolute;
-  color: #000;
-  background-color: #e6e6e6;
-}
-
-.mh-dark .shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType {
-  color: var(--d-text);
-  background-color: var(--d-bg-alt);
 }
 
 .shopCustomization .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-value {

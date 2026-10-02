@@ -398,6 +398,44 @@ const makePage = (content) => {
   hg.utils.PageUtil.setPage('PrivacyPolicy', {}, setContent, setContent);
 };
 
+let hasMathButtonKeyListeners = false;
+
+/**
+ * Swap the math button text between plus and minus based on the shift key.
+ *
+ * @param {Element}              buttonText The button's text element.
+ * @param {KeyboardEvent|Object} e          The event with the shift key state.
+ */
+const updateMathButtonText = (buttonText, e) => {
+  const text = e.shiftKey ? buttonText.dataset.minusText : buttonText.dataset.plusText;
+  if (text && buttonText.innerText !== text) {
+    buttonText.innerText = text;
+  }
+};
+
+/**
+ * Add a single pair of window listeners that update every math button on the page.
+ *
+ * Adding listeners per button meant they were never removed, and piled up every time the
+ * buttons were rebuilt.
+ */
+const addMathButtonKeyListeners = () => {
+  if (hasMathButtonKeyListeners) {
+    return;
+  }
+
+  hasMathButtonKeyListeners = true;
+
+  const onKey = (e) => {
+    document.querySelectorAll('.mh-improved-math-button > span').forEach((buttonText) => {
+      updateMathButtonText(buttonText, e);
+    });
+  };
+
+  window.addEventListener('keydown', onKey);
+  window.addEventListener('keyup', onKey);
+};
+
 /**
  * Create a math button to add or subtract from an input.
  *
@@ -420,25 +458,11 @@ const makeMathButton = (amount, opts) => {
   const plusText = amount > 0 ? `+${amount}` : amount;
   const minusText = amount > 0 ? `-${amount}` : amount;
   const buttonText = makeElement('span', '', plusText);
+  buttonText.dataset.plusText = plusText;
+  buttonText.dataset.minusText = minusText;
 
-  /**
-   * Update the button text based on the shift key.
-   *
-   * @param {Event} e The event object.
-   */
-  const updateButtonText = (e) => {
-    const currentText = buttonText.innerText;
-
-    if (e.shiftKey && currentText !== minusText) {
-      buttonText.innerText = minusText;
-    } else if (!e.shiftKey && currentText !== plusText) {
-      buttonText.innerText = plusText;
-    }
-  };
-
-  buttonText.addEventListener('mouseover', updateButtonText);
-  window.addEventListener('keydown', updateButtonText);
-  window.addEventListener('keyup', updateButtonText);
+  buttonText.addEventListener('mouseover', (e) => updateMathButtonText(buttonText, e));
+  addMathButtonKeyListeners();
 
   button.append(buttonText);
 
