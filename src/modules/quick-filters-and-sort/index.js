@@ -36,13 +36,18 @@ const addItemToQuickLinks = (link, appendTo, filter, inputs) => {
   item.append(itemAnchor);
   item.append(hiddenInput);
 
-  const filterInput = inputs?.filterInput || document.querySelector('.campPage-trap-itemBrowser-filter.powerType select');
-  const sortInput = inputs?.sortInput || document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
-
   item.addEventListener('click', (e) => {
     e.preventDefault();
 
-    const input = filter === 'sortBy' ? sortInput : filterInput;
+    // The game can re-render the filters, so fall back to finding the select again if ours is gone.
+    let input = filter === 'sortBy' ? inputs?.sortInput : inputs?.filterInput;
+    if (!input?.isConnected) {
+      input = document.querySelector(filter === 'sortBy' ? '.campPage-trap-itemBrowser-filter.sortBy select' : '.campPage-trap-itemBrowser-filter.powerType select');
+    }
+
+    if (!input) {
+      return;
+    }
 
     let reset = false;
     if (item.getAttribute('data-selected') === 'true') {
@@ -50,8 +55,8 @@ const addItemToQuickLinks = (link, appendTo, filter, inputs) => {
       reset = true;
       item.setAttribute('data-selected', false);
     } else {
-      // reset all other filters
-      const items = document.querySelectorAll('.quicklinks-filter[data-selected="true"]');
+      // Reset the other links in this row, leaving the other row (sort or filter) alone.
+      const items = appendTo.querySelectorAll('.quicklinks-filter[data-selected="true"]');
       items.forEach((i) => {
         i.setAttribute('data-selected', false);
       });

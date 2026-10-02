@@ -98,64 +98,62 @@ const modifySupportedBases = async (opts = {}) => {
 
   isModifyingSupportedBases = true;
 
-  const activeBp = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
-  if (!activeBp) {
-    isModifyingSupportedBases = false;
-    return;
-  }
-
-  const bpType = activeBp.getAttribute('data-blueprint-type');
-  if (!bpType || bpType !== 'base') {
-    isModifyingSupportedBases = false;
-    return;
-  }
-
-  const { retrySupportedBase } = opts;
-
-  const savedStats = await dataGet('pb-stats', false);
-  debuglog('real-base-stats', 'Saved supported base stats:', savedStats);
-  if (!savedStats) {
-    isModifyingSupportedBases = false;
-    return;
-  }
-
-  const recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
-  if (!recommended) {
-    isModifyingSupportedBases = false;
-    return;
-  }
-
-  let baseFound = false;
-
-  supportedBases.forEach((base) => {
-    const baseElement = document.querySelector(`.campPage-trap-itemBrowser-item.base.${base.slug}`);
-    if (baseElement) {
-      baseFound = true;
+  // Always clear the flag, otherwise a failed read would stop the module until the page reloads.
+  try {
+    const activeBp = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
+    if (!activeBp) {
+      return;
     }
 
-    if (baseElement && !baseElement.getAttribute('data-pinned')) {
-      const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
-      if (header) {
-        header.after(baseElement);
+    const bpType = activeBp.getAttribute('data-blueprint-type');
+    if (!bpType || bpType !== 'base') {
+      return;
+    }
+
+    const { retrySupportedBase } = opts;
+
+    const savedStats = await dataGet('pb-stats', false);
+    debuglog('real-base-stats', 'Saved supported base stats:', savedStats);
+    if (!savedStats) {
+      return;
+    }
+
+    const recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
+    if (!recommended) {
+      return;
+    }
+
+    let baseFound = false;
+
+    supportedBases.forEach((base) => {
+      const baseElement = document.querySelector(`.campPage-trap-itemBrowser-item.base.${base.slug}`);
+      if (baseElement) {
+        baseFound = true;
       }
 
-      baseElement.setAttribute('data-pinned', true);
-    }
-  });
+      if (baseElement && !baseElement.getAttribute('data-pinned')) {
+        const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
+        if (header) {
+          header.after(baseElement);
+        }
 
-  if (!baseFound) {
-    if (!retrySupportedBase) {
-      debuglog('real-base-stats', 'Supported base not found, retrying in 500 ms');
-      setTimeout(modifySupportedBases, 500, { retrySupportedBase: true });
+        baseElement.setAttribute('data-pinned', true);
+      }
+    });
+
+    if (!baseFound) {
+      if (!retrySupportedBase) {
+        debuglog('real-base-stats', 'Supported base not found, retrying in 500 ms');
+        setTimeout(modifySupportedBases, 500, { retrySupportedBase: true });
+      }
+
+      return;
     }
 
+    setSupportedBaseStats();
+  } finally {
     isModifyingSupportedBases = false;
-    return;
   }
-
-  setSupportedBaseStats();
-
-  isModifyingSupportedBases = false;
 };
 
 let isModifyingFixedBases = false;
@@ -192,22 +190,13 @@ const modifyFixedBases = () => {
   }
 };
 
-let isSavingSupportedBaseStats = false;
-
 /**
  * Save the supported base stats.
  */
 const saveSupportedBaseStats = () => {
-  if (isSavingSupportedBaseStats) {
-    return;
-  }
-
-  isSavingSupportedBaseStats = true;
-
   const setup = getUserSetupDetails();
   const isEquipped = supportedBases.some((base) => setup?.base?.id === base.id);
   if (!isEquipped) {
-    isSavingSupportedBaseStats = false;
     return;
   }
 
@@ -215,7 +204,6 @@ const saveSupportedBaseStats = () => {
 
   const trapMath = document.querySelectorAll('.campPage-trap-trapStat-mathRow');
   if (!trapMath.length) {
-    isSavingSupportedBaseStats = false;
     return;
   }
 
@@ -255,14 +243,11 @@ const saveSupportedBaseStats = () => {
   }
 
   if (!stats.power || !stats.luck) {
-    isSavingSupportedBaseStats = false;
     return;
   }
 
   debuglog('real-base-stats', 'Supported base stats:', stats);
   dataSet('pb-stats', stats);
-
-  isSavingSupportedBaseStats = false;
 };
 
 /**
@@ -281,7 +266,8 @@ const run = () => {
  */
 const init = () => {
   onEvent('camp_page_toggle_blueprint', run);
-  onRequest('users/changetrap.php', run);
+  // Request callbacks run before the game updates the trap, so give it a moment first.
+  onRequest('users/changetrap.php', () => setTimeout(run, 250));
 };
 
 /**

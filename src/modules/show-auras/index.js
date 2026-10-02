@@ -15,13 +15,10 @@ import styles from './styles/styles.css';
  * @return {string} The formatted expiry.
  */
 const getExpiryFormatted = (time) => {
-  const date = new Date(time);
-  return date.toLocaleDateString(
-    new Intl.DateTimeFormat('en', {
-      dateStyle: 'short',
-      timeStyle: 'short',
-    })
-  );
+  return new Date(time).toLocaleString(undefined, {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
 };
 
 /**
@@ -44,9 +41,8 @@ const getExpiryRemainingFormatted = (time) => {
  * Add the expiry warning.
  */
 const addExpiryWarning = () => {
-  // if any of the auras are expiring soon, show a notification
-  // const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24);
-  const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24 * 40); // TODO: figure out the time that's worth a warning
+  // Flag any auras that expire within a day.
+  const soon = aurasExpiry.filter((aura) => aura.remaining < 60 * 60 * 24);
   if (soon.length) {
     // add a class to the aura to show it's expiring soon
     soon.forEach((aura) => {
@@ -55,35 +51,19 @@ const addExpiryWarning = () => {
   }
 };
 
-let isAppending = false;
-
 /**
  * Add the aura block to the trap stats.
  */
 const addTrapBlock = () => {
-  if (isAppending) {
-    return;
-  }
-
-  isAppending = true;
-
   // With no active auras there's nothing to list, so clear out any block we
   // left behind rather than leaving an empty section under the trap stats.
   if (0 === aurasExpiry.length) {
     document.querySelector('#mh-improved-aura-view')?.remove();
-    isAppending = false;
     return;
   }
 
   const trapSummary = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
   if (!trapSummary) {
-    isAppending = false;
-    return;
-  }
-
-  let existing = document.querySelector('#mh-improved-aura-view');
-  if (existing) {
-    isAppending = false;
     return;
   }
 
@@ -92,7 +72,7 @@ const addTrapBlock = () => {
 
   aurasExpiry.forEach((aura) => {
     const auraKey = `mh-aura-${aura.type.toLowerCase().replaceAll(/[ !'(),.]/g, '-')}`;
-    const existingAura = document.querySelector(`#${auraKey}`);
+    const existingAura = auraTrapBlock.querySelector(`[id="${auraKey}"]`);
     if (existingAura) {
       return;
     }
@@ -106,8 +86,6 @@ const addTrapBlock = () => {
 
     const expiryText = getExpiryFormatted(aura.expiry);
     const remaining = getExpiryRemainingFormatted(aura.remaining * 1000);
-
-    auraEl.title = `Expires on ${expiryText}, ${remaining} remaining`;
 
     const tooltip = makeElement('div', ['mousehuntTooltip', 'noEvents']);
     const tooltipContent = makeElement('div', 'mousehuntTooltipContent');
@@ -134,7 +112,7 @@ const addTrapBlock = () => {
     auraTrapBlock.append(auraEl);
   });
 
-  existing = document.querySelector('#mh-improved-aura-view');
+  const existing = document.querySelector('#mh-improved-aura-view');
   if (existing) {
     existing.replaceWith(auraTrapBlock);
   } else {
@@ -145,8 +123,6 @@ const addTrapBlock = () => {
       trapSummary.append(auraTrapBlock);
     }
   }
-
-  isAppending = false;
 };
 
 /**
@@ -158,7 +134,8 @@ const getAuras = async () => {
   }
 
   const auras = document.querySelectorAll('.trapSelectorView .trapImageView-trapAuraContainer .trapImageView-trapAura.active');
-  if (!auras) {
+  if (!auras.length) {
+    aurasExpiry = [];
     return;
   }
 
