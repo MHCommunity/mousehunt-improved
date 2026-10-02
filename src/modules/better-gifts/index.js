@@ -9,7 +9,7 @@ import styles from './styles.css';
  * @return {Array} The ignored gifts.
  */
 const getIgnoredGifts = () => {
-  const ignored = getSetting('better-gifts-settings.ignore-bad-gifts-0', 'skip');
+  const ignored = getSetting('better-gifts.ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
     skip: ['mozzarella_cheese', 'stale_cheese', 'stale_cheese_craft_item'],
@@ -34,8 +34,10 @@ const getIgnoredGifts = () => {
  * @return {boolean} Whether the gifts were claimed.
  */
 const claimGifts = async (send = false, retries = 0) => {
-  // First, show the gift selector.
-  hg.views.GiftSelectorView.show();
+  // First, show the gift selector. Only do it once, since each call requests the gift data again.
+  if (0 === retries) {
+    hg.views.GiftSelectorView.show();
+  }
 
   const isLoaded = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-friendRow');
   if (!isLoaded) {
@@ -168,7 +170,7 @@ const addCloseButtonToConfirmPopup = (resp, req) => {
   }
 
   const confirmTitle = document.querySelector('.giftSelectorView-confirmPopup-title');
-  if (!confirmTitle) {
+  if (!confirmTitle || confirmTitle.querySelector('.giftSelectorView-confirmPopup-submitCloseButton')) {
     return;
   }
 
@@ -218,7 +220,8 @@ const getButtons = (className = false, isTiny = false) => {
  * Make the buttons and add them to the page.
  */
 const makeButtons = () => {
-  if (document.querySelector('#bulk-gifting-gift-buttons')) {
+  // The popup buttons use the same ID, so only look for buttons in the inbox footer.
+  if (document.querySelector('.giftSelectorView-inbox-footer #bulk-gifting-gift-buttons')) {
     return;
   }
 
@@ -526,7 +529,8 @@ const main = () => {
   fixTypo();
   lineBreakGiftFooter();
 
-  onRequest('users/socialGift.php', addCloseButtonToConfirmPopup);
+  // Request callbacks run before the game re-renders the popup, so wait for that first.
+  onRequest('users/socialGift.php', (resp, req) => setTimeout(() => addCloseButtonToConfirmPopup(resp, req), 0));
 };
 
 /**
@@ -565,10 +569,7 @@ const init = () => {
   }
 
   onDeactivation('better-gifts', () => {
-    const buttons = document.querySelectorAll('.mh-gift-buttons');
-    buttons.forEach((button) => {
-      button.remove();
-    });
+    document.querySelectorAll('#bulk-gifting-gift-buttons, .mh-gift-buttons, .mh-gift-buttons-clone-wrapper').forEach((el) => el.remove());
   });
 };
 

@@ -1,4 +1,4 @@
-import { addStyles, debug, humanizeTime, lsGet, lsSet, makeElement, onDeactivation, waitForElement } from '@utils';
+import { addStyles, debug, humanizeTime, lsGet, lsSet, make, makeElement, onDeactivation, waitForElement } from '@utils';
 
 import fallbackGiftImage from '@images/icons/icon-64.png';
 
@@ -45,6 +45,46 @@ const getState = () => {
  */
 const saveState = (state) => {
   lsSet(STATE_KEY, state);
+};
+
+/**
+ * How long to remember a gift link as claimed, hidden, or seen.
+ */
+const STATE_MAX_AGE = 60 * 24 * 60 * 60 * 1000;
+
+/**
+ * Remove saved gift link states that are more than two months old, so the saved state doesn't keep
+ * growing. Links that are still being offered are kept, so they don't show up as unclaimed again.
+ *
+ * @param {Array} links The gift links currently being offered.
+ */
+const pruneState = (links = []) => {
+  const state = getState();
+  const currentCodes = new Set(links.map((link) => link.code));
+  const now = Date.now();
+
+  let changed = false;
+  for (const bucket of Object.values(state)) {
+    for (const [code, value] of Object.entries(bucket)) {
+      if (currentCodes.has(code)) {
+        continue;
+      }
+
+      const time = Date.parse(value);
+      if (Number.isNaN(time)) {
+        // Older entries may not have a date we can read, so start counting from now.
+        bucket[code] = new Date(now).toISOString();
+        changed = true;
+      } else if (now - time > STATE_MAX_AGE) {
+        delete bucket[code];
+        changed = true;
+      }
+    }
+  }
+
+  if (changed) {
+    saveState(state);
+  }
 };
 
 /**
@@ -248,7 +288,8 @@ const normalizeLink = (link) => {
  * @return {Promise<Array>} The gift links.
  */
 const fetchRewardLinks = async (force = false) => {
-  if (!force && cachedLinks.length && Date.now() - cacheTime < 10 * 60 * 1000) {
+  // cacheTime is only set on success, so an empty result is cached but failures still retry.
+  if (!force && cacheTime && Date.now() - cacheTime < 10 * 60 * 1000) {
     // 10 minutes.
     return cachedLinks;
   }
@@ -266,6 +307,8 @@ const fetchRewardLinks = async (force = false) => {
     const data = await response.json();
     cachedLinks = Array.isArray(data.links) ? data.links.map((link) => normalizeLink(link)) : [];
     cacheTime = Date.now();
+
+    pruneState(cachedLinks);
   } catch (error) {
     debug('Unable to fetch reward links', error);
   }
@@ -306,6 +349,9 @@ const buildMessage = (link) => {
 
   const claim = makeElement('a', ['mousehuntActionButton', 'small', 'mh-improved-gift-claim']);
   claim.href = link.expandedUrl || link.url;
+  // In-place claims prevent the navigation, so this only applies when falling back to the claim page.
+  claim.target = '_blank';
+  claim.rel = 'noopener';
   claim.setAttribute('data-mhi-gift-claim', link.code);
   if (link.giftId) {
     claim.setAttribute('data-mhi-gift-id', link.giftId);
@@ -321,8 +367,6 @@ const buildMessage = (link) => {
   if (claimed) {
     message.classList.add('claimed');
     claim.classList.add('disabled', 'small');
-    claim.target = '_blank';
-    claim.rel = 'noopener';
   } else {
     claim.classList.add('readNewsPost');
   }
@@ -408,7 +452,8 @@ const showClaimError = (message, claimButton, errorText) => {
 
   let error = actions.querySelector('.mh-improved-gift-claim-error');
   if (!error) {
-    error = makeElement('div', 'mh-improved-gift-claim-error', '', actions);
+    // Use make() since makeElement() returns the parent, which would wipe out the claim button.
+    error = make('div', 'mh-improved-gift-claim-error', '', actions);
   }
 
   error.textContent = errorText;
@@ -479,9 +524,9 @@ const claimGiftInPlace = (claimButton) => {
   hg.utils.SocialGift.claimGift(
     giftId,
     giftHash,
-    (data) => {
-      const claimDate = data?.gift_claim?.claim_date || '';
-      markState(code, 'claimed', claimDate);
+    () => {
+      // Store when we saw the claim rather than the game's claim date, so the entry can be pruned later.
+      markState(code, 'claimed');
       showClaimed(message, claimButton);
       refreshGiftTabState();
     },

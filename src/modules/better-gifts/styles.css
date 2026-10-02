@@ -18,10 +18,6 @@
   margin-right: 5px;
 }
 
-#bulk-gifting-gift-buttons .mh-gift-buttons-paid-gifts {
-  margin-right: 10px;
-}
-
 .giftSelectorView-inbox-giftContainer {
   height: auto;
   min-height: 300px;
@@ -394,7 +390,7 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   box-shadow: 0 0 10px #7bf inset;
 }
 
-.giftSelectorView-inbox-footer-viewMore::before:hover {
+.giftSelectorView-inbox-footer-viewMore:hover::before {
   background-color: #a5e2ff;
   box-shadow: 0 0 10px #f0f4f7 inset;
 }
