@@ -63,6 +63,9 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   allItems = allItems.map((item) => {
     if (!item.item_id) {
       item = items.find((i) => i.type === item.type);
+      if (!item) {
+        return null;
+      }
     }
 
     return {
@@ -75,6 +78,8 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
       le: !required.includes(item.type),
     };
   });
+
+  allItems = allItems.filter(Boolean);
 
   // sort the items array by name
   allItems.sort((a, b) => {
@@ -115,7 +120,6 @@ const getProgress = (items, required) => {
   });
 
   return {
-    checkmark: required.total >= requiredCompleted,
     completed: requiredCompleted,
     required: required.length,
     le,
@@ -311,7 +315,7 @@ const addCategoryAndItems = async (required, type, subtype, key, name) => {
   const progress = getProgress(items, required);
 
   makeCategory(key, name, progress);
-  makeContent(key, name, items, progress.completed);
+  makeContent(key, name, items, progress.completed === progress.required);
 
   return true;
 };
@@ -344,8 +348,12 @@ const run = async () => {
     return;
   }
 
-  if (!items) {
+  if (!items?.length) {
     items = await getData('items');
+  }
+
+  if (!items?.length) {
+    return;
   }
 
   for (const category of categories) {

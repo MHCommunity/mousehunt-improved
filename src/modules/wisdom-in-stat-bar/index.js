@@ -27,12 +27,14 @@ const saveWisdomSetting = (key, value) => {
 /**
  * Get the wisdom.
  *
+ * @param {boolean} force Whether to skip the cached value.
+ *
  * @return {number} The wisdom.
  */
-const getWisdom = async () => {
+const getWisdom = async (force = false) => {
   let wisdom = 0;
 
-  if (useCachedWisdom) {
+  if (!force) {
     const cachedWisdom = await getWisdomSetting('value');
     const lastUpdated = await getWisdomSetting('last-updated');
 
@@ -54,10 +56,12 @@ const getWisdom = async () => {
 /**
  * Get the wisdom formatted.
  *
+ * @param {boolean} force Whether to skip the cached value.
+ *
  * @return {string} The formatted wisdom.
  */
-const getWisdomFormatted = async () => {
-  const wisdom = await getWisdom();
+const getWisdomFormatted = async (force = false) => {
+  const wisdom = await getWisdom(force);
   return formatNumber(wisdom);
 };
 
@@ -88,38 +92,20 @@ const addWisdomToStatBar = (wisdom) => {
   makeElement('span', legacyHudMenu ? 'hudstatlabel' : 'label', 'Wisdom', wisdomRow);
   makeElement('span', legacyHudMenu ? 'hudstatvalue hud_wisdom' : 'value hud_wisdom', wisdom, wisdomRow);
   wisdomRow.setAttribute('title', 'Click to refresh wisdom');
+  wisdomRow.addEventListener('click', () => updateWisdom(true));
   pointsRow.after(wisdomRow);
 };
 
 /**
  * Update the wisdom.
+ *
+ * @param {boolean} force Whether to skip the cached value.
  */
-const updateWisdom = async () => {
-  const wisdom = await getWisdomFormatted();
+const updateWisdom = async (force = false) => {
+  const wisdom = await getWisdomFormatted(force);
   addWisdomToStatBar(wisdom);
 };
 
-/**
- * Add the click listener to refresh the wisdom.
- */
-const addRefreshListener = () => {
-  const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
-  if (!wisdomRow) {
-    return;
-  }
-
-  wisdomRow.addEventListener('click', () => {
-    // Save whether we should use cached wisdom.
-    const cachedWisdomSetting = useCachedWisdom;
-
-    // Force update the wisdom.
-    useCachedWisdom = false;
-    updateWisdom();
-    useCachedWisdom = cachedWisdomSetting;
-  });
-};
-
-let useCachedWisdom = true;
 let legacyHudMenu = false;
 /**
  * Initialize the module.
@@ -128,7 +114,7 @@ const init = async () => {
   addStyles(styles, 'wisdom-in-stat-bar');
 
   if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
-    onTurn(updateWisdom);
+    onTurn(() => updateWisdom(true));
   }
 
   const legacyMenu = getSetting('legacy-hud.menu', false);
@@ -136,9 +122,8 @@ const init = async () => {
   legacyHudMenu = (getSetting('legacy-hud', false) && (legacyHud || legacyMenu === legacyHud)) || isLegacyHUD();
 
   await updateWisdom();
-  addRefreshListener();
 
-  onDeactivation(() => {
+  onDeactivation('wisdom-in-stat-bar', () => {
     const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
     if (wisdomRow) {
       wisdomRow.remove();

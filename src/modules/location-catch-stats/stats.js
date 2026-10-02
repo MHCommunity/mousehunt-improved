@@ -304,10 +304,11 @@ const showSimplifiedModal = async () => {
 
   const modal = makeStatsModal('mh-catch-stats', 'Location Catch Stats', renderStats);
 
-  await renderStats();
-
+  // Add the modal before fetching, so a second click replaces it instead of opening another one.
   document.body.append(modal.wrapper);
   makeElementDraggable('#mh-catch-stats', '#mh-catch-stats .mh-catch-stats-header', 25, 25);
+
+  await renderStats();
 };
 
 export { getMouseStats, makeMouseList, makeStatsModal, showSimplifiedModal };

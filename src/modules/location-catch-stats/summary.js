@@ -110,6 +110,11 @@ const fetchLocationStats = async (location) => {
     })),
   };
 
+  // A failed request also comes back empty, so don't cache it as "no mice" for the next 30 minutes.
+  if (!details.mice.length) {
+    return details;
+  }
+
   const allDetails = await dataGet(locationStatsKey, {});
   allDetails[location.type] = details;
   await dataSet(locationStatsKey, allDetails);
