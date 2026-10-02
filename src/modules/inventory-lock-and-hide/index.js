@@ -1,4 +1,18 @@
-import { addEvent, addStyles, getCurrentPage, getCurrentTab, getData, getSetting, makeElement, makeMhButton, onEvent, onNavigation, onRequest, saveSetting } from '@utils';
+import {
+  addEvent,
+  addModuleStyles,
+  addStyles,
+  getCurrentPage,
+  getCurrentTab,
+  getData,
+  getSetting,
+  makeElement,
+  makeMhButton,
+  onEvent,
+  onNavigation,
+  onRequest,
+  saveSetting,
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -104,6 +118,9 @@ const addControlsToItems = async () => {
         e.preventDefault();
         e.stopPropagation();
 
+        // The bulk buttons can change this, so check the saved state rather than the initial one.
+        isLocked = itemSettings.locked.includes(id);
+
         const lockText = lock.querySelector('span');
         if (isLocked) {
           itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
@@ -143,6 +160,9 @@ const addControlsToItems = async () => {
       e.preventDefault();
       e.stopPropagation();
 
+      // The bulk buttons can change this, so check the saved state rather than the initial one.
+      isHidden = itemSettings.hidden.includes(id);
+
       const hideText = hide.querySelector('span');
       if (isHidden) {
         itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id);
@@ -160,7 +180,7 @@ const addControlsToItems = async () => {
     };
 
     const hide = makeMhButton({
-      text: isLocked ? 'Unhide' : 'Hide',
+      text: isHidden ? 'Show' : 'Hide',
       className: ['mhui-inventory-lock-and-hide-controls-hide'],
       callback: clickHide,
       appendTo: controls,
@@ -240,7 +260,7 @@ const maybeLockOrHideItems = async () => {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
     if (!id) {
-      return;
+      continue;
     }
 
     if (itemSettings?.locked?.length > 0 && itemSettings?.locked?.includes(id)) {
@@ -300,9 +320,12 @@ const addBulkControls = () => {
           itemsEl.forEach((item) => {
             const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
             if (id) {
-              itemSettings.locked.push(id);
+              if (!itemSettings.locked.includes(id)) {
+                itemSettings.locked.push(id);
+              }
+
               item.classList.add('locked');
-              const lockButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
+              const lockButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
               if (lockButtonText) {
                 lockButtonText.innerText = 'Unlock';
               }
@@ -331,7 +354,7 @@ const addBulkControls = () => {
               itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
               item.classList.remove('locked');
 
-              const lockButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
+              const lockButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
               if (lockButtonText) {
                 lockButtonText.innerText = 'Lock';
               }
@@ -357,10 +380,13 @@ const addBulkControls = () => {
           itemsEl.forEach((item) => {
             const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
             if (id) {
-              itemSettings.hidden.push(id);
+              if (!itemSettings.hidden.includes(id)) {
+                itemSettings.hidden.push(id);
+              }
+
               item.classList.add('hidden');
 
-              const hideButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
+              const hideButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
               if (hideButtonText) {
                 hideButtonText.innerText = 'Show';
               }
@@ -389,7 +415,7 @@ const addBulkControls = () => {
               itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id);
               item.classList.remove('hidden');
 
-              const hideButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
+              const hideButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
               if (hideButtonText) {
                 hideButtonText.innerText = 'Hide';
               }
@@ -422,7 +448,6 @@ const getCurrentTabContainer = () => {
   return document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
 };
 
-let isEditing = false;
 /**
  * Add the lock and hide controls to the inventory.
  */
@@ -464,10 +489,8 @@ const addLockAndHideControls = () => {
       addBulkControls();
       addControlsToItems();
 
-      isEditing = !isEditing;
-
-      container.setAttribute('mhui-inventory-lock-and-hide-controls-active', isEditing);
-      container.classList.toggle('mhui-inventory-lock-and-hide-controls-active');
+      const isActive = container.classList.toggle('mhui-inventory-lock-and-hide-controls-active');
+      container.setAttribute('mhui-inventory-lock-and-hide-controls-active', isActive);
 
       updateGroupTitles();
     },
@@ -481,7 +504,8 @@ const addLockAndHideControls = () => {
  * Toggles the controls.
  */
 const toggleControls = () => {
-  const button = document.querySelector('.mhui-inventory-lock-and-hide-controls');
+  // Every visited tab keeps its own button, so use the one on the tab that's showing.
+  const button = getCurrentTabContainer()?.querySelector('.mhui-inventory-lock-and-hide-controls');
   if (button) {
     button.click();
   }
@@ -554,27 +578,28 @@ const addHideStyles = (theItems) => {
     });
   });
 
-  // Generate styles to hide tags and items
-  const hideTagsStyles = classifications
-    .flatMap((classification) => tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`))
-    .join(',');
+  setTrapBrowserHideStyles(classifications.flatMap((classification) => tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)));
+};
 
-  const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+/**
+ * Set the styles that hide items (and any fully hidden tags) in the trap browser.
+ *
+ * Joining empty lists used to leave a stray comma, which made the whole rule invalid, so hidden
+ * items would show up again.
+ *
+ * @param {string[]} tagSelectors Selectors for the tags to hide.
+ */
+const setTrapBrowserHideStyles = (tagSelectors = []) => {
+  const selectors = [...tagSelectors, ...(itemSettings?.hidden || []).map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`)];
 
-  // Add styles to hide tags and items
-  addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
+  addModuleStyles(selectors.length ? `${selectors.join(',')} { display: none; }` : '', 'mh-improved-styles-inventory-lock-and-hide-hide-styles', true);
 };
 
 /**
  * Hide items in the trap browser.
  */
 const hideItemsInTrapBrowser = () => {
-  if (itemSettings?.hidden && itemSettings?.hidden?.length > 0) {
-    const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
-
-    // Add styles to hide tags and items
-    addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
-  }
+  setTrapBrowserHideStyles();
 };
 
 /**

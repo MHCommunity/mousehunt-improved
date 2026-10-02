@@ -27,14 +27,16 @@ const useConvertible = async (element, type) => {
     maxQuantity = parseNumber(quantityEl.innerText.split('/')[1]);
   }
 
+  // The game only lets you open 200 at a time.
   let quantity = 1;
-
-  if ('all' === type || 'all-but-one' === type) {
-    quantity = maxQuantity > 200 ? 200 : maxQuantity;
+  if ('all' === type) {
+    quantity = Math.min(maxQuantity, 200);
+  } else if ('all-but-one' === type) {
+    quantity = Math.min(maxQuantity - 1, 200);
   }
 
-  if ('all-but-one' === type) {
-    quantity = maxQuantity - 1;
+  if (quantity < 1) {
+    return;
   }
 
   const quantityInput = document.querySelector('.itemView-action-convert-quantity');
@@ -129,8 +131,8 @@ const addOpenButtons = () => {
  */
 const addClickListener = () => {
   document.addEventListener('click', (event) => {
-    const button = event.target;
-    if (!button?.classList?.contains('mh-improved-open-button')) {
+    const button = event.target?.closest?.('.mh-improved-open-button');
+    if (!button) {
       return;
     }
 
@@ -153,7 +155,7 @@ const init = () => {
     onNavigation(addOpenButtons, {
       page: 'inventory',
       tab: 'special',
-      anySubTab: true,
+      anySubtab: true,
     });
   }
 };
