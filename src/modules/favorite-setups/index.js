@@ -967,7 +967,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         }
 
         // Don't try to arm items that we don't have, since the game will just throw an error.
-        const armable = await getArmableItemIds();
+        let armable = await getArmableItemIds();
+        if (armable.size && getMissingItemTypes(thisSetup, armable).length) {
+          // The cached list may be stale (e.g. bait crafted from a location HUD), so check again.
+          clearTrapComponents();
+          armable = await getArmableItemIds();
+        }
+
         if (armable.size) {
           const missing = getMissingItemTypes(thisSetup, armable);
           if (missing.length) {
@@ -994,14 +1000,23 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           toArm.push({ id: thisSetup.weapon_id, type: 'weapon' });
         }
 
-        // eslint-disable-next-line eqeqeq
-        if (thisSetup.trinket_id && thisSetup.trinket_id != user.trinket_item_id) {
-          toArm.push({ id: thisSetup.trinket_id, type: 'trinket' });
+        // A setup without a charm or bait means those slots should be empty, so disarm them.
+        if (thisSetup.trinket_id) {
+          // eslint-disable-next-line eqeqeq
+          if (thisSetup.trinket_id != user.trinket_item_id) {
+            toArm.push({ id: thisSetup.trinket_id, type: 'trinket' });
+          }
+        } else if (user.trinket_item_id) {
+          toArm.push({ id: null, type: 'trinket' });
         }
 
-        // eslint-disable-next-line eqeqeq
-        if (thisSetup.bait_id && thisSetup.bait_id != user.bait_item_id) {
-          toArm.push({ id: thisSetup.bait_id, type: 'bait' });
+        if (thisSetup.bait_id) {
+          // eslint-disable-next-line eqeqeq
+          if (thisSetup.bait_id != user.bait_item_id) {
+            toArm.push({ id: thisSetup.bait_id, type: 'bait' });
+          }
+        } else if (user.bait_item_id) {
+          toArm.push({ id: null, type: 'bait' });
         }
 
         if (toArm.length) {
@@ -1418,8 +1433,10 @@ const makeBlueprintContainer = async () => {
   // Initialize drag and drop functionality
   makeSortable(body);
 
-  // Flag any items that we don't have anymore. This isn't awaited so that the container can be
-  // shown right away, since it may need to make a request to get the components.
+  // Flag any items that we don't have anymore. Items can be gained in ways we don't watch for
+  // (crafting from a HUD, buying, etc.), so always start with a fresh list. This isn't awaited so
+  // that the container can be shown right away, since it needs to make a request for the components.
+  clearTrapComponents();
   highlightMissingItemsInContainer(body);
 
   return container;
