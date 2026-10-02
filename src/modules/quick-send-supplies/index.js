@@ -18,7 +18,7 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
-const STATE = new WeakMap(); // btn => { wrapper, aborter }
+const STATE = new Map(); // btn => { wrapper, aborter, outsideClick }
 const HOVER_DELAY = 400;
 
 const buildItems = async () => {
@@ -75,15 +75,19 @@ const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, c
       append: container,
       classname: 'mh-ui-quick-send-success',
     });
+
+    return true;
   } catch {
     if (aborter.signal.aborted) {
-      return;
+      return false;
     }
     showErrorMessage({
       message: 'There was an error sending supplies',
       append: container,
       classname: 'mh-ui-quick-send-error',
     });
+
+    return false;
   } finally {
     if (!aborter.signal.aborted) {
       button.classList.remove('disabled');
@@ -111,6 +115,10 @@ const makeItemTile = ({ name, type, image }, onSelect) => {
 };
 
 const buildPanel = async (btn, snuid) => {
+  // Fetch the items first so that everything after this is synchronous, otherwise a hover and a
+  // click landing together could both build a panel.
+  const tiles = await buildItems();
+
   // If already constructed for this button, reuse it.
   const state = STATE.get(btn);
   if (state?.wrapper && state.wrapper.isConnected) {
@@ -127,8 +135,6 @@ const buildPanel = async (btn, snuid) => {
   wrapper.tabIndex = -1;
 
   const itemsWrapper = makeElement('div', 'itemsWrapper');
-
-  const tiles = await buildItems();
 
   let selectedTile = null;
 
@@ -154,6 +160,11 @@ const buildPanel = async (btn, snuid) => {
   const sendBtn = makeMhButton({ text: 'Send', className: ['quickSendButton'] });
 
   const performSend = async () => {
+    // Don't send twice while a send is still in flight.
+    if (sendBtn.classList.contains('disabled')) {
+      return;
+    }
+
     const errorParams = {
       append: controls,
       classname: 'mh-ui-quick-send-error',
@@ -177,7 +188,7 @@ const buildPanel = async (btn, snuid) => {
       return;
     }
 
-    await sendSupplies({
+    const sent = await sendSupplies({
       aborter,
       snuid,
       qty,
@@ -187,13 +198,18 @@ const buildPanel = async (btn, snuid) => {
       container: controls,
     });
 
-    qtyInput.value = '';
+    if (sent) {
+      qtyInput.value = '';
+    }
   };
 
   sendBtn.addEventListener('click', performSend);
 
+  // The panel is a form, so never let it submit and reload the page.
+  wrapper.addEventListener('submit', (ev) => ev.preventDefault());
+
   qtyInput.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter' && !sendBtn.classList.contains('disabled') && !wrapper.classList.contains('hidden')) {
+    if (ev.key === 'Enter') {
       ev.preventDefault();
       performSend();
     }
@@ -247,14 +263,7 @@ const buildPanel = async (btn, snuid) => {
 const attachToButtons = (root = document) => {
   const buttons = [...root.querySelectorAll('.userInteractionButtonsView-button.sendSupplies'), ...root.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent')];
 
-  const seen = new WeakMap();
-
   buttons.forEach((btn) => {
-    if (seen.get(btn)) {
-      return;
-    }
-    seen.set(btn, true);
-
     const snuid = btn.parentNode?.parentNode?.getAttribute('data-recipient-snuid') || btn.getAttribute('data-snuid') || null;
 
     if (!snuid || snuid === user.sn_user_id) {
@@ -294,8 +303,9 @@ const attachToButtons = (root = document) => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault();
         const panel = await buildPanel(btn, snuid);
-        panel.classList.toggle('hidden');
-        panel.classList.add('sticky');
+        const isOpen = panel.classList.contains('sticky') && !panel.classList.contains('hidden');
+        panel.classList.toggle('sticky', !isOpen);
+        panel.classList.toggle('hidden', isOpen);
         positionPanel(panel, btn);
         panel.focus({ preventScroll: true });
       });
@@ -305,7 +315,7 @@ const attachToButtons = (root = document) => {
 
 const hideAllPanels = () => {
   document.querySelectorAll('.quickSendWrapper').forEach((w) => w.remove());
-  for (const [btn, state] of STATE.entries ? STATE.entries() : []) {
+  for (const [btn, state] of STATE) {
     try {
       state?.aborter?.abort?.();
       if (state?.outsideClick) {

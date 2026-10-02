@@ -12,13 +12,6 @@ const processSearch = () => {
     return;
   }
 
-  if (!currentValue.value) {
-    // remove the hidden class from all items
-    items.forEach((item) => {
-      item.classList.remove('hidden');
-    });
-  }
-
   // filter the inner text of the items and hide the ones that don't match
   items.forEach((item) => {
     const text = item.textContent.toLowerCase();
@@ -54,10 +47,14 @@ const addSearch = () => {
   input.setAttribute('id', 'mhui-supply-search-input');
   input.setAttribute('autocomplete', 'off');
 
-  input.addEventListener('keyup', processSearch);
+  // Use input rather than keyup so pasting with the mouse also filters.
+  input.addEventListener('input', processSearch);
 
   label.append(input);
   form.append(label);
+
+  // The search box is alone in a form, so pressing enter would submit it and reload the page.
+  form.addEventListener('submit', (e) => e.preventDefault());
 
   // Convert the title into a wrapper that has the title and our form
   const titleWrapper = makeElement('div', 'mhui-supply-search');
@@ -81,7 +78,7 @@ const addSearch = () => {
  */
 const asNum = (number) => {
   // remove any commas, parse as int
-  return Number.parseInt(number.replace(',', ''));
+  return Number.parseInt(number.replaceAll(',', ''), 10);
 };
 
 /**
@@ -213,8 +210,12 @@ const addQuickQuantityButtons = () => {
     existing.remove();
   }
 
-  // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
-  const maxQty = Number.parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
+  const match = maxquantity.textContent.match(/send up to: ([\d,]+)/i);
+  if (!match) {
+    return;
+  }
+
+  const maxQty = Number.parseInt(match[1].replaceAll(',', ''), 10);
 
   const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
 
@@ -240,6 +241,9 @@ const addQuickQuantityButtons = () => {
         input.value = maxQty;
         maxText.textContent = 'Reset';
       }
+
+      // The game only picks up the new quantity on keyup.
+      input.dispatchEvent(new Event('keyup'));
     },
     appendTo: wrapper,
   });
