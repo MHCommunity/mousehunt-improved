@@ -500,7 +500,15 @@ const highlightMissingItems = async (rows) => {
 
     const armButton = row.querySelector('.action.arm');
     if (armButton) {
-      armButton.setAttribute('title', missing.length ? `You don't have the ${missing.join(', ')} for this setup anymore.` : '');
+      const blocking = missing.filter((type) => 'trinket' !== type);
+      let title = '';
+      if (blocking.length) {
+        title = `You don't have the ${missing.join(', ')} for this setup anymore.`;
+      } else if (missing.length) {
+        title = "You don't have the charm for this setup anymore, so it will be armed without one.";
+      }
+
+      armButton.setAttribute('title', title);
     }
   });
 };
@@ -567,12 +575,14 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     content += ' </div>';
     content += ' <div class="campPage-trap-itemBrowser-item-content">';
     content += ` <div class="campPage-trap-itemBrowser-item-name">${item.name}</div>`;
-    if ('bait' === type || 'trinket' === type) {
-      content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${Number.parseInt(item.quantity).toLocaleString()}</span><span class="label">Quantity</span></div>`;
-    }
-
     if (item.power_type) {
       content += `<div class="campPage-trap-itemBrowser-item-powerType ${item.power_type}"></div>`;
+    }
+
+    // Keep the quantity and stats on one line so the cards aren't so tall.
+    content += '<div class="mh-improved-favorite-setups-item-details">';
+    if ('bait' === type || 'trinket' === type) {
+      content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${Number.parseInt(item.quantity).toLocaleString()}</span><span class="label">Quantity</span></div>`;
     }
 
     if (item.has_stats) {
@@ -584,6 +594,8 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
       content += getStatRow('cheese_effect', 'Cheese Effect', item.cheese_effect, user.trap_cheese_effect);
       content += '</div>';
     }
+
+    content += '</div>';
 
     content += '<div class="campPage-trap-itemBrowser-item-description shortDescription">';
     content += item.consume_method ? `<div class="campPage-trap-itemBrowser-item-description-consumeMethod"><b>Consumed on:</b> ${item.consume_method}</div>` : '';
@@ -974,9 +986,15 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           armable = await getArmableItemIds();
         }
 
+        // A missing charm shouldn't block the setup, it just gets armed without one.
+        let trinketId = thisSetup.trinket_id;
         if (armable.size) {
           const missing = getMissingItemTypes(thisSetup, armable);
-          if (missing.length) {
+          if (missing.includes('trinket')) {
+            trinketId = null;
+          }
+
+          if (missing.some((type) => 'trinket' !== type)) {
             await highlightMissingItems([setupContainer]);
 
             setupContainer.classList.add('flash-error');
@@ -1001,10 +1019,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         }
 
         // A setup without a charm or bait means those slots should be empty, so disarm them.
-        if (thisSetup.trinket_id) {
+        if (trinketId) {
           // eslint-disable-next-line eqeqeq
-          if (thisSetup.trinket_id != user.trinket_item_id) {
-            toArm.push({ id: thisSetup.trinket_id, type: 'trinket' });
+          if (trinketId != user.trinket_item_id) {
+            toArm.push({ id: trinketId, type: 'trinket' });
           }
         } else if (user.trinket_item_id) {
           toArm.push({ id: null, type: 'trinket' });
