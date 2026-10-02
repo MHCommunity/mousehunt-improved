@@ -27,7 +27,7 @@ let themes = [];
  */
 const getJournalThemes = async () => {
   const cachedThemes = await cacheGet('journal-themes', []);
-  if (cachedThemes.length > 0) {
+  if (cachedThemes?.length > 0) {
     return cachedThemes;
   }
 
@@ -61,7 +61,6 @@ const updateJournalTheme = async (theme) => {
     return false;
   }
 
-  shouldListen = false;
   const req = await doRequest(
     'managers/ajax/users/journal_theme.php',
     {
@@ -82,8 +81,6 @@ const updateJournalTheme = async (theme) => {
       journal.classList.add(theme);
     }
   }
-
-  shouldListen = true;
 
   return req;
 };
@@ -146,39 +143,23 @@ const changeForLocation = async () => {
     return;
   }
 
+  // Load the themes first, since they're needed to check that we have the theme for this location.
+  if (themes.length === 0) {
+    themes = await getJournalThemes();
+  }
+
   const newTheme = getJournalThemeForLocation();
   if (!newTheme) {
     revertToSavedTheme();
     return;
   }
 
-  if (themes.length === 0) {
-    themes = await getJournalThemes();
-  }
-
   const currentTheme = getCurrentJournalTheme();
-  if (!currentTheme) {
+  if (!currentTheme || currentTheme === newTheme) {
     return;
   }
 
-  if (currentTheme === newTheme) {
-    return;
-  }
-
-  // check if we even have the theme
-  if (!themes.some((t) => t.type === newTheme)) {
-    revertToSavedTheme();
-    return;
-  }
-
-  // Set the new theme.
   updateJournalTheme(newTheme);
-
-  const journal = document.querySelector('#journalContainer');
-  if (journal) {
-    journal.classList.remove(currentTheme);
-    journal.classList.add(newTheme);
-  }
 };
 
 /**
@@ -193,18 +174,11 @@ const randomizeTheme = async (skip = false) => {
     themes = await getJournalThemes();
   }
 
-  if (skip) {
-    // remove that theme from the list
-    themes = themes.filter((t) => t.type !== skip);
-  }
-
-  // remove the current theme
+  // Pick from everything but the skipped and current themes, without changing the shared list.
   const current = getCurrentJournalTheme();
-  if (current) {
-    themes = themes.filter((t) => t.type !== current);
-  }
+  const pool = themes.filter((t) => t.type !== skip && t.type !== current);
 
-  const theme = themes[Math.floor(Math.random() * themes.length)];
+  const theme = pool[Math.floor(Math.random() * pool.length)];
   if (!theme || !theme.type) {
     return false;
   }
@@ -220,12 +194,12 @@ const randomizeTheme = async (skip = false) => {
  */
 const addRandomButton = () => {
   const journal = document.querySelector('#journalContainer .top');
-  if (!journal) {
+  if (!journal || journal.querySelector('.mh-improved-random-journal')) {
     return;
   }
 
   const button = makeElement('a', ['journalContainer-selectTheme', 'mh-improved-random-journal'], 'Randomize');
-  button.addEventListener('click', randomizeTheme);
+  button.addEventListener('click', () => randomizeTheme());
 
   journal.append(button);
 };
@@ -234,7 +208,7 @@ const addRandomButton = () => {
  * Change the journal theme daily.
  */
 const changeJournalDaily = async () => {
-  if ('camp' !== getCurrentLocation()) {
+  if ('camp' !== getCurrentPage()) {
     return;
   }
 
@@ -252,38 +226,28 @@ const changeJournalDaily = async () => {
   }
 };
 
-let _themeSelector;
-let shouldListen = true;
-
 /**
- * Listen for the theme selector change.
+ * Remember the theme the user picks in the game's theme selector, and keep the theme list fresh.
+ *
+ * Our own theme changes use fetch, so they don't show up here.
  */
 const onThemeSelectorChange = () => {
-  if (_themeSelector) {
-    return;
-  }
+  onRequest('users/journal_theme.php', (request, data) => {
+    if ('set_theme' === data?.action) {
+      saveSetting('journal-changer.last-theme', data.theme);
+      saveSetting('journal-changer.chosen-theme', data.theme);
+    }
 
-  _themeSelector = hg.views.JournalThemeSelectorView.show;
-
-  /**
-   * Override the theme selector view.
-   */
-  hg.views.JournalThemeSelectorView.show = async () => {
-    _themeSelector();
-
-    onRequest('users/journal_theme.php', (request, data) => {
-      if ('set_theme' === data.action && shouldListen) {
-        saveSetting('journal-changer.last-theme', data?.theme);
-        saveSetting('journal-changer.chosen-theme', data?.theme);
-      }
-
+    const themeList = request?.journal_themes?.theme_list;
+    if (themeList) {
+      themes = themeList.filter((theme) => theme?.can_equip === true);
       cacheSet(
         'journal-themes',
-        request?.journal_themes?.theme_list.filter((theme) => theme?.can_equip === true),
+        themes,
         30 * 24 * 60 * 60 * 1000 // Cache for 30 days.
       );
-    });
-  };
+    }
+  });
 };
 
 /**

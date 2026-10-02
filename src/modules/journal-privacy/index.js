@@ -1,4 +1,15 @@
-import { addBodyClass, addIconToMenu, addStyles, getSetting, makeElement, onActivation, onDeactivation, onRequest, onSettingsChange, removeBodyClass } from '@utils';
+import {
+  addBodyClass,
+  addIconToMenu,
+  addStyles,
+  getSetting,
+  makeElement,
+  onActivation,
+  onDeactivation,
+  onJournalEntriesProcessed,
+  onSettingsChange,
+  removeBodyClass,
+} from '@utils';
 
 import settings from './settings';
 
@@ -17,10 +28,6 @@ const applyClassToNames = () => {
   }
 
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
-  if (!entries) {
-    return;
-  }
-
   entries.forEach((entry) => {
     if (!entry || !entry.textContent) {
       return;
@@ -55,10 +62,6 @@ const removeClassFromNames = () => {
   }
 
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
-  if (!entries) {
-    return;
-  }
-
   entries.forEach((entry) => {
     if (!entry || !entry.textContent) {
       return;
@@ -71,7 +74,7 @@ const removeClassFromNames = () => {
     // Get the span and replace it with the original text.
     const span = entry.querySelector('.mh-journal-privacy-name');
     if (span) {
-      entry.innerHTML = entry.innerHTML.replace(span.outerHTML, span.textContent);
+      span.replaceWith(span.textContent);
       entry.removeAttribute('data-original');
       entry.removeAttribute('replaced');
     }
@@ -175,7 +178,8 @@ const init = async () => {
 
   syncPrivacyState();
 
-  onRequest('pages/journal.php', applyClassToNames);
+  // Catch entries added after load, like new pages and entries from sounding the horn.
+  onJournalEntriesProcessed(applyClassToNames);
 
   onActivation(MODULE_ID, syncPrivacyState);
 
