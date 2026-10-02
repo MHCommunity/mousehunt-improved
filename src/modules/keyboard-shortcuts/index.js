@@ -350,7 +350,33 @@ const showHelpPopup = () => {
       // if the key is alt, shift, ctrl, or meta, by itself, don't do anything, because that's not a valid shortcut by itself.
       // if the key matches the key of another shortcut, show an error message for a second.
       // otherwise, save the shortcut and update the display and remove the event listener.
+      // The popup was closed mid-edit, so stop capturing keys instead of saving whatever is typed next.
+      if (!isHelpPopupOpen()) {
+        finishEditing();
+        return;
+      }
+
       if (['Alt', 'Shift', 'Control', 'Meta'].includes(event.key)) {
+        return;
+      }
+
+      if ('Escape' === event.key) {
+        finishEditing();
+        return;
+      }
+
+      // Backspace and Delete clear the shortcut, the same as the Clear button.
+      if ('Backspace' === event.key || 'Delete' === event.key) {
+        event.preventDefault();
+        finishEditing(shortcutId, { key: '', ctrlKey: false, metaKey: false, altKey: false, shiftKey: false });
+        return;
+      }
+
+      // Space can't be saved as a shortcut, so flag it rather than showing a binding that won't stick.
+      if (' ' === event.key) {
+        event.preventDefault();
+        shortcut.classList.add('error');
+        setTimeout(() => shortcut.classList.remove('error'), 300);
         return;
       }
 
@@ -469,9 +495,12 @@ const openFromSettings = () => {
   }
 
   const openLink = document.querySelector('.mh-ui-keyboard-shortcuts-edit');
-  if (!openLink) {
+  if (!openLink || openLink.dataset.bound) {
     return;
   }
+
+  // Only bind once, otherwise a second listener would close the popup the first one opened.
+  openLink.dataset.bound = 'true';
 
   openLink.addEventListener('click', (event) => {
     event.preventDefault();
@@ -505,6 +534,6 @@ export default {
   name: 'Keyboard Shortcuts',
   type: 'navigation-utilities',
   default: true,
-  description: 'Press “?” to see and edit keyboard shortcuts. You can also edit them [here](#).',
+  description: 'Press “?” to see and edit keyboard shortcuts. You can also <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit them here</a>.',
   load: init,
 };

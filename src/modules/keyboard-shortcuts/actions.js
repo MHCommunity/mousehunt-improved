@@ -168,7 +168,7 @@ export default () => {
     {
       id: 'disarm-charm',
       description: 'Disarm your Charm',
-      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait() && hg.utils.TrapControl.go(),
+      action: () => hg?.utils?.TrapControl?.disarmTrinket && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmTrinket() && hg.utils.TrapControl.go(),
       category: 'trap-setup',
     },
     {
