@@ -22,7 +22,8 @@
 ### Fixes
 
 - Favorite Setups: Crafting or buying missing bait or charms clears the warning. Empty bait and charm slots now disarm those items
-- Favorite Setups: Setups whose charm has run out now arm without the charm instead of being blocked
+- Favorite Setups: Setups with unowned charms or bait now arm without them instead of being blocked
+- FLRT Helper: Fixed the Maptain's hunter ID sometimes being filled in from an older map, and items going to a previously searched hunter
 - Favorite Setups: The quantity and stats share a row in the item picker, so the cards are shorter
 - Show Auras, Floating Islands, and Better Mice: Fixed timers when your account and computer use different time zones
 - Better Journal: Fixed "I checked my trap…" wording and added a color for Mythical Rainbow Diamonds
