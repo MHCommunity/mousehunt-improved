@@ -21,7 +21,7 @@
 
 /* move the countdown to the top left */
 .pollutionOutbreakHUD-timer {
-  top: 4px;
+  top: 3px;
   bottom: unset;
   left: 18px;
   z-index: 29;
@@ -37,7 +37,7 @@
 
 /* move the 'hunters cleaning' to the top right */
 .pollutionOutbreakHUD-hunters {
-  top: 5px;
+  top: 3px;
   right: 145px;
   left: unset;
   padding: 2px 5px;
