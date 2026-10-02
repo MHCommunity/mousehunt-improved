@@ -414,6 +414,17 @@ const updateMathButtonText = (buttonText, e) => {
 };
 
 /**
+ * Update every math button's text based on the shift key.
+ *
+ * @param {KeyboardEvent} e The keyboard event.
+ */
+const onMathButtonKey = (e) => {
+  document.querySelectorAll('.mh-improved-math-button > span').forEach((buttonText) => {
+    updateMathButtonText(buttonText, e);
+  });
+};
+
+/**
  * Add a single pair of window listeners that update every math button on the page.
  *
  * Adding listeners per button meant they were never removed, and piled up every time the
@@ -426,14 +437,8 @@ const addMathButtonKeyListeners = () => {
 
   hasMathButtonKeyListeners = true;
 
-  const onKey = (e) => {
-    document.querySelectorAll('.mh-improved-math-button > span').forEach((buttonText) => {
-      updateMathButtonText(buttonText, e);
-    });
-  };
-
-  window.addEventListener('keydown', onKey);
-  window.addEventListener('keyup', onKey);
+  window.addEventListener('keydown', onMathButtonKey);
+  window.addEventListener('keyup', onMathButtonKey);
 };
 
 /**

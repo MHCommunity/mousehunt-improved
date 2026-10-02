@@ -1,8 +1,8 @@
 .mh-dark .select2-container .select2-choice {
+  text-shadow: none;
   background: var(--d-alt);
   border-color: var(--d-border);
   box-shadow: none;
-  text-shadow: none;
 }
 
 .mh-dark .select2-container .select2-choice .select2-arrow {

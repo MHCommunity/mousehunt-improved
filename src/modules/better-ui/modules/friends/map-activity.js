@@ -475,6 +475,21 @@ const makeFriendRow = (friend, maps, captain) => {
 };
 
 /**
+ * Get a friend's most recent activity time for sorting.
+ *
+ * @param {Object} friend The friend payload.
+ *
+ * @return {number} The activity timestamp in milliseconds.
+ */
+const getActivityTime = (friend) => {
+  if (friend?.is_online) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  return parseLastActive(friend?.last_active_date) ?? 0;
+};
+
+/**
  * Collect the rows shown in the map activity view.
  *
  * Each row is one friend with their maps grouped together, split into separate rows
@@ -497,21 +512,6 @@ const getRows = (data) => {
 
   const rows = [...groups.values()];
   rows.forEach((row) => row.maps.sort((a, b) => a.name.localeCompare(b.name)));
-
-  /**
-   * Get a friend's most recent activity time for sorting.
-   *
-   * @param {Object} friend The friend payload.
-   *
-   * @return {number} The activity timestamp in milliseconds.
-   */
-  const getActivityTime = (friend) => {
-    if (friend?.is_online) {
-      return Number.MAX_SAFE_INTEGER;
-    }
-
-    return parseLastActive(friend?.last_active_date) ?? 0;
-  };
 
   return rows.sort((a, b) => {
     if (a.captain !== b.captain) {

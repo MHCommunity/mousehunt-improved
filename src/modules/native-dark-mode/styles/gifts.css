@@ -243,17 +243,17 @@
 }
 
 .mh-dark .giftSelectorView-content-viewState.selectFriends .favorite .giftSelectorView-friend-padding {
-  background-color: var(--d-alt);
   color: var(--d-link);
+  background-color: var(--d-alt);
 }
 
 .mh-dark .giftSelectorView-content-viewState.selectFriends .selected .giftSelectorView-friend-padding {
-  background-color: var(--d-blue);
   color: var(--d-white);
+  background-color: var(--d-blue);
 }
 
 .mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding,
 .mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
-  background-color: var(--d-blue);
   color: var(--d-white);
+  background-color: var(--d-blue);
 }
