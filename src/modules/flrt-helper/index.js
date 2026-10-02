@@ -1,4 +1,16 @@
-import { addStyles, cacheFinishedMap, createPopup, doRequest, getData, getLastMaptain, makeMhButton, onDialogShow, onRequest, waitForElement } from '@utils';
+import {
+  addStyles,
+  cacheFinishedMap,
+  cacheMaptainFromMapData,
+  createPopup,
+  doRequest,
+  getData,
+  getLastMaptain,
+  makeMhButton,
+  onDialogShow,
+  onRequest,
+  waitForElement,
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -77,6 +89,8 @@ const addFlrtButtonToConvertible = async (response) => {
  * @param {Array} items The items to send.
  */
 const flrtPopup = async (items) => {
+  // The dialog-show cache can still be fetching the map, so let it finish before reading.
+  await cacheFinishedMap();
   const lastMaptain = await getLastMaptain();
 
   let itemContent = '';
@@ -222,6 +236,14 @@ const updateSendButtons = (resp) => {
     return;
   }
 
+  // Searches can resolve out of order, so ignore a result for a hunter other than the one
+  // currently entered -- otherwise items could go to the previously searched hunter.
+  const hunterIdInput = overlay.querySelector('.friendsPage-community-hunterIdForm-input');
+  const resultUserId = resp?.friend?.user_id;
+  if (resultUserId && hunterIdInput?.value && `${resultUserId}` !== `${hunterIdInput.value.trim()}`) {
+    return;
+  }
+
   validatedReceiver = resp?.friend?.sn_user_id ? `${resp.friend.sn_user_id}` : '';
 
   setSendButtonsEnabled(overlay, Boolean(validatedReceiver));
@@ -234,6 +256,7 @@ const init = async () => {
   addStyles(styles, 'flrt-helper');
 
   onDialogShow('treasureMapPopup', cacheFinishedMap);
+  onRequest('users/treasuremap_v2.php', (response) => cacheMaptainFromMapData(response?.treasure_map));
 
   onRequest('users/useconvertible.php', addFlrtButtonToConvertible);
   onRequest('pages/friends.php', updateSendButtons);

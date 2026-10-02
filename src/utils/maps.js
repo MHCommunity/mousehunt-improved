@@ -141,12 +141,44 @@ const setLastMaptain = (id) => {
   cacheSetNoExpiration('map-last-maptain', id);
 };
 
+// Completed maps whose maptain was recorded from a map response this session.
+const maptainRecordedMapIds = new Set();
+
+/**
+ * Remember the maptain of a completed map from fresh map data.
+ *
+ * @param {Object} theMapData Map data, e.g. the treasure_map from a treasuremap_v2 response.
+ */
+const cacheMaptainFromMapData = async (theMapData) => {
+  if (!theMapData?.map_id || (!theMapData.is_complete && !theMapData.can_claim_reward)) {
+    return;
+  }
+
+  const maptain = theMapData.hunters?.find((hunter) => hunter.captain);
+  if (!maptain?.user_id) {
+    return;
+  }
+
+  maptainRecordedMapIds.add(`${theMapData.map_id}`);
+  setLastMaptain(maptain.user_id);
+  await cacheSetNoExpiration('map-last-maptain-map-id', theMapData.map_id);
+};
+
 /**
  * Cache the finished map.
  */
 const cacheFinishedMap = async () => {
-  const completedMap = user?.quests?.QuestRelicHunter?.maps?.find((map) => map.is_complete);
-  if (!completedMap?.map_id) {
+  // The user object can be stale and can list more than one completed map. When it's
+  // ambiguous, don't guess -- the treasuremap_v2 listener records the map actually viewed.
+  const completedMaps = user?.quests?.QuestRelicHunter?.maps?.filter((map) => map.is_complete) || [];
+  if (completedMaps.length !== 1) {
+    return;
+  }
+
+  // A map already recorded from a response can't be newer than what's saved, so a stale
+  // user object listing it must not overwrite a maptain recorded since.
+  const completedMap = completedMaps[0];
+  if (!completedMap?.map_id || maptainRecordedMapIds.has(`${completedMap.map_id}`)) {
     return;
   }
 
@@ -173,13 +205,11 @@ const cacheFinishedMap = async () => {
     }
   }
 
-  const maptain = data?.hunters?.find((hunter) => hunter.captain);
-  if (!maptain?.user_id) {
+  if (`${data?.map_id}` !== `${completedMap.map_id}`) {
     return;
   }
 
-  setLastMaptain(maptain.user_id);
-  await cacheSetNoExpiration('map-last-maptain-map-id', completedMap.map_id);
+  await cacheMaptainFromMapData({ ...data, is_complete: true });
 };
 
 /**
@@ -744,6 +774,7 @@ export {
   getLastMaptain,
   setLastMaptain,
   cacheFinishedMap,
+  cacheMaptainFromMapData,
   getLocationForMouse,
   getLocationsForMouse,
   showTravelConfirmationNoDetails,
