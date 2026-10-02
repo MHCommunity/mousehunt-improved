@@ -4,15 +4,6 @@ import settings from './settings';
 import styles from './styles.css';
 
 /**
- * Check if the time should be exact seconds.
- *
- * @return {boolean} If the time should be exact.
- */
-const isExact = () => {
-  return getSetting('lgs-reminder.show-seconds');
-};
-
-/**
  * Get the shield end date time.
  *
  * @return {Date} The shield end date time.
@@ -35,13 +26,12 @@ const getShieldEndDateTime = () => {
 /**
  * Get the remaining shield time.
  *
- * @return {number} The time in seconds.
+ * @return {number} The time in milliseconds.
  */
 const getShieldTime = () => {
   const expiry = getShieldEndDateTime();
   const now = new Date();
 
-  // get the difference in seconds
   return Math.floor(expiry - now);
 };
 
@@ -52,18 +42,14 @@ const getShieldTime = () => {
  */
 const getShieldTimeFormatted = () => {
   const time = getShieldTime();
-  if (!time) {
-    return '';
+  if (time <= 0) {
+    return 'Expired';
   }
 
   let units = ['y', 'mo', 'w', 'd', 'h'];
 
-  if (getSetting('lgs-reminder.days-and-lower')) {
+  if (getSetting('lgs-reminder.days-and-lower') || time < 60 * 60 * 1000) {
     units = ['d', 'h', 'm'];
-  }
-
-  if (isExact()) {
-    units.push('s');
   }
 
   const duration = humanizeTime(time, { units });
@@ -79,15 +65,9 @@ const getShieldTimeFormatted = () => {
 const updateLgsReminder = (el) => {
   const time = getShieldTime();
 
-  // Check if we have less than 2 days left.
-  if (time <= 60 * 60 * 24 * 2) {
-    el.classList.add('lgs-warning');
-  }
-
-  // If we have less than 1 hour left, then add another warning.
-  if (time <= 60 * 60) {
-    el.classList.add('lgs-danger');
-  }
+  // Warn when there's less than 2 days left, and warn harder when there's less than 1 hour left.
+  el.classList.toggle('lgs-warning', time <= 2 * 24 * 60 * 60 * 1000);
+  el.classList.toggle('lgs-danger', time <= 60 * 60 * 1000);
 
   el.innerText = getShieldTimeFormatted();
 };
@@ -110,11 +90,6 @@ const main = () => {
     reminder = makeElement('div', 'mousehunt-improved-lgs-reminder-new');
   } else {
     reminder = makeElement('div', 'mousehunt-improved-lgs-reminder');
-  }
-
-  const exact = isExact();
-  if (exact) {
-    reminder.classList.add('exact');
   }
 
   // Set the title to be the final time and remaining time.
@@ -147,9 +122,8 @@ const main = () => {
     shieldEl.append(reminder);
   }
 
+  currentReminder = reminder;
   updateLgsReminder(reminder);
-
-  document.addEventListener('horn-countdown-tick-minute', () => updateLgsReminder(reminder));
 };
 
 /**
@@ -165,6 +139,7 @@ const setOffset = () => {
 };
 
 let offset;
+let currentReminder;
 
 /**
  * Initialize the module.
@@ -179,6 +154,12 @@ const init = async () => {
 
   addStyles(styles, 'lgs-reminder');
   main();
+
+  document.addEventListener('horn-countdown-tick-minute', () => {
+    if (currentReminder?.isConnected) {
+      updateLgsReminder(currentReminder);
+    }
+  });
 
   onSettingsChange('lgs-reminder.new-style', () => {
     const selectors = ['.mousehunt-improved-lgs-reminder', '.mousehunt-improved-lgs-reminder-new', '.mousehunt-improved-lgs-reminder-wrapper'];
@@ -196,10 +177,7 @@ const init = async () => {
   onActivation('lgs-reminder', main);
 
   onDeactivation('lgs-reminder', () => {
-    const reminder = document.querySelector('.mousehunt-improved-lgs-reminder');
-    if (reminder) {
-      reminder.remove();
-    }
+    document.querySelectorAll('.mousehunt-improved-lgs-reminder, .mousehunt-improved-lgs-reminder-wrapper').forEach((el) => el.remove());
   });
 };
 
