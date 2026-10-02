@@ -447,6 +447,11 @@ const getArmableItemIds = async () => {
 };
 
 /**
+ * Item types that can be left empty, so a setup missing them is still armed without them.
+ */
+const optionalItemTypes = ['bait', 'trinket'];
+
+/**
  * Get the item types in a setup that can't currently be armed.
  *
  * @param {FavoriteSetup}  setup   The setup to check.
@@ -500,12 +505,13 @@ const highlightMissingItems = async (rows) => {
 
     const armButton = row.querySelector('.action.arm');
     if (armButton) {
-      const blocking = missing.filter((type) => 'trinket' !== type);
+      const blocking = missing.filter((type) => !optionalItemTypes.includes(type));
       let title = '';
       if (blocking.length) {
         title = `You don't have the ${missing.join(', ')} for this setup anymore.`;
       } else if (missing.length) {
-        title = "You don't have the charm for this setup anymore, so it will be armed without one.";
+        const names = missing.map((type) => ('trinket' === type ? 'charm' : type)).join(' or ');
+        title = `You don't have the ${names} for this setup anymore, so it will be armed without it.`;
       }
 
       armButton.setAttribute('title', title);
@@ -986,15 +992,20 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           armable = await getArmableItemIds();
         }
 
-        // A missing charm shouldn't block the setup, it just gets armed without one.
+        // A missing charm or bait shouldn't block the setup, it just gets armed without it.
         let trinketId = thisSetup.trinket_id;
+        let baitId = thisSetup.bait_id;
         if (armable.size) {
           const missing = getMissingItemTypes(thisSetup, armable);
           if (missing.includes('trinket')) {
             trinketId = null;
           }
 
-          if (missing.some((type) => 'trinket' !== type)) {
+          if (missing.includes('bait')) {
+            baitId = null;
+          }
+
+          if (missing.some((type) => !optionalItemTypes.includes(type))) {
             await highlightMissingItems([setupContainer]);
 
             setupContainer.classList.add('flash-error');
@@ -1028,10 +1039,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           toArm.push({ id: null, type: 'trinket' });
         }
 
-        if (thisSetup.bait_id) {
+        if (baitId) {
           // eslint-disable-next-line eqeqeq
-          if (thisSetup.bait_id != user.bait_item_id) {
-            toArm.push({ id: thisSetup.bait_id, type: 'bait' });
+          if (baitId != user.bait_item_id) {
+            toArm.push({ id: baitId, type: 'bait' });
           }
         } else if (user.bait_item_id) {
           toArm.push({ id: null, type: 'bait' });
