@@ -1,4 +1,4 @@
-import { addExternalStyles, addStyles, debounce, doInternalEvent, getData, getFlag, onDialogShow, onEvent, onNavigation, onRequest } from '@utils';
+import { addExternalStyles, addStyles, getData, getFlag, onDialogShow, onEvent, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 import viewsStyles from './views.css';
@@ -28,6 +28,35 @@ const pathsToSkip = [
   'payment/thumb/logo_paypal.png',
 ];
 
+// Elements that change often but never add images, so their changes don't need an upscaling pass.
+const skipClasses = new Set([
+  'huntersHornView__timerState', // Horn countdown.
+  'huntersHornView__timer', // Legacy horn countdown.
+  'mousehuntHeaderView-newsTicker', // News ticker.
+  'mousehuntHud-gameInfo',
+  'campPage-daily-tomorrow-countDown',
+  'ticker',
+  'mousehuntHeaderView-menu-notification',
+  'mousehunt-improved-lgs-reminder-new',
+  'mousehunt-improved-lgs-reminder',
+  // Select2, search boxes on marketplace and friends list.
+  'select2-chosen',
+  'select2-offscreen',
+  'select2-container',
+  'select2-search',
+  'select2-drop',
+  'marketplaceView-header-searchContainer',
+  // Markethunt.
+  'highcharts-tracker',
+  'highcharts-grid',
+  'highcharts-axis',
+  'highcharts-axis-labels',
+]);
+
+const skipIds = new Set(['mh-improved-cre', 'mhhh_flast_message_div']);
+
+const skipElements = new Set(['head', 'title', 'optgroup', 'option']);
+
 /**
  * The ImageUpscaler class.
  */
@@ -46,6 +75,7 @@ class ImageUpscaler {
       subtree: true,
     };
     this.observer = null;
+    this.pendingFrame = null;
     this.handleUpscalingImages = this.handleUpscalingImages.bind(this);
   }
 
@@ -67,7 +97,7 @@ class ImageUpscaler {
       .replaceAll(/\?cv=\d+/g, '')
       .replaceAll(/\?asset_cache_version=\d+/g, '')
       .replaceAll(/\?.+/g, '') // Remove query parameters.
-      .replaceAll('#.+', '') // Remove fragments.
+      .replaceAll(/#.+/g, '') // Remove fragments.
       .replaceAll('//', '/')
       .trim();
 
@@ -165,8 +195,6 @@ class ImageUpscaler {
       const originalUrl = image.getAttribute('src');
       const strippedUrl = this.stripUrl(originalUrl);
 
-      doInternalEvent('image-upscaling-image', { image, originalUrl, strippedUrl });
-
       if (this.shouldSkipUrl(strippedUrl)) {
         return;
       }
@@ -183,6 +211,31 @@ class ImageUpscaler {
   }
 
   /**
+   * Check if a mutation is from something that changes often but never adds images, like timers,
+   * tickers, and search boxes.
+   *
+   * @param {MutationRecord} mutation The mutation to check.
+   *
+   * @return {boolean} Whether the mutation can be ignored.
+   */
+  isSkippableMutation(mutation) {
+    const target = mutation.target;
+    if (!target) {
+      return false;
+    }
+
+    if (target.nodeName && skipElements.has(target.nodeName.toLowerCase())) {
+      return true;
+    }
+
+    if (target.id && skipIds.has(target.id)) {
+      return true;
+    }
+
+    return Boolean(target.classList && [...target.classList].some((className) => skipClasses.has(className)));
+  }
+
+  /**
    * Start the observer.
    */
   startObserver() {
@@ -191,26 +244,18 @@ class ImageUpscaler {
     }
 
     this.observer = new MutationObserver((mutations) => {
-      let shouldUpscale = true;
-      for (const mutation of mutations) {
-        // Don't trigger upscaling when the hunters horn timer changes.
-        if (
-          mutation.target &&
-          mutation.target.classList &&
-          (mutation.target.classList.contains('huntersHornView__timerState') || // Horn countdown.
-            mutation.target.classList.contains('huntersHornView__timer') || // Legacy horn countdown.
-            mutation.target.classList.contains('mousehuntHeaderView-newsTicker')) // News ticker.
-        ) {
-          shouldUpscale = false;
-          break;
-        }
-      }
-
-      if (!shouldUpscale) {
+      // Only skip the batch if everything in it can be ignored, so images added alongside a timer
+      // tick still get upscaled.
+      if (mutations.every((mutation) => this.isSkippableMutation(mutation)) || this.pendingFrame) {
         return;
       }
 
-      this.upscaleImageElements();
+      // Coalesce bursts of mutations into a single pass per frame, rather than scanning every image
+      // for each batch.
+      this.pendingFrame = requestAnimationFrame(() => {
+        this.pendingFrame = null;
+        this.upscaleImageElements();
+      });
     });
 
     this.observer.observe(document.body, this.observerOptions);
@@ -226,77 +271,28 @@ class ImageUpscaler {
 
     this.isUpscaling = true;
 
-    await this.fetchMapping();
+    // Always clear the flag, otherwise one failure would stop upscaling for the rest of the session.
+    try {
+      await this.fetchMapping();
 
-    this.upscaleImageElements();
+      this.upscaleImageElements();
 
-    this.startObserver();
-
-    this.isUpscaling = false;
+      this.startObserver();
+    } finally {
+      this.isUpscaling = false;
+    }
   }
 
   /**
    * Fetch the mapping for the upscaled images.
    */
   async fetchMapping() {
-    this.mapping = await getData('upscaled-images');
-  }
-
-  /**
-   * Start the image upscaler observer.
-   */
-  async start() {
-    if (this.observer) {
+    // This runs on every request, so only fetch the mapping until we have it.
+    if (this.mapping && Object.keys(this.mapping).length) {
       return;
     }
 
-    const debounced = debounce(async (mutations) => {
-      const skipClasses = new Set([
-        'huntersHornView__timerState',
-        'mousehuntHud-gameInfo',
-        'campPage-daily-tomorrow-countDown',
-        'ticker',
-        'mousehuntHeaderView-menu-notification',
-        'mousehunt-improved-lgs-reminder-new',
-        'mousehunt-improved-lgs-reminder',
-        // Select2, search boxes on marketplace and friends list..
-        'select2-chosen',
-        'select2-offscreen',
-        'select2-container',
-        'select2-search',
-        'select2-drop',
-        'marketplaceView-header-searchContainer',
-        // Markethunt.
-        'highcharts-tracker',
-        'highcharts-grid',
-        'highcharts-axis',
-        'highcharts-axis-labels',
-      ]);
-
-      const skipIds = new Set(['mh-improved-cre', 'mhhh_flast_message_div']);
-
-      const skipElements = new Set(['head', 'title', 'optgroup', 'option']);
-
-      for (const mutation of mutations) {
-        if (
-          (mutation.type === 'childList' || mutation.type === 'attributes') &&
-          ((mutation.target.classList && [...mutation.target.classList].some((c) => skipClasses.has(c))) ||
-            (mutation.target.id && skipIds.has(mutation.target.id)) ||
-            (mutation.target.nodeName && skipElements.has(mutation.target.nodeName.toLowerCase())))
-        ) {
-          continue;
-        }
-
-        try {
-          await this.upscaleImages(mutation.target);
-        } catch (error) {
-          console.error('Failed to upscale images:', error); // eslint-disable-line no-console
-        }
-      }
-    }, 50);
-
-    this.observer = new MutationObserver(debounced);
-    this.observer.observe(document, this.observerOptions);
+    this.mapping = await getData('upscaled-images');
   }
 
   /**
@@ -304,10 +300,6 @@ class ImageUpscaler {
    */
   async handleUpscalingImages() {
     try {
-      if (!this.observer) {
-        await this.start();
-      }
-
       if (!this.isUpscaling) {
         await this.upscaleImages(document.querySelector('body'));
       }
