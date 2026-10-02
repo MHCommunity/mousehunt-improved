@@ -13,6 +13,15 @@ for (const file of cssFilesToFetch) {
   }
 
   const res = await fetch(`https://api.mouse.rip/${file}?cache=${Date.now() + Math.random()}`);
+  if (! res.ok) {
+    throw new Error(`Failed to fetch '${file}' from api.mouse.rip: ${res.status} ${res.statusText}`);
+  }
+
+  const contentType = res.headers.get('content-type') ?? '';
+  if (! contentType.includes('text/css')) {
+    throw new Error(`Refusing to write '${file}': unexpected content-type '${contentType}' from api.mouse.rip`);
+  }
+
   const text = await res.text();
 
   fs.writeFileSync(path.join(process.cwd(), 'src/extension/static', file), text);
