@@ -40,8 +40,10 @@
     "shorthand-property-no-redundant-values": true,
     "unit-no-unknown": true,
     "value-keyword-case": "lower",
+    "stylistic/declaration-colon-space-after": null,
     "stylistic/max-line-length": [120, { "ignore": ["non-comments"] }],
     "stylistic/number-leading-zero": null,
+    "stylistic/value-list-comma-newline-after": null,
     "prettier/prettier": [true, {
       "singleQuote": false,
       "printWidth": 220

@@ -143,5 +143,6 @@
 }
 
 .conclusionCliffsView__chapterProgressBarContainer[data-type="fantasy"] .conclusionCliffsView__chapterProgressBar {
-  background: linear-gradient(180deg, var(--romance) 0%, var(--adventure) 25.96%, var(--comedy) 50.48%, var(--tragedy) 74.04%, var(--suspense) 95.67%), linear-gradient(0deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 20%));
+  background:
+    linear-gradient(180deg, var(--romance) 0%, var(--adventure) 25.96%, var(--comedy) 50.48%, var(--tragedy) 74.04%, var(--suspense) 95.67%), linear-gradient(0deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 20%));
 }
