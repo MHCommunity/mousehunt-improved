@@ -1,4 +1,4 @@
-import { addStyles, getSetting, makeElement, makeMhButton } from '@utils';
+import { addStyles, getSetting, makeElement, makeMhButton, onDeactivation } from '@utils';
 
 import settings from './settings';
 
@@ -31,19 +31,26 @@ const main = () => {
    *
    * @param {Event} e The event object.
    */
+  let hideTimer;
   const clickAction = (e) => {
     e.preventDefault();
 
-    const Id = user.user_id;
-    navigator.clipboard.writeText(Id);
-
-    successMessage.style.opacity = 1;
-    setTimeout(() => {
-      successMessage.style.opacity = 0;
-    }, 1000);
+    // Only say it was copied if it actually was, and restart the timer on repeat clicks.
+    navigator.clipboard
+      .writeText(String(user.user_id))
+      .then(() => {
+        successMessage.style.opacity = 1;
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+          successMessage.style.opacity = 0;
+        }, 1000);
+      })
+      .catch(() => {});
   };
 
   copyIdButton.addEventListener('click', clickAction);
+
+  const originalOnclick = profilePic.getAttribute('onclick');
 
   if (hidebutton) {
     profilePic.setAttribute('onclick', '');
@@ -66,6 +73,16 @@ const main = () => {
       copyIdButton.style.display = 'none';
     });
   }
+
+  // Without the module's styles the button would always show, so remove it and restore the profile pic.
+  onDeactivation('copy-id', () => {
+    copyIdButton.remove();
+    successMessage.remove();
+    profilePic.removeEventListener('click', clickAction);
+    if (hidebutton && null !== originalOnclick) {
+      profilePic.setAttribute('onclick', originalOnclick);
+    }
+  });
 };
 
 /**

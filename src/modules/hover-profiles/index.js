@@ -285,7 +285,6 @@ const showForAnchor = async (a) => {
   p.innerHTML = '<div class="friend-data-wrapper-loading">Loading...</div>';
   p.style.pointerEvents = 'auto';
   reposition();
-  p.focus({ preventScroll: true });
 
   const snuid = await resolveSnuid(a);
   if (anchor !== a || !a.isConnected) {
@@ -300,7 +299,6 @@ const showForAnchor = async (a) => {
   const cached = sessionGet(`mh-improved-mh-improved-cache-friend-${snuid}`);
   if (cached) {
     p.innerHTML = renderFriend(cached);
-    wireSendButtonHover();
     reposition();
 
     doEvent('profile_hover');
@@ -317,29 +315,8 @@ const showForAnchor = async (a) => {
   }
 
   p.innerHTML = renderFriend(data);
-  wireSendButtonHover();
   reposition();
   doEvent('profile_hover');
-};
-
-// Ensure we hold the panel open when hovering the Send Supplies button in the panel
-const wireSendButtonHover = () => {
-  if (!panel) {
-    return;
-  }
-  const sendBtn = panel.querySelector('.userInteractionButtonsView-button.sendSupplies');
-  if (!sendBtn) {
-    return;
-  }
-
-  sendBtn.addEventListener('mouseenter', () => {
-    overSendBtn = true;
-    clearTimeout(hideTimer);
-  });
-  sendBtn.addEventListener('mouseleave', () => {
-    overSendBtn = false;
-    scheduleHide();
-  });
 };
 
 // Selectors consistent with original usage
@@ -380,6 +357,13 @@ const bindListeners = () => {
 
     link.addEventListener('focus', () => {
       overAnchor = true;
+
+      // Clicking a link focuses it, so don't reload a panel that's already open for it.
+      if (anchor === link) {
+        clearTimeout(hideTimer);
+        return;
+      }
+
       scheduleShow(() => showForAnchor(link));
     });
 

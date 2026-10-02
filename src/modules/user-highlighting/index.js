@@ -50,11 +50,9 @@ const addDiscordBanWarning = (reason) => {
     return;
   }
 
-  const warning = makeElement(
-    'div',
-    ['hunterInfoView-accountStatusWarning', 'mh-improved-discord-ban-warning'],
-    `This hunter has the following restrictions:<ul><li>${reason || 'Banned'}</li></ul>`
-  );
+  const warning = makeElement('div', ['hunterInfoView-accountStatusWarning', 'mh-improved-discord-ban-warning'], 'This hunter has the following restrictions:<ul><li></li></ul>');
+  // The reason is free text, so add it as text rather than HTML.
+  warning.querySelector('li').textContent = reason || 'Banned';
   makeElement('div', 'mh-improved-discord-ban-warning-note', 'This is a ban from the community-run MouseHunt Discord server.', warning);
 
   idCardBlock.after(warning);
@@ -69,12 +67,7 @@ const addDiscordBanWarning = (reason) => {
  * Highlight users on the profile page.
  */
 const highlightUsers = async () => {
-  const existing = document.querySelectorAll('.mh-improved-user-shield');
-  if (existing) {
-    existing.forEach((el) => {
-      el.remove();
-    });
-  }
+  document.querySelectorAll('.mh-improved-user-shield').forEach((el) => el.remove());
 
   const id = document.querySelector('.hunterInfoView-hunterId-idText span');
   if (!id) {
@@ -113,6 +106,11 @@ const highlightUsers = async () => {
       console.error('Error fetching user highlighting data', error); // eslint-disable-line no-console
       return;
     }
+  }
+
+  // The user may have moved on to another profile while we were waiting.
+  if (!idHeader.isConnected || !profilePage.classList.contains('PageHunterProfile')) {
+    return;
   }
 
   if (data?.banned) {
