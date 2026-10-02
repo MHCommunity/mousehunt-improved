@@ -372,13 +372,6 @@ const makeMouseChip = (entry, onClick) => {
   details.push('Click to leave this mouse out of the plan');
   chip.title = details.join(' · ');
 
-  if (entry.mouse.small) {
-    const image = make('img', 'plan-mouse-image');
-    image.src = entry.mouse.small;
-    image.alt = '';
-    chip.append(image);
-  }
-
   make('span', 'plan-mouse-name', entry.mouse.name, chip);
   make('span', 'plan-mouse-rate', formatRate(entry.rate), chip);
 

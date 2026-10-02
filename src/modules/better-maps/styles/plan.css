@@ -340,11 +340,6 @@
   margin-top: 2px;
   font-size: 11px;
   cursor: default;
-  border-top: 1px solid rgb(5 5 5 / 20%);
-}
-
-.mh-dark #map-plan-container .plan-setup-details {
-  border-top-color: var(--d-border);
 }
 
 #map-plan-container .plan-setup-open .plan-setup-details {
@@ -482,7 +477,7 @@
   gap: 4px;
   align-items: center;
   max-width: 100%;
-  padding: 1px 6px 1px 0;
+  padding: 1px 6px;
   font-family: inherit;
   font-size: 11px;
   color: inherit;
@@ -495,12 +490,6 @@
 .mh-dark #map-plan-container .plan-mouse {
   background: var(--d-bg-alt);
   border-color: var(--d-border);
-}
-
-#map-plan-container .plan-mouse-image {
-  width: 17px;
-  height: 17px;
-  border-radius: 8px;
 }
 
 #map-plan-container .plan-mouse-name {
