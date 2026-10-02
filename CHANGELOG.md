@@ -1,5 +1,54 @@
 # Changelog
 
+## Version 0.99.14
+
+### Improvements
+
+- Better Maps: Added an experimental **Plan tab** to help you choose locations, stages, and cheese for your remaining map mice
+- Better Maps: Solver links skip caught mice, and Sorted tab popups stay on screen
+- Better Travel: Favorite locations appear first on the travel page and in Simple Travel. You can click anywhere on a location tile again
+- Better Marketplace: Price history charts load when opened and remember if you left them collapsed
+- Better Inventory: More Magic Essence warnings, with suggestions for other recipes
+- Better Journal: Item links support plural names, and Zokor Stealth-loss entries show which Thief Base you used
+- Location HUDs - Cerulean Skyport: Raid progress bars change color as you gather intel
+- Location HUDs - Gnawnian Express Station: The train board remembers if you left it open or minimized
+- Location HUDs - Zokor: The Thief Base toggle shows the mode you’re switching to
+- Keyboard Shortcuts: Escape cancels an edit, and Backspace or Delete clears the shortcut. The "edit them here" settings link opens the editor
+- LGS Reminder: Shows minutes during the last hour and "Expired" when your shield runs out
+- Show Auras: Only flags auras expiring within a day. Dates use your local format
+- Updated error page styles and fixed extension errors on those pages
+- Improved Image Upscaling performance
+
+### Fixes
+
+- Favorite Setups: Crafting or buying missing bait or charms clears the warning. Empty bait and charm slots now disarm those items
+- Favorite Setups: Setups whose charm has run out now arm without the charm instead of being blocked
+- Favorite Setups: The quantity and stats share a row in the item picker, so the cards are shorter
+- Show Auras, Floating Islands, and Better Mice: Fixed timers when your account and computer use different time zones
+- Better Journal: Fixed "I checked my trap…" wording and added a color for Mythical Rainbow Diamonds
+- Better Gifts: Fixed the "ignore bad gifts" setting and the send confirmation’s close button
+- Better Send Supplies: Enter no longer reloads the page, pasted searches work, and Max sends the right quantity
+- Quick Send Supplies: Fixed duplicate sends and page reloads when pressing Enter. Failed sends keep your entered quantity
+- Better Shops: Quantity buttons update the purchase total, and shop styles stay on shop pages
+- Custom Background: Event backgrounds appear again when set to Default. Fixed the cyan background’s side columns
+- Custom Camp Background: The camp gradient no longer appears on other pages
+- Custom Shield: Fixed shields for titles with spaces, like Grand Duke
+- Inventory Lock and Hide: Hidden items stay hidden in the trap selector. Item buttons update when you use the bulk Lock/Hide buttons
+- Inventory Buttons: "Open all but one" respects the 200-item limit
+- Journal Changer: Fixed issues with location themes and Randomize. Themes chosen in the game’s selector are remembered
+- Journal Privacy: Names stay hidden as new entries appear
+- Keyboard Shortcuts: Disarming your charm no longer disarms your bait
+- LGS Reminder: Warning colors clear when you extend your shield
+- Location Catch Stats: Fixed duplicate popups after clicking twice. Failed loads no longer show as "no mice"
+- Quick Filters and Sort: Changing the sort keeps your filter, and changing the filter keeps your sort
+- Real Base Stats: Updates more reliably when you change your trap
+- Ultimate Checkmark: Fixed chest images and categories marked complete too soon
+- Wisdom in Stat Bar: Shows your current wisdom after each hunt when auto-refresh is on
+- Hover Profiles: Clicking a profile link no longer reloads its open hover card
+- Copy ID: Only shows "Copied" after a successful copy
+- Dark Mode: Fixed styles for inventory confirmations, gift selectors, update summaries, and shop stat borders
+- Other small fixes and style tweaks
+
 ## Version 0.99.13
 
 - Better Mice: Prize mice (Leprechaun, Mobster, High Roller, Snooty, and Treasurer) now show their catch history and cooldown status in the mouse view, and the Prize History page has been updated

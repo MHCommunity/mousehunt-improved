@@ -1,0 +1,36 @@
+{
+  "version": "0.99.14",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Maps: Added an experimental Plan tab to help you find your remaining map mice",
+        "Better Maps: Solver links skip caught mice, and Sorted tab popups stay on screen",
+        "Better Travel: Favorite locations appear first on the travel page and in Simple Travel",
+        "Better Marketplace: Price history charts remember if you left them collapsed",
+        "Better Inventory: More Magic Essence warnings, with suggestions for other recipes",
+        "Better Journal: Item links support plural names, and Zokor entries show which Thief Base you used",
+        "Location HUDs - Cerulean Skyport: Raid progress bars change color as you gather intel",
+        "Location HUDs - Gnawnian Express Station: The train board remembers if you left it open or minimized",
+        "Location HUDs - Zokor: The Thief Base toggle shows the mode you’re switching to",
+        "Keyboard Shortcuts: Escape cancels an edit, and Backspace or Delete clears the shortcut",
+        "Favorite Setups: Crafting bait clears missing-item warnings. Empty bait and charm slots now disarm those items",
+        "Favorite Setups: Setups with an unowned charm arm without it, and the item picker is more compact",
+        "Fixed timers when your account and computer use different time zones",
+        "Keyboard Shortcuts: Disarming your charm no longer disarms your bait",
+        "Better Gifts: The \"ignore bad gifts\" setting works again",
+        "Send Supplies: Fixed page reloads when pressing Enter and duplicate sends",
+        "Better Shops: Quantity buttons update the purchase total",
+        "Custom Background: Event backgrounds appear again when set to Default",
+        "Custom Shield: Fixed shields for titles like Grand Duke",
+        "Inventory Lock and Hide: Hidden items stay hidden in the trap selector",
+        "Journal Changer: Fixed issues with changing and remembering themes",
+        "Journal Privacy: Names stay hidden as new entries appear",
+        "Quick Filters and Sort: Changing the sort keeps your filter",
+        "Dark Mode: Fixed styles for inventory confirmations, gift selectors, and more",
+        "Other small fixes and style tweaks"
+      ]
+    }
+  ]
+}
