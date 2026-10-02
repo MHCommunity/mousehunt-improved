@@ -342,6 +342,8 @@ const getUserTitleShield = (titleId = null) => {
     fabled: 'https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png',
   };
 
+  // Titles with a space (like "grand duke") use an underscore in the key.
+  titleId = titleId.replaceAll(' ', '_');
   if (titleId in shields) {
     return shields[titleId];
   }

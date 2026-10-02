@@ -52,7 +52,6 @@ const addClass = (el, shieldClass) => {
   doClass(el, shieldClass, 'add');
 };
 
-let lastShield = '';
 let inputListener = null;
 let preferenceInput = null;
 
@@ -76,15 +75,12 @@ const changeShield = () => {
     return;
   }
 
-  let timer = document.querySelector('.huntersHornView__timer--default');
-  if (!timer) {
-    timer = document.querySelector('.huntersHornView__timer--legacy');
-    if (!timer) {
-      return;
-    }
+  // The timer is only needed for the timer colors, so don't skip the shield if it's missing.
+  const timer = document.querySelector('.huntersHornView__timer--default, .huntersHornView__timer--legacy');
+  if (timer) {
+    removeTimerClasses(timer);
   }
 
-  removeTimerClasses(timer);
   removeCottonCandyStyle();
 
   // Remove the old shield class.
@@ -100,7 +96,6 @@ const changeShield = () => {
   let shield = getSetting('custom-shield-0', 'default');
   if ('default' === shield) {
     shieldEl.classList.add('default', 'default-fancy');
-    lastShield = ['default', 'default-fancy'];
     return;
   }
 
@@ -111,33 +106,26 @@ const changeShield = () => {
     shield = 'color-pink-timer';
   }
 
-  lastShield = [shield];
-
   if (shield.startsWith('color-')) {
     shieldEl.classList.add('default');
     shieldEl.classList.add('color');
-
-    lastShield.push('color');
   }
 
   if (shield.endsWith('-timer')) {
     shield = shield.replace('-timer', '');
-    timer.classList.add(shield);
-
-    lastShield.push(shield);
+    timer?.classList.add(shield);
   }
 
   // if its the alt, also add the non-alt class.
   if (shield.endsWith('-alt')) {
     const altClass = shield.replace('-alt', '');
     shieldEl.classList.add(altClass, 'alt');
-    lastShield.push(altClass, 'alt');
   }
 
   if (shield.includes('title')) {
     shieldEl.classList.add('title');
-    shield = 'title' === shield ? getUserTitle() : shield;
-    lastShield.push('title', shield);
+    // Titles with a space (like "grand duke") have no space in their class name.
+    shield = 'title' === shield ? getUserTitle().replaceAll(' ', '') : shield;
   }
 
   shieldEl.classList.add('mhui-custom-shield');
@@ -212,8 +200,7 @@ const getShieldSettingsValues = async () => {
 const init = () => {
   addStyles(styles, 'custom-shield');
 
-  lastShield = getSetting('custom-shield-0', 'default');
-  if ('default' !== lastShield) {
+  if ('default' !== getSetting('custom-shield-0', 'default')) {
     changeShield();
   }
 

@@ -8,6 +8,7 @@ let preferenceInput = null;
 let showHornLink = null;
 let isShowingHorn = false;
 let hornTimeout = null;
+let backdropTimeout = null;
 
 const handlePreferenceChange = () => {
   addHornClass();
@@ -15,10 +16,8 @@ const handlePreferenceChange = () => {
 
 /**
  * Add a class to the horn view.
- *
- * @param {boolean} preview Whether or not this is a preview.
  */
-const addHornClass = (preview = false) => {
+const addHornClass = () => {
   const hornView = document.querySelector('.huntersHornView');
   if (!hornView) {
     return;
@@ -29,10 +28,7 @@ const addHornClass = (preview = false) => {
     return;
   }
 
-  let setting = getSetting('custom-horn-0', 'default');
-  if (preview) {
-    setting = preview;
-  }
+  const setting = getSetting('custom-horn-0', 'default');
 
   if ('default' !== setting) {
     const classes = [...hornView.classList];
@@ -98,13 +94,14 @@ const toggleHornPreview = (e) => {
 
   if (isShowingHorn) {
     isShowingHorn = false;
-    showHornLink.textContent = 'Preview Horn';
+    showHornLink.textContent = 'Show Horn';
 
     clearTimeout(hornTimeout);
+    clearTimeout(backdropTimeout);
 
     horn.classList.add('huntersHornView__horn--reveal');
     horn.classList.remove('huntersHornView__horn--ready');
-    setTimeout(() => backdrop.classList.remove('huntersHornView__backdrop--active'), 400);
+    backdropTimeout = setTimeout(() => backdrop.classList.remove('huntersHornView__backdrop--active'), 400);
     hornTimeout = setTimeout(() => horn.classList.remove('huntersHornView__horn--reveal'), 1000);
 
     return;
@@ -117,6 +114,7 @@ const toggleHornPreview = (e) => {
   horn.classList.add('huntersHornView__horn--ready', 'huntersHornView__horn--reveal');
 
   clearTimeout(hornTimeout);
+  clearTimeout(backdropTimeout);
 };
 
 /**

@@ -44,6 +44,7 @@ const previewStyles = {
 };
 
 let possibleClasses = [];
+let addedClasses = [];
 
 /**
  * Add a class to the body.
@@ -67,20 +68,31 @@ const addBodyClass = (preview = false) => {
     style.remove();
   }
 
+  // Only remove the event classes we added, so the game's own event background still shows on Default.
   body.classList.remove('mh-improved-custom-background');
   possibleClasses.forEach((className) => {
-    body.classList.remove(className, `mh-improved-bg-${className}`);
+    body.classList.remove(`mh-improved-bg-${className}`);
   });
+  addedClasses.forEach((className) => body.classList.remove(className));
+  addedClasses = [];
 
   if ('default' === setting) {
     return;
   }
 
+  // A custom choice replaces any event background the game added.
+  possibleClasses.forEach((className) => {
+    if (className !== setting) {
+      body.classList.remove(className);
+    }
+  });
+
   const background = `mh-improved-bg-${setting}`;
 
   body.classList.add(background);
-  if (!setting.startsWith('background-color-')) {
+  if (!setting.startsWith('background-color-') && !body.classList.contains(setting)) {
     body.classList.add(setting);
+    addedClasses.push(setting);
   }
 
   if (!gradients) {
@@ -168,7 +180,6 @@ const persistBackground = () => {
     }
   });
 
-  addPreview();
   onNavigation(addPreview, { page: 'preferences' });
 };
 

@@ -53,13 +53,19 @@ const getPreviewItems = async () => {
 };
 
 const addCampBackground = () => {
-  const camp = document.querySelector('#mousehuntContainer.PageCamp');
+  const camp = document.querySelector('#mousehuntContainer');
   if (!camp) {
     return;
   }
 
+  // The game resets the container's classes on each page change but not its inline style, so clear
+  // any gradient on every page, not just camp.
   camp.classList.remove(...campBackgroundClasses);
   camp.style.removeProperty('background');
+
+  if (!camp.classList.contains('PageCamp')) {
+    return;
+  }
 
   const background = getSetting('custom-camp-background-0', 'background-wood');
   if ('default' === background) {
@@ -87,7 +93,7 @@ const addCampBackground = () => {
 const init = () => {
   addStyles(styles, 'custom-camp-background');
 
-  onNavigation(addCampBackground, { page: 'camp' });
+  onNavigation(addCampBackground);
 
   // The camp isn't rendered while the preferences page is open, so this only takes effect for
   // someone changing the setting from the camp page itself.
