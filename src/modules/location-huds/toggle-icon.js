@@ -33,6 +33,7 @@ const getIconSettings = async () => {
     id: 'mousehunt-improved-location-huds',
     classname: 'mousehunt-improved-location-huds-icon',
     title: 'Location HUD toggle',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/travel.png',
     text: value ? 'Disable HUD' : 'Enable HUD',
     position: 'prepend',
 

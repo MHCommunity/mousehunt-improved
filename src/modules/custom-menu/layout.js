@@ -1,11 +1,9 @@
-import { getSetting, saveSetting } from '@utils';
+import { defaultHiddenMenuItems, doEvent, getSetting, saveSetting } from '@utils';
+
+import { applyItemOptions } from './item-options';
+import { makeLinkElement } from './menu-links';
 
 const settingKey = 'custom-menu.layout';
-
-/**
- * Items hidden until the menu has been customized.
- */
-const defaultHidden = ['my-profile', 'discord', 'community'];
 
 /**
  * The MH Improved icon is the way back into settings, so it can't be hidden.
@@ -13,21 +11,30 @@ const defaultHidden = ['my-profile', 'discord', 'community'];
 const lockedItems = new Set(['mousehunt-improved-icon-menu']);
 
 /**
- * The game's own menu items, in the order the game renders them.
+ * The game's own menu items, in the order the game renders them, and the side they start on.
  */
 const nativeItems = [
-  { id: 'inbox', name: 'Inbox', selector: '.inbox' },
-  { id: 'my-profile', name: 'My Profile', selector: '.myProfile' },
-  { id: 'gifts', name: 'Gifts', selector: '.freeGifts' },
-  { id: 'discord', name: 'Discord', selector: '.chat' },
-  { id: 'item-shop', name: 'Item Shop', selector: '.premiumShop' },
-  { id: 'super-brie', name: 'SUPER|brie+', selector: '.superBrie:not(#autoHorn)' },
-  { id: 'autohorn', name: 'AutoHorn', selector: '#autoHorn' },
-  { id: 'advent-calendar', name: 'Advent Calendar', selector: '.adventCalendar' },
-  { id: 'settings', name: 'Settings', selector: '.settings' },
-  { id: 'community', name: 'Community', selector: '.community' },
-  { id: 'help', name: 'Help', selector: '.support' },
+  { id: 'inbox', name: 'Inbox', selector: '.inbox', side: 'left' },
+  { id: 'my-profile', name: 'My Profile', selector: '.myProfile', side: 'left' },
+  { id: 'gifts', name: 'Gifts', selector: '.freeGifts', side: 'left' },
+  { id: 'discord', name: 'Discord', selector: '.chat', side: 'left' },
+  { id: 'item-shop', name: 'Item Shop', selector: '.premiumShop', side: 'left' },
+  { id: 'super-brie', name: 'SUPER|brie+', selector: '.superBrie:not(#autoHorn)', side: 'left' },
+  { id: 'autohorn', name: 'AutoHorn', selector: '#autoHorn', side: 'left' },
+  { id: 'advent-calendar', name: 'Advent Calendar', selector: '.adventCalendar', side: 'left' },
+  { id: 'settings', name: 'Settings', selector: '.settings', side: 'right' },
+  { id: 'community', name: 'Community', selector: '.community', side: 'right' },
+  { id: 'help', name: 'Help', selector: '.support', side: 'right' },
 ];
+
+/**
+ * Get the side a menu item starts on. Everything MH Improved adds starts on the right.
+ *
+ * @param {string} id The item id.
+ *
+ * @return {string} The side, 'left' or 'right'.
+ */
+const getDefaultSide = (id) => nativeItems.find((item) => item.id === id)?.side || 'right';
 
 /**
  * Get the two groups of menu items: the tabs on the left and the dropdown container on the right.
@@ -84,7 +91,8 @@ const getGroupItems = (container) => {
 /**
  * Get the saved layout, falling back to the defaults.
  *
- * @return {Object} The layout, with `left` and `right` orders and the `hidden` ids.
+ * @return {Object} The layout, with `left` and `right` orders, the `hidden` ids, the added `links`,
+ *                  the display `styles` for each item, and each item's other `options`.
  */
 const getLayout = () => {
   const saved = getSetting(settingKey, null);
@@ -92,17 +100,23 @@ const getLayout = () => {
   return {
     left: Array.isArray(saved?.left) ? saved.left : [],
     right: Array.isArray(saved?.right) ? saved.right : [],
-    hidden: Array.isArray(saved?.hidden) ? saved.hidden : defaultHidden,
+    hidden: Array.isArray(saved?.hidden) ? saved.hidden : defaultHiddenMenuItems,
+    links: Array.isArray(saved?.links) ? saved.links : [],
+    styles: saved?.styles && 'object' === typeof saved.styles ? saved.styles : {},
+    options: saved?.options && 'object' === typeof saved.options ? saved.options : {},
   };
 };
 
 /**
  * Save the layout.
  *
- * @param {Object} layout The layout, with `left` and `right` orders and the `hidden` ids.
+ * @param {Object} layout The layout.
  */
 const saveLayout = (layout) => {
   saveSetting(settingKey, layout);
+
+  // Some modules work differently while their item is hidden, like Journal Privacy.
+  doEvent('mh-improved-custom-menu-changed', layout);
 };
 
 /**
@@ -223,6 +237,158 @@ const updateEndItems = (container) => {
 };
 
 /**
+ * Add the links that have been added to the menu, put them on the right side, and remove the
+ * ones that have been taken out.
+ *
+ * @param {Object}      layout The layout.
+ * @param {HTMLElement} left   The left container.
+ * @param {HTMLElement} right  The right container.
+ */
+const updateLinks = (layout, left, right) => {
+  const linkIds = new Set(layout.links.map((link) => link.id));
+  left.querySelectorAll('.mhui-custom-menu-link').forEach((el) => {
+    if (!linkIds.has(el.dataset.mhMenuId)) {
+      el.remove();
+    }
+  });
+
+  for (const link of layout.links) {
+    const container = layout.left.includes(link.id) ? left : right;
+    if (!container) {
+      continue;
+    }
+
+    const el = left.querySelector(`.mhui-custom-menu-link[data-mh-menu-id="${CSS.escape(link.id)}"]`) || makeLinkElement(link);
+    if (el.parentElement !== container) {
+      container.insertBefore(el, container === right ? container.querySelector(':scope > #mousehunt-improved-icon-menu') : null);
+    }
+  }
+};
+
+/**
+ * Move items that have been put on the other side of the menu into that side's container.
+ *
+ * @param {Object}      layout The layout.
+ * @param {HTMLElement} left   The left container.
+ * @param {HTMLElement} right  The right container.
+ */
+const moveItemsToSides = (layout, left, right) => {
+  for (const { el, id } of getGroupItems(right)) {
+    if (layout.left.includes(id) && !lockedItems.has(id)) {
+      left.append(el);
+    }
+  }
+
+  for (const { el, id } of getGroupItems(left)) {
+    if (layout.right.includes(id)) {
+      right.insertBefore(el, right.querySelector(':scope > #mousehunt-improved-icon-menu'));
+    }
+  }
+};
+
+/**
+ * Wrap the bare text in a menu item in a span, so it can be hidden on its own.
+ *
+ * @param {HTMLElement} el The menu item.
+ */
+const wrapOwnText = (el) => {
+  const textNodes = [...el.childNodes].filter((node) => Node.TEXT_NODE === node.nodeType && node.textContent.trim());
+
+  for (const node of textNodes) {
+    const span = document.createElement('span');
+    span.className = 'mhui-menu-own-text';
+    node.replaceWith(span);
+    span.append(node);
+  }
+};
+
+/**
+ * Get the text a menu item shows itself, leaving out its icon, label, dropdown, and counts.
+ *
+ * @param {HTMLElement} el The menu item.
+ *
+ * @return {string} The text.
+ */
+const getOwnText = (el) => {
+  return [...el.childNodes]
+    .filter((node) => !node.matches?.('.mhui-menu-icon, .mhui-menu-label, .dropdownContent, .arrow, .mousehuntHeaderView-menu-notification'))
+    .map((node) => node.textContent)
+    .join('')
+    .trim();
+};
+
+/**
+ * Get how a menu item can be shown, if it can be shown more than one way.
+ *
+ * Items need both an icon and a name to be shown as just one or the other, so this covers the
+ * links we add and icons like Favorite Setups, but not text tabs like Inbox.
+ *
+ * @param {HTMLElement} el The menu item.
+ * @param {string}      id The item id.
+ *
+ * @return {Object|null} The `iconUrl` to add, whether it `needsLabel`, and its `defaultStyle`, or null.
+ */
+const getStyleInfo = (el, id) => {
+  if (lockedItems.has(id)) {
+    return null;
+  }
+
+  const isLink = el.classList.contains('mhui-custom-menu-link');
+  const iconUrl = isLink ? null : el.dataset.mhMenuIcon || null;
+  const hasIcon = isLink || iconUrl || 'none' !== getComputedStyle(el, '::before').backgroundImage;
+  if (!hasIcon) {
+    return null;
+  }
+
+  const needsLabel = !isLink && !getOwnText(el);
+
+  return {
+    iconUrl,
+    needsLabel,
+    // Items we add an icon to, like the HUD toggle and Dashboard, start out the way they were, as text.
+    defaultStyle: iconUrl ? 'text' : 'icon',
+  };
+};
+
+const styleClasses = ['mhui-menu-style-icon', 'mhui-menu-style-icon-text', 'mhui-menu-style-text'];
+
+/**
+ * Show each item the way it's been set to, adding the icon or label it needs.
+ *
+ * @param {HTMLElement} container The container.
+ * @param {Object}      styles    The display styles, keyed by item id.
+ */
+const applyStyles = (container, styles) => {
+  for (const { el, id } of getGroupItems(container)) {
+    const info = getStyleInfo(el, id);
+    if (!info) {
+      continue;
+    }
+
+    if (info.iconUrl && !el.querySelector(':scope > .mhui-menu-icon')) {
+      const icon = document.createElement('span');
+      icon.className = 'mhui-menu-icon';
+      icon.style.backgroundImage = `url(${info.iconUrl})`;
+      el.prepend(icon);
+    }
+
+    if (!info.needsLabel) {
+      wrapOwnText(el);
+    }
+
+    if (info.needsLabel && !el.querySelector(':scope > .mhui-menu-label')) {
+      const label = document.createElement('span');
+      label.className = 'mhui-menu-label';
+      label.textContent = getItemName(el, id);
+      el.append(label);
+    }
+
+    el.classList.remove(...styleClasses);
+    el.classList.add('mhui-menu-style', `mhui-menu-style-${styles[id] || info.defaultStyle}`);
+  }
+};
+
+/**
  * Apply a layout to the menu.
  *
  * @param {Object} layout The layout, defaults to the saved one.
@@ -234,9 +400,21 @@ const applyLayout = (layout = getLayout()) => {
   }
 
   updateHiddenStyles(layout.hidden);
+  updateLinks(layout, left, right);
+  moveItemsToSides(layout, left, right);
   applyOrder(left, layout.left);
   applyOrder(right, layout.right);
+  applyStyles(left, layout.styles);
+  applyStyles(right, layout.styles);
+
+  // The SUPER|brie+ label is bare text, so it needs a span to be hidden.
+  const superBrie = [...getGroupItems(left), ...getGroupItems(right)].find((item) => 'super-brie' === item.id);
+  if (superBrie) {
+    wrapOwnText(superBrie.el);
+  }
+
+  applyItemOptions([...getGroupItems(left), ...getGroupItems(right)], layout);
   updateEndItems(left);
 };
 
-export { applyLayout, defaultHidden, getContainers, getDefaultOrder, getGroupItems, getItemName, getLayout, lockedItems, saveLayout };
+export { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, lockedItems, saveLayout };

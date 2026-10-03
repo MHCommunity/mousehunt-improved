@@ -6,11 +6,11 @@
 export default async () => {
   const orderOptions = [
     {
-      name: 'Newest to Oldest',
+      name: 'Newest to oldest',
       value: 'default',
     },
     {
-      name: 'Oldest to Newest',
+      name: 'Oldest to newest',
       value: 'reverse',
     },
   ];
@@ -57,7 +57,7 @@ export default async () => {
     {
       id: 'better-gifts.send-order',
       live: true,
-      title: 'Order to accept/send',
+      title: 'Gift acceptance and sending order',
       default: [orderOptions[0]],
       description: '',
       settings: {
@@ -77,12 +77,6 @@ export default async () => {
         number: 1,
         options: skipBadGiftOptions,
       },
-    },
-    {
-      id: 'better-gifts.gift-button-opens-gift-selector',
-      live: true,
-      title: 'Gift button opens gift selector',
-      default: false,
     },
   ];
 };

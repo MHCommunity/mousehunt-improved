@@ -382,7 +382,7 @@ const makeDashboardTab = () => {
     sessionSet('doing-location-refresh', false);
   });
 
-  makeElement('span', '', 'Dashboard', menuTab);
+  makeElement('span', 'mhui-menu-label', 'Dashboard', menuTab);
   makeElement('div', 'arrow', '', menuTab);
 
   const dropdownContent = makeElement('div', 'dropdownContent');
@@ -404,7 +404,7 @@ const makeDashboardTab = () => {
   dropdownContent.append(dashboardWrapper);
   menuTab.append(dropdownContent);
 
-  addHeaderMenuTab(menuTab, { id: 'location-dashboard', name: 'Dashboard', order: 10 });
+  addHeaderMenuTab(menuTab, { id: 'location-dashboard', name: 'Dashboard', icon: 'https://i.mouse.rip/icons/chart.png', order: 10 });
 };
 
 /**

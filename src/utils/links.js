@@ -1,5 +1,6 @@
 import { makeElement, makeLink } from './elements';
 import { doEvent } from './event-registry';
+import { getSetting } from './settings';
 
 /**
  * Build the MH Wiki URL for a given name.
@@ -304,6 +305,7 @@ const getIconMenu = (gameInfoFallback) => {
  * @param {string}   [opts.href]             The href for the menu item.
  * @param {string}   [opts.title]            The title for the menu item.
  * @param {string}   [opts.text]             The text for the menu item.
+ * @param {string}   [opts.icon]             An icon url, so the item can be shown as an icon when customizing the menu.
  * @param {Function} [opts.action]           The action for the menu item.
  * @param {string}   [opts.position]         The position for the menu item.
  * @param {boolean}  [opts.gameInfoFallback] Whether to use the game info bar when the header menu is hidden.
@@ -315,6 +317,7 @@ const addIconToMenu = (opts) => {
     href: false,
     title: '',
     text: '',
+    icon: '',
     action: null,
     position: 'prepend',
     gameInfoFallback: false,
@@ -344,6 +347,10 @@ const addIconToMenu = (opts) => {
     icon.dataset.mhMenuId = settings.id;
     icon.dataset.mhMenuName = settings.title || settings.text || settings.id;
     icon.dataset.mhMenuPosition = settings.position;
+
+    if (settings.icon) {
+      icon.dataset.mhMenuIcon = settings.icon;
+    }
   }
 
   if (settings.action) {
@@ -398,6 +405,8 @@ const addIconToMenu = (opts) => {
  * @param {Object}      opts          The options for the tab.
  * @param {string}      opts.id       A stable id for the tab, used to save its place in the menu.
  * @param {string}      opts.name     The name shown for the tab when customizing the menu.
+ * @param {string}      [opts.icon]   An icon url, so the tab can be shown as an icon when customizing the menu. The
+ *                                    tab's own label needs the `mhui-menu-label` class so it can be hidden.
  * @param {number}      [opts.order]  The sort order for the tab, lower is further left.
  *
  * @return {boolean} Whether the tab was added.
@@ -414,6 +423,10 @@ const addHeaderMenuTab = (tab, opts = {}) => {
   if (opts.id) {
     tab.dataset.mhMenuId = opts.id;
     tab.dataset.mhMenuName = opts.name || opts.id;
+
+    if (opts.icon) {
+      tab.dataset.mhMenuIcon = opts.icon;
+    }
   }
 
   const customTabs = [...tabsContainer.querySelectorAll(':scope > [data-mh-order]')].filter((el) => el !== tab);
@@ -433,6 +446,24 @@ const addHeaderMenuTab = (tab, opts = {}) => {
   doEvent('mh-improved-header-menu-changed');
 
   return true;
+};
+
+/**
+ * Top menu items that Custom Menu hides until the menu has been customized.
+ */
+const defaultHiddenMenuItems = ['my-profile', 'discord', 'community', 'mousehunt-improved-location-huds'];
+
+/**
+ * Check whether a top menu item has been hidden with Custom Menu.
+ *
+ * @param {string} id The menu item id.
+ *
+ * @return {boolean} Whether it's hidden.
+ */
+const isMenuItemHidden = (id) => {
+  const hidden = getSetting('custom-menu.layout', null)?.hidden;
+
+  return (Array.isArray(hidden) ? hidden : defaultHiddenMenuItems).includes(id);
 };
 
 /**
@@ -511,6 +542,8 @@ export {
   removeSubmenuItem,
   addHeaderMenuTab,
   addIconToMenu,
+  defaultHiddenMenuItems,
+  isMenuItemHidden,
   removeIconFromMenu,
   replaceIconInMenu,
   getExtensionLink,

@@ -459,10 +459,6 @@ input.itemView-action-convert-quantity {
   border-color: #ccc;
 }
 
-.menuItem.superBrie {
-  border-right: 1px solid #ccc;
-}
-
 .inventoryPage-confirmPopup-itemRow.small {
   min-height: 35px;
 }

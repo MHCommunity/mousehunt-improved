@@ -5,6 +5,7 @@
   --mhui-menu-hidden-bg: #f5f5f5;
   --mhui-menu-hidden-border: #bbb;
   --mhui-menu-fade: #fff;
+  --mhui-menu-popover: #fff;
 
   display: flex;
   flex-direction: column;
@@ -15,14 +16,31 @@
 
 /* The editor has the header class so the copied items are styled like the real ones. */
 #overlayPopup .mhui-menu-editor.mousehuntHeaderView {
+  position: relative;
   padding: 0;
   margin: 0;
   background: none;
 }
 
 .mhui-menu-editor-help {
-  margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor-help-text {
+  flex: 1;
+  margin: 0;
+}
+
+/* The first time the editor is opened, the help is shown as a tip. */
+.mhui-menu-editor-help.is-tip {
+  padding: 8px 10px;
+  color: inherit;
+  background: rgb(74 144 217 / 12%);
+  border: 1px solid rgb(74 144 217 / 50%);
+  border-radius: 4px;
 }
 
 .mhui-menu-editor-label {
@@ -33,8 +51,16 @@
 .mhui-menu-editor-zone {
   display: flex;
   flex-wrap: wrap;
-  min-height: 27px;
+  min-height: 25px;
   transition: box-shadow 0.15s;
+}
+
+.mhui-menu-editor-zone.mhui-menu-editor-bar {
+  border: 1px solid #ccc;
+}
+
+.mh-dark .mhui-menu-editor-zone.mhui-menu-editor-bar {
+  border-color: var(--d-border);
 }
 
 .mhui-menu-editor-bar {
@@ -57,7 +83,7 @@
 
 .mhui-menu-editor-hidden {
   gap: 4px;
-  min-height: 40px;
+  min-height: 20px;
   padding: 6px;
   background: var(--mhui-menu-hidden-bg);
   border: 1px dashed var(--mhui-menu-hidden-border);
@@ -78,6 +104,75 @@
 
 .mhui-menu-editor.is-dragging .mhui-menu-editor-zone.cant-drop {
   opacity: 0.45;
+}
+
+/* Items that can be shown as an icon, icon and text, or text. */
+.mousehuntHeaderView .menuItem.mhui-menu-style {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.mousehuntHeaderView .menuItem.mhui-menu-style.mhui-menu-style-icon-text,
+.mousehuntHeaderView .menuItem.mhui-menu-style.mhui-menu-style-text {
+  width: auto;
+  padding: 0 7px;
+}
+
+/* Keep room for the arrow on dropdown tabs, like Dashboard. */
+.mousehuntHeaderView .menuItem.mhui-menu-style.dropdown {
+  padding-right: 20px;
+}
+
+/* Hides the item's own text, like the HUD toggle's, leaving the icon. */
+.mhui-menu-style-icon .mhui-menu-own-text,
+.mhui-menu-style-icon .mhui-menu-label,
+.mhui-menu-style-text .mhui-menu-icon,
+.mousehuntHeaderView .menuItem.mhui-menu-style-text::before {
+  display: none !important;
+}
+
+/* The game's menu icons are brown, so they're grayed to match the rest of the menu. */
+.mhui-menu-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mhui-menu-label {
+  white-space: nowrap;
+}
+
+.mh-dark .mhui-menu-icon {
+  filter: invert(1) grayscale(1);
+}
+
+/* Item options */
+.mousehuntHeaderView .menuItem.mhui-menu-hide-count .mousehuntHeaderView-menu-notification,
+.mousehuntHeaderView .menuItem.mhui-menu-hide-name .mhui-menu-own-text,
+.mousehuntHeaderView .menuItem.mhui-menu-hide-get-more .getMore,
+.mousehuntHeaderView .menuItem.mhui-menu-hide-icon .mh-quick-items-menu-tab-icon,
+.mousehuntHeaderView .menuItem.mhui-menu-hide-quantity .mh-quick-items-menu-tab-count {
+  display: none !important;
+}
+
+.mousehuntHeaderView a.superBrie.mhui-menu-hide-get-more {
+  padding-right: 7px;
+}
+
+.mousehuntHeaderView .menuItem.mhui-menu-show-name .mh-quick-items-menu-tab-name {
+  display: inline;
+  white-space: nowrap;
+}
+
+/* Dropdowns open to the left, so ones moved to the left side open to the right instead. */
+.mousehuntHeaderView-gameTabs > .menuItem.dropdown .dropdownContent {
+  right: auto;
+  left: -1px;
 }
 
 /* The last item on the left closes off the left side of the menu. */
@@ -133,18 +228,194 @@
   cursor: default;
 }
 
-.mhui-menu-editor-item.dragging {
-  opacity: 0.3;
+.mhui-menu-editor-item.has-options {
+  cursor: pointer;
 }
 
+.mhui-menu-editor-item.selected {
+  box-shadow: inset 0 0 0 2px #4a90d9;
+}
+
+/* The spot the dragged item will drop into. */
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-item.dragging {
+  background: rgb(74 144 217 / 18%);
+  border-radius: 4px;
+  outline: 2px dashed #4a90d9;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-item.dragging > *,
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-item.dragging::before {
+  opacity: 0.35;
+}
+
+/* The copy that follows the pointer. It lifts up when picked up, and glides into its spot or fades
+   away when it's put down. */
 .mhui-menu-editor-ghost {
   position: fixed;
   z-index: 100000;
   white-space: nowrap;
   pointer-events: none;
-  cursor: grabbing;
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+  transition:
+    transform 0.16s ease-out,
+    box-shadow 0.16s ease-out,
+    opacity 0.16s ease-out;
+}
+
+.mhui-menu-editor-ghost.lifted {
+  box-shadow: 0 10px 22px rgb(0 0 0 / 35%);
+  transform: rotate(-2deg) scale(1.06);
+}
+
+.mhui-menu-editor-ghost.settling {
+  transition:
+    left 0.16s ease-out,
+    top 0.16s ease-out,
+    transform 0.16s ease-out,
+    box-shadow 0.16s ease-out;
+}
+
+.mhui-menu-editor-ghost.removing {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.mhui-menu-editor.is-dragging,
+.mhui-menu-editor.is-dragging * {
+  cursor: grabbing !important;
+}
+
+/* Show which item is under the pointer, ready to pick up. */
+.mhui-menu-editor:not(.is-dragging) .mhui-menu-editor-item:not(.locked, .selected):hover {
+  filter: brightness(1.08);
+  box-shadow: inset 0 0 0 1px rgb(74 144 217 / 70%);
+}
+
+/* Options for the selected item, in a popover under it. */
+.mhui-menu-editor-options {
+  position: absolute;
+  z-index: 10;
+  width: max-content;
+  min-width: 265px;
+  max-width: 360px;
+  overflow: hidden;
+  background: var(--mhui-menu-popover);
+  border: 1px solid var(--mhui-menu-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 30%);
+}
+
+.mhui-menu-editor-options[hidden],
+.mhui-menu-editor.is-dragging .mhui-menu-editor-options {
+  display: none;
+}
+
+.mhui-menu-editor-options-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  min-height: 35px;
+  padding: 8px 12px;
+}
+
+.mhui-menu-editor-options-row + .mhui-menu-editor-options-row {
+  border-top: 1px solid var(--mhui-menu-border);
+}
+
+.mhui-menu-editor-options-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mhui-menu-editor-options-row .mousehuntSettingSlider {
+  cursor: pointer;
+}
+
+.mhui-menu-editor-options-row .mousehuntSettingSlider.disabled {
+  cursor: not-allowed;
+}
+
+.mhui-menu-editor-options-row .mousehuntSettingSlider:focus-visible {
+  outline: 2px solid #4a90d9;
+  outline-offset: 2px;
+}
+
+/* Joined buttons for picking one choice */
+.mhui-menu-editor-style-choices {
+  display: flex;
+  padding: 2px;
+  background: var(--mhui-menu-hidden-bg);
+  border: 1px solid var(--mhui-menu-border);
+  border-radius: 6px;
+}
+
+.mhui-menu-editor-style-option {
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 4px;
+}
+
+.mhui-menu-editor-style-option + .mhui-menu-editor-style-option {
+  border-left: 1px solid var(--mhui-menu-border);
+  border-radius: 0 4px 4px 0;
+}
+
+.mhui-menu-editor-style-option:hover {
+  background: rgb(74 144 217 / 15%);
+}
+
+.mhui-menu-editor-style-option[aria-pressed="true"] {
+  color: #fff;
+  background: #4a90d9;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.mhui-menu-editor-style-option[aria-pressed="true"] + .mhui-menu-editor-style-option {
+  border-left-color: transparent;
+}
+
+/* Links that can be added */
+
+/* A column of groups, rather than the wrapping row the other zones use. */
+.mhui-menu-editor-zone.mhui-menu-editor-available {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+  max-height: 220px;
+  padding: 6px;
+  overflow-y: auto;
+  border: 1px solid var(--mhui-menu-hidden-border);
+  border-radius: 4px;
+}
+
+.mhui-menu-editor-available-label {
+  margin-bottom: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor-available-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* The links are built like menu tabs, set apart like the hidden items. */
+.mhui-menu-editor .mhui-menu-editor-available .mhui-menu-editor-item {
+  border: 1px solid var(--mhui-menu-border);
+  border-radius: 4px;
 }
 
 #overlayPopup.mh-improved-custom-menu-popup .jsDialogContainer .suffix {
@@ -182,4 +453,5 @@
   --mhui-menu-hidden-bg: rgb(255 255 255 / 4%);
   --mhui-menu-hidden-border: var(--d-border);
   --mhui-menu-fade: var(--d-bg);
+  --mhui-menu-popover: #2e3039;
 }

@@ -35,6 +35,9 @@ const init = () => {
   document.addEventListener('click', (event) => {
     if (event.target.closest('.mh-improved-custom-menu-open')) {
       event.preventDefault();
+
+      // Start at the top so the menu being edited is in view behind the popup.
+      window.scrollTo({ top: 0 });
       openMenuEditor();
     }
   });

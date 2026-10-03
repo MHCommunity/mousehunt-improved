@@ -167,6 +167,7 @@ const renderTab = () => {
   const item = display.getItem();
   tabElements.title.title = item.name;
   tabElements.tabIcon.style.backgroundImage = item.thumbnail ? `url(${item.thumbnail})` : '';
+  tabElements.tabName.textContent = item.name;
   if (display.isAuraActive()) {
     tabElements.tabCount.textContent = getRemainingShort(display.getAuraExpiry());
   } else {
@@ -551,6 +552,7 @@ const makeMenuTab = () => {
 
   tabElements.title = make('span', 'mh-quick-items-menu-title', '', tab);
   tabElements.tabIcon = make('span', 'mh-quick-items-menu-tab-icon', '', tabElements.title);
+  tabElements.tabName = make('span', 'mh-quick-items-menu-tab-name', '', tabElements.title);
   tabElements.tabCount = make('span', 'mh-quick-items-menu-tab-count', '', tabElements.title);
   makeElement('div', 'arrow', '', tab);
 
