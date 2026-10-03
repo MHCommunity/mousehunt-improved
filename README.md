@@ -66,8 +66,8 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Show Auras](docs/show-auras.md)**: Show auras and their expiry time below the trap stats.
 - **[SSDB Toothlet Counter](docs/ssdb-toothlet-counter.md)**: Show the number of toothlets you have when SSDB is equipped.
 - **[Taller Windows](docs/taller-windows.md)**: Make popup and dialog windows taller.
-- **[Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
 - **[TEM Crowns](docs/tem-crowns.md)**: Add crowns and catches to the Trap Effectiveness Meter.
+- **[Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
 - **[Ultimate Checkmark](docs/ultimate-checkmark.md)**: Add more items to collect on your Hunter profile.
 - **[Unique Loot Count](docs/unique-loot-count.md)**: Show the number of unique loot items in the progress log.
 - **[Wisdom in Stat Bar](docs/wisdom-in-stat-bar.md)**: Show wisdom in the stat bar.
