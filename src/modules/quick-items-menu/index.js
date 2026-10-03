@@ -2,7 +2,7 @@ import {
   addHeaderMenuTab,
   addStyles,
   getData,
-  getSetting,
+  getMultiSelectSetting,
   getUserItems,
   isModuleEnabled,
   make,
@@ -10,14 +10,14 @@ import {
   makeMhButton,
   onModuleToggle,
   onNavigation,
+  onEvent,
   onRequest,
-  onSettingsChange,
   parseMouseHuntDate,
   sessionGet,
   sessionSet,
 } from '@utils';
 
-import settings, { defaultItemType, pinCount } from './settings';
+import settings, { defaultItemType } from './settings';
 
 import styles from './styles.css';
 
@@ -47,19 +47,14 @@ let renderTimer = null;
  * @return {string|null} The item type, or null if the slot is empty.
  */
 const getSlotItemType = (slot) => {
-  const value = getSetting(`${moduleId}.item-${slot}`, 0 === slot ? defaultItemType : 'none');
+  const values = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]);
+  const value = values[slot];
   if (!value || 'none' === value) {
     return null;
   }
 
   // The same convertible pinned twice is only listed once.
-  for (let i = 0; i < slot; i++) {
-    if (getSetting(`${moduleId}.item-${i}`, 0 === i ? defaultItemType : 'none') === value) {
-      return null;
-    }
-  }
-
-  return value;
+  return values.indexOf(value) === slot ? value : null;
 };
 
 /**
@@ -621,6 +616,13 @@ const removeMenuTab = () => {
  * Load every pinned item.
  */
 const loadPins = () => {
+  // Pins can be added in the settings, so match the number of slots first.
+  const count = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]).length;
+  pins = pins.slice(0, count);
+  for (let slot = pins.length; slot < count; slot++) {
+    pins.push(createPin(slot));
+  }
+
   pins.forEach((pin) => pin.load());
 };
 
@@ -649,8 +651,6 @@ const disable = () => {
 const init = async () => {
   addStyles(styles, moduleId);
 
-  pins = Array.from({ length: pinCount }, (_, slot) => createPin(slot));
-
   enable();
 
   onNavigation(() => {
@@ -663,9 +663,11 @@ const init = async () => {
   onRequest('*', (response) => pins.forEach((pin) => pin.onResponse(response)), true);
 
   // Changing one slot can change which slots are duplicates, so reload them all.
-  for (let slot = 0; slot < pinCount; slot++) {
-    onSettingsChange(`${moduleId}.item-${slot}`, loadPins);
-  }
+  onEvent('mh-improved-settings-changed', ({ key }) => {
+    if (key?.startsWith(`${moduleId}.item-`)) {
+      loadPins();
+    }
+  });
 
   onModuleToggle(moduleId, { enable, disable });
 };

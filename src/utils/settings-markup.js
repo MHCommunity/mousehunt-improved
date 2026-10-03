@@ -1,6 +1,6 @@
 import { createPopup, makeElement, makeMhButton } from './elements';
 import { doEvent, onEvent } from './event-registry';
-import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
+import { getMultiSelectCount, getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { getCurrentPage } from './page-current';
 import { getCurrentTab } from './page';
 import { getFlag } from './flags';
@@ -233,8 +233,16 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
     settingRowInput.classList.add('multiSelect', 'select');
   }
 
+  const isExpandable = settingSettings.type === 'multi-select' && settingSettings.expandable;
+
   let amount = 1;
-  if (settingSettings.type === 'multi-select' && settingSettings.number) {
+  if (isExpandable) {
+    amount = getMultiSelectCount(
+      key,
+      (defaultValue || []).map((option) => option.value),
+      tab
+    );
+  } else if (settingSettings.type === 'multi-select' && settingSettings.number) {
     amount = settingSettings.number;
   }
 
@@ -307,21 +315,24 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
     timeouts[i] = setTimeout(() => parent.classList.remove('completed'), 1000);
   };
 
-  // make a multi-select dropdown.
-  for (let i = 0; i < amount; i++) {
-    if (settingSettings.searchable) {
-      const currentSetting = getSetting(`${key}-${i}`, null, tab);
+  /**
+   * Make the dropdown for one slot.
+   *
+   * @param {number} i The index of the dropdown.
+   *
+   * @return {HTMLElement} The dropdown.
+   */
+  const makeSlot = (i) => {
+    const currentSetting = getSetting(`${key}-${i}`, null, tab);
 
+    if (settingSettings.searchable) {
       const picker = makeItemPicker({
         options: settingSettings.options,
         value: currentSetting ?? defaultValue?.[i]?.value ?? 'none',
         onChange: (value) => saveSelectValue(picker, i, value),
       });
 
-      settingRowInputDropdown.append(picker);
-      settingRowInput.append(settingRowInputDropdown);
-      settingRowInputWrapper.append(settingRowInput);
-      continue;
+      return picker;
     }
 
     const settingRowInputDropdownSelect = document.createElement('select');
@@ -331,7 +342,6 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       settingRowInputDropdownSelect.classList.add('multiSelect');
     }
 
-    const currentSetting = getSetting(`${key}-${i}`, null, tab);
     let foundSelected = false;
 
     settingSettings.options.forEach((option) => {
@@ -354,8 +364,6 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       }
     });
 
-    settingRowInputDropdown.append(settingRowInputDropdownSelect);
-
     /**
      * Event listener for when the setting is changed.
      *
@@ -365,10 +373,34 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       saveSelectValue(settingRowInputDropdownSelect, i, event.target.value);
     };
 
-    settingRowInput.append(settingRowInputDropdown);
+    return settingRowInputDropdownSelect;
+  };
 
-    settingRowInputWrapper.append(settingRowInput);
+  // make a multi-select dropdown.
+  for (let i = 0; i < amount; i++) {
+    settingRowInputDropdown.append(makeSlot(i));
   }
+
+  if (isExpandable) {
+    const addButton = makeElement('button', 'mhui-multi-select-add', '+');
+    addButton.type = 'button';
+    addButton.title = 'Add another';
+
+    addButton.addEventListener('click', () => {
+      // New slots of a live setting apply without a refresh, like the rest.
+      if (isLiveSetting(`${key}-0`)) {
+        markSettingLive(`${key}-${amount}`);
+      }
+
+      addButton.before(makeSlot(amount));
+      amount++;
+    });
+
+    settingRowInputDropdown.append(addButton);
+  }
+
+  settingRowInput.append(settingRowInputDropdown);
+  settingRowInputWrapper.append(settingRowInput);
 
   return settingRowInputWrapper;
 };
@@ -570,7 +602,14 @@ const addSettingOnce = (options) => {
   // dropdown under a numbered key, so those are marked too.
   if (options.live) {
     markSettingLive(key);
-    for (let i = 0; i < (settingSettings?.number || 1); i++) {
+    const slots = settingSettings?.expandable
+      ? getMultiSelectCount(
+          key,
+          (defaultValue || []).map((option) => option.value),
+          tab
+        )
+      : settingSettings?.number || 1;
+    for (let i = 0; i < slots; i++) {
       markSettingLive(`${key}-${i}`);
     }
   }

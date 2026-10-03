@@ -2,7 +2,7 @@ import {
   addStyles,
   clamp,
   debug,
-  getSetting,
+  getMultiSelectSetting,
   getTradableItems,
   makeElement,
   makeMhButton,
@@ -15,19 +15,17 @@ import {
   showSuccessMessage,
 } from '@utils';
 
-import settings from './settings';
+import settings, { defaultItems } from './settings';
 import styles from './styles.css';
 
 const STATE = new Map(); // btn => { wrapper, aborter, outsideClick }
 const HOVER_DELAY = 400;
 
 const buildItems = async () => {
-  const opts = [
-    getSetting('quick-send-supplies.items-0', 'super_brie_cheese'),
-    getSetting('quick-send-supplies.items-1', 'rare_map_dust_stat_item'),
-    getSetting('quick-send-supplies.items-2', 'floating_trap_upgrade_stat_item'),
-    getSetting('quick-send-supplies.items-3', 'rift_torn_roots_crafting_item'),
-  ];
+  const opts = getMultiSelectSetting(
+    'quick-send-supplies.items',
+    defaultItems.map((item) => item.value)
+  );
 
   const tradables = await getTradableItems('all');
   return opts.map((type) => tradables.find((t) => t.type === type)).filter(Boolean);
@@ -352,7 +350,7 @@ export default {
   name: 'Quick Send Supplies',
   type: 'inventory-economy',
   default: true,
-  description: 'Hover or click on Send Supplies to quickly send any quantity of a configured item.',
+  description: 'Hover over or click Send Supplies to quickly send any amount of your chosen items.',
   load: init,
   settings,
 };

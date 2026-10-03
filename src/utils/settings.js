@@ -254,4 +254,43 @@ const saveSetting = (key, value) => {
   return value;
 };
 
-export { parseEncodedValue, getSettingDirect, saveSettingDirect, getSetting, saveSetting, migrateSetting, getSettings, deleteSetting };
+/**
+ * Get how many slots an expandable multi-select has: at least one per default, plus enough to
+ * reach the last saved slot that isn't 'none'.
+ *
+ * @param {string}   key          The setting key, without the slot suffix.
+ * @param {string[]} defaultValue The default value for each slot.
+ * @param {string}   identifier   The identifier for the settings.
+ *
+ * @return {number} The number of slots.
+ */
+const getMultiSelectCount = (key, defaultValue = [], identifier = 'mousehunt-improved-settings') => {
+  const settings = getSettingDirect(null, {}, identifier);
+  const groupAndKey = getGroupAndKey(key);
+  const saved = (groupAndKey.group ? settings[groupAndKey.group] : settings) || {};
+  const prefix = `${groupAndKey.key}-`;
+
+  let count = Math.max(1, defaultValue.length);
+  for (const [savedKey, value] of Object.entries(saved)) {
+    const slot = savedKey.startsWith(prefix) ? savedKey.slice(prefix.length) : '';
+    if (/^\d+$/.test(slot) && value && 'none' !== value) {
+      count = Math.max(count, Number(slot) + 1);
+    }
+  }
+
+  return count;
+};
+
+/**
+ * Get the value of every slot in an expandable multi-select setting.
+ *
+ * @param {string}   key          The setting key, without the slot suffix.
+ * @param {string[]} defaultValue The default value for each slot.
+ *
+ * @return {string[]} The value of each slot, with 'none' for empty slots.
+ */
+const getMultiSelectSetting = (key, defaultValue = []) => {
+  return Array.from({ length: getMultiSelectCount(key, defaultValue) }, (_, slot) => getSetting(`${key}-${slot}`, defaultValue[slot] ?? 'none'));
+};
+
+export { parseEncodedValue, getSettingDirect, saveSettingDirect, getSetting, saveSetting, migrateSetting, getSettings, deleteSetting, getMultiSelectCount, getMultiSelectSetting };

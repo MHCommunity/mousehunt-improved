@@ -1,6 +1,6 @@
-import { addStyles, getSetting, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
+import { addStyles, getMultiSelectSetting, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
 
-import settings from './settings';
+import settings, { defaultPinnedItems } from './settings';
 import styles from './styles.css';
 
 /**
@@ -174,13 +174,12 @@ const addSortButtons = () => {
  * Highlight the favorited items.
  */
 const highlightFavoritedItems = () => {
-  const itemsToPin = new Set([
-    getSetting('better-send-supplies.pinned-items-0', 'SUPER|brie+'),
-    getSetting('better-send-supplies.pinned-items-1', 'Empowered SUPER|b...'),
-    getSetting('better-send-supplies.pinned-items-2', 'Rift Cherries'),
-    getSetting('better-send-supplies.pinned-items-3', 'Rift-torn Roots'),
-    getSetting('better-send-supplies.pinned-items-4', 'Sap-filled Thorns'),
-  ]);
+  const itemsToPin = new Set(
+    getMultiSelectSetting(
+      'better-send-supplies.pinned-items',
+      defaultPinnedItems.map((item) => item.value)
+    )
+  );
 
   for (const item of items) {
     // if the details text content is in the array, then pin it

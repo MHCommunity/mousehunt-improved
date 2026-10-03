@@ -1,7 +1,6 @@
-import { getData, getSetting } from '@utils';
+import { getData, getMultiSelectSetting } from '@utils';
 
 const defaultItemType = 'kilohertz_processor_convertible';
-const pinCount = 5;
 
 // Message items, like Scrambles, can be pinned alongside convertibles.
 const classifications = ['convertible', 'message_item'];
@@ -41,7 +40,7 @@ const getSettings = async () => {
     value: defaultItemType,
   };
 
-  const pinnedTypes = Array.from({ length: pinCount }, (_, slot) => getSetting(`quick-items-menu.item-${slot}`, 0 === slot ? defaultItemType : 'none'));
+  const pinnedTypes = getMultiSelectSetting('quick-items-menu.item', [defaultItemType]);
   const [ownedItems, allItems] = await Promise.all([getOwnedConvertibles(), getData('items')]);
 
   const allConvertibles = (Array.isArray(allItems) ? allItems : [])
@@ -79,7 +78,7 @@ const getSettings = async () => {
       default: [defaultItem],
       settings: {
         type: 'multi-select',
-        number: pinCount,
+        expandable: true,
         searchable: true,
         options: convertibles,
       },
@@ -87,5 +86,5 @@ const getSettings = async () => {
   ];
 };
 
-export { defaultItemType, pinCount };
+export { defaultItemType };
 export default getSettings;

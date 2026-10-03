@@ -460,6 +460,29 @@
   width: 375px;
 }
 
+.mousehunt-improved-settings .mhui-multi-select-add {
+  align-self: center;
+  width: 26px;
+  height: 26px;
+  margin: 4px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--mhui-settings-text);
+  cursor: pointer;
+  background: var(--mhui-settings-select);
+  border: 1px dashed var(--mhui-settings-border);
+  border-radius: 3px;
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add:hover {
+  border-color: var(--mhui-settings-muted);
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add:focus-visible {
+  outline: 2px solid var(--mhui-settings-accent);
+  outline-offset: 1px;
+}
+
 /* Searchable item picker */
 .mhui-item-picker {
   position: relative;
