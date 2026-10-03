@@ -6,14 +6,8 @@
 export default async () => {
   return [
     {
-      id: 'journal-privacy.show-toggle-icon',
-      live: true,
-      title: 'Show toggle icon in top menu',
-      default: true,
-    },
-    {
       id: 'journal-privacy.transparent',
-      title: 'Hide text, rather than blur',
+      title: 'Hide text instead of blurring it',
       default: false,
     },
   ];

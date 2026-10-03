@@ -241,9 +241,8 @@ const init = async () => {
     initLedger();
   }
 
-  if (getSetting('location-huds.location-hud-toggle')) {
-    addToggleIcon();
-  }
+  // Hidden until it's shown with Custom Menu.
+  addToggleIcon();
 
   const delayedMain = () => {
     setTimeout(main, 1000);

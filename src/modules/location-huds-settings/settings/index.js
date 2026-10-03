@@ -6,24 +6,20 @@
 export default async () => {
   return [
     {
-      id: 'location-huds.location-hud-toggle',
-      title: 'Location HUDs: Show quick toggle in the top menu',
-    },
-    {
       id: 'location-huds.flip-avatar-images',
       title: 'Location HUDs: Flip avatar images in Bountiful Beanstalk and Valour Rift',
     },
     {
       id: 'location-huds.bountiful-beanstalk-quick-harp-toggle',
-      title: 'Location HUDs - Bountiful Beanstalk: Enable Auto-Harp toggle',
+      title: 'Location HUDs - Bountiful Beanstalk: Show Auto-Harp toggle',
     },
     {
       id: 'location-huds.bountiful-beanstalk-inventory-in-one-row',
-      title: 'Location HUDs - Bountiful Beanstalk: Inventory in one row',
+      title: 'Location HUDs - Bountiful Beanstalk: Show inventory in one row',
     },
     {
       id: 'location-huds.fi-draggable-airship',
-      title: 'Location HUDs - Floating Islands: Draggable Airship',
+      title: 'Location HUDs - Floating Islands: Allow dragging the airship',
     },
     {
       id: 'location-huds.school-of-sorcery-clean-chalkboard',

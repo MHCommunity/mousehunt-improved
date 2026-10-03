@@ -1,4 +1,4 @@
-import { addBodyClass, addIconToMenu, addStyles, getSetting, makeElement, onJournalEntriesProcessed, onModuleToggle, onSettingsChange, removeBodyClass } from '@utils';
+import { addBodyClass, addIconToMenu, addStyles, getSetting, isMenuItemHidden, makeElement, onEvent, onJournalEntriesProcessed, onModuleToggle, removeBodyClass } from '@utils';
 
 import settings from './settings';
 
@@ -7,6 +7,7 @@ import styles from './styles/styles.css';
 import stylesTransparent from './styles/transparent.css';
 
 const MODULE_ID = 'journal-privacy';
+const ICON_ID = 'mousehunt-improved-journal-privacy';
 
 /**
  * Apply a class to names in the journal.
@@ -92,11 +93,7 @@ const disablePrivacy = () => {
  * Add the toggle icon to the menu.
  */
 const addIcon = () => {
-  if (!getSetting('journal-privacy.show-toggle-icon', true)) {
-    return;
-  }
-
-  const existingIcon = document.querySelector('#mousehunt-improved-journal-privacy');
+  const existingIcon = document.querySelector(`#${ICON_ID}`);
   if (existingIcon) {
     existingIcon.style.display = '';
     existingIcon.style.visibility = '';
@@ -104,7 +101,7 @@ const addIcon = () => {
   }
 
   addIconToMenu({
-    id: 'mousehunt-improved-journal-privacy',
+    id: ICON_ID,
     classname: 'mousehunt-improved-journal-privacy-icon',
     title: 'Toggle Journal Privacy',
     position: 'prepend',
@@ -127,7 +124,7 @@ const addIcon = () => {
  * Remove the toggle icon from the menu.
  */
 const removeIcon = () => {
-  const icon = document.querySelector('#mousehunt-improved-journal-privacy');
+  const icon = document.querySelector(`#${ICON_ID}`);
   if (icon) {
     icon.style.display = 'none';
     icon.style.visibility = 'hidden';
@@ -136,27 +133,38 @@ const removeIcon = () => {
 
 let isPrivacyEnabled = true;
 
+// Whether the icon was hidden with Custom Menu the last time the state was synced.
+let isIconHidden = null;
+
 /**
  * Sync the privacy state with current settings.
  */
 const syncPrivacyState = () => {
   if (!getSetting(MODULE_ID, false)) {
     isPrivacyEnabled = false;
+    isIconHidden = null;
     removeIcon();
     disablePrivacy();
     return;
   }
 
-  if (getSetting('journal-privacy.show-toggle-icon', true)) {
-    addIcon();
-    isPrivacyEnabled = false;
-    disablePrivacy();
+  addIcon();
+
+  // Only reset the state when the icon is hidden or shown, not on every menu change.
+  const hidden = isMenuItemHidden(ICON_ID);
+  if (hidden === isIconHidden) {
     return;
   }
 
-  removeIcon();
-  isPrivacyEnabled = true;
-  enablePrivacy();
+  // Without the icon there's no way to turn privacy on, so keep it on. With the icon, start with it off.
+  isIconHidden = hidden;
+  isPrivacyEnabled = hidden;
+
+  if (hidden) {
+    enablePrivacy();
+  } else {
+    disablePrivacy();
+  }
 };
 
 /**
@@ -174,15 +182,13 @@ const init = async () => {
     enable: syncPrivacyState,
     disable: () => {
       isPrivacyEnabled = false;
+      isIconHidden = null;
       removeIcon();
       disablePrivacy();
     },
   });
 
-  onSettingsChange('journal-privacy.show-toggle-icon', {
-    enable: syncPrivacyState,
-    disable: syncPrivacyState,
-  });
+  onEvent('mh-improved-custom-menu-changed', syncPrivacyState);
 };
 
 /**
