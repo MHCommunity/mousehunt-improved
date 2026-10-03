@@ -1,5 +1,6 @@
 import { getFlag, getSetting, onSettingsChange, saveSetting } from '@utils';
 
+import infiniteSuperBrie from './modules/infinite-super-brie';
 import rankupForecaster from './modules/rank-up-forecaster';
 import showFabledProgressBarText from './modules/fake-fabled';
 import socialNoop from './modules/social';
@@ -20,6 +21,10 @@ const init = () => {
 
   if (getFlag('fake-fabled')) {
     showFabledProgressBarText();
+  }
+
+  if (getFlag('infinite-super-brie')) {
+    infiniteSuperBrie();
   }
 
   onSettingsChange('override-flags', () => {
