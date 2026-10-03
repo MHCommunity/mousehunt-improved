@@ -17,7 +17,6 @@ export default {
   name: 'Hide Trap Selector Tooltips',
   type: 'hide-simplify',
   default: false,
-  description: 'Hide the item description tooltips in the trap selector.',
   liveToggle: true,
   load: init,
 };

@@ -162,6 +162,6 @@ export default {
   name: 'Scoreboard Search on Profiles',
   type: 'social-profiles',
   default: true,
-  description: 'Easily search for a friend on the scoreboard from their profile.',
+  description: 'Search for a friend on the scoreboard right from their profile.',
   load: init,
 };

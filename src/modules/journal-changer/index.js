@@ -282,7 +282,7 @@ export default {
   name: 'Journal Theme Changer',
   type: 'journal-progress-stats',
   default: false,
-  description: 'Randomize your journal theme, randomize it daily, or change it based on your location.',
+  description: 'Pick a random journal theme, get a new one each day, or match it to your location.',
   load: init,
   settings,
 };

@@ -8,12 +8,12 @@ export default async () => {
     {
       id: 'lgs-reminder.new-style',
       live: true,
-      title: 'Use new layout style',
+      title: 'Use the new layout',
     },
     {
       id: 'lgs-reminder.days-and-lower',
       live: true,
-      title: 'Display time in days only',
+      title: 'Show time in days only',
     },
   ];
 };

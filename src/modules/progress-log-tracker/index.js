@@ -793,7 +793,7 @@ export default {
   name: 'Journal Progress Log Tracker',
   type: 'journal-progress-stats',
   default: false,
-  description: 'Tracks when your next journal log summary is due and gives you quick access to your past logs.',
+  description: 'Track when your next journal log summary is due and get quick access to your past logs.',
   liveToggle: true,
   load: init,
   settings,

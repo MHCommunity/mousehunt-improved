@@ -334,6 +334,6 @@ const init = async () => {
 export default {
   id: 'rank-up-forecaster',
   name: 'Rank-Up Forecaster',
-  description: 'Record wisdom history and forecast rank-ups.',
+  description: 'Track your wisdom over time and forecast when you’ll rank up.',
   load: init,
 };

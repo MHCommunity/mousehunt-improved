@@ -120,7 +120,7 @@ const init = () => {
  */
 export default {
   id: 'experiments',
-  name: 'Experiments / Beta Features',
+  name: 'Experiments',
   description: '',
   type: 'beta',
   order: -1,

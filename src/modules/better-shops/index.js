@@ -221,7 +221,7 @@ export default {
   name: 'Better Shops',
   type: 'inventory-economy',
   default: true,
-  description: 'Update the shop layout and appearance, minimize owned items with an inventory limit of 1, and more.',
+  description: 'Improve the shop layout, shrink items you already own that have a limit of one, and more.',
   load: init,
   settings,
 };

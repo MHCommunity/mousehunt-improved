@@ -397,6 +397,6 @@ export default {
   name: 'Hover Profiles',
   type: 'social-profiles',
   default: true,
-  description: 'Hover over a name to see a mini profile popup.',
+  description: 'Hover over a name to see a mini profile.',
   load: init,
 };

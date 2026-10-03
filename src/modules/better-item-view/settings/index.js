@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'better-item-view.show-item-hover',
-      title: 'Show item details on hover (in journal)',
+      title: 'Show item details when hovering in the journal',
       default: true,
     },
   ];

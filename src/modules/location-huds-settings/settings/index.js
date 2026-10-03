@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'location-huds.location-hud-toggle',
-      title: 'Location HUDs: Enable quick toggle (top menu bar)',
+      title: 'Location HUDs: Show quick toggle in the top menu',
     },
     {
       id: 'location-huds.flip-avatar-images',

@@ -729,7 +729,6 @@ export default {
   name: 'Better Inventory',
   type: 'inventory-economy',
   default: true,
-  description: 'Update the inventory layout and styling.',
   load: init,
   settings,
 };

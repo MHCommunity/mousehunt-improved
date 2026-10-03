@@ -17,12 +17,12 @@ export default async () => {
     },
     {
       id: 'better-travel.show-reminders',
-      title: 'Show Travel Reminders',
+      title: 'Show travel reminders',
       default: true,
     },
     {
       id: 'better-travel.travel-window',
-      title: 'Travel Window',
+      title: 'Add a Travel Window to the Travel menu',
       default: true,
     },
     {

@@ -27,10 +27,10 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Tournaments](docs/better-tournaments.md)**: Update the Tournaments UI to show information on hover and make various small interface tweaks.
 - **[Better Travel](docs/better-travel.md)**: Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.
 - **[Big Timer](docs/big-timer.md)**: Click the timer to toggle between sizes.
-- **[Catch Rate Estimator & Minlucks](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
+- **[Catch Rate & Minluck](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
 - **[Copy ID Button](docs/copy-id-button.md)**: Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" button.
 - **[Dark Mode](docs/dark-mode.md)**: Enable the dark mode.
-- **[Dark Mode Updates & Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
+- **[MHCT Dark Mode Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
 - **[Data Exporters](docs/data-exporters.md)**: Export data from the game.
 - **[Delayed Menus](docs/delayed-menus.md)**: Add a short delay to the menu dropdowns to prevent accidental clicks.
 - **[Delayed Tooltips](docs/delayed-tooltips.md)**: Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.
@@ -39,12 +39,12 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Fixes](docs/fixes.md)**: Fix various bugs and issues in the game.
 - **[FLRT Helper](docs/flrt-helper.md)**: Add a "Return to Maptain" button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.
 - **[Gifts in Inbox](docs/gifts-in-inbox.md)**: Collect recent gift links in an inbox tab and claim them quickly.
-- **[Highlight Special Effects in Trap Selector](docs/trap-selector-special-effects.md)**: Add an indicator to items in the trap selector that have special effects.
+- **[Trap Selector Special Effects](docs/trap-selector-special-effects.md)**: Add an indicator to items in the trap selector that have special effects.
 - **[Hover Profiles](docs/hover-profiles.md)**: Hover over a name to see a mini profile popup.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
 - **[Inline Wiki](docs/inline-wiki.md)**: Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.
-- **[Inventory - Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
-- **[Inventory - Open Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
+- **[Inventory Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
+- **[Inventory Open Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
 - **[Journal Progress Log Tracker](docs/journal-progress-log-tracker.md)**: Save progress logs, show your next-log countdown, and review past logs.
 - **[Journal Theme Changer](docs/journal-theme-changer.md)**: Randomize your journal theme, randomize it daily, or change it based on your location.
 - **[Keyboard Shortcuts](docs/keyboard-shortcuts.md)**: Press "?" to see and edit keyboard shortcuts.

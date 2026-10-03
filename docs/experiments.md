@@ -1,4 +1,4 @@
-# [Experiments / Beta Features](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta-experiments)
+# [Experiments](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta-experiments)
 
 Try out beta features and experimental options that may not be fully tested or fully supported. These features are still in development and may change or be removed in future updates.
 

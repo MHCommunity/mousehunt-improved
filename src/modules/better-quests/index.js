@@ -501,7 +501,7 @@ export default {
   name: 'Better Quests',
   type: 'locations-maps-travel',
   default: true,
-  description: 'Allow opening the assignments popup anywhere, improve the UI of the quests tab, and add a helper for the M400 assignments.',
+  description: 'Open the assignments popup from anywhere, improve the Quests tab, and add a helper for the M400 assignments.',
   load: init,
   settings,
 };

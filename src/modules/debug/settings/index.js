@@ -19,7 +19,7 @@ export default async () => {
     },
     {
       id: 'debug.dialog',
-      title: 'Log IDs of opening and closing dialogs/popups',
+      title: 'Log popup IDs when they open and close',
     },
     {
       id: 'debug.all',

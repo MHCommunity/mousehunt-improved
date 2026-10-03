@@ -37,7 +37,7 @@ const categories = [
   { id: 'inventory-economy', name: 'Inventory & Economy' },
   { id: 'journal-progress-stats', name: 'Journal & Progress' },
   { id: 'locations-maps-travel', name: 'Travel & Maps' },
-  { id: 'location-hud', name: 'Location Dashboards' },
+  { id: 'location-hud', name: 'Location HUDs' },
   { id: 'navigation-utilities', name: 'Navigation & Utilities' },
   { id: 'social-profiles', name: 'Friends & Profiles' },
   { id: 'beta', name: 'Experimental Features' },

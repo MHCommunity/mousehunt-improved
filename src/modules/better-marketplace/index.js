@@ -271,7 +271,7 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
       step: BUY_SELL_TOGGLE_STEP,
       anchor: actionButton,
       title: 'Quickly switch order type',
-      content: `Click ${actionButton.classList.contains('buy') ? 'Buying' : 'Selling'} to switch to ${targetLabel} without going back.`,
+      content: `Click ${actionButton.classList.contains('buy') ? 'Buying' : 'Selling'} to switch to ${targetLabel}.`,
     });
   } else if (actionButton) {
     delete actionButton.dataset.mhuiTargetAction;
@@ -686,7 +686,7 @@ export default {
   name: 'Better Marketplace',
   type: 'inventory-economy',
   default: true,
-  description: 'Update the styles, and add small features like toggling between "Buying" and "Selling" by clicking the text.',
+  description: 'Improve the Marketplace styling and add small conveniences, like clicking "Buying" or "Selling" to switch between them.',
   load: init,
   settings,
 };

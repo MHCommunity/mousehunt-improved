@@ -42,7 +42,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |`better-travel-no-reminder-festive-spirit`|Disables the reminder about Festive Spirit.|
 |`no-travel-menu-hiding`|Disables the travel dropdown menu hiding styles.|
 
-#### Catch Rate Estimator & Minlucks
+#### Catch Rate & Minluck
 
 |Flag|Description|
 |---|---|

@@ -185,10 +185,10 @@ const init = () => {
  */
 export default {
   id: 'inventory-buttons',
-  name: 'Inventory - Open Buttons',
+  name: 'Inventory Open Buttons',
   type: 'inventory-economy',
   default: true,
-  description: 'Adds "One", "All But One", and "All" buttons to convertible items in your inventory.',
+  description: 'Add "Open One", "Open All But One", and "Open All" buttons to convertibles in your inventory.',
   load: init,
   settings,
 };

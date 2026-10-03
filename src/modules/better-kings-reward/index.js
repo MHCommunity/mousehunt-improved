@@ -64,6 +64,6 @@ export default {
   name: "Better King's Reward",
   type: 'inventory-economy',
   default: true,
-  description: "Update the style of the King's Reward and automatically close the success message.",
+  description: "Restyle the King's Reward and automatically close the success message.",
   load: init,
 };

@@ -53,7 +53,7 @@ const addSortedTabNotice = () => {
     step: 'better-maps-sorted-tab',
     anchor: '.treasureMapRootView-subTab.sorted-map-tab',
     title: 'About the Sorted tab',
-    content: "This view groups the map's mice by stage or category, making it easier to see what to hunt next.",
+    content: "Groups the map's mice by stage or category.",
   });
 };
 
@@ -731,7 +731,7 @@ export default {
   name: 'Better Maps',
   type: 'locations-maps-travel',
   default: true,
-  description: 'Add features to maps such as updated styles, attraction rates, a sorted tab categorizing various maps, and displaying more information on the various tabs.',
+  description: 'Improve treasure maps with updated styles, attraction rates, a Sorted tab that groups the mice, and more information on each tab.',
   load: init,
   settings,
 };

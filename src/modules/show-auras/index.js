@@ -221,7 +221,7 @@ export default {
   name: 'Show Auras',
   type: 'hunting-setup',
   default: true,
-  description: 'Show auras and their expiry time below the trap stats.',
+  description: 'Show your active auras and when they expire below your trap stats.',
   load: init,
   settings,
 };

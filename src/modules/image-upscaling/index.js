@@ -368,6 +368,5 @@ export default {
   name: 'Image Upscaling & Transparency',
   type: 'appearance',
   default: true,
-  description: 'Update all images to use higher resolution versions with transparent backgrounds.',
   load: init,
 };

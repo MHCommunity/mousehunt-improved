@@ -827,6 +827,6 @@ export default {
   type: 'social-profiles',
   default: true,
   liveToggle: true,
-  description: 'Adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming.',
+  description: 'Add a "Gift Links" tab to your inbox with recently found MouseHunt gift links, ready to claim.',
   load: init,
 };

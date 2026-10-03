@@ -36,12 +36,12 @@ export default async () => {
     },
     {
       id: 'better-journal.item-colors',
-      title: "Unique item colors (Map clues, Ful'Mina's gifts, etc.)",
+      title: "Color special items (map clues, Ful'Mina's gifts, etc.)",
       default: true,
     },
     {
       id: 'better-journal.journal-history',
-      title: 'Journal History',
+      title: 'Journal history',
       default: true,
     },
     {
@@ -51,7 +51,7 @@ export default async () => {
     },
     {
       id: 'better-journal.highlight-rare-mice',
-      title: 'Highlight rare mice catches (currently only Black Widow)',
+      title: 'Highlight rare mouse catches (currently just Black Widow)',
       default: false,
     },
   ];

@@ -107,6 +107,7 @@ const init = async () => {
 export default {
   id: 'metric',
   name: 'Metric Units',
+  description: 'Show mouse weights in kilograms instead of pounds and ounces.',
   type: 'navigation-utilities',
   default: false,
   load: init,

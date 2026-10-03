@@ -38,7 +38,6 @@ export default {
   name: 'Better UI',
   type: 'appearance',
   default: true,
-  description: 'Update the interface with UI and style changes.',
   order: -1,
   load: init,
   settings,

@@ -305,7 +305,8 @@ const init = async () => {
  */
 export default {
   id: 'legacy-hud',
-  name: 'Legacy HUD & Legacy HUD Tweaks',
+  name: 'Legacy HUD',
+  description: 'Bring back the classic menu and stats bar, with optional tweaks.',
   type: 'hunting-setup',
   default: false,
   load: init,

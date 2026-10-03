@@ -63,7 +63,7 @@ export default {
   name: 'Better Journal',
   type: 'journal-progress-stats',
   default: true,
-  description: 'Modify the journal text, layout, and styling.',
+  description: "Improve the journal's text, layout, and styling.",
   load: init,
   settings,
 };

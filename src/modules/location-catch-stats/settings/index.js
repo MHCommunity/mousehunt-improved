@@ -11,7 +11,7 @@ export default async () => {
     },
     {
       id: 'location-catch-stats.crown-colored-rows',
-      title: 'Color rows based on crown',
+      title: 'Color rows by crown',
     },
     {
       id: 'location-catch-stats.show-misses',

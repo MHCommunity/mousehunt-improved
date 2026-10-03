@@ -534,7 +534,7 @@ export default {
   name: 'Better Items',
   type: 'inventory-economy',
   default: true,
-  description: 'Update the styles, show drop rates and links.',
+  description: 'Improve item popups with cleaner styling, drop rates, and links.',
   load: init,
   settings,
 };

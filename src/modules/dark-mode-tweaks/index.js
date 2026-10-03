@@ -54,10 +54,10 @@ const init = () => {
  */
 export default {
   id: 'dark-mode',
-  name: 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)',
+  name: 'MHCT Dark Mode Tweaks',
   type: 'appearance',
   default: false,
   hiddenUnlessEnabled: true,
-  description: 'Updates and tweaks to the MHCT/Dark Mode Extension dark mode.',
+  description: 'Only for the MHCT dark mode. This doesn’t add a dark mode on its own.',
   load: init,
 };

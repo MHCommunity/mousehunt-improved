@@ -792,7 +792,7 @@ const makeSortable = (container) => {
       step: 'favorite-setups-reorder',
       anchor: firstDraggable,
       title: 'Reorder your setups',
-      content: 'Drag a setup up or down to change its order. The new order is saved automatically.',
+      content: 'Drag a setup up or down to change its order.',
       dismissOnAnchorClick: false,
     });
   }

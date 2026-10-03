@@ -22,7 +22,7 @@ export default async () => {
     },
     {
       id: 'better-marketplace.show-chart-images',
-      title: 'Show small price history chart overlays while on categories',
+      title: 'Show small price history charts when browsing categories',
       default: false,
     },
     {

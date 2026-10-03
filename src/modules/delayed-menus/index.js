@@ -14,7 +14,7 @@ export default {
   name: 'Delayed Menus',
   type: 'navigation-utilities',
   default: true,
-  description: 'Add a short delay to the menu dropdowns to prevent accidental clicks.',
+  description: 'Add a short delay before menu dropdowns open.',
   liveToggle: true,
   load: init,
 };

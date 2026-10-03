@@ -1,4 +1,4 @@
-# [Inventory - Lock and Hide](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-inventory-lock-and-hide)
+# [Inventory Lock and Hide](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-inventory-lock-and-hide)
 
 Take control of your inventory by locking items to prevent accidental use, or hiding items you don't want to see.
 

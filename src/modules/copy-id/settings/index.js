@@ -8,7 +8,7 @@ export default async () => {
     {
       id: 'copy-id-button.hide-button',
       title: 'Hide button',
-      description: 'Click your profile picture to copy ID.',
+      description: 'Click your profile picture to copy your ID instead.',
       default: false,
     },
   ];

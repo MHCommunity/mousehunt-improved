@@ -555,6 +555,6 @@ export default {
   name: 'Location Dashboard',
   type: 'locations-maps-travel',
   default: true,
-  description: 'View location HUD information in a dashboard available in the top dropdown menu.',
+  description: 'See your location HUD info in a dashboard, available from the top menu.',
   load: init,
 };

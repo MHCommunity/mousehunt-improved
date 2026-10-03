@@ -22,7 +22,7 @@ export default async () => {
     },
     {
       id: 'inventory-buttons.only-open-extras',
-      title: 'Lock opening items unless you have more than one',
+      title: 'Only allow "Open All But One" (gray out the regular Open buttons)',
       default: false,
     },
   ];

@@ -15,6 +15,7 @@ const init = () => {
 export default {
   id: 'hide-codices',
   name: 'Hide Codices',
+  description: 'Hide the active codex in the trap selector.',
   type: 'hide-simplify',
   default: false,
   liveToggle: true,

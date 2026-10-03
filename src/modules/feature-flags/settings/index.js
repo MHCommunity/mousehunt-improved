@@ -10,7 +10,7 @@ export default async () => {
       title: 'Feature Flags',
       default: '',
       description:
-        'Enable <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/feature-flags.md" target="_blank" rel="noreferrer">feature flags</a>.<br>Separate flags with commas.',
+        'Turn on <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/feature-flags.md" target="_blank" rel="noreferrer">feature flags</a>, separated by commas.',
       settings: {
         type: 'input',
       },

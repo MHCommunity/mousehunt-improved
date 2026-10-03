@@ -17,7 +17,7 @@ export default {
   name: 'Adblock',
   type: 'hide-simplify',
   default: false,
-  description: 'Hide advertisements for Feedback Friday, mobile apps, etc.',
+  description: 'Hide ads for Feedback Friday, the mobile apps, and more.',
   liveToggle: true,
   load: init,
 };

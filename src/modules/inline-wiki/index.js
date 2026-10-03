@@ -102,7 +102,7 @@ export default {
   name: 'Inline Wiki',
   type: 'navigation-utilities',
   default: true,
-  description: 'Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.',
+  description: 'Open the wiki right on the page when you click "Wiki" in the menu, instead of in a new tab.',
   liveToggle: true,
   load: init,
 };

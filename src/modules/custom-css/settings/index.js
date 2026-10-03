@@ -10,7 +10,7 @@ export default async () => {
       live: true,
       title: 'Custom Styles',
       default: '',
-      description: 'Apply <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank" rel="noreferrer">Custom CSS</a>.',
+      description: 'Add your own <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank" rel="noreferrer">custom CSS</a> to the game.',
       settings: {
         type: 'textarea',
       },

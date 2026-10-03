@@ -34,6 +34,6 @@ export default {
   name: 'Big Timer',
   type: 'hunting-setup',
   default: true,
-  description: 'Click the timer to toggle between sizes.',
+  description: 'Click the horn timer to switch between a normal and large size.',
   load: init,
 };

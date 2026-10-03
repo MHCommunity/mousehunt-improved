@@ -7,8 +7,7 @@ export default async () => {
   return [
     {
       id: 'native-dark-mode.enable-mice-page-image-changes',
-      title: 'Mice Page Image enhancements',
-      description: 'Modify the image display on the mice page',
+      title: 'Mice page image enhancements',
       default: true,
     },
   ];

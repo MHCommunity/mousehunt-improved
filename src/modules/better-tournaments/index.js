@@ -475,7 +475,7 @@ export default {
   name: 'Better Tournaments',
   type: 'locations-maps-travel',
   default: true,
-  description: 'Update the Tournaments UI to show information on hover and make various small interface tweaks.',
+  description: 'Show tournament details on hover, plus a handful of small interface tweaks.',
   load: init,
   settings,
 };

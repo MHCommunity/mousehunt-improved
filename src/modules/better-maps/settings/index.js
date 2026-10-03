@@ -27,7 +27,7 @@ export default async () => {
     {
       id: 'better-maps.catch-dates',
       title: 'Show map join & catch dates',
-      description: 'Shows the approximate date you started/joined a map and when each mouse was caught.',
+      description: 'Dates are approximate.',
       default: false,
     },
     {

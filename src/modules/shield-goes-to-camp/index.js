@@ -26,6 +26,6 @@ export default {
   name: 'Shield Goes to Camp',
   type: 'navigation-utilities',
   default: true,
-  description: 'Click the shield to go to the Camp page if you’re not already there, otherwise, it will take you to your Hunter Profile.',
+  description: 'Click the shield to go to Camp, or to your Hunter Profile if you’re already there.',
   load: init,
 };

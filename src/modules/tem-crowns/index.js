@@ -121,6 +121,6 @@ export default {
   name: 'TEM Crowns',
   type: 'hunting-setup',
   default: true,
-  description: 'Add crowns and catches to the Trap Effectiveness Meter.',
+  description: 'Show crowns and catch counts in the Trap Effectiveness Meter.',
   load: init,
 };

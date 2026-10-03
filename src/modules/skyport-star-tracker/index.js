@@ -582,6 +582,7 @@ const init = async () => {
 export default {
   id: 'skyport-star-tracker',
   name: 'Skyport Star Tracker',
+  description: 'Track which Cerulean Skyport mice you still need to catch. Open it from the Mice menu.',
   type: 'journal-progress-stats',
   default: false,
   load: init,

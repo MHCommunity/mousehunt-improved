@@ -185,6 +185,6 @@ const init = async () => {
 export default {
   id: 'timers',
   name: 'Timers',
-  description: "Adds a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.",
+  description: "Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.",
   load: init,
 };
