@@ -1,0 +1,172 @@
+.mhui-menu-editor {
+  --mhui-menu-tab: url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png);
+  --mhui-menu-muted: #555;
+  --mhui-menu-border: #ccc;
+  --mhui-menu-hidden-bg: #f5f5f5;
+  --mhui-menu-hidden-border: #bbb;
+  --mhui-menu-fade: #fff;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
+  user-select: none;
+}
+
+/* The editor has the header class so the copied items are styled like the real ones. */
+#overlayPopup .mhui-menu-editor.mousehuntHeaderView {
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.mhui-menu-editor-help {
+  margin: 0;
+  color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor-label {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.mhui-menu-editor-zone {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 27px;
+  transition: box-shadow 0.15s;
+}
+
+.mhui-menu-editor-bar {
+  position: relative;
+  max-width: 380px;
+  background: var(--mhui-menu-tab) 0 0 repeat-x;
+  border: 1px solid var(--mhui-menu-border);
+  border-bottom: none;
+}
+
+/* Only the outer corners are rounded, like the two ends of the real menu. */
+.mhui-menu-editor-bar[data-zone="left"] {
+  border-radius: 10px 0 0;
+}
+
+.mhui-menu-editor-bar[data-zone="right"] {
+  justify-content: flex-end;
+  margin-left: auto;
+  border-radius: 0 10px 0 0;
+}
+
+.mhui-menu-editor-hidden {
+  gap: 4px;
+  min-height: 40px;
+  padding: 6px;
+  background: var(--mhui-menu-hidden-bg);
+  border: 1px dashed var(--mhui-menu-hidden-border);
+  border-radius: 4px;
+}
+
+.mhui-menu-editor-hidden:empty::before {
+  align-self: center;
+  width: 100%;
+  color: var(--mhui-menu-muted);
+  text-align: center;
+  content: "Drag items here to hide them.";
+}
+
+.mhui-menu-editor.is-dragging .mhui-menu-editor-zone.can-drop {
+  box-shadow: 0 0 0 2px #4a90d9;
+}
+
+.mhui-menu-editor.is-dragging .mhui-menu-editor-zone.cant-drop {
+  opacity: 0.45;
+}
+
+/* Fade out the inner end of each bar, where it would carry on into the rest of the menu. */
+.mhui-menu-editor-bar::before {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent 75%, var(--mhui-menu-fade) 100%);
+}
+
+.mhui-menu-editor-bar[data-zone="right"]::before {
+  background: linear-gradient(270deg, transparent 75%, var(--mhui-menu-fade) 100%);
+}
+
+/* The items are copies of the real ones, so the header styles do most of the work. */
+.mhui-menu-editor-item {
+  white-space: nowrap;
+  touch-action: none;
+  cursor: grab;
+}
+
+.mhui-menu-editor-bar[data-zone="left"] .mhui-menu-editor-item:first-child {
+  border-left: none;
+  border-top-left-radius: 9px;
+}
+
+.mhui-menu-editor-bar[data-zone="right"] .mhui-menu-editor-item:last-child {
+  border-top-right-radius: 9px;
+}
+
+.mhui-menu-editor .mhui-menu-editor-hidden .mhui-menu-editor-item {
+  border: 1px solid var(--mhui-menu-border);
+  border-radius: 4px;
+}
+
+.mhui-menu-editor-item:focus-visible {
+  outline: 2px solid #4a90d9;
+  outline-offset: -2px;
+}
+
+.mhui-menu-editor-item.locked {
+  cursor: default;
+}
+
+.mhui-menu-editor-item.dragging {
+  opacity: 0.3;
+}
+
+.mhui-menu-editor-ghost {
+  position: fixed;
+  z-index: 100000;
+  white-space: nowrap;
+  pointer-events: none;
+  cursor: grabbing;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+
+#overlayPopup.mh-improved-custom-menu-popup .jsDialogContainer .suffix {
+  display: none;
+}
+
+.mhui-menu-editor-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.mhui-menu-editor-buttons .mhui-menu-editor-reset {
+  margin-right: auto;
+}
+
+/* Dark mode */
+.mh-dark #overlayPopup.mh-improved-custom-menu-popup .content {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-improved-custom-menu-popup .title {
+  color: var(--d-text);
+}
+
+.mh-dark .mhui-menu-editor {
+  --mhui-menu-tab: url(https://i.mouse.rip/dark/menuItem.png);
+  --mhui-menu-muted: color-mix(in srgb, var(--d-text) 70%, transparent);
+  --mhui-menu-border: var(--d-border);
+  --mhui-menu-hidden-bg: rgb(255 255 255 / 4%);
+  --mhui-menu-hidden-border: var(--d-border);
+  --mhui-menu-fade: var(--d-bg);
+}
