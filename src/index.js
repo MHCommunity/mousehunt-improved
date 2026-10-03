@@ -32,15 +32,15 @@ const modules = imported;
 const categories = [
   { id: 'required', name: 'Always Loaded' },
   { id: 'appearance', name: 'Appearance' },
-  { id: 'hunting-setup', name: 'Hunting & Setup' },
-  { id: 'inventory-economy', name: 'Inventory & Economy' },
-  { id: 'location-hud', name: 'Location HUDs' },
-  { id: 'locations-maps-travel', name: 'Locations, Maps, Travel' },
-  { id: 'journal-progress-stats', name: 'Journal, Progress, Stats' },
-  { id: 'social-profiles', name: 'Social & Profiles' },
-  { id: 'navigation-utilities', name: 'Navigation & Utilities' },
   { id: 'hide-simplify', name: 'Hide & Simplify' },
-  { id: 'beta', name: 'Beta & Experiments' },
+  { id: 'hunting-setup', name: 'Hunting & Trap Setup' },
+  { id: 'inventory-economy', name: 'Inventory & Economy' },
+  { id: 'journal-progress-stats', name: 'Journal & Progress' },
+  { id: 'locations-maps-travel', name: 'Travel & Maps' },
+  { id: 'location-hud', name: 'Location Dashboards' },
+  { id: 'navigation-utilities', name: 'Navigation & Utilities' },
+  { id: 'social-profiles', name: 'Friends & Profiles' },
+  { id: 'beta', name: 'Experimental Features' },
   { id: 'advanced', name: 'Advanced' },
 ];
 

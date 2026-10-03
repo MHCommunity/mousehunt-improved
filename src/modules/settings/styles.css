@@ -124,6 +124,11 @@
   transition: background-color 0.15s;
 }
 
+.mhui-settings-nav-item[data-section-id="mousehunt-improved-settings-beta"] {
+  margin-top: 8px;
+  border-top: 1px solid var(--mhui-settings-border);
+}
+
 .mhui-settings-nav-item:hover,
 .mhui-settings-nav-item:focus-visible {
   background: var(--mhui-settings-card-hover);
@@ -713,6 +718,10 @@ a.update-data-link.updating {
   height: 1px;
   background-color: #b3b3b3;
   border: none;
+}
+
+.mh-dark .mousehunt-improved-settings-export-details hr {
+  background-color: var(--d-border);
 }
 
 .mousehunt-improved-settings-export-details code {

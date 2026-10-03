@@ -534,6 +534,6 @@ export default {
   name: 'Keyboard Shortcuts',
   type: 'navigation-utilities',
   default: true,
-  description: 'Press “?” to see and edit keyboard shortcuts. You can also <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit them here</a>.',
+  description: 'Press “?” or <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit shortcuts</a>.',
   load: init,
 };
