@@ -6,7 +6,7 @@ import { getTradableItems } from '@utils';
  * @return {Array} The settings for the module.
  */
 export default async () => {
-  const tradableItems = await getTradableItems('truncated_name');
+  const tradableItems = await getTradableItems('truncated_name', { removeHidden: true });
 
   tradableItems.unshift({ name: 'None', value: 'none' }, { seperator: true });
 
@@ -40,6 +40,7 @@ export default async () => {
       settings: {
         type: 'multi-select',
         number: 5,
+        searchable: true,
         options: tradableItems,
       },
     },
