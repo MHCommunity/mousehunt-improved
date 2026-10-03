@@ -1,3 +1,5 @@
+import { removeSearchTerms } from '@utils';
+
 import abbreviations from './item-abbreviations.json';
 
 /**
@@ -13,7 +15,6 @@ const excluded = /airship|theme scrap|journal theme|blueprint/i;
  */
 const tagStart = '#mhui-search:';
 const tagEnd = '#';
-const tagRegex = /#mhui-search:[^#]*#/g;
 
 /**
  * The shortest acronym worth generating.
@@ -106,17 +107,6 @@ const addSearchTermsToName = (type, name) => {
   const terms = getSearchTermString(type, name);
 
   return terms ? `${name}${tagStart}${terms}${tagEnd}` : name;
-};
-
-/**
- * Remove the search terms added by addSearchTermsToName().
- *
- * @param {string} text The text to strip the terms from.
- *
- * @return {string} The text without the search terms.
- */
-const removeSearchTerms = (text) => {
-  return 'string' === typeof text ? text.replaceAll(tagRegex, '') : text;
 };
 
 export { addSearchTermsToName, getSearchTerms, getSearchTermString, removeSearchTerms };
