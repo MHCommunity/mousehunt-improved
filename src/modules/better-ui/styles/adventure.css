@@ -157,11 +157,11 @@
   margin-bottom: 10px;
 }
 
-.adventureBookBanner-complete .adventureBookBanner-adventureName {
+.adventureBookBanner:has(.adventureBookBanner-completed) .adventureBookBanner-adventureName {
   display: none;
 }
 
-.adventureBookBanner-complete .adventureBookBanner-completedCheckmark {
+.adventureBookBanner:has(.adventureBookBanner-completed) .adventureBookBanner-completedCheckmark {
   top: 10px;
   width: 30px;
   height: 30px;
@@ -169,16 +169,16 @@
   box-shadow: none;
 }
 
-.adventureBookBanner-complete .adventureBookBanner-completed {
+.adventureBookBanner:has(.adventureBookBanner-completed) .adventureBookBanner-completed {
   font-size: 11px;
 }
 
-.adventureBookBanner-complete .adventureBookBanner-completed b {
+.adventureBookBanner:has(.adventureBookBanner-completed) .adventureBookBanner-completed b {
   margin-bottom: 5px;
   font-size: 13px;
 }
 
-.adventureBookBanner-complete .adventureBookBanner-moreInfo {
+.adventureBookBanner:has(.adventureBookBanner-completed) .adventureBookBanner-moreInfo {
   top: unset;
 }
 
@@ -288,6 +288,10 @@ a.adventureBookPopup-title.active {
   top: 14px;
   filter: brightness(0.4);
   opacity: 0.6;
+}
+
+.mh-dark .adventureBookPopup-adventure-header-accordion {
+  filter: none;
 }
 
 .adventureBookPopup-adventureContainer.available .adventureBookPopup-adventure-favorite {

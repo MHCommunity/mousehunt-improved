@@ -78,7 +78,7 @@
   box-shadow: -1px 1px 3px var(--d-bg) inset;
 }
 
-.mh-dark .adventureBookBanner-complete .adventureBookBanner-completed,
+.mh-dark .adventureBookBanner-completed,
 .mh-dark .adventureBookBanner-adventureName {
   color: var(--d-text);
 }

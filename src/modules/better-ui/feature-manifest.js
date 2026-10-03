@@ -1,6 +1,5 @@
 import { addStyles, isLegacyHUD } from '@utils';
 
-import adventurebook from './modules/adventure-book';
 import codexAtBottom from './modules/codex-at-bottom';
 import eggMaster from './modules/egg-master';
 import friends from './modules/friends';
@@ -21,7 +20,6 @@ import squareProfilePicsStyles from './modules/square-profile-pics/styles.css';
 import trapGradientBackgroundStyles from './modules/trap-gradient-background/styles.css';
 
 const featureManifest = [
-  { id: 'adventure-book', load: adventurebook },
   { id: 'friends', load: friends },
   { id: 'kings-promo', load: kingsPromo },
   { id: 'maintenance', load: maintenance },
