@@ -50,7 +50,7 @@
 
 .mh-dark .mousehuntHeaderView-gameTabs,
 .mh-dark .mousehuntHeaderView .menuItem {
-  background: url(https://i.mouse.rip/dark/menuItem.png) 0 0 repeat-x;
+  background: url(https://i.mouse.rip/dark-menuItem.png) 0 0 repeat-x;
 }
 
 .mh-dark .mousehuntHeaderView-gameTabs {
@@ -78,12 +78,12 @@
 }
 
 .mh-dark .mousehuntHeaderView .menuItem:hover {
-  background-position: 0 -40px;
+  background-position: 0 -13px;
 }
 
 .mh-dark .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
-  background-image: url(https://i.mouse.rip/dark/menuItem.png);
-  background-position-y: -40px;
+  background-image: url(https://i.mouse.rip/dark-menuItem.png);
+  background-position-y: -13px;
 }
 
 .mh-dark .mousehuntHeaderView a.superBrie .getMore {
