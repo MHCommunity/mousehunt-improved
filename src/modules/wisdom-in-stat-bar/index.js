@@ -1,4 +1,4 @@
-import { addStyles, dataGet, dataSet, formatNumber, getSetting, getUserItems, isLegacyHUD, isModuleEnabled, makeElement, onModuleToggle, onTurn } from '@utils';
+import { addStyles, dataGet, dataSet, getSetting, getUserItems, isLegacyHUD, isModuleEnabled, makeElement, onModuleToggle, onTurn } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -62,7 +62,9 @@ const getWisdom = async (force = false) => {
  */
 const getWisdomFormatted = async (force = false) => {
   const wisdom = await getWisdom(force);
-  return formatNumber(wisdom);
+
+  // Always use commas: the game's walkValue only strips commas, so locale separators (1.234.567, 1 234 567) break it.
+  return Number(wisdom || 0).toLocaleString('en-US');
 };
 
 /**
