@@ -160,16 +160,41 @@ const removeBodyClassByPrefix = (prefix) => {
 };
 
 /**
+ * Remove items the marketplace hides (retired baskets, kits, etc.) from a list of items.
+ *
+ * @param {Array} items The items, each with an `id` and `name`.
+ *
+ * @return {Array} The items that aren't hidden.
+ */
+const removeMarketplaceHiddenItems = async (items) => {
+  const hiddenItems = await getData('marketplace-hidden-items');
+  if (!Array.isArray(hiddenItems) || !hiddenItems.length) {
+    return items;
+  }
+
+  const hiddenIds = new Set(hiddenItems.map((item) => Number(item.id)));
+  const hiddenNames = new Set(hiddenItems.map((item) => item.name));
+
+  return items.filter((item) => !hiddenIds.has(Number(item.id)) && !hiddenNames.has(item.name));
+};
+
+/**
  * Get the tradable items.
  *
- * @param {string} valueKey Which key to use for the value. 'all' will return the entire object.
+ * @param {string}  valueKey             Which key to use for the value. 'all' will return the entire object.
+ * @param {Object}  options              Options.
+ * @param {boolean} options.removeHidden Whether to remove items the marketplace hides.
  *
  * @return {Array} Array of tradable items.
  */
-const getTradableItems = async (valueKey = 'all') => {
-  const tradableItems = await getData('items-tradable');
+const getTradableItems = async (valueKey = 'all', { removeHidden = false } = {}) => {
+  let tradableItems = await getData('items-tradable');
   if (!tradableItems) {
     return [];
+  }
+
+  if (removeHidden) {
+    tradableItems = await removeMarketplaceHiddenItems(tradableItems);
   }
 
   tradableItems.sort((a, b) => a.name.localeCompare(b.name));
@@ -181,6 +206,7 @@ const getTradableItems = async (valueKey = 'all') => {
   return tradableItems.map((item) => ({
     name: item.name,
     value: item[valueKey],
+    image: item.image,
   }));
 };
 
@@ -600,6 +626,7 @@ const unpluralize = (text) => {
 export {
   doRequest,
   getTradableItems,
+  removeMarketplaceHiddenItems,
   isApp,
   isiFrame,
   isUnsupportedFile,
