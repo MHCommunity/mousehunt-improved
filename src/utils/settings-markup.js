@@ -5,6 +5,7 @@ import { getCurrentPage } from './page-current';
 import { getCurrentTab } from './page';
 import { getFlag } from './flags';
 import { isLiveSetting, markSettingLive } from './live-toggle';
+import { makeItemPicker } from './settings-item-picker';
 import { onNavigation } from './events';
 import { setMultipleTimeout } from './utils';
 import { showSuccessMessage } from './messages';
@@ -276,8 +277,53 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
     };
   };
 
+  const timeouts = {};
+
+  /**
+   * Save the value for one of the dropdowns and flash the saved state.
+   *
+   * @param {HTMLElement} input The control that changed.
+   * @param {number}      i     The index of the dropdown.
+   * @param {string}      value The new value.
+   */
+  const saveSelectValue = (input, i, value) => {
+    const parent = input.parentNode.parentNode.parentNode;
+    parent.classList.add('inputDropdownWrapper');
+    parent.classList.add('busy');
+
+    saveSettingDirect(`${key}-${i}`, value, tab);
+
+    doEvent('mh-improved-settings-changed', {
+      key: `${key}-${i}`,
+      value,
+      tab,
+      type: 'multi-select',
+    });
+
+    parent.classList.remove('busy');
+    parent.classList.add('completed');
+
+    clearTimeout(timeouts[i]);
+    timeouts[i] = setTimeout(() => parent.classList.remove('completed'), 1000);
+  };
+
   // make a multi-select dropdown.
   for (let i = 0; i < amount; i++) {
+    if (settingSettings.searchable) {
+      const currentSetting = getSetting(`${key}-${i}`, null, tab);
+
+      const picker = makeItemPicker({
+        options: settingSettings.options,
+        value: currentSetting ?? defaultValue?.[i]?.value ?? 'none',
+        onChange: (value) => saveSelectValue(picker, i, value),
+      });
+
+      settingRowInputDropdown.append(picker);
+      settingRowInput.append(settingRowInputDropdown);
+      settingRowInputWrapper.append(settingRowInput);
+      continue;
+    }
+
     const settingRowInputDropdownSelect = document.createElement('select');
     settingRowInputDropdownSelect.classList.add('inputBox');
 
@@ -310,33 +356,13 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
 
     settingRowInputDropdown.append(settingRowInputDropdownSelect);
 
-    let timeout = null;
-
     /**
-     * Event listener for when the setting is clicked.
+     * Event listener for when the setting is changed.
      *
      * @param {Event} event The event.
      */
     settingRowInputDropdownSelect.onchange = (event) => {
-      const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
-      parent.classList.add('inputDropdownWrapper');
-      parent.classList.add('busy');
-
-      // save the setting.
-      saveSettingDirect(`${key}-${i}`, event.target.value, tab);
-
-      doEvent('mh-improved-settings-changed', {
-        key: `${key}-${i}`,
-        value: event.target.value,
-        tab,
-        type: 'multi-select',
-      });
-
-      parent.classList.remove('busy');
-      parent.classList.add('completed');
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => parent.classList.remove('completed'), 1000);
+      saveSelectValue(settingRowInputDropdownSelect, i, event.target.value);
     };
 
     settingRowInput.append(settingRowInputDropdown);

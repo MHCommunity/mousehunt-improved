@@ -462,6 +462,137 @@
   width: 375px;
 }
 
+/* Searchable item picker */
+.mhui-item-picker {
+  position: relative;
+}
+
+.mousehunt-improved-settings .mhui-item-picker-trigger {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: auto;
+  min-height: 26px;
+  padding: 2px 6px 2px 3px;
+  font-family: inherit;
+  color: var(--mhui-settings-text);
+  text-align: left;
+  cursor: pointer;
+  background: var(--mhui-settings-input);
+  border: 1px solid var(--mhui-settings-border);
+  border-radius: 3px;
+}
+
+.mhui-item-picker-trigger:hover,
+.mhui-item-picker.open .mhui-item-picker-trigger {
+  border-color: var(--mhui-settings-muted);
+}
+
+.mhui-item-picker-trigger:focus-visible {
+  outline: 2px solid var(--mhui-settings-accent);
+  outline-offset: 1px;
+}
+
+.mhui-item-picker-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.mhui-item-picker-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mhui-item-picker-caret {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px 3px 0;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
+  opacity: 0.7;
+  transform: rotate(45deg);
+}
+
+.mhui-item-picker-popover {
+  position: absolute;
+  top: calc(100% + 3px);
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  max-width: 90vw;
+  padding: 6px;
+  background: var(--mhui-settings-card);
+  border: 1px solid var(--mhui-settings-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 25%);
+}
+
+.mhui-item-picker-popover[hidden] {
+  display: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingAction input.mhui-item-picker-search {
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 8px;
+  margin: 0 0 6px;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.mhui-item-picker-list {
+  max-height: 260px;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+.mhui-item-picker-option {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 3px 6px;
+  font-size: 12px;
+  color: var(--mhui-settings-text);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.mhui-item-picker-option[hidden] {
+  display: none;
+}
+
+.mhui-item-picker-option .mhui-item-picker-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.mhui-item-picker-option.selected {
+  font-weight: 700;
+}
+
+.mhui-item-picker-option:hover,
+.mhui-item-picker-option.active {
+  background: var(--mhui-settings-match);
+}
+
+.mhui-item-picker-empty {
+  padding: 10px 6px;
+  font-size: 12px;
+  color: var(--mhui-settings-muted);
+  text-align: center;
+}
+
 /* Multi toggle row */
 .mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
   font-size: 10px;
