@@ -181,13 +181,14 @@ a.journal-detailLink.full::after {
   margin-bottom: 0;
 }
 
-.journal .content .entry .journaltext .decoration {
-  margin-right: 65px;
+/* Indent the whole block so wrapped lines don't slide under the icon. */
+.journal .content .entry .journaltext:has(> .decoration) {
+  padding-left: 38px;
 }
 
 .journal .content .entry .journaltext .decoration::after {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   display: block;
   width: 28px;
@@ -195,6 +196,7 @@ a.journal-detailLink.full::after {
   content: "";
   background: url(https://www.mousehuntgame.com/images/items/trinkets/large/430b05beed99ba1995f5ab78e394f5d6.png) no-repeat;
   background-size: contain;
+  transform: translateY(-50%);
 }
 
 /* move the share button */
