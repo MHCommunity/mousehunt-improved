@@ -8,6 +8,9 @@ const styles = imported;
  */
 const init = () => {
   addStyles(styles, 'global-styles');
+
+  // The support menu item is no longer the last item in the dropdown.
+  document.querySelector('.mousehuntHeaderView-dropdownContainer .menuItem.support.last')?.classList.remove('last');
 };
 
 /**
