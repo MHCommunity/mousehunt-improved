@@ -125,11 +125,6 @@
   transition: background-color 0.15s;
 }
 
-.mhui-settings-nav-item[data-section-id="mousehunt-improved-settings-beta"] {
-  margin-top: 8px;
-  border-top: 1px solid var(--mhui-settings-border);
-}
-
 .mhui-settings-nav-item:hover,
 .mhui-settings-nav-item:focus-visible {
   background: var(--mhui-settings-card-hover);
@@ -663,7 +658,7 @@
 /* Compact tiles for the per-location toggles */
 #mousehunt-improved-settings-location-hud-wrapper [id*="location-huds-enabled"] .PagePreferences__setting {
   min-height: 23px;
-  padding: 1px 5px;
+  padding: 3px 10px;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper [id*="location-huds-enabled"] .PagePreferences__settingName {
