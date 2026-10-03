@@ -39,4 +39,11 @@
   --d-red-light: #e07070;
   --d-red-dark: #a02c2c;
   --d-red-darker: #732639;
+
+  /* Text fields. Popups sit on --d-bg, so inputs.css swaps the field background there. */
+  --d-input-bg: var(--d-bg);
+  --d-input-text: var(--d-text);
+  --d-input-border: var(--d-border);
+  --d-input-border-hover: var(--d-yellow-dark);
+  --d-input-placeholder: var(--d-text-muted);
 }

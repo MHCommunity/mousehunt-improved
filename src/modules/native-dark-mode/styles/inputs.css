@@ -1,0 +1,22 @@
+/* Text fields: one look for every text, number, and search input across the site. */
+.mh-dark input:is([type="text"], [type="number"], [type="search"], [type="password"], [type="email"], [type="url"], [type="tel"], :not([type])),
+.mh-dark textarea {
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
+}
+
+.mh-dark input::placeholder,
+.mh-dark textarea::placeholder {
+  color: var(--d-input-placeholder);
+}
+
+.mh-dark input:is([type="text"], [type="number"], [type="search"], [type="password"], [type="email"], [type="url"], [type="tel"], :not([type])):is(:hover, :focus),
+.mh-dark textarea:is(:hover, :focus) {
+  border-color: var(--d-input-border-hover);
+}
+
+/* Popups use --d-bg for their background, so fields inside them go darker to stay visible. */
+.mh-dark #overlayPopup .jsDialogContainer {
+  --d-input-bg: var(--d);
+}

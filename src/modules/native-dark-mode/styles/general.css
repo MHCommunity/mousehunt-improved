@@ -22,27 +22,13 @@ body.mh-dark {
 }
 
 .mh-dark .mousehuntPage-content select,
-.mh-dark .journal .entry .journaltext input.quickSendInput,
-.mh-dark .mousehuntPage-content input.quickSendInput,
-.mh-dark .quickSendInput,
-.mh-dark input.treasureMapView-block-search-text,
-.mh-dark .mh-improved-favorite-setups-component-picker-popup-search input,
-.mh-dark .mousehuntPage-content textarea,
-.mh-dark .mousehuntPage-content input,
-.mh-dark #mousehunt-improved-settings-override-flags input,
-.mh-dark .treasureMapView-shareLinkInput,
-.mh-dark .userSelectorView-filter-input,
-.mh-dark .mhui-marketplace-filter,
-.mh-dark #mousehunt-improved-settings-override-styles textarea {
+.mh-dark .mousehuntPage-content input:is([type="submit"], [type="button"], [type="reset"]) {
   color: var(--d-text);
   background-color: var(--d-action);
   border-color: var(--d-border);
 }
 
-/* change the placeholder color */
-.mh-dark .mousehuntPage-content input::placeholder,
-.mh-dark .mousehuntPage-content select::placeholder,
-.mh-dark .mousehuntPage-content textarea::placeholder {
+.mh-dark .mousehuntPage-content select::placeholder {
   color: var(--d-text-muted);
 }
 
@@ -213,12 +199,8 @@ body.mh-dark {
   background-color: var(--d);
 }
 
-.mh-dark .mousehuntPage-content input[type="text"]:hover,
-.mh-dark .mousehuntPage-content input[type="password"]:hover,
-.mh-dark .mousehuntPage-content input[type="input"]:hover,
-.mh-dark .mousehuntPage-content select:hover,
-.mh-dark .mousehuntPage-content textarea:hover {
-  border-color: var(--d-yellow-dark);
+.mh-dark .mousehuntPage-content select:hover {
+  border-color: var(--d-input-border-hover);
 }
 
 .mh-dark .mousehuntPage-content .hunterInfoView-wrapper textarea:hover {

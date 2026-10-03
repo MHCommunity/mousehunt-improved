@@ -14,6 +14,7 @@
   --mhui-settings-accent: #ffc62b;
   --mhui-settings-match: #fff6d5;
   --mhui-settings-input: #fff;
+  --mhui-settings-select: #fff;
   --mhui-settings-stripe: rgb(0 0 0 / 4%);
 
   padding: 0;
@@ -478,7 +479,7 @@
   color: var(--mhui-settings-text);
   text-align: left;
   cursor: pointer;
-  background: var(--mhui-settings-input);
+  background: var(--mhui-settings-select);
   border: 1px solid var(--mhui-settings-border);
   border-radius: 3px;
 }
@@ -958,7 +959,8 @@ a.update-data-link.updating {
   --mhui-settings-text: var(--d-text, #c8ced8);
   --mhui-settings-muted: var(--d-text-muted, #a7adb9);
   --mhui-settings-match: var(--d-yellow-dark, #4e4a3c);
-  --mhui-settings-input: var(--d-action, #5e646f);
+  --mhui-settings-input: var(--d-input-bg, #434651);
+  --mhui-settings-select: var(--d-action, #5e646f);
   --mhui-settings-stripe: rgb(0 0 0 / 20%);
 }
 

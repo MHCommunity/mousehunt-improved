@@ -87,9 +87,9 @@
 
 .mh-dark input.mh-improved-travel-window-search-input[type="text"] {
   padding: 10px;
-  color: var(--d-text);
-  background-color: var(--d-action);
-  border-color: var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
 }
 
 .mh-dark .travelPage-map-environment-detail-wiki-link a {

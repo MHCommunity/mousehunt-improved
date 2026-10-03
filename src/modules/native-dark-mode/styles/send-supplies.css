@@ -22,7 +22,17 @@
 }
 
 .mh-dark #supplytransfer .listContainer a.element.item.pinned {
-  color: var(--d-text-dark);
+  color: var(--d-text);
+  background-color: var(--d-cyan-dark);
+}
+
+.mh-dark #supplytransfer .listContainer a.element.item.pinned:hover {
+  color: var(--d-white);
+  background-color: var(--d-cyan);
+}
+
+.mh-dark #supplytransfer .listContainer a.element.item.pinned .itemImage .quantity {
+  background-color: rgb(255 255 255 / 60%);
 }
 
 .mh-dark #supplytransfer .categoryMenu a:hover {
@@ -31,7 +41,6 @@
 
 .mh-dark #supplytransfer .listContainer a.element:hover,
 .mh-dark #supplytransfer .listContainer a.element.recipient:hover,
-.mh-dark #supplytransfer .listContainer a.element.item.pinned:hover,
 .mh-dark #supplytransfer .tabs .tab .image:hover,
 .mh-dark #supplytransfer .tabs .tab .image.empty:hover {
   color: var(--d-text-dark);

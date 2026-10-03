@@ -266,26 +266,29 @@
 }
 
 .mh-dark .marketplaceView-item-inputWrapper input,
-.mh-dark .marketplaceView-item-input input,
+.mh-dark .marketplaceView-item-input input {
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
+}
+
 .mh-dark .mhui-marketplace-quick-sell-wrapper {
   color: var(--d-text);
   background-color: var(--d-action);
   border-color: var(--d-border);
 }
 
-/* Sits on the quick sell wrapper, so it needs to be darker than the wrapper to read as an input. */
 .mh-dark input.mhui-marketplace-quick-sell-quantity {
-  color: var(--d-text);
-  background-color: var(--d);
-  border: 1px solid var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border: 1px solid var(--d-input-border);
   border-radius: 3px;
   outline: none;
 }
 
 .mh-dark input.mhui-marketplace-quick-sell-quantity:focus,
 .mh-dark input.mhui-marketplace-quick-sell-quantity:hover {
-  background-color: var(--d-bg-alt);
-  border-color: var(--d-action);
+  border-color: var(--d-input-border-hover);
 }
 
 .mh-dark .mhui-marketplace-quick-sell-info {

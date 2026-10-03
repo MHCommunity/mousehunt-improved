@@ -61,6 +61,6 @@
 }
 
 .mh-dark .select2-search input {
-  color: var(--d-text);
-  background: var(--d-action);
+  color: var(--d-input-text);
+  background: var(--d-input-bg);
 }

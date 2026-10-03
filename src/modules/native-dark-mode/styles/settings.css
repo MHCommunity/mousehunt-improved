@@ -71,9 +71,9 @@
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup-content textarea {
-  color: var(--d-text);
-  background-color: var(--d);
-  border-color: var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup .jsDialogContainer {

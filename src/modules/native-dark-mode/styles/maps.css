@@ -49,9 +49,9 @@
 }
 
 .mh-dark textarea.messageBoardView-message-textarea {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
 }
 
 .mh-dark .treasureMapView-environment.complete .treasureMapView-environment-title {
@@ -422,9 +422,9 @@
 }
 
 .mh-dark input.mh-ui-quick-invite-input {
-  color: var(--d-text);
-  background-color: var(--d);
-  border-color: var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
 }
 
 .mh-dark .treasureMapListingsTableView-filterMessage {

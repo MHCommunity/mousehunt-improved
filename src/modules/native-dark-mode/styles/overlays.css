@@ -155,9 +155,9 @@
 }
 
 .mh-dark .inventoryPage-confirmPopup-suffix-quantityContainer input {
-  color: var(--d-text);
-  background-color: var(--d);
-  border-color: var(--d-border);
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
   border-width: 1px;
 }
 
@@ -253,4 +253,13 @@
 
 .mh-dark .convertibleOpenView-aura {
   color: var(--d-text-dark);
+}
+
+/* Scrambles' egghead tips, restyled as a banner by Better UI. */
+.mh-dark #overlayPopup.spring_chick_message_item {
+  background: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.spring_chick_message_item .jsDialogContainer .content {
+  color: var(--d-text);
 }
