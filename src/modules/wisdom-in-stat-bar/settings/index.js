@@ -7,6 +7,7 @@ export default async () => {
   return [
     {
       id: 'wisdom-in-stat-bar.auto-refresh',
+      live: true,
       title: 'Update automatically',
       default: true,
     },

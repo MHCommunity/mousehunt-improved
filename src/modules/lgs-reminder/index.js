@@ -1,4 +1,4 @@
-import { addStyles, getSetting, humanizeTime, makeElement, onActivation, onDeactivation, onSettingsChange } from '@utils';
+import { addStyles, getSetting, humanizeTime, makeElement, onModuleToggle, onSettingsChange } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -127,6 +127,14 @@ const main = () => {
 };
 
 /**
+ * Remove the reminder from the HUD.
+ */
+const removeReminder = () => {
+  document.querySelectorAll('.mousehunt-improved-lgs-reminder, .mousehunt-improved-lgs-reminder-wrapper').forEach((el) => el.remove());
+  currentReminder = null;
+};
+
+/**
  * Set the offset for the shield time.
  */
 const setOffset = () => {
@@ -162,22 +170,19 @@ const init = async () => {
   });
 
   onSettingsChange('lgs-reminder.new-style', () => {
-    const selectors = ['.mousehunt-improved-lgs-reminder', '.mousehunt-improved-lgs-reminder-new', '.mousehunt-improved-lgs-reminder-wrapper'];
-
-    selectors.forEach((selector) => {
-      const el = document.querySelector(selector);
-      if (el) {
-        el.remove();
-      }
-    });
-
+    removeReminder();
     main();
   });
 
-  onActivation('lgs-reminder', main);
+  onSettingsChange('lgs-reminder.days-and-lower', () => {
+    if (currentReminder?.isConnected) {
+      updateLgsReminder(currentReminder);
+    }
+  });
 
-  onDeactivation('lgs-reminder', () => {
-    document.querySelectorAll('.mousehunt-improved-lgs-reminder, .mousehunt-improved-lgs-reminder-wrapper').forEach((el) => el.remove());
+  onModuleToggle('lgs-reminder', {
+    enable: main,
+    disable: removeReminder,
   });
 };
 
@@ -190,6 +195,7 @@ export default {
   type: 'hunting-setup',
   description: 'Show your LGS duration in the HUD and warn you when it’s about to expire.',
   default: false,
+  liveToggle: true,
   load: init,
   settings,
 };

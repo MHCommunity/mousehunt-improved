@@ -1,4 +1,4 @@
-import { addStyles, dataGet, dataSet, formatNumber, getSetting, getUserItems, isLegacyHUD, makeElement, onDeactivation, onTurn } from '@utils';
+import { addStyles, dataGet, dataSet, formatNumber, getSetting, getUserItems, isLegacyHUD, isModuleEnabled, makeElement, onModuleToggle, onTurn } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -71,6 +71,11 @@ const getWisdomFormatted = async (force = false) => {
  * @param {string} wisdom The wisdom to add.
  */
 const addWisdomToStatBar = (wisdom) => {
+  // A fetch that was already running when the module was turned off shouldn't put the row back.
+  if (!isModuleEnabled('wisdom-in-stat-bar')) {
+    return;
+  }
+
   const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .hud_wisdom');
 
   if (existingWisdom) {
@@ -113,22 +118,22 @@ let legacyHudMenu = false;
 const init = async () => {
   addStyles(styles, 'wisdom-in-stat-bar');
 
-  if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
-    onTurn(() => updateWisdom(true));
-  }
+  onTurn(() => {
+    if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
+      updateWisdom(true);
+    }
+  });
 
   const legacyMenu = getSetting('legacy-hud.menu', false);
   const legacyHud = getSetting('legacy-hud.stats', false);
   legacyHudMenu = (getSetting('legacy-hud', false) && (legacyHud || legacyMenu === legacyHud)) || isLegacyHUD();
 
-  await updateWisdom();
-
-  onDeactivation('wisdom-in-stat-bar', () => {
-    const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
-    if (wisdomRow) {
-      wisdomRow.remove();
-    }
+  onModuleToggle('wisdom-in-stat-bar', {
+    enable: updateWisdom,
+    disable: () => document.querySelector('.mousehuntHud-userStat-row.wisdom')?.remove(),
   });
+
+  await updateWisdom();
 };
 
 /**
@@ -139,6 +144,7 @@ export default {
   name: 'Wisdom in Stat Bar',
   type: 'hunting-setup',
   default: false,
+  liveToggle: true,
   load: init,
   settings,
 };

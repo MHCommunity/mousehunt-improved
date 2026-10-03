@@ -1,15 +1,4 @@
-import {
-  addBodyClass,
-  addIconToMenu,
-  addStyles,
-  getSetting,
-  makeElement,
-  onActivation,
-  onDeactivation,
-  onJournalEntriesProcessed,
-  onSettingsChange,
-  removeBodyClass,
-} from '@utils';
+import { addBodyClass, addIconToMenu, addStyles, getSetting, makeElement, onJournalEntriesProcessed, onModuleToggle, onSettingsChange, removeBodyClass } from '@utils';
 
 import settings from './settings';
 
@@ -181,12 +170,13 @@ const init = async () => {
   // Catch entries added after load, like new pages and entries from sounding the horn.
   onJournalEntriesProcessed(applyClassToNames);
 
-  onActivation(MODULE_ID, syncPrivacyState);
-
-  onDeactivation(MODULE_ID, () => {
-    isPrivacyEnabled = false;
-    removeIcon();
-    disablePrivacy();
+  onModuleToggle(MODULE_ID, {
+    enable: syncPrivacyState,
+    disable: () => {
+      isPrivacyEnabled = false;
+      removeIcon();
+      disablePrivacy();
+    },
   });
 
   onSettingsChange('journal-privacy.show-toggle-icon', {
@@ -204,6 +194,7 @@ export default {
   type: 'hide-simplify',
   default: false,
   description: 'Hide player names in the journal.',
+  liveToggle: true,
   load: init,
   settings,
 };

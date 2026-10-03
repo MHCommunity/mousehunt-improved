@@ -7,6 +7,7 @@ export default async () => {
   return [
     {
       id: 'journal-privacy.show-toggle-icon',
+      live: true,
       title: 'Show toggle icon in top menu',
       default: true,
     },

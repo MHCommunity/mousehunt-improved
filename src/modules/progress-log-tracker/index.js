@@ -6,12 +6,14 @@ import {
   formatNumber,
   getCurrentPage,
   getSetting,
+  isModuleEnabled,
   lsGet,
   makeElement,
-  onDeactivation,
   onJournalEntriesProcessed,
+  onModuleToggle,
   onNavigation,
   onRequest,
+  onSettingsChange,
   parseNumber,
   saveSetting,
 } from '@utils';
@@ -476,6 +478,11 @@ const openLogSummary = (onclick) => {
  * Add (or refresh) the tracker button in the journal header.
  */
 const showButton = () => {
+  // Registered after load's awaits, so the lifecycle can't pause it while the module is off.
+  if (!isModuleEnabled(MODULE_ID)) {
+    return;
+  }
+
   const page = getCurrentPage();
   if ('camp' !== page && 'journal' !== page) {
     return;
@@ -757,7 +764,20 @@ const init = async () => {
   // Capture those immediately, then consume the settled DOM through the
   // journal pipeline rather than guessing with request and turn delays.
   onRequest('*', captureExactTimestamps, true);
-  const stopProcessingJournal = onJournalEntriesProcessed(processJournalBatch);
+  onJournalEntriesProcessed(processJournalBatch);
+  onSettingsChange(`${MODULE_ID}.show-countdown`, showButton);
+
+  onModuleToggle(MODULE_ID, {
+    enable: processJournalBatch,
+    disable: () => {
+      if (buttonInterval) {
+        clearInterval(buttonInterval);
+        buttonInterval = null;
+      }
+
+      document.querySelector('.mh-jlt-button')?.remove();
+    },
+  });
 
   await refreshLogsCache();
   await migrateFromUserscript();
@@ -766,17 +786,6 @@ const init = async () => {
   // Empty journals do not produce a processed-entry batch, but still need the
   // tracker button when their page shell is shown.
   onNavigation(showButton);
-
-  onDeactivation(MODULE_ID, () => {
-    stopProcessingJournal();
-
-    if (buttonInterval) {
-      clearInterval(buttonInterval);
-      buttonInterval = null;
-    }
-
-    document.querySelector('.mh-jlt-button')?.remove();
-  });
 };
 
 export default {
@@ -785,6 +794,7 @@ export default {
   type: 'journal-progress-stats',
   default: false,
   description: 'Tracks when your next journal log summary is due and gives you quick access to your past logs.',
+  liveToggle: true,
   load: init,
   settings,
 };
