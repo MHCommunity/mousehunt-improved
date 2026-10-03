@@ -1,6 +1,17 @@
 import { getCurrentPage } from './page-current';
 
 /**
+ * Remove the Enhanced Search markers from an item's display name or rendered markup.
+ *
+ * @param {string} text The text to strip the terms from.
+ *
+ * @return {string} The text without the search terms.
+ */
+const removeSearchTerms = (text) => {
+  return 'string' === typeof text ? text.replaceAll(/#mhui-search:[^#]*#/g, '') : text;
+};
+
+/**
  * Check if an item is in the inventory.
  *
  * @async
@@ -16,7 +27,9 @@ const getUserItems = async (items, forceUpdate = false) => {
       hg.utils.UserInventory.getItems(
         items,
         (resp) => {
-          resolve(resp);
+          // Enhanced Search tags names in the game's shared inventory. Return clean copies so
+          // display consumers don't leak the markers or remove the trap selector's search terms.
+          resolve(resp.map((item) => ({ ...item, name: removeSearchTerms(item.name) })));
         },
         (err) => {
           console.error('Error getting user items:', items, err); // eslint-disable-line no-console
@@ -365,4 +378,4 @@ const getUserData = async (fields = [], userId = 'me') => {
   return data.json();
 };
 
-export { getUserItems, getAnonymousUserHash, getUserSetupDetails, isUserTitleAtLeast, getUserTitle, getUserTitleShield, getUserData };
+export { getUserItems, getAnonymousUserHash, getUserSetupDetails, isUserTitleAtLeast, getUserTitle, getUserTitleShield, getUserData, removeSearchTerms };

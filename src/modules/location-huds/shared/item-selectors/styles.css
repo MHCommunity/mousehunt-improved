@@ -1,0 +1,19 @@
+.mh-ui-item-selector-wrapper .mh-ui-cheese-selector {
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.mh-ui-item-selector-wrapper .townOfGnawniaHUD-bait {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+}
+
+.mh-ui-item-selector-wrapper .townOfGnawniaHUD-bait[data-item-classification="weapon"] {
+  justify-content: center;
+}
+
+.mh-ui-item-selector-wrapper .townOfGnawniaHUD-bait.disabled {
+  cursor: default;
+  opacity: 0.5;
+}

@@ -379,6 +379,44 @@ const addIconToMenu = (opts) => {
 };
 
 /**
+ * Add a dropdown tab to the header menu.
+ *
+ * Custom tabs sit together after the native tabs, sorted by their order, and
+ * before the MH Improved icon so the result doesn't depend on load order.
+ *
+ * @param {HTMLElement} tab           The tab element to add.
+ * @param {Object}      opts          The options for the tab.
+ * @param {number}      [opts.order]  The sort order for the tab, lower is further left.
+ *
+ * @return {boolean} Whether the tab was added.
+ */
+const addHeaderMenuTab = (tab, opts = {}) => {
+  const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
+  if (!tabsContainer) {
+    return false;
+  }
+
+  const order = opts.order ?? 100;
+  tab.dataset.mhOrder = order;
+
+  const customTabs = [...tabsContainer.querySelectorAll(':scope > [data-mh-order]')].filter((el) => el !== tab);
+  let anchor = customTabs.find((el) => Number(el.dataset.mhOrder) > order);
+
+  if (!anchor) {
+    anchor = tabsContainer.querySelector(':scope > #mousehunt-improved-icon-menu');
+  }
+
+  if (!anchor) {
+    const nativeTabs = [...tabsContainer.querySelectorAll(':scope > .menuItem:not([data-mh-order])')];
+    anchor = nativeTabs.at(-1)?.nextSibling ?? null;
+  }
+
+  tabsContainer.insertBefore(tab, anchor);
+
+  return true;
+};
+
+/**
  * Remove an icon from the menu.
  *
  * @param {string} id The id of the icon to remove.
@@ -452,6 +490,7 @@ export {
   addSubmenuItem,
   addSubmenuDivider,
   removeSubmenuItem,
+  addHeaderMenuTab,
   addIconToMenu,
   removeIconFromMenu,
   replaceIconInMenu,
