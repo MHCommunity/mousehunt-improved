@@ -1,8 +1,6 @@
-import { addStyles, doRequest, onEvent, onRequest, setMultipleTimeout } from '@utils';
+import { addStyles, doRequest, onEvent, onRequest, overrideWhileEnabled, setMultipleTimeout } from '@utils';
 
 import styles from './styles.css';
-
-let _togglePopup;
 
 /**
  * Replace the inbox open function.
@@ -12,22 +10,19 @@ const replaceInboxOpen = () => {
     return;
   }
 
-  if (!_togglePopup) {
-    _togglePopup = messenger.UI.notification.togglePopup;
-  }
-
   /**
    * Show the notification popup.
    *
-   * @param {...*} args Arguments passed to the existing inbox toggle.
+   * @param {Function} original The existing inbox toggle.
+   * @param {...*}     args     Arguments passed to the existing inbox toggle.
    *
    * @return {*} The existing inbox toggle's return value.
    */
-  messenger.UI.notification.togglePopup = function (...args) {
+  overrideWhileEnabled('hide-daily-draw', messenger.UI.notification, 'togglePopup', function (original, ...args) {
     // Preserve wrappers installed by other inbox modules, such as Gift Links.
     // Hide Daily Draw should only change the selected tab, not replace the
     // rest of the inbox-opening lifecycle.
-    const result = _togglePopup.apply(this, args);
+    const result = original.apply(this, args);
 
     messenger.UI.notification.showPopup();
 
@@ -44,7 +39,7 @@ const replaceInboxOpen = () => {
     );
 
     return result;
-  };
+  });
 };
 
 let isSelfRequest = false;
@@ -151,5 +146,6 @@ export default {
   type: 'hide-simplify',
   default: false,
   description: 'Hide the Daily Draw inbox tab and notifications.',
+  liveToggle: true,
   load: init,
 };

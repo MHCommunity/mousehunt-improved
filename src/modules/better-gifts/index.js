@@ -1,7 +1,20 @@
-import { addStyles, getSetting, makeElement, makeMhButton, onDeactivation, onDialogShow, onRender, onRequest, replaceInTemplate } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  isModuleEnabled,
+  makeElement,
+  makeMhButton,
+  onDialogShow,
+  onModuleToggle,
+  onRequest,
+  overrideWhileEnabled,
+  replaceInTemplateWhileEnabled,
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
+
+const MODULE_ID = 'better-gifts';
 
 /**
  * Get the ignored gifts.
@@ -156,12 +169,11 @@ const makeReturnButton = (buttonContainer, isTiny = false) => {
  * Fix typos in the gift selector.
  */
 const fixTypo = () => {
-  onRender({
-    group: 'GiftSelectorView',
-    callback: (data, results) => {
-      return results.replaceAll('You can send 1 free gifts', 'You can send 1 free gift').replaceAll('<b>1</b> free gifts', '<b>1</b> free gift');
-    },
-  });
+  // The counts in the footers are filled in after rendering, but these are fixed text in the template.
+  replaceInTemplateWhileEnabled(MODULE_ID, 'ViewGiftSelector', [
+    ['You can send <b>1</b> free gifts to each friend', 'You can send <b>1</b> free gift to each friend'],
+    ['You can send 1 free gifts to each friend', 'You can send 1 free gift to each friend'],
+  ]);
 };
 
 const addCloseButtonToConfirmPopup = (resp, req) => {
@@ -186,7 +198,7 @@ const addCloseButtonToConfirmPopup = (resp, req) => {
  * Add a line break to the gift footer.
  */
 const lineBreakGiftFooter = () => {
-  replaceInTemplate('GiftSelectorView', [
+  replaceInTemplateWhileEnabled(MODULE_ID, 'GiftSelectorView', [
     ['more free gifts today. You can', 'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'],
     [
       'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
@@ -357,17 +369,16 @@ const addSendButton = (className, text, selector, buttonContainer) => {
  * Add the random send button to the gift selector.
  */
 const addRandomSendButton = () => {
-  const _selectGift = hg.views.GiftSelectorView.selectGift;
-
   /**
    * Select a gift.
    *
-   * @param {Object} gift The gift to select.
+   * @param {Function} original The game's selectGift.
+   * @param {Object}   gift     The gift to select.
    *
    * @return {boolean} Returns true if the gift is successfully selected, false otherwise.
    */
-  hg.views.GiftSelectorView.selectGift = (gift) => {
-    _selectGift(gift);
+  overrideWhileEnabled(MODULE_ID, hg.views.GiftSelectorView, 'selectGift', (original, gift) => {
+    original.call(hg.views.GiftSelectorView, gift);
 
     const title = document.querySelector('.giftSelectorView-tabContent.active .selectFriends .giftSelectorView-content-title');
     if (!title) {
@@ -383,104 +394,98 @@ const addRandomSendButton = () => {
     );
 
     return true;
-  };
+  });
 };
 
-let _showTab;
-let _selectGift;
-let _updateGiftMultiplierQuantity;
+let currentTabType = null;
 
 /**
  * Add the gift switcher to the gift selector.
  */
 const addGiftSwitcher = () => {
-  if (_showTab || _selectGift || _updateGiftMultiplierQuantity) {
-    return;
-  }
-
-  _showTab = hg.views.GiftSelectorView.showTab;
-  _selectGift = hg.views.GiftSelectorView.selectGift;
-  _updateGiftMultiplierQuantity = hg.views.GiftSelectorView.updateGiftMultiplierQuantity;
+  const view = hg.views.GiftSelectorView;
 
   /**
-   * Show a tab in the gift selector.
+   * Track which tab is showing, so the gift switcher knows which gifts to clone.
    *
-   * @param {string}  tabType           The type of tab to show.
-   * @param {string}  viewState         The view state to show.
-   * @param {boolean} preserveVariables Whether to preserve the variables.
-   * @param {boolean} preserveActions   Whether to preserve the actions.
+   * @param {Function} original The game's showTab.
+   * @param {string}   tabType  The type of tab to show.
+   * @param {...*}     args     The rest of the showTab arguments.
+   *
+   * @return {*} The game's return value.
    */
-  hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
-    _showTab.call(hg.views.GiftSelectorView, tabType, viewState, preserveVariables, preserveActions);
+  overrideWhileEnabled(MODULE_ID, view, 'showTab', (original, tabType, ...args) => {
+    currentTabType = tabType;
+    return original.call(view, tabType, ...args);
+  });
 
-    /**
-     * Update the gift multiplier quantity.
-     *
-     * @param {HTMLElement} input The input element.
-     *
-     * @return {boolean} Returns true if the quantity was updated, false otherwise.
-     */
-    hg.views.GiftSelectorView.updateGiftMultiplierQuantity = (input) => {
-      // Remove the maxlength attribute so that we can send more than 99 gifts.
-      if (input && input.hasAttribute('maxlength')) {
-        input.removeAttribute('maxlength');
-      }
+  /**
+   * Remove the maxlength attribute so that we can send more than 99 gifts.
+   *
+   * @param {Function}    original The game's updateGiftMultiplierQuantity.
+   * @param {HTMLElement} input    The input element.
+   *
+   * @return {boolean} Returns true if the quantity was updated, false otherwise.
+   */
+  overrideWhileEnabled(MODULE_ID, view, 'updateGiftMultiplierQuantity', (original, input) => {
+    if (input && input.hasAttribute('maxlength')) {
+      input.removeAttribute('maxlength');
+    }
 
-      return _updateGiftMultiplierQuantity.call(hg.views.GiftSelectorView, input);
-    };
+    return original.call(view, input);
+  });
 
-    /**
-     * Clone the nodes and wait until the selectGift function is called and
-     * then we append the cloned nodes to the gift container.
-     *
-     * @param {Object} gift The gift to select.
-     *
-     * @return {boolean} Returns true if the gift was selected, false otherwise.
-     */
-    hg.views.GiftSelectorView.selectGift = (gift) => {
-      _selectGift.call(hg.views.GiftSelectorView, gift);
+  /**
+   * Clone the gifts into the friend picker once a gift is selected, so it can be switched there.
+   *
+   * @param {Function} original The game's selectGift.
+   * @param {Object}   gift     The gift to select.
+   *
+   * @return {boolean} Returns true if the gift was selected, false otherwise.
+   */
+  overrideWhileEnabled(MODULE_ID, view, 'selectGift', (original, gift) => {
+    original.call(view, gift);
 
-      const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
-      if (!giftContainer) {
-        return false;
-      }
+    const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
+    if (!giftContainer) {
+      return false;
+    }
 
-      const existing = document.querySelector('.mh-gift-buttons-clone-wrapper');
-      if (existing) {
-        existing.remove();
-      }
+    const existing = document.querySelector('.mh-gift-buttons-clone-wrapper');
+    if (existing) {
+      existing.remove();
+    }
 
-      const giftType = tabType === 'send_free_gifts' ? 'gift' : 'paidgift';
+    const giftType = currentTabType === 'send_free_gifts' ? 'gift' : 'paidgift';
 
-      const gifts = document.querySelectorAll(`.active .selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable.${giftType}`);
-      if (!gifts.length) {
-        return false;
-      }
+    const gifts = document.querySelectorAll(`.active .selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable.${giftType}`);
+    if (!gifts.length) {
+      return false;
+    }
 
-      const cloneWrapper = makeElement('div', 'mh-gift-buttons-clone-wrapper');
+    const cloneWrapper = makeElement('div', 'mh-gift-buttons-clone-wrapper');
 
-      gifts.forEach((toClone) => {
-        const clone = toClone.cloneNode(true);
-        const giftWrap = makeElement('div', 'giftSelectorView-content-leftBar-highlightBlock');
-        giftWrap.append(clone);
+    gifts.forEach((toClone) => {
+      const clone = toClone.cloneNode(true);
+      const giftWrap = makeElement('div', 'giftSelectorView-content-leftBar-highlightBlock');
+      giftWrap.append(clone);
 
-        giftWrap.addEventListener('click', () => {
-          const prevSelected = document.querySelectorAll('.mh-gift-buttons-clone-selected');
-          prevSelected.forEach((el) => {
-            el.classList.remove('mh-gift-buttons-clone-selected');
-          });
-
-          giftWrap.classList.add('mh-gift-buttons-clone-selected');
+      giftWrap.addEventListener('click', () => {
+        const prevSelected = document.querySelectorAll('.mh-gift-buttons-clone-selected');
+        prevSelected.forEach((el) => {
+          el.classList.remove('mh-gift-buttons-clone-selected');
         });
 
-        cloneWrapper.append(giftWrap);
+        giftWrap.classList.add('mh-gift-buttons-clone-selected');
       });
 
-      giftContainer.append(cloneWrapper);
+      cloneWrapper.append(giftWrap);
+    });
 
-      return true;
-    };
-  };
+    giftContainer.append(cloneWrapper);
+
+    return true;
+  });
 };
 
 /**
@@ -493,7 +498,9 @@ const addButtonsToDropdown = () => {
   }
 
   buttonLink.addEventListener('click', () => {
-    makeButtons();
+    if (isModuleEnabled(MODULE_ID)) {
+      makeButtons();
+    }
   });
 };
 
@@ -545,6 +552,11 @@ const setupGiftButtonOpensGiftSelector = () => {
   giftButton.setAttribute('data-gift-selector', true);
 
   giftButton.addEventListener('click', (e) => {
+    // Always bound, so the setting can be changed without a refresh.
+    if (!isModuleEnabled(MODULE_ID) || !getSetting('better-gifts.gift-button-opens-gift-selector', false)) {
+      return;
+    }
+
     const showGiftSelector = hg?.views?.GiftSelectorView?.show;
     if (typeof showGiftSelector !== 'function') {
       return;
@@ -561,15 +573,17 @@ const setupGiftButtonOpensGiftSelector = () => {
  * Initialize the module.
  */
 const init = () => {
-  addStyles(styles, 'better-gifts');
+  addStyles(styles, MODULE_ID);
   main();
+  setupGiftButtonOpensGiftSelector();
 
-  if (getSetting('better-gifts.gift-button-opens-gift-selector', false)) {
-    setupGiftButtonOpensGiftSelector();
-  }
-
-  onDeactivation('better-gifts', () => {
-    document.querySelectorAll('#bulk-gifting-gift-buttons, .mh-gift-buttons, .mh-gift-buttons-clone-wrapper').forEach((el) => el.remove());
+  onModuleToggle(MODULE_ID, {
+    enable: makeButtons,
+    disable: () => {
+      document
+        .querySelectorAll('#bulk-gifting-gift-buttons, .mh-gift-buttons, .mh-gift-buttons-clone-wrapper, .giftSelectorView-confirmPopup-submitCloseButton')
+        .forEach((el) => el.remove());
+    },
   });
 };
 
@@ -577,11 +591,12 @@ const init = () => {
  * Initialize the module.
  */
 export default {
-  id: 'better-gifts',
+  id: MODULE_ID,
   name: 'Better Gifts',
   type: 'social-profiles',
   default: true,
   description: 'Quickly accept and return all your gifts, and pick random friends to send to.',
+  liveToggle: true,
   load: init,
   settings,
 };

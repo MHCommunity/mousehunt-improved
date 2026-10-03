@@ -1,9 +1,10 @@
-import { addStyles, debug, humanizeTime, lsGet, lsSet, make, makeElement, onDeactivation, waitForElement } from '@utils';
+import { addStyles, debug, humanizeTime, lsGet, lsSet, make, makeElement, onModuleToggle, overrideWhileEnabled, waitForElement } from '@utils';
 
 import fallbackGiftImage from '@images/icons/icon-64.png';
 
 import styles from './styles.css';
 
+const MODULE_ID = 'gifts-in-inbox';
 const STATE_KEY = 'mh-improved-gift-links-in-inbox-state-v1';
 const TAB_TYPE = 'gift_links';
 const TAB_NAME = 'Gift Links';
@@ -13,8 +14,6 @@ const TAB_NAME = 'Gift Links';
  */
 const NEW_GIFT_MAX_AGE = 5 * 24 * 60 * 60 * 1000;
 
-let _togglePopup = null;
-let _renderTabs = null;
 let didBindClicks = false;
 let cachedLinks = [];
 let cacheTime = 0;
@@ -753,12 +752,8 @@ const hookInbox = () => {
     return;
   }
 
-  if (!_togglePopup) {
-    _togglePopup = messenger.UI.notification.togglePopup;
-  }
-
-  messenger.UI.notification.togglePopup = function (...args) {
-    const result = _togglePopup.apply(this, args);
+  overrideWhileEnabled(MODULE_ID, messenger.UI.notification, 'togglePopup', function (original, ...args) {
+    const result = original.apply(this, args);
 
     waitForElement('#messengerUINotification .notificationHeader .tabs a')
       .then(async (found) => {
@@ -780,19 +775,15 @@ const hookInbox = () => {
       .catch((error) => debug('Unable to render gift links tab', error));
 
     return result;
-  };
+  });
 
   // The game rebuilds the whole tabs bar after some inbox actions (sending a
   // raffle ballot, claiming a tournament prize), which wipes our injected tab —
   // re-add it after every rebuild.
-  if (!_renderTabs) {
-    _renderTabs = messenger.UI.notification.renderTabs;
-  }
-
-  messenger.UI.notification.renderTabs = function (...args) {
+  overrideWhileEnabled(MODULE_ID, messenger.UI.notification, 'renderTabs', function (original, ...args) {
     const wasActive = Boolean(document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"].active`));
 
-    const result = _renderTabs.apply(this, args);
+    const result = original.apply(this, args);
 
     renderGiftTab()
       .then(() => {
@@ -803,14 +794,14 @@ const hookInbox = () => {
       .catch((error) => debug('Unable to re-render gift links tab', error));
 
     return result;
-  };
+  });
 };
 
 /**
  * Initialize the module.
  */
 const init = () => {
-  addStyles(styles, 'gifts-in-inbox');
+  addStyles(styles, MODULE_ID);
   bindClickTracking();
 
   if ('undefined' !== typeof messenger) {
@@ -820,27 +811,22 @@ const init = () => {
   // Pre-warm the cache so opening the inbox is instant.
   fetchRewardLinks();
 
-  onDeactivation('gifts-in-inbox', () => {
-    if (_togglePopup && messenger?.UI?.notification) {
-      messenger.UI.notification.togglePopup = _togglePopup;
-      _togglePopup = null;
-    }
-
-    if (_renderTabs && messenger?.UI?.notification) {
-      messenger.UI.notification.renderTabs = _renderTabs;
-      _renderTabs = null;
-    }
-
-    document.querySelector(`#messengerUINotification .tabs a[data-tab="${TAB_TYPE}"]`)?.remove();
-    document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`)?.remove();
+  // The game method wrappers stay in place and fall through while the module is off, so only the
+  // tab itself needs removing.
+  onModuleToggle(MODULE_ID, {
+    disable: () => {
+      document.querySelector(`#messengerUINotification .tabs a[data-tab="${TAB_TYPE}"]`)?.remove();
+      document.querySelector(`#messengerUINotification .notificationMessageList .tab[data-tab="${TAB_TYPE}"]`)?.remove();
+    },
   });
 };
 
 export default {
-  id: 'gifts-in-inbox',
+  id: MODULE_ID,
   name: 'Gifts in Inbox',
   type: 'social-profiles',
   default: true,
+  liveToggle: true,
   description: 'Adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming.',
   load: init,
 };
