@@ -739,7 +739,10 @@ const openMenuEditor = () => {
       drag.ghost.style.left = `${rect.left}px`;
       drag.ghost.style.top = `${rect.top}px`;
       editor.append(drag.ghost);
-      requestAnimationFrame(() => drag?.ghost.classList.add('lifted'));
+
+      // Lift it on the next style change, so it animates up from the item.
+      drag.ghost.getBoundingClientRect();
+      drag.ghost.classList.add('lifted');
 
       drag.chip.classList.add('dragging');
       editor.classList.add('is-dragging');

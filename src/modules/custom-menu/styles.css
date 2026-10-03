@@ -252,9 +252,12 @@
 
 /* The copy that follows the pointer. It lifts up when picked up, and glides into its spot or fades
    away when it's put down. */
-.mhui-menu-editor-ghost {
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-ghost {
   position: fixed;
   z-index: 100000;
+  box-sizing: border-box;
+  float: none;
+  margin: 0;
   white-space: nowrap;
   pointer-events: none;
   border-radius: 4px;
@@ -265,12 +268,12 @@
     opacity 0.16s ease-out;
 }
 
-.mhui-menu-editor-ghost.lifted {
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-ghost.lifted {
   box-shadow: 0 10px 22px rgb(0 0 0 / 35%);
   transform: rotate(-2deg) scale(1.06);
 }
 
-.mhui-menu-editor-ghost.settling {
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-ghost.settling {
   transition:
     left 0.16s ease-out,
     top 0.16s ease-out,
@@ -278,7 +281,7 @@
     box-shadow 0.16s ease-out;
 }
 
-.mhui-menu-editor-ghost.removing {
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-ghost.removing {
   opacity: 0;
   transform: scale(0.85);
 }
