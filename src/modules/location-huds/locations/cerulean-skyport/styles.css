@@ -390,3 +390,7 @@ body.mh-improved-skyport-animations-disabled .headsUpDisplayCeruleanSkyportView_
   top: 70px;
   height: 35px;
 }
+
+.headsUpDisplayCeruleanSkyportView__warning {
+  border: none;
+}
