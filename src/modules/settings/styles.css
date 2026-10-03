@@ -185,8 +185,8 @@
   display: block;
 }
 
-.mousehunt-improved-settings.mhui-settings-search-active .mhui-settings-main > .PagePreferences__section.mhui-settings-section-active {
-  margin-bottom: 10px;
+.mhui-settings-main > .PagePreferences__section.mhui-settings-section-active ~ .PagePreferences__section.mhui-settings-section-active {
+  margin-top: 10px;
 }
 
 .mousehunt-improved-settings .PagePreferences__title {

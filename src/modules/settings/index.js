@@ -474,7 +474,7 @@ const getSettingSearchText = (setting) => {
 };
 
 /**
- * Show a section and mark its sidebar item as active.
+ * Show a section (or all sections) and mark its sidebar item as active.
  *
  * @param {HTMLElement} settingsPage The settings page element.
  * @param {string}      sectionId    The ID of the section to show.
@@ -486,7 +486,7 @@ const setActiveSettingsSection = (settingsPage, sectionId) => {
   settingsPage.dataset.activeSection = sectionId;
 
   sections.forEach((section) => {
-    section.classList.toggle('mhui-settings-section-active', section.id === sectionId);
+    section.classList.toggle('mhui-settings-section-active', 'all' === sectionId || section.id === sectionId);
   });
 
   navItems.forEach((navItem) => {
@@ -544,13 +544,16 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
     return;
   }
 
+  setActiveSettingsSection(settingsPage, 'all');
+
   sections.forEach((section) => {
     const sectionTitleMatches = getSectionTitleText(section).toLowerCase().includes(normalizedSearchTerm);
     const sectionDescriptionMatches = getSectionDescription(section).toLowerCase().includes(normalizedSearchTerm);
-    let sectionMatches = sectionTitleMatches || sectionDescriptionMatches;
+    const sectionTextMatches = sectionTitleMatches || sectionDescriptionMatches;
+    let sectionMatches = sectionTextMatches;
 
     getSectionSettings(section).forEach((setting) => {
-      const settingMatches = sectionMatches || getSettingSearchText(setting).includes(normalizedSearchTerm);
+      const settingMatches = sectionTextMatches || getSettingSearchText(setting).includes(normalizedSearchTerm);
       setting.style.display = settingMatches ? '' : 'none';
       sectionMatches = sectionMatches || settingMatches;
     });
@@ -619,14 +622,12 @@ const createSettingsBrowser = () => {
   browser.append(sidebar);
   browser.append(main);
 
-  sections.forEach((section, index) => {
+  sections.forEach((section) => {
     const sectionDescription = getSectionDescription(section);
     const nextElement = section.nextElementSibling;
     if (nextElement?.classList?.contains('settings-subheader')) {
       nextElement.remove();
     }
-
-    const sectionTitle = getSectionTitleText(section);
 
     section.classList.add('mhui-settings-browser-section');
 
@@ -643,10 +644,15 @@ const createSettingsBrowser = () => {
       }
     }
 
+    main.append(section);
+  });
+
+  const categories = [{ id: 'all', title: 'All' }, ...sections.map((section) => ({ id: section.id, title: getSectionTitleText(section) }))];
+  categories.forEach(({ id, title }) => {
     const navItem = makeElement('button', 'mhui-settings-nav-item');
     navItem.type = 'button';
-    navItem.dataset.sectionId = section.id;
-    makeElement('span', 'mhui-settings-nav-label', sectionTitle, navItem);
+    navItem.dataset.sectionId = id;
+    makeElement('span', 'mhui-settings-nav-label', title, navItem);
     navItem.addEventListener('click', () => {
       const searchField = settingsPage.querySelector('.mhui-settings-header-search');
       if (searchField) {
@@ -654,15 +660,9 @@ const createSettingsBrowser = () => {
       }
 
       applySettingsSearch(settingsPage, '');
-      setActiveSettingsSection(settingsPage, section.id);
+      setActiveSettingsSection(settingsPage, id);
     });
     navList.append(navItem);
-
-    main.append(section);
-
-    if (index === 0) {
-      settingsPage.dataset.activeSection = section.id;
-    }
   });
 
   const header = settingsPage.querySelector('.mhui-settings-header');
@@ -672,7 +672,7 @@ const createSettingsBrowser = () => {
     settingsPage.prepend(browser);
   }
 
-  setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection);
+  setActiveSettingsSection(settingsPage, sections[0].id);
   showSettingFromHash(settingsPage);
 };
 
