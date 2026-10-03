@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'skyport-star-tracker.crownstar-mode',
-      title: 'Crownstar mode: track 10 catches of each mouse instead of 1',
+      title: 'Crownstar mode: Track 10 catches of each mouse instead of 1',
       default: false,
     },
   ];

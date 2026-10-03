@@ -7,17 +7,17 @@ export default async () => {
   return [
     {
       id: 'legacy-hud.menu',
-      title: 'Enable the legacy menu',
+      title: 'Use the legacy menu',
       default: false,
     },
     {
       id: 'legacy-hud.stats',
-      title: 'Enable the legacy stats bar',
+      title: 'Use the legacy stats bar',
       default: false,
     },
     {
       id: 'legacy-hud.tweaks',
-      title: 'Enable tweaks to the legacy HUD',
+      title: 'Apply tweaks to the legacy HUD',
       default: true,
     },
   ];

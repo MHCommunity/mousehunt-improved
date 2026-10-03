@@ -7,32 +7,32 @@ export default async () => {
   return [
     {
       id: 'better-journal.styles',
-      title: 'Style and UI changes',
+      title: 'Apply style and UI changes',
       default: true,
     },
     {
       id: 'better-journal.replacements',
-      title: 'Text replacements',
+      title: 'Apply text replacements',
       default: true,
     },
     {
       id: 'better-journal.gold-and-points',
-      title: 'Gold and Points icons',
+      title: 'Show gold and points icons',
       default: true,
     },
     {
       id: 'better-journal.list',
-      title: 'Loot as list',
+      title: 'Show loot as a list',
       default: true,
     },
     {
       id: 'better-journal.icons',
-      title: 'Loot icons',
+      title: 'Show loot icons',
       default: true,
     },
     {
       id: 'better-journal.icons-minimal',
-      title: 'Loot icons (minimal)',
+      title: 'Use minimal loot icons',
     },
     {
       id: 'better-journal.item-colors',
@@ -41,12 +41,12 @@ export default async () => {
     },
     {
       id: 'better-journal.journal-history',
-      title: 'Journal history',
+      title: 'Show journal history',
       default: true,
     },
     {
       id: 'better-journal.full-mice-images',
-      title: 'Full mice images',
+      title: 'Show full mouse images',
       default: false,
     },
     {

@@ -38,7 +38,7 @@ const init = () => {
   const onlySettings = [
     {
       id: 'better-maps.draggable-highlight',
-      title: 'Better Maps: Draggable highlight',
+      title: 'Better Maps: Allow dragging the highlight',
       load: () => {},
     },
     {

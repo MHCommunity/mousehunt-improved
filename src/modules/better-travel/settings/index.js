@@ -27,7 +27,7 @@ export default async () => {
     },
     {
       id: 'better-travel.travel-window-environment-icon',
-      title: 'Environment icon opens Travel Window',
+      title: 'Open Travel Window when clicking the environment icon',
       default: true,
     },
   ];

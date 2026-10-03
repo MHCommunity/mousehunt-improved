@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-shops.hide-max-owned',
-      title: 'Hide items you already own the maximum of',
+      title: 'Hide items at their inventory limit',
       default: false,
     },
     {

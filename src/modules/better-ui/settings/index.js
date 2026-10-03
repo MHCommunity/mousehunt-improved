@@ -7,12 +7,12 @@ export default async () => {
   return [
     {
       id: 'better-ui.styles',
-      title: 'Styles: General UI improvements and fixes',
+      title: 'Styles: Apply general UI improvements and fixes',
       default: true,
     },
     {
       id: 'better-ui.hud-changes',
-      title: 'Menu & HUD tweaks',
+      title: 'Apply menu and HUD tweaks',
       default: true,
     },
     {
@@ -47,7 +47,7 @@ export default async () => {
     },
     {
       id: 'better-ui.square-profile-pics',
-      title: 'Square profile pictures',
+      title: 'Use square profile pictures',
       default: false,
     },
   ];

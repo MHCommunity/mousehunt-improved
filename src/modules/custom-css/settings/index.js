@@ -8,7 +8,7 @@ export default async () => {
     {
       id: 'override-styles',
       live: true,
-      title: 'Custom Styles',
+      title: 'Custom styles',
       default: '',
       description: 'Add your own <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank" rel="noreferrer">custom CSS</a> to the game.',
       settings: {

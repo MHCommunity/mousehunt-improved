@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'better-marketplace.small-images',
-      title: 'Smaller images',
+      title: 'Show smaller images',
       default: false,
     },
     {
@@ -42,7 +42,7 @@ export default async () => {
     },
     {
       id: 'better-marketplace.quick-sell',
-      title: 'Quick sell',
+      title: 'Use quick sell',
       default: false,
     },
   ];

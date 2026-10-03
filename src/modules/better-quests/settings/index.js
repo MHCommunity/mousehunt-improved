@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-quests.m400-helper',
-      title: 'M400 Helper',
+      title: 'Use the M400 helper',
       default: true,
       description: 'Add a “Travel to next step” button to the M400 and M400 Bait Research assignments.',
     },

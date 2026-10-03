@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'override-flags',
-      title: 'Feature Flags',
+      title: 'Feature flags',
       default: '',
       description:
         'Turn on <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/feature-flags.md" target="_blank" rel="noreferrer">feature flags</a>, separated by commas.',
