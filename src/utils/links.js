@@ -1,4 +1,5 @@
 import { makeElement, makeLink } from './elements';
+import { doEvent } from './event-registry';
 
 /**
  * Build the MH Wiki URL for a given name.
@@ -339,6 +340,12 @@ const addIconToMenu = (opts) => {
     icon.title = settings.title;
   }
 
+  if (settings.id) {
+    icon.dataset.mhMenuId = settings.id;
+    icon.dataset.mhMenuName = settings.title || settings.text || settings.id;
+    icon.dataset.mhMenuPosition = settings.position;
+  }
+
   if (settings.action) {
     icon.addEventListener('click', (e) => {
       settings.action(e, icon);
@@ -352,6 +359,7 @@ const addIconToMenu = (opts) => {
       // icon would stay in a menu we've since decided against.
       if (exists.parentElement === menu) {
         exists.replaceWith(icon);
+        doEvent('mh-improved-header-menu-changed');
         return;
       }
 
@@ -376,6 +384,8 @@ const addIconToMenu = (opts) => {
   } else if ('append' === settings.position) {
     menu.append(icon);
   }
+
+  doEvent('mh-improved-header-menu-changed');
 };
 
 /**
@@ -386,6 +396,8 @@ const addIconToMenu = (opts) => {
  *
  * @param {HTMLElement} tab           The tab element to add.
  * @param {Object}      opts          The options for the tab.
+ * @param {string}      opts.id       A stable id for the tab, used to save its place in the menu.
+ * @param {string}      opts.name     The name shown for the tab when customizing the menu.
  * @param {number}      [opts.order]  The sort order for the tab, lower is further left.
  *
  * @return {boolean} Whether the tab was added.
@@ -398,6 +410,11 @@ const addHeaderMenuTab = (tab, opts = {}) => {
 
   const order = opts.order ?? 100;
   tab.dataset.mhOrder = order;
+
+  if (opts.id) {
+    tab.dataset.mhMenuId = opts.id;
+    tab.dataset.mhMenuName = opts.name || opts.id;
+  }
 
   const customTabs = [...tabsContainer.querySelectorAll(':scope > [data-mh-order]')].filter((el) => el !== tab);
   let anchor = customTabs.find((el) => Number(el.dataset.mhOrder) > order);
@@ -412,6 +429,8 @@ const addHeaderMenuTab = (tab, opts = {}) => {
   }
 
   tabsContainer.insertBefore(tab, anchor);
+
+  doEvent('mh-improved-header-menu-changed');
 
   return true;
 };

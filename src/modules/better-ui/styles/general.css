@@ -346,10 +346,6 @@ input.itemView-action-convert-quantity {
   text-align: left;
 }
 
-.menuItem.myProfile {
-  display: none;
-}
-
 .mousehuntHeaderView .menuItem.freeGifts,
 .mousehuntHeaderView-gameTabs.small .menuItem.freeGifts {
   padding-right: 12px;

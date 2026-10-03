@@ -404,7 +404,7 @@ const makeDashboardTab = () => {
   dropdownContent.append(dashboardWrapper);
   menuTab.append(dropdownContent);
 
-  addHeaderMenuTab(menuTab, { order: 10 });
+  addHeaderMenuTab(menuTab, { id: 'location-dashboard', name: 'Dashboard', order: 10 });
 };
 
 /**

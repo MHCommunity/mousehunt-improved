@@ -32,6 +32,7 @@ const getIconSettings = async () => {
   return {
     id: 'mousehunt-improved-location-huds',
     classname: 'mousehunt-improved-location-huds-icon',
+    title: 'Location HUD toggle',
     text: value ? 'Disable HUD' : 'Enable HUD',
     position: 'prepend',
 
