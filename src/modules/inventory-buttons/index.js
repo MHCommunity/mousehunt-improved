@@ -1,31 +1,35 @@
-import { addStyles, getSetting, onNavigation, parseNumber, waitForElement } from '@utils';
+import { addStyles, getSetting, onNavigation, parseNumber } from '@utils';
 
 import settings from './settings';
 
 import onlyOpenMultipleStyles from './styles/only-open-multiple.css';
 
+let isOpening = false;
+
 /**
- * Replace the convertible open action.
+ * Open a convertible directly, without going through the item view.
+ *
+ * Using the item view's convert form shows the results on top of the item
+ * view and queues it to reload when the results are closed, so the item view
+ * would pop back up afterwards.
  *
  * @param {HTMLElement} element The element.
  * @param {string}      type    The type of action (one, all-but-one, all).
  */
-const useConvertible = async (element, type) => {
+const useConvertible = (element, type) => {
   const typeOptions = new Set(['one', 'all-but-one', 'all']);
-  if (!typeOptions.has(element.getAttribute('data-item-action')) || !typeOptions.has(type)) {
+  if (isOpening || !typeOptions.has(type)) {
     return;
   }
 
-  const itemType = element.getAttribute('data-item-type');
-
-  hg.views.ItemView.show(itemType);
-
-  // wait for the item view to load
-  const quantityEl = await waitForElement('.itemView-action-convertForm');
-  let maxQuantity = 1;
-  if (quantityEl && quantityEl.innerText.includes('/')) {
-    maxQuantity = parseNumber(quantityEl.innerText.split('/')[1]);
+  const item = element.closest('.inventoryPage-item');
+  const itemType = item?.getAttribute('data-item-type');
+  if (!itemType) {
+    return;
   }
+
+  const quantityEl = item.querySelector('.quantity');
+  const maxQuantity = quantityEl ? parseNumber(quantityEl.textContent) : 1;
 
   // The game only lets you open 200 at a time.
   let quantity = 1;
@@ -39,15 +43,31 @@ const useConvertible = async (element, type) => {
     return;
   }
 
-  const quantityInput = document.querySelector('.itemView-action-convert-quantity');
-  if (quantityInput) {
-    quantityInput.value = quantity;
+  isOpening = true;
+  element.classList.add('disabled');
 
-    const useButton = document.querySelector('.itemView-action-convert-actionButton');
-    if (useButton) {
-      useButton.click();
-    }
-  }
+  const done = () => {
+    isOpening = false;
+    element.classList.remove('disabled');
+  };
+
+  hg.utils.UserInventory.useConvertible(
+    itemType,
+    quantity,
+    (data) => {
+      done();
+
+      if (data?.convertible_open) {
+        new hg.views.ConvertibleOpenView(data.convertible_open).show();
+      }
+
+      const newQuantity = data?.inventory?.[itemType]?.quantity;
+      if (quantityEl && newQuantity !== undefined) {
+        quantityEl.textContent = Number(newQuantity).toLocaleString();
+      }
+    },
+    done
+  );
 };
 
 /**
