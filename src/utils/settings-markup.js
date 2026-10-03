@@ -236,13 +236,7 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
   const isExpandable = settingSettings.type === 'multi-select' && settingSettings.expandable;
 
   let amount = 1;
-  if (isExpandable) {
-    amount = getMultiSelectCount(
-      key,
-      (defaultValue || []).map((option) => option.value),
-      tab
-    );
-  } else if (settingSettings.type === 'multi-select' && settingSettings.number) {
+  if (settingSettings.type === 'multi-select' && settingSettings.number) {
     amount = settingSettings.number;
   }
 
@@ -288,6 +282,18 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
   const timeouts = {};
 
   /**
+   * Flash the saved state on the setting row.
+   *
+   * @param {number} i The index of the dropdown.
+   */
+  const flashSaved = (i) => {
+    settingRowInputWrapper.classList.add('inputDropdownWrapper', 'completed');
+
+    clearTimeout(timeouts[i]);
+    timeouts[i] = setTimeout(() => settingRowInputWrapper.classList.remove('completed'), 1000);
+  };
+
+  /**
    * Save the value for one of the dropdowns and flash the saved state.
    *
    * @param {HTMLElement} input The control that changed.
@@ -295,10 +301,6 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
    * @param {string}      value The new value.
    */
   const saveSelectValue = (input, i, value) => {
-    const parent = input.parentNode.parentNode.parentNode;
-    parent.classList.add('inputDropdownWrapper');
-    parent.classList.add('busy');
-
     saveSettingDirect(`${key}-${i}`, value, tab);
 
     doEvent('mh-improved-settings-changed', {
@@ -308,28 +310,28 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       type: 'multi-select',
     });
 
-    parent.classList.remove('busy');
-    parent.classList.add('completed');
-
-    clearTimeout(timeouts[i]);
-    timeouts[i] = setTimeout(() => parent.classList.remove('completed'), 1000);
+    flashSaved(i);
   };
 
   /**
    * Make the dropdown for one slot.
    *
-   * @param {number} i The index of the dropdown.
+   * @param {number}   i          The index of the dropdown.
+   * @param {Object}   [slot]     Overrides for an expandable slot.
+   * @param {string}   slot.value The value to show.
+   * @param {Function} slot.save  Called with the new value instead of saving it by index.
    *
    * @return {HTMLElement} The dropdown.
    */
-  const makeSlot = (i) => {
-    const currentSetting = getSetting(`${key}-${i}`, null, tab);
+  const makeSlot = (i, slot = null) => {
+    const currentSetting = slot ? slot.value : getSetting(`${key}-${i}`, null, tab);
+    const save = slot ? (input, value) => slot.save(value) : (input, value) => saveSelectValue(input, i, value);
 
     if (settingSettings.searchable) {
       const picker = makeItemPicker({
         options: settingSettings.options,
         value: currentSetting ?? defaultValue?.[i]?.value ?? 'none',
-        onChange: (value) => saveSelectValue(picker, i, value),
+        onChange: (value) => save(picker, value),
       });
 
       return picker;
@@ -370,33 +372,92 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
      * @param {Event} event The event.
      */
     settingRowInputDropdownSelect.onchange = (event) => {
-      saveSelectValue(settingRowInputDropdownSelect, i, event.target.value);
+      save(settingRowInputDropdownSelect, event.target.value);
     };
 
     return settingRowInputDropdownSelect;
   };
 
-  // make a multi-select dropdown.
-  for (let i = 0; i < amount; i++) {
-    settingRowInputDropdown.append(makeSlot(i));
-  }
+  /**
+   * Add the dropdowns for an expandable multi-select, with a button to add more.
+   *
+   * The list is saved without empty slots, and only one empty dropdown is kept on the page, so
+   * setting a second one to None removes it.
+   */
+  const addExpandableSlots = () => {
+    const defaults = (defaultValue || []).map((option) => option.value);
+    const slots = [];
+    let savedLength = getMultiSelectCount(key, defaults, tab);
 
-  if (isExpandable) {
-    const addButton = makeElement('button', 'mhui-multi-select-add', '+');
+    settingRowInputDropdown.classList.add('mhui-multi-select-expandable');
+
+    const addButton = makeElement('button', 'mhui-multi-select-add');
     addButton.type = 'button';
     addButton.title = 'Add another';
+    makeElement('span', 'mhui-multi-select-add-icon', '', addButton);
+    makeElement('span', 'mhui-multi-select-add-label', 'Add', addButton);
 
-    addButton.addEventListener('click', () => {
-      // New slots of a live setting apply without a refresh, like the rest.
-      if (isLiveSetting(`${key}-0`)) {
-        markSettingLive(`${key}-${amount}`);
+    const updateAddButton = () => {
+      addButton.disabled = slots.some((slot) => 'none' === slot.value);
+    };
+
+    const saveSlots = () => {
+      const values = slots.map((slot) => slot.value).filter((value) => 'none' !== value);
+
+      // Clear out any slots past the end so they don't fall back to their defaults.
+      for (let i = 0; i < Math.max(savedLength, values.length); i++) {
+        saveSettingDirect(`${key}-${i}`, values[i] ?? 'none', tab);
       }
 
-      addButton.before(makeSlot(amount));
-      amount++;
-    });
+      savedLength = values.length;
+      saveSettingDirect(`${key}-count`, values.length, tab);
 
+      doEvent('mh-improved-settings-changed', {
+        key: `${key}-count`,
+        value: values,
+        tab,
+        type: 'multi-select',
+      });
+
+      flashSaved('count');
+    };
+
+    const addSlot = (value) => {
+      const slot = { value };
+
+      slot.save = (newValue) => {
+        slot.value = newValue;
+
+        if ('none' === newValue && slots.some((other) => other !== slot && 'none' === other.value)) {
+          slots.splice(slots.indexOf(slot), 1);
+          slot.element.remove();
+        }
+
+        updateAddButton();
+        saveSlots();
+      };
+
+      slot.element = makeSlot(slots.length, slot);
+      slots.push(slot);
+      addButton.before(slot.element);
+      updateAddButton();
+    };
+
+    addButton.addEventListener('click', () => addSlot('none'));
     settingRowInputDropdown.append(addButton);
+
+    const values = Array.from({ length: savedLength }, (_, i) => getSetting(`${key}-${i}`, defaults[i] ?? 'none', tab)).filter((value) => value && 'none' !== value);
+
+    (values.length ? values : ['none']).forEach((value) => addSlot(value));
+  };
+
+  if (isExpandable) {
+    addExpandableSlots();
+  } else {
+    // make a multi-select dropdown.
+    for (let i = 0; i < amount; i++) {
+      settingRowInputDropdown.append(makeSlot(i));
+    }
   }
 
   settingRowInput.append(settingRowInputDropdown);
@@ -602,14 +663,9 @@ const addSettingOnce = (options) => {
   // dropdown under a numbered key, so those are marked too.
   if (options.live) {
     markSettingLive(key);
-    const slots = settingSettings?.expandable
-      ? getMultiSelectCount(
-          key,
-          (defaultValue || []).map((option) => option.value),
-          tab
-        )
-      : settingSettings?.number || 1;
-    for (let i = 0; i < slots; i++) {
+    // Expandable multi-selects save the whole list at once and announce it on the count key.
+    markSettingLive(`${key}-count`);
+    for (let i = 0; i < (settingSettings?.number || 1); i++) {
       markSettingLive(`${key}-${i}`);
     }
   }
@@ -794,6 +850,7 @@ const updateRefreshBanner = () => {
 
   if (pendingRefresh.size === 0) {
     banner?.remove();
+    document.body.classList.remove('mh-improved-has-refresh-message');
     return;
   }
 
@@ -813,6 +870,7 @@ const updateRefreshBanner = () => {
   });
 
   document.body.append(banner);
+  document.body.classList.add('mh-improved-has-refresh-message');
   setTimeout(() => banner.classList.add('mh-ui-fade-in'), 50);
 };
 

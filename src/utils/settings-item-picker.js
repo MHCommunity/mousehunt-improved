@@ -124,6 +124,7 @@ const makeItemPicker = ({ options, value, onChange }) => {
 
     trigger.replaceChildren(makeIcon(selected), makeName(name), makeElement('span', 'mhui-item-picker-caret'));
     trigger.title = name;
+    picker.classList.toggle('is-empty', !selectedValue || 'none' === selectedValue);
   };
 
   /**

@@ -259,10 +259,6 @@
   border-radius: 5px;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList.active {
-  border-color: var(--mhui-settings-card-active-border);
-}
-
 .mousehunt-improved-settings .PagePreferences__settingsList.mhui-settings-hash-target {
   border-color: var(--mhui-settings-accent);
   box-shadow: 0 0 8px var(--mhui-settings-accent);
@@ -429,23 +425,6 @@
   max-width: 330px;
 }
 
-#mousehunt-improved-settings-better-send-supplies-pinned-items .inputBox.multiSelect,
-#mousehunt-improved-settings-quick-send-supplies-items .inputBox.multiSelect,
-#mousehunt-improved-settings-quick-items-menu-item .inputBox.multiSelect {
-  width: 120px;
-  margin: 4px;
-}
-
-#mousehunt-improved-settings-quick-send-supplies-items .inputBox.multiSelect {
-  width: 170px;
-}
-
-#mousehunt-improved-settings-better-send-supplies-pinned-items .inputBoxContainer.multiSelect,
-#mousehunt-improved-settings-quick-send-supplies-items .inputBoxContainer.multiSelect,
-#mousehunt-improved-settings-quick-items-menu-item .inputBoxContainer.multiSelect {
-  width: 390px;
-}
-
 #mousehunt-improved-settings-design .inputBox.multiSelect {
   width: 200px;
 }
@@ -460,27 +439,82 @@
   width: 375px;
 }
 
-.mousehunt-improved-settings .mhui-multi-select-add {
-  align-self: center;
-  width: 26px;
-  height: 26px;
-  margin: 4px;
-  font-size: 16px;
-  line-height: 1;
-  color: var(--mhui-settings-text);
-  cursor: pointer;
-  background: var(--mhui-settings-select);
-  border: 1px dashed var(--mhui-settings-border);
-  border-radius: 3px;
+.mousehunt-improved-settings .inputBoxContainer.multiSelect.mhui-multi-select-expandable {
+  display: grid;
+  grid-template-columns: repeat(2, 170px);
+  gap: 6px;
+  justify-content: end;
+  width: auto;
+  max-width: none;
 }
 
-.mousehunt-improved-settings .mhui-multi-select-add:hover {
+.mousehunt-improved-settings .mhui-multi-select-expandable .inputBox.multiSelect {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add {
+  box-sizing: border-box;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 28px;
+  padding: 2px 8px;
+  margin: 0;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--mhui-settings-muted);
+  cursor: pointer;
+  background: var(--d-alt);
+  border: 1px dashed var(--mhui-settings-border);
+  border-radius: 3px;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+/* Drawn rather than a "+" glyph, so it sits dead center next to the label. */
+.mousehunt-improved-settings .mhui-multi-select-add-icon {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 100% 2px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 2px 100% no-repeat;
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add-label {
+  display: block;
+  line-height: 1;
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add:hover:not(:disabled) {
+  color: var(--mhui-settings-text);
+  background: var(--mhui-settings-select);
   border-color: var(--mhui-settings-muted);
+}
+
+.mousehunt-improved-settings .mhui-multi-select-add:disabled {
+  cursor: default;
+  opacity: 0.4;
 }
 
 .mousehunt-improved-settings .mhui-multi-select-add:focus-visible {
   outline: 2px solid var(--mhui-settings-accent);
   outline-offset: 1px;
+}
+
+@media (max-width: 600px) {
+  .mousehunt-improved-settings .inputBoxContainer.multiSelect.mhui-multi-select-expandable {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    width: 100%;
+  }
 }
 
 /* Searchable item picker */
@@ -519,6 +553,22 @@
   width: 20px;
   height: 20px;
   object-fit: contain;
+}
+
+.mhui-item-picker-icon-empty {
+  box-sizing: border-box;
+  border: 1px dashed var(--mhui-settings-border);
+  border-radius: 3px;
+}
+
+.mousehunt-improved-settings .mhui-item-picker.is-empty .mhui-item-picker-trigger {
+  color: var(--mhui-settings-muted);
+  background: transparent;
+  border-style: dashed;
+}
+
+.mhui-item-picker.is-empty .mhui-item-picker-name {
+  font-style: italic;
 }
 
 .mhui-item-picker-name {

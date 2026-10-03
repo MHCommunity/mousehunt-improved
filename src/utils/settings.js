@@ -255,8 +255,8 @@ const saveSetting = (key, value) => {
 };
 
 /**
- * Get how many slots an expandable multi-select has: at least one per default, plus enough to
- * reach the last saved slot that isn't 'none'.
+ * Get how many slots an expandable multi-select has. Once it's been edited the count is saved;
+ * before that, it's one per default, plus enough to reach the last saved slot that isn't 'none'.
  *
  * @param {string}   key          The setting key, without the slot suffix.
  * @param {string[]} defaultValue The default value for each slot.
@@ -269,6 +269,11 @@ const getMultiSelectCount = (key, defaultValue = [], identifier = 'mousehunt-imp
   const groupAndKey = getGroupAndKey(key);
   const saved = (groupAndKey.group ? settings[groupAndKey.group] : settings) || {};
   const prefix = `${groupAndKey.key}-`;
+
+  const savedCount = Number.parseInt(saved[`${prefix}count`], 10);
+  if (savedCount >= 0) {
+    return savedCount;
+  }
 
   let count = Math.max(1, defaultValue.length);
   for (const [savedKey, value] of Object.entries(saved)) {

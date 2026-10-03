@@ -80,6 +80,11 @@
   font-size: 0.75em;
 }
 
+/* Leave room at the bottom of the page so the banner doesn't cover anything. */
+body.mh-improved-has-refresh-message {
+  padding-bottom: 70px;
+}
+
 .mh-ui-success-message.setting-link-copied {
   position: absolute;
   top: 10px;

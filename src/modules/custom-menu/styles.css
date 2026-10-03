@@ -39,7 +39,6 @@
 
 .mhui-menu-editor-bar {
   position: relative;
-  max-width: 380px;
   background: var(--mhui-menu-tab) 0 0 repeat-x;
   border: 1px solid var(--mhui-menu-border);
   border-bottom: none;
@@ -79,6 +78,16 @@
 
 .mhui-menu-editor.is-dragging .mhui-menu-editor-zone.cant-drop {
   opacity: 0.45;
+}
+
+/* The last item on the left closes off the left side of the menu. */
+.mousehuntHeaderView .menuItem.last {
+  border-right: 1px solid #ccc;
+  border-top-right-radius: 0;
+}
+
+.mhui-menu-editor-bar[data-zone="left"] .mhui-menu-editor-item:last-child {
+  border-right: 1px solid var(--mhui-menu-border);
 }
 
 /* Fade out the inner end of each bar, where it would carry on into the rest of the menu. */
@@ -156,6 +165,10 @@
 .mh-dark #overlayPopup.mh-improved-custom-menu-popup .content {
   color: var(--d-text);
   background-color: var(--d-bg);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.last {
+  border-right-color: var(--d-border);
 }
 
 .mh-dark #overlayPopup.mh-improved-custom-menu-popup .title {

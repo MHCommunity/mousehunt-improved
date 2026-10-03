@@ -207,15 +207,19 @@ const updateHiddenStyles = (hidden) => {
 };
 
 /**
- * Give the first visible item on the left the rounded corner.
+ * Mark the first and last visible items on the left, which get the rounded corner and the closing
+ * border, so they follow the items when they're reordered.
  *
  * @param {HTMLElement} container The left container.
  */
-const updateFirstItem = (container) => {
+const updateEndItems = (container) => {
   const items = [...container.querySelectorAll(':scope > .menuItem')];
-  const first = items.find((el) => 'none' !== getComputedStyle(el).display);
+  const visible = items.filter((el) => 'none' !== getComputedStyle(el).display);
 
-  items.forEach((el) => el.classList.toggle('first', el === first));
+  items.forEach((el) => {
+    el.classList.toggle('first', el === visible[0]);
+    el.classList.toggle('last', el === visible.at(-1));
+  });
 };
 
 /**
@@ -232,7 +236,7 @@ const applyLayout = (layout = getLayout()) => {
   updateHiddenStyles(layout.hidden);
   applyOrder(left, layout.left);
   applyOrder(right, layout.right);
-  updateFirstItem(left);
+  updateEndItems(left);
 };
 
 export { applyLayout, defaultHidden, getContainers, getDefaultOrder, getGroupItems, getItemName, getLayout, lockedItems, saveLayout };
