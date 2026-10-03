@@ -1,5 +1,6 @@
 import { dbGet, dbSet } from './db';
 import { getCurrentLocationName } from './location-current';
+import { prepareLifecycleCallback } from './lifecycle';
 
 /**
  * Replace a journal entry with new content.
@@ -381,7 +382,20 @@ const onJournalEntry = (callback, options = {}) => {
   callbacks.get(stage).push({ callback, id });
 };
 
+/**
+ * Run a callback after each batch of journal entries has been processed.
+ *
+ * @param {Function} callback The callback to run.
+ *
+ * @return {Function} A function that stops the callback from running.
+ */
 const onJournalEntriesProcessed = (callback) => {
+  const lifecycleCallback = prepareLifecycleCallback(callback, 'journal-entries-processed');
+  if (lifecycleCallback.skip) {
+    return () => {};
+  }
+
+  callback = lifecycleCallback.callback;
   finishedProcessingCallbacks.push(callback);
 
   return () => {

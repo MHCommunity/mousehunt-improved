@@ -41,6 +41,7 @@ export default async () => {
   return [
     {
       id: 'custom-camp-background',
+      live: true,
       title: 'Custom Camp Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-camp-bg-preview">Preview choices</a></span>',
       default: [options[0]],
       settings: {

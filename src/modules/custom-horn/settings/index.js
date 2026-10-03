@@ -49,6 +49,7 @@ export default async () => {
   return [
     {
       id: 'custom-horn',
+      live: true,
       title:
         'Custom Horn <span class="mhui-setting-title-links"><a class="mh-improved-custom-horn-show-horn">Show Horn</a><span class="seperator">·</span><a class="mh-improved-custom-horn-preview">Preview choices</a></span>',
       default: [options[0]],

@@ -1,4 +1,4 @@
-import { onEvent } from './event-registry';
+import { onModuleToggle } from './live-toggle';
 
 /**
  * Add styles to the page.
@@ -70,13 +70,16 @@ const addStyles = (styles, module = '', identifier = 'mh-improved-styles') => {
 
   let stylesEl = addModuleStyles(styles, key, true);
 
-  onEvent(`mh-improved-settings-changed-${module}`, (enabled) => {
-    if (enabled) {
+  // Only live-toggled modules swap their styles in place. Anything else waits for a refresh, so it
+  // isn't left half applied with its styles gone but the rest of it still running.
+  onModuleToggle(module, {
+    enable: () => {
       stylesEl = addModuleStyles(styles, key, true);
-    } else if (stylesEl) {
-      stylesEl.remove();
+    },
+    disable: () => {
+      stylesEl?.remove();
       stylesEl = null;
-    }
+    },
   });
 
   return stylesEl;

@@ -65,18 +65,19 @@
   bottom: 0;
   left: 0;
   z-index: 5;
-  padding: 1em;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75em 1em;
   font-size: 1.5em;
-  text-align: center;
-  pointer-events: none;
-  background-color: #d6f2d6;
-  border-top: 1px solid #6cc36c;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  background-color: #fff3cd;
+  border-top: 1px solid #e0b84a;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.mh-utils-settings-refresh-message-hidden {
-  opacity: 0;
+.mh-utils-settings-refresh-message .mousehuntActionButton {
+  font-size: 0.75em;
 }
 
 .mh-ui-success-message.setting-link-copied {

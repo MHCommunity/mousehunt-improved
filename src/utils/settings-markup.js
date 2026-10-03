@@ -4,6 +4,7 @@ import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { getCurrentPage } from './page-current';
 import { getCurrentTab } from './page';
 import { getFlag } from './flags';
+import { isLiveSetting, markSettingLive } from './live-toggle';
 import { onNavigation } from './events';
 import { setMultipleTimeout } from './utils';
 import { showSuccessMessage } from './messages';
@@ -448,8 +449,6 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
 
     clearTimeout(timeout);
     timeout = setTimeout(() => parent.classList.remove('completed'), 1000);
-
-    addSettingRefreshReminder(key);
   });
 
   settingRowInput.append(settingRowInputText);
@@ -529,6 +528,7 @@ const makeSettingBlank = ({ settingId }) => {
  * @param {string}  options.group       The group the setting is in.
  * @param {string}  options.tab         The tab to add the settings to.
  * @param {Object}  options.settings    The settings for the setting.
+ * @param {boolean} options.live        Whether changing the setting takes effect without a refresh.
  *
  * @return {Object} The setting.
  */
@@ -539,6 +539,15 @@ const addSettingOnce = (options) => {
   const description = options.description || '';
   const tab = 'mousehunt-improved-settings';
   const settingSettings = options.subSettings || null;
+
+  // Settings that apply on their own don't need the refresh banner. Multi-selects save each
+  // dropdown under a numbered key, so those are marked too.
+  if (options.live) {
+    markSettingLive(key);
+    for (let i = 0; i < (settingSettings?.number || 1); i++) {
+      markSettingLive(`${key}-${i}`);
+    }
+  }
 
   // Make sure we have the container for our settings.
   const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
@@ -707,39 +716,61 @@ const addSettingOnce = (options) => {
   return settings;
 };
 
-let fadeInTimeout = null;
-let fadeOutTimeout = null;
-let removeTimeout = null;
+// Settings changed since the page loaded that need a refresh, keyed to the value they started at.
+// A toggle's starting value is known, so flipping it back clears it; other inputs stay pending.
+const pendingRefresh = new Map();
+const unknownStartValue = Symbol('unknown');
 
 /**
- * Add a refresh reminder to the settings page.
+ * Show or hide the refresh banner, depending on whether any changes still need a refresh.
  */
-const addSettingRefreshReminder = () => {
-  let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
-  if (!refreshMessage) {
-    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Settings updated! You may need to refresh the page for changes to take effect.');
-    newMessageEl.id = 'mh-utils-settings-refresh-message';
+const updateRefreshBanner = () => {
+  let banner = document.querySelector('#mh-utils-settings-refresh-message');
 
-    newMessageEl.addEventListener('click', () => {
-      window.location.reload();
-    });
-
-    const body = document.querySelector('body');
-    body.append(newMessageEl);
-
-    refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
+  if (pendingRefresh.size === 0) {
+    banner?.remove();
+    return;
   }
 
-  clearTimeout(fadeInTimeout);
-  clearTimeout(fadeOutTimeout);
-  clearTimeout(removeTimeout);
+  if (banner) {
+    return;
+  }
 
-  fadeInTimeout = setTimeout(() => refreshMessage.classList.add('mh-ui-fade-in'), 250);
-  fadeOutTimeout = setTimeout(() => {
-    refreshMessage.classList.remove('mh-ui-fade-in');
-    refreshMessage.classList.add('mh-ui-fade-out');
-  }, 3000);
-  removeTimeout = setTimeout(() => refreshMessage.remove(), 5000);
+  banner = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade']);
+  banner.id = 'mh-utils-settings-refresh-message';
+  makeElement('span', 'mh-utils-settings-refresh-message-text', 'Settings saved. Refresh the page to apply them.', banner);
+  makeMhButton({
+    text: 'Refresh',
+    className: 'mh-utils-settings-refresh-message-button',
+    size: 'small',
+    callback: () => window.location.reload(),
+    appendTo: banner,
+  });
+
+  document.body.append(banner);
+  setTimeout(() => banner.classList.add('mh-ui-fade-in'), 50);
+};
+
+/**
+ * Track a changed setting and show the refresh banner if it needs a refresh to take effect.
+ *
+ * @param {Object} options       The changed setting.
+ * @param {string} options.key   The setting key.
+ * @param {*}      options.value The new value.
+ * @param {string} options.type  The input type.
+ */
+const addSettingRefreshReminder = ({ key, value, type }) => {
+  if (!key || isLiveSetting(key)) {
+    return;
+  }
+
+  if (!pendingRefresh.has(key)) {
+    pendingRefresh.set(key, 'toggle' === type ? !value : unknownStartValue);
+  } else if (pendingRefresh.get(key) === value) {
+    pendingRefresh.delete(key);
+  }
+
+  updateRefreshBanner();
 };
 
 onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
@@ -785,6 +816,7 @@ const addSettingForModule = async (module) => {
             subSetting: true,
           },
           subSettings: subSettings.settings,
+          live: subSettings.live,
         });
 
         if (moduleSettingRow && subSettingRow) {

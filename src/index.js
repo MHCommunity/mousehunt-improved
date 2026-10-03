@@ -15,8 +15,10 @@ import {
   isApp,
   isUnsupportedFile,
   isiFrame,
+  loadLiveModule,
   maybeDoMaintenance,
   onNavigation,
+  registerLiveModule,
   saveSetting,
   setGlobal,
   showLoadingError,
@@ -145,10 +147,16 @@ const loadModules = async (categoriesWithModules = getCategoriesWithModules()) =
       }
 
       // If the module is always loaded, or if the category is required, or if the module is enabled, load it.
-      if (module.alwaysLoad || 'required' === category.id || getSetting(module.id, module.default) || getFlag(`load-${module.id}`)) {
+      const shouldLoad = module.alwaysLoad || 'required' === category.id || getSetting(module.id, module.default) || getFlag(`load-${module.id}`);
+
+      if (module.liveToggle) {
+        registerLiveModule(module, !!shouldLoad);
+      }
+
+      if (shouldLoad) {
         load.push(
           Promise.resolve()
-            .then(() => module.load())
+            .then(() => (module.liveToggle ? loadLiveModule(module.id) : module.load()))
             .then(() => {
               loadedModules.push(module.id);
               allLoadedModules.push(module.id);

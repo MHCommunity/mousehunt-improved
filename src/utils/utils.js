@@ -114,7 +114,10 @@ const addBodyClass = (className, force = false) => {
    * Helper function to add the class to the body.
    */
   const addClass = () => {
-    document.body.classList.add(className);
+    // Don't bring back a class that has since been removed with removeBodyClass().
+    if (bodyClasses.added.includes(className)) {
+      document.body.classList.add(className);
+    }
   };
 
   addClass();

@@ -49,6 +49,7 @@ export default async () => {
   return [
     {
       id: 'custom-background',
+      live: true,
       title: 'Custom Background <span class="mhui-setting-title-links"><a class="mh-improved-custom-bg-preview">Preview choices</a></span>',
       default: [options[0]],
       settings: {
