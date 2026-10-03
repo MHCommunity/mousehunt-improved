@@ -1,4 +1,5 @@
 import {
+  addHeaderMenuTab,
   addStyles,
   createPopup,
   dataGet,
@@ -403,8 +404,7 @@ const makeDashboardTab = () => {
   dropdownContent.append(dashboardWrapper);
   menuTab.append(dropdownContent);
 
-  // Append as the second to last tab.
-  tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
+  addHeaderMenuTab(menuTab, { order: 10 });
 };
 
 /**
