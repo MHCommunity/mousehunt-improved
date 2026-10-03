@@ -1,7 +1,7 @@
 import { addStyles, debuglog, formatNumber, getData, makeElement, onJournalEntry, unpluralize } from '@utils';
 
 import { LOOT_INTRO_PHRASES } from '../../shared/loot-intros';
-import { shouldSkipJournalItemLink } from '../../shared/item-linking';
+import { excludedItemTypes, shouldSkipJournalItemLink } from '../../shared/item-linking';
 import styles from './styles.css';
 
 const classTypeMap = Object.entries({
@@ -143,11 +143,12 @@ const makeItemLink = (item, name) => {
  * aren't linked in regular prose.
  *
  * @param {string} text      The text to search.
- * @param {Set}    skipNames Lower-cased item names to leave as plain text.
+ * @param {Set}    skipNames      Lower-cased item names to leave as plain text.
+ * @param {boolean} allowTrapSetup Whether to link weapons and bases too.
  *
  * @return {Array} Matches as `{ start, name, item }`, in order.
  */
-const findItemsInText = (text, skipNames) => {
+const findItemsInText = (text, skipNames, allowTrapSetup = false) => {
   const matches = [];
   const wordStart = /[A-Z][\w'+|’-]*/g;
 
@@ -167,7 +168,7 @@ const findItemsInText = (text, skipNames) => {
       }
 
       wordCount++;
-      if (wordCount > 6) {
+      if (wordCount > 8) {
         break;
       }
 
@@ -185,7 +186,8 @@ const findItemsInText = (text, skipNames) => {
     // Only link single words when they directly follow a quantity.
     const precededByQuantity = /\d[\d,]*\s*x?\s*$/.test(text.slice(0, start));
     if (best.words > 1 || precededByQuantity) {
-      if (!shouldSkipJournalItemLink(best.item) && !skipNames?.has(best.item.name.toLowerCase())) {
+      const skipItem = allowTrapSetup ? excludedItemTypes.has(best.item.type) : shouldSkipJournalItemLink(best.item);
+      if (!skipItem && !skipNames?.has(best.item.name.toLowerCase())) {
         matches.push(best);
       }
 
@@ -203,9 +205,10 @@ const findItemsInText = (text, skipNames) => {
  * that only mention items in prose still get icons and hover cards.
  *
  * @param {HTMLElement} textEl    The text element.
- * @param {Set}         skipNames Lower-cased item names to leave as plain text.
+ * @param {Set}         skipNames      Lower-cased item names to leave as plain text.
+ * @param {boolean}     allowTrapSetup Whether to link weapons and bases too.
  */
-const linkifyItemsInText = (textEl, skipNames) => {
+const linkifyItemsInText = (textEl, skipNames, allowTrapSetup = false) => {
   const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT, {
     /**
      * Skip text that's already inside a link.
@@ -226,7 +229,7 @@ const linkifyItemsInText = (textEl, skipNames) => {
 
   for (const node of textNodes) {
     const text = node.textContent;
-    const found = findItemsInText(text, skipNames);
+    const found = findItemsInText(text, skipNames, allowTrapSetup);
     if (!found.length) {
       continue;
     }
@@ -267,7 +270,10 @@ const makeListItems = (itemList) => {
   const frag = document.createDocumentFragment();
   for (const raw of itemList) {
     const li = makeElement('li', 'better-journal-list-item');
-    const cleaned = raw.replace(/^•\s*/, '');
+    // Drop the leading text bullet, even when it sits behind an &nbsp; or an
+    // opening tag (as on lines after the first), so it doesn't double up with
+    // the list marker.
+    const cleaned = raw.replace(/^(?:\s|&nbsp;)+/, '').replace(/^((?:<[^>]+>)*)(?:•|&bull;)(?:\s|&nbsp;)*/, '$1');
     const conv = convertTextToItemLink(cleaned);
     if (conv) {
       // build DOM safely: text node for quantity, then the anchor element
@@ -279,6 +285,10 @@ const makeListItems = (itemList) => {
         .replace(/,$/, '')
         .replace(/^(\d+)\s+x\s+/, '$1 ')
         .trim();
+
+      // List lines name their items outright (like a trap preset's "I
+      // armed:" list), so link weapons and bases here too.
+      linkifyItemsInText(li, null, true);
     }
     frag.append(li);
   }
@@ -345,6 +355,33 @@ const addClassesToLiAndUl = (root) => {
     ul.classList.add('better-journal-list');
     ul.querySelectorAll(':scope > li').forEach((li) => li.classList.add('better-journal-list-item'));
   });
+};
+
+/**
+ * Tidy lists the game already built (like a trap preset's "I armed:" list):
+ * drop the text bullet each item starts with so it doesn't double up with the
+ * list marker, and link the items, weapons and bases included.
+ *
+ * @param {HTMLElement} textEl    The text element.
+ * @param {Set}         skipNames Lower-cased item names to leave as plain text.
+ */
+const cleanExistingLists = (textEl, skipNames) => {
+  textEl.querySelectorAll('li').forEach((li) => {
+    const walker = document.createTreeWalker(li, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!node.textContent.trim()) {
+        continue;
+      }
+
+      node.textContent = node.textContent.replace(/^\s*•\s*/, '');
+      break;
+    }
+
+    linkifyItemsInText(li, skipNames, true);
+  });
+
+  addClassesToLiAndUl(textEl);
 };
 
 /**
@@ -506,8 +543,9 @@ const getItemsFromText = (type, textEl) => {
   // separated lines with <br>s and already-built item links, but use intro
   // phrasing we don't have an explicit string for. Rather than chase every
   // variant, detect the bullet list directly: split at the first bullet into
-  // intro text + item lines.
-  if (list.length === 0 && innerHTML.includes('•')) {
+  // intro text + item lines. Entries that already have a real list are
+  // cleaned up in place instead, since splitting inside an <li> breaks it.
+  if (list.length === 0 && innerHTML.includes('•') && !textEl.querySelector('li')) {
     const idx = innerHTML.indexOf('•');
     const intro = innerHTML.slice(0, idx).replace(/\s+$/, '');
     const candidate = splitText(innerHTML.slice(idx));
@@ -576,6 +614,8 @@ const formatAsList = async (model) => {
       const listItems = makeListItems(list);
       textEl.append(listItems);
     }
+  } else if ('hasListNeedsClasses' !== type && textEl.querySelector('li')) {
+    cleanExistingLists(textEl, skipNames);
   } else if ('hasListNeedsClasses' !== type) {
     // No recognized loot phrasing: entries that list their loot inline after
     // a colon (like the Polar Vortex Trap squall) still become a list.
