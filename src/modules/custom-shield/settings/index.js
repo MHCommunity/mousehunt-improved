@@ -1,3 +1,44 @@
+import { getUserTitle, makeElement } from '@utils';
+
+/**
+ * Make the markup for a shield preview.
+ *
+ * @param {Object} shield    The shield.
+ * @param {string} shield.id The shield's setting value.
+ *
+ * @return {string} The markup.
+ */
+const shieldPreview = (shield) => {
+  const shieldClass = shield.id.replaceAll('color-', ' default color-').replaceAll('-alt', ' alt').replaceAll('.', ' ');
+
+  return `<div class="mh-improved-custom-shield-item-preview ${shield.id}"><a class="mousehuntHud-shield golden ${shieldClass}"></a>
+</div>`;
+};
+
+/**
+ * Make the shield preview for the setting's picker.
+ *
+ * @param {Object} option The option.
+ *
+ * @return {HTMLElement} The preview.
+ */
+const pickerPreview = (option) => {
+  // Show the variants without a shield of their own as the shield they use.
+  let id = option.value.replace('-timer', '');
+  if ('default-normal' === id) {
+    id = 'default';
+  } else if ('color-cotton-candy' === id) {
+    id = 'color-pink';
+  } else if ('title' === id) {
+    id = `title.${getUserTitle().replaceAll(' ', '')}`;
+  }
+
+  const preview = makeElement('span', 'mh-improved-custom-shield-picker-preview');
+  preview.innerHTML = shieldPreview({ id });
+
+  return preview;
+};
+
 /**
  * Add settings for the module.
  *
@@ -8,29 +49,29 @@ export default async () => {
     { name: 'Default', value: 'default' },
     { name: 'Default (normal resolution)', value: 'default-normal' },
     { name: 'Default (no LGS)', value: 'default-no-lgs' },
-    { name: 'Simple Golden', value: 'plain' },
+    { name: 'Simple golden', value: 'plain' },
     { name: 'Starry', value: 'starry' },
     {
       name: 'Events',
       value: 'group',
       options: [
-        { name: 'Birthday (Generic)', value: 'birthday' },
-        { name: 'Birthday (Year 10)', value: 'birthday.year10' },
-        { name: 'Birthday (Year 11)', value: 'birthday.year11' },
-        { name: 'Birthday (Year 12)', value: 'birthday.year12' },
-        { name: 'Birthday (Year 13)', value: 'birthday.year13' },
-        { name: 'Birthday (Year 14)', value: 'birthday.year14' },
-        { name: 'Birthday (Year 15)', value: 'birthday.year15' },
-        { name: 'Birthday (Year 16)', value: 'birthday.year16' },
-        { name: 'Birthday (Year 17)', value: 'birthday.year17' },
+        { name: 'Birthday (generic)', value: 'birthday' },
+        { name: 'Birthday (year 10)', value: 'birthday.year10' },
+        { name: 'Birthday (year 11)', value: 'birthday.year11' },
+        { name: 'Birthday (year 12)', value: 'birthday.year12' },
+        { name: 'Birthday (year 13)', value: 'birthday.year13' },
+        { name: 'Birthday (year 14)', value: 'birthday.year14' },
+        { name: 'Birthday (year 15)', value: 'birthday.year15' },
+        { name: 'Birthday (year 16)', value: 'birthday.year16' },
+        { name: 'Birthday (year 17)', value: 'birthday.year17' },
         { name: 'Great Winter Hunt', value: 'winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
-        { name: 'Halloween (Pumpkins)', value: 'halloween-text' },
+        { name: 'Halloween (pumpkins)', value: 'halloween-text' },
         { name: "Larry's Football Challenge", value: 'larrys_football_challenge' },
-        { name: 'Pride (LGS Required)', value: 'pride' },
+        { name: 'Pride (LGS required)', value: 'pride' },
         { name: 'Remembrance Day', value: 'remembrance_day' },
-        { name: 'Spring Egg Hunt (LGS Required)', value: 'spring-egg-hunt' },
-        { name: 'Spring Egg Hunt Alt (LGS Required)', value: 'spring-egg-hunt-alt' },
+        { name: 'Spring Egg Hunt (LGS required)', value: 'spring-egg-hunt' },
+        { name: 'Spring Egg Hunt alternate (LGS required)', value: 'spring-egg-hunt-alt' },
         { name: "Valentine's", value: 'valentines' },
       ],
     },
@@ -46,7 +87,7 @@ export default async () => {
         { name: 'Red', value: 'color-red' },
         { name: 'Faded', value: 'color-faded' },
         { name: 'Rainbow', value: 'color-rainbow' },
-        { name: 'Cotton Candy', value: 'color-cotton-candy' },
+        { name: 'Cotton candy', value: 'color-cotton-candy' },
         { seperator: true },
         { name: 'Blue with matching timer', value: 'color-blue-timer' },
         { name: 'Cyan with matching timer', value: 'color-cyan-timer' },
@@ -58,10 +99,10 @@ export default async () => {
       ],
     },
     {
-      name: 'Title Shields',
+      name: 'Title shields',
       value: 'group',
       options: [
-        { name: 'Current Title ', value: 'title' },
+        { name: 'Current title', value: 'title' },
         { seperator: true },
         { name: 'Novice', value: 'title.novice' },
         { name: 'Recruit', value: 'title.recruit' },
@@ -140,11 +181,14 @@ export default async () => {
     {
       id: 'custom-shield',
       live: true,
-      title: 'Custom Shield <span class="mhui-setting-title-links"><a class="mh-improved-custom-shield-preview">Preview choices</a></span>',
+      title: 'Custom shield',
       default: [options[0]],
       settings: {
         type: 'multi-select',
         number: 1,
+        searchable: true,
+        placeholder: 'Search shields…',
+        preview: pickerPreview,
         options,
       },
     },

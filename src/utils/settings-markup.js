@@ -1,4 +1,4 @@
-import { createPopup, makeElement, makeMhButton } from './elements';
+import { makeElement, makeMhButton } from './elements';
 import { doEvent, onEvent } from './event-registry';
 import { getMultiSelectCount, getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { getCurrentPage } from './page-current';
@@ -7,7 +7,6 @@ import { getFlag } from './flags';
 import { isLiveSetting, markSettingLive } from './live-toggle';
 import { makeItemPicker } from './settings-item-picker';
 import { onNavigation } from './events';
-import { setMultipleTimeout } from './utils';
 import { showSuccessMessage } from './messages';
 
 /**
@@ -332,6 +331,8 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
         options: settingSettings.options,
         value: currentSetting ?? defaultValue?.[i]?.value ?? 'none',
         onChange: (value) => save(picker, value),
+        placeholder: settingSettings.placeholder,
+        preview: settingSettings.preview,
       });
 
       return picker;
@@ -953,8 +954,7 @@ const addSettingForModule = async (module) => {
 };
 
 /**
- * Flatten a multi-select setting's options, pulling the options out of any groups, so that they can
- * be used as preview items.
+ * Flatten a multi-select setting's options, pulling the options out of any groups.
  *
  * @param {Array} options The options for the setting.
  * @param {Array} exclude The option values to leave out.
@@ -977,92 +977,4 @@ const flattenSettingOptions = (options, exclude = ['default']) => {
     .filter((option) => !exclude.includes(option.value));
 };
 
-const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview = true, previewCallback = () => {}, itemPreviewCallback = null }) => {
-  const previewLink = document.querySelector(selector);
-  if (!previewLink) {
-    return;
-  }
-
-  const hasEventListener = previewLink.getAttribute('data-mh-improved-settings-preview');
-  if (hasEventListener) {
-    return;
-  }
-
-  previewLink.setAttribute('data-mh-improved-settings-preview', true);
-
-  previewLink.addEventListener(
-    'click',
-    (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-
-      const hasItemPreview = !!itemPreviewCallback;
-
-      const content = items
-        .map(
-          (gradient) => `
-      <div class="gradient ${id}${gradient?.id ? ` ${gradient.id}` : ''}${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
-        <div class="name">${gradient.name}</div>
-        ${hasItemPreview ? itemPreviewCallback(gradient) : ''}
-        <div class="controls">
-          ${preview ? `<div class="mousehuntActionButton lightBlue small mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>` : ''}
-          <div class="mousehuntActionButton small mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Select</span></div>
-        </div>
-      </div>
-    `
-        )
-        .join('');
-
-      const popup = createPopup({
-        title: '',
-        className: `mh-improved-custom-background-gradient-preview-popup mh-improved-custom-preview-popup-${id}`,
-        content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
-        show: false,
-      });
-
-      popup.show();
-
-      document.querySelector('.mh-improved-custom-background-gradient-preview').addEventListener('click', (evt) => {
-        const action = evt.target.closest('.mh-improved-custom-bg-action-button');
-        if (!action) {
-          return;
-        }
-
-        evt.preventDefault();
-
-        const gradient = action.getAttribute('data-gradient');
-        const actionType = action.getAttribute('data-action');
-
-        if ('preview' === actionType) {
-          previewCallback(gradient);
-        } else if ('use' === actionType) {
-          const input = document.querySelector(inputSelector);
-          if (input) {
-            input.value = gradient;
-            input.dispatchEvent(new Event('change'));
-          }
-
-          popup.hide();
-        }
-      });
-    },
-    {},
-    true
-  );
-};
-
-/**
- * Add a preview link to show the background options.
- *
- * @param {Object}   options                 The options for the preview.
- * @param {string}   options.id              The ID of the preview.
- * @param {string}   options.selector        The selector for the preview link.
- * @param {string}   options.inputSelector   The selector for the input.
- * @param {boolean}  options.preview         Whether or not to show the preview button.
- * @param {Function} options.previewCallback The callback function to run when previewing.
- */
-const addSettingPreview = (options) => {
-  setMultipleTimeout(() => doAddSettingPreview(options), [10, 250, 500, 1000, 2000, 5000]);
-};
-
-export { addSettingForModule, addSetting, addSettingsTab, addSettingPreview, flattenSettingOptions };
+export { addSettingForModule, addSetting, addSettingsTab, flattenSettingOptions };

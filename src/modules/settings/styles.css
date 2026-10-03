@@ -610,6 +610,12 @@
   display: none;
 }
 
+/* Without room below, open beside the field instead, shifted up to stay on screen. */
+.mhui-item-picker-popover.is-beside {
+  top: 0;
+  right: calc(100% + 6px);
+}
+
 .mousehunt-improved-settings .PagePreferences__settingAction input.mhui-item-picker-search {
   box-sizing: border-box;
   height: 28px;
@@ -617,6 +623,11 @@
   margin: 0 0 6px;
   font-family: inherit;
   font-size: 12px;
+}
+
+/* Keep the border visible against the popover, which the dark mode hover color blends into. */
+.mousehunt-improved-settings .mhui-item-picker-popover input.mhui-item-picker-search:is(:hover, :focus) {
+  border-color: var(--mhui-settings-muted);
 }
 
 .mhui-item-picker-list {
@@ -655,6 +666,89 @@
 .mhui-item-picker-option:hover,
 .mhui-item-picker-option.active {
   background: var(--mhui-settings-match);
+}
+
+.mhui-item-picker-option.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.mhui-item-picker-option.disabled:hover,
+.mhui-item-picker-option.disabled.active {
+  background: none;
+}
+
+.mhui-item-picker-group {
+  padding: 8px 6px 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--mhui-settings-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mhui-item-picker-group:first-child {
+  padding-top: 2px;
+}
+
+.mhui-item-picker-group[hidden] {
+  display: none;
+}
+
+/* Swatches and previews */
+.mhui-item-picker.has-previews .mhui-item-picker-popover {
+  width: 320px;
+}
+
+.mhui-item-picker.has-previews .mhui-item-picker-list {
+  max-height: 340px;
+}
+
+.mhui-item-picker-swatch {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 36px;
+  overflow: hidden;
+  border: 1px solid var(--mhui-settings-border);
+  border-radius: 3px;
+}
+
+.mhui-item-picker-trigger .mhui-item-picker-swatch {
+  width: 30px;
+}
+
+.mhui-item-picker-option .mhui-item-picker-swatch {
+  width: 44px;
+  height: 28px;
+}
+
+.mhui-item-picker-preview {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border: 1px solid var(--mhui-settings-border);
+  border-radius: 4px;
+}
+
+.mhui-item-picker-preview.is-empty {
+  background: repeating-linear-gradient(45deg, transparent 0 6px, var(--mhui-settings-border) 6px 7px);
+}
+
+.mhui-item-picker-swatch > *,
+.mhui-item-picker-preview > * {
+  pointer-events: none;
+}
+
+.mhui-item-picker-css-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .mhui-item-picker-empty {

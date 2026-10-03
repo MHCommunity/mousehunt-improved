@@ -1,18 +1,9 @@
-import { addSettingPreview, addStyles, flattenSettingOptions, getSetting, onNavigation, setMultipleTimeout } from '@utils';
+import { addStyles, getSetting, onEvent, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
 let addedClass = '';
-let preferenceInput = null;
-let showHornLink = null;
-let isShowingHorn = false;
-let hornTimeout = null;
-let backdropTimeout = null;
-
-const handlePreferenceChange = () => {
-  addHornClass();
-};
 
 /**
  * Add a class to the horn view.
@@ -53,95 +44,6 @@ const addHornClass = () => {
 };
 
 /**
- * Listen for changes to the preference.
- */
-const listenForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-custom-horn select');
-  if (!input) {
-    return;
-  }
-
-  if (preferenceInput && preferenceInput !== input) {
-    preferenceInput.removeEventListener('change', handlePreferenceChange);
-  }
-
-  if (preferenceInput === input) {
-    return;
-  }
-
-  preferenceInput = input;
-  preferenceInput.addEventListener('change', handlePreferenceChange);
-};
-
-/**
- * Add a preview link to show the horn.
- *
- * @param {MouseEvent} e The click event.
- */
-const toggleHornPreview = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-
-  const horn = document.querySelector('.huntersHornView__horn');
-  if (!horn) {
-    return;
-  }
-
-  const backdrop = document.querySelector('.huntersHornView__backdrop');
-  if (!backdrop) {
-    return;
-  }
-
-  if (isShowingHorn) {
-    isShowingHorn = false;
-    showHornLink.textContent = 'Show Horn';
-
-    clearTimeout(hornTimeout);
-    clearTimeout(backdropTimeout);
-
-    horn.classList.add('huntersHornView__horn--reveal');
-    horn.classList.remove('huntersHornView__horn--ready');
-    backdropTimeout = setTimeout(() => backdrop.classList.remove('huntersHornView__backdrop--active'), 400);
-    hornTimeout = setTimeout(() => horn.classList.remove('huntersHornView__horn--reveal'), 1000);
-
-    return;
-  }
-
-  isShowingHorn = true;
-  showHornLink.textContent = 'Hide Horn';
-
-  backdrop.classList.add('huntersHornView__backdrop--active');
-  horn.classList.add('huntersHornView__horn--ready', 'huntersHornView__horn--reveal');
-
-  clearTimeout(hornTimeout);
-  clearTimeout(backdropTimeout);
-};
-
-/**
- * Add a preview link to show the horn.
- */
-const addShowHorn = () => {
-  const previewLink = document.querySelector('.mh-improved-custom-horn-show-horn');
-  if (!previewLink) {
-    return;
-  }
-
-  if (showHornLink && showHornLink !== previewLink) {
-    showHornLink.removeEventListener('click', toggleHornPreview);
-  }
-
-  if (showHornLink === previewLink) {
-    return;
-  }
-
-  showHornLink = previewLink;
-  isShowingHorn = false;
-  clearTimeout(hornTimeout);
-  showHornLink.textContent = 'Show Horn';
-  showHornLink.addEventListener('click', toggleHornPreview);
-};
-
-/**
  * Persist the horn class changes when navigating.
  */
 const persistHornClass = () => {
@@ -149,35 +51,12 @@ const persistHornClass = () => {
   onNavigation(() => {
     setTimeout(addHornClass, 1000);
   });
-};
 
-const hornPreview = (horn) => {
-  return `<div class="mh-improved-custom-horn-preview ${horn.id}">
-  <a class="huntersHornView__horn huntersHornView__horn--default huntersHornView__horn--reveal huntersHornView__horn--ready">
-    <div class="huntersHornView__hornImage">
-      <div class="huntersHornView__hornForeground"></div>
-      <div class="huntersHornView__hornGlint">
-        <div class="huntersHornView__hornGlintImage"></div>
-        <img class="huntersHornView__hornGlintAnimatedGif" alt="" />
-      </div>
-    </div>
-    <div class="huntersHornView__hornBanner">
-      <div class="huntersHornView__hornBannerTranslate">
-        <div class="huntersHornView__hornBannerImage"></div>
-      </div>
-    </div>
-  </a>
-</div>`;
-};
-
-const getHornSettingsValues = async () => {
-  const settingsValues = await settings();
-
-  // 'default' is kept so that the preview offers a way back to the stock horn.
-  return flattenSettingOptions(settingsValues[0].settings.options, []).map((option) => ({
-    id: option.value,
-    name: option.name,
-  }));
+  onEvent('mh-improved-settings-changed', ({ key }) => {
+    if ('custom-horn-0' === key) {
+      addHornClass();
+    }
+  });
 };
 
 /**
@@ -187,34 +66,6 @@ const init = () => {
   addStyles(styles, 'custom-horn');
 
   persistHornClass();
-
-  onNavigation(
-    () => {
-      setMultipleTimeout(() => {
-        listenForPreferenceChanges();
-        addShowHorn();
-      }, [250, 500, 1000, 2000, 5000]);
-
-      getHornSettingsValues()
-        .then((horns) => {
-          addSettingPreview({
-            id: 'custom-horn',
-            selector: '.mh-improved-custom-horn-preview',
-            inputSelector: '#mousehunt-improved-settings-custom-horn select',
-            preview: false,
-            items: horns,
-            itemPreviewCallback: hornPreview,
-          });
-        })
-        .catch(() => {
-          /* Failed to load horn settings values */
-        });
-    },
-    {
-      page: 'preferences',
-      onLoad: true,
-    }
-  );
 };
 
 /**

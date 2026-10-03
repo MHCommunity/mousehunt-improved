@@ -365,47 +365,65 @@
   }
 }
 
-.custom-shield.custom-preview {
-  position: relative;
-}
-
-.mh-improved-custom-shield-item-preview img {
-  width: 110px;
-  height: auto;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-shield.custom-preview {
-  position: relative;
-  background-color: #ddd0ad;
-  background-image: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg);
-  background-repeat: no-repeat;
-  background-position: -5px 0;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-shield {
-  height: 185px;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-shield .name {
-  margin-top: 125px;
-  font-size: 20px;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.remembrance_day,
-.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.halloween,
-.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt,
-.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt-alt {
-  left: -5px;
-}
-
 .mh-improved-custom-shield-item-preview .mousehuntHud-shield.pride {
   left: -4px;
 }
 
-.custom-shield.custom-preview.romeno {
-  background-position-x: 20px;
-}
-
 .mh-improved-custom-shield-item-preview .mousehuntHud-shield.romeno {
   left: 20px;
+}
+
+/*
+ * Setting picker previews. The shield sits in a stage the size of its spot in the HUD, so the
+ * per-shield offsets above still line it up, and the stage is scaled to fit.
+ */
+.mh-improved-custom-shield-picker-preview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 140px;
+  height: 130px;
+  transform: translate(-50%, -50%) scale(0.31);
+}
+
+/* These sit a little to the right of the rest when shown on their own. */
+.mh-improved-custom-shield-picker-preview .mousehuntHud-shield.remembrance_day,
+.mh-improved-custom-shield-picker-preview .mousehuntHud-shield.halloween,
+.mh-improved-custom-shield-picker-preview .mousehuntHud-shield.spring-egg-hunt,
+.mh-improved-custom-shield-picker-preview .mousehuntHud-shield.spring-egg-hunt-alt {
+  left: -5px;
+}
+
+.mhui-item-picker-trigger .mhui-item-picker-swatch .mh-improved-custom-shield-picker-preview {
+  transform: translate(-50%, -50%) scale(0.15);
+}
+
+.mhui-item-picker-option .mhui-item-picker-swatch:has(.mh-improved-custom-shield-picker-preview) {
+  width: 44px;
+  height: 44px;
+}
+
+.mhui-item-picker-swatch:has(.mh-improved-custom-shield-picker-preview) {
+  background: #e8dcb5;
+}
+
+/* The preview pane shows the shield over the camp scene, where it sits in the HUD. */
+.mhui-item-picker-preview:has(.mh-improved-custom-shield-picker-preview) {
+  height: 100px;
+  background: #ddd0ad;
+}
+
+.mhui-item-picker-preview .mh-improved-custom-shield-picker-preview {
+  top: 0;
+  left: 0;
+  width: 424px;
+  height: 135px;
+  background: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg) no-repeat -5px 0;
+  transform: scale(0.75);
+  transform-origin: 0 0;
+}
+
+.mhui-item-picker-preview .mh-improved-custom-shield-picker-preview:has(.romeno) {
+  background-position-x: 20px;
 }

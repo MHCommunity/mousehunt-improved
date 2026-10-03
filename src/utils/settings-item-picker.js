@@ -5,21 +5,22 @@ let pickerCount = 0;
 /**
  * Flatten setting options into a plain list, dropping separators and unwrapping groups.
  *
- * @param {Array} options The setting options.
+ * @param {Array}  options The setting options.
+ * @param {string} group   The name of the group the options are in.
  *
  * @return {Array} The selectable options.
  */
-const flattenOptions = (options) => {
+const flattenOptions = (options, group = null) => {
   return options.flatMap((option) => {
     if (option.seperator) {
       return [];
     }
 
     if ('group' === option.value) {
-      return flattenOptions(option.options || []);
+      return flattenOptions(option.options || [], option.name);
     }
 
-    return [option];
+    return [{ ...option, group }];
   });
 };
 
@@ -47,13 +48,57 @@ const makeName = (name) => {
 };
 
 /**
+ * Make the preview for an option, either from the setting's preview callback or the option's css.
+ *
+ * @param {Object}   option  The option.
+ * @param {string}   size    Either 'icon' or 'large'.
+ * @param {Function} preview The setting's preview callback.
+ *
+ * @return {HTMLElement|null} The preview.
+ */
+const makePreview = (option, size, preview) => {
+  if (!option) {
+    return null;
+  }
+
+  const custom = preview?.(option, size);
+  if (custom) {
+    return custom;
+  }
+
+  if (!option.css) {
+    return null;
+  }
+
+  const swatch = makeElement('span', 'mhui-item-picker-css-preview');
+  swatch.style.background = option.css;
+  // Shrink images to the swatch height so event art shows whole rather than as a cropped corner.
+  swatch.style.backgroundSize = 'auto 100%';
+
+  return swatch;
+};
+
+/**
  * Make the icon for an option.
  *
- * @param {Object} option The option.
+ * @param {Object}   option  The option.
+ * @param {Function} preview The setting's preview callback, if it has previews.
  *
  * @return {HTMLElement} The icon.
  */
-const makeIcon = (option) => {
+const makeIcon = (option, preview) => {
+  if (preview) {
+    const swatch = makeElement('span', ['mhui-item-picker-icon', 'mhui-item-picker-swatch']);
+    const content = makePreview(option, 'icon', preview);
+    if (content) {
+      swatch.append(content);
+    } else {
+      swatch.classList.add('mhui-item-picker-icon-empty');
+    }
+
+    return swatch;
+  }
+
   if (!option?.image) {
     return makeElement('span', ['mhui-item-picker-icon', 'mhui-item-picker-icon-empty']);
   }
@@ -69,25 +114,37 @@ const makeIcon = (option) => {
 /**
  * Make a searchable item picker that replaces a native select for long item lists.
  *
- * @param {Object}   args          The arguments.
- * @param {Array}    args.options  The setting options ({ name, value, image }).
- * @param {string}   args.value    The selected value.
- * @param {Function} args.onChange Called with the new value when an option is picked.
+ * Options can have an `image` for an icon, or a `css` background to show as a swatch. A `preview`
+ * callback, called with the option and either 'icon' or 'large', can return an element instead.
+ * With swatches or a preview callback, the picker also shows a larger preview of the highlighted option.
+ *
+ * @param {Object}   args             The arguments.
+ * @param {Array}    args.options     The setting options ({ name, value, image, css, disabled }).
+ * @param {string}   args.value       The selected value.
+ * @param {Function} args.onChange    Called with the new value when an option is picked.
+ * @param {string}   args.placeholder The search placeholder.
+ * @param {Function} args.preview     Makes the preview element for an option.
  *
  * @return {HTMLElement} The picker.
  */
-const makeItemPicker = ({ options, value, onChange }) => {
+const makeItemPicker = ({ options, value, onChange, placeholder = 'Search items…', preview = null }) => {
   pickerCount++;
   const listId = `mhui-item-picker-list-${pickerCount}`;
 
   const items = flattenOptions(options).map((option) => ({ ...option, search: normalize(option.name) }));
+  const hasPreviews = !!preview || items.some((item) => item.css);
+  const iconPreview = hasPreviews ? preview || (() => null) : null;
+
+  // Group headers are only shown while the list isn't filtered.
+  const listNodes = [];
+  const headers = [];
 
   let selectedValue = value;
   let activeIndex = -1;
   let visibleItems = [];
   let listBuilt = false;
 
-  const picker = makeElement('div', 'mhui-item-picker');
+  const picker = makeElement('div', ['mhui-item-picker', hasPreviews ? 'has-previews' : null].filter(Boolean));
 
   const trigger = makeElement('button', ['mhui-item-picker-trigger', 'inputBox', 'multiSelect']);
   trigger.type = 'button';
@@ -99,7 +156,7 @@ const makeItemPicker = ({ options, value, onChange }) => {
 
   const search = makeElement('input', 'mhui-item-picker-search');
   search.type = 'search';
-  search.placeholder = 'Search items…';
+  search.placeholder = placeholder;
   search.autocomplete = 'off';
   search.setAttribute('role', 'combobox');
   search.setAttribute('aria-controls', listId);
@@ -112,7 +169,10 @@ const makeItemPicker = ({ options, value, onChange }) => {
   const empty = makeElement('div', 'mhui-item-picker-empty', 'No matching items');
   empty.hidden = true;
 
-  popover.append(search, list, empty);
+  const previewPane = makeElement('div', 'mhui-item-picker-preview');
+  previewPane.setAttribute('aria-hidden', 'true');
+
+  popover.append(search, ...(hasPreviews ? [previewPane] : []), list, empty);
   picker.append(trigger, popover);
 
   /**
@@ -122,7 +182,7 @@ const makeItemPicker = ({ options, value, onChange }) => {
     const selected = items.find((item) => item.value === selectedValue);
     const name = selected?.name ?? selectedValue ?? '';
 
-    trigger.replaceChildren(makeIcon(selected), makeName(name), makeElement('span', 'mhui-item-picker-caret'));
+    trigger.replaceChildren(makeIcon(selected, iconPreview), makeName(name), makeElement('span', 'mhui-item-picker-caret'));
     trigger.title = name;
     picker.classList.toggle('is-empty', !selectedValue || 'none' === selectedValue);
   };
@@ -136,20 +196,54 @@ const makeItemPicker = ({ options, value, onChange }) => {
     }
 
     items.forEach((item, index) => {
+      if (item.group && item.group !== items[index - 1]?.group) {
+        const header = makeElement('li', 'mhui-item-picker-group', item.group);
+        header.setAttribute('role', 'presentation');
+        headers.push(header);
+        listNodes.push(header);
+      }
+
       const row = makeElement('li', 'mhui-item-picker-option');
       row.id = `${listId}-${index}`;
       row.setAttribute('role', 'option');
-      row.append(makeIcon(item), makeName(item.name));
+      row.append(makeIcon(item, iconPreview), makeName(item.name));
+
+      if (item.disabled) {
+        row.classList.add('disabled');
+        row.setAttribute('aria-disabled', 'true');
+      }
 
       // Keep focus in the search box while clicking.
       row.addEventListener('mousedown', (event) => event.preventDefault());
       row.addEventListener('click', () => choose(item));
 
+      if (hasPreviews) {
+        row.addEventListener('mouseenter', () => setActive(visibleItems.indexOf(item), false));
+      }
+
       item.row = row;
-      list.append(row);
+      listNodes.push(row);
     });
 
+    list.append(...listNodes);
+
     listBuilt = true;
+  };
+
+  /**
+   * Show the larger preview for an option.
+   *
+   * @param {Object} item The option.
+   */
+  const showPreview = (item) => {
+    if (!hasPreviews || previewPane.dataset.value === item?.value) {
+      return;
+    }
+
+    const content = makePreview(item, 'large', preview);
+    previewPane.dataset.value = item?.value ?? '';
+    previewPane.replaceChildren(...(content ? [content] : []));
+    previewPane.classList.toggle('is-empty', !content);
   };
 
   /**
@@ -164,6 +258,8 @@ const makeItemPicker = ({ options, value, onChange }) => {
     activeIndex = Math.max(-1, Math.min(index, visibleItems.length - 1));
 
     const active = visibleItems[activeIndex];
+    showPreview(active ?? items.find((item) => item.value === selectedValue));
+
     if (!active) {
       search.removeAttribute('aria-activedescendant');
       return;
@@ -173,7 +269,14 @@ const makeItemPicker = ({ options, value, onChange }) => {
     search.setAttribute('aria-activedescendant', active.row.id);
 
     if (scroll) {
-      active.row.scrollIntoView({ block: 'nearest' });
+      // Scroll just the list, as scrolling the row into view would also move the page.
+      const rowTop = active.row.offsetTop - list.offsetTop;
+      const rowBottom = rowTop + active.row.offsetHeight;
+      if (rowTop < list.scrollTop) {
+        list.scrollTop = rowTop;
+      } else if (rowBottom > list.scrollTop + list.clientHeight) {
+        list.scrollTop = rowBottom - list.clientHeight;
+      }
     }
   };
 
@@ -194,7 +297,10 @@ const makeItemPicker = ({ options, value, onChange }) => {
     items.forEach((item) => {
       item.row.hidden = !visible.has(item);
     });
-    list.append(...visibleItems.map((item) => item.row));
+    headers.forEach((header) => {
+      header.hidden = !!query;
+    });
+    list.append(...(query ? visibleItems.map((item) => item.row) : listNodes));
 
     empty.hidden = visibleItems.length > 0;
 
@@ -217,6 +323,27 @@ const makeItemPicker = ({ options, value, onChange }) => {
   };
 
   /**
+   * Open below the field, or beside it when there isn't room below, since the field can be at the
+   * bottom of a page that can't scroll any further.
+   */
+  const position = () => {
+    const gap = 8;
+
+    popover.classList.remove('is-beside');
+    popover.style.removeProperty('top');
+
+    if (popover.getBoundingClientRect().bottom <= window.innerHeight - gap) {
+      return;
+    }
+
+    popover.classList.add('is-beside');
+
+    const pickerTop = picker.getBoundingClientRect().top;
+    const top = Math.max(gap - pickerTop, Math.min(0, window.innerHeight - gap - pickerTop - popover.offsetHeight));
+    popover.style.top = `${top}px`;
+  };
+
+  /**
    * Open the picker.
    */
   const open = () => {
@@ -234,7 +361,8 @@ const makeItemPicker = ({ options, value, onChange }) => {
 
     search.value = '';
     filter();
-    search.focus();
+    position();
+    search.focus({ preventScroll: true });
 
     document.addEventListener('mousedown', onOutsideClick);
   };
@@ -262,6 +390,10 @@ const makeItemPicker = ({ options, value, onChange }) => {
    * @param {Object} item The option.
    */
   const choose = (item) => {
+    if (item.disabled) {
+      return;
+    }
+
     close(true);
 
     if (item.value === selectedValue) {

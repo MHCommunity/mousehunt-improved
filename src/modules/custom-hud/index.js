@@ -1,4 +1,4 @@
-import { addSettingPreview, flattenSettingOptions, getSetting, onEvent, onNavigation } from '@utils';
+import { getSetting, onEvent } from '@utils';
 
 import settings from './settings';
 
@@ -11,11 +11,9 @@ import suede from './styles/suede.css';
 
 /**
  * Add the custom HUD style element.
- *
- * @param {string} selectedPreview The selected preview.
  */
-const addStyleEl = (selectedPreview = false) => {
-  const setting = selectedPreview || getSetting('custom-hud-0', 'default');
+const addStyleEl = () => {
+  const setting = getSetting('custom-hud-0', 'default');
 
   const stylesEl = document.querySelector('#mh-improved-custom-hud-style');
   if (stylesEl) {
@@ -60,25 +58,6 @@ const addStyleEl = (selectedPreview = false) => {
 };
 
 /**
- * Get every HUD background choice as a preview item.
- *
- * @return {Promise<Array>} The preview items.
- */
-const getPreviewItems = async () => {
-  const theSettings = await settings();
-
-  return flattenSettingOptions(theSettings[0].settings.options).map((option) => {
-    const gradient = gradients.find((g) => g.id === option.value);
-
-    return {
-      id: option.value,
-      name: option.name,
-      css: gradient ? gradient.css : `url(https://i.mouse.rip/mh-improved/custom-hud/${option.value}.png) repeat top center`,
-    };
-  });
-};
-
-/**
  * Persist the styles on navigation.
  */
 const persistBackground = () => {
@@ -89,28 +68,6 @@ const persistBackground = () => {
       addStyleEl();
     }
   });
-
-  onNavigation(
-    () => {
-      getPreviewItems()
-        .then((items) => {
-          addSettingPreview({
-            id: 'custom-hud',
-            selector: '.mh-improved-custom-hud-preview',
-            inputSelector: '#mousehunt-improved-settings-custom-hud select',
-            items,
-            previewCallback: (selected) => addStyleEl(selected),
-          });
-        })
-        .catch(() => {
-          /* Failed to load HUD settings values */
-        });
-    },
-    {
-      page: 'preferences',
-      onLoad: true,
-    }
-  );
 };
 
 /**

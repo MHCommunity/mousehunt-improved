@@ -50,43 +50,39 @@
   left: unset;
 }
 
-.custom-horn .mh-improved-custom-horn-preview {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview {
-  position: relative;
-  height: 105px;
-  background-color: #a9a9a9;
-  background-image: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg);
-  background-repeat: no-repeat;
-  background-position: -305px 0;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview .controls {
-  z-index: 1;
-  align-self: flex-start;
-  margin-left: 5px;
-}
-
-.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview::after {
+/* Setting picker previews, scaled from the full-size horn to fit the swatches and preview pane. */
+.mh-improved-custom-horn-picker-preview {
   position: absolute;
-  inset: 0;
-  content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/backdrop.png);
-  background-position: -305px 0;
-  opacity: 0.7;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 237px;
+  height: 67px;
+  transform: translate(-50%, -50%) scale(0.26);
 }
 
-.mh-improved-custom-background-gradient-preview .custom-horn .name {
-  z-index: 1;
-  font-size: 22px;
-  font-weight: 900;
-  color: #000;
-  text-align: center;
-  text-shadow: 0 1px 2px #fff;
+.mh-improved-custom-horn-picker-preview .mh-improved-custom-horn-preview .huntersHornView__horn {
+  top: 0;
+  left: 0;
+}
+
+.mhui-item-picker-trigger .mhui-item-picker-swatch .mh-improved-custom-horn-picker-preview {
+  transform: translate(-50%, -50%) scale(0.12);
+}
+
+.mhui-item-picker-preview .mh-improved-custom-horn-picker-preview {
+  transform: translate(-50%, -50%) scale(0.85);
+}
+
+.mhui-item-picker-option .mhui-item-picker-swatch:has(.mh-improved-custom-horn-picker-preview) {
+  width: 64px;
+  height: 44px;
+}
+
+.mhui-item-picker-swatch:has(.mh-improved-custom-horn-picker-preview) {
+  background: #e8dcb5;
+}
+
+.mhui-item-picker-preview:has(.mh-improved-custom-horn-picker-preview) {
+  background: #a9a9a9 url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg) no-repeat -305px -10px;
 }
