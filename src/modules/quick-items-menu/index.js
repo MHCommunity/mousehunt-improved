@@ -551,8 +551,12 @@ const makeMenuTab = () => {
   const tab = makeElement('div', ['menuItem', 'dropdown', 'mh-quick-items-menu', 'mh-quick-items-menu-empty']);
 
   tabElements.title = make('span', 'mh-quick-items-menu-title', '', tab);
-  tabElements.tabIcon = make('span', 'mh-quick-items-menu-tab-icon', '', tabElements.title);
-  tabElements.tabName = make('span', 'mh-quick-items-menu-tab-name', '', tabElements.title);
+  // Marked so Custom Menu can show the icon, the name, or both.
+  tabElements.tabIcon = make('span', ['mh-quick-items-menu-tab-icon', 'mhui-menu-item-icon'], '', tabElements.title);
+  // Shows "Quick Items", or the first item's name when that's turned on in Custom Menu.
+  const tabLabel = make('span', ['mh-quick-items-menu-tab-label', 'mhui-menu-label'], '', tabElements.title);
+  make('span', 'mh-quick-items-menu-tab-label-default', 'Quick Items', tabLabel);
+  tabElements.tabName = make('span', 'mh-quick-items-menu-tab-name', '', tabLabel);
   tabElements.tabCount = make('span', 'mh-quick-items-menu-tab-count', '', tabElements.title);
   makeElement('div', 'arrow', '', tab);
 
@@ -680,7 +684,7 @@ const init = async () => {
 export default {
   id: moduleId,
   name: 'Quick Items Menu',
-  type: 'navigation-utilities',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   description: 'Add a Quick Items menu to the top menu for opening or using your pinned convertibles and message items.',

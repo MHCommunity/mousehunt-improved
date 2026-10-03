@@ -23,16 +23,10 @@ const itemOptions = {
     { key: 'get-more', label: 'Show “Get More”', default: true },
   ],
   'quick-items-menu': [
-    { key: 'icon', label: 'Show icon', default: true },
-    { key: 'name', label: 'Show name', default: false },
+    { key: 'item-name', label: 'Show the item’s name instead of “Quick Items”', default: false },
     { key: 'quantity', label: 'Show quantity', default: true },
   ],
 };
-
-/**
- * Items that need at least one of their options on, so they don't end up empty.
- */
-const requireOne = new Set(['quick-items-menu']);
 
 /**
  * Get the options offered for a menu item.
@@ -80,23 +74,6 @@ const setOptionValue = (layout, id, option, value) => {
 };
 
 /**
- * Check whether an option can be turned off without leaving its item empty.
- *
- * @param {Object} layout The layout.
- * @param {string} id     The item id.
- * @param {Object} option The option.
- *
- * @return {boolean} Whether it's the last option still on.
- */
-const isLastOptionOn = (layout, id, option) => {
-  if (!requireOne.has(id) || !getOptionValue(layout, id, option)) {
-    return false;
-  }
-
-  return getItemOptions(id).filter((other) => getOptionValue(layout, id, other)).length === 1;
-};
-
-/**
  * Mark each item with the options it has on and off, which the styles use to show or hide parts of it.
  *
  * @param {Array}  items  The items, each with `el` and `id`.
@@ -116,4 +93,4 @@ const applyItemOptions = (items, layout) => {
   }
 };
 
-export { applyItemOptions, getItemOptions, getOptionValue, isLastOptionOn, setOptionValue };
+export { applyItemOptions, getItemOptions, getOptionValue, setOptionValue };

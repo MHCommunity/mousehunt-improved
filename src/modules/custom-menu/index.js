@@ -48,7 +48,7 @@ const init = () => {
  */
 export default {
   id: 'custom-menu',
-  type: 'appearance',
+  type: 'personalization',
   alwaysLoad: true,
   load: init,
   settings,

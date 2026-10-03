@@ -1,7 +1,7 @@
 import { createPopup, defaultHiddenMenuItems, getSetting, make, makeElement, makeMhButton, saveSetting } from '@utils';
 
 import { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, lockedItems, saveLayout } from './layout';
-import { getItemOptions, getOptionValue, isLastOptionOn, setOptionValue } from './item-options';
+import { getItemOptions, getOptionValue, setOptionValue } from './item-options';
 import { getAvailableLinks } from './menu-links';
 
 const groups = [
@@ -153,6 +153,11 @@ const makeChip = (item) => {
 
   if (item.isLink) {
     chip.dataset.link = 'true';
+  }
+
+  // Icon-only items get their name over them, so it's clear what they are.
+  if ('icon' === item.style) {
+    make('span', 'mhui-menu-editor-caption', '', chip).textContent = item.name;
   }
 
   if (item.iconStyles) {
@@ -423,13 +428,11 @@ const openMenuEditor = () => {
 
     for (const option of item.options) {
       const isOn = getOptionValue(layout, item.id, option);
-      const isLocked = isLastOptionOn(layout, item.id, option);
 
       // The same switch the settings page uses.
       const toggle = make('div', 'mousehuntSettingSlider', '', makeRow(option.label));
       toggle.classList.toggle('active', isOn);
-      toggle.classList.toggle('disabled', isLocked);
-      toggle.tabIndex = isLocked ? -1 : 0;
+      toggle.tabIndex = 0;
       toggle.setAttribute('role', 'switch');
       toggle.setAttribute('aria-checked', String(isOn));
       toggle.setAttribute('aria-label', option.label);
@@ -438,10 +441,6 @@ const openMenuEditor = () => {
        * Flip the option.
        */
       const flip = () => {
-        if (isLocked) {
-          return;
-        }
-
         setOptionValue(layout, item.id, option, !isOn);
         saveAndRender(layout);
       };

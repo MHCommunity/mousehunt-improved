@@ -335,12 +335,13 @@ const getStyleInfo = (el, id) => {
 
   const isLink = el.classList.contains('mhui-custom-menu-link');
   const iconUrl = isLink ? null : el.dataset.mhMenuIcon || null;
-  const hasIcon = isLink || iconUrl || 'none' !== getComputedStyle(el, '::before').backgroundImage;
+  const hasIcon = isLink || iconUrl || el.querySelector('.mhui-menu-item-icon') || 'none' !== getComputedStyle(el, '::before').backgroundImage;
   if (!hasIcon) {
     return null;
   }
 
-  const needsLabel = !isLink && !getOwnText(el);
+  // Items with a label of their own, even an empty one that's filled in later, don't get one added.
+  const needsLabel = !isLink && !el.querySelector('.mhui-menu-label') && !getOwnText(el);
 
   return {
     iconUrl,

@@ -124,10 +124,12 @@
   padding-right: 20px;
 }
 
-/* Hides the item's own text, like the HUD toggle's, leaving the icon. */
+/* Hides the item's own text, like the HUD toggle's, leaving the icon. Items can mark their own
+   icon with `mhui-menu-item-icon`, like Quick Items' item thumbnail, which stays in color. */
 .mhui-menu-style-icon .mhui-menu-own-text,
 .mhui-menu-style-icon .mhui-menu-label,
 .mhui-menu-style-text .mhui-menu-icon,
+.mhui-menu-style-text .mhui-menu-item-icon,
 .mousehuntHeaderView .menuItem.mhui-menu-style-text::before {
   display: none !important;
 }
@@ -155,18 +157,20 @@
 .mousehuntHeaderView .menuItem.mhui-menu-hide-count .mousehuntHeaderView-menu-notification,
 .mousehuntHeaderView .menuItem.mhui-menu-hide-name .mhui-menu-own-text,
 .mousehuntHeaderView .menuItem.mhui-menu-hide-get-more .getMore,
-.mousehuntHeaderView .menuItem.mhui-menu-hide-icon .mh-quick-items-menu-tab-icon,
 .mousehuntHeaderView .menuItem.mhui-menu-hide-quantity .mh-quick-items-menu-tab-count {
   display: none !important;
 }
 
-.mousehuntHeaderView a.superBrie.mhui-menu-hide-get-more {
-  padding-right: 7px;
+.mousehuntHeaderView .menuItem.mhui-menu-show-item-name .mh-quick-items-menu-tab-label-default {
+  display: none;
 }
 
-.mousehuntHeaderView .menuItem.mhui-menu-show-name .mh-quick-items-menu-tab-name {
+.mousehuntHeaderView .menuItem.mhui-menu-show-item-name .mh-quick-items-menu-tab-name {
   display: inline;
-  white-space: nowrap;
+}
+
+.mousehuntHeaderView a.superBrie.mhui-menu-hide-get-more {
+  padding-right: 7px;
 }
 
 /* Dropdowns open to the left, so ones moved to the left side open to the right instead. */
@@ -226,6 +230,30 @@
 
 .mhui-menu-editor-item.locked {
   cursor: default;
+}
+
+/* The name over an icon-only item while it's being edited. */
+.mhui-menu-editor-caption {
+  display: none;
+}
+
+.mhui-menu-editor-bar .mhui-menu-editor-item.selected .mhui-menu-editor-caption {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--mhui-menu-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* Room for the name over the bars. */
+.mhui-menu-editor-section:has(> .mhui-menu-editor-bar) .mhui-menu-editor-label {
+  margin-bottom: 16px;
 }
 
 .mhui-menu-editor-item.has-options {

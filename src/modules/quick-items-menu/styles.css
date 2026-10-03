@@ -52,7 +52,10 @@
   display: none;
 }
 
-/* Shown when turned on in Custom Menu. */
+.mh-quick-items-menu-tab-label {
+  white-space: nowrap;
+}
+
 .mh-quick-items-menu-tab-name {
   display: none;
 }
