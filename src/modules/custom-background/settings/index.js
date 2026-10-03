@@ -21,6 +21,10 @@ const eventPreview = (event, color, extension = 'png', filePrefix = '') => {
 /**
  * Add settings for the module.
  *
+ * The event and color backgrounds are applied to the page frame rather than the body, so their
+ * preview swatches can't reuse those rules and need a standalone background of their own. The
+ * colors here come from the game's own `body.<event> .pageFrameView-column` rules.
+ *
  * @return {Array} The settings for the module.
  */
 export default async () => {

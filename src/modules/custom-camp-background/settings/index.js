@@ -3,6 +3,9 @@ import gradients from '@data/backgrounds.json';
 /**
  * Add settings for the module.
  *
+ * The camp backgrounds are applied to the camp container rather than the preview swatch, so they
+ * need a standalone background of their own. Keep these in sync with styles.css.
+ *
  * @return {Array} The settings for the module.
  */
 export default async () => {
