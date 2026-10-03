@@ -44,6 +44,6 @@
   --d-input-bg: var(--d-bg);
   --d-input-text: var(--d-text);
   --d-input-border: var(--d-border);
-  --d-input-border-hover: var(--d-yellow-dark);
+  --d-input-border-hover: var(--d-action);
   --d-input-placeholder: var(--d-text-muted);
 }
