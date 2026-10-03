@@ -1,17 +1,11 @@
-import { addBodyClass, addHeaderMenuTab, addModuleBodyClass, addStyles, getSetting, makeElement, onModuleToggle, onNavigation, onSettingsChange, removeBodyClass } from '@utils';
+import { addBodyClass, addHeaderMenuTab, addModuleBodyClass, addStyles, makeElement, onModuleToggle, onNavigation, removeBodyClass } from '@utils';
 
-import settings from './settings';
 import styles from './styles.css';
 
 /**
  * Move sidebar into menu tab.
  */
 const moveSidebar = () => {
-  if (!getSetting('no-sidebar.show-dropdown', true)) {
-    document.querySelector('.menuItem.sidebar')?.remove();
-    return;
-  }
-
   if (document.querySelector('.menuItem.sidebar')) {
     return;
   }
@@ -62,7 +56,7 @@ const moveSidebar = () => {
   // Append menu tab dropdown to menu tab.
   menuTab.append(dropdownContent);
 
-  addHeaderMenuTab(menuTab, { order: 5 });
+  addHeaderMenuTab(menuTab, { id: 'sidebar', name: 'Sidebar', order: 5 });
 };
 
 /**
@@ -95,8 +89,6 @@ const init = () => {
   // The game turns the sidebar back on when it changes pages.
   onNavigation(() => hg.views.PageFrameView.setShowSidebar(false));
 
-  onSettingsChange('no-sidebar.show-dropdown', moveSidebar);
-
   onModuleToggle('no-sidebar', {
     enable: hideSidebar,
     disable: showSidebar,
@@ -112,7 +104,6 @@ export default {
   type: 'hide-simplify',
   default: true,
   liveToggle: true,
-  description: 'Hide the sidebar, with an optional "Sidebar" dropdown in the top menu.',
+  description: 'Hide the sidebar and show it as a "Sidebar" dropdown in the top menu.',
   load: init,
-  settings,
 };
