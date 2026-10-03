@@ -15,7 +15,7 @@ const colorIntelProgressBars = () => {
       return;
     }
 
-    progressBar.dataset.intelLevel = 50 <= quantity ? 'high' : 40 <= quantity ? 'near' : 25 <= quantity ? 'medium' : 'low';
+    progressBar.dataset.intelLevel = 50 <= quantity ? 'high' : 30 <= quantity ? 'near' : 10 <= quantity ? 'medium' : 'low';
   });
 };
 
