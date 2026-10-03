@@ -8,10 +8,6 @@
   font-weight: 400;
 }
 
-.mh-dark .tournamentPage-tournamentContainer-name {
-  color: var(--d-link);
-}
-
 .tournamentPage-tournamentContainer-description {
   padding-top: 2px;
   font-size: 9px;
@@ -119,11 +115,6 @@ a.tournamentPage-tournament-column.name,
   padding: 5px 10px 5px 0;
   border: 1px solid #d7d7d7;
   border-radius: 4px;
-}
-
-.mh-dark .tournamentPage-tournamentRow {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
 }
 
 .tournamentPage-tournament-column.label.teamMembers {
@@ -698,14 +689,6 @@ img.pointsMouseIcon {
   background-color: var(--d-blue-dark);
 }
 
-.mh-dark .tournamentPage-tournamentRow.tournamentPage-tournamentData.active {
-  background-color: var(--d-green-darker);
-}
-
-.mh-dark .tournamentPage-tournamentRow.tournamentPage-tournamentData.active:hover {
-  background-color: var(--d-green-dark);
-}
-
 .tournamentPage-tournamentRow.empty .tournamentPage-tournament-empty {
   grid-column: 1 / -1;
   white-space: nowrap;
@@ -931,37 +914,8 @@ img.pointsMouseIcon {
   text-align: center;
 }
 
-.mh-dark .tournamentPage-profile-summaryDetailsContainer {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
-  border-radius: 0;
-}
-
-.mh-dark .tournamentPage-profile-summaryDetail i {
-  color: var(--d-text-muted);
-  text-shadow: none;
-}
-
-.mh-dark .tournamentPage-profile-description,
-.mh-dark .tournamentPage-profile-details-generalRules ul li,
-.mh-dark .tournamentPage-profile-details-generalRules-title {
-  text-shadow: none;
-}
-
-.mh-dark .tournamentPage-profile-details-generalRules a {
-  color: var(--d-link);
-}
-
-.mh-dark .tournamentPage-profile-details-rules h2 {
-  color: var(--d-text);
-}
-
 .mh-dark .tournamentPage-viewState .mousehuntTabContentContainer-padding {
   border: none;
-}
-
-.mh-dark h2.tournamentPage-profile-details-mouseGroup-name {
-  color: var(--d-text-muted);
 }
 
 .mh-dark .tournamentPage-viewState .mousehuntTabHeader.active span {
@@ -975,15 +929,6 @@ img.pointsMouseIcon {
 
 .tournamentPage-tournamentContainer-customPrizes {
   margin: 15px 20px 5px 0;
-}
-
-.mh-dark .tournamentPage-tournamentContainer-customPrizes {
-  color: var(--d-blue-lighter);
-  background-color: var(--d-blue-dark);
-}
-
-.mh-dark .tournamentPage-profile-details-environmentWarning {
-  color: var(--d-red-light);
 }
 
 .tournamentPage-profile-details-environmentWarning {
@@ -1014,8 +959,4 @@ img.pointsMouseIcon {
 
 .overlayPopup .tournamentHelp .faq ul {
   margin: 0 0 0 9px;
-}
-
-.mh-dark a.teamWrapper {
-  color: var(--d-link);
 }

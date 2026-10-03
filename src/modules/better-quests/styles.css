@@ -55,12 +55,6 @@
   display: none;
 }
 
-.mh-dark .campPage-quests-objective-progressBar {
-  background-color: var(--d-action);
-  border-color: var(--d-border);
-  box-shadow: 0 -1px 3px -1px #9b9b9b inset;
-}
-
 .mh-dark .complete .campPage-quests-objective-progressBar span {
   background: var(--d-green);
   box-shadow:
@@ -161,16 +155,6 @@
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:focus,
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:active {
   cursor: default;
-}
-
-.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer {
-  color: var(--d-text);
-  background: var(--d-bg);
-}
-
-.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix h2,
-.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
-  color: var(--d-text);
 }
 
 .mh-m400-travel {
@@ -293,8 +277,4 @@ ul.mh-ui-assignment-details-task-list {
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .content {
   padding: 10px 10px 0;
-}
-
-.mh-dark .campPage-quests-objective-content a {
-  color: var(--d-link);
 }

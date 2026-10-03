@@ -21,12 +21,6 @@
   background: #a4cafc;
 }
 
-.mh-dark .travelPage-regionMenu-environmentLink.active,
-.mh-dark .travelPage-regionMenu-environmentLink.current {
-  color: var(--d-text);
-  background: var(--d-blue);
-}
-
 .travelPage-regionMenu-stats {
   color: #4d4d4d;
   background-color: #d8d8d8;

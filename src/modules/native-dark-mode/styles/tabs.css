@@ -15,3 +15,19 @@
   border-bottom-color: var(--d);
   box-shadow: 1px 1px 1px var(--d);
 }
+
+.mh-dark .mousehuntTabHeader span {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntTabHeader.active span,
+.mh-dark .mousehuntTabHeader:hover span {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mousehuntTabContentContainer {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}

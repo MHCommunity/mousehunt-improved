@@ -2,10 +2,6 @@
   background-color: #f1f1f1;
 }
 
-.mh-dark .journalEntries {
-  background-color: var(--d-bg-alt);
-}
-
 .journal .content {
   padding: 0 5px;
 }

@@ -8,6 +8,11 @@
   margin-bottom: 0;
 }
 
+/* Keep the page background showing around the content when dark mode darkens this. */
+.mh-dark .pageFrameView-contentContainer {
+  background-color: transparent;
+}
+
 .pageFrameView-content {
   margin: 0 -10px;
   border: 10px solid #fff;

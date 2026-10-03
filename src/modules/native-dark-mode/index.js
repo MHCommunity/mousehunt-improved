@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, createPopup, getSetting, isDarkMode, isMHCT, onNavigation, saveSetting } from '@utils';
+import { addModuleBodyClass, addStyles, createPopup, getSetting, isDarkMode, isMHCT, saveSetting } from '@utils';
 
 import miceImages from './mice-images';
 import settings from './settings';
@@ -44,12 +44,7 @@ const maybeShowDarkModeConflictWarning = () => {
  */
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
-
-  addBodyClass('mh-dark');
-
-  onNavigation(() => {
-    addBodyClass('mh-dark');
-  });
+  addModuleBodyClass('native-dark-mode', 'mh-dark');
 
   setTimeout(maybeShowDarkModeConflictWarning, 2000);
 
@@ -67,6 +62,7 @@ export default {
   name: 'Dark Mode',
   type: 'appearance',
   default: false,
+  liveToggle: true,
   load: init,
   settings,
 };

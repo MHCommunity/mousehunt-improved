@@ -45,6 +45,10 @@
   background-color: transparent;
 }
 
+.mh-dark .mousehuntPage-loading {
+  background-color: var(--d-bg);
+}
+
 .mh-dark #messengerUINotification .loading {
   background: none;
 }

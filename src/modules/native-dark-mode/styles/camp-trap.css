@@ -82,7 +82,8 @@
 }
 
 .mh-dark .campPage-trap .trapImageView {
-  border-bottom-color: var(--d-border);
+  background-color: transparent;
+  border-color: var(--d-border);
 }
 
 .mh-dark .campPage-trap-itemBrowser-armed-label {
@@ -434,4 +435,8 @@
   padding: 15px;
   margin-top: -10px;
   background-color: var(--d-transparent-90);
+}
+
+.mh-dark .trapSelectorView__activeCodexList.trapSelectorView__innerBlock {
+  background-color: transparent;
 }

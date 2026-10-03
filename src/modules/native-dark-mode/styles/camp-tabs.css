@@ -27,6 +27,10 @@
   box-shadow: none;
 }
 
+.mh-dark .campPage-tabs-tabContent {
+  background-color: transparent;
+}
+
 .mh-dark .campPage-tabs-tabContentContainer {
   color: var(--d-text);
   background-color: var(--d-bg);
@@ -109,5 +113,15 @@
 }
 
 .mh-dark .campPage-tabs-tabContent-larryTip-container p:last-of-type a {
+  color: var(--d-link);
+}
+
+.mh-dark .campPage-quests-objective-progressBar {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+  box-shadow: 0 -1px 3px -1px #9b9b9b inset;
+}
+
+.mh-dark .campPage-quests-objective-content a {
   color: var(--d-link);
 }

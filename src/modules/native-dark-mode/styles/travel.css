@@ -100,3 +100,23 @@
   width: 12px;
   filter: hue-rotate(29deg) brightness(1.2);
 }
+
+.mh-dark .travelPage-regionMenu-environmentLink.active,
+.mh-dark .travelPage-regionMenu-environmentLink.current {
+  color: var(--d-text);
+  background: var(--d-blue);
+}
+
+.mh-dark .travelPage-map-prefix {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .travelPage-mapContainer {
+  border-color: var(--d-border);
+}
+
+.mh-dark .travelPage-map-image-background {
+  background-color: var(--d);
+}

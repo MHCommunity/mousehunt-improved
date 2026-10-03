@@ -1,4 +1,4 @@
-import { addStyles, getCurrentPage, getData, onNavigation } from '@utils';
+import { addStyles, getCurrentPage, getData, isModuleEnabled, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -158,7 +158,8 @@ const updateMouseView = () => {
  * batched together rather than tracking which one actually changed.
  */
 const queueUpdate = () => {
-  if (isQueued) {
+  // The observers outlive a live toggle, so they sit idle while dark mode is off.
+  if (isQueued || !isModuleEnabled('native-dark-mode')) {
     return;
   }
 
@@ -216,7 +217,7 @@ const unwatchMouseList = () => {
  * Overlay mouse images with their silhouette so they sit on a dark background.
  */
 export default async () => {
-  addStyles(styles, 'native-dark-mode-mice-images');
+  addStyles(styles, 'native-dark-mode', 'mh-improved-styles-mice-images');
 
   let mice = await getData('mice-silhouettes');
   if (!Array.isArray(mice)) {

@@ -147,6 +147,11 @@ body.mh-dark {
 
 .mh-dark .hunterTitle .titles h1 {
   color: var(--d-text);
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .hunterTitle .titles .description {
+  border-top-color: var(--d-border);
 }
 
 .mh-dark .hunterTitle .titles .userLevel {
@@ -280,4 +285,8 @@ body.mh-dark {
 
 .mh-dark #OnboardArrow.onboardPopup.bottom {
   background-image: url(https://i.mouse.rip/onboard/infoArrowJumbo_bottom.png);
+}
+
+.mh-dark .messageBoardView-message-container-padding {
+  background: none;
 }

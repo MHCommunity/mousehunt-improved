@@ -9,6 +9,7 @@
 
 .mh-dark .inventoryPage-tagContent-tagTitle {
   color: var(--d-text);
+  border-color: var(--d-border);
 }
 
 .mh-dark a.inventoryPage-tagDirectory-tag {
@@ -38,6 +39,7 @@
 }
 
 .mh-dark .inventoryPage-item.small.armed .inventoryPage-item-margin {
+  background-color: var(--d-bg-alt);
   border-color: var(--d-green);
   box-shadow: inset 0 0 4px var(--d-green);
 }

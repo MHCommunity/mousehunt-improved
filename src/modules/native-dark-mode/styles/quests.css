@@ -27,3 +27,13 @@
   margin-bottom: 0;
   border-color: transparent;
 }
+
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer {
+  color: var(--d-text);
+  background: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix h2,
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
+  color: var(--d-text);
+}

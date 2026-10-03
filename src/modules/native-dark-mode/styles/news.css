@@ -38,3 +38,8 @@
 .mh-dark .newsPostBody {
   color: var(--d-text);
 }
+
+.mh-dark #newsPost .newsPostHeader,
+.mh-dark .newsPostBody {
+  background: transparent;
+}
