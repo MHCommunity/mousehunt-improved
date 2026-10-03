@@ -218,6 +218,15 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   opacity: 1;
 }
 
+.trapImageView .trapImageView-trapAura.active.expiring-soon {
+  transition: transform 0.2s ease-in-out;
+  transform: translate(var(--mh-aura-offset-x, 0), var(--mh-aura-offset-y, 0));
+}
+
+.trapImageView:hover .trapImageView-trapAura.active.expiring-soon {
+  transform: none;
+}
+
 /* fix zoom button position */
 a.trapImageView-zoomButton {
   border: 1px solid rgb(189 180 166 / 80%);

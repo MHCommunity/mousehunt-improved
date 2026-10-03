@@ -21,3 +21,13 @@
   font-size: 12px;
   font-weight: 900;
 }
+
+/* Keep the copied aura icons in normal flow, so the trap image's positioning
+   (and the expiring-soon offset) doesn't push them out of place. */
+.mh-improved-aura-view .trapImageView-trapAura,
+.mh-improved-aura-view .trapImageView-trapAura.active {
+  position: static;
+  inset: auto;
+  margin: 0;
+  transform: none;
+}

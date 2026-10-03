@@ -43,12 +43,21 @@ const getExpiryRemainingFormatted = (time) => {
 const addExpiryWarning = () => {
   // Flag any auras that expire within a day.
   const soon = aurasExpiry.filter((aura) => aura.remaining < 60 * 60 * 24);
-  if (soon.length) {
-    // add a class to the aura to show it's expiring soon
-    soon.forEach((aura) => {
-      aura.element.classList.add('expiring-soon');
-    });
+  if (!soon.length) {
+    return;
   }
+
+  // Expiring auras stay visible on the trap image while the rest are hidden
+  // until hover, so shift them up into the first slots instead of leaving
+  // them floating in their usual spot.
+  const slots = aurasExpiry.map((aura) => aura.element);
+  soon.forEach((aura, index) => {
+    aura.element.classList.add('expiring-soon');
+
+    const slot = slots[index];
+    aura.element.style.setProperty('--mh-aura-offset-x', `${slot.offsetLeft - aura.element.offsetLeft}px`);
+    aura.element.style.setProperty('--mh-aura-offset-y', `${slot.offsetTop - aura.element.offsetTop}px`);
+  });
 };
 
 /**
