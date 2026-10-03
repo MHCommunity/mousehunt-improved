@@ -1,0 +1,17 @@
+{
+  "version": "0.99.15",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Many settings now apply without a refresh, including Dark Mode. A reminder appears when a refresh is needed",
+        "Reorganized and renamed the settings categories",
+        "Better Journal: Highlighted Skyport raid chests and more rare drops",
+        "Dark Mode: Fixed light backgrounds and unreadable text",
+        "Hide Sidebar: The sidebar stays hidden when changing pages",
+        "Other small fixes and style tweaks"
+      ]
+    }
+  ]
+}

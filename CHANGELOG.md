@@ -1,8 +1,19 @@
 # Changelog
 
-## Version 0.99.14
+## Version 0.99.15
 
-### Improvements
+- Many settings now apply without a refresh, including Dark Mode and custom appearance options
+- Settings that need a refresh show a reminder with a Refresh button. Undoing the change clears the reminder
+- Reorganized and renamed the settings categories
+- Better Journal: Highlighted Cerulean Skyport raid chests and more rare drops, with rare chests shown in gold
+- Dark Mode: Fixed light backgrounds and unreadable text across the game, including when other modules are turned off
+- Better Journal: Custom item colors also apply in dark mode
+- Better Gifts: Fixed "1 free gifts" wording in the gift selector
+- Hide Sidebar: The sidebar stays hidden when changing pages
+- Fixed conflicts between Hide Daily Draw and Gifts in Inbox when either is turned off
+- Minor style tweaks
+
+## Version 0.99.14
 
 - Better Maps: Added an experimental **Plan tab** to help you choose locations, stages, and cheese for your remaining map mice
 - Better Maps: Solver links skip caught mice, and Sorted tab popups stay on screen
@@ -18,9 +29,6 @@
 - Show Auras: Only flags auras expiring within a day. Dates use your local format
 - Updated error page styles and fixed extension errors on those pages
 - Improved Image Upscaling performance
-
-### Fixes
-
 - Favorite Setups: Crafting or buying missing bait or charms clears the warning. Empty bait and charm slots now disarm those items
 - Favorite Setups: Setups with unowned charms or bait now arm without them instead of being blocked
 - FLRT Helper: Fixed the Maptain's hunter ID sometimes being filled in from an older map, and items going to a previously searched hunter
