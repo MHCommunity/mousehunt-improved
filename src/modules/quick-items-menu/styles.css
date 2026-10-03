@@ -1,0 +1,253 @@
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-empty {
+  display: none;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active {
+  color: #fff;
+  text-shadow: 1px 1px #666;
+  background: url(https://www.mousehuntgame.com/images/ui/hgbar/inbox_new.png) repeat-x;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:hover {
+  background-image: url(https://i.mouse.rip/inbox_new.png);
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active .arrow {
+  border-bottom-color: #fff;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active.expanded .arrow {
+  border-top-color: #fff;
+  border-bottom-color: transparent;
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active {
+  text-shadow: 1px 1px var(--d-black, #222);
+  box-shadow: inset 0 0 0 100px rgb(0 0 0 / 25%);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:hover {
+  box-shadow: inset 0 0 0 100px rgb(0 0 0 / 15%);
+}
+
+/* A lone message item is used straight from the tab, so there's no dropdown. */
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-direct .arrow,
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-direct .dropdownContent {
+  display: none;
+}
+
+.menuItem.dropdown.mh-quick-items-menu.mh-quick-items-menu-direct {
+  padding-right: 5px;
+}
+
+.mh-quick-items-menu-title {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  height: 100%;
+  vertical-align: top;
+}
+
+.mh-quick-items-menu-tab-count:empty {
+  display: none;
+}
+
+.mh-quick-items-menu-tab-icon {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mousehuntHeaderView .mh-quick-items-menu .dropdownContent {
+  width: 220px;
+  line-height: normal;
+  cursor: default;
+}
+
+.mh-quick-items-menu-wrapper {
+  --mh-pc-text: #222;
+  --mh-pc-muted: #666;
+  --mh-pc-panel: #f4f4f4;
+  --mh-pc-border: #ccc;
+  --mh-pc-input-bg: #fff;
+  --mh-pc-active-text: #2a6b1a;
+  --mh-pc-active-bg: #e3f4dc;
+  --mh-pc-active-border: #8ccf74;
+  --mh-pc-error: #b30000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  color: var(--mh-pc-text);
+}
+
+.mh-dark .mh-quick-items-menu-wrapper {
+  --mh-pc-text: var(--d-text, #c8ced8);
+  --mh-pc-muted: var(--d-text-muted, #a7adb9);
+  --mh-pc-panel: var(--d-alt, #383e49);
+  --mh-pc-border: var(--d-border, #111);
+  --mh-pc-active-text: #8fdc72;
+  --mh-pc-active-bg: rgb(64 186 18 / 15%);
+  --mh-pc-active-border: rgb(64 186 18 / 50%);
+  --mh-pc-error: #ff8080;
+}
+
+.mh-quick-items-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mh-quick-items-menu-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 2px 8px;
+  align-items: center;
+}
+
+/* Divide visible rows, even when an earlier row is hidden. */
+.mh-quick-items-menu-item:not([hidden]) ~ .mh-quick-items-menu-item {
+  padding-top: 6px;
+  border-top: 1px solid var(--mh-pc-border);
+}
+
+.mh-quick-items-menu-item[hidden] {
+  display: none;
+}
+
+.mh-quick-items-menu-image {
+  grid-row: span 2;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mh-quick-items-menu-name {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-quick-items-menu-aura {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 4px;
+  justify-content: space-between;
+  padding: 3px 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--mh-pc-active-text);
+  background-color: var(--mh-pc-active-bg);
+  border: 1px solid var(--mh-pc-active-border);
+  border-radius: 4px;
+}
+
+.mh-quick-items-menu-aura[hidden] {
+  display: none;
+}
+
+.mh-quick-items-menu-aura-name {
+  font-weight: 700;
+}
+
+.mh-quick-items-menu-form {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.mh-quick-items-menu-quantity {
+  box-sizing: border-box;
+  width: 44px;
+  height: 22px;
+  padding: 1px 4px;
+  font-size: 12px;
+  color: var(--mh-pc-text);
+  text-align: right;
+  appearance: textfield;
+  background-color: var(--mh-pc-input-bg);
+  border: 1px solid var(--mh-pc-border);
+  border-radius: 3px;
+}
+
+.mh-quick-items-menu-quantity::-webkit-inner-spin-button,
+.mh-quick-items-menu-quantity::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.mh-quick-items-menu-separator,
+.mh-quick-items-menu-owned {
+  color: var(--mh-pc-muted);
+}
+
+/* Message items aren't used up, so they only get a button on the same line as the name. */
+.mh-quick-items-menu-item.mh-quick-items-menu-message-item {
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+}
+
+.mh-quick-items-menu-message-item .mh-quick-items-menu-image {
+  grid-row: auto;
+}
+
+.mh-quick-items-menu-message-item .mh-quick-items-menu-quantity,
+.mh-quick-items-menu-message-item .mh-quick-items-menu-separator,
+.mh-quick-items-menu-message-item .mh-quick-items-menu-owned {
+  display: none;
+}
+
+.mh-quick-items-menu-form .mousehuntActionButton {
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
+}
+
+.mh-quick-items-menu-result:empty {
+  display: none;
+}
+
+.mh-quick-items-menu-result {
+  padding-top: 8px;
+  font-size: 11px;
+  border-top: 1px solid var(--mh-pc-border);
+}
+
+.mh-quick-items-menu-result.error {
+  color: var(--mh-pc-error);
+}
+
+.mh-quick-items-menu-result-title {
+  font-weight: 700;
+}
+
+.mh-quick-items-menu-result-items {
+  max-height: 150px;
+  padding: 0;
+  margin: 5px 0 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.mh-quick-items-menu-result-items li {
+  display: flex;
+  gap: 5px;
+  padding: 2px 0;
+}
+
+.mh-quick-items-menu-result-items .quantity {
+  min-width: 35px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu .dropdownContent {
+  text-shadow: none;
+}
