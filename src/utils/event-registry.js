@@ -48,8 +48,9 @@ const eventsAdded = {};
  * @param {string}   event    The event name.
  * @param {Function} callback The callback to run when the event is fired.
  * @param {boolean}  remove   Whether or not to remove the event listener after it's fired.
+ * @param {string}   idPart   Extra text for the duplicate check, for wrappers whose callbacks share the same source.
  */
-const onEvent = (event, callback, remove = false) => {
+const onEvent = (event, callback, remove = false, idPart = '') => {
   if (!window.eventRegistry) {
     return;
   }
@@ -60,7 +61,7 @@ const onEvent = (event, callback, remove = false) => {
   }
 
   // generate a unique id for the event based on the event name and the callback
-  const id = `${event}-${remove.toString()}-${lifecycleCallback.id || callback.toString()}`;
+  const id = `${event}-${remove.toString()}-${idPart}-${lifecycleCallback.id || callback.toString()}`;
   if (eventsAdded[id]) {
     return;
   }
@@ -78,21 +79,26 @@ const onEvent = (event, callback, remove = false) => {
  */
 const onSettingsChange = (key, callback) => {
   // If callback is a function, then use it. If it's an object, then use the 'enable' and 'disable' keys.
-  onEvent('mh-improved-settings-changed', (args) => {
-    if (args.key !== key) {
-      return;
-    }
-
-    if (typeof callback === 'function') {
-      callback(args);
-    } else if (typeof callback === 'object') {
-      if (args.value) {
-        callback.enable(args);
-      } else {
-        callback.disable(args);
+  onEvent(
+    'mh-improved-settings-changed',
+    (args) => {
+      if (args.key !== key) {
+        return;
       }
-    }
-  });
+
+      if (typeof callback === 'function') {
+        callback(args);
+      } else if (typeof callback === 'object') {
+        if (args.value) {
+          callback.enable(args);
+        } else {
+          callback.disable(args);
+        }
+      }
+    },
+    false,
+    key
+  );
 };
 
 export { addEvent, doEvent, doInternalEvent, onEvent, onSettingsChange };

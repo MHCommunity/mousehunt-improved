@@ -166,14 +166,37 @@ const makeReturnButton = (buttonContainer, isTiny = false) => {
 };
 
 /**
- * Fix typos in the gift selector.
+ * Match the "free gifts" wording to the remaining counts, which the game fills in after rendering.
+ *
+ * @param {boolean} restore Whether to put back the game's own "gifts" wording.
+ */
+const updateGiftCountWording = (restore = false) => {
+  document.querySelectorAll('.giftSelectorView-actionLimit').forEach((limit) => {
+    const text = limit.nextSibling;
+    if (text?.nodeType !== Node.TEXT_NODE) {
+      return;
+    }
+
+    const word = !restore && limit.textContent.trim() === '1' ? 'gift' : 'gifts';
+    text.textContent = text.textContent.replace(/^(\s*more free )gifts?\b/, `$1${word}`);
+  });
+};
+
+/**
+ * Fix the "1 more free gifts" wording in the gift selector.
  */
 const fixTypo = () => {
-  // The counts in the footers are filled in after rendering, but these are fixed text in the template.
-  replaceInTemplateWhileEnabled(MODULE_ID, 'ViewGiftSelector', [
-    ['You can send <b>1</b> free gifts to each friend', 'You can send <b>1</b> free gift to each friend'],
-    ['You can send 1 free gifts to each friend', 'You can send 1 free gift to each friend'],
-  ]);
+  onDialogShow('giftSelectorViewPopup', () => updateGiftCountWording());
+
+  // Request callbacks run before the game updates the counts, so wait for that first.
+  onRequest('users/socialGift.php', () => setTimeout(updateGiftCountWording, 0));
+
+  onModuleToggle(MODULE_ID, {
+    enable: () => updateGiftCountWording(),
+    disable: () => updateGiftCountWording(true),
+  });
+
+  updateGiftCountWording();
 };
 
 const addCloseButtonToConfirmPopup = (resp, req) => {
