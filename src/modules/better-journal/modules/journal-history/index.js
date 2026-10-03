@@ -94,64 +94,88 @@ const makeEntriesMarkup = (entries) => {
 };
 
 /**
- * Handle actions for a journal page.
+ * Render the history entries for a journal page.
  *
- * @param {number} page  The page number to handle.
- * @param {Event}  event The event that triggered the function, if any.
+ * @param {number} page The page number to render.
  */
-const doPageStuff = async (page, event = null) => {
-  if (page <= 6 || page > totalPages) {
+const doPageStuff = async (page) => {
+  if (page <= defaultPages || page > totalPages) {
     return;
   }
 
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  if (!journalEntries.length) {
-    await getAllEntries();
-  }
-
-  const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
   const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
-  if (!journalEntriesForPage.length || !journalEntryContainer) {
+  if (!journalEntryContainer) {
     return;
   }
 
-  journalEntryContainer.append(makeElement('div', 'journal-history-entries', makeEntriesMarkup(journalEntriesForPage)));
+  // The game has just swapped in an empty page. If the entries are already
+  // cached, render them right away so the empty page never gets painted.
+  let entries = journalEntries;
+  if (!entries) {
+    journalEntryContainer.append(makeElement('div', 'journal-history-loading', 'Loading journal history…'));
+    entries = await getAllEntries();
+    journalEntryContainer.querySelector('.journal-history-loading')?.remove();
+
+    // The page may have changed while the entries were loading.
+    if (!journalEntryContainer.isConnected || pager?.getCurrentPage() !== page) {
+      return;
+    }
+  }
+
+  const journalEntriesForPage = entries.slice((page - 1) * perPage, page * perPage);
+  if (!journalEntriesForPage.length) {
+    return;
+  }
+
+  // The journal page splits entries into two columns, the camp journal doesn't.
+  const leftCol = journalEntryContainer.querySelector(':scope > .leftcol');
+  const rightCol = journalEntryContainer.querySelector(':scope > .rightcol');
+  if (leftCol && rightCol) {
+    const half = Math.ceil(journalEntriesForPage.length / 2);
+    leftCol.insertAdjacentHTML('beforeend', makeEntriesMarkup(journalEntriesForPage.slice(0, half)));
+    rightCol.insertAdjacentHTML('beforeend', makeEntriesMarkup(journalEntriesForPage.slice(half)));
+  } else {
+    journalEntryContainer.append(makeElement('div', 'journal-history-entries', makeEntriesMarkup(journalEntriesForPage)));
+  }
 
   await processJournalEntries(journalEntryContainer);
 };
 
 /**
- * Retrieve all journal entries from the database.
+ * Retrieve all journal entries from the database, loading them only once.
  *
- * @return {Promise<Array>} Journal entries.
+ * @return {Promise<Array>} Journal entries, newest first.
  */
 const getAllEntries = async () => {
-  if (!journalEntries.length) {
-    journalEntries = await dbGetAll('journal');
+  if (journalEntries) {
+    return journalEntries;
   }
 
-  if (!journalEntries.length) {
-    return [];
+  if (!journalEntriesPromise) {
+    journalEntriesPromise = dbGetAll('journal')
+      .then((entries) => {
+        // sort the entries by id, with the newest first. if timestamp exists, sort those first.
+        journalEntries = (entries || []).sort((a, b) => {
+          if (a.timestamp && b.timestamp) {
+            return b.timestamp - a.timestamp;
+          }
+
+          if (a.id && b.id) {
+            return b.id - a.id;
+          }
+
+          return 0;
+        });
+
+        return journalEntries;
+      })
+      .catch(() => [])
+      .finally(() => {
+        journalEntriesPromise = null;
+      });
   }
 
-  // sort the entries by id, with the newest first. if timestamp exists, sort those first.
-  journalEntries = journalEntries.sort((a, b) => {
-    if (a.timestamp && b.timestamp) {
-      return b.timestamp - a.timestamp;
-    }
-
-    if (a.id && b.id) {
-      return b.id - a.id;
-    }
-
-    return 0;
-  });
-
-  return journalEntries;
+  return journalEntriesPromise;
 };
 
 let lastDate = '';
@@ -209,6 +233,11 @@ const saveToDatabase = async (model) => {
   };
 
   await dbSet('journal', journalData);
+
+  // Keep the cached entries current so history pages don't need a reload.
+  if (journalEntries && !journalEntries.some((cached) => cached.id === entryId)) {
+    journalEntries.unshift({ id: entryId, data: journalData });
+  }
 };
 
 const addPageSelector = () => {
@@ -266,7 +295,8 @@ const addPageSelector = () => {
     };
 
     pageInput.addEventListener('keydown', (evt) => {
-      if (13 === evt.key) {
+      if ('Enter' === evt.key) {
+        evt.preventDefault();
         showPage();
       }
     });
@@ -304,8 +334,8 @@ const doJournalHistory = async () => {
     return;
   }
 
-  const perPage = 'journal' === getCurrentPage() ? 24 : 12;
-  const defaultPages = 'journal' === getCurrentPage() ? 3 : 6;
+  perPage = 'journal' === getCurrentPage() ? 24 : 12;
+  defaultPages = 'journal' === getCurrentPage() ? 3 : 6;
 
   if (!pager) {
     getPager();
@@ -315,13 +345,16 @@ const doJournalHistory = async () => {
     return;
   }
 
-  journalEntries = journalEntries.length || (await dbGetCount('journal'));
+  const entryCount = journalEntries ? journalEntries.length : await dbGetCount('journal');
 
-  totalPages = Math.ceil(journalEntries / perPage);
+  totalPages = Math.ceil(entryCount / perPage);
   totalPages = totalPages <= defaultPages ? defaultPages : totalPages;
-  if (totalPages < 6) {
+  if (totalPages <= defaultPages) {
     return;
   }
+
+  // Load the entries ahead of time so changing pages can render instantly.
+  getAllEntries();
 
   addPageSelector();
 
@@ -348,7 +381,7 @@ const doJournalHistoryRequest = async () => {
     return;
   }
 
-  if (pager.getCurrentPage() > 6) {
+  if (pager.getCurrentPage() > defaultPages) {
     await doPageStuff(pager.getCurrentPage());
   }
 };
@@ -374,8 +407,11 @@ const maybeDoJournalHistory = () => {
 };
 
 let pager;
-let journalEntries = [];
+let journalEntries = null;
+let journalEntriesPromise = null;
 let totalPages = 0;
+let perPage = 12;
+let defaultPages = 6;
 let miceThumbs = [];
 let miceThumbsMap;
 

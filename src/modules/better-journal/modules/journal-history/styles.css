@@ -34,3 +34,9 @@
 .history-timestamp::after {
   display: none;
 }
+
+.journal-history-loading {
+  padding: 20px;
+  color: #666;
+  text-align: center;
+}

@@ -321,10 +321,6 @@ p.mhi-x-entry {
   font-size: 11px;
 }
 
-.journal.jdouble .content .entry:not(.highlight):last-child {
-  border-bottom: 1px solid #5b5b5b;
-}
-
 .journal.jdouble .leftcol {
   border: none;
 }
