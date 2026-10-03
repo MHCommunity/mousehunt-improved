@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, makeElement, onDeactivation, removeBodyClass } from '@utils';
+import { addBodyClass, addModuleBodyClass, addStyles, makeElement, onModuleToggle, onNavigation, removeBodyClass } from '@utils';
 
 import styles from './styles.css';
 
@@ -66,24 +66,38 @@ const moveSidebar = () => {
 };
 
 /**
+ * Hide the sidebar and move it into a menu tab.
+ */
+const hideSidebar = () => {
+  removeBodyClass('hasSidebar');
+  moveSidebar();
+  hg.views.PageFrameView.setShowSidebar(false);
+};
+
+/**
+ * Bring the sidebar back and remove the menu tab.
+ */
+const showSidebar = () => {
+  hg.views.PageFrameView.setShowSidebar(true);
+  addBodyClass('hasSidebar', true);
+
+  document.querySelector('.menuItem.sidebar')?.remove();
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
   addStyles(styles, 'no-sidebar');
-  addBodyClass('no-sidebar');
-  removeBodyClass('hasSidebar');
-  moveSidebar();
-  hg.views.PageFrameView.setShowSidebar(false);
+  addModuleBodyClass('no-sidebar', 'no-sidebar');
+  hideSidebar();
 
-  onDeactivation('no-sidebar', () => {
-    hg.views.PageFrameView.setShowSidebar(true);
-    removeBodyClass('no-sidebar');
-    addBodyClass('hasSidebar', true);
+  // The game turns the sidebar back on when it changes pages.
+  onNavigation(() => hg.views.PageFrameView.setShowSidebar(false));
 
-    const menuTab = document.querySelector('.menuItem.sidebar');
-    if (menuTab) {
-      menuTab.remove();
-    }
+  onModuleToggle('no-sidebar', {
+    enable: hideSidebar,
+    disable: showSidebar,
   });
 };
 
@@ -95,6 +109,7 @@ export default {
   name: 'Hide Sidebar',
   type: 'hide-simplify',
   default: true,
+  liveToggle: true,
   description: 'Hide the sidebar and add a "Sidebar" dropdown in the top menu.',
   load: init,
 };

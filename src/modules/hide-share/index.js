@@ -1,4 +1,4 @@
-import { addStyles } from '@utils';
+import { addStyles, overrideWhileEnabled } from '@utils';
 
 import styles from './styles.css';
 
@@ -9,7 +9,7 @@ const init = () => {
   addStyles(styles, 'no-share');
 
   if (typeof SocialFramework !== 'undefined') {
-    SocialFramework.isFriendStreamPostsEnabled = () => false;
+    overrideWhileEnabled('no-share', SocialFramework, 'isFriendStreamPostsEnabled', () => false);
   }
 };
 
@@ -21,5 +21,6 @@ export default {
   name: 'Hide Share Buttons',
   type: 'hide-simplify',
   default: true,
+  liveToggle: true,
   load: init,
 };

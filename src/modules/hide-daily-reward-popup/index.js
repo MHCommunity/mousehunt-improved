@@ -52,5 +52,6 @@ export default {
   name: 'Hide Daily Reward Popup',
   type: 'hide-simplify',
   default: false,
+  liveToggle: true,
   load: init,
 };

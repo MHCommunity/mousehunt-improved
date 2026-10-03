@@ -32,5 +32,6 @@ export default {
   type: 'navigation-utilities',
   default: true,
   description: 'Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.',
+  liveToggle: true,
   load: init,
 };

@@ -15,5 +15,6 @@ export default {
   type: 'navigation-utilities',
   default: true,
   description: 'Add a short delay to the menu dropdowns to prevent accidental clicks.',
+  liveToggle: true,
   load: init,
 };

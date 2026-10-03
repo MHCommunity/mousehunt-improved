@@ -16,5 +16,6 @@ export default {
   name: 'Hide News Ticker',
   type: 'hide-simplify',
   default: true,
+  liveToggle: true,
   load: init,
 };

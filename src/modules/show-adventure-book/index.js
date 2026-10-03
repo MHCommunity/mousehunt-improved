@@ -1,13 +1,11 @@
-import { addStyles, addSubmenuItem } from '@utils';
+import { addStyles, addSubmenuItem, onModuleToggle, removeSubmenuItem } from '@utils';
 
 import styles from './styles.css';
 
 /**
- * Initialize the module.
+ * Add the Adventure Book item to the Kingdom menu.
  */
-const init = () => {
-  addStyles(styles, 'show-adventure-book');
-
+const addMenuItem = () => {
   addSubmenuItem({
     id: 'adventure-book',
     menu: 'kingdom',
@@ -21,11 +19,26 @@ const init = () => {
 /**
  * Initialize the module.
  */
+const init = () => {
+  addStyles(styles, 'show-adventure-book');
+
+  addMenuItem();
+
+  onModuleToggle('show-adventure-book', {
+    enable: addMenuItem,
+    disable: () => removeSubmenuItem('adventure-book'),
+  });
+};
+
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'show-adventure-book',
   name: 'Show Adventure Book',
   type: 'navigation-utilities',
   default: false,
   description: 'Add an Adventure Book button to the Kingdom dropdown menu.',
+  liveToggle: true,
   load: init,
 };

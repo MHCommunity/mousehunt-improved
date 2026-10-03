@@ -17,5 +17,6 @@ export default {
   name: 'Taller Windows',
   type: 'navigation-utilities',
   default: true,
+  liveToggle: true,
   load: init,
 };

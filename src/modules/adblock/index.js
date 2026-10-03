@@ -18,5 +18,6 @@ export default {
   type: 'hide-simplify',
   default: false,
   description: 'Hide advertisements for Feedback Friday, mobile apps, etc.',
+  liveToggle: true,
   load: init,
 };

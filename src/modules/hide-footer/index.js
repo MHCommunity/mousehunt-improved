@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, onActivation, onDeactivation, removeBodyClass } from '@utils';
+import { addModuleBodyClass, addStyles } from '@utils';
 
 import styles from './styles.css';
 
@@ -7,15 +7,7 @@ import styles from './styles.css';
  */
 const init = () => {
   addStyles(styles, 'no-footer');
-  addBodyClass('no-footer');
-
-  onActivation('no-footer', () => {
-    addBodyClass('no-footer');
-  });
-
-  onDeactivation('no-footer', () => {
-    removeBodyClass('no-footer');
-  });
+  addModuleBodyClass('no-footer', 'no-footer');
 };
 
 /**
@@ -26,5 +18,6 @@ export default {
   name: 'Hide Footer',
   type: 'hide-simplify',
   default: false,
+  liveToggle: true,
   load: init,
 };

@@ -1,4 +1,4 @@
-import { addStyles, makePage, onActivation, onDeactivation, onEvent } from '@utils';
+import { addStyles, makePage, onEvent, onModuleToggle } from '@utils';
 
 import styles from './styles.css';
 
@@ -88,8 +88,10 @@ const init = () => {
   addStyles(styles, 'inline-wiki');
   main();
 
-  onActivation('inline-wiki', main);
-  onDeactivation('inline-wiki', removeMenuListener);
+  onModuleToggle('inline-wiki', {
+    enable: addMenuListener,
+    disable: removeMenuListener,
+  });
 };
 
 /**
@@ -101,5 +103,6 @@ export default {
   type: 'navigation-utilities',
   default: true,
   description: 'Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.',
+  liveToggle: true,
   load: init,
 };

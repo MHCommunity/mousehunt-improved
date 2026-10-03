@@ -17,5 +17,6 @@ export default {
   name: 'Hide Codices',
   type: 'hide-simplify',
   default: false,
+  liveToggle: true,
   load: init,
 };
