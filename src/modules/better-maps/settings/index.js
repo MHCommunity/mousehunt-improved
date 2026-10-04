@@ -4,15 +4,22 @@
  * @return {Array} The settings for the module.
  */
 export default async () => {
+  const sortedTabOptions = [
+    { name: 'Never', value: 'never' },
+    { name: 'For categorized maps', value: 'categorized' },
+    { name: 'Always', value: 'always' },
+  ];
+
   return [
     {
-      id: 'better-maps.default-to-sorted-if-map-group-exists',
-      title: 'Default to Sorted tab (only if map is categorized)',
-      default: true,
-    },
-    {
-      id: 'better-maps.default-to-sorted',
-      title: 'Default to Sorted tab (always)',
+      id: 'better-maps.open-sorted-tab',
+      title: 'Open Sorted tab',
+      default: [sortedTabOptions[1]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options: sortedTabOptions,
+      },
     },
     {
       id: 'better-maps.show-sidebar-goals',

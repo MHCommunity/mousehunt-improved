@@ -9,8 +9,6 @@ Adds filters, skin and codex options, and correct base stats to the trap selecto
 
 ## Options
 
-### General
-
 - **Show quick filters and sort buttons**: Adds one-click power type filters to the Trap and Base selectors, and one-click sorting by Power, Power Bonus, Luck, Attraction Bonus, name, or quantity to the Trap, Base, Charm, and Cheese selectors.
 - **Mark items with special effects**: Adds a dot to items with special effects, including ones that only work at your current location.
 - **Add a background gradient to your trap**

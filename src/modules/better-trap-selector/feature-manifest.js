@@ -20,7 +20,7 @@ const featureManifest = [
   { id: 'codex', load: codex },
   { id: 'quick-filters-and-sort', setting: 'better-trap-selector.quick-filters-and-sort', default: true, load: quickFiltersAndSort },
   { id: 'special-effects', setting: 'better-trap-selector.special-effects', default: true, load: specialEffects },
-  { id: 'hide-tooltips', setting: 'better-trap-selector.hide-tooltips', default: false, load: hideTooltips },
+  { id: 'hide-tooltips', load: hideTooltips },
   { id: 'larger-skin-images', setting: 'better-trap-selector.larger-skin-images', default: true, load: largerSkinImages },
   { id: 'show-unowned-skins', setting: 'better-trap-selector.show-unowned-skins', default: true, load: showUnownedSkins },
   {

@@ -191,9 +191,10 @@ let aurasExpiry = [];
  */
 const init = async () => {
   const stylesToUse = [styles];
-  if (getSetting('show-auras.icons')) {
+  const layout = getSetting('show-auras.layout-0', 'grid');
+  if ('icons' === layout) {
     stylesToUse.push(onlyIconsStyles);
-  } else if (getSetting('show-auras.list')) {
+  } else if ('list' === layout) {
     stylesToUse.push(listStyles);
   } else {
     stylesToUse.push(gridStyles);

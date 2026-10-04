@@ -2,7 +2,6 @@ import { addStyles, getFlag, getSetting } from '@utils';
 
 import colors from '@data/journal-item-colors.json';
 
-import highlightRareMiceStyles from './modules/journal-highlight-rare-mice/styles.css';
 import minimalIconStyles from './modules/journal-icons-minimal/styles.css';
 import tagStyles from './modules/journal-tags/styles.css';
 
@@ -39,11 +38,6 @@ export default () => {
       enabled: getSetting('better-journal.journal-tags', false),
       id: 'better-journal-tags',
       styles: tagStyles,
-    },
-    {
-      enabled: getSetting('better-journal.highlight-rare-mice', false),
-      id: 'better-journal-highlight-rare-mice',
-      styles: highlightRareMiceStyles,
     },
     {
       enabled: getFlag('better-journal-icons-minimal'),

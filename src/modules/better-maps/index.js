@@ -464,7 +464,8 @@ const configureMapRuntime = () => {
     }
 
     defaultedRoots.set(root, map.map_id);
-    const defaultToSorted = getSetting('better-maps.default-to-sorted', false) || (getSetting('better-maps.default-to-sorted-if-map-group-exists', true) && mapHasGroup(map));
+    const openSortedTab = getSetting('better-maps.open-sorted-tab-0', 'categorized');
+    const defaultToSorted = 'always' === openSortedTab || ('categorized' === openSortedTab && mapHasGroup(map));
 
     if (!defaultToSorted || map.is_complete || map.can_claim_reward) {
       return;

@@ -1,3 +1,6 @@
-.campPage-trap-itemBrowser-itemDescriptionHover {
-  display: none !important;
+/* Touch devices keep tapped tooltips open, where they cover the item list. */
+@media (hover: none) and (max-width: 810px) {
+  .campPage-trap-itemBrowser-itemDescriptionHover {
+    display: none !important;
+  }
 }

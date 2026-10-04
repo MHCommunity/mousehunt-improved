@@ -155,7 +155,7 @@ const migrateBetterTrapSelector = () => {
 
   moveSetting('quick-filters-and-sort', 'better-trap-selector.quick-filters-and-sort');
   moveSetting('trap-selector-special-effects', 'better-trap-selector.special-effects');
-  moveSetting('hide-trap-selector-tooltips', 'better-trap-selector.hide-tooltips');
+  deleteSetting('hide-trap-selector-tooltips');
   moveSetting('real-base-stats', 'better-trap-selector.real-base-stats');
 
   // Base Item Counters replaced two older counter modules.
@@ -170,6 +170,30 @@ const migrateBetterTrapSelector = () => {
   deleteSetting('ssdb-teeth-counter');
 };
 
+/**
+ * Combine the two Sorted tab toggles, and the two aura layout toggles, into pickers.
+ */
+const migratePickers = () => {
+  if (getSetting('better-maps.default-to-sorted', false)) {
+    saveSetting('better-maps.open-sorted-tab-0', 'always');
+  } else if (false === getSetting('better-maps.default-to-sorted-if-map-group-exists', true)) {
+    saveSetting('better-maps.open-sorted-tab-0', 'never');
+  }
+
+  deleteSetting('better-maps.default-to-sorted');
+  deleteSetting('better-maps.default-to-sorted-if-map-group-exists');
+
+  // Icons only took priority over the list.
+  if (getSetting('show-auras.icons', false)) {
+    saveSetting('show-auras.layout-0', 'icons');
+  } else if (getSetting('show-auras.list', false)) {
+    saveSetting('show-auras.layout-0', 'list');
+  }
+
+  deleteSetting('show-auras.icons');
+  deleteSetting('show-auras.list');
+};
+
 export default {
   version: '0.99.16',
   update: async () => {
@@ -178,14 +202,16 @@ export default {
     migrateHoverDelays();
     migrateHunterIdShortcuts();
     migrateBetterTrapSelector();
+    migratePickers();
 
     // The large horn timer is now always available in Better UI.
     deleteSetting('big-timer');
 
     moveSetting('replace-favicon', 'better-ui.replace-favicon');
 
-    // Inline Wiki has been removed.
+    // Inline Wiki and the rare mouse highlight have been removed.
     deleteSetting('inline-wiki');
+    deleteSetting('better-journal.highlight-rare-mice');
 
     // The Journal Progress Log Tracker countdown is always shown now.
     deleteSetting('journal-log-tracker.show-countdown');

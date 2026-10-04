@@ -45,10 +45,5 @@ export default async () => {
       title: 'Show full mouse images',
       default: false,
     },
-    {
-      id: 'better-journal.highlight-rare-mice',
-      title: 'Highlight rare mouse catches (currently just Black Widow)',
-      default: false,
-    },
   ];
 };
