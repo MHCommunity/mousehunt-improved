@@ -96,6 +96,10 @@
   color: var(--d-purple);
 }
 
+.mh-dark .hunterInfoView-hunterId-copyConfirmText {
+  color: var(--d-green);
+}
+
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-floatingTooltip {
   color: var(--d-text-dark);
 }

@@ -508,6 +508,21 @@ const shortenRecipeGoldHint = () => {
 };
 
 /**
+ * Open the item popup when clicking an item on a hunter's profile Items tab.
+ */
+const addProfileItemClicks = () => {
+  document.addEventListener('click', (e) => {
+    const item = e.target.closest('.hunterProfileItemsView-categoryContent-item[data-type]');
+    if (!item || !hg?.views?.ItemView?.show) {
+      return;
+    }
+
+    e.preventDefault();
+    hg.views.ItemView.show(item.getAttribute('data-type'));
+  });
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
@@ -518,6 +533,7 @@ const init = () => {
   }
 
   shortenRecipeGoldHint();
+  addProfileItemClicks();
   onNavigation(shortenRecipeGoldHint, {
     page: 'inventory',
     tab: 'potions',

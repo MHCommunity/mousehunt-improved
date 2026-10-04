@@ -425,3 +425,7 @@ ul.mh-improved-scroll-to-map-multiple-list {
 .inventoryPage-item-content-nameContainer .tooltip .description {
   overflow: scroll;
 }
+
+.hunterProfileItemsView-categoryContent-item[data-type] {
+  cursor: pointer;
+}
