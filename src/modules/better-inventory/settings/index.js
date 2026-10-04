@@ -20,5 +20,11 @@ export default async () => {
       title: 'Sort inventory alphabetically',
       default: true,
     },
+    {
+      id: 'better-inventory.favorites',
+      title: 'Show a Favorites tab',
+      description: 'Star items in your inventory to collect them in one tab.',
+      default: true,
+    },
   ];
 };

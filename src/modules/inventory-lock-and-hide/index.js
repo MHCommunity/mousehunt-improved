@@ -470,11 +470,18 @@ const addLockAndHideControls = () => {
     return;
   }
 
-  if (container.hasAttribute('mh-improved-inventory-lock-and-hide')) {
+  // The sort panel has a slot for the toggle so it doesn't take up its own row above the panel.
+  const sortSlot = container.querySelector('.mh-inventory-sort-actions');
+
+  // The game re-renders subtabs, which can take the toggle (and the sort panel holding it) with it.
+  const existingWrapper = container.querySelector('.mhui-inventory-lock-and-hide-controls-wrapper');
+  if (existingWrapper) {
+    if (sortSlot && existingWrapper.parentElement !== sortSlot) {
+      sortSlot.append(existingWrapper);
+    }
+
     return;
   }
-
-  container.setAttribute('mh-improved-inventory-lock-and-hide', true);
 
   const controlsWrapper = makeElement('div', 'mhui-inventory-lock-and-hide-controls-wrapper');
 
@@ -497,7 +504,11 @@ const addLockAndHideControls = () => {
     appendTo: controlsWrapper,
   });
 
-  container.prepend(controlsWrapper);
+  if (sortSlot) {
+    sortSlot.append(controlsWrapper);
+  } else {
+    container.prepend(controlsWrapper);
+  }
 };
 
 /**
@@ -635,6 +646,8 @@ const init = () => {
   });
 
   onRequest('users/gettrapcomponents.php', addHideStyles);
+
+  onEvent('mh-improved-inventory-sort-panel-added', addLockAndHideControls);
 };
 
 /**

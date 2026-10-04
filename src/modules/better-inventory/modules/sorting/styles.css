@@ -1,0 +1,218 @@
+.mh-inventory-sort {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 10px;
+  margin: 0 0 10px;
+  background-color: #f6f3eb;
+  border: 1px solid #d7cbb6;
+  border-radius: 5px;
+}
+
+.mh-inventory-sort-row {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.mh-inventory-sort-label {
+  flex: 0 0 18px;
+  width: 18px;
+  font-size: 11px;
+  color: #96704b;
+  text-align: center;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+}
+
+.mh-inventory-sort-tiles {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.mh-inventory-sort-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.mh-inventory-sort-actions:empty {
+  display: none;
+}
+
+.mh-inventory-sort-tile {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid #4e2f0b;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px #cdc9c6 inset;
+}
+
+.mh-inventory-sort-tile:hover,
+.mh-inventory-sort-tile:focus {
+  text-decoration: none;
+  background-color: #cac0b2;
+}
+
+.mh-inventory-sort-tile.active {
+  background-color: #e9dcc0;
+  box-shadow: inset 0 0 0 2px #e99b2c;
+}
+
+.mh-inventory-sort-tile--text {
+  width: auto;
+  min-width: 40px;
+  padding: 0 6px;
+}
+
+.mh-inventory-sort-tile-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4e2f0b;
+}
+
+.mh-inventory-sort-row--power_type .mh-inventory-sort-tile,
+.mh-inventory-sort-row--limited .mh-inventory-sort-tile {
+  height: 30px;
+}
+
+.mh-inventory-sort-select {
+  min-width: 220px;
+  height: 30px;
+  padding: 0 6px;
+  font-size: 12px;
+  border: 1px solid #4e2f0b;
+  border-radius: 3px;
+}
+
+.mh-inventory-sort-row--power_type .mh-inventory-sort-tile {
+  width: 31px;
+  background-size: 25px;
+}
+
+/* Sort direction badge on the active tile */
+.mh-inventory-sort-tile[data-order]::after {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 14px;
+  height: 14px;
+  font-size: 8px;
+  line-height: 14px;
+  color: #fff;
+  text-align: center;
+  content: "▼";
+  background-color: #e99b2c;
+  border-radius: 50%;
+}
+
+.mh-inventory-sort-tile[data-order="asc"]::after {
+  content: "▲";
+}
+
+.mh-inventory-sort-footer {
+  display: none;
+  gap: 10px;
+  justify-content: flex-end;
+  font-size: 11px;
+}
+
+.mh-inventory-sort--active .mh-inventory-sort-footer {
+  display: flex;
+}
+
+.mh-inventory-sort-count {
+  color: #6a5d4e;
+}
+
+.inventoryPage-item.mh-inventory-item-filtered,
+.inventoryPage-tagContent-tagGroup.mh-inventory-group-filtered {
+  display: none;
+}
+
+/* While sorted, the area groups are flattened into one list and the items placed with `order`. */
+.mh-inventory-sort-flat .inventoryPage-tagContent {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.mh-inventory-sort-flat .inventoryPage-tagContent > * {
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  order: -1;
+}
+
+.mh-inventory-sort-flat .inventoryPage-tagContent > .mh-inventory-sort {
+  order: -3;
+}
+
+.mh-inventory-sort-flat .inventoryPage-tagContent > .mh-inventory-sort-flat-title {
+  order: -2;
+}
+
+.mh-inventory-sort-flat .inventoryPage-tagContent-tagGroup:not(.search, .contracted, .hidden, .mh-inventory-group-filtered),
+.mh-inventory-sort-flat .inventoryPage-tagContent-listing {
+  display: contents;
+}
+
+.mh-inventory-sort-flat .inventoryPage-tagContent-tagGroup:not(.search)::after,
+.mh-inventory-sort-flat .inventoryPage-tagContent-tagGroup:not(.search) > .inventoryPage-tagContent-tagTitle,
+.mh-inventory-sort-flat .inventoryPage-tagContent:has(> .search.active) > .mh-inventory-sort-flat-title,
+.mh-inventory-sort-flat .inventoryPage-tagContent-listing > .mh-inventory-sort-duplicate {
+  display: none;
+}
+
+/* The game spaces half-width cards by their position in the area group, which no longer applies. */
+.mh-inventory-sort-flat .inventoryPage-tagContent-listing > .inventoryPage-item.full {
+  margin-right: 0.5%;
+  margin-left: 0;
+}
+
+.mh-dark .mh-inventory-sort {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-inventory-sort-label,
+.mh-dark .mh-inventory-sort-count {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-inventory-sort-tile {
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px var(--d-border) inset;
+}
+
+.mh-dark .mh-inventory-sort-tile:hover,
+.mh-dark .mh-inventory-sort-tile:focus {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .mh-inventory-sort-tile.active {
+  background-color: var(--d-action);
+  box-shadow: inset 0 0 0 2px var(--d-orange);
+}
+
+.mh-dark .mh-inventory-sort-tile-text {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-inventory-sort-reset {
+  color: var(--d-link);
+}

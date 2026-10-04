@@ -1,0 +1,134 @@
+.inventoryPage-item-margin {
+  position: relative;
+}
+
+.inventoryPage-item .mh-inventory-favorite {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 2;
+}
+
+/* The hover tooltip on small cards overlaps the top of the card, so sit below it. */
+.inventoryPage-item.small .mh-inventory-favorite {
+  top: 24px;
+}
+
+.inventoryPage-item.full .mh-inventory-favorite {
+  top: 6px;
+  right: 8px;
+  left: auto;
+  width: 24px;
+  height: 24px;
+}
+
+/* Only show empty stars on hover so they don't crowd every card. */
+.inventoryPage-item .mh-inventory-favorite.inactive {
+  opacity: 0;
+}
+
+.inventoryPage-item:hover .mh-inventory-favorite.inactive,
+.inventoryPage-item .mh-inventory-favorite.inactive:focus {
+  opacity: 1;
+}
+
+.mousehuntHud-page-tabContent.mhui-favorites .mousehuntHud-page-tabContent-loading {
+  display: none;
+}
+
+.mousehuntHud-page-tabContent.mhui-favorites.loading .mousehuntHud-page-tabContent-loading {
+  display: block;
+}
+
+.mousehuntHud-page-tabContent.mhui-favorites.loading .inventoryContent {
+  opacity: 0.4;
+}
+
+.mh-inventory-favorites-empty {
+  display: block;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mh-inventory-favorites-empty-title {
+  margin-bottom: 6px;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.mh-inventory-favorites-unowned .inventoryPage-item {
+  opacity: 0.55;
+}
+
+/* The game only sizes up to seven tabs, so fit the extra Favorites tab on the same row. Collectibles
+   gets a little more room so its name isn't cut off. */
+.mousehuntHud-page-tabHeader-container:has(> .mhui-favorites) > .mousehuntHud-page-tabHeader {
+  width: 12.5%;
+}
+
+.mousehuntHud-page-tabHeader-container:has(> .mhui-favorites) > .mousehuntHud-page-tabHeader.cheese {
+  width: 11.5%;
+}
+
+.mousehuntHud-page-tabHeader-container:has(> .mhui-favorites) > .mousehuntHud-page-tabHeader.collectibles {
+  width: 13.5%;
+}
+
+/* Inventory favorites are added to the trap selector's favorites row, wrapping onto more rows. The
+   item list is positioned at a fixed offset below it, so let it take whatever height is left. */
+.trapSelectorView__itemBrowserContainer:has(.mh-inventory-trap-favorite) {
+  display: flex;
+  flex-direction: column;
+}
+
+.trapSelectorView__itemBrowserContainer:has(.mh-inventory-trap-favorite) > * {
+  flex-shrink: 0;
+}
+
+.trapSelectorView__itemBrowserContainer:has(.mh-inventory-trap-favorite) > .campPage-trap-itemBrowser-items {
+  position: relative;
+  top: 10px;
+  left: 0;
+  flex: 1 1 0;
+  min-height: 0;
+  margin-bottom: 20px;
+}
+
+.campPage-trap-itemBrowser-favorites:has(.mh-inventory-trap-favorite) {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+/* Unfavoriting one of the game's five leaves an empty slot before ours, so let ours fill it. */
+.campPage-trap-itemBrowser-favorite-item.empty:has(~ .mh-inventory-trap-favorite) {
+  display: none;
+}
+
+/* Tell the game's favorites apart from inventory ones when hovering their star. */
+.campPage-trap-itemBrowser-favorite-item:not(.mh-inventory-trap-favorite) .campPage-trap-itemBrowser-favorite-item-toggleFavorite:hover {
+  filter: drop-shadow(0 0 1px #4da3ff) drop-shadow(0 0 1px #4da3ff) drop-shadow(0 0 2px #4da3ff);
+}
+
+.mh-inventory-trap-favorite .busy {
+  opacity: 0.5;
+}
+
+/* Favorites go back to their usual places while sorting or filtering. */
+.mh-inventory-sort-flat .mh-inventory-favorites-group,
+.mh-inventory-sort-filtering .mh-inventory-favorites-group,
+.mh-inventory-sort-flat .inventoryPage-tagDirectory-tag[data-tag="mhui-favorites-group"],
+.mh-inventory-sort-filtering .inventoryPage-tagDirectory-tag[data-tag="mhui-favorites-group"] {
+  display: none !important;
+}
+
+/* Lock & hide's bulk buttons would only change the copies in the group. */
+.mh-inventory-favorites-group .mhui-inventory-lock-and-hide-bulk-controls {
+  display: none !important;
+}
+
+/* The game only shows recipe cards inside the recipe book's known/locked filter, which the
+   Favorites tab doesn't have. */
+.mousehuntHud-page-tabContent.mhui-favorites .inventoryPage-item.recipe {
+  display: block;
+}

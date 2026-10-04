@@ -10,6 +10,10 @@
   top: -30px;
 }
 
+.mh-inventory-sort-actions .mhui-inventory-lock-and-hide-controls-wrapper {
+  position: static;
+}
+
 .mhui-inventory-lock-and-hide-bulk-controls {
   display: none;
   gap: 3px;

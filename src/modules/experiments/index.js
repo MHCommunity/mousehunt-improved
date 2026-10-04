@@ -37,6 +37,11 @@ const loadExperimentModule = (module) => {
 const init = () => {
   const onlySettings = [
     {
+      id: 'better-inventory.sort-controls',
+      title: 'Better Inventory: Show sorting and filtering controls',
+      load: () => {},
+    },
+    {
       id: 'better-maps.draggable-highlight',
       title: 'Better Maps: Allow dragging the highlight',
       load: () => {},
@@ -50,11 +55,6 @@ const init = () => {
     {
       id: 'better-marketplace.price-history-chart',
       title: 'Better Marketplace: Show Markethunt price history charts',
-      load: () => {},
-    },
-    {
-      id: 'better-inventory.add-trap-sorting',
-      title: 'Better Inventory: Add trap sorting',
       load: () => {},
     },
     {
