@@ -21,28 +21,8 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-ui.trap-gradient-background',
-      title: 'Trap Selector: Add background gradient to your trap',
-      default: false,
-    },
-    {
-      id: 'better-ui.larger-skin-images',
-      title: 'Trap Selector: Show larger skin images',
-      default: true,
-    },
-    {
-      id: 'better-ui.show-unowned-skins',
-      title: 'Trap Selector: Show unowned trap skins',
-      default: true,
-    },
-    {
-      id: 'better-ui.larger-codices',
-      title: 'Trap Selector: Show larger codex images',
-      default: true,
-    },
-    {
-      id: 'better-ui.codex-at-bottom',
-      title: 'Trap Selector: Move the codex to the bottom of the trap view',
+      id: 'better-ui.replace-favicon',
+      title: 'Use the MouseHunt Improved favicon',
       default: true,
     },
     {

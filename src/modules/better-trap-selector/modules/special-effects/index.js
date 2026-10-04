@@ -1,0 +1,66 @@
+import { addStyles, getCurrentLocation, getData, onEvent, onTravel } from '@utils';
+
+let specialEffects;
+
+const addSpecialEffectsStyles = async () => {
+  const styles = [];
+
+  if (!specialEffects) {
+    specialEffects = await getData('trap-special-effects');
+  }
+
+  if (!specialEffects) {
+    return;
+  }
+
+  specialEffects.all.forEach((item) => {
+    styles.push(`.campPage-trap-itemBrowser-item.${item}`);
+  });
+
+  const currentLocation = getCurrentLocation();
+  const currentLocationEffects = specialEffects[currentLocation];
+  if (currentLocationEffects) {
+    specialEffects[currentLocation].forEach((item) => {
+      styles.push(`.mh-improved-location-${currentLocation} .campPage-trap-itemBrowser-item.${item}`);
+    });
+  }
+
+  styles.push('.mh-improved-special-effects-highlight');
+
+  const stylesText = styles.join(' .campPage-trap-itemBrowser-item-name::after,');
+
+  addStyles(
+    `${stylesText} .mh-improved-special-effects-highlight {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    content: "";
+    background-color: #48b0a9;
+    border-radius: 50%;
+  }`,
+    'trap-selector-special-effects',
+    true
+  );
+};
+
+let hasAddedSpecialEffectsStyles = false;
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  onEvent('camp_page_toggle_blueprint', () => {
+    if (!hasAddedSpecialEffectsStyles) {
+      addSpecialEffectsStyles();
+      hasAddedSpecialEffectsStyles = true;
+    }
+  });
+
+  onTravel(() => {
+    hasAddedSpecialEffectsStyles = false;
+  });
+};
+
+export default init;

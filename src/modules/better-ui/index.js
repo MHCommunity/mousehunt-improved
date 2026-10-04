@@ -2,7 +2,6 @@ import { addStyles, getSetting } from '@utils';
 
 import featureManifest from './feature-manifest';
 import settings from './settings';
-import { startTrapSelectorRuntime } from './trap-selector-runtime';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -26,8 +25,6 @@ const init = () => {
 
     feature.load();
   }
-
-  startTrapSelectorRuntime();
 };
 
 /**

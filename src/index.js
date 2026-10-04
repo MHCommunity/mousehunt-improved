@@ -5,7 +5,6 @@ import {
   checkForDataUpdates,
   debug,
   debuglog,
-  deleteSetting,
   doEvent,
   doInternalEvent,
   getAnonymousUserHash,
@@ -19,7 +18,6 @@ import {
   maybeDoMaintenance,
   onNavigation,
   registerLiveModule,
-  saveSetting,
   setGlobal,
   showLoadingError,
 } from '@utils';
@@ -44,28 +42,6 @@ const categories = [
   { id: 'beta', name: 'Beta & experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
-
-/**
- * Migrate the legacy counter modules into the merged base item counter module.
- */
-const migrateBaseItemCountersSetting = () => {
-  const newSettingId = 'base-item-counters';
-  const legacySettingIds = ['printing-press-paper-counter', 'ssdb-teeth-counter'];
-  const currentSetting = getSetting(newSettingId, null);
-
-  if (null === currentSetting) {
-    const legacySettings = legacySettingIds.map((settingId) => getSetting(settingId, null));
-    const hasLegacySetting = legacySettings.some((setting) => null !== setting);
-
-    saveSetting(newSettingId, hasLegacySetting ? legacySettings.some(Boolean) : true);
-  }
-
-  legacySettingIds.forEach((settingId) => {
-    if (null !== getSetting(settingId, null)) {
-      deleteSetting(settingId);
-    }
-  });
-};
 
 /**
  * Validate a module's metadata.
@@ -272,8 +248,6 @@ const init = async () => {
       return;
     }
   }
-
-  migrateBaseItemCountersSetting();
 
   // Check the small version map before modules read cached data. This runs at
   // most once every three hours and downloads datasets only when they changed.
