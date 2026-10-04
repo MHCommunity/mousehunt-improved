@@ -19,6 +19,8 @@ import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, 
 
 import styles from './styles.css';
 
+import settings from './settings';
+
 let lastStats = '';
 let effectiveness = null;
 let isUpdating = false;
@@ -408,8 +410,9 @@ const init = () => {
 export default {
   id: 'catch-rate-estimate',
   name: 'Catch Rate & Minluck',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Show minluck and catch rate estimates on the Camp page.',
+  settings,
   load: init,
 };

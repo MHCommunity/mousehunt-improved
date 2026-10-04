@@ -87,6 +87,10 @@
   background-color: #118011;
 }
 
+.mh-dark .mh-improved-cre-data-good {
+  color: var(--d-green);
+}
+
 .mh-dark .mh-improved-cre-highlight-good::before {
   background-color: var(--d-green);
 }
@@ -133,6 +137,11 @@
 
 .mh-improved-cre-highlight-minlucked::before {
   background-color: #0f5cbd;
+}
+
+.mh-dark .mh-improved-cre-highlight-minlucked::before,
+.mh-dark .mh-improved-cre-highlight-ultimate::before {
+  background-color: var(--d-blue);
 }
 
 .mh-improved-cre-name {
