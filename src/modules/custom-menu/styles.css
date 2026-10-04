@@ -169,6 +169,11 @@
   display: inline;
 }
 
+/* The quantity takes the name's place, unless there isn't one, like for message items. */
+.mousehuntHeaderView .menuItem.mhui-menu-show-quantity .mh-quick-items-menu-title:has(.mh-quick-items-menu-tab-count:not(:empty)) .mh-quick-items-menu-tab-label {
+  display: none;
+}
+
 .mousehuntHeaderView a.superBrie.mhui-menu-hide-get-more {
   padding-right: 7px;
 }

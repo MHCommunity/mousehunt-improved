@@ -24,7 +24,7 @@ const itemOptions = {
   ],
   'quick-items-menu': [
     { key: 'item-name', label: 'Show the item’s name instead of “Quick Items”', default: false },
-    { key: 'quantity', label: 'Show quantity', default: true },
+    { key: 'quantity', label: 'Show quantity instead of the name', default: true },
   ],
 };
 
