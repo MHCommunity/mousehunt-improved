@@ -37,12 +37,30 @@ const getExpiryRemainingFormatted = (time) => {
   return duration;
 };
 
+// Most auras get flagged a day out, but these are refreshed often enough that
+// a full day of warning is just noise.
+const expiryWarningThresholds = {
+  QuestJetStreamAura: 60 * 60 * 6,
+  QuestMillenniaura: 60 * 60 * 6,
+};
+
+/**
+ * Get how many seconds before expiry an aura should be flagged.
+ *
+ * @param {Object} aura The aura.
+ *
+ * @return {number} The threshold in seconds.
+ */
+const getExpiryWarningThreshold = (aura) => {
+  const auraClass = Object.keys(expiryWarningThresholds).find((c) => aura.element.classList.contains(c));
+  return auraClass ? expiryWarningThresholds[auraClass] : 60 * 60 * 24;
+};
+
 /**
  * Add the expiry warning.
  */
 const addExpiryWarning = () => {
-  // Flag any auras that expire within a day.
-  const soon = aurasExpiry.filter((aura) => aura.remaining < 60 * 60 * 24);
+  const soon = aurasExpiry.filter((aura) => aura.remaining < getExpiryWarningThreshold(aura));
   if (!soon.length) {
     return;
   }
