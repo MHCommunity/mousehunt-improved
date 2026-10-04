@@ -210,6 +210,7 @@
 }
 
 .mh-dark .mouseCrownsView-group-mouse.favourite .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  color: var(--d-text);
   background-color: var(--d-action);
 }
 

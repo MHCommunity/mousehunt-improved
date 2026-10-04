@@ -43,7 +43,7 @@ const init = () => {
       load: () => {},
     },
     {
-      id: 'better-inventory.sort-controls',
+      id: 'better-inventory.add-trap-sorting',
       title: 'Better Inventory: Show sorting and filtering controls',
       load: () => {},
     },

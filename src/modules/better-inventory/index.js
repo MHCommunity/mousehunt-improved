@@ -217,7 +217,7 @@ const resortInventory = () => {
   });
 
   // Put back any sort the user picked, which the alphabetical pass just undid.
-  if (getSetting('better-inventory.sort-controls', false)) {
+  if (getSetting('better-inventory.add-trap-sorting', false)) {
     reapplySorting(0);
   }
 
@@ -358,7 +358,7 @@ const main = async () => {
     }
   );
 
-  if (getSetting('better-inventory.sort-controls', false)) {
+  if (getSetting('better-inventory.add-trap-sorting', false)) {
     sorting();
   }
 

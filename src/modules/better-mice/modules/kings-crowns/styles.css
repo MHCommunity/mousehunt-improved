@@ -39,6 +39,21 @@
   display: none !important;
 }
 
+/* Better UI styles the group headers, but the summary isn't a game crown group so it needs its own. */
+.mh-crown-summary .mouseCrownsView-group-header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(250 250 250 / 60%);
+  border-radius: 5px;
+}
+
+.mh-crown-summary .mouseCrownsView-group-header .mouseCrownsView-crown {
+  width: 50px;
+  height: 50px;
+  margin: 0 5px 0 0;
+}
+
 .mh-crown-summary-tiles {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -171,6 +186,11 @@
 
 .mouseCrownsView-group-mouse:hover .mh-crown-power-type-icon {
   opacity: 1;
+}
+
+/* Profile+ adds its own power type icon, which would double up with ours. */
+.mouseCrownsView-group-mouse-padding:has(.mh-crown-power-type-icon) .pt {
+  display: none !important;
 }
 
 .mh-dark .mh-crown-summary-tile,

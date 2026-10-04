@@ -17,6 +17,7 @@ const NEW_GIFT_MAX_AGE = 5 * 24 * 60 * 60 * 1000;
 let didBindClicks = false;
 let cachedLinks = [];
 let cacheTime = 0;
+let pendingFetch = null;
 
 /**
  * Get the saved state of claimed and hidden gift links.
@@ -293,26 +294,38 @@ const fetchRewardLinks = async (force = false) => {
     return cachedLinks;
   }
 
-  try {
-    const response = await fetch('https://api.mouse.rip/gift-links', {
-      credentials: 'omit',
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error(`Reward link API returned ${response.status}`);
-    }
-
-    const data = await response.json();
-    cachedLinks = Array.isArray(data.links) ? data.links.map((link) => normalizeLink(link)) : [];
-    cacheTime = Date.now();
-
-    pruneState(cachedLinks);
-  } catch (error) {
-    debug('Unable to fetch reward links', error);
+  // Share a request that's already running, so the pre-warm and the game's tab render on page
+  // load don't each hit the API.
+  if (pendingFetch) {
+    return pendingFetch;
   }
 
-  return cachedLinks;
+  pendingFetch = (async () => {
+    try {
+      const response = await fetch('https://api.mouse.rip/gift-links', {
+        credentials: 'omit',
+        cache: 'no-store',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Reward link API returned ${response.status}`);
+      }
+
+      const data = await response.json();
+      cachedLinks = Array.isArray(data.links) ? data.links.map((link) => normalizeLink(link)) : [];
+      cacheTime = Date.now();
+
+      pruneState(cachedLinks);
+    } catch (error) {
+      debug('Unable to fetch reward links', error);
+    } finally {
+      pendingFetch = null;
+    }
+
+    return cachedLinks;
+  })();
+
+  return pendingFetch;
 };
 
 /**
