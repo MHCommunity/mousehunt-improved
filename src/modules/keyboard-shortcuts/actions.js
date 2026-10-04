@@ -67,12 +67,6 @@ export default () => {
       category: 'navigation',
     },
     {
-      id: 'goto-wiki',
-      description: 'Wiki',
-      action: () => setPage('Wiki'),
-      category: 'navigation',
-    },
-    {
       id: 'goto-marketplace',
       description: 'Open the Marketplace',
       action: () => hg?.views?.MarketplaceView?.show && hg.views.MarketplaceView.show(),

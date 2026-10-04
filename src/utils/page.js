@@ -10,18 +10,6 @@ import { getSetting } from './settings';
  * @return {boolean} True if the page was set successfully, false otherwise.
  */
 const setPage = (page, ...args) => {
-  if ('wiki' === page.toLowerCase()) {
-    // Open the wiki the same way the menu link does.
-    const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
-    if (wikiLink) {
-      wikiLink.click();
-    } else {
-      window.open('https://mhwiki.hitgrab.com/wiki/index.php/MouseHunt_Wiki', '_blank', 'noopener');
-    }
-
-    return true;
-  }
-
   // Uppercase the first letter of the page.
   page = page.charAt(0).toUpperCase() + page.slice(1);
 
