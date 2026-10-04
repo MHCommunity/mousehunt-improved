@@ -165,6 +165,12 @@
   pointer-events: none;
   background-color: rgb(0 0 0 / 45%);
   border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.mouseCrownsView-group-mouse:hover .mh-crown-power-type-icon {
+  opacity: 1;
 }
 
 .mh-dark .mh-crown-summary-tile,
