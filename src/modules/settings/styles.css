@@ -809,17 +809,29 @@
   text-align: center;
 }
 
-/* Multi toggle row */
-.mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
-  font-size: 10px;
-  line-height: 1.75;
+/* Multi toggle: a grid of name and toggle rows. The label sits above the grid,
+   or is hidden under a module, where the module name labels it. */
+.mousehunt-improved-settings .PagePreferences__sectionWrapper > .PagePreferences__settingsList-multi-toggle > .PagePreferences__setting {
+  display: block;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList-multi-toggle > .PagePreferences__setting > .PagePreferences__settingAction {
+  display: block;
+  flex: 1;
+}
+
+.mousehunt-improved-settings .PagePreferences__sectionWrapper > .PagePreferences__settingsList-multi-toggle > .PagePreferences__setting > .PagePreferences__settingAction {
+  margin-top: 6px;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList > .PagePreferences__settingsList-multi-toggle > .PagePreferences__setting > .PagePreferences__settingLabel {
+  display: none;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 15px;
-  place-items: end end;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2px 20px;
   padding: 0;
   background: transparent;
   border: none;
@@ -828,13 +840,23 @@
 .mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
   display: flex;
   flex-direction: row;
-  gap: 0;
-  align-items: stretch;
-  justify-content: space-evenly;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 28px;
   padding: 0;
   margin: 0;
   background-color: transparent;
   border: none;
+}
+
+.mousehunt-improved-settings .multi-toggle-row .PagePreferences__settingLabel {
+  text-align: left;
+}
+
+.mousehunt-improved-settings .multi-toggle-row .PagePreferences__settingName {
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider {

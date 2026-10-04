@@ -60,7 +60,6 @@ const init = async () => {
 export default {
   id: 'native-dark-mode',
   name: 'Dark Mode',
-  description: 'Turn off the MHCT dark mode if you use this.',
   type: 'personalization',
   default: false,
   liveToggle: true,
