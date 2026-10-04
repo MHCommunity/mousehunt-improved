@@ -1,4 +1,4 @@
-import { addStyles, getSetting } from '@utils';
+import { addStyles, getFlag, getSetting } from '@utils';
 
 import colors from '@data/journal-item-colors.json';
 
@@ -46,7 +46,7 @@ export default () => {
       styles: highlightRareMiceStyles,
     },
     {
-      enabled: getSetting('better-journal.icons-minimal', false),
+      enabled: getFlag('better-journal-icons-minimal'),
       id: 'better-journal-icons-minimal',
       styles: minimalIconStyles,
     },

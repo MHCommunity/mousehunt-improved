@@ -8,26 +8,16 @@ export default async () => {
     {
       id: 'better-travel.default-to-simple-travel',
       title: 'Always open Simple Travel tab',
-      default: false,
+      default: true,
     },
     {
       id: 'better-travel.show-alphabetized-list',
       title: 'Show alphabetized list on Simple Travel tab',
-      default: false,
+      default: true,
     },
     {
       id: 'better-travel.show-reminders',
       title: 'Show travel reminders',
-      default: true,
-    },
-    {
-      id: 'better-travel.travel-window',
-      title: 'Add a Travel Window to the Travel menu',
-      default: true,
-    },
-    {
-      id: 'better-travel.travel-window-environment-icon',
-      title: 'Open Travel Window when clicking the environment icon',
       default: true,
     },
   ];

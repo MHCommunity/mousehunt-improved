@@ -31,10 +31,6 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-journal.icons-minimal',
-      title: 'Use minimal loot icons',
-    },
-    {
       id: 'better-journal.item-colors',
       title: "Color special items (map clues, Ful'Mina's gifts, etc.)",
       default: true,

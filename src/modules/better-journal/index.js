@@ -1,4 +1,4 @@
-import { addStyles, getSetting } from '@utils';
+import { addStyles, getFlag, getSetting } from '@utils';
 
 import journalBehaviors from './behaviors';
 import journalFullMiceImages from './modules/journal-full-mice-images';
@@ -38,7 +38,7 @@ const init = async () => {
     {
       enabled: enabled.list,
       load: () => {
-        if (enabled.icons || getSetting('better-journal.icons-minimal', false)) {
+        if (enabled.icons || getFlag('better-journal-icons-minimal')) {
           addStyles(listAndIconsStyles, 'better-journal-list-and-icons');
         }
 

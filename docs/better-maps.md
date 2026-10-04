@@ -15,16 +15,16 @@ Enhances the map interface with additional functionality and improved organizati
 - **Bundled Map Data**: Ships map sorting data with the extension and adds
   support for newer maps such as Corsair Chaser.
 - **Map Solver Links**: Adds MHCT Map Helper and Tsitu's Map Solver links to the Goals tab.
+- **Cleaner Community Maps**: Hides old and inactive maps in the Community Maps listing.
+- The solver links and Community Maps cleanup can be turned off with [feature flags](./feature-flags.md#better-maps).
 
 ## Options
 
 - **Default to Sorted tab**: Automatically selects the Sorted tab when opening a map.
 - **Show map goals in sidebar**: Displays your current map objectives in a convenient sidebar panel. (Enabled by default)
-- **Show map solver links**: Adds the map solver links to the map. (Enabled by default)
 - **Show map join & catch dates**: Shows the approximate date you started/joined
   a map and when each mouse was caught. This is off by default, but the data is
   still cached for when you need it.
-- **Hide old & inactive Community Maps**: Cleans up the Community Maps listing. (Enabled by default)
 
 ## Sorted Tab Features
 

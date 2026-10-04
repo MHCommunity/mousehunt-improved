@@ -27,8 +27,7 @@ Gives your journal a modern, streamlined look and adds powerful options to make 
 - **Text replacements**: Make journal text clearer and more concise with smart replacements.
 - **Gold and Points icons**: Add icons next to gold and points amounts in the journal.
 - **Loot as list**: Display loot as a list instead of inline text for easier reading. (Enabled by default)
-- **Loot icons**: Display small icons next to loot entries for quick visual reference. (Enabled by default)
-- **Loot icons (minimal)**: Show icons only for select loot items, for a cleaner look.
+- **Loot icons**: Display small icons next to loot entries for quick visual reference. (Enabled by default) For icons on select loot items only, use the `better-journal-icons-minimal` [feature flag](./feature-flags.md#better-journal).
 - **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Highlight special items with unique colors in the journal.
 - **Journal History**: Save and browse your journal history beyond the default page limit, letting you look back further than the standard game allows.
 - **Full mice images**: Display full mouse images in journal entries instead of smaller thumbnails.

@@ -1,4 +1,4 @@
-import { addStyles, formatGold, getCurrentPage, getSetting, onNavigation, onRequest } from '@utils';
+import { addStyles, formatGold, getCurrentPage, getFlag, getSetting, onNavigation, onRequest } from '@utils';
 
 import settings from './settings';
 
@@ -189,7 +189,7 @@ const main = () => {
 const init = () => {
   const stylesToAdd = [...styles];
 
-  if (getSetting('better-shops.hide-max-owned', false)) {
+  if (getFlag('better-shops-hide-max-owned')) {
     stylesToAdd.push(maxOwnedHide);
   }
 

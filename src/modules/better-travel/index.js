@@ -344,7 +344,7 @@ const addSimpleTravelPage = () => {
 
   const regionMenu = cloneRegionMenu();
 
-  if (getSetting('better-travel.show-alphabetized-list', false)) {
+  if (getSetting('better-travel.show-alphabetized-list', true)) {
     wrapper.append(addAlphabetizedList(regionMenu));
   }
 
@@ -642,7 +642,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  if (!getSetting('better-travel.default-to-simple-travel', false)) {
+  if (!getSetting('better-travel.default-to-simple-travel', true)) {
     return;
   }
 
@@ -864,7 +864,7 @@ const addFavoriteButtonsToTravelPage = async () => {
  * Main function.
  */
 const main = () => {
-  if (getSetting('better-travel.travel-window', true)) {
+  if (!getFlag('better-travel-no-travel-window')) {
     travelWindow();
   }
 

@@ -3,7 +3,7 @@ import {
   debuglog,
   doRequest,
   getData,
-  getSetting,
+  getFlag,
   isAppleOS,
   makeElement,
   makeLink,
@@ -797,7 +797,7 @@ const showGoalsTab = async (mapData) => {
   moveAuras();
   addInfoToCompletedMap(mapData);
 
-  if (getSetting('better-maps.show-map-solver-links', true)) {
+  if (!getFlag('better-maps-no-solver-links')) {
     addMapSolverLinks(mapData);
   }
 

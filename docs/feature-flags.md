@@ -24,7 +24,34 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 |Flag|Description|
 |---|---|
+|`better-journal-icons-minimal`|Shows icons only for select loot items in the journal.|
 |`show-lucky-icon`|Shows the luck stat icon after "lucky" text in journal entries.|
+
+#### Better Maps
+
+|Flag|Description|
+|---|---|
+|`better-maps-no-solver-links`|Hides the map solver links on the Goals tab.|
+|`better-maps-show-inactive-community-maps`|Shows old and inactive maps in the Community Maps listing.|
+
+#### Better Marketplace
+
+|Flag|Description|
+|---|---|
+|`better-marketplace-no-value-column`|Hides the estimated value column when browsing.|
+|`better-marketplace-no-highlight-last-viewed`|Stops highlighting and scrolling to the last item you viewed.|
+
+#### Better Quests
+
+|Flag|Description|
+|---|---|
+|`better-quests-no-m400-helper`|Removes the "Travel to next step" button from the M400 assignments.|
+
+#### Better Shops
+
+|Flag|Description|
+|---|---|
+|`better-shops-hide-max-owned`|Hides items you own as many of as you can.|
 
 #### Better Mice
 
@@ -42,6 +69,14 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |`better-travel-no-reminder-condensed-creativity`|Disables the reminder about Condensed Creativity.|
 |`better-travel-no-reminder-festive-spirit`|Disables the reminder about Festive Spirit.|
 |`no-travel-menu-hiding`|Disables the travel dropdown menu hiding styles.|
+|`better-travel-no-travel-window`|Removes the Travel Window from the Travel menu.|
+|`better-travel-no-travel-window-environment-icon`|Stops the environment icon from opening the Travel Window.|
+
+#### Better Tournaments
+
+|Flag|Description|
+|---|---|
+|`better-tournaments-time-on-hover`|Shows local tournament times on hover instead of inline.|
 
 #### Catch Rate & Minluck
 

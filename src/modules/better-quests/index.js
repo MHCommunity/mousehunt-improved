@@ -1,6 +1,4 @@
-import { addStyles, getCurrentSubtab, getCurrentTab, getData, getSetting, getUserItems, isUserTitleAtLeast, makeElement, onNavigation, onOverlayChange, onRequest } from '@utils';
-
-import settings from './settings';
+import { addStyles, getCurrentSubtab, getCurrentTab, getData, getFlag, getUserItems, isUserTitleAtLeast, makeElement, onNavigation, onOverlayChange, onRequest } from '@utils';
 
 import m400 from './modules/m400';
 import styles from './styles.css';
@@ -429,10 +427,10 @@ const restoreQuestTabAfterSmash = (request, data) => {
 };
 
 /**
- * Run the M400 helper if enabled.
+ * Run the M400 helper unless it's been turned off with a flag.
  */
 const m400IfEnabled = () => {
-  if (!getSetting('better-quests.m400-helper', true)) {
+  if (getFlag('better-quests-no-m400-helper')) {
     return;
   }
 
@@ -503,5 +501,4 @@ export default {
   default: true,
   description: 'Open the assignments popup from anywhere, improve the Quests tab, and add a helper for the M400 assignments.',
   load: init,
-  settings,
 };

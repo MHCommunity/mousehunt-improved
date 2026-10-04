@@ -1,7 +1,6 @@
-import { addEvent, addStyles, doRequest, getSetting, makeElement, onEvent, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
+import { addEvent, addStyles, doRequest, getFlag, makeElement, onEvent, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
 
 import { applyCachedTournamentName, getTournamentId, getTournamentListingDates, parseTournamentMinutes, parseTournamentRank } from './helpers';
-import settings from './settings';
 import styles from './styles.css';
 
 let scoreboardObserver = null;
@@ -332,7 +331,7 @@ const updateTournamentList = () => {
       return;
     }
 
-    const inlineOrHover = getSetting('better-tournaments.time-inline', true) ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
+    const inlineOrHover = !getFlag('better-tournaments-time-on-hover') ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
 
     const statusDateClass = 'pending' === status ? 'tournament-begins-date' : 'tournament-end-date';
     const statusDateEl = makeElement('div', ['tournament-normal-time', statusDateClass, inlineOrHover], dates.statusDate.toLocaleString('en-US', dateOptions));
@@ -477,5 +476,4 @@ export default {
   default: true,
   description: 'Show tournament details on hover, plus a handful of small interface tweaks.',
   load: init,
-  settings,
 };

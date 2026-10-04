@@ -8,6 +8,4 @@ Improves the tournaments page with more accessible information and a cleaner lay
 - **Points Breakdown**: Adds a dropdown to the Points display to see all mice and their points at a glance.
 - **Modernized UI**: Updates the tournament page for a more streamlined and readable experience.
 
-## Options
-
-- **Show localized times inline (instead of on hover)**: Show local times directly in the tournament listings, instead of only on hover.
+- **Local Times**: Shows local times directly in the tournament listings. To show them on hover instead, use a [feature flag](./feature-flags.md#better-tournaments).

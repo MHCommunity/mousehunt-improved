@@ -12,6 +12,4 @@ Enhances the quests and assignments system with more information and shortcuts f
   assignment goals get hover cards and open the mouse view when clicked.
 - **Concise Progress Display**: Makes task progress displays shorter and easier to read.
 
-## Options
-
-- **M400 Helper**: Adds a "Travel to next step" button to the M400 and M400 Bait Research assignments for quick navigation.
+The M400 helper can be turned off with a [feature flag](./feature-flags.md#better-quests).

@@ -1,4 +1,4 @@
-import { abbreviateNumber, formatGold, getData, getSetting, lsGet, lsSet, makeElement, parseGold, waitForElement } from '@utils';
+import { abbreviateNumber, formatGold, getData, getFlag, lsGet, lsSet, makeElement, parseGold, waitForElement } from '@utils';
 
 import { calculateEstimatedValue } from './pricing';
 
@@ -380,7 +380,7 @@ const enhanceBrowseTable = async () => {
   document.querySelector('.mhui-marketplace-trap-filter')?.remove();
   document.querySelector('.mhui-marketplace-filters')?.classList.remove('mhui-has-trap-filter');
 
-  if (getSetting('better-marketplace.value-column', true)) {
+  if (!getFlag('better-marketplace-no-value-column')) {
     addValueColumn(table, rows);
   }
 
@@ -388,7 +388,7 @@ const enhanceBrowseTable = async () => {
     await addTrapFilter(rows);
   }
 
-  if (getSetting('better-marketplace.highlight-last-viewed', true)) {
+  if (!getFlag('better-marketplace-no-highlight-last-viewed')) {
     trackAndHighlightLastViewed(table, rows, category);
   }
 };

@@ -26,18 +26,8 @@ export default async () => {
       default: false,
     },
     {
-      id: 'better-marketplace.value-column',
-      title: 'Show estimated value column when browsing',
-      default: true,
-    },
-    {
       id: 'better-marketplace.quick-price-links',
       title: 'Add quick undercut/overbid price links',
-      default: true,
-    },
-    {
-      id: 'better-marketplace.highlight-last-viewed',
-      title: 'Highlight and scroll to the last item you viewed',
       default: true,
     },
     {

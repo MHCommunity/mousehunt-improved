@@ -20,20 +20,10 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-maps.show-map-solver-links',
-      title: 'Show map solver links',
-      default: true,
-    },
-    {
       id: 'better-maps.catch-dates',
       title: 'Show map join and catch dates',
       description: 'Dates are approximate.',
       default: false,
-    },
-    {
-      id: 'better-maps.community',
-      title: 'Hide old and inactive Community Maps',
-      default: true,
     },
   ];
 };

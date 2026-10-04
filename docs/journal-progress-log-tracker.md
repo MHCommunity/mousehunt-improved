@@ -5,9 +5,5 @@ Tracks when your next journal log summary is due and gives you quick access to y
 ## Features
 
 - Saves your journal progress log summaries as they appear in your journal
-- Shows a countdown to when your next progress log is due
+- Shows a countdown to when your next progress log is due on the journal button
 - View your past logs in a popup without scrolling back through your journal
-
-## Options
-
-- **Show next-log countdown in the journal button**: Displays the time until your next progress log on the journal button. (Enabled by default)

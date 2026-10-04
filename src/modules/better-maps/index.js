@@ -7,6 +7,7 @@ import {
   getGlobal,
   getMapData,
   getRelicHunterLocation,
+  getFlag,
   getSetting,
   makeElement,
   makeMhButton,
@@ -253,7 +254,7 @@ async function updateMapSurface(response, request) {
     await updateInventorySurface();
   } else if ('get_shops' === request?.action) {
     await updateShopsMarkup();
-  } else if ('get_listings' === request?.action && getSetting('better-maps.community', true)) {
+  } else if ('get_listings' === request?.action && !getFlag('better-maps-show-inactive-community-maps')) {
     await updateCommunityListings(response, request);
   }
 }

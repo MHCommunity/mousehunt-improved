@@ -13,12 +13,9 @@ import {
   onModuleToggle,
   onNavigation,
   onRequest,
-  onSettingsChange,
   parseNumber,
   saveSetting,
 } from '@utils';
-
-import settings from './settings';
 
 import styles from './styles.css';
 
@@ -417,10 +414,6 @@ const formatCountdown = (ms, short = true) => {
  * @return {string} The button label.
  */
 const getButtonLabel = () => {
-  if (!getSetting(`${MODULE_ID}.show-countdown`, true)) {
-    return 'Journal Logs';
-  }
-
   const info = getNextLogInfo();
   if (!info) {
     return 'Journal Logs';
@@ -765,7 +758,6 @@ const init = async () => {
   // journal pipeline rather than guessing with request and turn delays.
   onRequest('*', captureExactTimestamps, true);
   onJournalEntriesProcessed(processJournalBatch);
-  onSettingsChange(`${MODULE_ID}.show-countdown`, showButton);
 
   onModuleToggle(MODULE_ID, {
     enable: processJournalBatch,
@@ -796,5 +788,4 @@ export default {
   description: 'Track when your next journal log summary is due and get quick access to your past logs.',
   liveToggle: true,
   load: init,
-  settings,
 };

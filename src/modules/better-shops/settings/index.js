@@ -6,11 +6,6 @@
 export default async () => {
   return [
     {
-      id: 'better-shops.hide-max-owned',
-      title: 'Hide items at their inventory limit',
-      default: false,
-    },
-    {
       id: 'better-shops.qty-buttons',
       title: 'Show quantity buttons',
       default: true,

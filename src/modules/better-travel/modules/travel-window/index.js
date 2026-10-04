@@ -1,17 +1,4 @@
-import {
-  addOnboardingTip,
-  addStyles,
-  addSubmenuItem,
-  createPopup,
-  debug,
-  getCurrentLocation,
-  getData,
-  getSetting,
-  isUserTitleAtLeast,
-  onDialogHide,
-  onEvent,
-  travelTo,
-} from '@utils';
+import { addOnboardingTip, addStyles, addSubmenuItem, createPopup, debug, getCurrentLocation, getData, getFlag, isUserTitleAtLeast, onDialogHide, onEvent, travelTo } from '@utils';
 
 import { getTravelSetting, saveTravelSetting } from '../../utils';
 
@@ -379,7 +366,7 @@ export default async () => {
   addStyles(styles, 'better-travel-travel-window');
   makeMenuItem();
 
-  if (getSetting('better-travel.travel-window-environment-icon', true)) {
+  if (!getFlag('better-travel-no-travel-window-environment-icon')) {
     addEnvironmentIconListener();
   }
 
