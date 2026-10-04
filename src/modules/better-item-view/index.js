@@ -531,7 +531,7 @@ const init = () => {
  */
 export default {
   id: 'better-item-view',
-  name: 'Better Items',
+  name: 'Better Item Details',
   type: 'inventory-shops',
   default: true,
   description: 'Improve item popups with cleaner styling, drop rates, and links.',

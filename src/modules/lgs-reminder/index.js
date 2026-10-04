@@ -191,7 +191,7 @@ const init = async () => {
  */
 export default {
   id: 'lgs-reminder',
-  name: 'Lucky Golden Shield Duration & Reminder',
+  name: 'Lucky Golden Shield timer',
   type: 'hunting-traps',
   description: 'Show your LGS duration in the HUD and warn you when it’s about to expire.',
   default: false,

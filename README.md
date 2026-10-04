@@ -15,7 +15,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better UI](docs/better-ui.md)**: Refresh the interface with broad UI, inbox, and style improvements.
 - **[Better Gifts](docs/better-gifts.md)**: Quickly accept and return all your gifts, and pick random friends to send to.
 - **[Better Inventory](docs/better-inventory.md)**: Improve inventory layout, trap sorting, filtering, and crafting workflows.
-- **[Better Items](docs/better-items.md)**: Update the styles, show drop rates, and provide links to MHCT and MH Wiki.
+- **[Better Item Details](docs/better-items.md)**: Update the styles, show drop rates, and provide links to MHCT and MH Wiki.
 - **[Better Journal](docs/better-journal.md)**: Rewrite and restyle journal entries with smarter loot displays, links, and history tools.
 - **[Better King's Reward](docs/better-kings-reward.md)**: Update the style of the King's Reward and automatically close the success message.
 - **[Better Maps](docs/better-maps.md)**: Improve map browsing with Sorted tab tools, attraction rates, solver links, and better mouse details.
@@ -30,26 +30,26 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Catch Rate & Minluck](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
 - **[Dark Mode](docs/dark-mode.md)**: Enable the dark mode.
 - **[MHCT Dark Mode Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
-- **[Data Exporters](docs/data-exporters.md)**: Export data from the game.
+- **[Data export](docs/data-exporters.md)**: Export data from the game.
 - **[Emotes](docs/emotes.md)**: Replace Discord-style emotes on corkboards (e.g., :jerry:) with actual images in map and profile corkboard messages.
-- **[Enhanced Search](docs/enhanced-search.md)**: Find items by their abbreviations, so searching "ESB" turns up Empowered SUPER|brie+.
+- **[Item abbreviation search](docs/enhanced-search.md)**: Find items by their abbreviations, so searching "ESB" turns up Empowered SUPER|brie+.
 - **[Favorite Setups](docs/favorite-setups.md)**: Save your favorite setups and arm them with a single click.
 - **[Fixes](docs/fixes.md)**: Fix various bugs and issues in the game.
 - **[FLRT Helper](docs/flrt-helper.md)**: Add a "Return to Maptain" button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.
-- **[Gifts in Inbox](docs/gifts-in-inbox.md)**: Collect recent gift links in an inbox tab and claim them quickly.
+- **[Gift links in inbox](docs/gifts-in-inbox.md)**: Collect recent gift links in an inbox tab and claim them quickly.
 - **[Hover delays](docs/hover-delays.md)**: Add a short delay before menus and tooltips open. Hold Shift to show tooltips right away.
 - **[Hover Profiles](docs/hover-profiles.md)**: Hover over a name to see a mini profile popup.
 - **[Hunter ID shortcuts](docs/hunter-id-shortcuts.md)**: Copy your Hunter ID from your profile picture, and paste a Hunter ID or profile link anywhere to open that hunter’s profile.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
-- **[Inventory Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
-- **[Inventory Open Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
-- **[Journal Progress Log Tracker](docs/journal-progress-log-tracker.md)**: Save progress logs, show your next-log countdown, and review past logs.
+- **[Inventory locking & hiding](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
+- **[Convertible opening buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
+- **[Journal log tracker](docs/journal-progress-log-tracker.md)**: Save progress logs, show your next-log countdown, and review past logs.
 - **[Journal Theme Changer](docs/journal-theme-changer.md)**: Randomize your journal theme, randomize it daily, or change it based on your location.
 - **[Keyboard Shortcuts](docs/keyboard-shortcuts.md)**: Press "?" to see and edit keyboard shortcuts.
 - **[Legacy HUD](docs/legacy-hud.md)**: Enable the legacy HUD or make tweaks to it.
 - **[Location Catch Stats](docs/location-catch-stats.md)**: Add a "Location Catch Stats" option to the Mice menu to see your catch stats for the current location.
 - **[Location Dashboard](docs/location-dashboard.md)**: See location HUD progress from a top-menu dashboard.
-- **[Lucky Golden Shield Duration & Reminder](docs/lucky-golden-shield-duration-and-reminder.md)**: Show your LGS duration in the HUD and warn you when it’s about to expire.
+- **[Lucky Golden Shield timer](docs/lucky-golden-shield-duration-and-reminder.md)**: Show your LGS duration in the HUD and warn you when it’s about to expire.
 - **[Metric Units](docs/metric-units.md)**: Use metric units instead of imperial units.
 - **[Quick Send Supplies](docs/quick-send-supplies.md)**: Hover or click on Send Supplies to quickly send any quantity of a configured item.
 - **[Rank-Up Forecaster](docs/rank-up-forecaster.md)**: Track your wisdom history and forecast when you’ll reach your next rank.
@@ -58,7 +58,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Show Auras](docs/show-auras.md)**: Show auras and their expiry time below the trap stats.
 - **[Taller Windows](docs/taller-windows.md)**: Make popup and dialog windows taller.
 - **[TEM Crowns](docs/tem-crowns.md)**: Add crowns and catches to the Trap Effectiveness Meter.
-- **[Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
+- **[Location timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
 - **[Ultimate Checkmark](docs/ultimate-checkmark.md)**: Add more items to collect on your Hunter profile.
 - **[Unique Loot Count](docs/unique-loot-count.md)**: Show the number of unique loot items in the progress log.
 - **[Wisdom in Stat Bar](docs/wisdom-in-stat-bar.md)**: Show wisdom in the stat bar.
@@ -70,7 +70,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Custom Horn](docs/custom-horn.md)**: Customize the horn with event or color themes.
 - **[Custom HUD](docs/custom-hud.md)**: Change the marbled HUD background.
 - **[Custom Shield](docs/custom-shield.md)**: Change the shield to an event shield, color, title shield, or silly shield.
-- **[Custom Styles](docs/custom-styles.md)**: Apply custom CSS.
+- **[Custom CSS Styles](docs/custom-styles.md)**: Apply your own CSS.
 
 ### 🛑 Element Hiding
 

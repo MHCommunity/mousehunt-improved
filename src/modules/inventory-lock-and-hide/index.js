@@ -642,7 +642,7 @@ const init = () => {
  */
 export default {
   id: 'inventory-lock-and-hide',
-  name: 'Inventory Lock and Hide',
+  name: 'Inventory locking & hiding',
   type: 'inventory-shops',
   default: true,
   description: 'Lock and hide items in your inventory, and hide items in the trap selector.',

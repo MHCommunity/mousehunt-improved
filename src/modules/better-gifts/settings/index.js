@@ -17,38 +17,38 @@ export default async () => {
 
   const skipBadGiftOptions = [
     {
-      name: 'Skip all non-GOTD gifts',
+      name: 'All except Gift of the Day',
       value: 'skip',
     },
     {
-      name: "Don't skip any gifts",
+      name: 'None',
       value: 'no-skip',
     },
     {
       seperator: true,
     },
     {
-      name: 'Skip Mozzarella Cheese only',
+      name: 'Mozzarella Cheese',
       value: 'mozzarella',
     },
     {
-      name: 'Skip Stale Cheese only',
+      name: 'Stale Cheese',
       value: 'stale',
     },
     {
-      name: 'Skip Radioactive Sludge only',
+      name: 'Radioactive Sludge',
       value: 'sludge',
     },
     {
-      name: 'Skip Mozzarella & Stale Cheese',
+      name: 'Mozzarella Cheese & Stale Cheese',
       value: 'mozzarella-stale',
     },
     {
-      name: 'Skip Mozzarella & Radioactive Sludge',
+      name: 'Mozzarella Cheese & Radioactive Sludge',
       value: 'mozzarella-sludge',
     },
     {
-      name: 'Skip Stale Cheese & Radioactive Sludge',
+      name: 'Stale Cheese & Radioactive Sludge',
       value: 'stale-sludge',
     },
   ];
@@ -57,9 +57,8 @@ export default async () => {
     {
       id: 'better-gifts.send-order',
       live: true,
-      title: 'Gift acceptance and sending order',
+      title: 'Gift order',
       default: [orderOptions[0]],
-      description: '',
       settings: {
         type: 'multi-select',
         number: 1,
@@ -69,9 +68,8 @@ export default async () => {
     {
       id: 'better-gifts.ignore-bad-gifts',
       live: true,
-      title: 'Ignore gifts',
+      title: 'Skipped gifts',
       default: [skipBadGiftOptions[0]],
-      description: '',
       settings: {
         type: 'multi-select',
         number: 1,

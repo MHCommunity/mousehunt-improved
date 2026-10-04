@@ -823,7 +823,7 @@ const init = () => {
 
 export default {
   id: MODULE_ID,
-  name: 'Gifts in Inbox',
+  name: 'Gift links in inbox',
   type: 'friends-gifts',
   default: true,
   liveToggle: true,

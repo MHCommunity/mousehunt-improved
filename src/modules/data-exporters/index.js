@@ -148,7 +148,7 @@ const init = () => {
  */
 export default {
   id: 'data-exporters',
-  name: 'Data Exporters',
+  name: 'Data export',
   description: 'Export your mouse stats, inventory, Marketplace history, scoreboard rankings, and more from the Kingdom menu.',
   type: 'journal-stats',
   default: true,
