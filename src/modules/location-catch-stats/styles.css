@@ -206,7 +206,7 @@
 .mh-catch-stats-crown-breakdown {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
   justify-content: center;
 }
