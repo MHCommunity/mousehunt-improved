@@ -10,7 +10,7 @@ import { getCurrentPage } from './page-current';
  */
 const setPage = (page, ...args) => {
   if ('wiki' === page.toLowerCase()) {
-    // Click the menu link so Inline Wiki can intercept it when it's enabled.
+    // Open the wiki the same way the menu link does.
     const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
     if (wikiLink) {
       wikiLink.click();

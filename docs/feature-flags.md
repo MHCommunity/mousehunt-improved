@@ -117,6 +117,7 @@ See [Debug Logging](./debug-logging.md) for configuration options.
 |Flag|Description|
 |---|---|
 |`favorite-setups-limit-location-favorites`|Limits the number of location favorites to 3 per location.|
+|`favorite-setups-no-location-favorites`|Stops showing setups for your current location at the top.|
 
 #### Location HUDs
 

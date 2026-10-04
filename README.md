@@ -41,7 +41,6 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Hover Profiles](docs/hover-profiles.md)**: Hover over a name to see a mini profile popup.
 - **[Hunter ID shortcuts](docs/hunter-id-shortcuts.md)**: Copy your Hunter ID from your profile picture, and paste a Hunter ID or profile link anywhere to open that hunter’s profile.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
-- **[Inline Wiki](docs/inline-wiki.md)**: Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.
 - **[Inventory Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
 - **[Inventory Open Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.
 - **[Journal Progress Log Tracker](docs/journal-progress-log-tracker.md)**: Save progress logs, show your next-log countdown, and review past logs.

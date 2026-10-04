@@ -1412,7 +1412,7 @@ const makeBlueprintContainer = async () => {
     // Find location favorites and display them as shortcuts at the top
     let locationFavorites = [];
 
-    if (getSetting('favorite-setups.show-location-favorites', true)) {
+    if (!getFlag('favorite-setups-no-location-favorites')) {
       // Get the current location from the user data
       locationFavorites = setups.filter((setup) => setup && setup.id && setup.location && setup.location === getCurrentLocation());
 

@@ -6,10 +6,11 @@ When saving a setup, it will default to the name of the current location. Clicki
 
 The "Favorite Setups" button will also show the current setup name if you have it equipped.
 
+Setups saved for your current location are shown at the top. To turn this off, use the `favorite-setups-no-location-favorites` [feature flag](./feature-flags.md#favorite-setups).
+
 ## Options
 
 - **Include mobile favorites**: Also show the favorites saved in the mobile app.
-- **Highlight setups for current location at the top**: Shows setups saved for your current location first. (Enabled by default)
 - **Use generated names for setups**: Names new setups based on their components and location via an AI model. (Enabled by default)
 
 > [!TIP]
