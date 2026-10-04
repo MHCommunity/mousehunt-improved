@@ -8,44 +8,11 @@
   left: 2px;
 }
 
-.mouseCrownsView .pt.event {
-  border-radius: 50%;
-}
-
 .mouseCrownsView #copyCrownsButton {
   width: 16px !important;
   height: 16px !important;
   background-color: transparent !important;
   border: none !important;
-}
-
-.mouseCrownsView .pt {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  padding: 2px;
-  border-radius: 50%;
-}
-
-.mouseCrownsView button.ptbtn {
-  font-size: 14px !important;
-  background-color: #9fcad8 !important;
-  border: 1px solid #0e7fbf;
-}
-
-.mh-dark .mouseCrownsView button.ptbtn {
-  background-color: var(--d-blue-dark) !important;
-}
-
-.mouseCrownsView button.ptbtn img {
-  width: 20px !important;
-  height: 20px !important;
-}
-
-.mouseCrownsView #powerTypeBtns {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
 }
 
 .mouseCrownsView .toolBar {
@@ -71,65 +38,6 @@
 
 .mouseCrownsView .toolBar:hover {
   opacity: 1;
-}
-
-.powerCrown .mouseCrownsView-group-header-name,
-.mouseCrownsView-crown.powerCrown {
-  display: none !important;
-}
-
-.mouseCrownsView-group-header.powerCrown {
-  padding: 0;
-  margin: 0;
-  background-color: transparent !important;
-}
-
-button.ptbtn img {
-  left: unset !important;
-  width: auto !important;
-  height: 50px !important;
-}
-
-.mouseCrownsView button.ptbtn > div {
-  top: unset !important;
-  right: unset !important;
-  bottom: unset !important;
-  left: unset !important;
-  width: unset !important;
-}
-
-button.ptbtn {
-  display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  place-content: center flex-start;
-  place-items: center center;
-  width: 100% !important;
-  max-width: 180px;
-  height: unset !important;
-  background-color: #00b0eb !important;
-  border-width: 1px;
-}
-
-#powerTypeBtns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  justify-content: center;
-  padding: 6px;
-  margin: 0;
-  background-color: transparent;
-}
-
-.mouseCrownsView-crown.community {
-  padding-right: 5px;
-}
-
-.mouseCrownsView-group-header.community {
-  margin: 10px;
-}
-
-.rank.summary {
-  line-height: 1.5;
 }
 
 img.pt.undefined {
@@ -178,4 +86,125 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 .mouseCrownsView-group-mouse-image {
   border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
+}
+
+/* Crown summary and power crowns, matched to the Better Mice crown summary. */
+.mouseCrownsView-group-header.community,
+.mouseCrownsView-group-header.powerCrown {
+  flex-wrap: wrap;
+  align-items: center;
+  height: auto;
+  padding: 10px !important;
+  margin: 10px !important;
+  background-color: #f5f5f5 !important;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px #cbcbcb;
+}
+
+.mh-dark .mouseCrownsView-group-header.community,
+.mh-dark .mouseCrownsView-group-header.powerCrown {
+  background-color: #434651 !important;
+  box-shadow: 0 0 1px 1px #111;
+}
+
+.mouseCrownsView-crown.community,
+.mouseCrownsView-crown.powerCrown {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  background: url(https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png) 50% 50% / contain no-repeat !important;
+}
+
+.mouseCrownsView-crown.powerCrown {
+  display: none;
+}
+
+.mouseCrownsView-group-header.community .mouseCrownsView-group-header-name,
+.mouseCrownsView-group-header.powerCrown .mouseCrownsView-group-header-name {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.mouseCrownsView-group-header.powerCrown .mouseCrownsView-group-header-name {
+  display: none;
+}
+
+.rank.summary {
+  box-sizing: border-box;
+  flex-basis: 100%;
+  padding: 5px 8px;
+  margin-top: 5px;
+  font-size: 12px !important;
+  line-height: 1.6;
+  background-color: rgb(255 255 255 / 50%);
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 10%);
+}
+
+#powerTypeBtns {
+  display: grid;
+  flex-basis: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.mouseCrownsView button.ptbtn {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto !important;
+  height: auto !important;
+  padding: 3px 6px !important;
+  font-size: 12px !important;
+  color: inherit;
+  text-align: left !important;
+  cursor: pointer;
+  background-color: rgb(255 255 255 / 50%) !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 10%);
+}
+
+.mouseCrownsView button.ptbtn:hover {
+  border-color: #aaa !important;
+}
+
+.mouseCrownsView button.ptbtn[style*="rgb(244, 67, 54)"] {
+  border-color: #3b7cc0 !important;
+  box-shadow: 0 0 0 1px #3b7cc0;
+}
+
+.mouseCrownsView button.ptbtn img {
+  position: static !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.mh-dark .rank.summary,
+.mh-dark .mouseCrownsView button.ptbtn {
+  background-color: rgb(0 0 0 / 20%) !important;
+  box-shadow: 0 0 1px 1px rgb(255 255 255 / 10%);
+}
+
+.mouseCrownsView .pt {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  box-sizing: border-box;
+  width: 22px !important;
+  height: 22px !important;
+  padding: 3px;
+  margin: 0 !important;
+  background-color: rgb(0 0 0 / 45%);
+  border-radius: 50%;
+}
+
+.mouseCrownsView .pt.event {
+  padding: 0;
 }

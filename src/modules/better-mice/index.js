@@ -19,6 +19,7 @@ import {
 } from '@utils';
 
 import hoverMice from './modules/hover-mice';
+import kingsCrowns from './modules/kings-crowns';
 import mousePage from './modules/mouse-page';
 import settings from './settings';
 import sidebar from './modules/sidebar';
@@ -620,6 +621,7 @@ const init = () => {
   addStyles(styles, 'better-mice');
   main();
   mousePage();
+  kingsCrowns();
   prizeInfo();
 
   if (getSetting('better-mice.show-mouse-hover', true)) {
@@ -655,7 +657,8 @@ export default {
   name: 'Better Mice',
   type: 'journal-stats',
   default: true,
-  description: "Add attraction rates and MH Wiki and MHCT links to mouse popups, sort the mouse stats pages, and add a King's Crown tab.",
+  description:
+    "Add attraction rates and MH Wiki and MHCT links to mouse popups, sort and total the mouse stats pages, add a King's Crown tab, and add a crown summary to King's Crowns.",
   load: init,
   settings,
 };

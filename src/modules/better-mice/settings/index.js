@@ -20,5 +20,15 @@ export default async () => {
       title: 'Show available mice in sidebar',
       default: true,
     },
+    {
+      id: 'better-mice.show-crown-summary',
+      title: "Show crown summary on King's Crowns",
+      default: true,
+    },
+    {
+      id: 'better-mice.show-crown-power-types',
+      title: "Show power types on King's Crowns",
+      default: true,
+    },
   ];
 };

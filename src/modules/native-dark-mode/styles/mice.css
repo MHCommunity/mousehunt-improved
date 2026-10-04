@@ -141,7 +141,7 @@
 }
 
 .mh-dark .mouseCrownsView-group-header b {
-  color: var(--d-text-dark);
+  color: var(--d-alt);
 }
 
 .mh-dark .mouseCrownsView-group.favourite .mouseCrownsView-group-header b {
@@ -237,7 +237,7 @@
 }
 
 .mh-dark .mouseCrownsView-group.gold .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
-  color: var(--d-text-dark);
+  color: var(--d-black);
   background-color: var(--d-yellow-dark);
 }
 
@@ -256,7 +256,7 @@
 }
 
 .mh-dark .mouseCrownsView-group.bronze .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
-  color: var(--d-text-dark);
+  color: var(--d-black);
   background-color: var(--d-orange-dark);
   border-color: var(--d-border);
 }

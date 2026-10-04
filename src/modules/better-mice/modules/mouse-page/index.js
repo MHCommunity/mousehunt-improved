@@ -1,3 +1,4 @@
+import { decorateKingsCrowns } from '../kings-crowns';
 import { doRequest, getCurrentPage, getCurrentSubtab, getCurrentTab, makeElement, onNavigation, sessionGet, sessionSet, waitForElement } from '@utils';
 
 /**
@@ -200,6 +201,8 @@ const makeKingsCrownsTabContent = async () => {
       tabInnerContent.append(section);
     }
   });
+
+  decorateKingsCrowns(tabInnerContent);
 };
 
 /**
@@ -422,6 +425,8 @@ const addSortingToCat = async (cat, retries = 0) => {
 
   category.setAttribute('data-added-sorting', true);
 
+  addCategoryTotals(category);
+
   // Get all the rows and add the crown classes to them.
   const rows = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
   if (!rows.length) {
@@ -449,6 +454,46 @@ const addSortingToCat = async (cat, retries = 0) => {
       row.classList.add('crown', 'bronze');
     }
   });
+};
+
+/**
+ * Add the catch and miss totals for the category under its description.
+ *
+ * @param {Element} category The category element.
+ */
+const addCategoryTotals = (category) => {
+  const rows = category.querySelectorAll('.mouseListView-categoryContent-subgroup-mouse.stats:not(.header)');
+  if (!rows.length) {
+    return;
+  }
+
+  let catches = 0;
+  let misses = 0;
+  rows.forEach((row) => {
+    catches += getSetRowValue(row, 'catches') || 0;
+    misses += getSetRowValue(row, 'misses') || 0;
+  });
+
+  category.querySelector('.mh-category-totals')?.remove();
+
+  const totals = makeElement('div', 'mh-category-totals');
+  [
+    ['Catches', catches],
+    ['Misses', misses],
+    ['Total', catches + misses],
+  ].forEach(([label, value]) => {
+    const stat = makeElement('span', 'mh-category-totals-stat');
+    makeElement('span', 'mh-category-totals-label', `${label}: `, stat);
+    makeElement('b', '', value.toLocaleString(), stat);
+    totals.append(stat);
+  });
+
+  const description = category.querySelector('.mouseListView-categoryContent-description');
+  if (description) {
+    description.after(totals);
+  } else {
+    category.prepend(totals);
+  }
 };
 
 let _categoryClickHandler = null;

@@ -494,3 +494,14 @@ ul.minluck-list {
 .mouseListView-categoryContent-subgroup-mouse-numCatches.diamond::before {
   opacity: 0.5;
 }
+
+.mh-category-totals {
+  display: flex;
+  gap: 15px;
+  margin: 5px 0 10px;
+  font-size: 12px;
+}
+
+.mh-category-totals-label {
+  opacity: 0.8;
+}
