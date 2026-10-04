@@ -1,6 +1,8 @@
 import {
   addHeaderMenuTab,
   addStyles,
+  cacheGet,
+  cacheSet,
   getData,
   getMultiSelectSetting,
   getUserItems,
@@ -41,8 +43,47 @@ let renderTimer = null;
 let userItemsCache = null;
 let userItemsRequest = null;
 
-// How long the pinned items' inventory data is reused before it's fetched again.
-const userItemsCacheTtl = 60 * 1000;
+// How long the pinned items' inventory data is reused before it's fetched again. Quantities are kept
+// in step from game responses in between, and opening an item always refetches.
+const userItemsCacheTtl = 24 * 60 * 60 * 1000;
+
+/**
+ * Get the storage key for the pinned items' inventory data.
+ *
+ * @return {string} The cache key.
+ */
+const getUserItemsStorageKey = () => `${moduleId}-user-items-${user?.user_id}`;
+
+/**
+ * Save the pinned items' inventory data so it's reused across page loads.
+ */
+const saveUserItemsCache = () => {
+  if (!userItemsCache) {
+    return;
+  }
+
+  const { key, items, fetchedAt } = userItemsCache;
+  const remaining = userItemsCacheTtl - (Date.now() - fetchedAt);
+  if (remaining > 0) {
+    cacheSet(getUserItemsStorageKey(), { key, fetchedAt, items: [...items.values()] }, remaining);
+  }
+};
+
+/**
+ * Load the saved inventory data for the pinned items, if it's still fresh.
+ *
+ * @param {string} key The pinned item types, joined.
+ *
+ * @return {Promise<Object|null>} The cache, or null when there isn't a fresh one.
+ */
+const loadUserItemsCache = async (key) => {
+  const saved = await cacheGet(getUserItemsStorageKey(), null);
+  if (saved?.key !== key || !Array.isArray(saved.items) || Date.now() - saved.fetchedAt >= userItemsCacheTtl) {
+    return null;
+  }
+
+  return { key, items: new Map(saved.items.map((userItem) => [userItem.type, userItem])), fetchedAt: saved.fetchedAt };
+};
 
 /**
  * Get the item type pinned in a slot.
@@ -88,6 +129,14 @@ const getPinnedUserItems = async (forceUpdate = false) => {
     return userItemsCache.items;
   }
 
+  if (!forceUpdate && !userItemsCache) {
+    const saved = await loadUserItemsCache(key);
+    if (saved) {
+      userItemsCache = saved;
+      return saved.items;
+    }
+  }
+
   // Share a request that's already running, unless it might be older than what was asked for.
   if (userItemsRequest?.key === key && (!forceUpdate || userItemsRequest.forceUpdate)) {
     return userItemsRequest.promise;
@@ -100,6 +149,7 @@ const getPinnedUserItems = async (forceUpdate = false) => {
     promise: getUserItems(types, forceUpdate || Boolean(userItemsCache)).then((userItems) => {
       const items = new Map(userItems.map((userItem) => [userItem.type, userItem]));
       userItemsCache = { key, items, fetchedAt: Date.now() };
+      saveUserItemsCache();
       return items;
     }),
   };
@@ -572,6 +622,7 @@ const createPin = (slot) => {
       const cachedItem = userItemsCache?.items.get(item.type);
       if (cachedItem) {
         cachedItem.quantity = inventoryItem.quantity;
+        saveUserItemsCache();
       }
 
       render();

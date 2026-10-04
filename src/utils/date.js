@@ -1,3 +1,4 @@
+import { cacheGet, cacheSet } from './data';
 import { doRequest } from './utils';
 
 const months = new Map([
@@ -25,6 +26,13 @@ let accountTimezoneOffsetPromise;
 const getAccountTimezoneOffset = async () => {
   if (!accountTimezoneOffsetPromise) {
     accountTimezoneOffsetPromise = (async () => {
+      // Keyed per account, and stored as an object so a UTC (0) offset isn't treated as a cache miss.
+      const cacheKey = `account-timezone-offset-${user?.user_id}`;
+      const cached = await cacheGet(cacheKey, null);
+      if (Number.isFinite(cached?.offset)) {
+        return cached.offset;
+      }
+
       const response = await doRequest('managers/ajax/pages/page.php', {
         page_class: 'Preferences',
         'page_arguments[tab]': 'personal_info',
@@ -37,7 +45,10 @@ const getAccountTimezoneOffset = async () => {
         return null;
       }
 
-      return (timezone + timezoneOffset) * 60;
+      const offset = (timezone + timezoneOffset) * 60;
+      cacheSet(cacheKey, { offset }, 14 * 24 * 60 * 60 * 1000); // Cache for 2 weeks.
+
+      return offset;
     })();
   }
 
