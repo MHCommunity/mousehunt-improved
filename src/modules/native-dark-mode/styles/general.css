@@ -102,12 +102,6 @@ body.mh-dark {
   background: #fff;
 }
 
-.mh-dark #overlayPopup.loading.mh-improved-loading .jsDialogContainer .suffix {
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
-  background-position: 98% 10px;
-  background-size: 110px;
-}
-
 .mh-dark #mousehuntContainer.PageNewsPost {
   background: transparent;
 }

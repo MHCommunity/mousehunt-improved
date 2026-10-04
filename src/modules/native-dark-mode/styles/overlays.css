@@ -205,10 +205,6 @@
   background-color: var(--d-bg-alt);
 }
 
-.mh-dark #overlayPopup.loading .jsDialogContainer .suffix {
-  background-blend-mode: darken;
-}
-
 .mh-dark .convertibleOpenView-header {
   background-color: var(--d);
 }
@@ -292,4 +288,34 @@
   color: var(--d-text);
   background: var(--d-alt);
   border-color: var(--d-border);
+}
+
+/*
+ * Plain game popups from the default, error, and loading templates. A default popup without a
+ * custom class gets "overlayPopup" as its class; classed ones (including MH Improved's own) are
+ * usually custom designs, so only the plain ones and a few known classes are matched.
+ */
+.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer h2 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark #overlayPopup.error .jsDialogContainer .content {
+  color: var(--d-red-light);
+}
+
+/* The default loader dots disappear on a dark footer, so use the green loader instead. */
+.mh-dark #overlayPopup.loading .jsDialogContainer .suffix {
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
+  background-position: 98% 10px;
+  background-size: 110px;
 }

@@ -213,6 +213,12 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .campPage-trap-itemBrowser-tagGroup-empty {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
 .mh-dark .campPage-trap-itemBrowser-items {
   scrollbar-color: var(--d-text-muted) var(--d-alt);
 }
@@ -439,4 +445,18 @@
 
 .mh-dark .trapSelectorView__activeCodexList.trapSelectorView__innerBlock {
   background-color: transparent;
+}
+
+.mh-dark .campPage-trap-itemBrowser-itemDescriptionHover {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-itemDescriptionHover.left .mousehuntTooltip-arrow {
+  border-left-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-itemDescriptionHover.left .mousehuntTooltip-arrow::after {
+  border-left-color: var(--d-bg);
 }

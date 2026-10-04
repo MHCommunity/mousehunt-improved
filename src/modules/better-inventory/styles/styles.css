@@ -753,7 +753,6 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .mh-inventory-filter-count {
   font-size: 11px;
-  font-style: italic;
   color: #6a5d4e;
 }
 
@@ -768,9 +767,13 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .mh-dark .mh-inventory-filter-count,
 .mh-dark-mode .mh-inventory-filter-count {
-  color: #b0a690;
+  color: var(--d-text-muted);
 }
 
 .inventoryPage-item.mh-inventory-item-hidden {
   display: none;
+}
+
+.mh-dark .mh-inventory-has-active .mh-inventory-reset {
+  color: var(--d-link);
 }
