@@ -75,21 +75,4 @@ const listenForIDPaste = () => {
   });
 };
 
-/**
- * Initialize the module.
- */
-const init = async () => {
-  listenForIDPaste();
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'paste-hunter-id',
-  name: 'Paste Hunter ID',
-  type: 'friends-gifts',
-  default: true,
-  description: 'Copy a Hunter ID to your clipboard and press Ctrl/Cmd+V anywhere to go directly to that hunter’s profile.',
-  load: init,
-};
+export default listenForIDPaste;

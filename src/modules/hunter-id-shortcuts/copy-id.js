@@ -1,19 +1,17 @@
-import { addStyles, getSetting, makeElement, makeMhButton, onDeactivation } from '@utils';
-
-import settings from './settings';
-
-import styles from './styles.css';
+import { makeElement, makeMhButton, onDeactivation } from '@utils';
 
 /**
- * Main function.
+ * Add a way to copy your Hunter ID from your profile picture in the HUD.
+ *
+ * @param {string} mode 'button' to show a Copy ID button on hover, or 'profile-picture' to copy when the picture is clicked.
  */
-const main = () => {
+export default (mode) => {
   const profilePic = document.querySelector('.mousehuntHud-userStatBar .mousehuntHud-profilePic');
   if (!profilePic) {
     return;
   }
 
-  const hidebutton = getSetting('copy-id-button.hide-button');
+  const hidebutton = 'profile-picture' === mode;
 
   const copyIdButton = makeMhButton({
     text: 'Copy ID',
@@ -75,7 +73,7 @@ const main = () => {
   }
 
   // Without the module's styles the button would always show, so remove it and restore the profile pic.
-  onDeactivation('copy-id', () => {
+  onDeactivation('hunter-id-shortcuts', () => {
     copyIdButton.remove();
     successMessage.remove();
     profilePic.removeEventListener('click', clickAction);
@@ -83,26 +81,4 @@ const main = () => {
       profilePic.setAttribute('onclick', originalOnclick);
     }
   });
-};
-
-/**
- * Initialize the module.
- */
-const init = () => {
-  addStyles(styles, 'copy-id');
-
-  main();
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'copy-id',
-  name: 'Copy ID Button',
-  type: 'friends-gifts',
-  default: true,
-  description: 'Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" button.',
-  load: init,
-  settings,
 };
