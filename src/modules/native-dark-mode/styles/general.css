@@ -74,6 +74,10 @@ body.mh-dark {
   background-color: var(--d-alt);
 }
 
+.mh-dark #overlayPopup.mh-improved-update-summary code {
+  background-color: var(--d-yellow);
+}
+
 .mh-dark .mousehunt-improved-settings-export-popup code {
   color: var(--d-text);
 }

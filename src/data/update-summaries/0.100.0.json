@@ -1,0 +1,284 @@
+{
+  "version": "0.100.0",
+  "summary": "New features, settings reorganization, and more customization options! There's a neat new Custom Menu module to customize, reorder, add and hide items in the top menu. There's also a Quick Items menu you can use to pin convertibles and some other items to the menu to easily use. Modules and settings have been reorganized, with some options moved, combined, or removed, but it should be easier to find what you need. Happy hunting!",
+  "details": [
+    {
+      "title": "New Features",
+      "items": [
+        "Custom Menu: Drag and drop top menu items to reorder them, move them between sides, hide them, or add shortcuts from the Camp, Travel, Inventory, and other menus",
+        "Quick Items Menu: Open pinned convertibles or use message items like Scrambles from the top menu, with quantities, opening results, and supported aura countdowns",
+        "Hide page elements: Added an option to hide the Hunters and Friends Online bar",
+        "Item abbreviation search, Location timers, and Rank-Up Forecaster have moved out of experiments into regular settings categories",
+        "Location HUDs - Zugzwang’s Tower: Added quick-switch buttons for SUPER|brie+, Checkmate Cheese, and both Pawn Pinchers"
+      ]
+    },
+    {
+      "title": "Settings",
+      "items": [
+        "Reorganized modules into new categories",
+        "Added an All view and improved search across categories, including matching options inside disabled modules",
+        "Updated module names, setting labels, and descriptions",
+        "For many customization and item selectors, added searchable lists with images or previews and nested groups; pinned-item lists now support adding more slots",
+        "Some options are now removed and moved to feature flags; the update popup suggests replacements for supported saved preferences"
+      ]
+    },
+    {
+      "title": "Custom Menu",
+      "items": [
+        "Added an Edit menu link in Personalization, with a live menu preview, drag-and-drop ordering, hidden items, and a reset to the default layout",
+        "Choose Icon, Icon and text, or Text for supported menu items",
+        "Added Show unread count options for Inbox and Gifts",
+        "Moved Gift button opens gift selector from Better Gifts into the Gifts menu item’s options as Open the gift selector instead of the gifts popup",
+        "Added separate Show “SUPER|brie+:” and Show “Get More” options for the SUPER|brie+ menu item",
+        "Added Show the item’s name instead of “Quick Items” and Show quantity instead of the name options for Quick Items",
+        "Moved visibility controls for the Journal Privacy toggle, Location HUD toggle, and Adventure Book into the menu editor; Location HUD and Adventure Book shortcuts are hidden by default",
+        "Dashboard and Sidebar dropdowns can also be reordered or hidden in the menu editor"
+      ]
+    },
+    {
+      "title": "Quick Items Menu",
+      "items": [
+        "Added an optional module in Inventory & shops, with a searchable, expandable Pinned items list that defaults to Kilohertz Processor",
+        "Choose from owned convertibles and message items; saved pins remain selectable after you use them up",
+        "Open a chosen quantity of each convertible and see the loot in the dropdown",
+        "Show remaining time for Millenniaura, Spooky Aura, Dragon’s Might Aura, and Lightning Aura",
+        "When a single message item is pinned, clicking the menu item uses it directly"
+      ]
+    },
+    {
+      "title": "Better Trap Selector",
+      "items": [
+        "Combined Quick Filters and Sort, Trap Selector Special Effects, Prestige Base Stats, Base Item Counters, Hide Codices, and Better UI’s trap selector features into one module in Hunting & traps",
+        "Moved Show quick filters and sort buttons and Mark items with special effects into this module",
+        "Moved Add a background gradient to your trap, Show larger skin images, Show unowned skins, and Show larger codex images out of Better UI",
+        "Combined Hide Codices and Move the codex to the bottom into a Codex position picker: At the bottom, Where the game puts it, or Hidden",
+        "Added settings here for Show the real stats for variable bases and Show toothlet and printing paper counts",
+        "The random skin button and skin previews using your equipped base now belong to this module",
+        "Removed the separate Hide Trap Selector Tooltips module; item tooltips are now hidden automatically on small touch screens"
+      ]
+    },
+    {
+      "title": "Better UI",
+      "items": [
+        "Folded Big Timer into Better UI; the large horn timer is always available while Better UI is enabled",
+        "Moved Replace Favicon into the Use the MouseHunt Improved favicon setting",
+        "Moved trap selector features into Better Trap Selector and the Adventure Book shortcut into Custom Menu",
+        "Renamed settings to Styles: Apply general UI improvements and fixes, Apply menu and HUD tweaks, and Use square profile pictures",
+        "Restyled message item popups, including Scrambles and plushies, as compact banners",
+        "Improved completed Adventure Book banners and journal theme previews",
+        "Fixed trap stat math staying visible after tapping on touch devices"
+      ]
+    },
+    {
+      "title": "Hide page elements",
+      "items": [
+        "Combined Adblock, Hide Share Buttons, Hide News Ticker, Hide Sidebar, Hide Footer, Hide Daily Draw, and Hide Daily Reward Popup into one module",
+        "Added a Hidden elements checklist for the sidebar, ads, share buttons, news ticker, Hunters and Friends Online bar, footer, Daily Draw inbox tab and notifications, and daily reward popup",
+        "Sidebar, share buttons, and news ticker are hidden by default; the other elements remain visible by default",
+        "Hiding the sidebar moves its contents into a Sidebar dropdown; use Custom Menu to hide or move that dropdown",
+        "Ads and share buttons now have separate controls; existing Adblock choices carry over to both",
+        "These controls apply without refreshing the page"
+      ]
+    },
+    {
+      "title": "Hover delays",
+      "items": [
+        "Combined Delayed Menus and Delayed Tooltips into Hover delays in Personalization",
+        "Added separate Delay menu dropdowns and Delay tooltips settings, both on by default and adjustable without refreshing"
+      ]
+    },
+    {
+      "title": "Hunter ID shortcuts",
+      "items": [
+        "Combined Copy ID Button and Paste Hunter ID into Hunter ID shortcuts in Friends & gifts",
+        "Replaced Hide button with a Copy your Hunter ID picker: Copy ID button when hovering your profile picture, Click your profile picture, or Off",
+        "Moved Paste Hunter ID into Open a hunter’s profile when you paste their ID; Ctrl/Cmd + V outside a text field accepts a Hunter ID or profile link"
+      ]
+    },
+    {
+      "title": "Better Journal",
+      "items": [
+        "Fixed history pagination for both Camp and the two-column Journal page, including jumping to a page with Enter",
+        "History pages load from cached entries more quickly, show a loading message when needed, and include newly saved entries without a page reload",
+        "Removed duplicate loot-list bullets and added item links for weapons and bases in setup lists",
+        "Floating Islands travel, Fort Rox night, and sent-gift entries now show their full height in the single-column journal; compact entries remain in the two-column layout",
+        "Renamed settings to Apply style and UI changes, Apply text replacements, Show gold and points icons, Show loot as a list, Show loot icons, Color special items, Show journal history, and Show full mouse images",
+        "Moved Loot icons (minimal) to the <code>better-journal-icons-minimal</code> feature flag",
+        "Removed Highlight rare mice catches, which only highlighted Black Widow catches",
+        "Removed custom journal item colors for Chrome Charms and Snowball Charms"
+      ]
+    },
+    {
+      "title": "Better Maps",
+      "items": [
+        "Combined the two Default to Sorted tab toggles into Open Sorted tab: Never, For categorized maps, or Always; For categorized maps is the default",
+        "Moved Show map solver links to the <code>better-maps-no-solver-links</code> flag for hiding the links",
+        "Moved Hide old & inactive Community Maps to the <code>better-maps-show-inactive-community-maps</code> flag for showing those maps",
+        "Renamed Show map join & catch dates to Show map join and catch dates and clarified that dates are approximate",
+        "Updated sidebar goals to use the new Hide page elements sidebar setting"
+      ]
+    },
+    {
+      "title": "Better Marketplace",
+      "items": [
+        "Moved Show estimated value column when browsing to the <code>better-marketplace-no-value-column</code> flag for hiding the column",
+        "Moved Highlight and scroll to the last item you viewed to the <code>better-marketplace-no-highlight-last-viewed</code> flag for disabling that behavior",
+        "Renamed settings to Show smaller images, Show small price history charts when browsing categories, and Use quick sell"
+      ]
+    },
+    {
+      "title": "Better Travel",
+      "items": [
+        "Always open Simple Travel tab and Show alphabetized list on Simple Travel tab are now on by default",
+        "Moved Travel Window to the <code>better-travel-no-travel-window</code> flag for disabling it",
+        "Moved Environment icon opens Travel Window to the <code>better-travel-no-travel-window-environment-icon</code> flag for disabling the shortcut",
+        "Renamed Show Travel Reminders to Show travel reminders"
+      ]
+    },
+    {
+      "title": "Better Send Supplies and Quick Send Supplies",
+      "items": [
+        "Replaced the separate Pinned items and Items shown in popup lists with one Pinned supply items setting in Friends & gifts",
+        "Both interfaces now use the same pins; customized lists are combined with duplicates removed",
+        "Added a searchable picker with item images, category groups, and an Add button for more pins, replacing the previous five-item and four-item limits",
+        "The default list includes SUPER|brie+, Empowered SUPER|brie+, Rift Cherries, Rift-torn Roots, Sap-filled Thorns, Rare Map Dust, and Adorned Empyrean Jewel",
+        "Retired items hidden by the Marketplace are omitted from new choices, while existing pins are preserved"
+      ]
+    },
+    {
+      "title": "Better Gifts",
+      "items": [
+        "Renamed Order to accept/send to Gift order and Ignore gifts to Skipped gifts",
+        "Simplified skipped-gift choices to All except Gift of the Day, None, or the names of the cheeses and sludge to skip",
+        "Moved the gift-selector shortcut setting into Custom Menu’s Gifts options"
+      ]
+    },
+    {
+      "title": "Better Shops",
+      "items": ["Moved Hide items when you’ve reached the maximum owned to the <code>better-shops-hide-max-owned</code> feature flag"]
+    },
+    {
+      "title": "Better Quests",
+      "items": ["Moved M400 Helper to the <code>better-quests-no-m400-helper</code> flag for disabling the Travel to next step button"]
+    },
+    {
+      "title": "Better Tournaments",
+      "items": ["Moved Show localized times inline (instead of on hover) to the <code>better-tournaments-time-on-hover</code> flag; times remain inline by default"]
+    },
+    {
+      "title": "Favorite Setups",
+      "items": ["Moved Highlight setups for current location at the top to the <code>favorite-setups-no-location-favorites</code> flag for disabling it"]
+    },
+    {
+      "title": "Catch Rate & Minluck",
+      "items": [
+        "Renamed Catch Rate Estimator & Minlucks to Catch Rate & Minluck",
+        "Added <code>cre-show-trap-highlight</code> feature flag to show an indicator above the trap view"
+      ]
+    },
+    {
+      "title": "Show Auras",
+      "items": [
+        "Combined Show auras as a vertical list and Only show aura icons into an Aura layout picker: Grid, List, or Icons only; Grid is the default",
+        "Improved grid alignment and kept aura icons positioned correctly below trap stats",
+        "Auras expiring within a day move into the first visible slots on the trap image"
+      ]
+    },
+    {
+      "title": "Location HUDs and Location Dashboard",
+      "items": [
+        "Zugzwang’s Tower now has quick cheese and Pawn Pincher controls",
+        "Cerulean Skyport respects the game’s Stabilize Airship option when applying HUD animations and has adjusted intel bar color thresholds",
+        "Moved the Location HUDs quick-toggle visibility setting into Custom Menu",
+        "Shortened option labels to Flip avatar images in Bountiful Beanstalk and Valour Rift, Bountiful Beanstalk: Show Auto-Harp toggle, Bountiful Beanstalk: Show inventory in one row, and Floating Islands: Allow dragging the airship",
+        "Removed redundant Location HUDs prefixes from School of Sorcery: Clean chalkboard and Table of Contents: Show Scrambles quote on blank page",
+        "Location Dashboard now supports Custom Menu ordering, visibility, and display options"
+      ]
+    },
+    {
+      "title": "Location Catch Stats",
+      "items": ["Renamed Color rows based on crown to Color rows by crown and turned it on by default", "Moved the module into Journal & stats"]
+    },
+    {
+      "title": "Item abbreviation search",
+      "items": [
+        "Promoted Enhanced Search from experiments and renamed it Item abbreviation search in Inventory & shops",
+        "Added separate Inventory, Trap Selector, Marketplace, and Send Supplies settings, all on by default",
+        "Prevented internal search terms from appearing in item names used by other features"
+      ]
+    },
+    {
+      "title": "Location timers and Rank-Up Forecaster",
+      "items": [
+        "Promoted Timers from experiments and renamed it Location timers in Travel & locations; it still opens from the Camp menu",
+        "Promoted Rank-Up Forecaster from experiments into Journal & stats and updated its popup styling",
+        "Both modules remain optional and off by default"
+      ]
+    },
+    {
+      "title": "Convertible opening buttons",
+      "items": [
+        "Renamed Inventory - Open Buttons to Convertible opening buttons",
+        "Fixed item popups reopening after using the inventory’s Open buttons; opening now updates the quantity directly",
+        "Renamed button settings to Show “Open One” button, Show “Open All” button, and Show “Open All But One” button",
+        "Renamed Lock opening items unless you have more than one to Only allow “Open All But One”"
+      ]
+    },
+    {
+      "title": "Custom backgrounds, horn, HUD, and shield",
+      "items": [
+        "Custom Background, Custom Camp Background, Custom HUD background, Custom Horn, and Custom Shield now use searchable pickers with previews beside each choice",
+        "Replaced separate Preview choices popups with previews inside the pickers, and removed the separate Show Horn link",
+        "Renamed Custom Background to Page background and simplified the other picker labels to Custom camp background, Custom HUD background, Custom horn, and Custom shield",
+        "Updated shield option labels to sentence case, including Simple golden, Birthday variants, Cotton candy, Current title, and options marked LGS required; expanded Spring Egg Hunt Alt to Spring Egg Hunt alternate"
+      ]
+    },
+    {
+      "title": "Dark Mode",
+      "items": [
+        "Expanded styling for News, location timers, journal previews, item messages, Torn Pages, and standard confirmation, error, and loading popups",
+        "Made input colors and hover borders more consistent across inventory, Marketplace, Send Supplies, and settings",
+        "Improved trap selector tooltips, empty tag groups, inventory filters, gift colors, and journal entry colors",
+        "Renamed Mice Page Image enhancements to Enhance images on the Mice page",
+        "Renamed Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension) to MHCT Dark Mode Tweaks"
+      ]
+    },
+    {
+      "title": "Journal Privacy and Journal log tracker",
+      "items": [
+        "Moved Journal Privacy’s Show toggle icon in top menu setting into Custom Menu; hiding the toggle keeps privacy on while the module is enabled",
+        "Renamed Hide text, rather than blur to Hide text instead of blurring it",
+        "Renamed Journal Progress Log Tracker to Journal log tracker and removed Show next-log countdown in the journal button; the countdown is now always shown when available"
+      ]
+    },
+    {
+      "title": "Legacy HUD and Lucky Golden Shield timer",
+      "items": [
+        "Renamed Legacy HUD & Legacy HUD Tweaks to Legacy HUD, with settings Use the legacy menu, Use the legacy stats bar, and Apply tweaks to the legacy HUD",
+        "Renamed Lucky Golden Shield Duration & Reminder to Lucky Golden Shield timer",
+        "Renamed Use new layout style to Show the timer in a tab below the shield and Display time in days only to Use days, hours, and minutes"
+      ]
+    },
+    {
+      "title": "Better Item Details and Better Mice",
+      "items": [
+        "Renamed Better Items to Better Item Details and Show item details on hover (in journal) to Show item details when hovering in the journal",
+        "Renamed Better Mice’s Show mouse details on hover (in journal) to Show mouse details when hovering in the journal",
+        "Better Mice now uses the new Hide page elements setting when deciding whether to add sidebar information"
+      ]
+    },
+    {
+      "title": "Other Module and Settings Changes",
+      "items": [
+        "Wisdom in Stat Bar: Fixed wisdom display with number formats that use periods or spaces as separators",
+        "Feature flags: Added <code>infinite-super-brie</code> to show ∞ in place of the SUPER|brie+ quantity in the menu; simplified the Feature flags label and instructions",
+        "Custom Styles: Renamed the field to Custom CSS Styles and clarified its description",
+        "Debug Logging: Renamed the popup logging option to Log popup IDs when they open and close",
+        "Skyport Star Tracker: Moved into Travel & locations and clarified Crownstar mode: Track 10 catches of each mouse instead of 1",
+        "Experiments: Renamed Experiments / Beta Features to Experiments and Better Maps: Draggable highlight to Better Maps: Allow dragging the highlight",
+        "Renamed Data Exporters to Data export, Gifts in Inbox to Gift links in inbox, and Inventory - Lock and Hide to Inventory locking & hiding",
+        "Removed Inline Wiki and its Wiki keyboard shortcut"
+      ]
+    }
+  ]
+}

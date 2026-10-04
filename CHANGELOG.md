@@ -1,5 +1,70 @@
 # Changelog
 
+## Version 0.100.0
+
+### New Features
+
+- Custom Menu: Drag and drop to reorder the top menu, hide items you don't use, and add links from the Camp / Travel / Inventory menu. Some items have extra options, like hiding unread counts or the SUPER|brie+ "Get More" label
+- Quick Items Menu: Added a top menu dropdown to quickly open or use your pinned convertibles and message items, like Kilohertz Processors and Scrambles
+- Hide page elements: Added an option to hide the Hunters Online / Friends Online bar above the HUD
+- Location HUDs - Zugzwang's Tower: Added quick toggles for SUPER|brie+, Checkmate Cheese, and the Mystic and Technic Pawn Pinchers
+- Location timers, Rank-Up Forecaster, and Item abbreviation search are no longer experiments and can be turned on in the regular settings
+- Feature Flags: Added `infinite-super-brie` to show ∞ for your SUPER|brie+ quantity
+
+### Settings
+
+- Your existing settings are carried over wherever options were combined or moved
+- Reorganized the settings categories into Always loaded, Personalization, Hunting & traps, Inventory & shops, Journal & stats, Travel & locations, Location HUDs, Maps & challenges, Friends & gifts, Beta & experiments, and Advanced. Hide & Simplify and Navigation & Utilities are gone, and their modules moved to the categories that fit them
+- Added an "All" settings category
+- Search shows matching options of modules that are turned off
+- Options in bigger modules are grouped under headings, like General, Skins, Codex, and Bases in Better Trap Selector
+- Grids of toggles, like Hide page elements and Ultimate Checkmark, are laid out in an easier-to-read grid
+- Added a searchable item picker with images for item settings, including Quick Send Supplies and Better Send Supplies
+- Custom Background, Horn, HUD, and Shield previews are shown in the item picker
+- Links to settings keep working when a module changes category, including old links
+- Rewrote module names, descriptions, and setting titles to be clearer and more consistent
+  - Renamed Better Items to Better Item Details, Enhanced Search to Item abbreviation search, Gifts in Inbox to Gift links in inbox, Inventory Open Buttons to Convertible opening buttons, Inventory Lock and Hide to Inventory locking & hiding, Journal Progress Log Tracker to Journal log tracker, Lucky Golden Shield Duration & Reminder to Lucky Golden Shield timer, Timers to Location timers, and Data Exporters to Data export
+- Better Maps: The two "Default to Sorted tab" options are now one Open Sorted tab option: never, for categorized maps, or always
+- Show Auras: The list and icons-only options are now one Aura layout option: grid, list, or icons only
+- Better Journal: Removed the option to highlight rare mouse catches
+- The Journal Privacy toggle, Location HUD toggle, Sidebar dropdown, gift selector option, and Hide SB+ Get More are now set in Custom Menu
+- Removed Inline Wiki. The Wiki link opens the wiki in a new tab
+- Combined related modules to shorten the settings list
+  - Better Trap Selector: Quick Filters and Sort, Trap Selector Special Effects, Real Base Stats, Base Item Counters, and Better UI's skin, codex, and gradient options
+  - Codex position is now one option: at the bottom, where the game puts it, or hidden (replaces Hide Codices)
+  - Hide page elements: Hide Sidebar, Hide ads, Hide Share Buttons, Hide Footer, Hide Game Info Bar, Hide News Ticker, Hide Daily Draw, and Hide Daily Reward Popup
+  - Hover delays: Delayed Menus and Delayed Tooltips
+  - Hunter ID shortcuts: Copy ID Button and Paste Hunter ID
+  - Show Adventure Book is now an Adventure Book item in Custom Menu, hidden by default
+  - Big Timer is now always on in Better UI. Click the horn countdown to switch sizes
+  - Replace Favicon is now an option in Better UI
+- Better Marketplace: The value column and last-viewed highlighting options are now always on. Turn them off with the `better-marketplace-no-value-column` and `better-marketplace-no-highlight-last-viewed` feature flags
+- Better Shops: Removed the option to hide items at their inventory limit. Turn it back on with the `better-shops-hide-max-owned` feature flag
+- Better Travel, Better Maps, Better Quests, and Better Tournaments: The Travel Window, environment icon shortcut, map solver links, Community Maps cleanup, M400 helper, and inline tournament times are always on now. Each can be turned off with a feature flag
+- Favorite Setups: Setups for your current location are always shown at the top. Turn this off with the `favorite-setups-no-location-favorites` feature flag
+- Better Journal: Removed the minimal loot icons option. Turn it back on with the `better-journal-icons-minimal` feature flag
+- Catch Rate & Minluck: Removed the catch rate indicator option. Turn it back on with the `cre-show-trap-highlight` feature flag
+- Journal log tracker: The countdown on the journal button is always shown now
+- Location Catch Stats: Rows are colored by crown by default
+- Better Trap Selector: Removed the Hide item description tooltips option. Tooltips are now hidden automatically on phones and other small touch screens
+- Quick Send Supplies and Better Send Supplies now share one list of pinned items
+- If you'd changed any of the options that are now feature flags, the update popup lists the flags that keep them the way you had them, with a button to add them
+
+### Fixes and Improvements
+
+- Dark Mode: Unified input styling and improved popup, supply, header menu, journal preview, and trap selector tooltip colors
+- Location HUDs - Cerulean Skyport: Adjusted intel bar color thresholds, and the animations are skipped when Stabilize Airship is on
+- Show Auras: Improved the expiring aura position and aura grid layout
+- Better UI: Fixed adventure book completion styling, including in dark mode
+- Better UI: Fixed trap stat math staying visible after tapping a stat on phones and tablets
+- Convertible opening buttons: Fixed the item popup reopening after opening items
+- Wisdom in Stat Bar: Fixed wisdom not showing with some number formats
+- Better Journal: Removed custom colors for Chrome and Snowball Charms
+- Better Journal: Improved journal history pagination and loading
+- Better Journal: Fixed double bullet points in some journal lists, and weapons and bases in lists like the Floating Islands trap preset entry are now linked
+- Improved error handling when data fails to load
+- Minor style tweaks
+
 ## Version 0.99.15
 
 - Many settings now apply without a refresh, including Dark Mode and custom appearance options
@@ -9,7 +74,7 @@
 - Dark Mode: Fixed light backgrounds and unreadable text across the game, including when other modules are turned off
 - Better Journal: Custom item colors also apply in dark mode
 - Better Gifts: Fixed "1 free gifts" wording in the gift selector
-- Hide Sidebar: The sidebar stays hidden when changing pages
+- Hide page elements: The sidebar stays hidden when changing pages
 - Fixed conflicts between Hide Daily Draw and Gifts in Inbox when either is turned off
 - Minor style tweaks
 
