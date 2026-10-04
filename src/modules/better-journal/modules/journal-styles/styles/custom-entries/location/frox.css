@@ -1,5 +1,5 @@
-.journal .entry.fortRox-nightJournal,
-.journal .entry.fortRox-nightDone {
+.journal.jdouble .entry.fortRox-nightJournal,
+.journal.jdouble .entry.fortRox-nightDone {
   max-height: 120px;
   overflow-y: auto;
 }

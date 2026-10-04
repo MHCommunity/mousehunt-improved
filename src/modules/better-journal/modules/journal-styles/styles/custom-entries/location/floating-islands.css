@@ -1,11 +1,11 @@
-.journal .entry.floatingIslands.skyPalaceTravel,
-.journal .entry.floatingIslands.dirigibleTravel {
+.journal.jdouble .entry.floatingIslands.skyPalaceTravel,
+.journal.jdouble .entry.floatingIslands.dirigibleTravel {
   max-height: 103px;
   overflow-y: auto;
   cursor: pointer;
 }
 
-.journal .entry.floatingIslands.skyPalaceTravel.better-journal-travel-expanded,
-.journal .entry.floatingIslands.dirigibleTravel.better-journal-travel-expanded {
+.journal.jdouble .entry.floatingIslands.skyPalaceTravel.better-journal-travel-expanded,
+.journal.jdouble .entry.floatingIslands.dirigibleTravel.better-journal-travel-expanded {
   max-height: unset;
 }
