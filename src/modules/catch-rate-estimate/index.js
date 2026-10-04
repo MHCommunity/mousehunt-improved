@@ -1,19 +1,4 @@
-import {
-  addStyles,
-  cacheGet,
-  cacheSet,
-  debuglog,
-  doEvent,
-  getCurrentLocation,
-  getCurrentPage,
-  getFlag,
-  getSetting,
-  makeElement,
-  onNavigation,
-  onRequest,
-  onTravel,
-  parseNumber,
-} from '@utils';
+import { addStyles, cacheGet, cacheSet, debuglog, doEvent, getCurrentLocation, getCurrentPage, getFlag, makeElement, onNavigation, onRequest, onTravel, parseNumber } from '@utils';
 
 import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, getMousePower } from './data';
 
@@ -181,7 +166,7 @@ const updateMinLucks = async (useCachedData = false) => {
 };
 
 const updateTrapView = (rows) => {
-  if (! getFlag('cre-show-trap-highlight')) {
+  if (!getFlag('cre-show-trap-highlight')) {
     return;
   }
 
