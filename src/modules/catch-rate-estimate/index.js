@@ -19,8 +19,6 @@ import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, 
 
 import styles from './styles.css';
 
-import settings from './settings';
-
 let lastStats = '';
 let effectiveness = null;
 let isUpdating = false;
@@ -183,7 +181,7 @@ const updateMinLucks = async (useCachedData = false) => {
 };
 
 const updateTrapView = (rows) => {
-  if (!getSetting('catch-rate-estimate.show-trap-highlight', false)) {
+  if (! getFlag('cre-show-trap-highlight')) {
     return;
   }
 
@@ -413,6 +411,5 @@ export default {
   type: 'hunting-traps',
   default: true,
   description: 'Show minluck and catch rate estimates on the Camp page.',
-  settings,
   load: init,
 };
