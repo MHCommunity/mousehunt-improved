@@ -2,7 +2,6 @@ import {
   addStyles,
   clamp,
   debug,
-  getMultiSelectSetting,
   getTradableItems,
   makeElement,
   makeMhButton,
@@ -15,19 +14,15 @@ import {
   showSuccessMessage,
 } from '@utils';
 
-import settings, { defaultItems } from './settings';
+import { getPinnedSupplyItems } from '@/send-supplies-settings/pinned-items';
 import styles from './styles.css';
 
 const STATE = new Map(); // btn => { wrapper, aborter, outsideClick }
 const HOVER_DELAY = 400;
 
 const buildItems = async () => {
-  const opts = getMultiSelectSetting(
-    'quick-send-supplies.items',
-    defaultItems.map((item) => item.value)
-  );
-
   const tradables = await getTradableItems('all');
+  const opts = await getPinnedSupplyItems(tradables);
   return opts.map((type) => tradables.find((t) => t.type === type)).filter(Boolean);
 };
 
@@ -348,9 +343,8 @@ const init = () => {
 export default {
   id: 'quick-send-supplies',
   name: 'Quick Send Supplies',
-  type: 'inventory-economy',
+  type: 'friends-gifts',
   default: true,
   description: 'Hover over or click Send Supplies to quickly send any amount of your chosen items.',
   load: init,
-  settings,
 };

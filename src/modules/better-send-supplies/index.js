@@ -1,6 +1,6 @@
-import { addStyles, getMultiSelectSetting, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
+import { addStyles, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
 
-import settings, { defaultPinnedItems } from './settings';
+import { getPinnedSupplyItems } from '@/send-supplies-settings/pinned-items';
 import styles from './styles.css';
 
 /**
@@ -173,20 +173,14 @@ const addSortButtons = () => {
 /**
  * Highlight the favorited items.
  */
-const highlightFavoritedItems = () => {
-  const itemsToPin = new Set(
-    getMultiSelectSetting(
-      'better-send-supplies.pinned-items',
-      defaultPinnedItems.map((item) => item.value)
-    )
-  );
-
+const highlightFavoritedItems = async () => {
+  const itemsToPin = new Set(await getPinnedSupplyItems());
+  items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
   for (const item of items) {
-    // if the details text content is in the array, then pin it
-    const details = item.querySelector('.details');
-    if (itemsToPin.has(details.textContent)) {
-      item.classList.add('pinned');
-    }
+    // The game attaches its item object with jQuery rather than a data attribute.
+    const itemType = $(item).data('item')?.type;
+    const legacyName = item.querySelector('.details')?.textContent;
+    item.classList.toggle('pinned', itemsToPin.has(itemType) || itemsToPin.has(legacyName));
   }
 };
 
@@ -259,7 +253,7 @@ let currentSort = null;
  *
  * @param {boolean} initial If this is the initial upgrade.
  */
-const upgradeSendSupplies = (initial = false) => {
+const upgradeSendSupplies = async (initial = false) => {
   const sendTo = document.querySelector('#supplytransfer .drawer .tabContent.recipient');
   const isChoosingUser = sendTo && sendTo.style.display !== 'none';
 
@@ -285,7 +279,7 @@ const upgradeSendSupplies = (initial = false) => {
     }
   } else if (isChoosingItem) {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
-    highlightFavoritedItems();
+    await highlightFavoritedItems();
 
     if (initial || !hasSorted) {
       hasSorted = true;
@@ -365,9 +359,8 @@ const init = () => {
 export default {
   id: 'better-send-supplies',
   name: 'Better Send Supplies',
-  type: 'inventory-economy',
+  type: 'friends-gifts',
   default: true,
   description: 'Add pinned items, search, and sorting to the Send Supplies page.',
   load: init,
-  settings,
 };
