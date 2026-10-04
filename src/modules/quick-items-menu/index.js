@@ -38,6 +38,11 @@ let menuTab = null;
 let tabElements = {};
 let pins = [];
 let renderTimer = null;
+let userItemsCache = null;
+let userItemsRequest = null;
+
+// How long the pinned items' inventory data is reused before it's fetched again.
+const userItemsCacheTtl = 60 * 1000;
 
 /**
  * Get the item type pinned in a slot.
@@ -55,6 +60,60 @@ const getSlotItemType = (slot) => {
 
   // The same convertible pinned twice is only listed once.
   return values.indexOf(value) === slot ? value : null;
+};
+
+/**
+ * Get every item type that's pinned, without duplicates.
+ *
+ * @return {string[]} The item types.
+ */
+const getPinnedItemTypes = () => {
+  const values = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]);
+  return [...new Set(values.filter((value) => value && 'none' !== value))];
+};
+
+/**
+ * Get the user's inventory data for every pinned item in one request, cached and shared between the pins.
+ *
+ * @param {boolean} forceUpdate Whether to skip the cache.
+ *
+ * @return {Promise<Map>} The inventory data, keyed by item type.
+ */
+const getPinnedUserItems = async (forceUpdate = false) => {
+  const types = getPinnedItemTypes();
+  const key = types.join(',');
+
+  const isCacheFresh = userItemsCache?.key === key && Date.now() - userItemsCache.fetchedAt < userItemsCacheTtl;
+  if (!forceUpdate && isCacheFresh) {
+    return userItemsCache.items;
+  }
+
+  // Share a request that's already running, unless it might be older than what was asked for.
+  if (userItemsRequest?.key === key && (!forceUpdate || userItemsRequest.forceUpdate)) {
+    return userItemsRequest.promise;
+  }
+
+  // Once there's been a request, a stale cache means the game's inventory cache is stale too.
+  const request = {
+    key,
+    forceUpdate,
+    promise: getUserItems(types, forceUpdate || Boolean(userItemsCache)).then((userItems) => {
+      const items = new Map(userItems.map((userItem) => [userItem.type, userItem]));
+      userItemsCache = { key, items, fetchedAt: Date.now() };
+      return items;
+    }),
+  };
+
+  userItemsRequest = request;
+  request.promise
+    .finally(() => {
+      if (userItemsRequest === request) {
+        userItemsRequest = null;
+      }
+    })
+    .catch(() => {});
+
+  return request.promise;
 };
 
 /**
@@ -312,7 +371,7 @@ const createPin = (slot) => {
 
     let userItem;
     try {
-      [userItem] = await getUserItems([type], forceUpdate);
+      userItem = (await getPinnedUserItems(forceUpdate)).get(type);
     } catch {
       return;
     }
@@ -508,6 +567,13 @@ const createPin = (slot) => {
     const inventoryItem = response?.inventory ? Object.values(response.inventory).find((i) => i?.type === item.type) : null;
     if (inventoryItem && undefined !== inventoryItem.quantity) {
       item.quantity = Number.parseInt(inventoryItem.quantity, 10) || 0;
+
+      // Keep the cache in step so a pin reading it later doesn't go back to the old quantity.
+      const cachedItem = userItemsCache?.items.get(item.type);
+      if (cachedItem) {
+        cachedItem.quantity = inventoryItem.quantity;
+      }
+
       render();
     }
 
@@ -580,7 +646,7 @@ const makeMenuTab = () => {
 
     const isExpanded = tab.classList.toggle('expanded');
     if (isExpanded) {
-      pins.forEach((pin) => pin.updateItem(true));
+      pins.forEach((pin) => pin.updateItem());
     }
   });
 
