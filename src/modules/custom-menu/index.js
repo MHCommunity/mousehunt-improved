@@ -1,5 +1,6 @@
 import { addStyles, onEvent } from '@utils';
 
+import addAdventureBook from './adventure-book';
 import { applyLayout } from './layout';
 import openMenuEditor from './editor';
 import settings from './settings';
@@ -29,6 +30,7 @@ const queueApplyLayout = () => {
 const init = () => {
   addStyles(styles, 'custom-menu');
 
+  addAdventureBook();
   applyLayout();
   onEvent('mh-improved-header-menu-changed', queueApplyLayout);
 

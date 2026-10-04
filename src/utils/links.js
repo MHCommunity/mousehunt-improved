@@ -451,7 +451,7 @@ const addHeaderMenuTab = (tab, opts = {}) => {
 /**
  * Top menu items that Custom Menu hides until the menu has been customized.
  */
-const defaultHiddenMenuItems = ['my-profile', 'discord', 'community', 'mousehunt-improved-location-huds'];
+const defaultHiddenMenuItems = ['my-profile', 'discord', 'community', 'mousehunt-improved-location-huds', 'mousehunt-improved-adventure-book'];
 
 /**
  * Check whether a top menu item has been hidden with Custom Menu.
