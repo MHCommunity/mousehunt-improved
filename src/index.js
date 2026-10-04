@@ -33,12 +33,10 @@ const categories = [
   { id: 'hunting-traps', name: 'Hunting & traps' },
   { id: 'inventory-shops', name: 'Inventory & shops' },
   { id: 'journal-stats', name: 'Journal & stats' },
-  { id: 'locations', name: 'Locations' },
+  { id: 'locations', name: 'Travel & locations' },
   { id: 'location-huds', name: 'Location HUDs' },
   { id: 'maps-challenges', name: 'Maps & challenges' },
   { id: 'friends-gifts', name: 'Friends & gifts' },
-  // Only shown under "All" (and in search), for modules that don't fit anywhere else.
-  { id: 'other', name: 'Other', hiddenFromNav: true },
   { id: 'beta', name: 'Beta & experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];

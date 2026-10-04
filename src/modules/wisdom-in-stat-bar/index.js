@@ -144,7 +144,7 @@ const init = async () => {
 export default {
   id: 'wisdom-in-stat-bar',
   name: 'Wisdom in Stat Bar',
-  type: 'hunting-traps',
+  type: 'journal-stats',
   default: false,
   liveToggle: true,
   load: init,

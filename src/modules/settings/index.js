@@ -539,6 +539,7 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
         setting.style.display = '';
       });
     });
+    settingsPage.querySelectorAll('.mhui-settings-search-reveal').forEach((subSetting) => subSetting.classList.remove('mhui-settings-search-reveal'));
     emptyState.classList.remove('active');
     setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection || sections[0]?.id);
     return;
@@ -556,6 +557,11 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
       const settingMatches = sectionTextMatches || getSettingSearchText(setting).includes(normalizedSearchTerm);
       setting.style.display = settingMatches ? '' : 'none';
       sectionMatches = sectionMatches || settingMatches;
+
+      // Options of a module that's off are hidden, so show the ones that match.
+      setting.querySelectorAll(':scope > .PagePreferences__subSetting').forEach((subSetting) => {
+        subSetting.classList.toggle('mhui-settings-search-reveal', getSettingSearchText(subSetting).includes(normalizedSearchTerm));
+      });
     });
 
     section.classList.toggle('mhui-settings-section-active', sectionMatches);
@@ -565,6 +571,34 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
   });
 
   emptyState.classList.toggle('active', matchingSections === 0);
+};
+
+/**
+ * Find the element for a URL hash, including old links that put the category before the setting
+ * key, like `#mousehunt-improved-settings-feature-show-auras`.
+ *
+ * @param {HTMLElement} settingsPage The settings page element.
+ * @param {string}      hash         The URL hash, without the #.
+ *
+ * @return {HTMLElement|null} The element, if found.
+ */
+const findSettingFromHash = (settingsPage, hash) => {
+  const target = settingsPage.querySelector(`#${CSS.escape(hash)}`);
+  const prefix = 'mousehunt-improved-settings-';
+  if (target || !hash.startsWith(prefix)) {
+    return target;
+  }
+
+  // Old category prefixes were one or two words, like `better-` or `element-hiding-`.
+  const parts = hash.slice(prefix.length).split('-');
+  for (let i = 1; i <= 2 && i < parts.length; i++) {
+    const oldTarget = settingsPage.querySelector(`#${CSS.escape(`${prefix}${parts.slice(i).join('-')}`)}`);
+    if (oldTarget) {
+      return oldTarget;
+    }
+  }
+
+  return null;
 };
 
 /**
@@ -578,7 +612,7 @@ const showSettingFromHash = (settingsPage) => {
     return;
   }
 
-  const target = settingsPage.querySelector(`#${CSS.escape(hash)}`);
+  const target = findSettingFromHash(settingsPage, hash);
   if (!target) {
     return;
   }
@@ -647,10 +681,7 @@ const createSettingsBrowser = () => {
     main.append(section);
   });
 
-  const categories = [
-    { id: 'all', title: 'All' },
-    ...sections.filter((section) => !section.dataset.hiddenFromNav).map((section) => ({ id: section.id, title: getSectionTitleText(section) })),
-  ];
+  const categories = [{ id: 'all', title: 'All' }, ...sections.map((section) => ({ id: section.id, title: getSectionTitleText(section) }))];
   categories.forEach(({ id, title }) => {
     const navItem = makeElement('button', 'mhui-settings-nav-item');
     navItem.type = 'button';

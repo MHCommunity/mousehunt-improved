@@ -684,7 +684,7 @@ const init = async () => {
 export default {
   id: moduleId,
   name: 'Quick Items Menu',
-  type: 'personalization',
+  type: 'inventory-shops',
   default: false,
   liveToggle: true,
   description: 'Add a Quick Items menu to the top menu for opening pinned items.',

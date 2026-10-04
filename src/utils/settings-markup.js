@@ -713,9 +713,6 @@ const addSettingOnce = (options) => {
   if (!sectionExists) {
     const title = makeElement('div', 'PagePreferences__section');
     title.id = section.id;
-    if (options.module.hiddenFromNav) {
-      title.dataset.hiddenFromNav = 'true';
-    }
 
     const titleSection = makeElement('div', 'PagePreferences__title');
     makeElement('h3', 'PagePreferences__titleText', section.name, titleSection);
@@ -925,6 +922,23 @@ const addSettingRefreshReminder = ({ key, value, type }) => {
 onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
 
 /**
+ * Add a heading for a group of sub-settings, unless the module row already has it.
+ *
+ * @param {HTMLElement} moduleSettingRow The module's setting row.
+ * @param {string}      group            The group name.
+ */
+const addSubSettingGroupHeading = (moduleSettingRow, group) => {
+  const headingId = `${moduleSettingRow.id}-group-${group.toLowerCase().replaceAll(/[^\da-z]+/g, '-')}`;
+  if (document.querySelector(`#${headingId}`)) {
+    return;
+  }
+
+  const heading = makeElement('div', 'PagePreferences__subSettingGroup', group);
+  heading.id = headingId;
+  moduleSettingRow.append(heading);
+};
+
+/**
  * Add the settings for a module.
  *
  * @param {Object} module The module to add settings for.
@@ -954,6 +968,10 @@ const addSettingForModule = async (module) => {
       }
 
       for (const subSettings of subSettingsGroup) {
+        if (moduleSettingRow && subSettings.group) {
+          addSubSettingGroupHeading(moduleSettingRow, subSettings.group);
+        }
+
         const subSettingRow = await addSetting({
           name: subSettings.title,
           id: subSettings.id,

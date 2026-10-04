@@ -583,7 +583,7 @@ export default {
   id: 'skyport-star-tracker',
   name: 'Skyport Star Tracker',
   description: 'Track which Cerulean Skyport mice you still need to catch. Open it from the Mice menu.',
-  type: 'journal-stats',
+  type: 'locations',
   default: false,
   load: init,
   settings,
