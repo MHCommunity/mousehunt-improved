@@ -116,6 +116,15 @@
   box-shadow: 0 -5px 8px -2px #ffae00 inset;
 }
 
+.mh-dark #overlayPopup.tornPage .jsDialogContainer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.tornPage .jsDialogContainer h2 {
+  color: var(--d-text);
+}
+
 .mh-dark #overlayPopup.tornPage .tornPageText p {
   color: var(--d-text-muted);
 }
@@ -192,10 +201,6 @@
   color: var(--d-text);
 }
 
-.mh-dark #overlayPopup.multipleItems .img .name {
-  color: var(--d-text-dark);
-}
-
 .mh-dark .mousehuntCharacterGuideBox-content {
   background-color: var(--d-bg-alt);
 }
@@ -262,4 +267,29 @@
 
 .mh-dark #overlayPopup.spring_chick_message_item .jsDialogContainer .content {
   color: var(--d-text);
+}
+
+/* Item message popups (using, opening, or receiving items), e.g. "singleItemLeft super_briefs_message_item". */
+.mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .jsDialogContainer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .jsDialogContainer h2 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .img .description {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .itemImage .quantity {
+  color: var(--d-text);
+  background: var(--d-alt);
+  border-color: var(--d-border);
 }

@@ -35,3 +35,20 @@
 .mh-dark .journalThemeSelectorView-theme.disabled {
   color: var(--d-text-muted);
 }
+
+.mh-dark .journalThemeSelectorView span {
+  text-shadow: none;
+  box-shadow:
+    1px 1px 1px var(--d-bg),
+    inset 0 0 10px var(--d-black);
+}
+
+.mh-dark .journalThemeSelectorView .mousehuntTabHeader::before {
+  background-color: var(--d-bg);
+  box-shadow: 1px 0 1px var(--d-alt);
+}
+
+.mh-dark #overlayPopup.journalThemeSelectorViewContainer .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}

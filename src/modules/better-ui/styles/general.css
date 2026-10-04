@@ -385,6 +385,10 @@ input.itemView-action-convert-quantity {
   opacity: 1;
 }
 
+.journalThemeSelectorView .journal .content .entry.catchsuccess {
+  min-height: unset;
+}
+
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
   display: none;
 }
