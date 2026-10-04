@@ -82,6 +82,7 @@ const saveSort = (key, sort) => {
  * Get the sort and filter definitions for a subtab.
  *
  * @param {string} subtab The subtab type.
+ * @param {string} key    The subtab key.
  *
  * @return {Object} The sort options and filter groups.
  */
@@ -125,7 +126,7 @@ const getOptions = (subtab, key) => {
     ],
   });
 
-  if ('favorites' !== subtab) {
+  if ('favorites' !== subtab && getSetting('better-inventory.favorites', false)) {
     filters.at(-1).options.unshift({ id: 'favorites', name: 'Favorites', text: '★' });
   }
 
@@ -399,7 +400,8 @@ const passesFilter = (el, filter, value) => {
   }
 
   const checks = {
-    favorites: () => el.classList.contains('mh-inventory-favorited'),
+    // A saved Favorites filter shouldn't hide everything once favorites are turned off.
+    favorites: () => !getSetting('better-inventory.favorites', false) || el.classList.contains('mh-inventory-favorited'),
     le: () => Boolean(item?.is_limited_edition),
     'non-le': () => !item?.is_limited_edition,
     special: () => specialTypes.has(type),

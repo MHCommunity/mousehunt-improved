@@ -362,7 +362,7 @@ const main = async () => {
     sorting();
   }
 
-  if (getSetting('better-inventory.favorites', true)) {
+  if (getSetting('better-inventory.favorites', false)) {
     favorites();
   }
 
