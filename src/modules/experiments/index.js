@@ -37,6 +37,12 @@ const loadExperimentModule = (module) => {
 const init = () => {
   const onlySettings = [
     {
+      id: 'better-inventory.favorites',
+      title: 'Better Inventory: Show a Favorites tab',
+      description: 'Star items in your inventory to collect them in one tab.',
+      load: () => {},
+    },
+    {
       id: 'better-inventory.sort-controls',
       title: 'Better Inventory: Show sorting and filtering controls',
       load: () => {},
