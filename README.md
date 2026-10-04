@@ -25,22 +25,21 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Send Supplies](docs/better-send-supplies.md)**: Add pinned items, search, and sorting to the Send Supplies page.
 - **[Better Shops](docs/better-shops.md)**: Update the shop layout and appearance, minimize owned items with an inventory limit of 1, and more.
 - **[Better Tournaments](docs/better-tournaments.md)**: Update the Tournaments UI to show information on hover and make various small interface tweaks.
+- **[Better Trap Selector](docs/better-trap-selector.md)**: Add quick filters and sorting, special effect markers, skin and codex options, and correct base stats and counts to the trap selector.
 - **[Better Travel](docs/better-travel.md)**: Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.
-- **[Big Timer](docs/big-timer.md)**: Click the timer to toggle between sizes.
 - **[Catch Rate & Minluck](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
-- **[Copy ID Button](docs/copy-id-button.md)**: Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" button.
 - **[Dark Mode](docs/dark-mode.md)**: Enable the dark mode.
 - **[MHCT Dark Mode Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
 - **[Data Exporters](docs/data-exporters.md)**: Export data from the game.
-- **[Delayed Menus](docs/delayed-menus.md)**: Add a short delay to the menu dropdowns to prevent accidental clicks.
-- **[Delayed Tooltips](docs/delayed-tooltips.md)**: Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.
 - **[Emotes](docs/emotes.md)**: Replace Discord-style emotes on corkboards (e.g., :jerry:) with actual images in map and profile corkboard messages.
+- **[Enhanced Search](docs/enhanced-search.md)**: Find items by their abbreviations, so searching "ESB" turns up Empowered SUPER|brie+.
 - **[Favorite Setups](docs/favorite-setups.md)**: Save your favorite setups and arm them with a single click.
 - **[Fixes](docs/fixes.md)**: Fix various bugs and issues in the game.
 - **[FLRT Helper](docs/flrt-helper.md)**: Add a "Return to Maptain" button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.
 - **[Gifts in Inbox](docs/gifts-in-inbox.md)**: Collect recent gift links in an inbox tab and claim them quickly.
-- **[Trap Selector Special Effects](docs/trap-selector-special-effects.md)**: Add an indicator to items in the trap selector that have special effects.
+- **[Hover delays](docs/hover-delays.md)**: Add a short delay before menus and tooltips open. Hold Shift to show tooltips right away.
 - **[Hover Profiles](docs/hover-profiles.md)**: Hover over a name to see a mini profile popup.
+- **[Hunter ID shortcuts](docs/hunter-id-shortcuts.md)**: Copy your Hunter ID from your profile picture, and paste a Hunter ID or profile link anywhere to open that hunter’s profile.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
 - **[Inline Wiki](docs/inline-wiki.md)**: Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.
 - **[Inventory Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
@@ -53,18 +52,11 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Location Dashboard](docs/location-dashboard.md)**: See location HUD progress from a top-menu dashboard.
 - **[Lucky Golden Shield Duration & Reminder](docs/lucky-golden-shield-duration-and-reminder.md)**: Show your LGS duration in the HUD and warn you when it’s about to expire.
 - **[Metric Units](docs/metric-units.md)**: Use metric units instead of imperial units.
-- **[Paste Hunter ID](docs/paste-hunter-id.md)**: Paste a Hunter ID or profile link anywhere to jump to that hunter’s profile.
-- **[Prestige Base Stats](docs/prestige-base-stats.md)**: Show the correct stats for the Prestige Base in the base selector.
-- **[Printing Press Paper Counter](docs/printing-press-paper-counter.md)**: Show the number of Prolific Printing Papers you have for the Printing Press bases.
-- **[Quick Filters and Sort](docs/quick-filters-and-sort.md)**: Add quick filters and sorting to the trap, base, charm, and cheese selectors.
 - **[Quick Send Supplies](docs/quick-send-supplies.md)**: Hover or click on Send Supplies to quickly send any quantity of a configured item.
 - **[Rank-Up Forecaster](docs/rank-up-forecaster.md)**: Track your wisdom history and forecast when you’ll reach your next rank.
-- **[Replace Favicon](docs/replace-favicon.md)**: Replace the favicon with a more fitting one.
 - **[Scoreboard Search on Profiles](docs/scoreboard-search-on-profiles.md)**: Easily search for a friend on the scoreboard from their profile.
 - **[Shield Goes to Camp](docs/shield-goes-to-camp.md)**: Click the shield to go to the Camp page if you’re not already there, otherwise, it will take you to your Hunter Profile.
-- **[Show Adventure Book](docs/show-adventure-book.md)**: Add an Adventure Book button to the Kingdom dropdown menu.
 - **[Show Auras](docs/show-auras.md)**: Show auras and their expiry time below the trap stats.
-- **[SSDB Toothlet Counter](docs/ssdb-toothlet-counter.md)**: Show the number of toothlets you have when SSDB is equipped.
 - **[Taller Windows](docs/taller-windows.md)**: Make popup and dialog windows taller.
 - **[TEM Crowns](docs/tem-crowns.md)**: Add crowns and catches to the Trap Effectiveness Meter.
 - **[Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
@@ -83,15 +75,8 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 ### 🛑 Element Hiding
 
-- **[Hide ads](docs/adblock.md)**: Hide advertisements for Feedback Friday, mobile apps, news ticker, etc.
-- **[Hide Codices](docs/hide-codices.md)**: Hide the codices on the trap selector.
-- **[Hide Daily Draw](docs/hide-daily-draw.md)**: Hide the Daily Draw inbox tab and notifications.
-- **[Hide Daily Reward Popup](docs/hide-daily-reward-popup.md)**: Automatically hide the daily reward popup.
-- **[Hide Footer](docs/hide-footer.md)**: Hide the footer.
-- **[Hide News Ticker](docs/hide-news-ticker.md)**: Hide the news ticker in the header.
-- **[Hide Share Buttons](docs/hide-share-buttons.md)**: Hide the share buttons.
+- **[Hide page elements](docs/hide-page-elements.md)**: Hide ads, share buttons, the news ticker, the footer, the Daily Draw, the daily reward popup, and more.
 - **[Hide Sidebar](docs/hide-sidebar.md)**: Hide the sidebar and add a "Sidebar" dropdown in the top menu.
-- **[Hide Trap Selector Tooltips](docs/hide-trap-selector-tooltips.md)**: Hide the item description tooltips in the trap selector, which can get stuck open and in the way on mobile.
 - **[Journal Privacy](docs/journal-privacy.md)**: Hide player names in the journal. Good for screenshots that maintain privacy.
 
 ### 📍 Location HUDs
