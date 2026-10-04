@@ -1,28 +1,32 @@
-import { addStyles, doRequest, onEvent, onRequest, overrideWhileEnabled, setMultipleTimeout } from '@utils';
-
-import styles from './styles.css';
+import { doRequest, onEvent, onRequest, setMultipleTimeout } from '@utils';
 
 /**
  * Replace the inbox open function.
+ *
+ * @param {Function} isHidden Whether the Daily Draw is currently hidden.
  */
-const replaceInboxOpen = () => {
+const replaceInboxOpen = (isHidden) => {
   if (!messenger || !messenger?.UI?.notification?.togglePopup) {
     return;
   }
 
+  const original = messenger.UI.notification.togglePopup;
+
   /**
    * Show the notification popup.
    *
-   * @param {Function} original The existing inbox toggle.
-   * @param {...*}     args     Arguments passed to the existing inbox toggle.
+   * @param {...*} args Arguments passed to the existing inbox toggle.
    *
    * @return {*} The existing inbox toggle's return value.
    */
-  overrideWhileEnabled('hide-daily-draw', messenger.UI.notification, 'togglePopup', function (original, ...args) {
+  messenger.UI.notification.togglePopup = function (...args) {
     // Preserve wrappers installed by other inbox modules, such as Gift Links.
-    // Hide Daily Draw should only change the selected tab, not replace the
-    // rest of the inbox-opening lifecycle.
+    // Hiding the Daily Draw should only change the selected tab, not replace
+    // the rest of the inbox-opening lifecycle.
     const result = original.apply(this, args);
+    if (!isHidden()) {
+      return result;
+    }
 
     messenger.UI.notification.showPopup();
 
@@ -39,7 +43,7 @@ const replaceInboxOpen = () => {
     );
 
     return result;
-  });
+  };
 };
 
 let isSelfRequest = false;
@@ -47,10 +51,11 @@ let lastRequest;
 /**
  * Remove the daily draw notifications.
  *
- * @param {Object} data The data from the request.
+ * @param {Object}   data     The data from the request.
+ * @param {Function} isHidden Whether the Daily Draw is currently hidden.
  */
-const removeDailyDrawNotifications = async (data) => {
-  if (isSelfRequest) {
+const removeDailyDrawNotifications = async (data, isHidden) => {
+  if (isSelfRequest || !isHidden()) {
     return;
   }
 
@@ -123,29 +128,16 @@ const removeDailyDrawNotifications = async (data) => {
 };
 
 /**
- * Initialize the module.
+ * Hide the Daily Draw inbox tab and leave its notifications out of the unread count.
+ *
+ * @param {Function} isHidden Whether the Daily Draw is currently hidden.
  */
-const init = () => {
-  addStyles(styles, 'hide-daily-draw');
-
+export default (isHidden) => {
   if ('undefined' !== typeof messenger) {
-    replaceInboxOpen();
+    replaceInboxOpen(isHidden);
   }
 
   // this clears the notification count when it does its self request.
-  setTimeout(removeDailyDrawNotifications, 1000);
-  onRequest('*', removeDailyDrawNotifications);
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'hide-daily-draw',
-  name: 'Hide Daily Draw',
-  type: 'personalization',
-  default: false,
-  description: 'Hide the Daily Draw inbox tab and notifications.',
-  liveToggle: true,
-  load: init,
+  setTimeout(() => removeDailyDrawNotifications(null, isHidden), 1000);
+  onRequest('*', (data) => removeDailyDrawNotifications(data, isHidden));
 };

@@ -1,0 +1,10 @@
+.mhui-hide-footer .pageFrameView-footer,
+.mhui-hide-footer .mousehuntFooter {
+  display: none;
+}
+
+/* Fix the weird footer width */
+.mhui-hide-footer .pageFrameView-column.left,
+.mhui-hide-footer .pageFrameView-column.right {
+  margin-bottom: 0;
+}

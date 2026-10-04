@@ -1,0 +1,3 @@
+.mhui-hide-daily-draw #messengerUINotification .tabs a[data-tab="daily_draw"] {
+  display: none;
+}

@@ -1,0 +1,17 @@
+.mhui-hide-ads .communityGroupView-ad,
+.mhui-hide-ads .communityGroupView-thinHeader,
+.mhui-hide-ads .mousehuntHeaderView-gameBanner,
+.mhui-hide-ads .newsPostFacebookContainer,
+.mhui-hide-ads .pageSidebarView-mobileApps,
+.mhui-hide-ads .pageSidebarView-title,
+.mhui-hide-ads .pageSidebarView-block-description,
+.mhui-hide-ads .travelShortcut.QuestSuperBrieFactory,
+.mhui-hide-ads .travelShortcut.QuestSchoolOfSorcery,
+.mhui-hide-ads .travelShortcut.QuestDraconicDepths,
+.mhui-hide-ads .travelShortcut.QuestHailstoneGolems,
+.mhui-hide-ads *[src="https://www.mousehuntgame.com/images/promo/fbf_live.jpg"],
+.mhui-hide-ads *[src="https://www.mousehuntgame.com/images/promo/fbf_soon.jpg"],
+.mhui-hide-ads a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
+.mhui-hide-ads a[href="https://www.facebook.com/groups/103701656374148/"] {
+  display: none;
+}

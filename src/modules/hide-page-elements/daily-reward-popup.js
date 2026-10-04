@@ -25,33 +25,29 @@ const hidePopup = () => {
 };
 
 /**
- * Initialize the module.
+ * Close the daily reward popup whenever it opens.
+ *
+ * @param {Function} isHidden Whether the daily reward popup is currently hidden.
  */
-const init = () => {
+export default (isHidden) => {
   onDialogShow('dailyRewardPopup', () => {
     setTimeout(() => {
       const dialog = getActiveDialog();
-      if (dialog?.hide) {
+      if (isHidden() && dialog?.hide) {
         dialog.hide();
       }
     }, 500);
   });
 
-  hidePopup();
-  setTimeout(hidePopup, 1000);
-  setTimeout(hidePopup, 2000);
+  if (isHidden()) {
+    hidePopup();
+    setTimeout(hidePopup, 1000);
+    setTimeout(hidePopup, 2000);
+  }
 
-  onRequest('*', hidePopup);
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'hide-daily-reward-popup',
-  name: 'Hide Daily Reward Popup',
-  type: 'personalization',
-  default: false,
-  liveToggle: true,
-  load: init,
+  onRequest('*', () => {
+    if (isHidden()) {
+      hidePopup();
+    }
+  });
 };

@@ -1,0 +1,30 @@
+.mhui-hide-share .actionportfolio,
+.mhui-hide-share .canShare .larryTip,
+.mhui-hide-share .journalactions a[data-share-type="journal"],
+.mhui-hide-share .journalactions a[data-type="journal"],
+.mhui-hide-share .pageSidebarView .fb-page,
+.mhui-hide-share .socialLink,
+.mhui-hide-share .nestLootShareButton,
+.mhui-hide-share .publishToWall,
+.mhui-hide-share #jsDialog-publishToOwnWall,
+.mhui-hide-share *[src="https://www.mousehuntgame.com//images/ui/buttons/share_green.gif"],
+.mhui-hide-share #OnboardArrow.onboardPopup.top .canShare .larryTip img {
+  display: none;
+}
+
+.mhui-hide-share #OnboardArrow.onboardPopup.canShare .shareButton {
+  display: none !important;
+}
+
+.mhui-hide-share #OnboardArrow.onboardPopup.canShare .closeButton {
+  top: 205px;
+  right: 43px;
+  left: unset;
+  z-index: 2;
+}
+
+.mhui-hide-share #OnboardArrow.onboardPopup.top .canShare .larryTip {
+  color: #fff;
+  background-color: #fff;
+  border-color: #fff;
+}

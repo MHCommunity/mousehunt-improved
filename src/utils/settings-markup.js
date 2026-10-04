@@ -686,6 +686,11 @@ const addSettingOnce = (options) => {
     for (let i = 0; i < (settingSettings?.number || 1); i++) {
       markSettingLive(`${key}-${i}`);
     }
+
+    // Multi-toggles save each toggle under its option's key.
+    for (const option of 'multi-toggle' === settingSettings?.type ? settingSettings.options : []) {
+      markSettingLive(`${key}-${option.id}`);
+    }
   }
 
   // Make sure we have the container for our settings.
