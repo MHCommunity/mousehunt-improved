@@ -1,4 +1,3 @@
-import { doEvent } from './event-registry';
 import { getCurrentPage } from './page-current';
 
 /**
@@ -11,7 +10,14 @@ import { getCurrentPage } from './page-current';
  */
 const setPage = (page, ...args) => {
   if ('wiki' === page.toLowerCase()) {
-    doEvent('mh-improved-open-wiki');
+    // Click the menu link so Inline Wiki can intercept it when it's enabled.
+    const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
+    if (wikiLink) {
+      wikiLink.click();
+    } else {
+      window.open('https://mhwiki.hitgrab.com/wiki/index.php/MouseHunt_Wiki', '_blank', 'noopener');
+    }
+
     return true;
   }
 

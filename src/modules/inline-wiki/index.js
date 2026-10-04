@@ -1,4 +1,4 @@
-import { addStyles, makePage, onEvent, onModuleToggle } from '@utils';
+import { addStyles, makePage, onModuleToggle } from '@utils';
 
 import styles from './styles.css';
 
@@ -61,16 +61,6 @@ const removeMenuListener = () => {
   listener = null;
 };
 
-/**
- * Click the wiki link in the menu.
- */
-const clickWiki = () => {
-  const wikiLink = getLink();
-  if (wikiLink) {
-    wikiLink.click();
-  }
-};
-
 let listener = null;
 
 /**
@@ -78,7 +68,6 @@ let listener = null;
  */
 const main = () => {
   addMenuListener();
-  onEvent('mh-improved-open-wiki', clickWiki);
 };
 
 /**
@@ -100,8 +89,9 @@ const init = () => {
 export default {
   id: 'inline-wiki',
   name: 'Inline Wiki',
-  type: 'navigation-utilities',
-  default: true,
+  type: 'personalization',
+  default: false,
+  hiddenUnlessEnabled: true,
   description: 'Open the wiki right on the page when you click "Wiki" in the menu, instead of in a new tab.',
   liveToggle: true,
   load: init,
