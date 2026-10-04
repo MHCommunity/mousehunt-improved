@@ -26,21 +26,15 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  color: var(--mhui-menu-muted);
+  padding: 8px 10px;
+  background: rgb(74 144 217 / 12%);
+  border: 1px solid rgb(74 144 217 / 50%);
+  border-radius: 4px;
 }
 
 .mhui-menu-editor-help-text {
   flex: 1;
   margin: 0;
-}
-
-/* The first time the editor is opened, the help is shown as a tip. */
-.mhui-menu-editor-help.is-tip {
-  padding: 8px 10px;
-  color: inherit;
-  background: rgb(74 144 217 / 12%);
-  border: 1px solid rgb(74 144 217 / 50%);
-  border-radius: 4px;
 }
 
 .mhui-menu-editor-label {
@@ -85,8 +79,8 @@
   gap: 4px;
   min-height: 20px;
   padding: 6px;
-  background: var(--mhui-menu-hidden-bg);
-  border: 1px dashed var(--mhui-menu-hidden-border);
+  background: var(--d-action);
+  border: 1px solid var(--mhui-menu-hidden-border);
   border-radius: 4px;
 }
 
@@ -426,6 +420,7 @@
 /* A column of groups, rather than the wrapping row the other zones use. */
 .mhui-menu-editor-zone.mhui-menu-editor-available {
   display: flex;
+  background-color: var(--d-action);
   flex-flow: column nowrap;
   gap: 8px;
   max-height: 220px;
@@ -439,7 +434,7 @@
   margin-bottom: 3px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--mhui-menu-muted);
+  color: var(--d-text);
 }
 
 .mhui-menu-editor-available-list {

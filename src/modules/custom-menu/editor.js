@@ -325,21 +325,19 @@ const openMenuEditor = () => {
 
   const editor = makeElement('div', ['mhui-menu-editor', 'mousehuntHeaderView']);
 
-  const help = make('div', 'mhui-menu-editor-help', '', editor);
-  make('p', 'mhui-menu-editor-help-text', '', help).textContent = 'Drag items to move them, or drop them in Hidden. Click an item to change its options. Changes save as you go.';
-
-  // Point it out the first time the editor is opened.
+  // Shown until it's dismissed.
   if (!getSetting('custom-menu.seen-tip', false)) {
-    help.classList.add('is-tip');
+    const help = make('div', 'mhui-menu-editor-help', '', editor);
+    make('p', 'mhui-menu-editor-help-text', '', help).textContent =
+      'Drag items to move them, or drop them in Hidden. Click an item to change its options. Changes are automatically saved.';
     makeMhButton({
       text: 'Got it',
       size: 'small',
       className: 'mhui-menu-editor-help-dismiss',
       appendTo: help,
-      callback: (event) => {
+      callback: () => {
         saveSetting('custom-menu.seen-tip', true);
-        help.classList.remove('is-tip');
-        event.currentTarget.remove();
+        help.remove();
       },
     });
   }
