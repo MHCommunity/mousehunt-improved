@@ -18,7 +18,7 @@ const addWidthToPollutinumBar = () => {
   const quantity = Number.parseInt(quantityEl.innerText, 10);
   const maxQuantity = Number.parseInt(maxQuantityEl.innerText.replace('/', ''), 10);
   const percentage = Math.round((quantity / maxQuantity) * 100);
-  gauge.style.setProperty('--pollution-outbreak-width', `${percentage}%`);
+  gauge.style.setProperty('--mhui-pollution-outbreak-width', `${percentage}%`);
 };
 
 /**

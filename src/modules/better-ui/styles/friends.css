@@ -440,7 +440,7 @@ select.friendsPage-list-filter-select.friendsPage-list-sortBy option[value="poin
 .mh-dark .mh-friends-on-maps-row.captain {
   background: var(--d-bg-alt);
   border-color: var(--d-border);
-  box-shadow: 3px 0 var(--d-yellow-dark) inset;
+  box-shadow: 3px 0 var(--d-yellow-darker) inset;
 }
 
 .mh-dark .mh-friends-on-maps-profile,

@@ -497,7 +497,7 @@ a.pollutionOutbreakHUD-refineButton:hover {
   right: 0;
   bottom: 0;
   display: block;
-  width: var(--pollution-outbreak-width, 0%);
+  width: var(--mhui-pollution-outbreak-width, 0%);
   height: 5px;
   content: "";
   background-color: #418132;

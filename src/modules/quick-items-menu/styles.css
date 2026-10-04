@@ -75,32 +75,33 @@
 }
 
 .mh-quick-items-menu-wrapper {
-  --mh-pc-text: #222;
-  --mh-pc-muted: #666;
-  --mh-pc-panel: #f4f4f4;
-  --mh-pc-border: #ccc;
-  --mh-pc-input-bg: #fff;
-  --mh-pc-active-text: #2a6b1a;
-  --mh-pc-active-bg: #e3f4dc;
-  --mh-pc-active-border: #8ccf74;
-  --mh-pc-error: #b30000;
+  --mhui-quick-items-text: #222;
+  --mhui-quick-items-muted: #666;
+  --mhui-quick-items-panel: #f4f4f4;
+  --mhui-quick-items-border: #ccc;
+  --mhui-quick-items-input-bg: #fff;
+  --mhui-quick-items-active-text: #2a6b1a;
+  --mhui-quick-items-active-bg: #e3f4dc;
+  --mhui-quick-items-active-border: #8ccf74;
+  --mhui-quick-items-error: #b30000;
 
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 10px;
-  color: var(--mh-pc-text);
+  color: var(--mhui-quick-items-text);
 }
 
 .mh-dark .mh-quick-items-menu-wrapper {
-  --mh-pc-text: var(--d-text, #c8ced8);
-  --mh-pc-muted: var(--d-text-muted, #a7adb9);
-  --mh-pc-panel: var(--d-alt, #383e49);
-  --mh-pc-border: var(--d-border, #111);
-  --mh-pc-active-text: #8fdc72;
-  --mh-pc-active-bg: rgb(64 186 18 / 15%);
-  --mh-pc-active-border: rgb(64 186 18 / 50%);
-  --mh-pc-error: #ff8080;
+  --mhui-quick-items-text: var(--d-text, #c8ced8);
+  --mhui-quick-items-muted: var(--d-text-muted, #a7adb9);
+  --mhui-quick-items-panel: var(--d-alt, #383e49);
+  --mhui-quick-items-border: var(--d-border, #111);
+  --mhui-quick-items-input-bg: var(--d-input-bg, #434651);
+  --mhui-quick-items-active-text: #8fdc72;
+  --mhui-quick-items-active-bg: rgb(64 186 18 / 15%);
+  --mhui-quick-items-active-border: rgb(64 186 18 / 50%);
+  --mhui-quick-items-error: #ff8080;
 }
 
 .mh-quick-items-menu-list {
@@ -119,7 +120,7 @@
 /* Divide visible rows, even when an earlier row is hidden. */
 .mh-quick-items-menu-item:not([hidden]) ~ .mh-quick-items-menu-item {
   padding-top: 6px;
-  border-top: 1px solid var(--mh-pc-border);
+  border-top: 1px solid var(--mhui-quick-items-border);
 }
 
 .mh-quick-items-menu-item[hidden] {
@@ -152,9 +153,9 @@
   padding: 3px 8px;
   margin-top: 4px;
   font-size: 11px;
-  color: var(--mh-pc-active-text);
-  background-color: var(--mh-pc-active-bg);
-  border: 1px solid var(--mh-pc-active-border);
+  color: var(--mhui-quick-items-active-text);
+  background-color: var(--mhui-quick-items-active-bg);
+  border: 1px solid var(--mhui-quick-items-active-border);
   border-radius: 4px;
 }
 
@@ -179,11 +180,11 @@
   height: 22px;
   padding: 1px 4px;
   font-size: 12px;
-  color: var(--mh-pc-text);
+  color: var(--mhui-quick-items-text);
   text-align: right;
   appearance: textfield;
-  background-color: var(--mh-pc-input-bg);
-  border: 1px solid var(--mh-pc-border);
+  background-color: var(--mhui-quick-items-input-bg);
+  border: 1px solid var(--mhui-quick-items-border);
   border-radius: 3px;
 }
 
@@ -195,7 +196,7 @@
 
 .mh-quick-items-menu-separator,
 .mh-quick-items-menu-owned {
-  color: var(--mh-pc-muted);
+  color: var(--mhui-quick-items-muted);
 }
 
 /* Message items aren't used up, so they only get a button on the same line as the name. */
@@ -225,11 +226,11 @@
 .mh-quick-items-menu-result {
   padding-top: 8px;
   font-size: 11px;
-  border-top: 1px solid var(--mh-pc-border);
+  border-top: 1px solid var(--mhui-quick-items-border);
 }
 
 .mh-quick-items-menu-result.error {
-  color: var(--mh-pc-error);
+  color: var(--mhui-quick-items-error);
 }
 
 .mh-quick-items-menu-result-title {

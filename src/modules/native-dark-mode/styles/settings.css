@@ -67,7 +67,7 @@
 .mh-dark .mh-utils-settings-refresh-message {
   color: var(--d-text);
   background-color: var(--d-bg);
-  border-top-color: var(--d-yellow-dark);
+  border-top-color: var(--d-yellow-darker);
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup-content textarea {

@@ -246,7 +246,7 @@ const addOnboardingTip = ({ step, anchor, title, content, position = 'below', di
 
     tip.style.left = `${left + window.scrollX}px`;
     tip.style.top = `${top + window.scrollY}px`;
-    tip.style.setProperty('--mh-improved-tip-arrow', `${clamp(anchorCenter - left, TIP_ARROW_INSET, tipRect.width - TIP_ARROW_INSET)}px`);
+    tip.style.setProperty('--mhui-tip-arrow', `${clamp(anchorCenter - left, TIP_ARROW_INSET, tipRect.width - TIP_ARROW_INSET)}px`);
   };
 
   /**

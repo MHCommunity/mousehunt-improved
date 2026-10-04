@@ -396,11 +396,11 @@ const makeSortedMiceList = async (sortedPage) => {
     // Colors are set as custom properties so the stylesheet can pick the
     // right one for light or dark mode.
     if (category.color && '#' !== category.color) {
-      categoryWrapper.style.setProperty('--mh-improved-map-group-color', category.color);
+      categoryWrapper.style.setProperty('--mhui-map-group-color', category.color);
     }
 
     if (category['color-dark']) {
-      categoryWrapper.style.setProperty('--mh-improved-map-group-color-dark', category['color-dark']);
+      categoryWrapper.style.setProperty('--mhui-map-group-color-dark', category['color-dark']);
     }
 
     // Icon, title, and subtitle wrapper.
@@ -486,11 +486,11 @@ const makeSortedMiceList = async (sortedPage) => {
         const subcategoryWrapper = makeElement('div', ['mouse-subcategory-wrapper', `mouse-subcategory-${subcategory.id}`]);
 
         if (subcategory.color) {
-          subcategoryWrapper.style.setProperty('--mh-improved-map-subgroup-color', subcategory.color);
+          subcategoryWrapper.style.setProperty('--mhui-map-subgroup-color', subcategory.color);
         }
 
         if (subcategory['color-dark']) {
-          subcategoryWrapper.style.setProperty('--mh-improved-map-subgroup-color-dark', subcategory['color-dark']);
+          subcategoryWrapper.style.setProperty('--mhui-map-subgroup-color-dark', subcategory['color-dark']);
         }
 
         // Subcategory header.

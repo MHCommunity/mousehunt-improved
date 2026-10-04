@@ -21,7 +21,7 @@ const declared = new Set();
  * These deliberately never go in the element's style attribute. `upscaled-mice-images.css`
  * upgrades images with ~1300 rules shaped like
  * `[style*="<silhouette_medium url>"] { background-image: url(<silhouette_large>) !important }`,
- * so an inline `--mh-silhouette` holding a silhouette URL makes the tile match its own
+ * so an inline `--mhui-silhouette` holding a silhouette URL makes the tile match its own
  * upscaling rule: the art gets replaced by the silhouette, and the overlay then blends the
  * silhouette against itself. Keying the declaration off the mouse type instead keeps every
  * URL out of the attribute those selectors read.
@@ -44,9 +44,9 @@ const declareSilhouette = (mouse) => {
 
   sheet.insertRule(
     `[data-mh-mouse="${mouse.type}"] {
-    --mh-silhouette-large: url("${mouse.large}");
-    --mh-silhouette-medium: url("${mouse.medium}");
-    --mh-art: url("${mouse.art}");
+    --mhui-silhouette-large: url("${mouse.large}");
+    --mhui-silhouette-medium: url("${mouse.medium}");
+    --mhui-mouse-art: url("${mouse.art}");
   }`,
     sheet.cssRules.length
   );

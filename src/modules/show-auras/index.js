@@ -55,8 +55,8 @@ const addExpiryWarning = () => {
     aura.element.classList.add('expiring-soon');
 
     const slot = slots[index];
-    aura.element.style.setProperty('--mh-aura-offset-x', `${slot.offsetLeft - aura.element.offsetLeft}px`);
-    aura.element.style.setProperty('--mh-aura-offset-y', `${slot.offsetTop - aura.element.offsetTop}px`);
+    aura.element.style.setProperty('--mhui-aura-offset-x', `${slot.offsetLeft - aura.element.offsetLeft}px`);
+    aura.element.style.setProperty('--mhui-aura-offset-y', `${slot.offsetTop - aura.element.offsetTop}px`);
   });
 };
 

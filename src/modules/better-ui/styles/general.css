@@ -224,7 +224,7 @@ a.mousehuntHud-menu-item.root {
 
 .trapImageView .trapImageView-trapAura.active.expiring-soon {
   transition: transform 0.2s ease-in-out;
-  transform: translate(var(--mh-aura-offset-x, 0), var(--mh-aura-offset-y, 0));
+  transform: translate(var(--mhui-aura-offset-x, 0), var(--mhui-aura-offset-y, 0));
 }
 
 .trapImageView:hover .trapImageView-trapAura.active.expiring-soon {

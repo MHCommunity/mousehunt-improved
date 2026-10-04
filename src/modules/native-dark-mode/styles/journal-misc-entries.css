@@ -33,7 +33,7 @@
 }
 
 .mh-dark .entry.short.travel {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
   background-image: url(https://i.mouse.rip/travel-journal.png);
   background-blend-mode: normal;
 }
@@ -73,7 +73,7 @@
 .mh-dark .journal .content .entry.rift-whisker-woods-catch-miniboss,
 .mh-dark .journal .content .entry.socialGift,
 .mh-dark .journal .content .entry.harbour {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mh-dark .journal .entry.log_summary,
@@ -90,7 +90,7 @@
 }
 
 .mh-dark .journal .content .entry.labyrinthSmall.labyrinth-clue {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
   background-blend-mode: luminosity;
 }
 

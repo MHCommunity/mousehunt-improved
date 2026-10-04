@@ -278,7 +278,7 @@ p.mhi-x-entry {
 }
 
 .mh-dark .journal .content .entry.queso_cannonstorm_base_trigger.fail {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 /* stylelint-disable-next-line */

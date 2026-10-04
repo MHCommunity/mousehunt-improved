@@ -1,7 +1,7 @@
 .huntersHornMessageView--bait_empty .huntersHornMessageView__content.huntersHornMessageView__content--image::before,
 .huntersHornMessageView--bait_disarmed .huntersHornMessageView__content.huntersHornMessageView__content--image::before,
 .huntersHornMessageView--unknown_error .huntersHornMessageView__content.huntersHornMessageView__content--image::before {
-  background-image: var(--bg-image);
+  background-image: var(--mhui-horn-message-image);
 }
 
 .huntersHornView__message .huntersHornMessageView--shadow {

@@ -159,7 +159,7 @@
 
 .mh-dark .mouseCrownsView-group.gold {
   background-color: var(--d-yellow);
-  box-shadow: 0 0 1px 1px var(--d-yellow-dark);
+  box-shadow: 0 0 1px 1px var(--d-yellow-darker);
 }
 
 .mh-dark .mouseCrownsView-group.silver {
@@ -238,7 +238,7 @@
 
 .mh-dark .mouseCrownsView-group.gold .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
   color: var(--d-text-dark);
-  background-color: var(--d-yellow-dark-alt);
+  background-color: var(--d-yellow-dark);
 }
 
 .mh-dark .mouseCrownsView-group.silver .mouseCrownsView-group-mouse-padding {

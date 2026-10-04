@@ -30,7 +30,7 @@ const declareSilhouette = (mouse) => {
     sheet = element.sheet;
   }
 
-  sheet.insertRule(`[data-mh-mouse="${mouse.type}"] { --mh-silhouette-large: url("${mouse.large}"); }`, sheet.cssRules.length);
+  sheet.insertRule(`[data-mh-mouse="${mouse.type}"] { --mhui-silhouette-large: url("${mouse.large}"); }`, sheet.cssRules.length);
 };
 
 /**

@@ -37,7 +37,7 @@ slivers at fractional rendered sizes, which show up as borders on the image. */
 
 @supports (mask-composite: subtract) {
   .journal .entry .journalimage img[data-mh-mask] {
-    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-image: linear-gradient(#fff, #fff), var(--mhui-silhouette-large);
     mask-mode: luminance;
     mask-repeat: no-repeat;
     mask-position:

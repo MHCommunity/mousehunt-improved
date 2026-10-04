@@ -4,7 +4,7 @@
 }
 
 .mh-dark .journal .content .entry.minigame_start.yellow_drops {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
   background-blend-mode: normal;
 }
 

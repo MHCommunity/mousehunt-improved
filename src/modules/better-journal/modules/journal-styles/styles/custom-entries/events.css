@@ -18,7 +18,7 @@
 }
 
 .mh-dark .entry.short.misc.custom.chocolateshop_reward_claimed {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 /* Restore the game's per-layer values (Lady Laura gif, tint gradient, brick pattern). */

@@ -1,5 +1,5 @@
 .mh-dark .mousehuntHeaderView .dropdownContent {
-  color: var(--d-color);
+  color: var(--d-text);
   background-color: var(--d);
   border-color: var(--d-border);
 }

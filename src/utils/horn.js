@@ -108,7 +108,7 @@ const showHornMessage = (options) => {
       content.append(imgWrapper);
     } else {
       content.classList.add('huntersHornMessageView__content--image');
-      content.setAttribute('style', `--bg-image: url(${settings.image})`);
+      content.setAttribute('style', `--mhui-horn-message-image: url(${settings.image})`);
     }
   }
 

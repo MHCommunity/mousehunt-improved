@@ -3,7 +3,7 @@
 }
 
 .mh-dark .notificationMessageList .message.mh-improved-gift-link:hover {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .notificationMessageList .message.mh-improved-gift-link .clear-block {

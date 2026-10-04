@@ -200,7 +200,7 @@
 }
 
 .mh-dark .giftSelectorView-inbox-giftRow.paidgift {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mh-dark .giftSelectorView-tabHeader.highlight span {

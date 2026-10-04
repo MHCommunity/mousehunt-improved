@@ -110,7 +110,7 @@
 
 .mh-dark .journal .entry.adventureBook-journal.claim {
   background-color: var(--d-yellow-darker);
-  box-shadow: -10px 0 57px var(--d-yellow-dark-alt) inset;
+  box-shadow: -10px 0 57px var(--d-yellow-dark) inset;
 }
 
 .mh-dark .journal .entry.adventureBook-journal.completed {
@@ -119,7 +119,7 @@
 }
 
 .mh-dark .journal .content .entry.short.tournamentpointswithloot {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mh-dark .journal .content .entry.short.prizemouse.catchsuccessloot.catchsuccessprize {

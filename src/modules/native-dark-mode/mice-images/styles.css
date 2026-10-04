@@ -3,7 +3,7 @@ over it with `mix-blend-mode: difference`, which knocks that white background do
 near-black while leaving the mouse itself untouched.
 
 At runtime we tag each image with `data-mh-mouse="<mouse type>"` and declare that type's
-silhouettes as --mh-silhouette-large / --mh-silhouette-medium in a stylesheet of our own,
+silhouettes as --mhui-silhouette-large / --mhui-silhouette-medium in a stylesheet of our own,
 so only mice we've resolved get the treatment. The URLs are deliberately kept out of the
 elements' style attributes — see the note in index.js. */
 
@@ -21,7 +21,7 @@ silhouette into a box the art isn't in, so the two stop lining up. */
   inset: 0;
   display: block;
   content: "";
-  background-image: var(--mh-silhouette-large);
+  background-image: var(--mhui-silhouette-large);
   filter: brightness(0.8);
   background-repeat: no-repeat;
   background-position: 50% 0;
@@ -45,7 +45,7 @@ element's descendants too, so masking it would cut the text out along with the w
 @supports (mask-composite: subtract) {
   .mh-dark .mouseView-imageContainer .mouseView-image[data-mh-mask] {
     box-shadow: none;
-    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-image: linear-gradient(#fff, #fff), var(--mhui-silhouette-large);
     mask-mode: luminance;
     mask-repeat: no-repeat;
     mask-position:
@@ -86,7 +86,7 @@ rather than an overlay. */
   inset: 0;
   display: block;
   content: "";
-  background-image: var(--mh-silhouette-medium);
+  background-image: var(--mhui-silhouette-medium);
   filter: brightness(0.82);
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -124,11 +124,11 @@ Art and mask sit on the same element, so they line up whatever the tile's size. 
     z-index: -1;
     display: block;
     content: "";
-    background-image: var(--mh-art);
+    background-image: var(--mhui-mouse-art);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 125px;
-    mask-image: linear-gradient(#fff, #fff), var(--mh-silhouette-large);
+    mask-image: linear-gradient(#fff, #fff), var(--mhui-silhouette-large);
     mask-mode: luminance;
     mask-repeat: no-repeat;
     mask-position:

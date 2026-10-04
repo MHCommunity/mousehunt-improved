@@ -19,7 +19,7 @@
 .mh-improved-tip::before,
 .mh-improved-tip::after {
   position: absolute;
-  left: var(--mh-improved-tip-arrow);
+  left: var(--mhui-tip-arrow);
   width: 0;
   height: 0;
   margin-left: -6px;

@@ -109,7 +109,7 @@
 
 .mh-dark .inventoryPage-item-recipeOptions li {
   color: var(--d-text);
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
   border-color: var(--d-border);
 }
 
@@ -225,7 +225,7 @@
 }
 
 .mh-dark .inventoryPage-item.crafting_item.selected .inventoryPage-item-margin {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mh-dark .inventoryPage-craftingTable-slot-item-remove {

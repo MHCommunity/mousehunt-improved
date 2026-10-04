@@ -83,7 +83,7 @@
 }
 
 .mh-dark .mh-improved-map-sidebar-goal-active {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mh-improved-map-sidebar-title::after {

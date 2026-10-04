@@ -1106,7 +1106,7 @@ a.update-data-link.updating {
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup-content .dragover {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 .mousehunt-improved-settings-export-popup .suffix {
@@ -1175,7 +1175,7 @@ a.update-data-link.updating {
   --mhui-settings-title: var(--d-text, #c8ced8);
   --mhui-settings-text: var(--d-text, #c8ced8);
   --mhui-settings-muted: var(--d-text-muted, #a7adb9);
-  --mhui-settings-match: var(--d-yellow-dark, #4e4a3c);
+  --mhui-settings-match: var(--d-yellow-darker, #4e4a3c);
   --mhui-settings-input: var(--d-input-bg, #434651);
   --mhui-settings-select: var(--d-action, #5e646f);
   --mhui-settings-stripe: rgb(0 0 0 / 20%);
