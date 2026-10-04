@@ -634,9 +634,21 @@ input.trapSelectorView__codexListSearch {
   display: block;
 }
 
-.campPage-trap-trapStat:hover .value,
 .campPage-trap-trapStat.show-math .value {
   background-color: #e5dbd4;
+}
+
+@media (hover: hover) {
+  .campPage-trap-trapStat:hover .value {
+    background-color: #e5dbd4;
+  }
+}
+
+/* Touch devices keep :hover after a tap, so only the toggle should show the math. */
+@media (hover: none) {
+  .trapSelectorView__trapStatSummary .campPage-trap-trapStat:not(.show-math) .math {
+    display: none;
+  }
 }
 
 .campPage-trap-itemBrowser-item.loaded.skin.cannotArm.cannotDisarm {

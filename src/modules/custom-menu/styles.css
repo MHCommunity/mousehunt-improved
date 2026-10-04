@@ -420,12 +420,12 @@
 /* A column of groups, rather than the wrapping row the other zones use. */
 .mhui-menu-editor-zone.mhui-menu-editor-available {
   display: flex;
-  background-color: var(--d-action);
   flex-flow: column nowrap;
   gap: 8px;
   max-height: 220px;
   padding: 6px;
   overflow-y: auto;
+  background-color: var(--d-action);
   border: 1px solid var(--mhui-menu-hidden-border);
   border-radius: 4px;
 }
