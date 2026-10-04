@@ -28,7 +28,11 @@ const createMapRuntime = (dependencies = {}) => {
 
   const isReady = () => {
     const root = getRoot();
-    const content = root?.querySelector('.treasureMapRootView-content');
+    // A map preview renders its map view in a dialog overlay inside the root, on top of the
+    // invites or community view, so it takes precedence while it's open. Other dialogs
+    // (confirmations) use the same overlay without a map view, and don't.
+    const previewContent = root?.querySelector('.treasureMapDialogView-overlay.active .treasureMapDialogView-content');
+    const content = previewContent?.querySelector('.treasureMapView') ? previewContent : root?.querySelector('.treasureMapRootView-content');
     const mapView = content?.querySelector('.treasureMapView');
     return root && content && mapView && !content.classList.contains('loading') ? { root, content } : null;
   };

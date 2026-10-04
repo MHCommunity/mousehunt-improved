@@ -245,6 +245,76 @@ const recoverMapData = (mapId, generation) => {
 };
 
 /**
+ * Make a map the one on screen and fetch its data for the render runtime.
+ *
+ * @param {string|number} mapId The map being shown.
+ */
+const loadActiveMap = (mapId) => {
+  activeMapId = mapId;
+  const requestGeneration = ++mapRequestGeneration;
+  clearMapRecovery();
+  interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration)
+    .then((data) => {
+      if (mapId && requestGeneration === mapRequestGeneration && !data) {
+        recoverMapData(mapId, requestGeneration);
+      }
+
+      return data;
+    })
+    .catch(() => {
+      if (requestGeneration === mapRequestGeneration) {
+        recoverMapData(mapId, requestGeneration);
+      }
+
+      return null;
+    });
+};
+
+// While a map preview is open, the map that was active underneath it (usually none, as
+// previews open from the invites and community views), so closing the preview restores it.
+let previewState = null;
+
+/**
+ * Treat a previewed map as the map on screen, so it gets the same tabs and enhancements.
+ *
+ * @param {Object}        event     The preview event.
+ * @param {string|number} event.map The previewed map ID.
+ */
+const showMapPreview = ({ map: mapId } = {}) => {
+  addMapClassesToPreview();
+  if (!mapId) {
+    return;
+  }
+
+  if (!previewState) {
+    previewState = { activeMapId };
+  }
+
+  loadActiveMap(mapId);
+};
+
+/**
+ * Restore the map that was active before the preview opened.
+ */
+const hideMapPreview = () => {
+  removeMapClassesFromPreview();
+  if (!previewState) {
+    return;
+  }
+
+  const { activeMapId: previousMapId } = previewState;
+  previewState = null;
+  activeMapId = previousMapId;
+  mapRequestGeneration++;
+  clearMapRecovery();
+  mapRuntime.reset();
+
+  if (previousMapId) {
+    loadActiveMap(previousMapId);
+  }
+};
+
+/**
  * Route a treasure-map response to its matching surface implementation.
  *
  * @param {Object} response The response payload.
@@ -281,26 +351,8 @@ const intercept = (retries = 0) => {
   parentShowMap = hg.controllers.TreasureMapController.showMap;
   hg.controllers.TreasureMapController.showMap = function (id = false) {
     const result = Reflect.apply(parentShowMap, this, arguments);
-
-    const mapId = id || defaultMapId;
-    activeMapId = mapId;
-    const requestGeneration = ++mapRequestGeneration;
-    clearMapRecovery();
-    interceptMapRequest(mapId, () => requestGeneration === mapRequestGeneration)
-      .then((data) => {
-        if (mapId && requestGeneration === mapRequestGeneration && !data) {
-          recoverMapData(mapId, requestGeneration);
-        }
-
-        return data;
-      })
-      .catch(() => {
-        if (requestGeneration === mapRequestGeneration) {
-          recoverMapData(mapId, requestGeneration);
-        }
-
-        return null;
-      });
+    previewState = null;
+    loadActiveMap(id || defaultMapId);
     return result;
   };
 
@@ -392,7 +444,7 @@ const bindMapNavigation = (model) => {
   model.root.addEventListener('click', (event) => {
     const subtab = event.target.closest('.treasureMapRootView-subTab');
     if (subtab && model.root.contains(subtab)) {
-      addBlockClasses(model.root);
+      addBlockClasses(subtab.closest('.treasureMapView') || model.root);
       doEvent('map_tab_click', state.map);
       doEvent(`map_${subtab.getAttribute('data-type')}_tab_click`, state.map);
       return;
@@ -453,8 +505,8 @@ const configureMapRuntime = () => {
 
   mapRuntime.register('navigation', 'map-navigation', bindMapNavigation);
 
-  mapRuntime.register('content', 'map-content', ({ root }) => {
-    addBlockClasses(root);
+  mapRuntime.register('content', 'map-content', ({ content }) => {
+    addBlockClasses(content);
     enhancePreviewButton();
   });
 
@@ -695,8 +747,8 @@ const init = () => {
   onEvent('map_navigation_tab_click', runMapEnhancements);
 
   addMapPreviewListeners();
-  onEvent('map_show_map_preview', addMapClassesToPreview);
-  onEvent('map_hide_map_preview', removeMapClassesFromPreview);
+  onEvent('map_show_map_preview', showMapPreview);
+  onEvent('map_hide_map_preview', hideMapPreview);
 
   defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
   onRequest(
@@ -717,6 +769,7 @@ const init = () => {
     clearCacheTimeout = null;
     mapRequestGeneration++;
     activeMapId = null;
+    previewState = null;
     clearMapRecovery();
     mapRuntime.reset();
   }, 'map');

@@ -305,7 +305,7 @@ const showHuntersTab = async (mapData) => {
   updateJoinedHuntersList(mapData);
   fixPluralInvites();
 
-  const leftBlock = document.querySelector('.treasureMapView-leftBlock');
+  const leftBlock = document.querySelector('.treasureMapView .treasureMapView-leftBlock');
   if (!leftBlock) {
     return;
   }

@@ -1031,7 +1031,7 @@ const processSortedTabClick = async (force = false) => {
     sortedTab.classList.add('active');
   }
 
-  const mapContainer = document.querySelector('.treasureMapView-blockWrapper');
+  const mapContainer = document.querySelector('.treasureMapView .treasureMapView-blockWrapper');
   if (!mapContainer) {
     return;
   }

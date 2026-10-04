@@ -189,7 +189,9 @@ const addClassesToGroups = (mapData) => {
       return;
     }
 
-    const completed = title.innerText.includes(' found these mice:') || title.innerText.includes(' found this mouse:');
+    // Mouse maps say "found these mice:" and scavenger hunts say "found these items:".
+    const foundText = title.innerText.match(/ found (?:these mice|this mouse|these items|this item):/)?.[0];
+    const completed = Boolean(foundText);
     group.classList.add('mh-ui-goals-group', completed ? 'completed' : 'incomplete');
 
     let countText = '';
@@ -203,7 +205,7 @@ const addClassesToGroups = (mapData) => {
       return;
     }
     // get the hunter name by removing the count and the 'found these mice' text
-    const hunterName = title.innerText.replace(countText, '').replace(' found these mice:', '').replace(' found this mouse:', '').trim();
+    const hunterName = title.innerText.replace(countText, '').replace(foundText, '').trim();
 
     // find the hunter in the list of hunters but looking at mapData.hunters and finding the matching name
     let hunter = mapData.hunters.find((h) => h.name.trim() === hunterName);
@@ -233,7 +235,7 @@ const addClassesToGroups = (mapData) => {
     }
 
     const image = group.querySelector('.treasureMapView-block-content-heading-image');
-    if (!image) {
+    if (image) {
       image.title = `Go to ${hunter.name}'s profile`;
       image.classList.add('mh-ui-goals-group-completed-image');
 
@@ -258,7 +260,7 @@ const addClassesToGroups = (mapData) => {
     });
     replacementTitle.append(nameLink);
 
-    makeElement('span', 'mh-ui-goals-group-completed-text', ' found these mice:', replacementTitle);
+    makeElement('span', 'mh-ui-goals-group-completed-text', foundText, replacementTitle);
     if (count) {
       replacementTitle.append(count);
     }

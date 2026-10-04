@@ -41,11 +41,6 @@
   max-height: 500px;
 }
 
-/* Temporary: keep the confirm dialog from sitting too low. */
-.treasureMapDialogView.confirm {
-  top: 10%;
-}
-
 .giftSelectorView-inbox-giftContainer,
 #overlayPopup .giftSelectorView-scroller {
   height: auto;
