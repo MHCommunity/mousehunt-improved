@@ -1,4 +1,4 @@
-# [Show Auras](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-show-auras)
+# [Show Auras](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-show-auras)
 
 See all your active auras and their expiry times right below your trap stats.
 
@@ -9,5 +9,4 @@ See all your active auras and their expiry times right below your trap stats.
 
 ## Options
 
-- **Show auras as a vertical list**: Displays auras in a vertical list format.
-- **Only show aura icons (no text)**: Only displays the aura icons without text.
+- **Aura layout**: Show auras in a grid, as a list, or as icons only.

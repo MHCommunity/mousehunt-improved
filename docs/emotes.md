@@ -1,4 +1,4 @@
-# [Emotes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-emotes)
+# [Emotes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-emotes)
 
 Replaces Discord-style emotes on corkboards like (like :jerry:) with the actual image in map and profile corkboard messages.
 

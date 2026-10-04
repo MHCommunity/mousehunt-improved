@@ -1,4 +1,4 @@
-# [Better Maps](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-maps)
+# [Better Maps](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-maps)
 
 Enhances the map interface with additional functionality and improved organization.
 
@@ -20,7 +20,7 @@ Enhances the map interface with additional functionality and improved organizati
 
 ## Options
 
-- **Default to Sorted tab**: Automatically selects the Sorted tab when opening a map.
+- **Open Sorted tab**: Open maps on the Sorted tab never, only for categorized maps, or always.
 - **Show map goals in sidebar**: Displays your current map objectives in a convenient sidebar panel. (Enabled by default)
 - **Show map join & catch dates**: Shows the approximate date you started/joined
   a map and when each mouse was caught. This is off by default, but the data is

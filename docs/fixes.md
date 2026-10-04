@@ -1,4 +1,4 @@
-# [Fixes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-fixes)
+# [Fixes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-fixes)
 
 Fixes a variety of bugs and issues in the game, including:
 

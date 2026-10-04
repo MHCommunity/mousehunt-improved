@@ -1,4 +1,4 @@
-# [Better Tournaments](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-tournaments)
+# [Better Tournaments](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-tournaments)
 
 Improves the tournaments page with more accessible information and a cleaner layout.
 

@@ -1,4 +1,4 @@
-# [Catch Rate & Minluck](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-catch-rate-estimate)
+# [Catch Rate & Minluck](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-catch-rate-estimate)
 
 See your estimated catch rate and the minluck (guaranteed catch if your luck is higher) for each mouse directly on the Camp page.
 

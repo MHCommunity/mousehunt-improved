@@ -1,4 +1,4 @@
-# [Better Travel](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-travel)
+# [Better Travel](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-travel)
 
 Makes the Travel page more useful.
 

@@ -1,4 +1,4 @@
-# [Legacy HUD](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-legacy-hud)
+# [Legacy HUD](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-legacy-hud)
 
 Enable the legacy HUD or make tweaks to it.
 

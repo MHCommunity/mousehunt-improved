@@ -1,4 +1,4 @@
-# [Debug logging](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-advanced-debug)
+# [Debug logging](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-debug)
 
 Enables debug logging for various parts of MouseHunt.
 

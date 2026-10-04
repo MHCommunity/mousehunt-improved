@@ -1,4 +1,4 @@
-# [Better Send Supplies](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-send-supplies)
+# [Better Send Supplies](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-send-supplies)
 
 Makes sending supplies to friends faster and more convenient with improved controls and organization.
 

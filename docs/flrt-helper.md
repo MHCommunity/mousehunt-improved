@@ -1,4 +1,4 @@
-# [FLRT Helper](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-flrt-helper)
+# [FLRT Helper](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-flrt-helper)
 
 Return Tradables to a Maptain more easily
 

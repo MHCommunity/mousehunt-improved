@@ -1,4 +1,4 @@
-# [Data Exporters](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-data-exporters)
+# [Data export](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-data-exporters)
 
 Export data from the game, either in CSV or JSON format. Find the menu item under the "Kingdom" tab.
 
@@ -15,7 +15,7 @@ Currently, the following data exporters are available:
 - Scoreboard Rankings (Friends)
 - Scoreboard Rankings (Weekly, Friends)
 - Journal Entries
-- Journal Logs (when the Journal Progress Log Tracker has saved logs)
+- Journal Logs (when the Journal log tracker has saved logs)
 - Favorite Setups
 
 If you have [MH - Rank-up Forecaster (v2.0)](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0) installed, you can also export that data.

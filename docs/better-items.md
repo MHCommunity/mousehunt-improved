@@ -1,4 +1,4 @@
-# [Better Items](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-item-view)
+# [Better Item Details](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-item-view)
 
 Enhances the item view popup with more information and helpful links, making it easier to research and understand your items.
 

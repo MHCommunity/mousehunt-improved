@@ -1,4 +1,4 @@
-# [Unique Loot Count](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-unique-loot-count)
+# [Unique Loot Count](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-unique-loot-count)
 
 See how many unique loot items you've collected in your progress logs.
 

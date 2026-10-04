@@ -1,4 +1,4 @@
-# [Keyboard Shortcuts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-keyboard-shortcuts)
+# [Keyboard Shortcuts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-keyboard-shortcuts)
 
 Speed up your gameplay with handy keyboard shortcuts for common actions and pages. Easily customize or disable shortcuts to fit your play style.
 

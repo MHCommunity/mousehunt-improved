@@ -1,4 +1,4 @@
-# [Favorite Setups](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-favorite-setups)
+# [Favorite Setups](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-favorite-setups)
 
 Easily save and load your favorite trap setups. Find the "Favorite Setups" section below your trap stats on the Camp page.
 

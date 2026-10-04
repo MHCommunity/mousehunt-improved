@@ -1,4 +1,4 @@
-# [Wisdom in Stat Bar](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-wisdom-in-stat-bar)
+# [Wisdom in Stat Bar](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-wisdom-in-stat-bar)
 
 See your [wisdom](https://mhwiki.hitgrab.com/wiki/index.php/Wisdom) value directly in the stat bar for quick reference.
 

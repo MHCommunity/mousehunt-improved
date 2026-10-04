@@ -1,4 +1,4 @@
-# [Journal Progress Log Tracker](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-journal-log-tracker)
+# [Journal log tracker](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-journal-log-tracker)
 
 Tracks when your next journal log summary is due and gives you quick access to your past logs.
 

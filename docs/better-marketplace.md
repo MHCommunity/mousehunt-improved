@@ -1,4 +1,4 @@
-# [Better Marketplace](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-marketplace)
+# [Better Marketplace](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-marketplace)
 
 Makes the Marketplace easier to browse, price, and use for both buying and
 selling items.

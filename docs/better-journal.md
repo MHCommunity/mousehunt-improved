@@ -1,4 +1,4 @@
-# [Better Journal](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-journal)
+# [Better Journal](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-journal)
 
 Gives your journal a modern, streamlined look and adds powerful options to make it easier to read, browse, and understand your hunting history.
 
@@ -32,4 +32,3 @@ Gives your journal a modern, streamlined look and adds powerful options to make 
 - **Journal History**: Save and browse your journal history beyond the default page limit, letting you look back further than the standard game allows.
 - **Full mice images**: Display full mouse images in journal entries instead of smaller thumbnails.
 - **Full mice images (no border)**: Show the full mouse images without the border around them.
-- **Highlight rare mice catches (currently only Black Widow)**: Makes rare catches stand out in the journal.

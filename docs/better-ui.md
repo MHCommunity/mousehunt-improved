@@ -1,4 +1,4 @@
-# [Better UI](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-ui)
+# [Better UI](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-ui)
 
 Refreshes the MouseHunt interface with a wide range of visual and usability improvements for a more enjoyable experience.
 

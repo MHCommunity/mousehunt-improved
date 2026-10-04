@@ -1,4 +1,4 @@
-# [Quick Send Supplies](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-quick-send-supplies)
+# [Quick Send Supplies](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-quick-send-supplies)
 
 Send supplies to friends faster with a quick-access menu and favorite items.
 

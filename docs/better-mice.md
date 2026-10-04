@@ -1,4 +1,4 @@
-# [Better Mice](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-mice)
+# [Better Mice](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-mice)
 
 Makes the mouse view and stats pages more informative and interactive, giving you more ways to explore and track your mouse collection.
 

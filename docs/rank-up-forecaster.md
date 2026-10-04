@@ -1,4 +1,4 @@
-# [Rank-Up Forecaster](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-rank-up-forecaster)
+# [Rank-Up Forecaster](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-rank-up-forecaster)
 
 Tracks your wisdom over time and estimates when you'll reach
 your next rank.

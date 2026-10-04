@@ -1,4 +1,4 @@
-# [Custom Shield](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-shield)
+# [Custom Shield](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-custom-shield)
 
 Change your shield to match events, your title, your favorite color, or just for fun!
 

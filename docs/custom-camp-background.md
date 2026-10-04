@@ -1,4 +1,4 @@
-# [Custom Camp Background](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-camp-background)
+# [Custom Camp Background](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-custom-camp-background)
 
 Set a custom background for the Camp page.
 

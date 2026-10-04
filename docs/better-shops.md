@@ -1,4 +1,4 @@
-# [Better Shops](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-shops)
+# [Better Shops](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-shops)
 
 Modernizes the Shops page for a cleaner look and easier shopping experience.
 

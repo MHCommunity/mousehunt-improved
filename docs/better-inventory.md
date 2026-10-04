@@ -1,4 +1,4 @@
-# [Better Inventory](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-inventory)
+# [Better Inventory](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-inventory)
 
 Enhances your inventory with a modern look and several quality-of-life improvements to make managing your items easier and more intuitive.
 

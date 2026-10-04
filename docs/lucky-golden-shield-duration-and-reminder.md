@@ -1,8 +1,8 @@
-# [Lucky Golden Shield Duration & Reminder](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-lgs-reminder)
+# [Lucky Golden Shield timer](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-lgs-reminder)
 
 Easily see how much time is left on your Lucky Golden Shield, right in your HUD, and get a warning when it's about to expire.
 
 ## Options
 
-- **Use new layout style**: Choose a different visual style for the timer display.
-- **Display time in days only**: See the remaining time in days instead of weeks or months for easier tracking.
+- **Show the timer in a tab below the shield**: Show the timer in a tab under the shield instead of on top of it.
+- **Use days, hours, and minutes**: Show the remaining time in days, hours, and minutes instead of weeks or months.

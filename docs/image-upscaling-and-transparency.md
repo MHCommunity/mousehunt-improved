@@ -1,4 +1,4 @@
-# [Image Upscaling & Transparency](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-image-upscaling)
+# [Image Upscaling & Transparency](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-image-upscaling)
 
 Updates the images across the MouseHunt interface to use the larger and transparent versions of the images where available.
 

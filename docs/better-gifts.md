@@ -1,4 +1,4 @@
-# [Better Gifts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-gifts)
+# [Better Gifts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-gifts)
 
 Streamlines the gifts system, making it faster and easier to accept, return, and send gifts to friends.
 
@@ -12,6 +12,6 @@ Streamlines the gifts system, making it faster and easier to accept, return, and
 
 ## Options
 
-- **Order to accept/send**: Choose the order in which to accept or send gifts: "Oldest to Newest" or "Newest to Oldest".
-- **Ignore gifts**: Skip non-Gift of the Day gifts when accepting/returning. Options include skipping all, none, or specific items (Mozzarella Cheese, Stale Cheese, Radioactive Sludge, or combinations).
+- **Gift order**: Accept and send gifts newest to oldest, or oldest to newest.
+- **Skipped gifts**: Gifts to skip when accepting and returning. Options include all except Gift of the Day, none, or specific items (Mozzarella Cheese, Stale Cheese, Radioactive Sludge, or combinations).
 - **Gift button opens gift selector**: Clicking the gift button directly opens the gift selector instead of the normal gift dialog. Turn it on by clicking Gifts in Custom Menu (Settings → Appearance → Custom Menu).
