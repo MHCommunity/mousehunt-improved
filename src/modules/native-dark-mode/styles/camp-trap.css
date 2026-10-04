@@ -119,7 +119,7 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-filter input[data-filter="search"]::placeholder {
-  color: var(--text-dark);
+  color: var(--d-text-dark);
 }
 
 .mh-dark .campPage-trap-blueprint-closeButton {

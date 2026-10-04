@@ -43,3 +43,246 @@
 .mh-dark .newsPostBody {
   background: transparent;
 }
+
+.mh-dark .newsPage-container {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .newsPage-inner-container {
+  background-color: var(--d);
+  background-image: none;
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPage-header,
+.mh-dark .newsPage-container .newsPage-list-side-header,
+.mh-dark .newsPage-container .newsPage-post-item-title,
+.mh-dark .newsPage-container .newsPage-post-item-subtitle {
+  color: var(--d-text);
+}
+
+.mh-dark .newsPage-container .newsPage-post-current,
+.mh-dark .newsPage-container .newsPage-post-item {
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .newsPage-container .newsPage-post-current-container .newsPage-post-current-ribbon {
+  background-color: var(--d-orange-darker);
+  box-shadow: none;
+}
+
+.mh-dark .newsPage-container .newsPage-post-item {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item-description {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item .newsPage-post-item-postedBy,
+.mh-dark .newsPage-container .newsPage-post-item-postedBy .text {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .newsPage-container .newsPage-post-postedByImage {
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPage-container .newsPage-readMore {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item:hover .newsPage-readMore {
+  background-color: var(--d-orange-darker);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item.inactive {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item.inactive .newsPage-post-item-title,
+.mh-dark .newsPage-container .newsPage-post-item.inactive .newsPage-post-item-subtitle,
+.mh-dark .newsPage-container .newsPage-post-item.inactive .newsPage-post-item-description {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .newsPage-container .newsPage-post-item.inactive .newsPage-readMore {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .newsPage-container .newsPage-post-patchItem {
+  background-color: var(--d-alt);
+  box-shadow: none;
+}
+
+.mh-dark .newsPage-container .newsPage-post-patchItem:hover {
+  background-color: var(--d-blue-darker);
+}
+
+.mh-dark .newsPage-container .newsPage-post-patchTitle {
+  color: var(--d-text);
+}
+
+.mh-dark .newsPage-container .newsPage-archiveButton {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .newsPage-container .newsPage-archiveButton:hover {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPage-container .newsPage-breakingNewsBanner {
+  background-color: var(--d-orange-darker);
+}
+
+.mh-dark .newsPage-container .newsPage-breakingNewsBanner .newsPage-breakingNewsBanner-content {
+  color: var(--d-text);
+}
+
+.mh-dark #newsPost {
+  background-color: var(--d);
+}
+
+.mh-dark #newsPost .newsPostFooter {
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.mh-dark #newsPost .newsPostHeaderTitle,
+.mh-dark .newsPostHeaderContainer,
+.mh-dark .newsPostBodyContainer,
+.mh-dark #newsPost .newsPostFooter {
+  background-image: none;
+}
+
+.mh-dark #newsPost .newsPostHeaderTitle h2,
+.mh-dark #newsPost .newsPostSubtitle {
+  color: var(--d-text);
+}
+
+.mh-dark #newsPost .newsPostDescription,
+.mh-dark #newsPost h4,
+.mh-dark #newsPost .newsPostHeader a,
+.mh-dark #newsPost .newsPostFooter a,
+.mh-dark #newsPost .newsPostFooter .newsPostEditButton a,
+.mh-dark #newsPost .newsPostFooter .newsPostEditButton .newsPostBitlyButton {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #newsPost .newsPostHeader .newsPostBannerContainer,
+.mh-dark #newsPost .newsPostProfilePic {
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostSubscribeContainer,
+.mh-dark .newsPostFacebookContainer {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .newsPostSubscribeContainer-footer {
+  color: var(--d-text-muted);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostBody #news-post-responsive {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  box-shadow: 0 0 4px 1px var(--d-border) inset;
+}
+
+.mh-dark .newsPostBody #news-post-responsive b,
+.mh-dark .newsPostBody #news-post-responsive .feature-card h4,
+.mh-dark .newsPostBody #news-post-responsive section.showcaseBlock,
+.mh-dark .newsPostBody #news-post-responsive section.showcaseBlock .stat p {
+  color: var(--d-white);
+}
+
+.mh-dark .newsPostBody #news-post-responsive h1 {
+  color: var(--d-white);
+  text-shadow: none;
+  border-bottom-color: var(--d-text-muted);
+}
+
+.mh-dark .newsPostBody #news-post-responsive h2,
+.mh-dark .newsPostBody #news-post-responsive section.splash p {
+  color: var(--d-orange);
+}
+
+.mh-dark .newsPostBody #news-post-responsive h3,
+.mh-dark .newsPostBody #news-post-responsive section.text::first-letter {
+  color: var(--d-white);
+}
+
+.mh-dark .newsPostBody #news-post-responsive a {
+  color: var(--d-link);
+}
+
+.mh-dark .newsPostBody #news-post-responsive hr {
+  background-color: var(--d-border);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostBody #news-post-responsive footer {
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight.green {
+  background-color: var(--d-green-darker);
+  border-color: var(--d-green-dark);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight.red {
+  background-color: var(--d-red-darker);
+  border-color: var(--d-red-dark);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight.blue {
+  background-color: var(--d-blue-darker);
+  border-color: var(--d-blue-dark);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight.purple {
+  background-color: var(--d-purple-dark);
+  border-color: var(--d-purple);
+}
+
+.mh-dark .newsPostBody #news-post-responsive .highlight.orange,
+.mh-dark .newsPostBody #news-post-responsive .highlight.special {
+  background-color: var(--d-orange-darker);
+  border-color: var(--d-orange-dark);
+}
+
+.mh-dark .newsPostBody #news-post-responsive section.showcaseBlock {
+  background-color: var(--d-bg);
+  box-shadow: none;
+}
+
+.mh-dark .newsPostBody #news-post-responsive .feature-card .price {
+  color: var(--d-red-light);
+  text-shadow: none;
+}
+
+.mh-dark .newsPostBody #news-post-responsive h2.headerLink a {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsPostBody #news-post-responsive h2.headerLink a:hover {
+  color: var(--d-white);
+  background-color: var(--d-blue-dark);
+}
