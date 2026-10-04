@@ -15,7 +15,7 @@ const init = () => {
 export default {
   id: 'hide-game-info-bar',
   name: 'Hide Game Info Bar',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: false,
   description: 'Hide the Hunters Online and Friends Online bar above the HUD.',
   liveToggle: true,

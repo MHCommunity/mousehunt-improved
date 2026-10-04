@@ -280,7 +280,7 @@ const init = async () => {
 export default {
   id: 'journal-changer',
   name: 'Journal Theme Changer',
-  type: 'journal-progress-stats',
+  type: 'personalization',
   default: false,
   description: 'Pick a random journal theme, get a new one each day, or match it to your location.',
   load: init,

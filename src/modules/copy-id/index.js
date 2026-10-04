@@ -100,7 +100,7 @@ const init = () => {
 export default {
   id: 'copy-id',
   name: 'Copy ID Button',
-  type: 'social-profiles',
+  type: 'friends-gifts',
   default: true,
   description: 'Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" button.',
   load: init,

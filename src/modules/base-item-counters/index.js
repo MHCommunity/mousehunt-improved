@@ -28,7 +28,7 @@ const init = async () => {
 export default {
   id: 'base-item-counters',
   name: 'Base Item Counters',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Show toothlet and printing paper counts for supported bases in the trap selector and UI.',
   load: init,

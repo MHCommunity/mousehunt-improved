@@ -206,6 +206,7 @@ const getTradableItems = async (valueKey = 'all', { removeHidden = false } = {})
   return tradableItems.map((item) => ({
     name: item.name,
     value: item[valueKey],
+    type: item.type,
     image: item.image,
   }));
 };

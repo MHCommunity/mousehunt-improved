@@ -687,7 +687,7 @@ export default {
   type: 'personalization',
   default: false,
   liveToggle: true,
-  description: 'Add a Quick Items menu to the top menu for opening or using your pinned convertibles and message items.',
+  description: 'Add a Quick Items menu to the top menu for opening pinned items.',
   load: init,
   settings,
 };

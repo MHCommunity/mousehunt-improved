@@ -347,25 +347,42 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
 
     let foundSelected = false;
 
-    settingSettings.options.forEach((option) => {
-      // If the value is 'optgroup', then we want to make an optgroup and use the options inside of it.
-      if (option.value === 'group') {
-        const settingRowInputDropdownSelectOptgroup = document.createElement('optgroup');
-        settingRowInputDropdownSelectOptgroup.label = option.name;
+    /**
+     * Add options to the dropdown. Groups become optgroups, and since those can't be nested, a
+     * nested group gets its own optgroup labeled with the groups it's in.
+     *
+     * @param {Array} options The options.
+     * @param {Array} labels  The names of the groups the options are in.
+     */
+    const appendOptions = (options, labels = []) => {
+      let optgroup = null;
 
-        option.options.forEach((optgroupOption) => {
-          const result = makeOption(optgroupOption, foundSelected, currentSetting, defaultValue, i);
-          foundSelected = result.foundSelected;
-          settingRowInputDropdownSelectOptgroup.append(result.settingRowInputDropdownSelectOption);
-        });
+      options.forEach((option) => {
+        if (option.value === 'group') {
+          optgroup = null;
+          appendOptions(option.options || [], [...labels, option.name]);
+          return;
+        }
 
-        settingRowInputDropdownSelect.append(settingRowInputDropdownSelectOptgroup);
-      } else {
         const result = makeOption(option, foundSelected, currentSetting, defaultValue, i);
         foundSelected = result.foundSelected;
-        settingRowInputDropdownSelect.append(result.settingRowInputDropdownSelectOption);
-      }
-    });
+
+        if (!labels.length) {
+          settingRowInputDropdownSelect.append(result.settingRowInputDropdownSelectOption);
+          return;
+        }
+
+        if (!optgroup) {
+          optgroup = document.createElement('optgroup');
+          optgroup.label = labels.join(' › ');
+          settingRowInputDropdownSelect.append(optgroup);
+        }
+
+        optgroup.append(result.settingRowInputDropdownSelectOption);
+      });
+    };
+
+    appendOptions(settingSettings.options);
 
     /**
      * Event listener for when the setting is changed.
@@ -691,6 +708,9 @@ const addSettingOnce = (options) => {
   if (!sectionExists) {
     const title = makeElement('div', 'PagePreferences__section');
     title.id = section.id;
+    if (options.module.hiddenFromNav) {
+      title.dataset.hiddenFromNav = 'true';
+    }
 
     const titleSection = makeElement('div', 'PagePreferences__title');
     makeElement('h3', 'PagePreferences__titleText', section.name, titleSection);
@@ -954,7 +974,7 @@ const addSettingForModule = async (module) => {
 };
 
 /**
- * Flatten a multi-select setting's options, pulling the options out of any groups.
+ * Flatten a multi-select setting's options, pulling the options out of any groups, however nested.
  *
  * @param {Array} options The options for the setting.
  * @param {Array} exclude The option values to leave out.
@@ -963,17 +983,13 @@ const addSettingForModule = async (module) => {
  */
 const flattenSettingOptions = (options, exclude = ['default']) => {
   return options
-    .reduce((acc, option) => {
+    .flatMap((option) => {
       if (Array.isArray(option.options)) {
-        return [...acc, ...option.options];
+        return flattenSettingOptions(option.options, []);
       }
 
-      if (option.value && option.name) {
-        return [...acc, option];
-      }
-
-      return acc;
-    }, [])
+      return option.value && option.name ? [option] : [];
+    })
     .filter((option) => !exclude.includes(option.value));
 };
 

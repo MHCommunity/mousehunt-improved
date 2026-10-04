@@ -83,7 +83,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 ### 🛑 Element Hiding
 
-- **[Adblock](docs/adblock.md)**: Hide advertisements for Feedback Friday, mobile apps, news ticker, etc.
+- **[Hide ads](docs/adblock.md)**: Hide advertisements for Feedback Friday, mobile apps, news ticker, etc.
 - **[Hide Codices](docs/hide-codices.md)**: Hide the codices on the trap selector.
 - **[Hide Daily Draw](docs/hide-daily-draw.md)**: Hide the Daily Draw inbox tab and notifications.
 - **[Hide Daily Reward Popup](docs/hide-daily-reward-popup.md)**: Automatically hide the daily reward popup.

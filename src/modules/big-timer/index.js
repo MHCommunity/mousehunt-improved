@@ -32,7 +32,7 @@ const init = () => {
 export default {
   id: 'big-timer',
   name: 'Big Timer',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Click the horn timer to switch between a normal and large size.',
   load: init,

@@ -97,16 +97,15 @@ export default {
   id: 'my-module',
   name: 'My Module',
   description: 'This is my module description.',
-  type: 'appearance', // Or another category from src/index.js, such as 'hunting-setup', 'inventory-economy', 'beta', or 'advanced'.
+  type: 'personalization', // Or another category from src/index.js, such as 'hunting-traps', 'inventory-shops', 'beta', or 'advanced'.
   default: false, // Whether the module should be enabled by default.
   load: init
 };
 ```
 
-Valid module categories are `required`, `appearance`, `hunting-setup`,
-`inventory-economy`, `location-hud`, `locations-maps-travel`,
-`journal-progress-stats`, `social-profiles`, `navigation-utilities`,
-`hide-simplify`, `beta`, and `advanced`.
+Valid module categories are `required`, `personalization`, `hunting-traps`,
+`inventory-shops`, `journal-stats`,
+`locations`, `location-huds`, `maps-challenges`, `friends-gifts`, `beta`, and `advanced`.
 
 ### Importing utilities
 
@@ -139,7 +138,7 @@ export default {
   id: 'my-module',
   name: 'My Module',
   description: 'This is my module description.',
-  type: 'appearance',
+  type: 'personalization',
   default: false,
   load: init,
   settings

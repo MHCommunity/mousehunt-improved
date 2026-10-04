@@ -67,7 +67,7 @@ export default {
   id: 'trap-selector-special-effects',
   name: 'Trap Selector Special Effects',
   description: 'Add a dot to items in the trap selector that have special effects, including ones that only work at your current location.',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   load: init,
 };

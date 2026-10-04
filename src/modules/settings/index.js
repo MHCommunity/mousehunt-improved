@@ -647,7 +647,10 @@ const createSettingsBrowser = () => {
     main.append(section);
   });
 
-  const categories = [{ id: 'all', title: 'All' }, ...sections.map((section) => ({ id: section.id, title: getSectionTitleText(section) }))];
+  const categories = [
+    { id: 'all', title: 'All' },
+    ...sections.filter((section) => !section.dataset.hiddenFromNav).map((section) => ({ id: section.id, title: getSectionTitleText(section) })),
+  ];
   categories.forEach(({ id, title }) => {
     const navItem = makeElement('button', 'mhui-settings-nav-item');
     navItem.type = 'button';

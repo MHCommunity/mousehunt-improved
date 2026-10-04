@@ -3,25 +3,67 @@ import { makeElement } from './elements';
 let pickerCount = 0;
 
 /**
- * Flatten setting options into a plain list, dropping separators and unwrapping groups.
+ * Flatten setting options into a list of group headers and options, dropping separators.
+ *
+ * Groups can be nested, and start collapsed when they have `collapsed: true`. Each node links to
+ * its `parent` group, and groups without any options are left out.
  *
  * @param {Array}  options The setting options.
- * @param {string} group   The name of the group the options are in.
+ * @param {Object} parent  The group the options are in.
+ * @param {Array}  nodes   The list being built.
  *
- * @return {Array} The selectable options.
+ * @return {Array} The group headers and options, in order.
  */
-const flattenOptions = (options, group = null) => {
-  return options.flatMap((option) => {
+const flattenOptions = (options, parent = null, nodes = []) => {
+  const depth = parent ? parent.depth + 1 : 0;
+
+  for (const option of options) {
     if (option.seperator) {
-      return [];
+      continue;
     }
 
-    if ('group' === option.value) {
-      return flattenOptions(option.options || [], option.name);
+    if ('group' !== option.value) {
+      nodes.push({ ...option, depth, parent });
+      continue;
     }
 
-    return [{ ...option, group }];
-  });
+    const group = {
+      isGroup: true,
+      name: option.name,
+      depth,
+      parent,
+      collapsed: Boolean(option.collapsed),
+      path: [...(parent?.path || []), option.name],
+    };
+
+    const start = nodes.length;
+    nodes.push(group);
+    flattenOptions(option.options || [], group, nodes);
+
+    group.count = nodes.slice(start + 1).filter((node) => !node.isGroup).length;
+    if (!group.count) {
+      nodes.length = start;
+    }
+  }
+
+  return nodes;
+};
+
+/**
+ * Check whether every group a node is in is expanded.
+ *
+ * @param {Object} node The group header or option.
+ *
+ * @return {boolean} Whether the node is shown.
+ */
+const isExpanded = (node) => {
+  for (let group = node.parent; group; group = group.parent) {
+    if (group.collapsed) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 /**
@@ -131,13 +173,15 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
   pickerCount++;
   const listId = `mhui-item-picker-list-${pickerCount}`;
 
-  const items = flattenOptions(options).map((option) => ({ ...option, search: normalize(option.name) }));
+  const nodes = flattenOptions(options);
+  const groups = nodes.filter((node) => node.isGroup);
+  const items = nodes.filter((node) => !node.isGroup);
+  items.forEach((item) => {
+    item.search = normalize(item.name);
+  });
+
   const hasPreviews = !!preview || items.some((item) => item.css);
   const iconPreview = hasPreviews ? preview || (() => null) : null;
-
-  // Group headers are only shown while the list isn't filtered.
-  const listNodes = [];
-  const headers = [];
 
   let selectedValue = value;
   let activeIndex = -1;
@@ -195,18 +239,31 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
       return;
     }
 
-    items.forEach((item, index) => {
-      if (item.group && item.group !== items[index - 1]?.group) {
-        const header = makeElement('li', 'mhui-item-picker-group', item.group);
-        header.setAttribute('role', 'presentation');
-        headers.push(header);
-        listNodes.push(header);
-      }
+    for (const group of groups) {
+      const header = makeElement('li', 'mhui-item-picker-group');
+      header.setAttribute('role', 'presentation');
+      header.style.setProperty('--mhui-item-picker-depth', group.depth);
+      makeElement('span', 'mhui-item-picker-group-toggle', '', header);
+      makeElement('span', 'mhui-item-picker-group-name', group.name, header);
+      makeElement('span', 'mhui-item-picker-group-count', `${group.count}`, header);
 
+      header.addEventListener('mousedown', (event) => event.preventDefault());
+      header.addEventListener('click', () => toggleGroup(group));
+
+      group.row = header;
+    }
+
+    items.forEach((item, index) => {
       const row = makeElement('li', 'mhui-item-picker-option');
       row.id = `${listId}-${index}`;
       row.setAttribute('role', 'option');
+      row.style.setProperty('--mhui-item-picker-depth', item.depth);
       row.append(makeIcon(item, iconPreview), makeName(item.name));
+
+      // Shown while searching, when the group headers are hidden.
+      if (item.parent) {
+        makeElement('span', 'mhui-item-picker-path', item.parent.path.join(' â€º '), row);
+      }
 
       if (item.disabled) {
         row.classList.add('disabled');
@@ -222,10 +279,9 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
       }
 
       item.row = row;
-      listNodes.push(row);
     });
 
-    list.append(...listNodes);
+    list.append(...nodes.map((node) => node.row));
 
     listBuilt = true;
   };
@@ -281,31 +337,60 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
   };
 
   /**
-   * Show only the options matching the search text, best matches first.
+   * Show the options matching the search text, best matches first, or the expanded groups when
+   * there's no search.
    */
-  const filter = () => {
+  const render = () => {
     const query = normalize(search.value);
-
-    visibleItems = items.filter((item) => !query || item.search.includes(query));
 
     if (query) {
       // Names starting with the query float to the top; otherwise keep alphabetical order.
+      visibleItems = items.filter((item) => item.search.includes(query));
       visibleItems.sort((a, b) => Number(!a.search.startsWith(query)) - Number(!b.search.startsWith(query)));
+    } else {
+      visibleItems = items.filter((item) => isExpanded(item));
     }
 
     const visible = new Set(visibleItems);
     items.forEach((item) => {
       item.row.hidden = !visible.has(item);
     });
-    headers.forEach((header) => {
-      header.hidden = !!query;
+    groups.forEach((group) => {
+      group.row.hidden = !!query || !isExpanded(group);
+      group.row.classList.toggle('collapsed', group.collapsed);
     });
-    list.append(...(query ? visibleItems.map((item) => item.row) : listNodes));
+    list.classList.toggle('is-filtered', !!query);
+    list.append(...(query ? visibleItems : nodes).map((node) => node.row));
 
     empty.hidden = visibleItems.length > 0;
+  };
+
+  /**
+   * Expand or collapse a group, keeping the highlighted option if it's still shown.
+   *
+   * @param {Object} group The group.
+   */
+  const toggleGroup = (group) => {
+    const active = visibleItems[activeIndex];
+    active?.row.classList.remove('active');
+    activeIndex = -1;
+
+    group.collapsed = !group.collapsed;
+    render();
+
+    setActive(visibleItems.indexOf(active), false);
+  };
+
+  /**
+   * Filter the list for the search text and highlight the best option.
+   */
+  const filter = () => {
+    const query = normalize(search.value);
 
     visibleItems[activeIndex]?.row.classList.remove('active');
     activeIndex = -1;
+
+    render();
 
     const selectedIndex = query ? 0 : visibleItems.findIndex((item) => item.value === selectedValue);
     setActive(selectedIndex, true);
@@ -353,6 +438,13 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
       const isSelected = item.value === selectedValue;
       item.row.classList.toggle('selected', isSelected);
       item.row.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+
+      // Open the groups the selected option is in.
+      if (isSelected) {
+        for (let group = item.parent; group; group = group.parent) {
+          group.collapsed = false;
+        }
+      }
     });
 
     popover.hidden = false;

@@ -62,7 +62,7 @@ const init = () => {
 export default {
   id: 'better-kings-reward',
   name: "Better King's Reward",
-  type: 'inventory-economy',
+  type: 'hunting-traps',
   default: true,
   description: "Restyle the King's Reward and automatically close the success message.",
   load: init,

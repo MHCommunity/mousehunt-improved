@@ -61,7 +61,7 @@ export default {
   id: 'native-dark-mode',
   name: 'Dark Mode',
   description: 'Turn off the MHCT dark mode if you use this.',
-  type: 'appearance',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   load: init,

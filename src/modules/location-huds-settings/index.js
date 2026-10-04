@@ -5,7 +5,7 @@ import settings from './settings';
  */
 export default {
   id: 'location-huds-settings',
-  type: 'locations-maps-travel',
+  type: 'location-huds',
   alwaysLoad: true,
   settings,
   load: () => {},

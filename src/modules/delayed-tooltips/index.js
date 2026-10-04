@@ -29,7 +29,7 @@ const init = () => {
 export default {
   id: 'delayed-tooltips',
   name: 'Delayed Tooltips',
-  type: 'navigation-utilities',
+  type: 'personalization',
   default: true,
   description: 'Hold Shift to show tooltips right away.',
   liveToggle: true,

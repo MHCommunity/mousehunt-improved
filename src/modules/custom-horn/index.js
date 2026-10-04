@@ -73,7 +73,7 @@ const init = () => {
  */
 export default {
   id: 'custom-horn',
-  type: 'appearance',
+  type: 'personalization',
   alwaysLoad: true,
   load: init,
   settings,

@@ -219,7 +219,7 @@ const init = () => {
 export default {
   id: 'better-shops',
   name: 'Better Shops',
-  type: 'inventory-economy',
+  type: 'inventory-shops',
   default: true,
   description: 'Improve the shop layout, shrink items you already own that have a limit of one, and more.',
   load: init,

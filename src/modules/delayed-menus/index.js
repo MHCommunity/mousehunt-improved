@@ -12,7 +12,7 @@ const init = () => {
 export default {
   id: 'delayed-menus',
   name: 'Delayed Menus',
-  type: 'navigation-utilities',
+  type: 'personalization',
   default: true,
   description: 'Add a short delay before menu dropdowns open.',
   liveToggle: true,

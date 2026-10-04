@@ -14,8 +14,8 @@ const init = () => {
  */
 export default {
   id: 'adblock',
-  name: 'Adblock',
-  type: 'hide-simplify',
+  name: 'Hide ads',
+  type: 'personalization',
   default: false,
   description: 'Hide ads for Feedback Friday, the mobile apps, and more.',
   liveToggle: true,

@@ -16,7 +16,7 @@ export default {
   id: 'hide-codices',
   name: 'Hide Codices',
   description: 'Hide the active codex in the trap selector.',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   load: init,

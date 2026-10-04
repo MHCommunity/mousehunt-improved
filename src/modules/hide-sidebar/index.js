@@ -101,7 +101,7 @@ const init = () => {
 export default {
   id: 'no-sidebar',
   name: 'Hide Sidebar',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: true,
   liveToggle: true,
   description: 'Hide the sidebar and show it as a "Sidebar" dropdown in the top menu.',

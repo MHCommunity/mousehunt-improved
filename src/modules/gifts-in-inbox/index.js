@@ -824,7 +824,7 @@ const init = () => {
 export default {
   id: MODULE_ID,
   name: 'Gifts in Inbox',
-  type: 'social-profiles',
+  type: 'friends-gifts',
   default: true,
   liveToggle: true,
   description: 'Add a "Gift Links" tab to your inbox with recently found MouseHunt gift links, ready to claim.',

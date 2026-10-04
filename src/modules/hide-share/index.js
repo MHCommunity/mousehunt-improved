@@ -19,7 +19,7 @@ const init = () => {
 export default {
   id: 'no-share',
   name: 'Hide Share Buttons',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: true,
   liveToggle: true,
   load: init,

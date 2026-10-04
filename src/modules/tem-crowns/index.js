@@ -119,7 +119,7 @@ const init = async () => {
 export default {
   id: 'tem-crowns',
   name: 'TEM Crowns',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Show crowns and catch counts in the Trap Effectiveness Meter.',
   load: init,

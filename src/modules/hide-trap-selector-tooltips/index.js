@@ -15,7 +15,7 @@ const init = () => {
 export default {
   id: 'hide-trap-selector-tooltips',
   name: 'Hide Trap Selector Tooltips',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   load: init,

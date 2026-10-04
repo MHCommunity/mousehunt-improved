@@ -108,7 +108,7 @@ export default {
   id: 'metric',
   name: 'Metric Units',
   description: 'Show mouse weights in kilograms instead of pounds and ounces.',
-  type: 'navigation-utilities',
+  type: 'journal-stats',
   default: false,
   load: init,
 };

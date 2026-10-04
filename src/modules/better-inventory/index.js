@@ -728,7 +728,7 @@ export default {
   id: 'better-inventory',
   name: 'Better Inventory',
   description: 'Update the inventory layout and styling.',
-  type: 'inventory-economy',
+  type: 'inventory-shops',
   default: true,
   load: init,
   settings,

@@ -14,7 +14,7 @@ const init = () => {
 export default {
   id: 'hide-news-ticker',
   name: 'Hide News Ticker',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: true,
   liveToggle: true,
   load: init,

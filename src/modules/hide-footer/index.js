@@ -16,7 +16,7 @@ const init = () => {
 export default {
   id: 'no-footer',
   name: 'Hide Footer',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   load: init,

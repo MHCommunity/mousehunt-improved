@@ -36,7 +36,7 @@ const init = () => {
 export default {
   id: 'better-ui',
   name: 'Better UI',
-  type: 'appearance',
+  type: 'personalization',
   default: true,
   order: -1,
   load: init,

@@ -197,7 +197,7 @@ const init = async () => {
 export default {
   id: 'journal-privacy',
   name: 'Journal Privacy',
-  type: 'hide-simplify',
+  type: 'journal-stats',
   default: false,
   description: 'Hide player names in the journal.',
   liveToggle: true,

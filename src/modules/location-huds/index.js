@@ -271,7 +271,7 @@ const init = async () => {
  */
 export default {
   id: 'location-huds',
-  type: 'location-hud',
+  type: 'location-huds',
   alwaysLoad: true,
   load: init,
   settings,

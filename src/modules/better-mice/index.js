@@ -653,7 +653,7 @@ const init = () => {
 export default {
   id: 'better-mice',
   name: 'Better Mice',
-  type: 'journal-progress-stats',
+  type: 'journal-stats',
   default: true,
   description: "Add attraction rates and MH Wiki and MHCT links to mouse popups, sort the mouse stats pages, and add a King's Crown tab.",
   load: init,

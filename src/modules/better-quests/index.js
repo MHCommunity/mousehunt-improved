@@ -499,7 +499,7 @@ const init = () => {
 export default {
   id: 'better-quests',
   name: 'Better Quests',
-  type: 'locations-maps-travel',
+  type: 'maps-challenges',
   default: true,
   description: 'Open the assignments popup from anywhere, improve the Quests tab, and add a helper for the M400 assignments.',
   load: init,

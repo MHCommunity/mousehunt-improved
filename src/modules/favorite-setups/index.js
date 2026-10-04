@@ -1659,7 +1659,7 @@ const init = async () => {
 export default {
   id: 'favorite-setups',
   name: 'Favorite Setups',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Save your favorite setups and arm them with a single click.',
   load: init,

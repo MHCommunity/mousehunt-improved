@@ -16,7 +16,7 @@ export default {
   id: 'taller-windows',
   name: 'Taller Windows',
   description: 'Make popups like maps, the gift selector, and Send Supplies taller.',
-  type: 'navigation-utilities',
+  type: 'personalization',
   default: true,
   liveToggle: true,
   load: init,

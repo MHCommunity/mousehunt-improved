@@ -61,7 +61,7 @@ const init = async () => {
 export default {
   id: 'better-journal',
   name: 'Better Journal',
-  type: 'journal-progress-stats',
+  type: 'journal-stats',
   default: true,
   description: "Improve the journal's text, layout, and styling.",
   load: init,

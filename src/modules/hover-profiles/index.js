@@ -395,7 +395,7 @@ const init = () => {
 export default {
   id: 'hover-profiles',
   name: 'Hover Profiles',
-  type: 'social-profiles',
+  type: 'friends-gifts',
   default: true,
   description: 'Hover over a name to see a mini profile.',
   load: init,

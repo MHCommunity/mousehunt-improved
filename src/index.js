@@ -30,17 +30,18 @@ import * as imported from './modules/*/index.js'; // eslint-disable-line import/
 const modules = imported;
 
 const categories = [
-  { id: 'required', name: 'Always Loaded' },
-  { id: 'appearance', name: 'Appearance' },
-  { id: 'hide-simplify', name: 'Hide & Simplify' },
-  { id: 'hunting-setup', name: 'Hunting & Trap Setup' },
-  { id: 'inventory-economy', name: 'Inventory & Economy' },
-  { id: 'journal-progress-stats', name: 'Journal & Progress' },
-  { id: 'locations-maps-travel', name: 'Travel & Maps' },
-  { id: 'location-hud', name: 'Location HUDs' },
-  { id: 'navigation-utilities', name: 'Navigation & Utilities' },
-  { id: 'social-profiles', name: 'Friends & Profiles' },
-  { id: 'beta', name: 'Experimental Features' },
+  { id: 'required', name: 'Always loaded' },
+  { id: 'personalization', name: 'Personalization' },
+  { id: 'hunting-traps', name: 'Hunting & traps' },
+  { id: 'inventory-shops', name: 'Inventory & shops' },
+  { id: 'journal-stats', name: 'Journal & stats' },
+  { id: 'locations', name: 'Locations' },
+  { id: 'location-huds', name: 'Location HUDs' },
+  { id: 'maps-challenges', name: 'Maps & challenges' },
+  { id: 'friends-gifts', name: 'Friends & gifts' },
+  // Only shown under "All" (and in search), for modules that don't fit anywhere else.
+  { id: 'other', name: 'Other', hiddenFromNav: true },
+  { id: 'beta', name: 'Beta & experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
 
@@ -109,7 +110,7 @@ const getCategoriesWithModules = () => {
         return orderA - orderB;
       }
 
-      return (a.name || a.id).localeCompare(b.name || b.id);
+      return (a.sortName || a.name || a.id).localeCompare(b.sortName || b.name || b.id);
     });
   }
 

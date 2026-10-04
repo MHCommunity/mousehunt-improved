@@ -48,6 +48,8 @@ const init = () => {
  */
 export default {
   id: 'custom-menu',
+  // Sort after custom-shield so the link-only row doesn't break up the dropdowns.
+  sortName: 'custom-z-menu',
   type: 'personalization',
   alwaysLoad: true,
   load: init,

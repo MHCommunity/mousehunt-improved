@@ -616,7 +616,7 @@ const init = () => {
 export default {
   id: MODULE_ID,
   name: 'Better Gifts',
-  type: 'social-profiles',
+  type: 'friends-gifts',
   default: true,
   description: 'Quickly accept and return all your gifts, and pick random friends to send to.',
   liveToggle: true,

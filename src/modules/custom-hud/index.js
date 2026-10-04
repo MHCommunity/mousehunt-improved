@@ -82,7 +82,7 @@ const init = () => {
  */
 export default {
   id: 'custom-hud',
-  type: 'appearance',
+  type: 'personalization',
   alwaysLoad: true,
   load: init,
   settings,

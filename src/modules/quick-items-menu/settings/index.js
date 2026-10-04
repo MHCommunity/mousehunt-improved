@@ -1,4 +1,4 @@
-import { getData, getMultiSelectSetting } from '@utils';
+import { getData, getMultiSelectSetting, groupItemOptions } from '@utils';
 
 const defaultItemType = 'kilohertz_processor_convertible';
 
@@ -80,7 +80,7 @@ const getSettings = async () => {
         type: 'multi-select',
         expandable: true,
         searchable: true,
-        options: convertibles,
+        options: await groupItemOptions(convertibles),
       },
     },
   ];

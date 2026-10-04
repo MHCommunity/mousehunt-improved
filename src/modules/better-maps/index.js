@@ -729,7 +729,7 @@ const init = () => {
 export default {
   id: 'better-maps',
   name: 'Better Maps',
-  type: 'locations-maps-travel',
+  type: 'maps-challenges',
   default: true,
   description: 'Improve treasure maps with updated styles, attraction rates, a Sorted tab that groups the mice, and more information on each tab.',
   load: init,

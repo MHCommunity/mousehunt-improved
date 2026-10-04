@@ -307,7 +307,7 @@ export default {
   id: 'legacy-hud',
   name: 'Legacy HUD',
   description: 'Bring back the classic menu and stats bar, with optional tweaks.',
-  type: 'hunting-setup',
+  type: 'personalization',
   default: false,
   load: init,
   settings,

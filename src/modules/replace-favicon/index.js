@@ -49,7 +49,7 @@ const init = async () => {
 export default {
   id: 'replace-favicon',
   name: 'Replace Favicon',
-  type: 'appearance',
+  type: 'personalization',
   default: true,
   load: init,
 };

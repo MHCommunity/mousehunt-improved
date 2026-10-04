@@ -50,7 +50,7 @@ const init = () => {
 export default {
   id: 'hide-daily-reward-popup',
   name: 'Hide Daily Reward Popup',
-  type: 'hide-simplify',
+  type: 'personalization',
   default: false,
   liveToggle: true,
   load: init,

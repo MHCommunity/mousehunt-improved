@@ -276,7 +276,7 @@ const init = () => {
 export default {
   id: 'real-base-stats',
   name: 'Real Base Stats',
-  type: 'hunting-setup',
+  type: 'hunting-traps',
   default: true,
   description: 'Show the correct stats for Prestige, Hailstone, Denture, and Printing bases in the trap selector.',
   load: init,

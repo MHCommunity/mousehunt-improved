@@ -532,7 +532,7 @@ const init = async () => {
 export default {
   id: 'keyboard-shortcuts',
   name: 'Keyboard Shortcuts',
-  type: 'navigation-utilities',
+  type: 'personalization',
   default: true,
   description: 'Press “?” to see all shortcuts, or <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit them</a>.',
   load: init,

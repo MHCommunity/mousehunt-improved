@@ -567,10 +567,6 @@
   border-style: dashed;
 }
 
-.mhui-item-picker.is-empty .mhui-item-picker-name {
-  font-style: italic;
-}
-
 .mhui-item-picker-name {
   flex: 1;
   min-width: 0;
@@ -679,20 +675,77 @@
 }
 
 .mhui-item-picker-group {
-  padding: 8px 6px 2px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 6px 3px calc(6px + var(--mhui-item-picker-depth, 0) * 14px);
   font-size: 10px;
   font-weight: 700;
   color: var(--mhui-settings-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+}
+
+.mhui-item-picker-group:hover {
+  color: var(--mhui-settings-text);
+  background: var(--mhui-settings-match);
 }
 
 .mhui-item-picker-group:first-child {
-  padding-top: 2px;
+  padding-top: 3px;
 }
 
 .mhui-item-picker-group[hidden] {
   display: none;
+}
+
+.mhui-item-picker-group-toggle {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  margin: 0 1px 2px;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
+  transform: rotate(45deg);
+}
+
+.mhui-item-picker-group.collapsed .mhui-item-picker-group-toggle {
+  margin: 0 2px 0 0;
+  transform: rotate(-45deg);
+}
+
+.mhui-item-picker-group-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.mhui-item-picker-group-count {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Nested options line up under their group's name. */
+.mhui-item-picker-list:not(.is-filtered) .mhui-item-picker-option {
+  padding-left: calc(6px + var(--mhui-item-picker-depth, 0) * 14px);
+}
+
+/* While searching, show which group each match is in. */
+.mhui-item-picker-path {
+  display: none;
+  flex: none;
+  max-width: 45%;
+  overflow: hidden;
+  font-size: 10px;
+  color: var(--mhui-settings-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mhui-item-picker-list.is-filtered .mhui-item-picker-path {
+  display: block;
 }
 
 /* Swatches and previews */
@@ -813,47 +866,47 @@
 }
 
 /* Location HUDs */
-#mousehunt-improved-settings-location-hud-wrapper {
+#mousehunt-improved-settings-location-huds-wrapper {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 5px;
   padding: 8px;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault {
+#mousehunt-improved-settings-location-huds-wrapper [id*="location-huds-enabled"] .PagePreferences__settingDescription,
+#mousehunt-improved-settings-location-huds-wrapper [id*="location-huds-enabled"] .PagePreferences__settingDefault {
   display: none;
 }
 
 /* Compact tiles for the per-location toggles */
-#mousehunt-improved-settings-location-hud-wrapper [id*="location-huds-enabled"] .PagePreferences__setting {
+#mousehunt-improved-settings-location-huds-wrapper [id*="location-huds-enabled"] .PagePreferences__setting {
   min-height: 23px;
   padding: 3px 10px;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper [id*="location-huds-enabled"] .PagePreferences__settingName {
+#mousehunt-improved-settings-location-huds-wrapper [id*="location-huds-enabled"] .PagePreferences__settingName {
   font-size: 11px;
 }
 
-#mousehunt-improved-settings-location-hud-location-huds-enabled-train_station .PagePreferences__settingName {
+#mousehunt-improved-settings-location-huds-enabled-train_station .PagePreferences__settingName {
   max-width: 124px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper [id*="location-huds-enabled"] .PagePreferences__settingAction,
+#mousehunt-improved-settings-location-huds-wrapper [id*="location-huds-enabled"] .PagePreferences__settingAction,
 .mousehunt-improved-settings .multi-toggle .mousehuntSettingSlider {
   display: block;
   transform: scale(0.75);
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
+#mousehunt-improved-settings-location-huds-wrapper .PagePreferences__settingsList.highlight {
   background-color: var(--mhui-settings-match);
   border-color: var(--mhui-settings-accent);
 }
 
 /* Full-width rows for the options below the location toggles */
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:not([id*="location-huds-enabled"]) {
+#mousehunt-improved-settings-location-huds-wrapper .PagePreferences__settingsList:not([id*="location-huds-enabled"]) {
   grid-column: 1 / -1;
 }
 
@@ -1126,31 +1179,6 @@ a.update-data-link.updating {
   --mhui-settings-input: var(--d-input-bg, #434651);
   --mhui-settings-select: var(--d-action, #5e646f);
   --mhui-settings-stripe: rgb(0 0 0 / 20%);
-}
-
-/* Responsive */
-@media (max-width: 760px) {
-  .mhui-settings-header,
-  .mhui-settings-browser {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .mhui-settings-sidebar {
-    position: static;
-    max-height: none;
-  }
-
-  .mhui-settings-nav-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
-
-  .mousehunt-improved-settings .PagePreferences__sectionWrapper,
-  #mousehunt-improved-settings-location-hud-wrapper,
-  .mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
-  .mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 #mousehunt-improved-settings-override-styles {

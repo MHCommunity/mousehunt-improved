@@ -27,7 +27,7 @@ export default {
   id: 'fixes',
   name: 'Fixes',
   description: 'Fix small bugs and display glitches in the game.',
-  type: 'navigation-utilities',
+  type: 'other',
   default: true,
   load: init,
 };

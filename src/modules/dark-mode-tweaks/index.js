@@ -55,7 +55,7 @@ const init = () => {
 export default {
   id: 'dark-mode',
   name: 'MHCT Dark Mode Tweaks',
-  type: 'appearance',
+  type: 'personalization',
   default: false,
   hiddenUnlessEnabled: true,
   description: 'Only for the MHCT dark mode. This doesn’t add a dark mode on its own.',

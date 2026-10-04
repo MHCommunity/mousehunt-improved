@@ -151,7 +151,7 @@ const init = () => {
  */
 export default {
   id: 'custom-shield',
-  type: 'appearance',
+  type: 'personalization',
   alwaysLoad: true,
   load: init,
   settings,

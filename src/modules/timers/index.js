@@ -186,7 +186,7 @@ export default {
   id: 'timers',
   name: 'Timers',
   description: "Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.",
-  type: 'locations-maps-travel',
+  type: 'locations',
   default: false,
   load: init,
 };
