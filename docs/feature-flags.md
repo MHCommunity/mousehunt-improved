@@ -15,7 +15,6 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |`infinite-super-brie`|Replaces the SUPER\|brie+ quantity in the menu with an infinity symbol (∞).|
 |`legacy-hud`|Treats the HUD as the legacy HUD for styling purposes.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
-|`settings-table-of-contents`|Adds a table of contents to the top of the settings page.|
 |`social-noop` (or `twitter`)|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 
 ### Module Flags
