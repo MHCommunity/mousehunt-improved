@@ -1,0 +1,12 @@
+.mhui-delay-tooltips .mousehuntTooltipParent > .mousehuntTooltip {
+  will-change: transform;
+}
+
+.mhui-delay-tooltips .mousehuntTooltipParent:hover > .mousehuntTooltip {
+  animation: mh-improved-in-scale 0.35s 1 forwards cubic-bezier(0.4, 0, 1, 1) 0s;
+}
+
+.mhui-delay-tooltips .PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,
+.mhui-delay-tooltips.no-delayed-tooltips .mousehuntTooltip {
+  animation: none !important;
+}
