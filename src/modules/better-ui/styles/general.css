@@ -161,6 +161,10 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   height: 22px;
 }
 
+a.mousehuntHud-menu-item.root {
+  box-shadow: inset -2px 0 2px -1px #bd9c7d;
+}
+
 /* events */
 
 /* ronza */

@@ -23,7 +23,6 @@
 
 .mh-dark .mousehuntHud-menu ul li:hover a,
 .mh-dark .mousehuntHud-menu ul li.active a {
-  color: var(--d-text-dark);
   text-shadow: none;
 }
 
