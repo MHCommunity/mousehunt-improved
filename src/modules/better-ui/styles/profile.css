@@ -212,6 +212,7 @@
 }
 
 .mouseCrownsView-group-mouse-name {
+  padding: 0 2px;
   font-size: 11px;
 }
 
@@ -245,8 +246,8 @@
 }
 
 .highlight a.mouseCrownsView-group-mouse-favouriteButton.active {
-  top: 0;
-  right: 0;
+  top: 4px;
+  right: 4px;
 }
 
 .mouseCrownsView-group-mouse-padding {

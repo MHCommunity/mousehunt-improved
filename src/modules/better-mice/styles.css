@@ -419,6 +419,10 @@ ul.minluck-list {
   color: var(--d-link);
 }
 
+.mouseListView-categoryContent-subgroup-mouse-stats:hover {
+  cursor: pointer;
+}
+
 .mouseListView-categoryContent-subgroup-mouse-stats.catches,
 .mouseListView-categoryContent-subgroup-mouse-stats.misses {
   width: 13%;

@@ -141,10 +141,11 @@ const applyPowerTypeFilter = (view) => {
 /**
  * Add the power type icons and the power type filter.
  *
- * @param {Element} view    The crowns view.
- * @param {Element} summary The summary element.
+ * @param {Element}      view      The crowns view.
+ * @param {Element|null} summary   The summary element to add the filter to, or null to skip the filter.
+ * @param {boolean}      showIcons Whether to add the power type icons to the mice.
  */
-const addPowerTypes = async (view, summary) => {
+const addPowerTypes = async (view, summary, showIcons) => {
   const mousePowerTypes = await getMousePowerTypes();
   if (!Object.keys(mousePowerTypes).length) {
     return;
@@ -157,6 +158,9 @@ const addPowerTypes = async (view, summary) => {
     }
 
     mouse.setAttribute('data-mh-power-type', powerType);
+    if (!showIcons) {
+      return;
+    }
 
     const card = mouse.querySelector('.mouseCrownsView-group-mouse-padding');
     if (!card || card.querySelector('.mh-crown-power-type-icon')) {
@@ -168,6 +172,10 @@ const addPowerTypes = async (view, summary) => {
     icon.title = powerType;
     card.append(icon);
   });
+
+  if (!summary) {
+    return;
+  }
 
   const silverPlus = new Set(['diamond', 'platinum', 'gold', 'silver']);
   const totals = {};
@@ -204,13 +212,8 @@ const addPowerTypes = async (view, summary) => {
     button.append(icon);
 
     const count = crowned[type] || 0;
-    const text = makeElement('div', 'mh-crown-power-type-text');
-    const numbers = makeElement('div', 'mh-crown-power-type-numbers');
-    makeElement('span', 'mh-crown-power-type-count', count.toLocaleString(), numbers);
-    makeElement('span', 'mh-crown-power-type-total', `/${totals[type].toLocaleString()}`, numbers);
-    text.append(numbers);
-    makeElement('div', 'mh-crown-summary-percent', formatPercent(count, totals[type]), text);
-    button.append(text);
+    makeElement('span', 'mh-crown-power-type-count', count.toLocaleString(), button);
+    makeElement('span', 'mh-crown-power-type-total', `/${totals[type].toLocaleString()}`, button);
     if (count === totals[type]) {
       button.classList.add('complete');
     }
@@ -346,12 +349,12 @@ const decorateKingsCrowns = async (container = null) => {
   powerTypeFilter = null;
 
   const showSummary = getSetting('better-mice.show-crown-summary', true);
-  const showPowerTypes = getSetting('better-mice.show-crown-power-types', true);
-  if (showSummary || showPowerTypes) {
-    const summary = await addSummary(view, showSummary);
-    if (showPowerTypes) {
-      await addPowerTypes(view, summary);
-    }
+  const showPowerTypeSummary = getSetting('better-mice.show-crown-power-type-summary', true);
+  const showPowerTypeIcons = getSetting('better-mice.show-crown-power-types', true);
+
+  const summary = showSummary || showPowerTypeSummary ? await addSummary(view, showSummary) : null;
+  if (showPowerTypeSummary || showPowerTypeIcons) {
+    await addPowerTypes(view, showPowerTypeSummary ? summary : null, showPowerTypeIcons);
   }
 
   addCollapsing(view);

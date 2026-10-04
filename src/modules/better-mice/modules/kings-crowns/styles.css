@@ -108,12 +108,13 @@
 
 .mh-crown-power-type {
   display: flex;
-  gap: 7px;
+  gap: 8px;
   align-items: center;
-  padding: 5px 8px;
-  font-size: 12px;
+  padding: 8px 10px;
+  font-size: 16px;
   color: inherit;
   text-align: left;
+  white-space: nowrap;
   cursor: pointer;
   background-color: rgb(255 255 255 / 60%);
   border: 1px solid transparent;
@@ -136,17 +137,8 @@
 
 .mh-crown-power-type img {
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-}
-
-.mh-crown-power-type-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.mh-crown-power-type-numbers {
-  white-space: nowrap;
+  width: 28px;
+  height: 28px;
 }
 
 .mh-crown-power-type-count {
@@ -154,8 +146,8 @@
 }
 
 .mh-crown-power-type-total {
-  font-size: 11px;
-  opacity: 0.6;
+  margin-left: -4px;
+  opacity: 0.55;
 }
 
 .mouseCrownsView-group-mouse-padding {

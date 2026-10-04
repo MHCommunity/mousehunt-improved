@@ -26,8 +26,13 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-mice.show-crown-power-type-summary',
+      title: "Show silver crowns by power type on King's Crowns",
+      default: true,
+    },
+    {
       id: 'better-mice.show-crown-power-types',
-      title: "Show power types on King's Crowns",
+      title: "Show power type icons on King's Crowns mice",
       default: true,
     },
   ];

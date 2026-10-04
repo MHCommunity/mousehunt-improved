@@ -2,12 +2,12 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin-left: 1px;
+  margin-left: 3px;
   cursor: pointer;
   content: "";
-  border-top: 9px solid #777;
-  border-right: 6px solid transparent;
-  border-left: 6px solid transparent;
+  border-top: 7px solid #777;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
 }
 
 .mh-dark .sort-button {
@@ -16,9 +16,9 @@
 
 .sort-button.reverse {
   border-top: 0;
-  border-right: 6px solid transparent;
-  border-bottom: 9px solid #777;
-  border-left: 6px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid #777;
+  border-left: 4px solid transparent;
 }
 
 .mh-dark .sort-button.reverse {
