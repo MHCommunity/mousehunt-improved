@@ -1,3 +1,5 @@
+import { addStyles } from '@utils';
+
 const selector = '.mousehuntHeaderView a.superBrie:not(#autoHorn) .quantity';
 
 /**
@@ -12,6 +14,8 @@ const replaceQuantity = () => {
 };
 
 export default async () => {
+  addStyles(`a.menuItem.superBrie .quantity { font-size: 19px; font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", math, serif; }`, 'infinite-super-brie');
+
   replaceQuantity();
 
   // The game rewrites the quantity whenever the inventory updates, so put it back.

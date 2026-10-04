@@ -408,24 +408,28 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
   };
 
   /**
-   * Open below the field, or beside it when there isn't room below, since the field can be at the
-   * bottom of a page that can't scroll any further.
+   * Open below the field, or above it when there's more room there, since the field can be at the
+   * bottom of a page that can't scroll any further. The list grows to fill the room it has.
    */
   const position = () => {
     const gap = 8;
+    const maxListHeight = hasPreviews ? 480 : 420;
+    const minListHeight = 120;
 
-    popover.classList.remove('is-beside');
-    popover.style.removeProperty('top');
+    popover.classList.remove('is-above');
+    list.style.removeProperty('max-height');
 
-    if (popover.getBoundingClientRect().bottom <= window.innerHeight - gap) {
-      return;
-    }
+    const rect = trigger.getBoundingClientRect();
+    const below = window.innerHeight - rect.bottom - gap;
+    const above = rect.top - gap;
+    const chrome = popover.offsetHeight - list.offsetHeight;
 
-    popover.classList.add('is-beside');
+    const fitsBelow = below >= chrome + maxListHeight;
+    const isAbove = !fitsBelow && above > below;
+    const room = (isAbove ? above : below) - chrome;
 
-    const pickerTop = picker.getBoundingClientRect().top;
-    const top = Math.max(gap - pickerTop, Math.min(0, window.innerHeight - gap - pickerTop - popover.offsetHeight));
-    popover.style.top = `${top}px`;
+    popover.classList.toggle('is-above', isAbove);
+    list.style.maxHeight = `${Math.max(minListHeight, Math.min(maxListHeight, room))}px`;
   };
 
   /**

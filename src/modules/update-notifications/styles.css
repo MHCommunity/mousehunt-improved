@@ -200,3 +200,30 @@ p.mh-improved-update-summary-content {
     100% 15px;
   border: 1px solid #b07842;
 }
+
+.mh-improved-update-summary-flags {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  background-color: #f3e5c0;
+  border: 1px solid #b07842;
+}
+
+.mh-improved-update-summary-flags p {
+  margin: 0;
+}
+
+.mh-improved-update-summary-flags ul {
+  padding-left: 20px;
+  margin: 8px 0;
+  list-style: disc;
+}
+
+.mh-improved-update-summary-flags code,
+.mh-dark .mh-improved-update-summary-flags code {
+  padding: 1px 4px;
+  color: #4d2f0f;
+  user-select: all;
+  background-color: #e9d5a2;
+  border-radius: 3px;
+}

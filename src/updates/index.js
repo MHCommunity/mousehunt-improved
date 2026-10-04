@@ -28,6 +28,22 @@ const restoreSettingsBackup = () => {
 };
 
 /**
+ * Compare two version updates by their version numbers.
+ *
+ * @param {Object} a The first update.
+ * @param {Object} b The second update.
+ *
+ * @return {number} Negative if a is older than b, positive if newer, zero if equal.
+ */
+const compareUpdateVersions = (a, b) => {
+  const aParts = a.version.split('.').map(Number);
+  const bParts = b.version.split('.').map(Number);
+  const index = aParts.findIndex((part, i) => part !== bParts[i]);
+
+  return -1 === index ? 0 : aParts[index] - (bParts[index] ?? 0);
+};
+
+/**
  * Get the needed version updates.
  *
  * @return {Object} The needed version updates.
@@ -42,6 +58,9 @@ const getVersionUpdates = () => {
       neededUpdates.push(versionUpdates[versionUpdate]);
     }
   }
+
+  // Files are imported in name order, which puts 0.100.0 before 0.94.0, so sort by version.
+  neededUpdates.sort(compareUpdateVersions);
 
   debuglog('update-migration', 'Needed updates:', neededUpdates);
 

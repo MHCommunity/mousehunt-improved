@@ -1,4 +1,22 @@
-#overlayPopup.spring_chick_message_item {
+#overlayPopup:is(
+  .not_so_secret_bunny_message_item,
+  .plush_terrible_twos_message_item,
+  .plush_tiger_message_item,
+  .santa_bear_message_item,
+  .slap_cat_message_item,
+  .teddy_bear_message_item,
+  .toy_ronza_ship_message_item,
+  .bat_plushie,
+  .super_briefs_message_item,
+  .sylvan_plushie_message_item,
+  .spring_chick_message_item,
+  .sock_ghost_plush_message_item,
+  .icewing_plushie_message_item,
+  .frozen_sealed_bottle_message_item,
+  .minuscule_photo_album_message_item,
+  .pumpkin_spice_latte_message_item,
+  .peppermint_latte_message_item
+) {
   background: #f8f8f4;
   border: 2px solid #bdb1d8;
   border-radius: 50px / 90%;
@@ -8,16 +26,152 @@
     0.9s bannerSoundNew 1 0.2s;
 }
 
-#overlayPopup.spring_chick_message_item .jsDialog.top,
-#overlayPopup.spring_chick_message_item .jsDialog.bottom,
-#overlayPopup.spring_chick_message_item .jsDialogContainer .prefix,
-#overlayPopup.spring_chick_message_item #jsDialogClose,
-#overlayPopup.spring_chick_message_item .jsDialog .quantity,
-#overlayPopup.spring_chick_message_item .description {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialog.top,
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialog.bottom,
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer
+  .prefix,
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  #jsDialogClose,
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialog
+  .quantity,
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .description {
   display: none;
 }
 
-#overlayPopup.spring_chick_message_item .jsDialogContainer .content {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer
+  .content {
   flex-grow: 1;
   margin: 0;
   font-size: 1.75em;
@@ -26,12 +180,51 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #overlayPopup.spring_chick_message_item .jsDialogContainer .content {
+  #overlayPopup:is(
+      .not_so_secret_bunny_message_item,
+      .plush_terrible_twos_message_item,
+      .plush_tiger_message_item,
+      .santa_bear_message_item,
+      .slap_cat_message_item,
+      .teddy_bear_message_item,
+      .toy_ronza_ship_message_item,
+      .bat_plushie,
+      .super_briefs_message_item,
+      .sylvan_plushie_message_item,
+      .spring_chick_message_item,
+      .sock_ghost_plush_message_item,
+      .icewing_plushie_message_item,
+      .frozen_sealed_bottle_message_item,
+      .minuscule_photo_album_message_item,
+      .pumpkin_spice_latte_message_item,
+      .peppermint_latte_message_item
+    )
+    .jsDialogContainer
+    .content {
     animation: none;
   }
 }
 
-#overlayPopup.spring_chick_message_item .jsDialogContainer {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,7 +232,28 @@
   height: 120px;
 }
 
-#overlayPopup.spring_chick_message_item .imgArray .img img {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .imgArray
+  .img
+  img {
   width: 100px;
   max-width: unset;
   height: 100px;
@@ -47,18 +261,77 @@
   transform: scaleX(-1);
 }
 
-#overlayPopup.spring_chick_message_item .jsDialogContainer .suffix {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer
+  .suffix {
   background: transparent;
   border: none;
 }
 
-#overlayPopup.spring_chick_message_item.singleItemLeft .jsDialogContainer .items {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  ).singleItemLeft
+  .jsDialogContainer
+  .items {
   float: none;
   width: 150px;
   padding: 0;
 }
 
-#overlayPopup.spring_chick_message_item.singleItemLeft .img {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  ).singleItemLeft
+  .img {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,19 +339,172 @@
   height: 100%;
 }
 
-#overlayPopup.spring_chick_message_item .jsDialog.background {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialog.background {
   background: transparent;
 }
 
-#overlayPopup.spring_chick_message_item .button {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .button {
   padding: 2px 6px;
 }
 
-#overlayPopup.spring_chick_message_item .img .itemImage {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .img
+  .itemImage {
   width: 100px;
   height: 100px;
 }
 
-#overlayPopup.spring_chick_message_item .img .name {
+#overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .img
+  .name {
   font-size: 1.25em;
+}
+
+.mh-dark
+  #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems):not(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer
+  .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+/* Message item popups (Scrambles' egghead tips, plushies, etc.), restyled as a banner by Better UI. */
+.mh-dark
+  #overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  ) {
+  background: var(--d-bg);
+}
+
+.mh-dark
+  #overlayPopup:is(
+    .not_so_secret_bunny_message_item,
+    .plush_terrible_twos_message_item,
+    .plush_tiger_message_item,
+    .santa_bear_message_item,
+    .slap_cat_message_item,
+    .teddy_bear_message_item,
+    .toy_ronza_ship_message_item,
+    .bat_plushie,
+    .super_briefs_message_item,
+    .sylvan_plushie_message_item,
+    .spring_chick_message_item,
+    .sock_ghost_plush_message_item,
+    .icewing_plushie_message_item,
+    .frozen_sealed_bottle_message_item,
+    .minuscule_photo_album_message_item,
+    .pumpkin_spice_latte_message_item,
+    .peppermint_latte_message_item
+  )
+  .jsDialogContainer
+  .content {
+  color: var(--d-text);
 }

@@ -1,4 +1,4 @@
-import { addStyles, createPopup, onEvent } from '@utils';
+import { addStyles, createPopup, deleteSetting, getSetting, onEvent, saveSetting } from '@utils';
 
 import styles from './styles.css';
 
@@ -88,6 +88,44 @@ const makeVersionMarkup = (summary, showVersion) => {
 };
 
 /**
+ * Make the markup for the flags suggested by an update, for options that are now feature flags.
+ *
+ * @param {Array} suggestions The suggested flags, as { flag, label } objects.
+ *
+ * @return {string} The markup.
+ */
+const makeSuggestedFlagsMarkup = (suggestions) => {
+  if (!suggestions.length) {
+    return '';
+  }
+
+  return `<div class="mh-improved-update-summary-flags">
+    <p>Some options you'd changed are now <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-override-flags">feature flags</a>. To keep them the way you had them, add these flags:</p>
+    <ul>
+      ${suggestions.map(({ flag, label }) => `<li>${label}: <code>${flag}</code></li>`).join('')}
+    </ul>
+    <a href="#" id="mh-improved-add-suggested-flags" class="mousehuntActionButton tiny"><span>Add these flags</span></a>
+  </div>`;
+};
+
+/**
+ * Add the suggested flags to the saved feature flags.
+ *
+ * @param {Array} suggestions The suggested flags, as { flag, label } objects.
+ */
+const addSuggestedFlags = (suggestions) => {
+  const flags = new Set(
+    getSetting('override-flags', '')
+      .split(',')
+      .map((flag) => flag.trim())
+      .filter(Boolean)
+  );
+
+  suggestions.forEach(({ flag }) => flags.add(flag));
+  saveSetting('override-flags', [...flags].join(','));
+};
+
+/**
  * Show the update summary popup.
  *
  * @param {string}  from  The version we're updating from.
@@ -97,7 +135,11 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
   // When forced, show everything we ship rather than nothing.
   const summaries = getSummariesSince(force ? '0.0.0' : from);
 
-  if (!summaries.length && !force) {
+  // Only shown once, whether or not the flags are added.
+  const suggestedFlags = getSetting('update-suggested-flags', []);
+  deleteSetting('update-suggested-flags');
+
+  if (!summaries.length && !suggestedFlags.length && !force) {
     return;
   }
 
@@ -108,6 +150,7 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
   const markup = `<div class="mh-improved-update-summary-wrapper">
 	  <h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
     <div class="mh-improved-update-summary-lists">${body}</div>
+    ${makeSuggestedFlagsMarkup(suggestedFlags)}
     <div class="mh-improved-update-summary-buttons">
       <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
     </div>
@@ -128,6 +171,13 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
 
   // If we want to show the popup, show it.
   popup.show();
+
+  const addFlags = document.querySelector('#mh-improved-add-suggested-flags');
+  addFlags?.addEventListener('click', (e) => {
+    e.preventDefault();
+    addSuggestedFlags(suggestedFlags);
+    addFlags.replaceWith(Object.assign(document.createElement('p'), { textContent: 'Added! They apply after you refresh the page.' }));
+  });
 
   const dismiss = document.querySelector('#mh-improved-dismiss-popup');
   if (!dismiss) {

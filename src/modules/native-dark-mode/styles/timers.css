@@ -1,0 +1,46 @@
+.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer h2 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-timers-location {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: 0 1px 2px var(--d-transparent-50);
+}
+
+.mh-dark .mh-timers-header {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-timers-image {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-timers-name,
+.mh-dark .mh-timers-stage-time {
+  color: var(--d-white);
+}
+
+.mh-dark .mh-timers-current,
+.mh-dark .mh-timers-stage-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-timers-stage {
+  border-color: var(--d-transparent-10);
+}
+
+.mh-dark .mh-timers-note {
+  color: var(--d-text-muted);
+}

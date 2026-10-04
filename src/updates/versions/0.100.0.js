@@ -16,28 +16,31 @@ const moveSetting = (oldKey, newKey) => {
 };
 
 /**
- * Replace settings with flags, adding the flag if the setting was saved with the given value.
+ * Remove settings that are now feature flags. If a setting was saved with the given value, the
+ * flag is suggested in the update summary rather than added, since the saved value may not have
+ * been a deliberate choice.
  *
- * @param {Array} replacements The [setting, flag, value] sets. The value defaults to false.
+ * @param {Array} replacements The [setting, flag, label, value] sets. The value defaults to false.
  */
 const replaceSettingsWithFlags = (replacements) => {
-  const flags = getSetting('override-flags', '')
-    .split(',')
-    .map((flag) => flag.trim())
-    .filter(Boolean);
+  const flags = new Set(
+    getSetting('override-flags', '')
+      .split(',')
+      .map((flag) => flag.trim())
+      .filter(Boolean)
+  );
 
-  let changed = false;
-  for (const [setting, flag, value = false] of replacements) {
-    if (value === getSetting(setting, null) && !flags.includes(flag)) {
-      flags.push(flag);
-      changed = true;
+  const suggestions = getSetting('update-suggested-flags', []);
+  for (const [setting, flag, label, value = false] of replacements) {
+    if (value === getSetting(setting, null) && !flags.has(flag) && !suggestions.some((suggestion) => suggestion.flag === flag)) {
+      suggestions.push({ flag, label });
     }
 
     deleteSetting(setting);
   }
 
-  if (changed) {
-    saveSetting('override-flags', flags.join(','));
+  if (suggestions.length) {
+    saveSetting('update-suggested-flags', suggestions);
   }
 };
 
@@ -94,6 +97,7 @@ const migrateHidePageElements = () => {
   moveSetting('hide-news-ticker', 'hide-page-elements.hide-news-ticker');
   moveSetting('hide-daily-draw', 'hide-page-elements.hide-daily-draw');
   moveSetting('hide-daily-reward-popup', 'hide-page-elements.hide-daily-reward-popup');
+  moveSetting('no-sidebar', 'hide-page-elements.hide-sidebar');
 };
 
 /**
@@ -195,7 +199,7 @@ const migratePickers = () => {
 };
 
 export default {
-  version: '0.99.16',
+  version: '0.100.0',
   update: async () => {
     migrateMenuItems();
     migrateHidePageElements();
@@ -217,17 +221,17 @@ export default {
     deleteSetting('journal-log-tracker.show-countdown');
 
     replaceSettingsWithFlags([
-      ['better-marketplace.value-column', 'better-marketplace-no-value-column'],
-      ['better-marketplace.highlight-last-viewed', 'better-marketplace-no-highlight-last-viewed'],
-      ['better-shops.hide-max-owned', 'better-shops-hide-max-owned', true],
-      ['better-journal.icons-minimal', 'better-journal-icons-minimal', true],
-      ['better-travel.travel-window', 'better-travel-no-travel-window'],
-      ['better-travel.travel-window-environment-icon', 'better-travel-no-travel-window-environment-icon'],
-      ['better-maps.community', 'better-maps-show-inactive-community-maps'],
-      ['better-maps.show-map-solver-links', 'better-maps-no-solver-links'],
-      ['better-quests.m400-helper', 'better-quests-no-m400-helper'],
-      ['better-tournaments.time-inline', 'better-tournaments-time-on-hover'],
-      ['favorite-setups.show-location-favorites', 'favorite-setups-no-location-favorites'],
+      ['better-marketplace.value-column', 'better-marketplace-no-value-column', 'Hide the marketplace value column'],
+      ['better-marketplace.highlight-last-viewed', 'better-marketplace-no-highlight-last-viewed', "Don't highlight the last viewed marketplace item"],
+      ['better-shops.hide-max-owned', 'better-shops-hide-max-owned', 'Hide shop items at their inventory limit', true],
+      ['better-journal.icons-minimal', 'better-journal-icons-minimal', 'Use minimal loot icons in the journal', true],
+      ['better-travel.travel-window', 'better-travel-no-travel-window', 'Turn off the Travel Window'],
+      ['better-travel.travel-window-environment-icon', 'better-travel-no-travel-window-environment-icon', 'Turn off the environment icon Travel Window shortcut'],
+      ['better-maps.community', 'better-maps-show-inactive-community-maps', 'Show inactive maps in Community Maps'],
+      ['better-maps.show-map-solver-links', 'better-maps-no-solver-links', 'Hide map solver links'],
+      ['better-quests.m400-helper', 'better-quests-no-m400-helper', 'Turn off the M400 helper'],
+      ['better-tournaments.time-inline', 'better-tournaments-time-on-hover', 'Show tournament times on hover instead of inline'],
+      ['favorite-setups.show-location-favorites', 'favorite-setups-no-location-favorites', "Don't show setups for your current location at the top"],
     ]);
   },
 };

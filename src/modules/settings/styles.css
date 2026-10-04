@@ -604,10 +604,10 @@
   display: none;
 }
 
-/* Without room below, open beside the field instead, shifted up to stay on screen. */
-.mhui-item-picker-popover.is-beside {
-  top: 0;
-  right: calc(100% + 6px);
+/* Without room below, open above the field instead. */
+.mhui-item-picker-popover.is-above {
+  top: auto;
+  bottom: calc(100% + 3px);
 }
 
 .mousehunt-improved-settings .PagePreferences__settingAction input.mhui-item-picker-search {
