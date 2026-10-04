@@ -14,7 +14,7 @@ export default async () => {
 
   return [
     {
-      id: 'hunter-id-shortcuts.copy',
+      id: 'hunter-id-shortcuts.copy-mode',
       title: 'Copy your Hunter ID',
       default: [copyOptions[0]],
       settings: {

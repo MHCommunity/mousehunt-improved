@@ -1,6 +1,33 @@
 import { makeElement, makeMhButton, onDeactivation } from '@utils';
 
 /**
+ * Copy text with a hidden textarea, for when the Clipboard API is unavailable or refuses.
+ *
+ * @param {string} text The text to copy.
+ *
+ * @return {boolean} Whether the text was copied.
+ */
+const fallbackCopy = (text) => {
+  const textarea = makeElement('textarea', 'mh-copy-id-fallback');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = 0;
+  document.body.append(textarea);
+  textarea.select();
+
+  let copied = false;
+  try {
+    copied = document.execCommand('copy');
+  } catch {
+    copied = false;
+  }
+
+  textarea.remove();
+  return copied;
+};
+
+/**
  * Add a way to copy your Hunter ID from your profile picture in the HUD.
  *
  * @param {string} mode 'button' to show a Copy ID button on hover, or 'profile-picture' to copy when the picture is clicked.
@@ -24,29 +51,56 @@ export default (mode) => {
   successMessage.style.opacity = 0;
   copyIdButton.parentNode.insertBefore(successMessage, copyIdButton.nextSibling);
 
+  let hideTimer;
+  const showMessage = (text) => {
+    successMessage.textContent = text;
+    successMessage.style.opacity = 1;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      successMessage.style.opacity = 0;
+    }, 1000);
+  };
+
   /**
    * Copy the user ID to the clipboard.
    *
    * @param {Event} e The event object.
    */
-  let hideTimer;
   const clickAction = (e) => {
     e.preventDefault();
 
-    // Only say it was copied if it actually was, and restart the timer on repeat clicks.
+    const id = String(user.user_id);
+    const onFailure = () => {
+      showMessage(fallbackCopy(id) ? 'Copied!' : 'Copy failed');
+    };
+
+    if (!navigator.clipboard?.writeText) {
+      onFailure();
+      return;
+    }
+
     navigator.clipboard
-      .writeText(String(user.user_id))
-      .then(() => {
-        successMessage.style.opacity = 1;
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(() => {
-          successMessage.style.opacity = 0;
-        }, 1000);
-      })
-      .catch(() => {});
+      .writeText(id)
+      .then(() => showMessage('Copied!'))
+      .catch(onFailure);
   };
 
   copyIdButton.addEventListener('click', clickAction);
+
+  // Show the button while hovering the profile pic or the button, with a short delay before hiding so the
+  // mouse can cross any gap between them.
+  let hoverTimer;
+  const showButton = () => {
+    clearTimeout(hoverTimer);
+    copyIdButton.style.display = 'block';
+  };
+
+  const hideButton = () => {
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => {
+      copyIdButton.style.display = 'none';
+    }, 300);
+  };
 
   const originalOnclick = profilePic.getAttribute('onclick');
 
@@ -54,22 +108,10 @@ export default (mode) => {
     profilePic.setAttribute('onclick', '');
     profilePic.addEventListener('click', clickAction);
   } else {
-    // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or the button.
-    profilePic.addEventListener('mouseenter', () => {
-      copyIdButton.style.display = 'block';
-    });
-
-    profilePic.addEventListener('mouseleave', () => {
-      copyIdButton.style.display = 'none';
-    });
-
-    copyIdButton.addEventListener('mouseenter', () => {
-      copyIdButton.style.display = 'block';
-    });
-
-    copyIdButton.addEventListener('mouseleave', () => {
-      copyIdButton.style.display = 'none';
-    });
+    profilePic.addEventListener('mouseenter', showButton);
+    profilePic.addEventListener('mouseleave', hideButton);
+    copyIdButton.addEventListener('mouseenter', showButton);
+    copyIdButton.addEventListener('mouseleave', hideButton);
   }
 
   // Without the module's styles the button would always show, so remove it and restore the profile pic.
@@ -77,6 +119,8 @@ export default (mode) => {
     copyIdButton.remove();
     successMessage.remove();
     profilePic.removeEventListener('click', clickAction);
+    profilePic.removeEventListener('mouseenter', showButton);
+    profilePic.removeEventListener('mouseleave', hideButton);
     if (hidebutton && null !== originalOnclick) {
       profilePic.setAttribute('onclick', originalOnclick);
     }

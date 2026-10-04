@@ -270,3 +270,17 @@ body.mh-dark {
 .mh-dark .messageBoardView-message-container-padding {
   background: none;
 }
+
+.mh-dark .mh-page-selector {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  border-top: none;
+}
+
+.mh-dark .mh-page-selector label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-page-selector .page-input {
+  border: 1px solid var(--d-border);
+}

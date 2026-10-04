@@ -10,7 +10,11 @@ import styles from './styles.css';
  * Initialize the module.
  */
 const init = () => {
-  const copyMode = getSetting('hunter-id-shortcuts.copy-0', 'button');
+  let copyMode = getSetting('hunter-id-shortcuts.copy-mode-0', 'button');
+  if (!['button', 'profile-picture', 'off'].includes(copyMode)) {
+    copyMode = 'button';
+  }
+
   if ('off' !== copyMode) {
     addStyles(styles, 'hunter-id-shortcuts');
     addCopyId(copyMode);

@@ -441,6 +441,10 @@ input.itemView-action-convert-quantity {
   padding: 5px 10px;
 }
 
+.travelPage-map-pieces-detail-image img {
+  max-width: 100px;
+}
+
 .travelPage-map-pieces-row.locked .travelPage-map-pieces-detail-image {
   filter: grayscale(1);
   opacity: 0.8;

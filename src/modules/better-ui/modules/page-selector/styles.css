@@ -1,0 +1,34 @@
+.scoreboardTableView .pagerView-section.current,
+.PageFriends .pagerView-section.current {
+  position: relative;
+  cursor: pointer;
+}
+
+.scoreboardTableView .pagerView-section.current:hover,
+.PageFriends .pagerView-section.current:hover {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+.mh-page-selector {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+  white-space: nowrap;
+  cursor: default;
+  background-color: #eee;
+  border: 1px solid #5b5b5b;
+  border-radius: 0 0 10px 10px;
+  transform: translateX(-50%);
+}
+
+.mh-page-selector .page-input {
+  width: 60px;
+  text-align: center;
+  border: 1px solid #5b5b5b;
+}

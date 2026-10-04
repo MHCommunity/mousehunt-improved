@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.100.2
+
+- Better UI: Click the current page number on scoreboards and the friends list to jump to a specific page
+- Hunter ID shortcuts: The copy ID button stays visible while moving the mouse from your profile picture to the button
+- Hunter ID shortcuts: Copying your ID works in browsers that block the clipboard, and shows "Copy failed" instead of silently doing nothing
+- Minor style tweaks
+
 ## Version 0.100.1
 
 - Better Mice: Added a crown summary to King's Crowns, with how many mice you have at each crown tier

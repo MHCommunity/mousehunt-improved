@@ -6,6 +6,7 @@ import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
 import maintenance from './modules/maintenance';
+import pageSelector from './modules/page-selector';
 import replaceFavicon from './modules/replace-favicon';
 import team from './modules/team';
 import tournamentTrophies from './modules/tournament-trophies';
@@ -20,6 +21,7 @@ const featureManifest = [
   { id: 'kings-promo', load: kingsPromo },
   { id: 'maintenance', load: maintenance },
   { id: 'userscript-styles', load: userscriptStyles },
+  { id: 'page-selector', load: pageSelector },
   { id: 'team', load: team },
   { id: 'tournament-trophies', load: tournamentTrophies },
   { id: 'hud', setting: 'better-ui.hud-changes', default: true, load: hud },

@@ -1,0 +1,14 @@
+{
+  "version": "0.100.2",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better UI: Click the page number on scoreboards and the friends list to jump to any page",
+        "Hunter ID shortcuts: Fixes for the copy ID button",
+        "Minor style tweaks"
+      ]
+    }
+  ]
+}
