@@ -2,6 +2,7 @@
  * The page elements that can be hidden.
  */
 const elements = [
+  { id: 'sidebar', name: 'Sidebar, moved to a top menu dropdown', default: true },
   { id: 'ads', name: 'Ads for Feedback Friday, the mobile apps, and more', default: false },
   { id: 'share', name: 'Share buttons', default: true },
   { id: 'news-ticker', name: 'News ticker', default: true },

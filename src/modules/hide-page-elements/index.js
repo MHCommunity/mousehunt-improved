@@ -3,6 +3,7 @@ import { addBodyClass, addStyles, getSetting, isModuleEnabled, onEvent, onModule
 import elements from './elements';
 import hideDailyDraw from './daily-draw';
 import hideDailyRewardPopup from './daily-reward-popup';
+import hideSidebar from './sidebar';
 import settings from './settings';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
@@ -34,22 +35,33 @@ const updateBodyClasses = () => {
   }
 };
 
+let updateSidebar = () => {};
+
+/**
+ * Apply the current settings.
+ */
+const update = () => {
+  updateBodyClasses();
+  updateSidebar();
+};
+
 /**
  * Initialize the module.
  */
 const init = () => {
   addStyles(styles, 'hide-page-elements');
   updateBodyClasses();
+  updateSidebar = hideSidebar(() => isHidden('sidebar'));
 
   onEvent('mh-improved-settings-changed', ({ key }) => {
     if (key?.startsWith('hide-page-elements.hide-')) {
-      updateBodyClasses();
+      update();
     }
   });
 
   onModuleToggle('hide-page-elements', {
-    enable: updateBodyClasses,
-    disable: updateBodyClasses,
+    enable: update,
+    disable: update,
   });
 
   if ('undefined' !== typeof SocialFramework && 'function' === typeof SocialFramework.isFriendStreamPostsEnabled) {

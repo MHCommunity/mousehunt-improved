@@ -1,16 +1,16 @@
 /* Reflow grid for no sidebar */
-.pageFrameView {
+.mhui-hide-sidebar .pageFrameView {
   -ms-grid-columns: [first] auto [content-start] 760px [content-end] auto [last];
   grid-template-columns: [first] auto [content-start] 760px [content-end] auto [last];
 }
 
 /* Sidebar moved into tab */
-.pageFrameView .pageSidebarView-user {
+.mhui-hide-sidebar .pageFrameView .pageSidebarView-user {
   padding: 0 0 10px;
   border-bottom: none;
 }
 
-.pageSidebarView {
+.mhui-hide-sidebar .pageSidebarView {
   display: none;
 }
 

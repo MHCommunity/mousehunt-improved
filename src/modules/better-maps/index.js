@@ -9,6 +9,7 @@ import {
   getRelicHunterLocation,
   getFlag,
   getSetting,
+  isSidebarHidden,
   makeElement,
   makeMhButton,
   onDialogHide,
@@ -678,10 +679,8 @@ const init = () => {
 
   installSurfaceHooks();
 
-  // Only add map goals to the sidebar when there's a sidebar to add them to and they've been
-  // asked for. This read as `! (no-sidebar && show-sidebar-goals)`, which meant turning the
-  // goals setting *off* switched the sidebar on.
-  if (!getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true)) {
+  // Only add map goals to the sidebar when there's a sidebar to add them to and they've been asked for.
+  if (!isSidebarHidden() && getSetting('better-maps.show-sidebar-goals', true)) {
     sidebar();
   }
 

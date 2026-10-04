@@ -2,6 +2,7 @@
 
 Hide parts of the page you don’t use. Choose which ones to hide:
 
+- **Sidebar**, which moves to a "Sidebar" dropdown in the top menu (hidden by default).
 - **Ads** for Feedback Friday, the mobile apps, and more.
 - **Share buttons** (hidden by default).
 - **News ticker** in the header (hidden by default).

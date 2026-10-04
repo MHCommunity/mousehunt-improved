@@ -1,6 +1,4 @@
-import { addBodyClass, addHeaderMenuTab, addModuleBodyClass, addStyles, makeElement, onModuleToggle, onNavigation, removeBodyClass } from '@utils';
-
-import styles from './styles.css';
+import { addBodyClass, addHeaderMenuTab, makeElement, onNavigation, removeBodyClass } from '@utils';
 
 /**
  * Move sidebar into menu tab.
@@ -62,7 +60,7 @@ const moveSidebar = () => {
 /**
  * Hide the sidebar and move it into a menu tab.
  */
-const hideSidebar = () => {
+const moveSidebarToMenu = () => {
   removeBodyClass('hasSidebar');
   moveSidebar();
   hg.views.PageFrameView.setShowSidebar(false);
@@ -71,7 +69,7 @@ const hideSidebar = () => {
 /**
  * Bring the sidebar back and remove the menu tab.
  */
-const showSidebar = () => {
+const restoreSidebar = () => {
   hg.views.PageFrameView.setShowSidebar(true);
   addBodyClass('hasSidebar', true);
 
@@ -79,31 +77,36 @@ const showSidebar = () => {
 };
 
 /**
- * Initialize the module.
+ * Hide the sidebar while it's set to be hidden, and show a "Sidebar" dropdown in the top menu instead.
+ *
+ * @param {Function} isHidden Whether the sidebar is hidden.
+ *
+ * @return {Function} Call to apply the current setting.
  */
-const init = () => {
-  addStyles(styles, 'no-sidebar');
-  addModuleBodyClass('no-sidebar', 'no-sidebar');
-  hideSidebar();
+export default (isHidden) => {
+  let hidden = false;
+
+  const update = () => {
+    if (isHidden() === hidden) {
+      return;
+    }
+
+    hidden = isHidden();
+    if (hidden) {
+      moveSidebarToMenu();
+    } else {
+      restoreSidebar();
+    }
+  };
 
   // The game turns the sidebar back on when it changes pages.
-  onNavigation(() => hg.views.PageFrameView.setShowSidebar(false));
-
-  onModuleToggle('no-sidebar', {
-    enable: hideSidebar,
-    disable: showSidebar,
+  onNavigation(() => {
+    if (hidden) {
+      hg.views.PageFrameView.setShowSidebar(false);
+    }
   });
-};
 
-/**
- * Initialize the module.
- */
-export default {
-  id: 'no-sidebar',
-  name: 'Hide Sidebar',
-  type: 'personalization',
-  default: true,
-  liveToggle: true,
-  description: 'Hide the sidebar and show it as a "Sidebar" dropdown in the top menu.',
-  load: init,
+  update();
+
+  return update;
 };

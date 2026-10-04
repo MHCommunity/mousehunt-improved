@@ -74,8 +74,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 ### 🛑 Element Hiding
 
-- **[Hide page elements](docs/hide-page-elements.md)**: Hide ads, share buttons, the news ticker, the footer, the Daily Draw, the daily reward popup, and more.
-- **[Hide Sidebar](docs/hide-sidebar.md)**: Hide the sidebar and add a "Sidebar" dropdown in the top menu.
+- **[Hide page elements](docs/hide-page-elements.md)**: Hide the sidebar, ads, share buttons, the news ticker, the footer, the Daily Draw, the daily reward popup, and more.
 - **[Journal Privacy](docs/journal-privacy.md)**: Hide player names in the journal. Good for screenshots that maintain privacy.
 
 ### 📍 Location HUDs

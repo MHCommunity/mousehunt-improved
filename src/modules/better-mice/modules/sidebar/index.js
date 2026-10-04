@@ -1,4 +1,4 @@
-import { addStyles, doRequest, getSetting, makeElement, onRequest } from '@utils';
+import { addStyles, doRequest, isSidebarHidden, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -92,7 +92,7 @@ const updateSidebarList = async (data = null, isFromMiceEff = false) => {
  * Initialize the module.
  */
 export default async () => {
-  if (getSetting('no-sidebar', true)) {
+  if (isSidebarHidden()) {
     return;
   }
 

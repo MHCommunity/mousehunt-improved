@@ -1,4 +1,5 @@
 import { getCurrentPage } from './page-current';
+import { getSetting } from './settings';
 
 /**
  * Go to the specified page.
@@ -148,4 +149,13 @@ const isCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null,
   return currentPage === targetPage && currentTab === targetTab && currentSubtab === targetSubtab;
 };
 
-export { getCurrentTab, getCurrentSubtab, getCurrentDialog, isCurrentPage, setPage, setTab };
+/**
+ * Check whether Hide page elements is hiding the sidebar.
+ *
+ * @return {boolean} Whether the sidebar is hidden.
+ */
+const isSidebarHidden = () => {
+  return Boolean(getSetting('hide-page-elements', true) && getSetting('hide-page-elements.hide-sidebar', true));
+};
+
+export { getCurrentTab, getCurrentSubtab, getCurrentDialog, isCurrentPage, isSidebarHidden, setPage, setTab };
