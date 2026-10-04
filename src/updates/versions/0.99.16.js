@@ -184,6 +184,9 @@ export default {
 
     moveSetting('replace-favicon', 'better-ui.replace-favicon');
 
+    // Inline Wiki has been removed.
+    deleteSetting('inline-wiki');
+
     // The Journal Progress Log Tracker countdown is always shown now.
     deleteSetting('journal-log-tracker.show-countdown');
 
@@ -198,6 +201,7 @@ export default {
       ['better-maps.show-map-solver-links', 'better-maps-no-solver-links'],
       ['better-quests.m400-helper', 'better-quests-no-m400-helper'],
       ['better-tournaments.time-inline', 'better-tournaments-time-on-hover'],
+      ['favorite-setups.show-location-favorites', 'favorite-setups-no-location-favorites'],
     ]);
   },
 };
