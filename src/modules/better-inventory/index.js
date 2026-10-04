@@ -120,7 +120,7 @@ const addArmButtonToCharms = () => {
 /**
  * Get an item's real name.
  *
- * The Enhanced Search experiment appends its search terms to `data-name`, because that's what the
+ * Enhanced Search appends its search terms to `data-name`, because that's what the
  * game's own inventory filter matches on. It stashes the untouched name in `data-mhui-name` so that
  * displaying or sorting on the name here doesn't pick up the terms as well.
  *
