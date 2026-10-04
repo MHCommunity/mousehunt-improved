@@ -1,3 +1,8 @@
+/* Message item popups (Scrambles' egghead tips, plushies, etc.), restyled as a banner. */
+
+/* stylelint-disable stylistic/selector-descendant-combinator-no-non-space */
+/* stylelint-disable stylistic/selector-pseudo-class-parentheses-space-inside */
+/* stylelint-disable stylistic/indentation */
 #overlayPopup:is(
   .not_so_secret_bunny_message_item,
   .plush_terrible_twos_message_item,
@@ -304,7 +309,8 @@
     .minuscule_photo_album_message_item,
     .pumpkin_spice_latte_message_item,
     .peppermint_latte_message_item
-  ).singleItemLeft
+  )
+  .singleItemLeft
   .jsDialogContainer
   .items {
   float: none;
@@ -460,7 +466,6 @@
   border-color: var(--d-border);
 }
 
-/* Message item popups (Scrambles' egghead tips, plushies, etc.), restyled as a banner by Better UI. */
 .mh-dark
   #overlayPopup:is(
     .not_so_secret_bunny_message_item,
