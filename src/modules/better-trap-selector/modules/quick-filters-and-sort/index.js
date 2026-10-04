@@ -1,4 +1,4 @@
-import { addStyles, getSetting, makeElement, onEvent, onRequest } from '@utils';
+import { addStyles, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -23,7 +23,14 @@ const addItemToQuickLinks = (link, appendTo, filter, inputs) => {
   const itemAnchor = makeElement('a', 'campPage-trap-itemBrowser-favorite-item-image');
   itemAnchor.setAttribute('href', '#');
   itemAnchor.setAttribute('title', filter === 'sortBy' ? `Sort by ${link.name}` : `Filter by ${link.name}`);
-  itemAnchor.style.backgroundImage = `url(${link.image})`;
+  if (link.image) {
+    itemAnchor.style.backgroundImage = `url(${link.image})`;
+  }
+
+  if (link.text) {
+    item.classList.add('quicklinks-filter--text');
+    makeElement('span', 'quicklinks-filter-text', link.text, itemAnchor);
+  }
 
   const frame = makeElement('div', 'campPage-trap-itemBrowser-favorite-item-image-frame');
 
@@ -155,7 +162,7 @@ const addQuickLinksToTrap = async () => {
     {
       id: 'name',
       name: 'Name',
-      image: getSetting('native-dark-mode', false) ? 'https://i.mouse.rip/sort-a-z-icon-dark-mode.png' : 'https://i.mouse.rip/sort-a-z-icon.png',
+      text: 'Name',
     },
   ];
 
@@ -163,7 +170,7 @@ const addQuickLinksToTrap = async () => {
     links.push({
       id: 'quantity',
       name: 'Quantity',
-      image: getSetting('native-dark-mode', false) ? 'https://i.mouse.rip/sort-qty-icon-dark-mode.png' : 'https://i.mouse.rip/sort-qty-icon.png',
+      text: 'Qty',
     });
   }
 
