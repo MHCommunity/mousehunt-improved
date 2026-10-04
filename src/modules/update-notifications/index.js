@@ -128,16 +128,21 @@ const addSuggestedFlags = (suggestions) => {
 /**
  * Show the update summary popup.
  *
- * @param {string}  from  The version we're updating from.
- * @param {boolean} force Whether to force the popup to show.
+ * @param {string}     from         The version we're updating from.
+ * @param {boolean}    force        Whether to force the popup to show.
+ * @param {Array|null} previewFlags Suggested flags to show instead of the saved ones, without reading or saving any settings.
  */
-const showUpdateSummary = async (from = '0.0.0', force = false) => {
+const showUpdateSummary = async (from = '0.0.0', force = false, previewFlags = null) => {
   // When forced, show everything we ship rather than nothing.
   const summaries = getSummariesSince(force ? '0.0.0' : from);
 
+  const isPreview = Array.isArray(previewFlags);
+
   // Only shown once, whether or not the flags are added.
-  const suggestedFlags = getSetting('update-suggested-flags', []);
-  deleteSetting('update-suggested-flags');
+  const suggestedFlags = isPreview ? previewFlags : getSetting('update-suggested-flags', []);
+  if (!isPreview) {
+    deleteSetting('update-suggested-flags');
+  }
 
   if (!summaries.length && !suggestedFlags.length && !force) {
     return;
@@ -175,6 +180,11 @@ const showUpdateSummary = async (from = '0.0.0', force = false) => {
   const addFlags = document.querySelector('#mh-improved-add-suggested-flags');
   addFlags?.addEventListener('click', (e) => {
     e.preventDefault();
+    if (isPreview) {
+      addFlags.replaceWith(Object.assign(document.createElement('p'), { textContent: 'Preview only, no flags were added.' }));
+      return;
+    }
+
     addSuggestedFlags(suggestedFlags);
     addFlags.replaceWith(Object.assign(document.createElement('p'), { textContent: 'Added! They apply after you refresh the page.' }));
   });
@@ -200,7 +210,11 @@ const init = async () => {
   onEvent('mh-improved-update-summary', () => showUpdateSummary('0.0.0', true));
 
   window.mhuiDebug = window.mhuiDebug || {};
-  window.mhuiDebug.showUpdateSummary = showUpdateSummary;
+  // Mimic updating from a version, e.g. showUpdateSummary('0.99.15', { flags: [{ flag: 'my-flag', label: 'My option' }] }).
+  // Never reads or changes the saved settings.
+  window.mhuiDebug.showUpdateSummary = (from = '0.0.0', options = {}) => {
+    showUpdateSummary(from, false, Array.isArray(options.flags) ? options.flags : []);
+  };
 };
 
 /**
