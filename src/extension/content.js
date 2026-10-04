@@ -18,6 +18,26 @@ const injectMain = () => {
 };
 
 /**
+ * Warm up the connections to our API and image CDN, which are used on every page load.
+ *
+ * @param {string}  href        The origin to connect to.
+ * @param {boolean} crossOrigin Whether the connection is for CORS requests (fetch) or not (images).
+ */
+const preconnect = (href, crossOrigin = false) => {
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = href;
+  if (crossOrigin) {
+    link.crossOrigin = 'anonymous';
+  }
+
+  document.documentElement.append(link);
+};
+
+preconnect('https://api.mouse.rip', true);
+preconnect('https://i.mouse.rip');
+
+/**
  * If the user elects to run the extension for this visit, then
  * DOMContentLoaded has probably alredy fired. In that case, just
  * go ahead and inject the main script if the document is ready.

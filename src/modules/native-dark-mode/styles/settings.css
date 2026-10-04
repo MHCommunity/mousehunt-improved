@@ -52,6 +52,10 @@
   color: var(--d-link);
 }
 
+.mh-dark .mousehuntHud-page-tabContent.account_status a {
+  color: var(--d-link);
+}
+
 .mh-dark .mousehunt-improved-settings-export-details a {
   color: var(--d-link);
 }

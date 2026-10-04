@@ -18,7 +18,7 @@ let powerTypeFilter = null;
 /**
  * Get the power type for each mouse, keyed by mouse type.
  *
- * Event mice get their own group, otherwise it's the single power type the mouse is weakest to, or 'multi' if there are several.
+ * Event mice get their own group, otherwise it's the single power type the mouse is weakest to (using the strongest effectiveness it has), or 'multi' if there are several.
  *
  * @return {Promise<Object>} The power type for each mouse type.
  */
@@ -39,8 +39,8 @@ const getMousePowerTypes = async () => {
       return;
     }
 
-    const strongest = mouse.weaknesses?.veryEffective || mouse.weaknesses?.effective || [];
-    if (!strongest.length) {
+    const strongest = ['veryEffective', 'effective', 'lessEffective'].map((tier) => mouse.weaknesses?.[tier]).find((types) => types?.length);
+    if (!strongest) {
       return;
     }
 

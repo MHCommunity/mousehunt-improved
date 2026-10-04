@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 0.100.1
+
+- Better Mice: Added a crown summary to King's Crowns, with how many mice you have at each crown tier
+- Better Mice: Added silver crown counts by power type to King's Crowns. Click a power type to show only those mice, and hover a mouse to see its power type
+- Better Mice: King's Crowns groups can be collapsed
+- Better Mice: Added catch, miss, and total counts to each mouse stats category
+- Better Item Details: Clicking an item on a hunter's profile Items tab opens the item popup
+- Better Maps: Map previews from invites and Community Maps get the Better Maps tabs and styling
+- Better Maps: Fixed completed goals on scavenger hunts not being styled as completed
+- Better Trap Selector: The Name and Qty sorts use text tiles
+- Show Auras: Jet Stream and Millenniaura only show an expiry warning in their last 6 hours
+- Quick Items Menu: Pinned items load in one request and are cached for a day, with quantities kept up to date as you play
+- Gift links in inbox: Gift links are only fetched once on page load
+- Experiments: Added Better Inventory sorting and filtering controls, and a Favorites tab to collect starred items. The sorting controls replace the old trap sorting experiment, and stay on if you had it turned on
+- Dark Mode: Fixed the hunter ID copy text on profiles
+- Connections to the MH Improved API and image servers are opened earlier on page load
+- Your account timezone is now cached for two weeks instead of being fetched on every page load
+- Minor style tweaks
+
 ## Version 0.100.0
 
 ### New Features

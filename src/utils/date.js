@@ -1,4 +1,4 @@
-import { cacheGet, cacheSet } from './data';
+import { cacheDelete, cacheGet, cacheSet } from './data';
 import { doRequest } from './utils';
 
 const months = new Map([
@@ -19,6 +19,13 @@ const months = new Map([
 let accountTimezoneOffsetPromise;
 
 /**
+ * Get the cache key for the account timezone offset.
+ *
+ * @return {string} The cache key.
+ */
+const getAccountTimezoneOffsetCacheKey = () => `account-timezone-offset-${user?.user_id}`;
+
+/**
  * Get the UTC offset used for dates rendered by MouseHunt.
  *
  * @return {Promise<number|null>} The offset in minutes, or null when unavailable.
@@ -27,7 +34,7 @@ const getAccountTimezoneOffset = async () => {
   if (!accountTimezoneOffsetPromise) {
     accountTimezoneOffsetPromise = (async () => {
       // Keyed per account, and stored as an object so a UTC (0) offset isn't treated as a cache miss.
-      const cacheKey = `account-timezone-offset-${user?.user_id}`;
+      const cacheKey = getAccountTimezoneOffsetCacheKey();
       const cached = await cacheGet(cacheKey, null);
       if (Number.isFinite(cached?.offset)) {
         return cached.offset;
@@ -53,6 +60,14 @@ const getAccountTimezoneOffset = async () => {
   }
 
   return accountTimezoneOffsetPromise;
+};
+
+/**
+ * Forget the cached account timezone offset, so the next lookup fetches it again.
+ */
+const clearAccountTimezoneOffset = async () => {
+  accountTimezoneOffsetPromise = null;
+  await cacheDelete(getAccountTimezoneOffsetCacheKey());
 };
 
 /**
@@ -115,4 +130,4 @@ const parseMouseHuntDate = async (text) => {
   return wallClock - accountOffsetInMinutes * 60 * 1000;
 };
 
-export { parseMouseHuntDate };
+export { clearAccountTimezoneOffset, parseMouseHuntDate };

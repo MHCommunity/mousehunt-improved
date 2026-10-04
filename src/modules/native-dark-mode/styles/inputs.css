@@ -1,5 +1,6 @@
-/* Text fields: one look for every text, number, and search input across the site. */
-.mh-dark input:is([type="text"], [type="number"], [type="search"], [type="password"], [type="email"], [type="url"], [type="tel"], :not([type])),
+/* Text fields: one look for every text, number, and search input across the site.
+   The King's Reward code field sits on a light scroll, so it keeps its light look. */
+.mh-dark input:not(.puzzleView__code):is([type="text"], [type="number"], [type="search"], [type="password"], [type="email"], [type="url"], [type="tel"], :not([type])),
 .mh-dark textarea {
   color: var(--d-input-text);
   background-color: var(--d-input-bg);

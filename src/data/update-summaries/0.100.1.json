@@ -1,0 +1,20 @@
+{
+  "version": "0.100.1",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Mice: King's Crowns has a crown summary, silver crowns by power type, and collapsible groups",
+        "Better Mice: Each mouse stats category shows your total catches and misses",
+        "Better Item Details: Click an item on a hunter's profile to open its popup",
+        "Better Maps: Map previews get the Better Maps tabs, and completed scavenger hunt goals are marked",
+        "Show Auras: Jet Stream and Millenniaura only warn in their last 6 hours",
+        "Quick Items Menu: Pinned items load faster",
+        "Experiments: Try the new Better Inventory sorting and filtering controls and Favorites tab",
+        "Fewer background requests on every page load",
+        "Other small fixes and style tweaks"
+      ]
+    }
+  ]
+}

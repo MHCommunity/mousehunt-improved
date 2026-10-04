@@ -618,7 +618,9 @@ const renderFavorites = async (content) => {
   subtab.setAttribute('data-initialized', 'true');
 
   addStars();
-  reapplySorting(0);
+  if (getSetting('better-inventory.add-trap-sorting', false)) {
+    reapplySorting(0);
+  }
 };
 
 /**
@@ -690,6 +692,48 @@ const addFavoritesTab = () => {
   });
 };
 
+/**
+ * Match the Favorites cards to what's armed.
+ *
+ * The game only updates armed items inside the subtab for each classification, which Favorites
+ * isn't, so its cards would keep showing their old state.
+ *
+ * @param {Object} user The user data from the response.
+ */
+const syncArmedState = (user) => {
+  const armedItems = {
+    base: user.base_item_id,
+    weapon: user.weapon_item_id,
+    trinket: user.trinket_item_id,
+    bait: user.bait_item_id,
+    skin: user.skin_item_id,
+  };
+
+  document.querySelectorAll('.mousehuntHud-page-subTabContent.favorites .inventoryPage-item').forEach((item) => {
+    const classification = item.getAttribute('data-item-classification');
+    if (!(classification in armedItems)) {
+      return;
+    }
+
+    const isArmed = Number(item.getAttribute('data-item-id')) === Number(armedItems[classification]);
+    if (isArmed === item.classList.contains('armed')) {
+      return;
+    }
+
+    item.classList.toggle('armed', isArmed);
+    item.classList.toggle('canDisarm', isArmed && ['bait', 'trinket'].includes(classification));
+
+    if (['weapon', 'base', 'trinket'].includes(classification)) {
+      item.classList.toggle('canArm', !isArmed);
+      item.classList.toggle('disabled', isArmed && 'trinket' !== classification);
+    }
+
+    item.querySelectorAll('input.inventoryPage-item-button').forEach((button) => {
+      button.value = isArmed ? 'Armed' : 'Arm';
+    });
+  });
+};
+
 let pending;
 
 /**
@@ -735,8 +779,12 @@ const init = () => {
     anySubtab: true,
   });
 
-  onRequest('*', () => {
+  onRequest('*', (response) => {
     if ('inventory' === getCurrentPage()) {
+      if (response?.user) {
+        syncArmedState(response.user);
+      }
+
       refresh();
     }
   });

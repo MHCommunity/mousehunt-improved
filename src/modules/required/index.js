@@ -1,5 +1,6 @@
 import {
   addSettingsTab,
+  clearAccountTimezoneOffset,
   createPopup,
   doEvent,
   doInternalEvent,
@@ -167,6 +168,20 @@ const refreshOnLogin = (response, request) => {
 };
 
 /**
+ * Clear the cached timezone offset when the timezone is saved.
+ *
+ * @param {Object} response The response.
+ * @param {Object} request  The request data.
+ */
+const clearTimezoneOnSave = (response, request) => {
+  if ('save_personal_info' !== request?.action) {
+    return;
+  }
+
+  clearAccountTimezoneOffset();
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
@@ -183,6 +198,7 @@ const init = async () => {
   onTravel(null, { callback: addEvents });
 
   onRequest('users/session.php', refreshOnLogin);
+  onRequest('pages/preferences.php', clearTimezoneOnSave);
 
   onNavigation(addSettingsTab, {
     page: 'preferences',
