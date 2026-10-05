@@ -362,7 +362,8 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
     list.classList.toggle('is-filtered', !!query);
     list.append(...(query ? visibleItems : nodes).map((node) => node.row));
 
-    empty.hidden = visibleItems.length > 0;
+    // Collapsed groups aren't an empty search.
+    empty.hidden = visibleItems.length > 0 || (!query && groups.length > 0);
   };
 
   /**
