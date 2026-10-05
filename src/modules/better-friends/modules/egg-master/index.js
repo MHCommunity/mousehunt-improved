@@ -1,4 +1,6 @@
-import { cacheGet, cacheSet, makeElement, onNavigation } from '@utils';
+import { addStyles, cacheGet, cacheSet, makeElement, onNavigation } from '@utils';
+
+import styles from './styles.css';
 
 const addEggMasterIcon = async () => {
   if (document.querySelector('.mh-improved-egg-master-icon')) {
@@ -21,7 +23,7 @@ const addEggMasterIcon = async () => {
 };
 
 /**
- * Reorder the blocks on the friends page.
+ * Add the Egg Master icon to the profile if the hunter is an Egg Master.
  */
 const checkForEggMaster = async () => {
   const snuidEl = document.querySelector('.hunterInfoView-friendsBlock .userInteractionButtonsView-action[data-recipient-snuid]');
@@ -49,6 +51,8 @@ const checkForEggMaster = async () => {
  * Initialize the module.
  */
 export default async () => {
+  addStyles(styles, 'better-friends-egg-master');
+
   onNavigation(checkForEggMaster, {
     page: 'hunterprofile',
   });

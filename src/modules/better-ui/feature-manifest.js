@@ -1,7 +1,6 @@
-import { addStyles, isLegacyHUD } from '@utils';
+import { addStyles, getFlag, isLegacyHUD } from '@utils';
 
 import bigTimer from './modules/big-timer';
-import eggMaster from './modules/egg-master';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
@@ -26,11 +25,9 @@ const featureManifest = [
   { id: 'tournament-trophies', load: tournamentTrophies },
   { id: 'hud', setting: 'better-ui.hud-changes', default: true, load: hud },
   { id: 'replace-favicon', setting: 'better-ui.replace-favicon', default: true, load: replaceFavicon },
-  { id: 'egg-master', setting: 'better-ui.profile-changes', default: true, load: eggMaster },
   {
     id: 'square-profile-pics',
-    setting: 'better-ui.square-profile-pics',
-    default: false,
+    condition: () => getFlag('better-ui-square-profile-pics'),
     load: () => addStyles(squareProfilePicsStyles, 'consistent-profile-pics'),
   },
   {

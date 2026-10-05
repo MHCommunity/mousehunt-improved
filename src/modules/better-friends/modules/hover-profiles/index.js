@@ -383,20 +383,14 @@ const scheduleBindListeners = () => {
   bindTimer = setTimeout(bindListeners, 0);
 };
 
-const init = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addStyles(styles, 'hover-profiles');
 
   bindListeners();
   onNavigation(scheduleBindListeners);
   onRequest('*', scheduleBindListeners);
   onJournalEntriesProcessed(bindListeners);
-};
-
-export default {
-  id: 'hover-profiles',
-  name: 'Hover Profiles',
-  type: 'friends-gifts',
-  default: true,
-  description: 'Hover over a name to see a mini profile.',
-  load: init,
 };

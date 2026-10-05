@@ -1,4 +1,6 @@
-import { makeElement, onNavigation, onRequest, waitForElement } from '@utils';
+import { addStyles, makeElement, onNavigation, onRequest, waitForElement } from '@utils';
+
+import styles from './styles.css';
 
 const friendSnuids = new Set();
 const recentActivityWindow = 7 * 24 * 60 * 60 * 1000;
@@ -703,6 +705,8 @@ const addMapActivity = async () => {
  * Initialize the Friends on Maps view.
  */
 export default () => {
+  addStyles(styles, 'better-friends-on-maps');
+
   onRequest('pages/friends.php', cacheFriendSnuids);
   onNavigation(addMapActivity, {
     page: 'friends',

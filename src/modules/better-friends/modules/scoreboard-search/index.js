@@ -146,22 +146,10 @@ const main = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+export default async () => {
   addStyles(styles, 'profile-scoreboard-search');
 
   onNavigation(main, {
     page: 'hunterprofile',
   });
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'profile-scoreboard-search',
-  name: 'Scoreboard Search on Profiles',
-  type: 'friends-gifts',
-  default: true,
-  description: 'Search for a friend on the scoreboard right from their profile.',
-  load: init,
 };

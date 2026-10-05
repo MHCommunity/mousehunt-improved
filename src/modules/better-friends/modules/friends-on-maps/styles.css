@@ -1,0 +1,216 @@
+.mh-friends-on-maps-view {
+  display: none;
+  padding: 5px;
+  clear: both;
+}
+
+.mh-friends-on-maps-active .mh-friends-on-maps-view {
+  display: block;
+}
+
+.mh-friends-on-maps-active > .friendsPage-friendList-content,
+.mh-friends-on-maps-active .pagerView-container,
+.mh-friends-on-maps-active > .friendsPage-list-header {
+  display: none;
+}
+
+.mh-friends-on-maps-footer {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  min-height: 20px;
+  margin-top: 5px;
+  color: #666;
+}
+
+.mh-friends-on-maps-footer strong {
+  color: #333;
+}
+
+.mh-friends-on-maps-refresh {
+  padding: 0;
+  margin-left: auto;
+  font: inherit;
+  color: #185f8d;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.mh-friends-on-maps-list {
+  overflow: hidden;
+  background: #eee;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.mh-friends-on-maps-row {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.8fr) minmax(230px, 1.2fr);
+  gap: 7px;
+  align-items: center;
+  min-height: 38px;
+  padding: 3px 7px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.mh-friends-on-maps-row:last-child {
+  border-bottom: 0;
+}
+
+.mh-friends-on-maps-row.captain {
+  background: #fff8dc;
+}
+
+.mh-friends-on-maps-profile {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  color: #185f8d;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.mh-friends-on-maps-profile-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mh-friends-on-maps-activity {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  margin-top: 1px;
+  font-size: 9px;
+  font-weight: 400;
+  color: #777;
+}
+
+.mh-friends-on-maps-activity-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  background: #a39f9e;
+  border: 1px solid #355c1d;
+  border-radius: 50%;
+}
+
+.mh-friends-on-maps-activity.online .mh-friends-on-maps-activity-dot {
+  background: #8ff307;
+}
+
+.mh-friends-on-maps-avatar {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid #777;
+  border-radius: 3px;
+}
+
+.mh-friends-on-maps-name {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-friends-on-maps-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mh-friends-on-maps-map {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-width: 0;
+}
+
+.mh-friends-on-maps-map-name {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 5px;
+  align-items: center;
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-friends-on-maps-row.captain .mh-friends-on-maps-map-name {
+  font-weight: 700;
+}
+
+.mh-friends-on-maps-map-image {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+}
+
+.mh-friends-on-maps-open {
+  white-space: nowrap;
+}
+
+.mh-friends-on-maps-loading,
+.mh-friends-on-maps-view .friendsPage-empty {
+  padding: 28px;
+  color: #777;
+  text-align: center;
+}
+
+.mh-dark .mh-friends-on-maps-footer,
+.mh-dark .mh-friends-on-maps-progress,
+.mh-dark .mh-friends-on-maps-activity,
+.mh-dark .mh-friends-on-maps-loading,
+.mh-dark .mh-friends-on-maps-view .friendsPage-empty {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-friends-on-maps-footer strong {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-friends-on-maps-list {
+  background: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-friends-on-maps-row {
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-friends-on-maps-row.captain {
+  background: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: 3px 0 var(--d-yellow-darker) inset;
+}
+
+.mh-dark .mh-friends-on-maps-profile,
+.mh-dark .mh-friends-on-maps-refresh {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-friends-on-maps-map-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-friends-on-maps-avatar {
+  border-color: var(--d-border);
+}

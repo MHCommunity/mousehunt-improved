@@ -16,19 +16,9 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-ui.profile-changes',
-      title: 'Profile: Add Egg Master icon',
-      default: true,
-    },
-    {
       id: 'better-ui.replace-favicon',
       title: 'Use the MouseHunt Improved favicon',
       default: true,
-    },
-    {
-      id: 'better-ui.square-profile-pics',
-      title: 'Use square profile pictures',
-      default: false,
     },
   ];
 };

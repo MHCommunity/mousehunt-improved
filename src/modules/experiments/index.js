@@ -38,7 +38,7 @@ const init = () => {
   const onlySettings = [
     {
       id: 'better-inventory.favorites',
-      title: 'Better Inventory: Show a Favorites tab',
+      title: 'Better Inventory: Add Favorites tab',
       description: 'Star items in your inventory to collect them in one tab.',
       load: () => {},
     },
@@ -54,18 +54,13 @@ const init = () => {
     },
     {
       id: 'better-maps.plan-tab',
-      title: 'Better Maps: Show Plan tab',
+      title: 'Better Maps: Add Plan tab',
       description: 'Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.',
       load: () => {},
     },
     {
       id: 'better-marketplace.price-history-chart',
       title: 'Better Marketplace: Show Markethunt price history charts',
-      load: () => {},
-    },
-    {
-      id: 'better-ui.friends-on-maps',
-      title: 'Better UI: Show an "On Maps" tab on the Friends page',
       load: () => {},
     },
   ];

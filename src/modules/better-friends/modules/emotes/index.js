@@ -21,7 +21,7 @@ const replaceInText = (text) => {
 /**
  * Initialize the module.
  */
-const init = () => {
+export default () => {
   addStyles('.emote { vertical-align: bottom; }', 'emotes');
 
   onRender({
@@ -44,14 +44,4 @@ const init = () => {
       page: 'hunterprofile',
     }
   );
-};
-
-export default {
-  id: 'emotes',
-  name: 'Emotes',
-  type: 'friends-gifts',
-  default: true,
-  description:
-    'Turn Discord-style emotes like :jerry: into images on map and profile corkboards. <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/emotes.md" target="_blank" rel="noreferrer">See the supported emotes</a>.',
-  load: init,
 };
