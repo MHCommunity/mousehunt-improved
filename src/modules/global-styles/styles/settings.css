@@ -84,11 +84,3 @@
 body.mh-improved-has-refresh-message {
   padding-bottom: 70px;
 }
-
-.mh-ui-success-message.setting-link-copied {
-  position: absolute;
-  top: 10px;
-  display: inline;
-  padding: 3px;
-  margin-left: 9px;
-}

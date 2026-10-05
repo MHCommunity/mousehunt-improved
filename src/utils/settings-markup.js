@@ -7,7 +7,6 @@ import { getFlag } from './flags';
 import { isLiveSetting, markSettingLive } from './live-toggle';
 import { makeItemPicker } from './settings-item-picker';
 import { onNavigation } from './events';
-import { showSuccessMessage } from './messages';
 
 /**
  * Save a setting and toggle the class in the settings UI.
@@ -768,26 +767,11 @@ const addSettingOnce = (options) => {
   const settingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
   const settingName = makeElement('div', 'PagePreferences__settingName');
 
-  const settingNameText = makeElement('a', 'PagePreferences__settingNameText', name);
-  settingNameText.href = `#${settingId}`;
+  const settingNameText = makeElement('span', 'PagePreferences__settingNameText', name);
   settingNameText.setAttribute('data-setting', key);
   settingNameText.setAttribute('data-tab', tab);
   settingNameText.setAttribute('data-default', JSON.stringify(defaultValue));
   settingName.append(settingNameText);
-
-  if (!section.subSetting) {
-    settingNameText.addEventListener('click', (event) => {
-      event.preventDefault();
-      navigator.clipboard.writeText(`${window.location.href}#${settingId}`);
-
-      showSuccessMessage({
-        message: 'Copied link to clipboard',
-        append: settingNameText,
-        after: true,
-        classname: 'setting-link-copied',
-      });
-    });
-  }
 
   const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 
@@ -811,8 +795,8 @@ const addSettingOnce = (options) => {
 
   const settingRowAction = makeElement('div', 'PagePreferences__settingAction');
 
-  // Titles can embed a links wrapper, which the browser parses into the title anchor. Move it into
-  // the action column so it sits below the control rather than nested inside another anchor.
+  // Titles can embed a links wrapper, which the browser parses into the title. Move it into the
+  // action column so it sits below the control.
   const titleLinks = settingNameText.querySelector('.mhui-setting-title-links');
   if (titleLinks) {
     titleLinks.remove();

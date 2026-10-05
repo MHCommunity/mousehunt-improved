@@ -284,12 +284,6 @@
 
 .mousehunt-improved-settings .PagePreferences__settingNameText {
   color: var(--mhui-settings-text);
-  text-decoration: none;
-  cursor: default;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingNameText:hover {
-  text-decoration: none;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingDefault {
@@ -828,6 +822,12 @@
   display: none;
 }
 
+/* Line the grid up with the module name, like a multi toggle that sits on its own. */
+.mousehunt-improved-settings .PagePreferences__settingsList > .PagePreferences__settingsList-multi-toggle.PagePreferences__subSetting {
+  padding: 0 10px 6px;
+  margin: 0;
+}
+
 .mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -872,7 +872,7 @@
   left: calc(100% - 18px);
 }
 
-/* Larger names for card-style option groups */
+/* Card-style option groups are sub-settings, so match the module name size instead of the smaller sub-setting size. */
 #mousehunt-improved-settings-custom-background > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-custom-camp-background > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-custom-hud > div > div > .PagePreferences__settingName,
@@ -881,7 +881,7 @@
 #mousehunt-improved-settings-ultimate-checkmark-show > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-override-flags > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-override-styles > div > div > .PagePreferences__settingName {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1;
 }
 
