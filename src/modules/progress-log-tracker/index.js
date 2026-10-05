@@ -782,7 +782,7 @@ const init = async () => {
 
 export default {
   id: MODULE_ID,
-  name: 'Journal log tracker',
+  name: 'Journal Log Tracker',
   type: 'journal-stats',
   default: false,
   description: 'Track when your next journal log summary is due and get quick access to your past logs.',

@@ -138,7 +138,7 @@ const isCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null,
 };
 
 /**
- * Check whether Hide page elements is hiding the sidebar.
+ * Check whether Hide Page Elements is hiding the sidebar.
  *
  * @return {boolean} Whether the sidebar is hidden.
  */

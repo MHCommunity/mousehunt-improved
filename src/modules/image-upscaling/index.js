@@ -366,7 +366,7 @@ const init = async () => {
 export default {
   id: 'image-upscaling',
   name: 'Image Upscaling & Transparency',
-  type: 'personalization',
+  type: 'advanced',
   default: true,
   load: init,
 };

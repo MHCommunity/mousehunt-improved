@@ -46,7 +46,7 @@ export default async () => {
     {
       id: 'custom-camp-background',
       live: true,
-      title: 'Custom camp background',
+      title: 'Custom Camp Background',
       default: [options[0]],
       settings: {
         type: 'multi-select',

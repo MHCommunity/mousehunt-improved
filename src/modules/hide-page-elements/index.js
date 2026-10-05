@@ -80,10 +80,10 @@ const init = () => {
  */
 export default {
   id: 'hide-page-elements',
-  name: 'Hide page elements',
+  name: 'Hide Page Elements',
   type: 'personalization',
   default: true,
-  description: 'Hide parts of the page you don’t use, like ads, share buttons, and the news ticker.',
+  description: '',
   liveToggle: true,
   load: init,
   settings,

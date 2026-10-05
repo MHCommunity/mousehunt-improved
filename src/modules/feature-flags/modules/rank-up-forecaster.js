@@ -37,7 +37,7 @@ const exportRankupForecasterDataAsCsv = (append = null) => {
   const time = localStorage.getItem('Chro-forecaster-time');
   if (!time) {
     showErrorMessage({
-      message: 'No rank-up forecaster history was found to export.',
+      message: 'No Rank-Up Forecaster history was found to export.',
       append,
       after: true,
       classname: 'mh-ui-forecaster-message',
@@ -50,7 +50,7 @@ const exportRankupForecasterDataAsCsv = (append = null) => {
     data = JSON.parse(time);
   } catch {
     showErrorMessage({
-      message: 'Unable to export rank-up forecaster history.',
+      message: 'Unable to export Rank-Up Forecaster history.',
       append,
       after: true,
       classname: 'mh-ui-forecaster-message',
@@ -118,7 +118,7 @@ const importRankupForecasterData = (append = null) => {
         localStorage.setItem('Chro-forecaster-time', data.time);
 
         showSuccessMessage({
-          message: 'Rank-up forecaster data imported.',
+          message: 'Rank-Up Forecaster data imported.',
           append,
           after: true,
           classname: 'mh-ui-forecaster-message',
@@ -127,7 +127,7 @@ const importRankupForecasterData = (append = null) => {
         refreshRankupForecaster();
       } catch {
         showErrorMessage({
-          message: 'Invalid rank-up forecaster backup file.',
+          message: 'Invalid Rank-Up Forecaster backup file.',
           append,
           after: true,
           classname: 'mh-ui-forecaster-message',

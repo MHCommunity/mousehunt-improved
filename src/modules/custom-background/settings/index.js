@@ -73,7 +73,7 @@ export default async () => {
     {
       id: 'custom-background',
       live: true,
-      title: 'Page background',
+      title: 'Page Background',
       default: [options[0]],
       settings: {
         type: 'multi-select',

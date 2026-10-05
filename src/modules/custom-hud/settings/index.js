@@ -50,7 +50,7 @@ export default async () => {
     {
       id: 'custom-hud',
       live: true,
-      title: 'Custom HUD background',
+      title: 'Custom HUD Background',
       default: [options[0]],
       settings: {
         type: 'multi-select',

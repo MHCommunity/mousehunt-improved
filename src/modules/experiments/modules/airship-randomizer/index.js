@@ -23,7 +23,7 @@ const init = () => {
  */
 export default {
   id: 'experiments.airship-randomizer',
-  name: 'Floating Islands: Airship Randomizer',
+  name: 'Location HUDs - Floating Islands: Airship Randomizer',
   default: false,
   load: init,
 };

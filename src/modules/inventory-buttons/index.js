@@ -185,7 +185,7 @@ const init = () => {
  */
 export default {
   id: 'inventory-buttons',
-  name: 'Convertible opening buttons',
+  name: 'Convertible Opening Buttons',
   type: 'inventory-shops',
   default: true,
   description: 'Add "Open One", "Open All But One", and "Open All" buttons to convertibles in your inventory.',

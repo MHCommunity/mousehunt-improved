@@ -79,7 +79,7 @@ const migrateMenuItems = () => {
 };
 
 /**
- * Merge the separate Hide modules into Hide page elements.
+ * Merge the separate Hide modules into Hide Page Elements.
  */
 const migrateHidePageElements = () => {
   const ads = getSetting('adblock', null);
@@ -101,7 +101,7 @@ const migrateHidePageElements = () => {
 };
 
 /**
- * Merge Delayed Menus and Delayed Tooltips into Hover delays.
+ * Merge Delayed Menus and Delayed Tooltips into Hover Delays.
  */
 const migrateHoverDelays = () => {
   moveSetting('delayed-menus', 'hover-delays.menus');
@@ -109,7 +109,7 @@ const migrateHoverDelays = () => {
 };
 
 /**
- * Merge Copy ID Button and Paste Hunter ID into Hunter ID shortcuts.
+ * Merge Copy ID Button and Paste Hunter ID into Hunter ID Shortcuts.
  */
 const migrateHunterIdShortcuts = () => {
   const copy = getSetting('copy-id', null);

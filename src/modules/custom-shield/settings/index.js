@@ -181,7 +181,7 @@ export default async () => {
     {
       id: 'custom-shield',
       live: true,
-      title: 'Custom shield',
+      title: 'Custom Shield',
       default: [options[0]],
       settings: {
         type: 'multi-select',

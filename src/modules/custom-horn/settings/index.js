@@ -93,7 +93,7 @@ export default async () => {
     {
       id: 'custom-horn',
       live: true,
-      title: 'Custom horn',
+      title: 'Custom Horn',
       default: [options[0]],
       settings: {
         type: 'multi-select',

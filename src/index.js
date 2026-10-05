@@ -28,16 +28,16 @@ import * as imported from './modules/*/index.js'; // eslint-disable-line import/
 const modules = imported;
 
 const categories = [
-  { id: 'required', name: 'Always loaded' },
+  { id: 'required', name: 'Always Loaded' },
   { id: 'personalization', name: 'Personalization' },
-  { id: 'hunting-traps', name: 'Hunting & traps' },
-  { id: 'inventory-shops', name: 'Inventory & shops' },
-  { id: 'journal-stats', name: 'Journal & stats' },
-  { id: 'locations', name: 'Travel & locations' },
+  { id: 'hunting-traps', name: 'Hunting & Traps' },
+  { id: 'inventory-shops', name: 'Inventory & Shops' },
+  { id: 'journal-stats', name: 'Journal & Stats' },
+  { id: 'locations', name: 'Travel & Locations' },
   { id: 'location-huds', name: 'Location HUDs' },
-  { id: 'maps-challenges', name: 'Maps & challenges' },
-  { id: 'friends-gifts', name: 'Friends & gifts' },
-  { id: 'beta', name: 'Beta & experiments' },
+  { id: 'maps-challenges', name: 'Maps & Challenges' },
+  { id: 'friends-gifts', name: 'Friends & Gifts' },
+  { id: 'beta', name: 'Beta & Experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
 
