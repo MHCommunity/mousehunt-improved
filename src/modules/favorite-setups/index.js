@@ -569,7 +569,10 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
       const compareClass = compare === compareStat ? '' : compare > compareStat ? 'better' : 'worse';
 
-      return `<div class="campPage-trap-itemBrowser-item-stat ${stat} ${compareClass}" title="${title}">
+      // The game's stat icon styles use powerBonus rather than the API's power_bonus.
+      const statClass = 'power_bonus' === stat ? 'powerBonus' : stat;
+
+      return `<div class="campPage-trap-itemBrowser-item-stat ${statClass} ${compareClass}" title="${title}">
         <div class="value"><span>${formatted}</span></div>
       </div>`;
     };
@@ -581,12 +584,13 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     content += ' </div>';
     content += ' <div class="campPage-trap-itemBrowser-item-content">';
     content += ` <div class="campPage-trap-itemBrowser-item-name">${item.name}</div>`;
+
+    // Keep the power type or quantity and stats on one line so the cards aren't so tall.
+    content += '<div class="mh-improved-favorite-setups-item-details">';
     if (item.power_type) {
       content += `<div class="campPage-trap-itemBrowser-item-powerType ${item.power_type}"></div>`;
     }
 
-    // Keep the quantity and stats on one line so the cards aren't so tall.
-    content += '<div class="mh-improved-favorite-setups-item-details">';
     if ('bait' === type || 'trinket' === type) {
       content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${Number.parseInt(item.quantity).toLocaleString()}</span><span class="label">Quantity</span></div>`;
     }
