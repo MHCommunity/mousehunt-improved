@@ -1,7 +1,6 @@
-import { addStyles, getSetting } from '@utils';
+import { addStyles } from '@utils';
 
 import { initItems } from './items';
-import settings from './settings';
 
 import inventory from './modules/inventory';
 import marketplace from './modules/marketplace';
@@ -10,12 +9,7 @@ import trapSelector from './modules/trap-selector';
 
 import styles from './styles.css';
 
-const surfaces = [
-  { id: 'inventory', load: inventory },
-  { id: 'trap-selector', load: trapSelector },
-  { id: 'marketplace', load: marketplace },
-  { id: 'send-supplies', load: sendSupplies },
-];
+const surfaces = [inventory, trapSelector, marketplace, sendSupplies];
 
 /**
  * Initialize the module.
@@ -25,7 +19,7 @@ const init = async () => {
 
   await initItems();
 
-  await Promise.all(surfaces.filter(({ id }) => getSetting(`enhanced-search.${id}`, true)).map(({ load }) => load()));
+  await Promise.all(surfaces.map((load) => load()));
 };
 
 /**
@@ -33,10 +27,9 @@ const init = async () => {
  */
 export default {
   id: 'enhanced-search',
-  name: 'Item abbreviation search',
+  name: 'Item Abbreviation Search',
   description: 'Find items by their abbreviations, so searching "ESB" turns up Empowered SUPER|brie+.',
   type: 'inventory-shops',
   default: false,
   load: init,
-  settings,
 };
