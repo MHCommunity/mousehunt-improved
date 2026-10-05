@@ -1,0 +1,10 @@
+{
+  "version": "0.100.3",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Dark Mode: Fixed favorite friends in the Send Free Gifts tab always being highlighted"]
+    }
+  ]
+}

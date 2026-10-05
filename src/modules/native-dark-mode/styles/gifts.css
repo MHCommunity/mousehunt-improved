@@ -255,5 +255,8 @@
 .mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding,
 .mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
   color: var(--d-white);
+}
+
+.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
   background-color: var(--d-blue);
 }

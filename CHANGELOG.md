@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.100.3
+
+- Dark Mode: Fixed favorite friends in the Send Free Gifts tab always being highlighted
+
 ## Version 0.100.2
 
 - Better UI: Click the current page number on scoreboards and the friends list to jump to a specific page
