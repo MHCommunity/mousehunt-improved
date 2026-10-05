@@ -1,5 +1,6 @@
 import { deleteSetting, getMultiSelectSetting, getSettingDirect, getTradableItems, saveSetting } from '@utils';
 
+// Kept from before Quick Send Supplies merged into Better Send Supplies, so existing pins stay put.
 const pinnedItemsSetting = 'send-supplies-settings.pinned-items';
 
 const defaultPinnedItems = [

@@ -1,6 +1,9 @@
-import { addStyles, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
+import { addStyles, getSetting, makeElement, makeMathButtons, makeMhButton, onNavigation } from '@utils';
 
-import { getPinnedSupplyItems } from '@/send-supplies-settings/pinned-items';
+import { getPinnedSupplyItems } from './pinned-items';
+import quickSend from './quick-send';
+import settings from './settings';
+
 import styles from './styles.css';
 
 /**
@@ -351,6 +354,10 @@ const init = () => {
   onNavigation(main, {
     page: 'supplytransfer',
   });
+
+  if (getSetting('better-send-supplies.quick-send', true)) {
+    quickSend();
+  }
 };
 
 /**
@@ -361,6 +368,7 @@ export default {
   name: 'Better Send Supplies',
   type: 'friends-gifts',
   default: true,
-  description: 'Add pinned items, search, and sorting to the Send Supplies page.',
+  description: 'Add pinned items, search, and sorting to the Send Supplies page, and send supplies right from Send Supplies buttons.',
   load: init,
+  settings,
 };

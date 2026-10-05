@@ -14,8 +14,8 @@ import {
   showSuccessMessage,
 } from '@utils';
 
-import { getPinnedSupplyItems } from '@/send-supplies-settings/pinned-items';
-import styles from './styles.css';
+import { getPinnedSupplyItems } from './pinned-items';
+import styles from './quick-send.css';
 
 const STATE = new Map(); // btn => { wrapper, aborter, outsideClick }
 const HOVER_DELAY = 400;
@@ -315,7 +315,7 @@ const hideAllPanels = () => {
         document.removeEventListener('click', state.outsideClick);
       }
     } catch {
-      debug('quick-send-supplies: error aborting request');
+      debug('better-send-supplies: quick send error aborting request');
     }
     STATE.delete(btn);
   }
@@ -325,8 +325,11 @@ const main = () => {
   attachToButtons(document);
 };
 
-const init = () => {
-  addStyles(styles, 'quick-send-supplies');
+/**
+ * Add the quick send panel to Send Supplies buttons.
+ */
+export default () => {
+  addStyles(styles, 'better-send-supplies-quick-send');
 
   main();
   onNavigation(main);
@@ -338,13 +341,4 @@ const init = () => {
 
   onEvent('map_show_goals_tab_click', main);
   onEvent('map_tab_click', main);
-};
-
-export default {
-  id: 'quick-send-supplies',
-  name: 'Quick Send Supplies',
-  type: 'friends-gifts',
-  default: true,
-  description: 'Hover over or click Send Supplies to quickly send any amount of your chosen items.',
-  load: init,
 };

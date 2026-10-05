@@ -3,9 +3,9 @@ import { getSetting, getTradableItems, groupItemOptions } from '@utils';
 import { defaultPinnedItems, getPinnedSupplyItems, pinnedItemsSetting } from '../pinned-items';
 
 /**
- * Add the shared Send Supplies pinned-item editor.
+ * Add settings for the module.
  *
- * @return {Promise<Array>} The settings for both Send Supplies interfaces.
+ * @return {Promise<Array>} The settings for the module.
  */
 const getSettings = async () => {
   // Migrate with the full catalog so hiding a Marketplace item doesn't discard an existing pin.
@@ -27,9 +27,15 @@ const getSettings = async () => {
 
   return [
     {
+      id: 'better-send-supplies.quick-send',
+      title: 'Quick send from Send Supplies buttons',
+      description: 'Hover over or click a Send Supplies button to send your pinned items without leaving the page.',
+      default: true,
+    },
+    {
       id: pinnedItemsSetting,
-      title: 'Pinned supply items',
-      description: 'Used on the Send Supplies page and in Quick Send Supplies.',
+      title: 'Pinned items',
+      description: 'Shown at the top of the Send Supplies page and in quick send.',
       default: defaults,
       settings: {
         type: 'multi-select',
