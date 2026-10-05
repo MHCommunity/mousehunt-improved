@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.100.4
+
+- Hunter ID shortcuts: Fixed Copy ID saying "Copied!" without changing the clipboard in some browsers
+- Favorite Setups: Fixed a potential issue where reordering, editing, or deleting setups could drop or delete the wrong setup if favorites were changed in another tab
+- Dark Mode: Fixed unreadable text in the King's Calibrator upgrade section
+- Fixed a failed update possibly restoring an older settings backup
+
 ## Version 0.100.3
 
 - Dark Mode: Fixed favorite friends in the Send Free Gifts tab always being highlighted

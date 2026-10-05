@@ -7,14 +7,18 @@ const versionUpdates = imported;
 
 /**
  * Save the settings backup.
+ *
+ * @return {boolean} Whether a backup was saved.
  */
 const saveSettingsBackup = () => {
   const settings = localStorage.getItem('mousehunt-improved-settings');
   if (!settings) {
-    return;
+    return false;
   }
 
   localStorage.setItem('mousehunt-improved-settings-backup', settings);
+
+  return true;
 };
 
 /**
@@ -59,7 +63,7 @@ const getVersionUpdates = () => {
     }
   }
 
-  // Files are imported in name order, which puts 0.100.0 before 0.94.0, so sort by version.
+  // Files are imported in name order, which puts 0.100.0 before 0.99.0, so sort by version.
   neededUpdates.sort(compareUpdateVersions);
 
   debuglog('update-migration', 'Needed updates:', neededUpdates);
@@ -178,6 +182,7 @@ const update = async (previousVersion, newVersion) => {
   const isFreshInstall = '0.0.0' === previousVersion;
 
   let popup;
+  let hasBackup = false;
 
   // Backup the settings before we start updating in case something goes wrong.
   if (!isFreshInstall) {
@@ -186,7 +191,7 @@ const update = async (previousVersion, newVersion) => {
     addBodyClass('mh-improved-updating');
     setGlobal('mh-improved-updating', true);
 
-    saveSettingsBackup();
+    hasBackup = saveSettingsBackup();
   }
 
   try {
@@ -204,6 +209,13 @@ const update = async (previousVersion, newVersion) => {
 
     if (isFreshInstall) {
       saveSetting('onboarding.fresh-install', true);
+
+      // There's nothing to migrate on a fresh install, so mark every update as done. Otherwise
+      // they'd all run on the next version change.
+      saveSetting(
+        'updates-completed',
+        Object.values(versionUpdates).map((versionUpdate) => versionUpdate.version)
+      );
     }
 
     // Cache priming is only a warm-up — data is refetched on demand — so a
@@ -232,8 +244,12 @@ const update = async (previousVersion, newVersion) => {
   } catch (error) {
     // If something goes wrong, restore the settings from the backup, but keep
     // the new version number — the backup contains the old one, and restoring
-    // it would re-run this update (and re-show this error) on every page load.
-    restoreSettingsBackup();
+    // it would re-run this update (and re-show this error) on every page load. Only restore a
+    // backup taken by this update, since an older one would roll back newer settings.
+    if (hasBackup) {
+      restoreSettingsBackup();
+    }
+
     saveSetting('mh-improved-version', newVersion);
 
     popup?.hide?.();

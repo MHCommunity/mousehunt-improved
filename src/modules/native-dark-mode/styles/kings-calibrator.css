@@ -10,6 +10,7 @@
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgradeContainer {
+  color: var(--d-text);
   background-color: var(--d);
   box-shadow: none;
 }

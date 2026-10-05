@@ -1,29 +1,33 @@
 import { makeElement, makeMhButton, onDeactivation } from '@utils';
 
 /**
- * Copy text with a hidden textarea, for when the Clipboard API is unavailable or refuses.
+ * Copy text by setting it on a copy event, which happens synchronously inside the click. Some browsers resolve
+ * navigator.clipboard.writeText() without the text ever reaching the system clipboard, so this goes first.
  *
  * @param {string} text The text to copy.
  *
- * @return {boolean} Whether the text was copied.
+ * @return {boolean} Whether the copy event fired with our text.
  */
-const fallbackCopy = (text) => {
-  const textarea = makeElement('textarea', 'mh-copy-id-fallback');
-  textarea.value = text;
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = 0;
-  document.body.append(textarea);
-  textarea.select();
-
+const copyWithEvent = (text) => {
   let copied = false;
+
+  // Capture on window so this runs before, and stops, any other copy listeners from replacing the data.
+  const onCopy = (e) => {
+    e.clipboardData.setData('text/plain', text);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    copied = true;
+  };
+
+  window.addEventListener('copy', onCopy, true);
   try {
-    copied = document.execCommand('copy');
+    copied = document.execCommand('copy') && copied;
   } catch {
     copied = false;
+  } finally {
+    window.removeEventListener('copy', onCopy, true);
   }
 
-  textarea.remove();
   return copied;
 };
 
@@ -70,19 +74,20 @@ export default (mode) => {
     e.preventDefault();
 
     const id = String(user.user_id);
-    const onFailure = () => {
-      showMessage(fallbackCopy(id) ? 'Copied!' : 'Copy failed');
-    };
+    if (copyWithEvent(id)) {
+      showMessage('Copied!');
+      return;
+    }
 
     if (!navigator.clipboard?.writeText) {
-      onFailure();
+      showMessage('Copy failed');
       return;
     }
 
     navigator.clipboard
       .writeText(id)
       .then(() => showMessage('Copied!'))
-      .catch(onFailure);
+      .catch(() => showMessage('Copy failed'));
   };
 
   copyIdButton.addEventListener('click', clickAction);

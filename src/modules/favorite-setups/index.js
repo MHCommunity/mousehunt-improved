@@ -838,24 +838,22 @@ const makeSortable = (container) => {
  * @param {Element} container The container with the setup rows.
  */
 const updateSetupOrder = async (container) => {
-  const setups = await getFavoriteSetups();
+  const setups = await getFavoriteSetups(false);
   if (!setups.length) {
     return;
   }
 
   // Get all draggable rows (including mobile setups) in their new order
   const draggableRows = container.querySelectorAll('.row:not([data-setup-id="current"]):not(.location-favorite)');
-  const newOrder = [];
+  const orderedIds = [...draggableRows].map((row) => row.getAttribute('data-setup-id'));
 
-  draggableRows.forEach((row) => {
-    const setupId = row.getAttribute('data-setup-id');
-    const setup = setups.find((s) => s?.id === setupId);
-    if (setup) {
-      newOrder.push(setup);
-    }
-  });
+  const newOrder = orderedIds.map((setupId) => setups.find((s) => s?.id === setupId)).filter(Boolean);
 
-  saveSetting('favorite-setups.setups', newOrder);
+  // Keep any saved setups that aren't on screen, like ones saved from another tab after this list
+  // was opened, so reordering can never drop them.
+  const notShown = setups.filter((s) => !orderedIds.includes(s?.id));
+
+  saveSetting('favorite-setups.setups', removeMobileSetups([...newOrder, ...notShown]));
 };
 
 /**
@@ -1255,8 +1253,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
           const index = setups.findIndex((s) => s?.id && s.id === setupId);
 
-          // replace the setup in the list.
-          setups[index] = newSetup;
+          // replace the setup in the list, or add it back if it was removed from another tab.
+          if (-1 === index) {
+            setups.push(newSetup);
+          } else {
+            setups[index] = newSetup;
+          }
           saveSetting('favorite-setups.setups', removeMobileSetups(setups));
 
           if (setupId.startsWith('mobile-')) {
@@ -1346,9 +1348,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             });
             setupContainer.replaceWith(newContainer);
           } else {
+            // If it's already gone (deleted from another tab), only remove the rows. Splicing -1
+            // would delete the last setup instead.
             const index = setups.findIndex((s) => s?.id && s.id === setupId);
-            setups.splice(index, 1);
-            saveSetting('favorite-setups.setups', removeMobileSetups(setups));
+            if (-1 !== index) {
+              setups.splice(index, 1);
+              saveSetting('favorite-setups.setups', removeMobileSetups(setups));
+            }
 
             // Remove all instances of this setup (both shortcut and main list)
             const allInstances = document.querySelectorAll(`.row[data-setup-id="${setupId}"]`);
