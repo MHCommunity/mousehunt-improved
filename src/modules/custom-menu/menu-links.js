@@ -47,6 +47,17 @@ const isOfferedLink = (item, menuKey, key) => {
 };
 
 /**
+ * Get the HUD menu's menus, in order.
+ *
+ * @return {Array} The menus, each with an `id` and `name`.
+ */
+const getMenus = () => {
+  return [...(getHudMenu()?.querySelectorAll(':scope > ul > li') || [])]
+    .map((top) => ({ id: top.classList[0], name: top.querySelector(':scope > a')?.textContent.trim() }))
+    .filter((menu) => menu.id && menu.name);
+};
+
+/**
  * Get the HUD menu links that can be added to the top menu, grouped by the menu they're in.
  *
  * @return {Array} The groups, each with an `id`, `name`, and `links`.
@@ -146,4 +157,4 @@ const makeLinkElement = (link) => {
   return el;
 };
 
-export { getAvailableLinks, makeLinkElement };
+export { getAvailableLinks, getMenus, makeLinkElement };

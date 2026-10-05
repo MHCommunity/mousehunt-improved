@@ -1,8 +1,9 @@
 import { addStyles, onEvent } from '@utils';
 
 import addAdventureBook from './adventure-book';
+import addDarkModeToggle from './dark-mode-toggle';
 import { applyLayout } from './layout';
-import openMenuEditor from './editor';
+import openMenuEditor, { refreshMenuEditor } from './editor';
 import settings from './settings';
 
 import styles from './styles.css';
@@ -21,6 +22,7 @@ const queueApplyLayout = () => {
   queueMicrotask(() => {
     applyQueued = false;
     applyLayout();
+    refreshMenuEditor();
   });
 };
 
@@ -31,6 +33,7 @@ const init = () => {
   addStyles(styles, 'custom-menu');
 
   addAdventureBook();
+  addDarkModeToggle();
   applyLayout();
   onEvent('mh-improved-header-menu-changed', queueApplyLayout);
 

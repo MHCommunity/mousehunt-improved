@@ -233,6 +233,9 @@ const addSubmenuItem = (options) => {
   if (!hasSubmenu) {
     menuTarget.append(submenu);
   }
+
+  // Custom Menu offers these links too, and its top menu tabs for them click this one.
+  doEvent('mh-improved-header-menu-changed');
 };
 
 /**
@@ -451,7 +454,34 @@ const addHeaderMenuTab = (tab, opts = {}) => {
 /**
  * Top menu items that Custom Menu hides until the menu has been customized.
  */
-const defaultHiddenMenuItems = ['my-profile', 'discord', 'community', 'mousehunt-improved-location-huds', 'mousehunt-improved-adventure-book'];
+const defaultHiddenMenuItems = [
+  'my-profile',
+  'discord',
+  'community',
+  'mousehunt-improved-location-huds',
+  'mousehunt-improved-adventure-book',
+  'mousehunt-improved-dark-mode-toggle',
+];
+
+/**
+ * Get the hidden top menu items from a saved Custom Menu layout.
+ *
+ * Items that are hidden by default stay hidden until they're shown, including ones added after the
+ * layout was saved, which the saved layout doesn't mention at all.
+ *
+ * @param {Object|null} saved The saved layout.
+ *
+ * @return {string[]} The hidden ids.
+ */
+const getHiddenMenuItems = (saved) => {
+  if (!Array.isArray(saved?.hidden)) {
+    return defaultHiddenMenuItems;
+  }
+
+  const known = new Set([...saved.hidden, ...(saved.left || []), ...(saved.right || [])]);
+
+  return [...saved.hidden, ...defaultHiddenMenuItems.filter((id) => !known.has(id))];
+};
 
 /**
  * Check whether a top menu item has been hidden with Custom Menu.
@@ -461,9 +491,7 @@ const defaultHiddenMenuItems = ['my-profile', 'discord', 'community', 'mousehunt
  * @return {boolean} Whether it's hidden.
  */
 const isMenuItemHidden = (id) => {
-  const hidden = getSetting('custom-menu.layout', null)?.hidden;
-
-  return (Array.isArray(hidden) ? hidden : defaultHiddenMenuItems).includes(id);
+  return getHiddenMenuItems(getSetting('custom-menu.layout', null)).includes(id);
 };
 
 /**
@@ -543,6 +571,7 @@ export {
   addHeaderMenuTab,
   addIconToMenu,
   defaultHiddenMenuItems,
+  getHiddenMenuItems,
   isMenuItemHidden,
   removeIconFromMenu,
   replaceIconInMenu,

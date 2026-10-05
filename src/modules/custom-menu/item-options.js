@@ -1,5 +1,7 @@
 import { getSetting, isModuleEnabled, saveSetting } from '@utils';
 
+import { getPins, pinOptions } from '@/quick-items-menu/pins';
+
 /**
  * Extra options for specific menu items.
  *
@@ -22,10 +24,6 @@ const itemOptions = {
     { key: 'name', label: 'Show “SUPER|brie+:”', default: true },
     { key: 'get-more', label: 'Show “Get More”', default: true },
   ],
-  'quick-items-menu': [
-    { key: 'item-name', label: 'Show the item’s name instead of “Quick Items”', default: false },
-    { key: 'quantity', label: 'Show quantity instead of the name', default: true },
-  ],
 };
 
 /**
@@ -36,7 +34,9 @@ const itemOptions = {
  * @return {Array} The options.
  */
 const getItemOptions = (id) => {
-  return (itemOptions[id] || []).filter((option) => !option.module || isModuleEnabled(option.module));
+  const options = itemOptions[id] || (getPins().some((pin) => pin.id === id) ? pinOptions : []);
+
+  return options.filter((option) => !option.module || isModuleEnabled(option.module));
 };
 
 /**
@@ -80,8 +80,10 @@ const setOptionValue = (layout, id, option, value) => {
  * @param {Object} layout The layout.
  */
 const applyItemOptions = (items, layout) => {
+  const pinIds = new Set(getPins().map((pin) => pin.id));
+
   for (const { el, id } of items) {
-    for (const option of itemOptions[id] || []) {
+    for (const option of itemOptions[id] || (pinIds.has(id) ? pinOptions : [])) {
       if (option.setting) {
         continue;
       }

@@ -1,7 +1,3 @@
-.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-empty {
-  display: none;
-}
-
 .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active {
   color: #fff;
   text-shadow: 1px 1px #666;
@@ -54,10 +50,6 @@
 
 .mh-quick-items-menu-tab-label {
   white-space: nowrap;
-}
-
-.mh-quick-items-menu-tab-name {
-  display: none;
 }
 
 .mh-quick-items-menu-tab-icon {
@@ -220,6 +212,15 @@
 }
 
 .mh-quick-items-menu-result:empty {
+  display: none;
+}
+
+.mh-quick-items-menu-none {
+  padding: 4px 0 8px;
+  color: var(--mhui-quick-items-muted);
+}
+
+.mh-quick-items-menu-none[hidden] {
   display: none;
 }
 

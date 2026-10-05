@@ -3,14 +3,12 @@ import {
   addStyles,
   cacheGet,
   cacheSet,
+  doEvent,
   getData,
-  getMultiSelectSetting,
   getUserItems,
-  isModuleEnabled,
   make,
   makeElement,
   makeMhButton,
-  onModuleToggle,
   onNavigation,
   onEvent,
   onRequest,
@@ -19,7 +17,7 @@ import {
   sessionSet,
 } from '@utils';
 
-import settings, { defaultItemType } from './settings';
+import { getPins } from './pins';
 
 import styles from './styles.css';
 
@@ -36,10 +34,8 @@ const auras = {
   rare_lightning_slayer_chest_convertible: { type: 'QuestLightningAura', name: 'Lightning Aura' },
 };
 
-let menuTab = null;
-let tabElements = {};
-let pins = [];
-let renderTimer = null;
+// The menu tabs, keyed by pin id.
+const tabs = new Map();
 let userItemsCache = null;
 let userItemsRequest = null;
 
@@ -86,32 +82,11 @@ const loadUserItemsCache = async (key) => {
 };
 
 /**
- * Get the item type pinned in a slot.
- *
- * @param {number} slot The slot index.
- *
- * @return {string|null} The item type, or null if the slot is empty.
- */
-const getSlotItemType = (slot) => {
-  const values = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]);
-  const value = values[slot];
-  if (!value || 'none' === value) {
-    return null;
-  }
-
-  // The same convertible pinned twice is only listed once.
-  return values.indexOf(value) === slot ? value : null;
-};
-
-/**
  * Get every item type that's pinned, without duplicates.
  *
  * @return {string[]} The item types.
  */
-const getPinnedItemTypes = () => {
-  const values = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]);
-  return [...new Set(values.filter((value) => value && 'none' !== value))];
-};
+const getPinnedItemTypes = () => [...new Set(getPins().flatMap((pin) => pin.items))];
 
 /**
  * Get the user's inventory data for every pinned item in one request, cached and shared between the pins.
@@ -188,16 +163,12 @@ const getRemainingShort = (expiry) => {
 /**
  * Show the result of opening a convertible.
  *
- * @param {Object} item     The convertible.
- * @param {number} quantity The number opened.
- * @param {Object} data     The response from the server.
+ * @param {HTMLElement} result   The element to show it in.
+ * @param {Object}      item     The convertible.
+ * @param {number}      quantity The number opened.
+ * @param {Object}      data     The response from the server.
  */
-const showResult = (item, quantity, data) => {
-  const result = tabElements.result;
-  if (!result) {
-    return;
-  }
-
+const showResult = (result, item, quantity, data) => {
   result.innerHTML = '';
   result.classList.remove('error');
 
@@ -224,81 +195,29 @@ const showResult = (item, quantity, data) => {
 /**
  * Show an error message in the dropdown.
  *
- * @param {string} message The message.
+ * @param {HTMLElement} result  The element to show it in.
+ * @param {string}      message The message.
  */
-const showError = (message) => {
-  const result = tabElements.result;
-  if (!result) {
-    return;
-  }
-
+const showError = (result, message) => {
   result.innerHTML = '';
   result.classList.add('error');
   result.textContent = message;
 };
 
 /**
- * Get the pin to use straight from the tab, when the only thing pinned is a message item.
+ * Create one of a tab's items, shown as a row in its dropdown.
  *
- * @return {Object|null} The pin, or null if the tab should open the dropdown.
- */
-const getDirectPin = () => {
-  const pinned = pins.filter((pin) => pin.getItem());
-
-  return 1 === pinned.length && pinned[0].getItem().isMessageItem ? pinned[0] : null;
-};
-
-/**
- * Update the menu tab to show the first pinned item the user has.
- */
-const renderTab = () => {
-  if (!menuTab) {
-    return;
-  }
-
-  // Keep the rows in slot order without moving them (and blurring inputs) when they're already in place.
-  const rows = pins.map((pin) => pin.row).filter(Boolean);
-  if (rows.some((row, index) => tabElements.list.children[index] !== row) || tabElements.list.children.length !== rows.length) {
-    tabElements.list.replaceChildren(...rows);
-  }
-
-  const display = pins.find((pin) => pin.getQuantity() > 0);
-
-  menuTab.classList.toggle('mh-quick-items-menu-empty', !display);
-  menuTab.classList.toggle('mh-quick-items-menu-aura-active', Boolean(display?.isAuraActive()));
-  menuTab.classList.toggle('mh-quick-items-menu-direct', Boolean(getDirectPin()));
-
-  if (!display) {
-    menuTab.classList.remove('expanded');
-    return;
-  }
-
-  const item = display.getItem();
-  tabElements.title.title = item.name;
-  tabElements.tabIcon.style.backgroundImage = item.thumbnail ? `url(${item.thumbnail})` : '';
-  tabElements.tabName.textContent = item.name;
-  if (display.isAuraActive()) {
-    tabElements.tabCount.textContent = getRemainingShort(display.getAuraExpiry());
-  } else {
-    // Message items aren't used up, so their quantity doesn't matter.
-    tabElements.tabCount.textContent = item.isMessageItem ? '' : item.quantity.toLocaleString();
-  }
-};
-
-/**
- * Create one pinned item, shown as a row in the dropdown.
+ * @param {string} itemType The item type.
+ * @param {Object} tab      The tab it's in.
  *
- * @param {number} slot The slot index.
- *
- * @return {Object} The pin's controls.
+ * @return {Object} The item's controls.
  */
-const createPin = (slot) => {
-  let itemType = null;
+const createEntry = (itemType, tab) => {
   let item = null;
   let aura = null;
   let auraExpiry = null;
   let isOpening = false;
-  let elements = {};
+  const elements = {};
 
   const pin = { row: null };
 
@@ -336,7 +255,6 @@ const createPin = (slot) => {
     if (pin.row && item) {
       const quantity = item.quantity || 0;
 
-      pin.row.hidden = quantity < 1;
       pin.row.classList.toggle('mh-quick-items-menu-message-item', item.isMessageItem);
 
       elements.name.textContent = item.name;
@@ -361,7 +279,7 @@ const createPin = (slot) => {
       }
     }
 
-    renderTab();
+    tab.render();
   };
 
   /**
@@ -414,24 +332,19 @@ const createPin = (slot) => {
    * @param {boolean} forceUpdate Whether to skip the game's inventory cache.
    */
   const updateItem = async (forceUpdate = false) => {
-    const type = itemType;
-    if (!type) {
-      return;
-    }
-
     let userItem;
     try {
-      userItem = (await getPinnedUserItems(forceUpdate)).get(type);
+      userItem = (await getPinnedUserItems(forceUpdate)).get(itemType);
     } catch {
       return;
     }
 
-    if (!userItem || type !== itemType) {
+    if (!userItem) {
       return;
     }
 
     item = Object.assign(item || {}, {
-      type,
+      type: itemType,
       name: userItem.name,
       thumbnail: userItem.thumbnail_transparent || userItem.thumbnail || item?.thumbnail,
       quantity: Number.parseInt(userItem.quantity, 10) || 0,
@@ -455,17 +368,17 @@ const createPin = (slot) => {
 
     const quantity = Number.parseInt(elements.quantity.value, 10);
     if (!quantity || quantity < 1) {
-      showError('Enter a quantity to open.');
+      showError(tab.result, 'Enter a quantity to open.');
       return;
     }
 
     if (quantity > item.quantity) {
-      showError(`You only have ${item.quantity.toLocaleString()}.`);
+      showError(tab.result, `You only have ${item.quantity.toLocaleString()}.`);
       return;
     }
 
     isOpening = true;
-    tabElements.result.textContent = '';
+    tab.result.textContent = '';
     render();
 
     hg.utils.UserInventory.useConvertible(
@@ -473,13 +386,13 @@ const createPin = (slot) => {
       quantity,
       async (data) => {
         isOpening = false;
-        showResult(item, quantity, data);
+        showResult(tab.result, item, quantity, data);
         await updateItem(true);
         await updateAuraFromPage();
       },
       (data) => {
         isOpening = false;
-        showError(data?.error || data?.message || 'Something went wrong. Please try again.');
+        showError(tab.result, data?.error || data?.message || 'Something went wrong. Please try again.');
         render();
       }
     );
@@ -491,15 +404,12 @@ const createPin = (slot) => {
   const useMessageItem = () => {
     const inventoryPage = 'undefined' === typeof app ? null : app?.pages?.InventoryPage;
     if (!item || !inventoryPage?.useMessageItem) {
-      showError('Something went wrong. Please try again.');
+      showError(tab.result, 'Something went wrong. Please try again.');
       return;
     }
 
-    if (tabElements.result) {
-      tabElements.result.textContent = '';
-    }
-
-    menuTab?.classList.remove('expanded');
+    tab.result.textContent = '';
+    tab.el.classList.remove('expanded');
 
     // The inventory page reads the item type from the element's data attributes.
     const element = makeElement('div');
@@ -514,7 +424,6 @@ const createPin = (slot) => {
    */
   const makeRow = () => {
     const row = makeElement('div', 'mh-quick-items-menu-item');
-    row.hidden = true;
 
     elements.image = make('div', 'mh-quick-items-menu-image', '', row);
 
@@ -562,25 +471,10 @@ const createPin = (slot) => {
    * Load the convertible's details and aura.
    */
   const load = async () => {
-    itemType = getSlotItemType(slot);
-
-    if (!itemType) {
-      item = null;
-      aura = null;
-      pin.row = null;
-      elements = {};
-      renderTab();
-      return;
-    }
-
     aura = auras[itemType] || null;
     auraExpiry = aura ? sessionGet(getAuraCacheKey(), null) : null;
 
-    const type = itemType;
     const allItems = await getData('items');
-    if (type !== itemType) {
-      return;
-    }
 
     const itemData = Array.isArray(allItems) ? allItems.find((i) => i.type === itemType) : null;
     const isMessageItem = 'message_item' === itemData?.classification;
@@ -649,55 +543,126 @@ const createPin = (slot) => {
 };
 
 /**
- * Close the dropdown when clicking outside of it.
+ * Close the dropdowns when clicking outside of them.
  *
  * @param {Event} event The click event.
  */
 const closeOnOutsideClick = (event) => {
-  if (menuTab && !menuTab.contains(event.target)) {
-    menuTab.classList.remove('expanded');
+  for (const tab of tabs.values()) {
+    if (!tab.el.contains(event.target)) {
+      tab.el.classList.remove('expanded');
+    }
   }
 };
 
 /**
- * Build the menu tab.
+ * Create a menu tab for a pin: one item with its own dropdown, or a group of them.
  *
- * @return {HTMLElement} The menu tab.
+ * @param {Object} pin The pin.
+ *
+ * @return {Object} The tab's controls.
  */
-const makeMenuTab = () => {
-  const tab = makeElement('div', ['menuItem', 'dropdown', 'mh-quick-items-menu', 'mh-quick-items-menu-empty']);
+const createTab = (pin) => {
+  const tab = { pin, entries: [] };
 
-  tabElements.title = make('span', 'mh-quick-items-menu-title', '', tab);
+  tab.el = makeElement('div', ['menuItem', 'dropdown', 'mh-quick-items-menu']);
+  tab.el.dataset.mhMenuPin = 'true';
+
   // Marked so Custom Menu can show the icon, the name, or both.
-  tabElements.tabIcon = make('span', ['mh-quick-items-menu-tab-icon', 'mhui-menu-item-icon'], '', tabElements.title);
-  // Shows "Quick Items", or the first item's name when that's turned on in Custom Menu.
-  const tabLabel = make('span', ['mh-quick-items-menu-tab-label', 'mhui-menu-label'], '', tabElements.title);
-  make('span', 'mh-quick-items-menu-tab-label-default', 'Quick Items', tabLabel);
-  tabElements.tabName = make('span', 'mh-quick-items-menu-tab-name', '', tabLabel);
-  tabElements.tabCount = make('span', 'mh-quick-items-menu-tab-count', '', tabElements.title);
-  makeElement('div', 'arrow', '', tab);
+  const title = make('span', 'mh-quick-items-menu-title', '', tab.el);
+  const icon = make('span', ['mh-quick-items-menu-tab-icon', 'mhui-menu-item-icon'], '', title);
+  const label = make('span', ['mh-quick-items-menu-tab-label', 'mhui-menu-label'], '', title);
+  const count = make('span', 'mh-quick-items-menu-tab-count', '', title);
+  makeElement('div', 'arrow', '', tab.el);
 
-  const dropdownContent = make('div', 'dropdownContent');
+  const dropdownContent = make('div', 'dropdownContent', '', tab.el);
   const content = make('div', 'mh-quick-items-menu-wrapper', '', dropdownContent);
 
   // Keep clicks inside the dropdown from toggling it.
   dropdownContent.addEventListener('click', (event) => event.stopPropagation());
 
-  tabElements.list = make('div', 'mh-quick-items-menu-list', '', content);
-  tabElements.result = make('div', 'mh-quick-items-menu-result', '', content);
+  const list = make('div', 'mh-quick-items-menu-list', '', content);
+  const empty = make('div', 'mh-quick-items-menu-none', 'Pick the items to pin in Custom Menu.', content);
+  tab.result = make('div', 'mh-quick-items-menu-result', '', content);
 
-  tab.append(dropdownContent);
+  /**
+   * Get the item to use straight from the tab, when the only item is a message item.
+   *
+   * @return {Object|null} The item, or null if the tab should open the dropdown.
+   */
+  const getDirectEntry = () => {
+    const [entry] = tab.entries;
+    return 1 === tab.entries.length && entry.getItem()?.isMessageItem ? entry : null;
+  };
 
-  tab.addEventListener('click', () => {
-    const directPin = getDirectPin();
-    if (directPin) {
-      directPin.useMessageItem();
+  /**
+   * Update the tab to show its first item the user has, or its first item when they have none.
+   */
+  tab.render = () => {
+    const rows = tab.entries.map((entry) => entry.row).filter(Boolean);
+    if (rows.some((row, index) => list.children[index] !== row) || list.children.length !== rows.length) {
+      list.replaceChildren(...rows);
+    }
+
+    empty.hidden = tab.entries.length > 0;
+
+    const display = tab.entries.find((entry) => entry.getQuantity() > 0) || tab.entries[0];
+    const item = display?.getItem();
+
+    // A group goes by the item it's showing.
+    const name = item?.name || 'Pinned items';
+    const iconImage = item?.thumbnail ? `url(${item.thumbnail})` : '';
+    const isChanged = tab.shown !== `${name}|${iconImage}`;
+    tab.shown = `${name}|${iconImage}`;
+
+    label.textContent = name;
+    tab.el.title = name;
+    tab.el.dataset.mhMenuName = name;
+    icon.style.backgroundImage = iconImage;
+
+    // Custom Menu shows a copy of the tab, so let it know.
+    if (isChanged && tab.el.isConnected) {
+      doEvent('mh-improved-header-menu-changed');
+    }
+
+    tab.el.classList.toggle('mh-quick-items-menu-aura-active', Boolean(display?.isAuraActive()));
+    tab.el.classList.toggle('mh-quick-items-menu-direct', Boolean(getDirectEntry()));
+
+    if (display?.isAuraActive()) {
+      count.textContent = getRemainingShort(display.getAuraExpiry());
+    } else {
+      // Message items aren't used up, so their quantity doesn't matter.
+      count.textContent = !item || item.isMessageItem ? '' : (item.quantity || 0).toLocaleString();
+    }
+  };
+
+  /**
+   * Match the tab to its pin.
+   *
+   * @param {Object} newPin The pin.
+   */
+  tab.update = (newPin) => {
+    const isSameItems = newPin.items.join(',') === tab.pin.items.join(',');
+    tab.pin = newPin;
+
+    if (!isSameItems || !tab.entries.length) {
+      tab.entries = newPin.items.map((itemType) => createEntry(itemType, tab));
+      tab.entries.forEach((entry) => entry.load());
+    }
+
+    tab.render();
+  };
+
+  tab.el.addEventListener('click', () => {
+    const directEntry = getDirectEntry();
+    if (directEntry) {
+      directEntry.useMessageItem();
       return;
     }
 
-    const isExpanded = tab.classList.toggle('expanded');
+    const isExpanded = tab.el.classList.toggle('expanded');
     if (isExpanded) {
-      pins.forEach((pin) => pin.updateItem());
+      tab.entries.forEach((entry) => entry.updateItem());
     }
   });
 
@@ -705,67 +670,40 @@ const makeMenuTab = () => {
 };
 
 /**
- * Add the menu tab to the header.
+ * Get every pinned item, across all the tabs.
+ *
+ * @return {Array} The items.
  */
-const addMenuTab = () => {
-  if (menuTab?.isConnected) {
-    return;
-  }
+const getEntries = () => [...tabs.values()].flatMap((tab) => tab.entries);
 
+/**
+ * Add, update, and remove tabs to match the pins.
+ */
+const syncTabs = () => {
   if (!document.querySelector('.mousehuntHeaderView-dropdownContainer')) {
     return;
   }
 
-  menuTab = makeMenuTab();
-  addHeaderMenuTab(menuTab, { id: 'quick-items-menu', name: 'Quick Items', order: 20 });
-
-  document.addEventListener('click', closeOnOutsideClick);
-
-  renderTab();
-};
-
-/**
- * Remove the menu tab from the header.
- */
-const removeMenuTab = () => {
-  menuTab?.remove();
-  menuTab = null;
-  tabElements = {};
-
-  document.removeEventListener('click', closeOnOutsideClick);
-};
-
-/**
- * Load every pinned item.
- */
-const loadPins = () => {
-  // Pins can be added in the settings, so match the number of slots first.
-  const count = getMultiSelectSetting(`${moduleId}.item`, [defaultItemType]).length;
-  pins = pins.slice(0, count);
-  for (let slot = pins.length; slot < count; slot++) {
-    pins.push(createPin(slot));
+  const pins = getPins();
+  for (const [id, tab] of tabs) {
+    if (!pins.some((pin) => pin.id === id) || !tab.el.isConnected) {
+      tab.el.remove();
+      tabs.delete(id);
+    }
   }
 
-  pins.forEach((pin) => pin.load());
-};
+  for (const pin of pins) {
+    let tab = tabs.get(pin.id);
+    if (!tab) {
+      tab = createTab(pin);
+      tabs.set(pin.id, tab);
+      tab.update(pin);
+      addHeaderMenuTab(tab.el, { id: pin.id, name: tab.el.dataset.mhMenuName, order: 20 });
+      continue;
+    }
 
-/**
- * Show the quick items tab.
- */
-const enable = () => {
-  addMenuTab();
-  loadPins();
-
-  clearInterval(renderTimer);
-  renderTimer = setInterval(() => pins.forEach((pin) => pin.render()), 30 * 1000);
-};
-
-/**
- * Hide the quick items tab.
- */
-const disable = () => {
-  clearInterval(renderTimer);
-  removeMenuTab();
+    tab.update(pin);
+  }
 };
 
 /**
@@ -774,25 +712,19 @@ const disable = () => {
 const init = async () => {
   addStyles(styles, moduleId);
 
-  enable();
+  syncTabs();
+  document.addEventListener('click', closeOnOutsideClick);
+  setInterval(() => getEntries().forEach((entry) => entry.render()), 30 * 1000);
 
   onNavigation(() => {
-    if (isModuleEnabled(moduleId)) {
-      addMenuTab();
-      pins.forEach((pin) => pin.updateAuraFromPage());
-    }
+    syncTabs();
+    getEntries().forEach((entry) => entry.updateAuraFromPage());
   });
 
-  onRequest('*', (response) => pins.forEach((pin) => pin.onResponse(response)), true);
+  onRequest('*', (response) => getEntries().forEach((entry) => entry.onResponse(response)), true);
 
-  // Changing one slot can change which slots are duplicates, so reload them all.
-  onEvent('mh-improved-settings-changed', ({ key }) => {
-    if (key?.startsWith(`${moduleId}.item-`)) {
-      loadPins();
-    }
-  });
-
-  onModuleToggle(moduleId, { enable, disable });
+  // Pins are added and changed in Custom Menu.
+  onEvent('mh-improved-pins-changed', syncTabs);
 };
 
 /**
@@ -800,11 +732,8 @@ const init = async () => {
  */
 export default {
   id: moduleId,
-  name: 'Quick Items Menu',
   type: 'inventory-shops',
-  default: false,
-  liveToggle: true,
-  description: 'Add a Quick Items menu to the top menu for opening pinned items.',
+  // Pins are added in Custom Menu, so there's nothing to turn on.
+  alwaysLoad: true,
   load: init,
-  settings,
 };

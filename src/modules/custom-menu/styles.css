@@ -4,7 +4,6 @@
   --mhui-menu-border: #ccc;
   --mhui-menu-hidden-bg: #f5f5f5;
   --mhui-menu-hidden-border: #bbb;
-  --mhui-menu-fade: #fff;
   --mhui-menu-popover: #fff;
 
   display: flex;
@@ -37,11 +36,6 @@
   margin: 0;
 }
 
-.mhui-menu-editor-label {
-  margin-bottom: 4px;
-  font-weight: 700;
-}
-
 .mhui-menu-editor-zone {
   display: flex;
   flex-wrap: wrap;
@@ -49,47 +43,29 @@
   transition: box-shadow 0.15s;
 }
 
-.mhui-menu-editor-zone.mhui-menu-editor-bar {
-  border: 1px solid #ccc;
-}
-
-.mh-dark .mhui-menu-editor-zone.mhui-menu-editor-bar {
-  border-color: var(--d-border);
+/* Both sides share one bar, like the real menu. The space between them is split, so dropping in it
+   goes to the nearer side. The margin leaves room for the name over a selected icon. */
+.mhui-menu-editor-menubar {
+  display: flex;
+  margin-top: 16px;
+  background: var(--mhui-menu-tab) 0 0 repeat-x;
+  border: 1px solid var(--mhui-menu-border);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
 }
 
 .mhui-menu-editor-bar {
   position: relative;
-  background: var(--mhui-menu-tab) 0 0 repeat-x;
-  border: 1px solid var(--mhui-menu-border);
-  border-bottom: none;
-}
-
-/* Only the outer corners are rounded, like the two ends of the real menu. */
-.mhui-menu-editor-bar[data-zone="left"] {
-  border-radius: 10px 0 0;
+  flex: 1 1 auto;
 }
 
 .mhui-menu-editor-bar[data-zone="right"] {
   justify-content: flex-end;
-  margin-left: auto;
-  border-radius: 0 10px 0 0;
 }
 
-.mhui-menu-editor-hidden {
-  gap: 4px;
-  min-height: 20px;
-  padding: 6px;
-  background: var(--d-action);
-  border: 1px solid var(--mhui-menu-hidden-border);
-  border-radius: 4px;
-}
-
-.mhui-menu-editor-hidden:empty::before {
-  align-self: center;
-  width: 100%;
-  color: var(--mhui-menu-muted);
-  text-align: center;
-  content: "Drag items here to hide them.";
+/* The bar itself shows where items can go. */
+.mhui-menu-editor.is-dragging .mhui-menu-editor-zone.mhui-menu-editor-bar.can-drop {
+  box-shadow: none;
 }
 
 .mhui-menu-editor.is-dragging .mhui-menu-editor-zone.can-drop {
@@ -105,6 +81,13 @@
   display: flex;
   gap: 4px;
   align-items: center;
+}
+
+/* Icon-only items are at least as wide as an 18px icon with its padding and border. */
+.mousehuntHeaderView .menuItem.mhui-menu-style.mhui-menu-style-icon {
+  box-sizing: border-box;
+  justify-content: center;
+  min-width: 33px;
 }
 
 .mousehuntHeaderView .menuItem.mhui-menu-style.mhui-menu-style-icon-text,
@@ -155,19 +138,6 @@
   display: none !important;
 }
 
-.mousehuntHeaderView .menuItem.mhui-menu-show-item-name .mh-quick-items-menu-tab-label-default {
-  display: none;
-}
-
-.mousehuntHeaderView .menuItem.mhui-menu-show-item-name .mh-quick-items-menu-tab-name {
-  display: inline;
-}
-
-/* The quantity takes the name's place, unless there isn't one, like for message items. */
-.mousehuntHeaderView .menuItem.mhui-menu-show-quantity .mh-quick-items-menu-title:has(.mh-quick-items-menu-tab-count:not(:empty)) .mh-quick-items-menu-tab-label {
-  display: none;
-}
-
 .mousehuntHeaderView a.superBrie.mhui-menu-hide-get-more {
   padding-right: 7px;
 }
@@ -188,19 +158,6 @@
   border-right: 1px solid var(--mhui-menu-border);
 }
 
-/* Fade out the inner end of each bar, where it would carry on into the rest of the menu. */
-.mhui-menu-editor-bar::before {
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  content: "";
-  background: linear-gradient(90deg, transparent 75%, var(--mhui-menu-fade) 100%);
-}
-
-.mhui-menu-editor-bar[data-zone="right"]::before {
-  background: linear-gradient(270deg, transparent 75%, var(--mhui-menu-fade) 100%);
-}
-
 /* The items are copies of the real ones, so the header styles do most of the work. */
 .mhui-menu-editor-item {
   white-space: nowrap;
@@ -215,11 +172,6 @@
 
 .mhui-menu-editor-bar[data-zone="right"] .mhui-menu-editor-item:last-child {
   border-top-right-radius: 9px;
-}
-
-.mhui-menu-editor .mhui-menu-editor-hidden .mhui-menu-editor-item {
-  border: 1px solid var(--mhui-menu-border);
-  border-radius: 4px;
 }
 
 .mhui-menu-editor-item:focus-visible {
@@ -248,11 +200,6 @@
   white-space: nowrap;
   pointer-events: none;
   transform: translateX(-50%);
-}
-
-/* Room for the name over the bars. */
-.mhui-menu-editor-section:has(> .mhui-menu-editor-bar) .mhui-menu-editor-label {
-  margin-bottom: 16px;
 }
 
 .mhui-menu-editor-item.has-options {
@@ -331,7 +278,6 @@
   width: max-content;
   min-width: 265px;
   max-width: 360px;
-  overflow: hidden;
   background: var(--mhui-menu-popover);
   border: 1px solid var(--mhui-menu-border);
   border-radius: 8px;
@@ -372,6 +318,144 @@
 .mhui-menu-editor-options-row .mousehuntSettingSlider:focus-visible {
   outline: 2px solid #4a90d9;
   outline-offset: 2px;
+}
+
+/* A pin's items, each in the same item picker as the settings page. */
+.mhui-menu-editor-options-row.mhui-menu-editor-pin-row {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.mhui-menu-editor-pin-items {
+  /* The picker's colors come from the settings page, so give it the editor's. */
+  --mhui-settings-text: inherit;
+  --mhui-settings-muted: var(--mhui-menu-muted);
+  --mhui-settings-border: var(--mhui-menu-border);
+  --mhui-settings-card: var(--mhui-menu-popover);
+  --mhui-settings-select: var(--mhui-menu-popover);
+  --mhui-settings-match: rgb(74 144 217 / 15%);
+  --mhui-settings-accent: #4a90d9;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 280px;
+}
+
+.mhui-menu-editor-pin-item {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.mhui-menu-editor-pin-item .mhui-item-picker {
+  flex: 1;
+  min-width: 0;
+}
+
+.mhui-menu-editor-pin-remove {
+  flex: none;
+  padding: 0 6px;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--mhui-menu-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 3px;
+}
+
+.mhui-menu-editor-pin-remove:hover {
+  color: inherit;
+  background: rgb(74 144 217 / 15%);
+}
+
+/* Like the settings page's button for adding another dropdown. */
+.mhui-menu-editor-pin-add {
+  box-sizing: border-box;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 2px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--mhui-menu-muted);
+  cursor: pointer;
+  background: none;
+  border: 1px dashed var(--mhui-menu-border);
+  border-radius: 3px;
+}
+
+.mhui-menu-editor-pin-add[hidden] {
+  display: none;
+}
+
+.mhui-menu-editor-pin-add:hover {
+  color: inherit;
+  border-color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor-pin-add-icon {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 100% 2px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 2px 100% no-repeat;
+}
+
+.mhui-menu-editor-pin-item .mhui-item-picker-trigger {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+  min-height: 26px;
+  padding: 2px 6px 2px 3px;
+  font-family: inherit;
+  font-size: 12px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--mhui-settings-border);
+  border-radius: 3px;
+}
+
+.mhui-menu-editor-pin-item .mhui-item-picker.is-empty .mhui-item-picker-trigger {
+  color: var(--mhui-settings-muted);
+  border-style: dashed;
+}
+
+.mhui-menu-editor-pin-item .mhui-item-picker.is-empty .mhui-item-picker-trigger .mhui-item-picker-name::before {
+  content: "Pick an item";
+}
+
+.mhui-menu-editor-pin-item .mhui-item-picker-popover {
+  right: auto;
+  left: 0;
+}
+
+/* The game's input styles give the search a heavy border, so draw a plain one. */
+#overlayPopup .mhui-menu-editor-pin-item input.mhui-item-picker-search {
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 8px;
+  margin: 0 0 6px;
+  font-family: inherit;
+  font-size: 12px;
+  color: inherit;
+  background: var(--mhui-menu-popover);
+  border: 1px solid var(--mhui-menu-border);
+  border-radius: 3px;
+  outline: none;
+  box-shadow: none;
+}
+
+#overlayPopup .mhui-menu-editor-pin-item input.mhui-item-picker-search:focus {
+  border-color: #4a90d9;
 }
 
 /* Joined buttons for picking one choice */
@@ -422,7 +506,7 @@
   display: flex;
   flex-flow: column nowrap;
   gap: 8px;
-  max-height: 220px;
+  max-height: 280px;
   padding: 6px;
   overflow-y: auto;
   background-color: var(--d-action);
@@ -447,6 +531,52 @@
 .mhui-menu-editor .mhui-menu-editor-available .mhui-menu-editor-item {
   border: 1px solid var(--mhui-menu-border);
   border-radius: 4px;
+}
+
+/* Scroll the groups rather than squashing them together. */
+.mhui-menu-editor-available > * {
+  flex-shrink: 0;
+}
+
+/* A group, or the Other row, goes while it's empty, like when its last item is dragged into the menu. */
+.mhui-menu-editor-available-group:not(:has(.mhui-menu-editor-item)),
+.mhui-menu-editor-link-rows > .mhui-menu-editor-available-list:empty,
+.mhui-menu-editor-link-row-label:has(+ .mhui-menu-editor-available-list:empty) {
+  display: none;
+}
+
+/* The main menu shortcuts, with the name of the menu they're from at the start of each row. */
+.mhui-menu-editor-link-rows {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 8px;
+  align-items: start;
+}
+
+.mhui-menu-editor-link-row-label {
+  padding-top: 5px;
+  font-size: 11px;
+  color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor .mhui-menu-editor-item.mhui-menu-editor-unavailable-item,
+.mhui-menu-editor .mhui-menu-editor-item.mhui-menu-editor-pending-item {
+  border-style: dashed;
+}
+
+.mhui-menu-editor .mhui-menu-editor-unavailable-item:not(.selected, :hover) > *,
+.mhui-menu-editor .mhui-menu-editor-pending-item:not(.selected, :hover) > * {
+  opacity: 0.6;
+}
+
+.mhui-menu-editor-bar .mhui-menu-editor-pending-item,
+.mhui-menu-editor-bar .mhui-menu-editor-unavailable-item {
+  outline: 1px dashed var(--mhui-menu-muted);
+  outline-offset: -3px;
+}
+
+.mhui-menu-editor-options-row .mousehuntActionButton {
+  white-space: nowrap;
 }
 
 #overlayPopup.mh-improved-custom-menu-popup .jsDialogContainer .suffix {
@@ -483,6 +613,34 @@
   --mhui-menu-border: var(--d-border);
   --mhui-menu-hidden-bg: rgb(255 255 255 / 4%);
   --mhui-menu-hidden-border: var(--d-border);
-  --mhui-menu-fade: var(--d-bg);
   --mhui-menu-popover: #2e3039;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 25px;
+  padding: 0 6px;
+}
+
+.mousehunt-improved-dark-mode-toggle::before {
+  display: block;
+  width: 15px;
+  height: 15px;
+  content: "";
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.5;
+}
+
+.mh-dark .mousehunt-improved-dark-mode-toggle::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23fff"><path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z" /></svg>'); /* stylelint-disable-line */
+  opacity: 0.7;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-dark-mode-toggle:hover::before {
+  opacity: 1;
 }

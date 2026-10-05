@@ -17,8 +17,8 @@ const moveSidebar = () => {
   });
 
   // Make title span.
-  const menuTabTitle = document.createElement('span');
-  menuTabTitle.innerText = 'Sidebar';
+  // Marked so Custom Menu can show the icon, the name, or both.
+  const menuTabTitle = makeElement('span', 'mhui-menu-label', 'Sidebar');
 
   // Make arrow div.
   const menuTabArrow = makeElement('div', 'arrow');
@@ -54,7 +54,7 @@ const moveSidebar = () => {
   // Append menu tab dropdown to menu tab.
   menuTab.append(dropdownContent);
 
-  addHeaderMenuTab(menuTab, { id: 'sidebar', name: 'Sidebar', order: 5 });
+  addHeaderMenuTab(menuTab, { id: 'sidebar', name: 'Sidebar', icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png', order: 5 });
 };
 
 /**

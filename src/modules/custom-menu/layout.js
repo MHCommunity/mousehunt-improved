@@ -1,6 +1,7 @@
-import { defaultHiddenMenuItems, doEvent, getSetting, saveSetting } from '@utils';
+import { doEvent, getHiddenMenuItems, getSetting, saveSetting } from '@utils';
 
 import { applyItemOptions } from './item-options';
+import { getPins } from '@/quick-items-menu/pins';
 import { makeLinkElement } from './menu-links';
 
 const settingKey = 'custom-menu.layout';
@@ -35,6 +36,15 @@ const nativeItems = [
  * @return {string} The side, 'left' or 'right'.
  */
 const getDefaultSide = (id) => nativeItems.find((item) => item.id === id)?.side || 'right';
+
+/**
+ * Check whether a menu item is one of the game's own.
+ *
+ * @param {string} id The item id.
+ *
+ * @return {boolean} Whether it's the game's.
+ */
+const isNativeItem = (id) => nativeItems.some((item) => item.id === id);
 
 /**
  * Get the two groups of menu items: the tabs on the left and the dropdown container on the right.
@@ -95,12 +105,15 @@ const getGroupItems = (container) => {
  *                  the display `styles` for each item, and each item's other `options`.
  */
 const getLayout = () => {
+  // Turning the old Quick Items menu into a pin changes how it's shown, so do that first.
+  getPins();
+
   const saved = getSetting(settingKey, null);
 
   return {
     left: Array.isArray(saved?.left) ? saved.left : [],
     right: Array.isArray(saved?.right) ? saved.right : [],
-    hidden: Array.isArray(saved?.hidden) ? saved.hidden : defaultHiddenMenuItems,
+    hidden: getHiddenMenuItems(saved),
     links: Array.isArray(saved?.links) ? saved.links : [],
     styles: saved?.styles && 'object' === typeof saved.styles ? saved.styles : {},
     options: saved?.options && 'object' === typeof saved.options ? saved.options : {},
@@ -346,8 +359,9 @@ const getStyleInfo = (el, id) => {
   return {
     iconUrl,
     needsLabel,
-    // Items we add an icon to, like the HUD toggle and Dashboard, start out the way they were, as text.
-    defaultStyle: iconUrl ? 'text' : 'icon',
+    // Items we add an icon to, like the HUD toggle and Dashboard, start out the way they were, as text,
+    // and so do pins, which go by their item's name.
+    defaultStyle: iconUrl || el.dataset.mhMenuPin ? 'text' : 'icon',
   };
 };
 
@@ -418,4 +432,4 @@ const applyLayout = (layout = getLayout()) => {
   updateEndItems(left);
 };
 
-export { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, lockedItems, saveLayout };
+export { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, isNativeItem, lockedItems, saveLayout };
