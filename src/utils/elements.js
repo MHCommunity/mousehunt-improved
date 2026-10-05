@@ -630,24 +630,34 @@ const waitForElement = async (selector, { single = true, maxAttempts = 10, delay
  * @param {string}  statClass      The class name of the stat to update.
  * @param {number}  newValue       The new value for the stat.
  * @param {number}  currentValue   The current value of the stat in the setup.
+ * @param {boolean} isPercent      Whether the stat is shown as a percentage.
  */
-const updateTrapStat = (statsContainer, statClass, newValue, currentValue) => {
+const updateTrapStat = (statsContainer, statClass, newValue, currentValue, isPercent = false) => {
   const statElement = statsContainer.querySelector(`.campPage-trap-itemBrowser-item-stat.${statClass}`);
-  if (statElement) {
-    const valueElement = statElement.querySelector('.value span');
-    if (valueElement) {
-      if (typeof newValue === 'number') {
-        newValue = newValue.toLocaleString();
-      }
+  if (!statElement) {
+    return;
+  }
 
-      valueElement.innerText = newValue;
+  const valueElement = statElement.querySelector('.value span');
+  if (!valueElement) {
+    return;
+  }
 
-      statElement.classList.remove('better', 'worse');
-      if (currentValue < newValue) {
-        statElement.classList.add('better');
-      } else if (currentValue > newValue) {
-        statElement.classList.add('worse');
-      }
+  statElement.classList.remove('better', 'worse');
+
+  if ('number' !== typeof newValue) {
+    valueElement.innerText = newValue;
+    return;
+  }
+
+  valueElement.innerText = `${newValue.toLocaleString()}${isPercent ? '%' : ''}`;
+
+  // Compare as numbers, the formatted string would compare as NaN.
+  if ('number' === typeof currentValue && !Number.isNaN(currentValue)) {
+    if (currentValue < newValue) {
+      statElement.classList.add('better');
+    } else if (currentValue > newValue) {
+      statElement.classList.add('worse');
     }
   }
 };
@@ -678,11 +688,12 @@ const updateTrapStatsDisplay = (selector, pbStats) => {
   }
 
   if (pbStats.powerBonus !== undefined) {
-    updateTrapStat(stats, 'powerBonus', pbStats.powerBonus, currentSetup.base.powerBonus);
+    updateTrapStat(stats, 'powerBonus', pbStats.powerBonus, currentSetup.base.powerBonus, true);
   }
 
   if (pbStats.attractionBonus !== undefined) {
-    updateTrapStat(stats, 'attraction_bonus', pbStats.attractionBonus, currentSetup.base.attractionBonus);
+    // The setup stores attraction bonus as a fraction, but the display uses a percentage.
+    updateTrapStat(stats, 'attraction_bonus', pbStats.attractionBonus, Math.round(currentSetup.base.attractionBonus * 100), true);
   }
 
   if (pbStats.cheeseEffect !== undefined) {

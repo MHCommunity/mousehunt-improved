@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.100.6
+
+- Better Trap Selector: Fixed the Denture and Printing Press bases being sorted by their uncharged stats
+- Better Trap Selector: Fixed real base stats not updating after changing the sort or searching
+- Better Trap Selector: Fixed the armed Denture or Printing Press base showing its uncharged stats
+- Better Trap Selector: Printing Press bases now only show their boosted stats in Folklore Forest
+- Better Trap Selector: Fixed Power Bonus and Attraction Bonus missing their percent sign and better/worse highlighting on boosted bases
+- Better Trap Selector: Added Power Bonus and Attraction Bonus to the saved Prestige Base and Rift Hailstone Singularity Base stats
+- Better UI: Long item descriptions in the trap selector now scroll instead of overflowing
+
 ## Version 0.100.5
 
 - Better Travel: Fixed the Map tab sending you back to Simple Travel

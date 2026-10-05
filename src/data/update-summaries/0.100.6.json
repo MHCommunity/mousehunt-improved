@@ -1,0 +1,15 @@
+{
+  "version": "0.100.6",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Trap Selector: Fixed the Denture and Printing Press bases being sorted by their uncharged stats",
+        "Better Trap Selector: Fixed boosted base stats not updating after sorting or searching",
+        "Better Trap Selector: Printing Press bases now only show their boosted stats in Folklore Forest",
+        "Long item descriptions in the trap selector now scroll"
+      ]
+    }
+  ]
+}
