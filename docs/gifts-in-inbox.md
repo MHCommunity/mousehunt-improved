@@ -1,4 +1,4 @@
-# [Gift links in inbox](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-gifts-in-inbox)
+# [Gift Links in Inbox](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-gifts-in-inbox)
 
 Adds recently discovered MouseHunt gift links to a "Gift Links" tab in the inbox for easy claiming.
 

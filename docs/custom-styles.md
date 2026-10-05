@@ -1,3 +1,3 @@
-# [Custom CSS](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-override-styles)
+# [Custom CSS Styles](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-override-styles)
 
 Allows you to add Custom CSS that will be applied. See [Custom CSS](https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS) for some examples you can copy and paste.

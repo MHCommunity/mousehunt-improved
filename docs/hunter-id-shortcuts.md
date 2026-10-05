@@ -1,4 +1,4 @@
-# [Hunter ID shortcuts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-hunter-id-shortcuts)
+# [Hunter ID Shortcuts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-hunter-id-shortcuts)
 
 Copy your Hunter ID from your profile picture, and paste a Hunter ID anywhere to open that hunter’s profile.
 

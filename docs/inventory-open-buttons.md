@@ -1,4 +1,4 @@
-# [Convertible opening buttons](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-inventory-buttons)
+# [Convertible Opening Buttons](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-inventory-buttons)
 
 Adds "One", "All But One", and "All" buttons to convertible items in your inventory, so you can open exactly how many you want with a single click.
 

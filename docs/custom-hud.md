@@ -1,4 +1,4 @@
-# [Custom HUD](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-custom-hud)
+# [Custom HUD Background](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-custom-hud)
 
 Personalize the marbled HUD background with your choice of colors, patterns, or unique styles.
 

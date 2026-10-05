@@ -1,8 +1,23 @@
-# [Emotes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-emotes)
+# [Better Friends](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-friends)
 
-Replaces Discord-style emotes on corkboards like (like :jerry:) with the actual image in map and profile corkboard messages.
+Makes it easier to see and keep up with other hunters.
 
-## Available Emotes
+## Features
+
+- **Hover Profiles**: Hover over a hunter's name in your journal, inbox, or elsewhere in the game to see a mini profile with stats and quick actions.
+- **Emotes**: Turns Discord-style emotes like `:jerry:` into images in map and profile corkboard messages. See the [supported emotes](#emotes).
+- **Egg Master Icon**: Shows the Egg Master icon on the profiles of hunters who are Egg Masters.
+- **On Maps Tab**: Adds an On Maps tab to the Friends page that lists which of your friends are on a map, with a button to open it.
+- **Scoreboard Search**: Adds a Scoreboards tab to hunter profiles to look up that hunter on any scoreboard. Scoreboards are grouped into sections so larger lists are easier to scan.
+
+## Options
+
+- **Show a mini profile when hovering over a name**
+- **Show emotes on corkboards**
+- **Add the Egg Master icon to profiles**
+- **Add an On Maps tab to the Friends page**: Off by default.
+
+## Emotes
 
 - <img src="https://i.mouse.rip/emotes/confused_cat.png" width="25" height="25" alt="confused_cat emote" title=":confused_cat:"> `:confused_cat:`
 - <img src="https://i.mouse.rip/emotes/facepalm.png" width="25" height="25" alt="facepalm emote" title=":facepalm:"> `:facepalm:`

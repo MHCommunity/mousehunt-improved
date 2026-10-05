@@ -1,4 +1,4 @@
-# [Hide page elements](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-hide-page-elements)
+# [Hide Page Elements](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-hide-page-elements)
 
 Hide parts of the page you don’t use. Choose which ones to hide:
 

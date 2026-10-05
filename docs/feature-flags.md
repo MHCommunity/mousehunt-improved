@@ -58,6 +58,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |---|---|
 |`better-mice-no-new-ar-widths`|Reverts the column widths of the attraction rate table to the old widths.|
 
+#### Better UI
+
+|Flag|Description|
+|---|---|
+|`better-ui-square-profile-pics`|Makes profile pictures square in more places for consistency.|
+
 #### Better Travel
 
 |Flag|Description|

@@ -23,8 +23,8 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 
 - **Styles: Various UI improvements and fixes**: Turns on the full Better UI visual polish package across menus, dialogs, tabs, selectors, and page layouts.
 - **Menu & HUD: Kingdom link goes to News, shows full title percent on hover, etc.**
-- **Profile: Add Egg Master icon**
 - **Use the MouseHunt Improved favicon**: Replaces the browser tab icon with a more fitting one.
-- **Square profile pics**: Makes profile pictures square in more places for consistency.
 
-The trap selector options are in [Better Trap Selector](./better-trap-selector.md).
+The trap selector options are in [Better Trap Selector](./better-trap-selector.md), and the Egg Master icon and On Maps tab are in [Better Friends](./better-friends.md).
+
+To make profile pictures square in more places, use the `better-ui-square-profile-pics` [feature flag](./feature-flags.md#better-ui).
