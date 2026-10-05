@@ -41,10 +41,10 @@
   right: 0;
   bottom: 0;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 2px 5px 3px;
   font-size: 16px;
   font-weight: 400;
-  line-height: 11px;
+  line-height: 16px;
   text-align: right;
   background-color: hsl(0deg 0% 100% / 70%);
   border: 1px solid #9d917f;
@@ -467,6 +467,9 @@ img.itembrowser-skin-image {
 }
 
 .trapSelectorView__trapStatSummaryContainer {
+  gap: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
   background: #f6f3eb;
   border-color: #e3dbd5;
   border-radius: 3px;
@@ -653,4 +656,15 @@ input.trapSelectorView__codexListSearch {
 
 .campPage-trap-itemBrowser-item.loaded.skin.cannotArm.cannotDisarm {
   filter: grayscale(1);
+}
+
+/* Space every section in the trap sidebar the same as the gap between the trap and the cheese.
+Several modules add their own margins to the sections, so those are reset here. */
+.trapSelectorView__summary {
+  gap: 10px;
+}
+
+.trapSelectorView__trapStatSummaryContainer > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
