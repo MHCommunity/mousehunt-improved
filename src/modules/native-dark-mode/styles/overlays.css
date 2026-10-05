@@ -6,6 +6,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .content,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .content,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .content,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .content {
   color: var(--d-text);
   background-color: var(--d-bg);
@@ -19,6 +20,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer {
   background-color: var(--d-bg);
 }
@@ -31,6 +33,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .suffix,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .suffix,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .suffix,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .suffix {
   background-color: var(--d-alt);
   border-color: var(--d-border);
@@ -44,6 +47,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .prefix,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .prefix,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .prefix,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .prefix {
   background-color: var(--d-bg);
 }
@@ -56,6 +60,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .jsDialog.bottom,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .jsDialog.bottom,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .jsDialog.bottom,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .jsDialog.bottom {
   background-color: var(--d-alt);
   border-radius: 0 0 15px 15px;
@@ -69,6 +74,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h2,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h2,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer h2,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h2,
 .mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer h3,
 .mh-dark #overlayPopup.itemViewPopup .jsDialogContainer h3,
@@ -78,6 +84,7 @@
 .mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h3,
 .mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h3,
 .mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer h3,
 .mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h3 {
   color: var(--d-text);
 }
@@ -116,12 +123,28 @@
   box-shadow: 0 -5px 8px -2px #ffae00 inset;
 }
 
+.mh-dark #overlayPopup.livingGardenRecipes .recipe .name,
+.mh-dark #overlayPopup.livingGardenRecipes .recipe .description {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.livingGardenRecipes .recipe:hover {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark #overlayPopup.livingGardenRecipes .recipe .image img,
+.mh-dark #overlayPopup.livingGardenRecipes .recipe .parts .part img {
+  box-shadow: none;
+}
+
 .mh-dark #overlayPopup.tornPage .jsDialogContainer {
   color: var(--d-text);
   background-color: var(--d-bg);
 }
 
-.mh-dark #overlayPopup.tornPage .jsDialogContainer h2 {
+.mh-dark #overlayPopup.tornPage .jsDialogContainer h2,
+.mh-dark #overlayPopup.tornPage .tornPageText h3 {
   color: var(--d-text);
 }
 

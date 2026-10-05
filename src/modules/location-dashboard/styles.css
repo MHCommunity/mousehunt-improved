@@ -209,6 +209,21 @@ img.locationImage {
   background-color: #a3f4ff;
 }
 
+.mh-dark .location-refresh-item {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .location-refresh-item.done {
+  background-color: var(--d-green-dark);
+  border-color: var(--d-border);
+}
+
+.mh-dark .location-refresh-item.starting {
+  background-color: var(--d-blue-darker);
+}
+
 .location-refresh-item .locationName {
   position: relative;
   display: flex;
@@ -235,6 +250,10 @@ img.locationImage {
   content: "";
   background: #f3c019;
   animation: mh-improved-right-to-left 1s linear forwards;
+}
+
+.mh-dark .location-refresh-item.traveling .locationName .progress::after {
+  background: var(--d-orange-darker);
 }
 
 @media (prefers-reduced-motion: reduce) {

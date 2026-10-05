@@ -8,9 +8,9 @@
   margin-bottom: 0;
 }
 
-/* Keep the page background showing around the content when dark mode darkens this. */
-.mh-dark .pageFrameView-contentContainer {
-  background-color: transparent;
+/* Dark mode darkens this and the body, so match the side columns. Event and custom backgrounds override it below. */
+body.mh-dark .pageFrameView-contentContainer {
+  background-color: #bad4ed;
 }
 
 .pageFrameView-content {
