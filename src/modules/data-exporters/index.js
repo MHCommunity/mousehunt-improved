@@ -112,6 +112,7 @@ const exportDataPopup = async () => {
 
   createPopup({
     title: 'Export Data',
+    className: 'mh-improved-export-data',
     content: `<ul class="mh-improved-export-data-landing">${exporterList}</ul>`,
   });
 

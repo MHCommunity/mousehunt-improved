@@ -1,0 +1,46 @@
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer,
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer .prefix {
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer .content {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer .jsDialog.bottom {
+  background-color: var(--d-alt);
+  border-radius: 0 0 15px 15px;
+}
+
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer h2,
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer h3,
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer .title {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.mh-improved-export-data .jsDialogContainer a {
+  color: var(--d-link);
+}
+
+.mh-dark .export-items-wrapper,
+.mh-dark .item-wrapper.export-items-header,
+.mh-dark .item-wrapper.export-items-footer,
+.mh-dark .rankup-forecaster-history .item-wrapper,
+.mh-dark .marketplace-transactions .item-wrapper {
+  border-color: var(--d-border);
+}
+
+.mh-dark .item-wrapper:nth-child(odd) {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .item-wrapper.export-items-header,
+.mh-dark .item-wrapper.export-items-footer {
+  background-color: var(--d-alt);
+}

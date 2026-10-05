@@ -167,6 +167,11 @@ const runCallbacks = (settings, parentNode, callbacks) => {
   Object.keys(settings).forEach((key) => {
     // If the parentNode that's passed in contains the selector for the key.
     if (parentNode && parentNode.classList && parentNode.classList.contains(settings[key].selector)) {
+      // Only fire show on the transition, not on every class mutation while visible.
+      if (settings[key].isVisible) {
+        return;
+      }
+
       // Set as visible.
       settings[key].isVisible = true;
 
@@ -455,12 +460,13 @@ let pageChangeObserver = null;
  * @param {Function} callbacks.change The callback to call when the page is changed.
  */
 const onPageChange = (callbacks) => {
-  // Track our page tab states.
-  let tabData = {
-    travel: { isVisible: false, selector: 'PageTravel' },
-  };
-
-  pageChangeCallbacks.push(callbacks);
+  // Track our page tab states per registration so each one gets its own show/hide transitions.
+  pageChangeCallbacks.push({
+    callbacks,
+    tabData: {
+      travel: { isVisible: false, selector: 'PageTravel' },
+    },
+  });
 
   if (pageChangeObserver) {
     return;
@@ -470,17 +476,17 @@ const onPageChange = (callbacks) => {
 
   // Observe the mousehuntContainer element for changes.
   const observer = new MutationObserver(() => {
-    pageChangeCallbacks.forEach((callback) => {
+    pageChangeCallbacks.forEach((entry) => {
       // If there's a change callback, run it.
-      if (callback.change) {
-        callback.change();
+      if (entry.callbacks.change) {
+        entry.callbacks.change();
       }
 
       // Grab the container element and make sure it has classes on it.
       const mhContainer = document.querySelector('#mousehuntContainer');
       if (mhContainer && mhContainer.classList.length > 0) {
         // Run the callbacks.
-        tabData = runCallbacks(tabData, mhContainer, callback);
+        entry.tabData = runCallbacks(entry.tabData, mhContainer, entry.callbacks);
       }
     });
   });

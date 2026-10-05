@@ -305,6 +305,7 @@
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader:hover span {
   color: #615d5d;
   background-color: transparent;
+  box-shadow: none;
 }
 
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .journalEntries {

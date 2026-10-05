@@ -32,6 +32,16 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .tournamentPage-profileContainer.train .tournamentPage-tournamentHeader {
+  color: var(--d-text);
+  background: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .tournamentPage-profileContainer.train .tournamentPage-profile-details-rewardContainer {
+  background: var(--d-bg);
+}
+
 .mh-dark .tournamentPage-profile-summaryDetailsContainer {
   background-color: var(--d-alt);
   border-color: var(--d-border);

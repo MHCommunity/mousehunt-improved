@@ -39,7 +39,7 @@
 }
 
 .mh-dark .accountVerificationRewardsView__step.claimed {
-  color: var(--d-text-dark);
+  color: var(--d-black);
   background-color: var(--d-green);
 }
 
@@ -52,7 +52,8 @@
   color: var(--d-link);
 }
 
-.mh-dark .mousehuntHud-page-tabContent.account_status a {
+.mh-dark .mousehuntHud-page-tabContent.account_status a,
+.mh-dark .PagePreferences__profilePicDescription a {
   color: var(--d-link);
 }
 

@@ -8,6 +8,8 @@
 
 .mh-dark .teamPage-profile-awardContainer-awardList {
   background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
 }
 
 .mh-dark .teamPage-memberRow:nth-child(odd):not(.teamPage-memberGroupTitle) {
@@ -80,4 +82,62 @@
 
 .mh-dark .tournamentPage-profile-prizeWaiting {
   color: var(--d-text-dark);
+}
+
+.mh-dark .teamPage-profile-header,
+.mh-dark .teamPage-profile-awardContainer {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .teamPage-profile-header-name,
+.mh-dark .teamPage-profile-header-motto,
+.mh-dark .teamPage-profile-description,
+.mh-dark .teamPage-profile-awardContainerLabel {
+  color: var(--d-text);
+  text-shadow: none;
+}
+
+.mh-dark .teamPage-profile-emblem .teamEmblemView {
+  border-color: var(--d-alt);
+  box-shadow: 0 0 0 1px var(--d-border);
+}
+
+.mh-dark .teamPage-container .mousehuntTabHeader::before {
+  background-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .teamPage-container .mousehuntTabHeader span {
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.mh-dark .teamPage-container .mousehuntTabContentContainer {
+  box-shadow: none;
+}
+
+.mh-dark .memberJournal .teamjournal {
+  background-color: var(--d);
+}
+
+.mh-dark .memberJournal .teamjournal .entry {
+  color: var(--d-text) !important;
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .memberJournal .teamjournal .entry a {
+  color: var(--d-link);
+}
+
+.mh-dark .memberJournal .teamjournal .entry.tournamentpoints,
+.mh-dark .memberJournal .teamjournal .entry.tournamentpointswithloot {
+  background-color: var(--d-yellow-darker);
+}
+
+.mh-dark .memberJournal .teamjournal .entry.catchfailuredamage {
+  background-color: var(--d-red-darker);
 }

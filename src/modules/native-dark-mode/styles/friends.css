@@ -1,9 +1,10 @@
 .mh-dark .friendsPage-subduedLink {
-  color: var(--d-text-dark);
+  color: var(--d-text-muted);
+  background-color: var(--d-alt);
 }
 
 .mh-dark .friendsPage-subduedLink:hover {
-  color: var(--d-text-muted);
+  color: var(--d-text);
 }
 
 .mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message,

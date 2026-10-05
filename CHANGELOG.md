@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.100.5
+
+- Better Travel: Fixed the Map tab sending you back to Simple Travel
+- Dark Mode: Improved the team page, team member journals, and Train tournament header
+- Dark Mode: Fixed item descriptions with green or red text being hard to read
+- Dark Mode: Added styling for the Export Data popup
+- Minor style tweaks
+
 ## Version 0.100.4
 
 - Hunter ID shortcuts: Fixed Copy ID saying "Copied!" without changing the clipboard in some browsers

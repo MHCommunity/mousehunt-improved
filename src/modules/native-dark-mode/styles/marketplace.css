@@ -189,6 +189,7 @@
 }
 
 .mh-dark .marketplaceHome-blockMenu {
+  color: var(--d-text-muted);
   border-color: var(--d-transparent-10);
 }
 

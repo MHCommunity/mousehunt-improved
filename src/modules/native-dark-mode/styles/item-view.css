@@ -40,3 +40,22 @@
 .mh-dark .mh-improved-scroll-to-map-multiple {
   background-color: var(--d-bg-alt);
 }
+
+/* Item descriptions use inline green and red text, which is too dark to read here. */
+.mh-dark .itemView-description [style*="color:green"],
+.mh-dark .itemView-description [style*="color: green"],
+.mh-dark .inventoryPage-item-content-description-text [style*="color:green"],
+.mh-dark .inventoryPage-item-content-description-text [style*="color: green"],
+.mh-dark .itemPurchaseView-content-description [style*="color:green"],
+.mh-dark .itemPurchaseView-content-description [style*="color: green"] {
+  color: var(--d-green) !important;
+}
+
+.mh-dark .itemView-description [style*="color:red"],
+.mh-dark .itemView-description [style*="color: red"],
+.mh-dark .inventoryPage-item-content-description-text [style*="color:red"],
+.mh-dark .inventoryPage-item-content-description-text [style*="color: red"],
+.mh-dark .itemPurchaseView-content-description [style*="color:red"],
+.mh-dark .itemPurchaseView-content-description [style*="color: red"] {
+  color: var(--d-red-light) !important;
+}
