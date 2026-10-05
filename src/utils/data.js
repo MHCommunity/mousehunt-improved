@@ -17,6 +17,7 @@ const validDataFiles = new Set([
   'm400-locations',
   'marketplace-hidden-items',
   'mice-groups',
+  'mice-powertype-mastery',
   'mice-regions',
   'mice-silhouettes',
   'mice-thumbnails',

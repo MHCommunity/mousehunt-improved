@@ -16,9 +16,7 @@ let miceData = null;
 let powerTypeFilter = null;
 
 /**
- * Get the power type for each mouse, keyed by mouse type.
- *
- * Event mice get their own group, otherwise it's the single power type the mouse is weakest to (using the strongest effectiveness it has), or 'multi' if there are several.
+ * Get the power type that counts toward each mouse's power type mastery, keyed by mouse type.
  *
  * @return {Promise<Object>} The power type for each mouse type.
  */
@@ -27,24 +25,20 @@ const getMousePowerTypes = async () => {
     return miceData;
   }
 
-  const mice = await getData('mice');
-  if (!mice || !Array.isArray(mice)) {
+  const mastery = await getData('mice-powertype-mastery');
+  if (!mastery || typeof mastery !== 'object' || Array.isArray(mastery)) {
     return {};
   }
 
   miceData = {};
-  mice.forEach((mouse) => {
-    if ('event' === mouse.group_id) {
-      miceData[mouse.type] = 'event';
+  Object.entries(mastery).forEach(([powerType, mice]) => {
+    if (!Array.isArray(mice)) {
       return;
     }
 
-    const strongest = ['veryEffective', 'effective', 'lessEffective'].map((tier) => mouse.weaknesses?.[tier]).find((types) => types?.length);
-    if (!strongest) {
-      return;
-    }
-
-    miceData[mouse.type] = 1 === strongest.length ? strongest[0] : 'multi';
+    mice.forEach((mouseType) => {
+      miceData[mouseType] = powerType;
+    });
   });
 
   return miceData;
@@ -134,18 +128,18 @@ const applyPowerTypeFilter = (view) => {
       }
     });
 
-    group.classList.toggle('mh-crown-hidden', visible === 0);
+    // Profile+ reads the group's class attribute as its key, so use an attribute instead.
+    group.toggleAttribute('data-mh-crown-hidden', visible === 0);
   });
 };
 
 /**
- * Add the power type icons and the power type filter.
+ * Add the power type mastery icons and the power type filter.
  *
- * @param {Element}      view      The crowns view.
- * @param {Element|null} summary   The summary element to add the filter to, or null to skip the filter.
- * @param {boolean}      showIcons Whether to add the power type icons to the mice.
+ * @param {Element} view    The crowns view.
+ * @param {Element} summary The summary element to add the filter to.
  */
-const addPowerTypes = async (view, summary, showIcons) => {
+const addPowerTypes = async (view, summary) => {
   const mousePowerTypes = await getMousePowerTypes();
   if (!Object.keys(mousePowerTypes).length) {
     return;
@@ -158,9 +152,6 @@ const addPowerTypes = async (view, summary, showIcons) => {
     }
 
     mouse.setAttribute('data-mh-power-type', powerType);
-    if (!showIcons) {
-      return;
-    }
 
     const card = mouse.querySelector('.mouseCrownsView-group-mouse-padding');
     if (!card || card.querySelector('.mh-crown-power-type-icon')) {
@@ -172,10 +163,6 @@ const addPowerTypes = async (view, summary, showIcons) => {
     icon.title = powerType;
     card.append(icon);
   });
-
-  if (!summary) {
-    return;
-  }
 
   const silverPlus = new Set(['diamond', 'platinum', 'gold', 'silver']);
   const totals = {};
@@ -195,7 +182,7 @@ const addPowerTypes = async (view, summary, showIcons) => {
   });
 
   const wrapper = makeElement('div', 'mh-crown-power-types');
-  makeElement('div', 'mh-crown-summary-heading', 'Silver crowns by power type', wrapper);
+  makeElement('div', 'mh-crown-summary-heading', 'Power type mastery', wrapper);
 
   const buttons = makeElement('div', 'mh-crown-power-types-buttons');
   powerTypes.forEach((type) => {
@@ -242,8 +229,6 @@ const addPowerTypes = async (view, summary, showIcons) => {
  * @return {Promise<Element>} The summary element.
  */
 const addSummary = async (view, showTotals) => {
-  view.querySelector('.mh-crown-summary')?.remove();
-
   const mice = await getData('mice');
   const crownedTotal = crownTiers.reduce((sum, tier) => sum + getGroupMice(view, tier.type).length, 0);
   const total = Array.isArray(mice) && mice.length ? mice.length : crownedTotal + getGroupMice(view, 'none').length;
@@ -252,10 +237,13 @@ const addSummary = async (view, showTotals) => {
   const header = makeElement('div', 'mouseCrownsView-group-header');
   makeElement('div', ['mouseCrownsView-crown', 'silver'], '', header);
   const name = makeElement('div', 'mouseCrownsView-group-header-name');
-  makeElement('b', '', showTotals ? 'Crown Summary' : 'Power Types', name);
+  makeElement('b', '', showTotals ? 'Crown Summary' : 'Power Type Mastery', name);
   makeElement('div', 'mouseCrownsView-group-header-subtitle', `${total.toLocaleString()} mice`, name);
   header.append(name);
   summary.append(header);
+
+  // Removed here rather than up front, so overlapping calls can't each add one while waiting for the data.
+  view.querySelector('.mh-crown-summary')?.remove();
 
   const favourites = view.querySelector('.mouseCrownsView-group.favourite, .mouseCrownsView-group.favorites');
   if (favourites) {
@@ -297,6 +285,9 @@ const getCollapsedGroups = () => {
 /**
  * Make the crown groups collapsible.
  *
+ * The state lives in data attributes rather than classes, as Profile+ uses the group's class attribute
+ * as a key and hides every group it doesn't recognize.
+ *
  * @param {Element} view The crowns view.
  */
 const addCollapsing = (view) => {
@@ -309,8 +300,8 @@ const addCollapsing = (view) => {
       return;
     }
 
-    group.classList.add('mh-crown-collapsible');
-    group.classList.toggle('mh-crown-collapsed', collapsed.has(type));
+    group.setAttribute('data-mh-crown-collapsible', '');
+    group.toggleAttribute('data-mh-crown-collapsed', collapsed.has(type));
 
     if (header.getAttribute('data-mh-collapsible')) {
       return;
@@ -322,7 +313,7 @@ const addCollapsing = (view) => {
         return;
       }
 
-      const isCollapsed = group.classList.toggle('mh-crown-collapsed');
+      const isCollapsed = group.toggleAttribute('data-mh-crown-collapsed');
       const saved = new Set(getCollapsedGroups());
       if (isCollapsed) {
         saved.add(type);
@@ -336,6 +327,55 @@ const addCollapsing = (view) => {
 };
 
 /**
+ * Check the page for the MH: Profile+ userscript, as it decorates King's Crowns itself.
+ *
+ * @return {boolean} Whether Profile+ is on the page.
+ */
+const hasProfilePlus = () => {
+  return !!document.querySelector(
+    '#ws-profile-plus-styles, .mouseCrownsView .toolBar #copyCrownsButton, .mouseCrownsView-group-header.community, .mouseCrownsView-group-header.powerCrown'
+  );
+};
+
+let hasScheduledProfilePlusCheck = false;
+
+/**
+ * Check if Profile+ is running.
+ *
+ * Profile+ can load after us, so this also uses what was found on a previous page load, and
+ * re-checks once the page has settled. If that changes, it's picked up on the next reload.
+ *
+ * @return {boolean} Whether Profile+ is running.
+ */
+const isProfilePlusActive = () => {
+  const saved = getSetting('better-mice.profile-plus-detected', false);
+  const found = hasProfilePlus();
+
+  if (!hasScheduledProfilePlusCheck) {
+    hasScheduledProfilePlusCheck = true;
+
+    const recheck = () => {
+      setTimeout(() => {
+        const detected = hasProfilePlus();
+        if (detected !== getSetting('better-mice.profile-plus-detected', false)) {
+          saveSetting('better-mice.profile-plus-detected', detected);
+        }
+      }, 5000);
+    };
+
+    if ('complete' === document.readyState) {
+      recheck();
+    } else {
+      window.addEventListener('load', recheck, { once: true });
+    }
+  }
+
+  return saved || found;
+};
+
+let stylesAdded = false;
+
+/**
  * Add the summary, collapsing, and power types to the King's Crowns view.
  *
  * @param {Element} container The element holding the crown groups, defaults to the profile's crowns view.
@@ -346,15 +386,22 @@ const decorateKingsCrowns = async (container = null) => {
     return;
   }
 
+  const showSummary = getSetting('better-mice.show-crown-summary', true);
+  const showPowerTypeMastery = getSetting('better-mice.show-crown-power-type-mastery', true);
+  if ((!showSummary && !showPowerTypeMastery) || isProfilePlusActive()) {
+    return;
+  }
+
+  if (!stylesAdded) {
+    addStyles(styles, 'better-mice-kings-crowns');
+    stylesAdded = true;
+  }
+
   powerTypeFilter = null;
 
-  const showSummary = getSetting('better-mice.show-crown-summary', true);
-  const showPowerTypeSummary = getSetting('better-mice.show-crown-power-type-summary', true);
-  const showPowerTypeIcons = getSetting('better-mice.show-crown-power-types', true);
-
-  const summary = showSummary || showPowerTypeSummary ? await addSummary(view, showSummary) : null;
-  if (showPowerTypeSummary || showPowerTypeIcons) {
-    await addPowerTypes(view, showPowerTypeSummary ? summary : null, showPowerTypeIcons);
+  const summary = await addSummary(view, showSummary);
+  if (showPowerTypeMastery) {
+    await addPowerTypes(view, summary);
   }
 
   addCollapsing(view);
@@ -364,8 +411,6 @@ const decorateKingsCrowns = async (container = null) => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'better-mice-kings-crowns');
-
   onNavigation(() => decorateKingsCrowns(), {
     page: 'hunterprofile',
     tab: 'kings_crowns',

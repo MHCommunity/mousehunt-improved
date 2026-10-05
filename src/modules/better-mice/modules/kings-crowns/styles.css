@@ -1,10 +1,10 @@
-.mh-crown-collapsible .mouseCrownsView-group-header {
+[data-mh-crown-collapsible] .mouseCrownsView-group-header {
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-.mh-crown-collapsible .mouseCrownsView-group-header::after {
+[data-mh-crown-collapsible] .mouseCrownsView-group-header::after {
   position: absolute;
   top: 50%;
   right: 15px;
@@ -18,24 +18,25 @@
   transform: translateY(-75%) rotate(45deg);
 }
 
-.mh-crown-collapsible .mouseCrownsView-group-header:hover::after {
+[data-mh-crown-collapsible] .mouseCrownsView-group-header:hover::after {
   opacity: 1;
 }
 
-.mh-crown-collapsed .mouseCrownsView-group-header::after {
+[data-mh-crown-collapsed] .mouseCrownsView-group-header::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
-.mh-crown-collapsed .mouseCrownsView-group-header {
+[data-mh-crown-collapsed] .mouseCrownsView-group-header {
   padding-bottom: 0;
   margin-bottom: 0;
   border-bottom: none;
 }
 
-.mh-crown-collapsed .mouseCrownsView-group-mice,
-.mh-crown-collapsed .mh-crown-summary-tiles,
-.mh-crown-collapsed .mh-crown-power-types,
-.mh-crown-hidden {
+[data-mh-crown-collapsed] .mouseCrownsView-group-mice,
+[data-mh-crown-collapsed] .mh-crown-summary-tiles,
+[data-mh-crown-collapsed] .mh-crown-power-types,
+.mh-crown-hidden,
+[data-mh-crown-hidden] {
   display: none !important;
 }
 
@@ -169,10 +170,11 @@
   position: relative;
 }
 
+/* Top right, since the game's favorite star sits in the top left. */
 .mh-crown-power-type-icon {
   position: absolute;
   top: 6px;
-  left: 6px;
+  right: 6px;
   box-sizing: border-box;
   width: 22px;
   height: 22px;
