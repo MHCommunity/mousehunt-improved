@@ -215,10 +215,11 @@ const showDropRates = async (itemId, itemView) => {
   }
 
   // shrink the mhct json array to only include items with non-zero drop rates and a maximum of 15 items
-  mhctJson = mhctJson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 10);
+  // drop_pct is a string like '0.27', so parse it as a float to keep rates under 1%.
+  mhctJson = mhctJson.filter((itemAr) => Number.parseFloat(itemAr.drop_pct) > 0).slice(0, 10);
 
   mhctJson.forEach((itemAr) => {
-    const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
+    const dropPercent = Number.parseFloat(itemAr.drop_pct).toFixed(2);
     if (dropPercent !== '0.00') {
       const itemArWrapper = makeElement('div', 'mouse-ar-wrapper');
 

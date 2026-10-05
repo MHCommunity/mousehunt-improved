@@ -226,6 +226,11 @@
   margin-bottom: 0;
 }
 
+/* Search hides items with .hidden, which the display: flex above would otherwise override. */
+.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item.hidden {
+  display: none;
+}
+
 .mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-leftBar {
   flex: 0 0 55px;
   width: auto;

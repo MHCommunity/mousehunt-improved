@@ -1075,11 +1075,6 @@ input.treasureMapView-block-search-text {
   margin-top: 5px;
 }
 
-.treasureMapTooltipView.mh-ui-map-preview-tooltip {
-  margin-top: -90px;
-  margin-left: -7px;
-}
-
 .treasureMapDialogView-overlay.active .treasureMapView-mapName {
   padding-bottom: 20px;
 }

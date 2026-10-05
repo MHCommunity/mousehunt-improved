@@ -1,0 +1,15 @@
+{
+  "version": "0.100.7",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Fixed MHCT attraction rates and drop rates not showing on mouse and item popups",
+        "Item drop rates under 1% now show, and drop rates are no longer rounded down",
+        "Favorite Setups: Fixed search when picking items for a setup",
+        "Better Maps: Fixed a hunter's tooltip disappearing before you could click the Profile button"
+      ]
+    }
+  ]
+}

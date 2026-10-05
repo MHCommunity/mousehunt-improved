@@ -156,19 +156,23 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
  *
  * @ignore
  *
- * @param {Object} settings   Settings object.
- * @param {Node}   parentNode The parent node.
- * @param {Object} callbacks  The callbacks to run.
+ * @param {Object}  settings                  Settings object.
+ * @param {Node}    parentNode                The parent node.
+ * @param {Object}  callbacks                 The callbacks to run.
+ * @param {Object}  options                   Options.
+ * @param {boolean} options.onlyOnTransition  Only fire show when going from hidden to visible.
  *
  * @return {Object} The settings.
  */
-const runCallbacks = (settings, parentNode, callbacks) => {
+const runCallbacks = (settings, parentNode, callbacks, { onlyOnTransition = false } = {}) => {
   // Loop through the keys on our settings object.
   Object.keys(settings).forEach((key) => {
     // If the parentNode that's passed in contains the selector for the key.
     if (parentNode && parentNode.classList && parentNode.classList.contains(settings[key].selector)) {
-      // Only fire show on the transition, not on every class mutation while visible.
-      if (settings[key].isVisible) {
+      // Only fire show on the transition, not on every class mutation while visible. Overlays
+      // don't use this: their state is shared between callbacks, and they need show to fire again
+      // when the popup content changes without the popup closing.
+      if (onlyOnTransition && settings[key].isVisible) {
         return;
       }
 
@@ -486,7 +490,7 @@ const onPageChange = (callbacks) => {
       const mhContainer = document.querySelector('#mousehuntContainer');
       if (mhContainer && mhContainer.classList.length > 0) {
         // Run the callbacks.
-        entry.tabData = runCallbacks(entry.tabData, mhContainer, entry.callbacks);
+        entry.tabData = runCallbacks(entry.tabData, mhContainer, entry.callbacks, { onlyOnTransition: true });
       }
     });
   });

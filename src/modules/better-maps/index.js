@@ -80,18 +80,6 @@ const addMapClassesToPreview = () => {
   if (preview) {
     preview.classList.add('mh-ui-map-preview');
   }
-
-  const tooltip = document.querySelector('.treasureMapTooltipView');
-  if (tooltip) {
-    tooltip.classList.add('mh-ui-map-preview-tooltip');
-  }
-};
-
-const removeMapClassesFromPreview = () => {
-  const tooltip = document.querySelector('.treasureMapTooltipView.mh-ui-map-preview-tooltip');
-  if (tooltip) {
-    tooltip.classList.remove('mh-ui-map-preview-tooltip');
-  }
 };
 
 /**
@@ -297,7 +285,6 @@ const showMapPreview = ({ map: mapId } = {}) => {
  * Restore the map that was active before the preview opened.
  */
 const hideMapPreview = () => {
-  removeMapClassesFromPreview();
   if (!previewState) {
     return;
   }

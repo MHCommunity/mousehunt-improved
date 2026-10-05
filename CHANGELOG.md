@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.100.7
+
+- Better Mice: Fixed attraction rates and MHCT links not showing on mouse popups
+- Better Item Details: Fixed drop rates and MHCT links not showing on item popups
+- Better Item Details: Fixed drop rates under 1% being hidden, and other drop rates being rounded down
+- Favorite Setups: Fixed search not filtering items when editing a setup
+- Better Maps: Fixed a hunter's tooltip disappearing before you could click the Profile button
+
 ## Version 0.100.6
 
 - Better Trap Selector: Fixed the Denture and Printing Press bases being sorted by their uncharged stats
