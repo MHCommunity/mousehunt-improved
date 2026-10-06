@@ -1,0 +1,29 @@
+{
+  "version": "0.101.0",
+  "summary": "Settings got reorganized again! Some modules got moved into new categories. Quick Items have been redone too: you can now pin convertibles and message items right to the top menu directly in the Custom Menu, rather than configuring them separately.",
+  "details": [
+    {
+      "title": "Settings",
+      "items": [
+        "New categories: Interface, Journal, Maps & Mice, Quests & Tournaments, and Progress & Stats",
+        "Hover Profiles, Emotes, and Scoreboard Search are now combined into a new module: Better Friends",
+        "Quick Send Supplies and pinned Send Supplies items are now part of Better Send Supplies"
+      ]
+    },
+    {
+      "title": "Quick Items & Custom Menu",
+      "items": [
+        "Custom Menu: Pin items to the top menu, on their own or in a group",
+        "Custom Menu: Added a Dark Mode toggle, and more links from the main menu"
+      ]
+    },
+    {
+      "title": "Fixed and Updated",
+      "items": [
+        "Dark Mode: More styles and improvements",
+        "Better Mice: King's Crowns power type mastery lists have been fixed",
+        "Better Mice: Fixed King's Crowns conflicting with Profile+ userscript"
+      ]
+    }
+  ]
+}

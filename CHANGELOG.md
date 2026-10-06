@@ -1,5 +1,37 @@
 # Changelog
 
+## Version 0.101.0
+
+### Added
+
+- Custom Menu: Added pinned items: pin convertibles and message items to the top menu to open them from anywhere, one item per pin or several in a group
+- Custom Menu: Added a Dark Mode toggle that can be added to the top menu
+- Custom Menu: Added the links Better Mice and other modules add to the main menu as top menu options
+- Custom Menu: Added items from modules that are turned off to the editor, with a button to turn the module on and add the item
+- Hide Page Elements: Added an icon to the Sidebar menu tab, so Custom Menu can show it as an icon
+- Dark Mode: Added styling for the Living Garden recipes popup and the Location Dashboard refresh list
+
+### Fixed and Updated
+
+- Better Mice: Updated power type mastery on King's Crowns to use the game's mastery groups, and combined the two power type settings into one, which is off by default
+- Better Mice: Moved the power type icons on King's Crowns mice to the top right, away from the favorite star
+- Better Mice: Fixed King's Crowns showing two crown summaries
+- Better Mice: Fixed King's Crowns hiding every crown group when used with the MH: Profile+ userscript. Better Mice now leaves King's Crowns alone when Profile+ is installed, or when its crown settings are turned off
+- Favorite Setups: Fixed Power Bonus icons missing when picking items, and kept power types on the same line as the stats
+- Better UI: Evened out the spacing in the trap selector sidebar and tidied the bait quantity badge
+- Dark Mode: Fixed the page background around the content
+- Fixed clicking a member's name on the team page doing nothing
+- Fixed the item search showing "no results" when the groups were just collapsed
+- Updated module names and settings categories to all use title case, such as Hide Page Elements, Hover Delays, and Hunting & Traps
+- Moved Metric Units to Personalization, and Image Upscaling & Transparency to Advanced
+- Settings: Updated the Custom Horn, Custom Shield, background, and other dropdown settings to use the same title size as the rest of the modules
+
+### Removed
+
+- Removed the Quick Items Menu module. Your Quick Items menu is turned into a Custom Menu pin automatically
+- Removed the Quick Send Supplies module. It is now a setting in Better Send Supplies, alongside the pinned items. Your existing setting carries over, and Better Send Supplies is turned on if you were using Quick Send Supplies
+- Settings: Removed copying a link to a setting when clicking its name
+
 ## Version 0.100.7
 
 - Better Mice: Fixed attraction rates and MHCT links not showing on mouse popups
@@ -277,8 +309,8 @@
 
 ## Version 0.99.1
 
-Updated Better Tournaments styling
-Updated Dark Mode tournament journal entry styling
+- Updated Better Tournaments styling
+- Updated Dark Mode tournament journal entry styling
 
 ## Version 0.99.0
 
