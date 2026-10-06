@@ -537,6 +537,7 @@ const createEntry = (itemType, tab) => {
     isAuraActive,
     useMessageItem,
     getItem: () => item,
+    getItemType: () => itemType,
     getQuantity: () => item?.quantity || 0,
     getAuraExpiry: () => auraExpiry,
   });
@@ -609,6 +610,11 @@ const createTab = (pin) => {
     const display = tab.entries.find((entry) => entry.getQuantity() > 0) || tab.entries[0];
     const item = display?.getItem();
 
+    // Wait for the item to load rather than flashing the placeholder name.
+    if (display && !item) {
+      return;
+    }
+
     // A group goes by the item it's showing.
     const name = item?.name || 'Pinned items';
     const iconImage = item?.thumbnail ? `url(${item.thumbnail})` : '';
@@ -645,9 +651,16 @@ const createTab = (pin) => {
     const isSameItems = newPin.items.join(',') === tab.pin.items.join(',');
     tab.pin = newPin;
 
+    // Keep the items it already has, so the tab doesn't go blank while the new ones load.
     if (!isSameItems || !tab.entries.length) {
-      tab.entries = newPin.items.map((itemType) => createEntry(itemType, tab));
-      tab.entries.forEach((entry) => entry.load());
+      const oldEntries = new Map(tab.entries.map((entry) => [entry.getItemType(), entry]));
+      tab.entries = newPin.items.map((itemType) => {
+        const entry = oldEntries.get(itemType);
+        oldEntries.delete(itemType);
+        return entry || createEntry(itemType, tab);
+      });
+
+      tab.entries.filter((entry) => !entry.getItem()).forEach((entry) => entry.load());
     }
 
     tab.render();

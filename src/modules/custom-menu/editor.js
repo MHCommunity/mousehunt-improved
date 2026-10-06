@@ -545,7 +545,10 @@ const openMenuEditor = () => {
    * Show the options for the selected item in a popover under it.
    */
   const renderOptions = () => {
+    // A pin's items take a moment to load, so hold on to the ones showing for the same pin.
+    const shownItems = optionsPanel.dataset.id === selectedId ? optionsPanel.querySelector('.mhui-menu-editor-pin-items') : null;
     optionsPanel.replaceChildren();
+    optionsPanel.dataset.id = selectedId || '';
 
     const item = Object.values(items)
       .flat()
@@ -560,7 +563,7 @@ const openMenuEditor = () => {
     if (item.moduleItem) {
       renderModuleOptions(item, chip);
     } else if (item.pin) {
-      renderPinOptions(item);
+      renderPinOptions(item, shownItems);
     } else {
       renderItemOptions(item);
     }
@@ -650,9 +653,10 @@ const openMenuEditor = () => {
    * Show a pin's items, each in a picker that changes it, with a button that adds another picker
    * for a new item. Then the choices every item has.
    *
-   * @param {Object} item The pin's menu item.
+   * @param {Object}      item       The pin's menu item.
+   * @param {HTMLElement} shownItems The items already showing for this pin, kept until the new ones are ready.
    */
-  const renderPinOptions = (item) => {
+  const renderPinOptions = (item, shownItems) => {
     const pin = getPins().find((p) => p.id === item.id);
     if (!pin) {
       return;
@@ -660,13 +664,13 @@ const openMenuEditor = () => {
 
     const itemsRow = make('div', ['mhui-menu-editor-options-row', 'mhui-menu-editor-pin-row'], '', optionsPanel);
     make('span', 'mhui-menu-editor-options-label', '', itemsRow).textContent = 'Items';
-    const itemsBox = make('div', 'mhui-menu-editor-pin-items', '', itemsRow);
+
+    // The items load in the background, so keep showing the ones from before until they're ready,
+    // rather than emptying the list and filling it back up.
+    const itemsBox = makeElement('div', 'mhui-menu-editor-pin-items');
+    itemsRow.append(shownItems || itemsBox);
 
     getPinnableItems().then(async (pinnable) => {
-      if (!optionsPanel.contains(itemsBox)) {
-        return;
-      }
-
       /**
        * Get the grouped options for one of the pickers, leaving out what the others have.
        *
@@ -682,13 +686,13 @@ const openMenuEditor = () => {
       /**
        * Add a row with a picker for an item, and a button to remove it.
        *
-       * @param {number|null} index The item's index, or null for a new one.
+       * @param {number|null} index   The item's index, or null for a new one.
+       * @param {Array}       options The picker's options.
        *
-       * @return {Promise<HTMLElement>} The picker.
+       * @return {HTMLElement} The picker.
        */
-      const addRow = async (index) => {
+      const addRow = (index, options) => {
         const current = null === index ? '' : pin.items[index];
-        const options = await getOptions(current);
 
         const row = make('div', 'mhui-menu-editor-pin-item', '', itemsBox);
         itemsBox.insertBefore(row, addButton);
@@ -732,13 +736,19 @@ const openMenuEditor = () => {
       make('span', 'mhui-menu-editor-pin-add-label', 'Add item', addButton);
       addButton.addEventListener('click', async () => {
         addButton.hidden = true;
-        const picker = await addRow(null);
+        const picker = addRow(null, await getOptions(''));
         picker.querySelector('.mhui-item-picker-trigger')?.click();
       });
 
-      for (const [index] of pin.items.entries()) {
-        await addRow(index);
+      const options = await Promise.all(pin.items.map((type) => getOptions(type)));
+
+      // Shown again since, so these are out of date.
+      if (!optionsPanel.contains(itemsRow)) {
+        return;
       }
+
+      options.forEach((itemOptions, index) => addRow(index, itemOptions));
+      shownItems?.replaceWith(itemsBox);
 
       // A new pin starts with its picker open.
       if (!pin.items.length) {
