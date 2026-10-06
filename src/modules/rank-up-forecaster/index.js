@@ -335,7 +335,7 @@ export default {
   id: 'rank-up-forecaster',
   name: 'Rank-Up Forecaster',
   description: 'Track your wisdom over time and forecast when you’ll rank up.',
-  type: 'journal-stats',
+  type: 'progress-stats',
   default: false,
   load: init,
 };

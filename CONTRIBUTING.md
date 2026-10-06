@@ -103,9 +103,10 @@ export default {
 };
 ```
 
-Valid module categories are `required`, `personalization`, `hunting-traps`,
-`inventory-shops`, `journal-stats`,
-`locations`, `location-huds`, `maps-challenges`, `friends-gifts`, `beta`, and `advanced`.
+Valid module categories are `required`, `personalization`, `interface`,
+`hunting-traps`, `journal`, `maps-mice`, `locations`, `location-huds`,
+`inventory-shops`, `quests-tournaments`, `friends-gifts`, `progress-stats`,
+`beta`, and `advanced`.
 
 ### Importing utilities
 

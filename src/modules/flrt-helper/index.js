@@ -268,7 +268,7 @@ const init = async () => {
 export default {
   id: 'flrt-helper',
   name: 'FLRT Helper',
-  type: 'maps-challenges',
+  type: 'maps-mice',
   default: false,
   description: 'Add a “Return to Maptain” button when you open a map chest, so you can pick which tradable items to send straight to the Maptain.',
   load: init,

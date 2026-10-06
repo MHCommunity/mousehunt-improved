@@ -144,7 +144,7 @@ const init = async () => {
 export default {
   id: 'wisdom-in-stat-bar',
   name: 'Wisdom in Stat Bar',
-  type: 'journal-stats',
+  type: 'progress-stats',
   default: false,
   liveToggle: true,
   load: init,

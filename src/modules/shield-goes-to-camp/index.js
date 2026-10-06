@@ -24,7 +24,7 @@ const init = async () => {
 export default {
   id: 'shield-goes-to-camp',
   name: 'Shield Goes to Camp',
-  type: 'personalization',
+  type: 'interface',
   default: true,
   description: 'Click the shield to go to Camp, or to your Hunter Profile if you’re already there.',
   load: init,

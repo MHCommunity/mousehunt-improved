@@ -383,7 +383,7 @@ const init = async () => {
  */
 export default {
   id: 'ultimate-checkmark',
-  type: 'journal-stats',
+  type: 'progress-stats',
   alwaysLoad: true,
   load: init,
   settings,

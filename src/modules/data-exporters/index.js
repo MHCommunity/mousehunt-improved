@@ -151,7 +151,7 @@ export default {
   id: 'data-exporters',
   name: 'Data Export',
   description: 'Export your mouse stats, inventory, Marketplace history, scoreboard rankings, and more from the Kingdom menu.',
-  type: 'journal-stats',
+  type: 'progress-stats',
   default: true,
   load: init,
 };

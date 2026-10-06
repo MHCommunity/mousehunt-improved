@@ -59,7 +59,7 @@ const init = () => {
 export default {
   id: 'hover-delays',
   name: 'Hover Delays',
-  type: 'personalization',
+  type: 'interface',
   default: true,
   description: 'Add a short delay before menus and tooltips open, so they don’t pop up as you move the mouse past them.',
   liveToggle: true,

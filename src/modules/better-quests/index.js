@@ -497,7 +497,7 @@ const init = () => {
 export default {
   id: 'better-quests',
   name: 'Better Quests',
-  type: 'maps-challenges',
+  type: 'quests-tournaments',
   default: true,
   description: 'Open the assignments popup from anywhere, improve the Quests tab, and add a helper for the M400 assignments.',
   load: init,

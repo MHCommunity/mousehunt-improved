@@ -34,7 +34,7 @@ export default {
   id: 'better-ui',
   name: 'Better UI',
   description: "Improve the game's styling and fix small interface annoyances.",
-  type: 'personalization',
+  type: 'interface',
   default: true,
   order: -1,
   load: init,

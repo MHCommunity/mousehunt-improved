@@ -541,7 +541,7 @@ const applySettingsSearch = (settingsPage, searchTerm) => {
     });
     settingsPage.querySelectorAll('.mhui-settings-search-reveal').forEach((subSetting) => subSetting.classList.remove('mhui-settings-search-reveal'));
     emptyState.classList.remove('active');
-    setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection || sections[0]?.id);
+    setActiveSettingsSection(settingsPage, settingsPage.dataset.activeSection || 'all');
     return;
   }
 
@@ -706,7 +706,7 @@ const createSettingsBrowser = () => {
     settingsPage.prepend(browser);
   }
 
-  setActiveSettingsSection(settingsPage, sections[0].id);
+  setActiveSettingsSection(settingsPage, 'all');
   showSettingFromHash(settingsPage);
 };
 
