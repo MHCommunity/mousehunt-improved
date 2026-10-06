@@ -12,10 +12,7 @@
     },
     {
       "title": "Quick Items & Custom Menu",
-      "items": [
-        "Custom Menu: Pin items to the top menu, on their own or in a group",
-        "Custom Menu: Added a Dark Mode toggle, and more links from the main menu"
-      ]
+      "items": ["Custom Menu: Pin items to the top menu, on their own or in a group", "Custom Menu: Added a Dark Mode toggle, and more links from the main menu"]
     },
     {
       "title": "Fixed and Updated",
