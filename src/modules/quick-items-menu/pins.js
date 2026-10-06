@@ -1,10 +1,6 @@
-import { doEvent, getData, getMultiSelectSetting, getSetting, saveSetting } from '@utils';
+import { doEvent, getData, getSetting, saveSetting } from '@utils';
 
 const pinsKey = 'quick-items-menu.pins';
-const layoutKey = 'custom-menu.layout';
-
-// The item the old Quick Items menu pinned until another one was picked.
-const defaultItemType = 'kilohertz_processor_convertible';
 
 // Message items, like Scrambles, can be pinned alongside convertibles.
 const classifications = ['convertible', 'message_item'];
@@ -15,57 +11,14 @@ const classifications = ['convertible', 'message_item'];
 const pinOptions = [{ key: 'quantity', label: 'Show quantity', default: false }];
 
 /**
- * Get the old pinned items, before pins could be added to the menu one at a time.
- *
- * @return {string[]} The item types, without duplicates.
- */
-const getLegacyItemTypes = () => {
-  const values = getMultiSelectSetting('quick-items-menu.item', [defaultItemType]);
-
-  return [...new Set(values.filter((value) => value && 'none' !== value))];
-};
-
-/**
- * Turn the old Quick Items menu into a pin, keeping its place in the menu and how it was shown.
- *
- * It keeps the old tab's id, so it stays where it was in Custom Menu. If the old menu was turned off,
- * there's nothing pinned.
- *
- * @return {Array} The pins.
- */
-const migrateLegacyPins = () => {
-  const id = 'quick-items-menu';
-  if (!getSetting(id, false)) {
-    saveSetting(pinsKey, []);
-    return [];
-  }
-
-  const layout = getSetting(layoutKey, null);
-  const options = layout?.options?.[id] || {};
-  const pins = [{ id, items: getLegacyItemTypes() }];
-  saveSetting(pinsKey, pins);
-
-  // It was shown as an icon by default, with its quantity.
-  if (layout) {
-    saveSetting(layoutKey, {
-      ...layout,
-      styles: { ...layout.styles, [id]: layout.styles?.[id] || 'icon' },
-      options: { ...layout.options, [id]: { quantity: options.quantity ?? true } },
-    });
-  }
-
-  return pins;
-};
-
-/**
  * Get the pins, each with an `id` and the item types it has. One with more than one item is a group.
  *
  * @return {Array} The pins.
  */
 const getPins = () => {
-  const pins = getSetting(pinsKey, null);
+  const pins = getSetting(pinsKey, []);
   if (!Array.isArray(pins)) {
-    return migrateLegacyPins();
+    return [];
   }
 
   return pins.filter((pin) => pin?.id).map((pin) => ({ id: pin.id, items: Array.isArray(pin.items) ? pin.items : [] }));

@@ -1,7 +1,6 @@
 import { doEvent, getHiddenMenuItems, getSetting, saveSetting } from '@utils';
 
 import { applyItemOptions } from './item-options';
-import { getPins } from '@/quick-items-menu/pins';
 import { makeLinkElement } from './menu-links';
 
 const settingKey = 'custom-menu.layout';
@@ -105,9 +104,6 @@ const getGroupItems = (container) => {
  *                  the display `styles` for each item, and each item's other `options`.
  */
 const getLayout = () => {
-  // Turning the old Quick Items menu into a pin changes how it's shown, so do that first.
-  getPins();
-
   const saved = getSetting(settingKey, null);
 
   return {
