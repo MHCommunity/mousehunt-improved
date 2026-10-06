@@ -19,7 +19,8 @@
       "items": [
         "Dark Mode: More styles and improvements",
         "Better Mice: King's Crowns power type mastery lists have been fixed",
-        "Better Mice: Fixed King's Crowns conflicting with Profile+ userscript"
+        "Better Mice: Fixed King's Crowns conflicting with Profile+ userscript",
+        "Better Mice: King's Crowns power type mastery is now off by default"
       ]
     }
   ]

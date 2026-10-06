@@ -387,7 +387,7 @@ const decorateKingsCrowns = async (container = null) => {
   }
 
   const showSummary = getSetting('better-mice.show-crown-summary', true);
-  const showPowerTypeMastery = getSetting('better-mice.show-crown-power-type-mastery', true);
+  const showPowerTypeMastery = getSetting('better-mice.show-crown-power-type-mastery', false);
   if ((!showSummary && !showPowerTypeMastery) || isProfilePlusActive()) {
     return;
   }
