@@ -179,7 +179,7 @@ const getEditorItems = (layout) => {
   return items;
 };
 
-const pinTemplateIcon = 'https://www.mousehuntgame.com/images/ui/hud/menu/potions.png';
+const pinTemplateIcon = 'https://www.mousehuntgame.com/images/ui/hud/menu/inventory.png';
 
 const styleClasses = ['mhui-menu-style-icon', 'mhui-menu-style-icon-text', 'mhui-menu-style-text'];
 
