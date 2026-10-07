@@ -130,6 +130,18 @@
   background-color: #fc9;
 }
 
+.mh-dark .inventoryPage-item.torn_page input:is(.viewFront, .viewBack) {
+  color: var(--d-black);
+  text-shadow: none;
+  background-color: #fc6;
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-item.torn_page input:is(.viewFront, .viewBack):hover {
+  background-color: #fc9;
+}
+
 .mh-dark .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {
   background-color: var(--d);
 }
