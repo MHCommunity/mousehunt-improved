@@ -10,7 +10,6 @@ const toHighlight = new Set([
   'physical_paragon',
   'shadow_paragon',
   'tactical_paragon',
-  'draconic_paragon',
   'fog_warden',
   'frost_warden',
   'rain_warden',
@@ -32,6 +31,10 @@ const getSkyMapMice = () => {
   return goals.filter((goal) => !completedGoals.includes(goal.unique_id) && toHighlight.has(goal.type));
 };
 
+const paragonCacheSelector = '.paragon_cache_a, .paragon_cache_b, .paragon_cache_c, .paragon_cache_d';
+
+const hasMod = (tile, selector) => tile.matches(selector) || !!tile.querySelector(selector);
+
 const highlightSkyMap = async () => {
   await waitForElement('#floatingIslandsAdventureBoardSkyMap', { maxAttempts: 100, delay: 100 });
   if (!mapGoals) {
@@ -39,29 +42,24 @@ const highlightSkyMap = async () => {
     return;
   }
 
-  // check if any of the goals on the map are paragons and if not, return.
-  if (!mapGoals.some((goal) => goal.type.endsWith('paragon'))) {
-    return; // TODO: also add check for wardens.
+  // Paragons show up on their power type's islands when there's a paragon cache, and wardens show up on islands with their shrine.
+  const powerTypes = mapGoals.filter((goal) => goal.type.endsWith('_paragon')).map((goal) => goal.type.replace('_paragon', ''));
+  const shrineSelectors = mapGoals.filter((goal) => goal.type.endsWith('_warden')).map((goal) => `.${goal.type.replace('_warden', '')}_shrine`);
+
+  if (!powerTypes.length && !shrineSelectors.length) {
+    return;
   }
 
   const edge = [...document.querySelectorAll('.floatingIslandsAdventureBoardSkyMap-powerTypes .floatingIslandsHUD-powerType')];
   const grid = [...document.querySelectorAll('.floatingIslandsAdventureBoardSkyMap-islandModContainer .floatingIslandsAdventureBoardSkyMap-islandMod')];
 
-  // if any of the grid doesnt include the paragon tiles, return.
-  if (
-    !grid.some((tile) => {
-      if (
-        tile.classList.contains('paragon_cache_a') ||
-        tile.classList.contains('paragon_cache_b') ||
-        tile.classList.contains('paragon_cache_c') ||
-        tile.classList.contains('paragon_cache_d')
-      ) {
-        return true;
-      }
+  const relevantSelectors = [...shrineSelectors];
+  if (powerTypes.length) {
+    relevantSelectors.push(paragonCacheSelector);
+  }
 
-      return false;
-    })
-  ) {
+  // If none of the islands can attract a mouse we need, leave the sky map alone.
+  if (!grid.some((tile) => hasMod(tile, relevantSelectors.join(', ')))) {
     return;
   }
 
@@ -111,54 +109,35 @@ const highlightSkyMap = async () => {
     },
   };
 
-  edge.forEach((tile) => {
+  [...edge, ...grid].forEach((tile) => {
     tile.classList.remove('highlight-for-map');
     tile.classList.remove('extra-highlight-for-map');
     tile.classList.add('lowlight-for-map');
   });
 
-  grid.forEach((tile) => {
-    tile.classList.remove('highlight-for-map');
-    tile.classList.remove('extra-highlight-for-map');
-    tile.classList.add('lowlight-for-map');
-  });
-
-  // TODO: also update this to work with wardens, just skipping the power type.
-  let shouldHighlightRowExtra = false;
-  mapGoals.forEach((mouse) => {
-    shouldHighlightRowExtra = false;
-
-    const powerType = mouse.type.replaceAll('_paragon', '');
-    if (powerType && mapByPowerType[powerType]) {
-      if (!mapByPowerType[powerType].edge) {
-        return;
-      }
-
-      mapByPowerType[powerType].edge.classList.add('highlight-for-map');
-      mapByPowerType[powerType].edge.classList.remove('lowlight-for-map');
-
-      mapByPowerType[powerType].tiles.forEach((tile, index) => {
-        tile.classList.remove('lowlight-for-map');
-        tile.classList.add('highlight-for-map');
-
-        const mod = tile.querySelector('.floatingIslandsHUD-mod');
-        if (
-          index === 0 &&
-          mod &&
-          (mod.classList.contains('paragon_cache_a') ||
-            mod.classList.contains('paragon_cache_b') ||
-            mod.classList.contains('paragon_cache_c') ||
-            mod.classList.contains('paragon_cache_d'))
-        ) {
-          shouldHighlightRowExtra = true;
-        }
-
-        if (shouldHighlightRowExtra) {
-          mapByPowerType[powerType].edge.classList.add('extra-highlight-for-map');
-          tile.classList.add('extra-highlight-for-map');
-        }
-      });
+  const highlight = (el, extra = false) => {
+    el.classList.remove('lowlight-for-map');
+    el.classList.add('highlight-for-map');
+    if (extra) {
+      el.classList.add('extra-highlight-for-map');
     }
+  };
+
+  powerTypes.forEach((powerType) => {
+    const row = mapByPowerType[powerType];
+    if (!row?.edge) {
+      return;
+    }
+
+    const tiles = row.tiles.filter(Boolean);
+    const cacheTiles = tiles.filter((tile) => hasMod(tile, paragonCacheSelector));
+
+    highlight(row.edge, cacheTiles.length > 0);
+    tiles.forEach((tile) => highlight(tile, cacheTiles.includes(tile)));
+  });
+
+  shrineSelectors.forEach((selector) => {
+    grid.filter((tile) => hasMod(tile, selector)).forEach((tile) => highlight(tile, true));
   });
 };
 

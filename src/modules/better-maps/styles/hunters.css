@@ -200,3 +200,59 @@ span.treasureMapView-shareLinkInputStatus {
 .mh-ui-map-preview .treasureMapView-blockWrapper > .treasureMapView-leftBlock > .treasureMapView-block {
   margin-right: -5px;
 }
+
+.mh-ui-user-is-owner:not(.mh-ui-map-completed) .treasureMapView-mapMenu .treasureMapView-hunter.empty {
+  --mhui-empty-hunter-bg: #f6f6f6;
+  --mhui-empty-hunter-border: #c5c5c5;
+  --mhui-empty-hunter-plus: #a5a5a5;
+  --mhui-empty-hunter-hover-bg: #eef3ff;
+  --mhui-empty-hunter-hover-border: #7294f3;
+  --mhui-empty-hunter-hover-plus: #4a72e0;
+
+  cursor: pointer;
+}
+
+.mh-ui-user-is-owner:not(.mh-ui-map-completed) .treasureMapView-mapMenu .treasureMapView-hunter.empty img.treasureMapView-hunter-image {
+  opacity: 0;
+}
+
+.mh-ui-user-is-owner:not(.mh-ui-map-completed) .treasureMapView-mapMenu .treasureMapView-hunter.empty .treasureMapView-hunter-image-wrapper::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  content: "";
+  background-color: var(--mhui-empty-hunter-bg);
+  border: 2px dashed var(--mhui-empty-hunter-border);
+  border-radius: 50%;
+  transition:
+    border-color 0.1s,
+    background-color 0.1s;
+}
+
+.mh-ui-user-is-owner:not(.mh-ui-map-completed) .treasureMapView-mapMenu .treasureMapView-hunter.empty .treasureMapView-hunter-image-wrapper::after {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 16px;
+  height: 16px;
+  color: var(--mhui-empty-hunter-plus);
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 100% 2px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 2px 100% no-repeat;
+  transition: color 0.1s;
+  transform: translate(-50%, -50%);
+}
+
+.over .treasureMapView-hunter-image-wrapper::before {
+  background-color: var(--mhui-empty-hunter-hover-bg);
+  border-color: var(--mhui-empty-hunter-hover-border);
+}
+
+.over .treasureMapView-hunter-image-wrapper::after {
+  color: var(--mhui-empty-hunter-hover-plus);
+}

@@ -180,6 +180,14 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .treasureMapView-environment:hover {
+  border-color: var(--d-action);
+}
+
+.mh-dark .treasureMapView-environment:not(.complete, .wrong):hover .treasureMapView-environment-title {
+  background-color: var(--d-alt);
+}
+
 .mh-dark .treasureMapView-goals-group-goal-name span {
   color: var(--d-text);
 }
@@ -600,4 +608,13 @@
 
 .mh-dark .userSelector-table tr.disabled {
   background-color: var(--d-bg-alt);
+}
+
+.mh-dark .mh-ui-user-is-owner:not(.mh-ui-map-completed) .treasureMapView-mapMenu .treasureMapView-hunter.empty {
+  --mhui-empty-hunter-bg: var(--d-alt);
+  --mhui-empty-hunter-border: var(--d-action);
+  --mhui-empty-hunter-plus: var(--d-text-muted);
+  --mhui-empty-hunter-hover-bg: var(--d-bg);
+  --mhui-empty-hunter-hover-border: #7294f3;
+  --mhui-empty-hunter-hover-plus: #a9bff8;
 }
