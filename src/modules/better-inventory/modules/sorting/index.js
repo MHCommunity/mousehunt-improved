@@ -31,7 +31,7 @@ const componentSubtabs = new Set(['weapon', 'base', 'trinket']);
 const skippedSubtabs = new Set(['recipe', 'crafting_table']);
 
 // The trap component each subtab holds, for the trap selector's area tags and recommendations.
-const trapClassifications = { weapon: 'weapon', base: 'base', skin: 'skin', trinket: 'trinket', 'cheese-all': 'bait' };
+const trapClassifications = { weapon: 'weapon', base: 'base', skin: 'skin', trinket: 'trinket' };
 
 // Subtabs without the area sidebar, which get an area dropdown instead.
 const areaSubtabs = new Set(['weapon', 'base', 'skin']);
@@ -117,26 +117,30 @@ const getOptions = (subtab, key) => {
     });
   }
 
-  filters.push({
-    id: 'limited',
-    label: 'Show',
-    options: [
-      { id: 'le', name: 'Limited Edition', text: 'LE' },
-      { id: 'non-le', name: 'Not Limited Edition', text: 'Non-LE' },
-    ],
-  });
+  // Bait is nearly all limited edition and its recommendations are just what the location uses.
+  const isBait = key.startsWith('cheese-');
+  const showOptions = isBait
+    ? []
+    : [
+        { id: 'le', name: 'Limited Edition', text: 'LE' },
+        { id: 'non-le', name: 'Not Limited Edition', text: 'Non-LE' },
+      ];
 
   if ('favorites' !== subtab && getSetting('better-inventory.favorites', false)) {
-    filters.at(-1).options.unshift({ id: 'favorites', name: 'Favorites', text: '★' });
+    showOptions.unshift({ id: 'favorites', name: 'Favorites', text: '★' });
   }
 
   if (componentSubtabs.has(subtab)) {
-    filters.at(-1).options.push({ id: 'special', name: 'Has a special effect', text: 'Special' }, { id: 'normal', name: 'No special effect', text: 'Normal' });
+    showOptions.push({ id: 'special', name: 'Has a special effect', text: 'Special' }, { id: 'normal', name: 'No special effect', text: 'Normal' });
   }
 
-  const data = trapData.get(trapClassifications[subtab] || trapClassifications[key]);
-  if (data?.recommended.size && 'skin' !== subtab) {
-    filters.at(-1).options.push({ id: 'recommended', name: 'Recommended for your location', text: 'Recommended' });
+  const data = trapData.get(trapClassifications[subtab]);
+  if (data?.recommended.size && 'skin' !== subtab && !isBait) {
+    showOptions.push({ id: 'recommended', name: 'Recommended for your location', text: 'Recommended' });
+  }
+
+  if (showOptions.length) {
+    filters.push({ id: 'limited', label: 'Show', options: showOptions });
   }
 
   if (areaSubtabs.has(subtab) && data?.areas.length) {
@@ -517,6 +521,21 @@ const makeTile = (option, title, appendTo) => {
 };
 
 /**
+ * Add a labelled group of tiles to a row.
+ *
+ * @param {Element} row   The row.
+ * @param {string}  id    The group id.
+ * @param {string}  label The label.
+ *
+ * @return {HTMLElement} The tiles container.
+ */
+const makeGroup = (row, id, label) => {
+  const group = make('div', ['mh-inventory-sort-group', `mh-inventory-sort-group--${id}`], '', row);
+  make('div', 'mh-inventory-sort-label', label, group);
+  return make('div', 'mh-inventory-sort-tiles', '', group);
+};
+
+/**
  * Build the sort and filter panel for a subtab.
  *
  * @param {Element} subtabEl The subtab content element.
@@ -541,17 +560,22 @@ const addControls = (subtabEl, key, subtab) => {
   const panel = make('div', 'mh-inventory-sort');
   panel.dataset.key = key;
 
+  // Share rows where they fit: the trap stat sorts fill a row by themselves, the weapon power
+  // tiles pair with Show, and the Area dropdown goes wherever there's room left.
+  const isComponent = componentSubtabs.has(subtab);
+  const hasPower = filterGroups.some((group) => 'power_type' === group.id);
   const sortRow = make('div', 'mh-inventory-sort-row', '', panel);
-  make('div', 'mh-inventory-sort-label', 'Sort', sortRow);
-  const sortTiles = make('div', 'mh-inventory-sort-tiles', '', sortRow);
+  const filterRow = isComponent ? make('div', 'mh-inventory-sort-row', '', panel) : sortRow;
+
+  const sortTiles = makeGroup(sortRow, 'sort', 'Sort');
+
+  const filterRows = filterGroups.map((group) => ({
+    group,
+    tiles: makeGroup(group.select && hasPower ? sortRow : filterRow, group.id, group.label),
+  }));
+
   // Other modules (lock & hide) put their toggles here instead of above the panel.
   make('div', 'mh-inventory-sort-actions', '', sortRow);
-
-  const filterRows = filterGroups.map((group) => {
-    const row = make('div', ['mh-inventory-sort-row', `mh-inventory-sort-row--${group.id}`], '', panel);
-    make('div', 'mh-inventory-sort-label', group.label, row);
-    return { group, tiles: make('div', 'mh-inventory-sort-tiles', '', row) };
-  });
 
   const footer = make('div', 'mh-inventory-sort-footer', '', panel);
   const countEl = make('span', 'mh-inventory-sort-count', '', footer);
@@ -730,7 +754,7 @@ const decorateActiveSubtab = async () => {
   }
 
   subtabEl.mhSortLoading = true;
-  await loadTrapData(trapClassifications[subtab] || trapClassifications[key]);
+  await loadTrapData(trapClassifications[subtab]);
   subtabEl.mhSortLoading = false;
 
   if (!subtabEl.isConnected || subtabEl.querySelector('.mh-inventory-sort')) {

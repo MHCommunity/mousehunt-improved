@@ -11,8 +11,15 @@
 
 .mh-inventory-sort-row {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
   align-items: center;
   min-height: 32px;
+}
+
+.mh-inventory-sort-group {
+  display: flex;
+  align-items: center;
 }
 
 .mh-inventory-sort-label {
@@ -27,7 +34,6 @@
 
 .mh-inventory-sort-tiles {
   display: flex;
-  flex: 1;
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
@@ -39,7 +45,7 @@
   flex-shrink: 0;
   gap: 6px;
   align-items: center;
-  margin-left: 10px;
+  margin-left: auto;
 }
 
 .mh-inventory-sort-actions:empty {
@@ -85,13 +91,13 @@
   color: #4e2f0b;
 }
 
-.mh-inventory-sort-row--power_type .mh-inventory-sort-tile,
-.mh-inventory-sort-row--limited .mh-inventory-sort-tile {
+.mh-inventory-sort-group--power_type .mh-inventory-sort-tile,
+.mh-inventory-sort-group--limited .mh-inventory-sort-tile {
   height: 30px;
 }
 
 .mh-inventory-sort-select {
-  min-width: 220px;
+  min-width: 180px;
   height: 30px;
   padding: 0 6px;
   font-size: 12px;
@@ -99,7 +105,7 @@
   border-radius: 3px;
 }
 
-.mh-inventory-sort-row--power_type .mh-inventory-sort-tile {
+.mh-inventory-sort-group--power_type .mh-inventory-sort-tile {
   width: 31px;
   background-size: 25px;
 }
