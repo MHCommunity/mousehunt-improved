@@ -7,8 +7,11 @@ const minimumGroupSize = 20;
 const groupOrder = [
   'Cheese',
   'Charms',
+  'Weapons',
+  'Bases',
   'Convertibles',
   'Crafting',
+  'Recipes',
   'Special',
   'Potions',
   'Skins',
@@ -126,6 +129,12 @@ const getItemGroups = (item) => {
       return ['Special', Object.entries(specialGroups).find(([tag]) => tags.has(tag))?.[1] ?? 'Other'];
     case 'potion':
       return ['Potions'];
+    case 'weapon':
+      return ['Weapons'];
+    case 'base':
+      return ['Bases'];
+    case 'recipe':
+      return ['Recipes'];
     case 'skin':
       return ['Skins'];
     case 'collectible':
@@ -240,7 +249,9 @@ const groupItemOptions = async (options) => {
 
   for (const option of choices) {
     let node = root;
-    for (const name of getItemGroups(itemsByType.get(option.type ?? option.value))) {
+    // Things that aren't items, like recipes, can say what they are.
+    const item = itemsByType.get(option.type ?? option.value) || { classification: option.classification };
+    for (const name of getItemGroups(item)) {
       if (!node.groups.has(name)) {
         node.groups.set(name, makeNode(name));
       }
