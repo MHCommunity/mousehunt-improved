@@ -135,8 +135,12 @@
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-container {
   margin-right: -9px;
   margin-left: -9px;
-  border-bottom: 1px solid #ceb7a6;
   box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-weapon .trapImageView-layerWrapper {
+  inset: 0;
+  border-radius: 0;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
@@ -197,6 +201,10 @@
 
 .hunterInfoView-wrapper .campPage-trap-trapStat {
   display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
   background: #fff;
   border: 1px solid #e2d3c8;
   border-radius: 3px;
@@ -213,7 +221,16 @@
   margin: 0 5px;
 }
 
+.hunterInfoView-wrapper .campPage-trap-trapStat .icon {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 30px;
+  margin: 0;
+}
+
 .hunterInfoView-wrapper .campPage-trap-trapStat .value {
+  flex: 0 1 auto;
+  width: auto;
   background: transparent;
   border: none;
 }
@@ -642,7 +659,7 @@ input.trapSelectorView__codexListSearch {
 }
 
 @media (hover: hover) {
-  .campPage-trap-trapStat:hover .value {
+  .campPage-trap-trapStat:not(.hunterInfoView-wrapper *):hover .value {
     background-color: #e5dbd4;
   }
 }

@@ -113,7 +113,11 @@
   color: var(--d-text);
 }
 
-.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-container {
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-container,
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title-container,
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-container,
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer,
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
   border-color: var(--d-border);
 }
 
