@@ -5,7 +5,7 @@ import { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupIt
 import { getItemOptions, getOptionValue, setOptionValue } from './item-options';
 import { enableModuleItem, getPendingModuleItems, getUnavailableModuleItems, plainLinkIds } from './module-items';
 import { getAvailableLinks, getMenus } from './menu-links';
-import { getPinnableItems, getPins, makePinId, savePins } from '@/quick-items-menu/pins';
+import { getPinnableItems, getPins, loadRecipes, makePinId, savePins } from '@/quick-items-menu/pins';
 
 const groups = [
   { id: 'left', name: 'Left side' },
@@ -453,6 +453,9 @@ const openMenuEditor = () => {
     return;
   }
 
+  // Recipes can be pinned, so load them the first time the editor is opened, ready for the item picker.
+  loadRecipes();
+
   const editor = makeElement('div', ['mhui-menu-editor', 'mousehuntHeaderView']);
 
   // Shown until it's dismissed.
@@ -680,7 +683,7 @@ const openMenuEditor = () => {
        */
       const getOptions = (current) => {
         const choices = pinnable.filter((i) => i.type === current || !pin.items.includes(i.type));
-        return groupItemOptions(choices.map((i) => ({ name: i.name, value: i.type, image: i.thumbnail })));
+        return groupItemOptions(choices.map((i) => ({ name: i.name, value: i.type, image: i.thumbnail, classification: i.classification })));
       };
 
       /**

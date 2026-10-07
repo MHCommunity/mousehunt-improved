@@ -206,6 +206,35 @@
   display: none;
 }
 
+/* Only convertibles are used by quantity. */
+.mh-quick-items-menu-item:not([data-kind="convertible"]) .mh-quick-items-menu-quantity,
+.mh-quick-items-menu-item:not([data-kind="convertible"]) .mh-quick-items-menu-separator {
+  display: none;
+}
+
+/* Recipes for the same item differ only at the end of their names, like "(3 Pieces)". */
+.mh-quick-items-menu-item[data-kind="recipe"] .mh-quick-items-menu-name {
+  white-space: normal;
+}
+
+.mh-quick-items-menu-power-type {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mh-quick-items-menu-power-type[hidden] {
+  display: none;
+}
+
+.menuItem.dropdown.mh-quick-items-menu.mh-quick-items-menu-busy {
+  cursor: wait;
+  opacity: 0.6;
+}
+
 .mh-quick-items-menu-form .mousehuntActionButton {
   flex-shrink: 0;
   margin: 0 0 0 auto;

@@ -17,7 +17,7 @@ import {
   sessionSet,
 } from '@utils';
 
-import { getPins } from './pins';
+import { getPins, getRecipes, updateRecipesFromPage } from './pins';
 
 import styles from './styles.css';
 
@@ -84,9 +84,15 @@ const loadUserItemsCache = async (key) => {
 /**
  * Get every item type that's pinned, without duplicates.
  *
- * @return {string[]} The item types.
+ * @return {Promise<string[]>} The item types.
  */
-const getPinnedItemTypes = () => [...new Set(getPins().flatMap((pin) => pin.items))];
+const getPinnedItemTypes = async () => {
+  const [allItems, recipes] = await Promise.all([getData('items'), getRecipes()]);
+  const itemTypes = new Set((Array.isArray(allItems) ? allItems : []).map((item) => item.type));
+
+  // Recipes aren't items, and asking the game for one never answers, so only ask for real items.
+  return [...new Set(getPins().flatMap((pin) => pin.items))].filter((type) => !recipes.has(type) && (!itemTypes.size || itemTypes.has(type)));
+};
 
 /**
  * Get the user's inventory data for every pinned item in one request, cached and shared between the pins.
@@ -96,8 +102,11 @@ const getPinnedItemTypes = () => [...new Set(getPins().flatMap((pin) => pin.item
  * @return {Promise<Map>} The inventory data, keyed by item type.
  */
 const getPinnedUserItems = async (forceUpdate = false) => {
-  const types = getPinnedItemTypes();
+  const types = await getPinnedItemTypes();
   const key = types.join(',');
+  if (!types.length) {
+    return new Map();
+  }
 
   const isCacheFresh = userItemsCache?.key === key && Date.now() - userItemsCache.fetchedAt < userItemsCacheTtl;
   if (!forceUpdate && isCacheFresh) {
@@ -205,6 +214,39 @@ const showError = (result, message) => {
 };
 
 /**
+ * What each kind of pinned item does, keyed by its classification.
+ *
+ * - convertible: opened by quantity.
+ * - message: used, like Scrambles.
+ * - trap: a weapon or base, armed.
+ * - loadout: bait or a charm, armed or disarmed.
+ * - potion: brewed from its item view.
+ * - recipe: crafted from the game's craft popup.
+ */
+const kinds = {
+  convertible: 'convertible',
+  message_item: 'message',
+  weapon: 'trap',
+  base: 'trap',
+  bait: 'loadout',
+  trinket: 'loadout',
+  potion: 'potion',
+  recipe: 'recipe',
+};
+
+// The kinds that show how many the user has.
+const countedKinds = new Set(['convertible', 'loadout', 'potion']);
+
+/**
+ * Get a weapon's power type, like "Forgotten".
+ *
+ * @param {Object} stats The item's stats.
+ *
+ * @return {string} The power type, or an empty string for bases, which don't have one.
+ */
+const getPowerType = (stats) => (stats?.power_type ? `${stats.power_type.charAt(0).toUpperCase()}${stats.power_type.slice(1)}` : '');
+
+/**
  * Create one of a tab's items, shown as a row in its dropdown.
  *
  * @param {string} itemType The item type.
@@ -239,13 +281,59 @@ const createEntry = (itemType, tab) => {
    * Match the button label to the quantity, like "Open 5".
    */
   const updateButtonLabel = () => {
-    if (item?.isMessageItem) {
-      elements.button.querySelector('span').textContent = item.actionVerb;
-      return;
+    const label = elements.button.querySelector('span');
+
+    switch (item?.kind) {
+      case 'convertible': {
+        const quantity = Number.parseInt(elements.quantity.value, 10);
+        label.textContent = `${item.actionVerb || 'Open'}${quantity > 0 ? ` ${quantity.toLocaleString()}` : ''}`;
+        break;
+      }
+      case 'trap':
+        label.textContent = isArmed() ? 'Armed' : 'Arm';
+        break;
+      case 'loadout':
+        label.textContent = isArmed() ? 'Disarm' : 'Arm';
+        break;
+      case 'potion':
+        label.textContent = 'Brew';
+        break;
+      case 'recipe':
+        label.textContent = 'Craft';
+        break;
+      default:
+        label.textContent = item?.actionVerb || 'Use';
+    }
+  };
+
+  /**
+   * Check if the weapon, base, bait, or charm is armed.
+   *
+   * @return {boolean} Whether it's armed.
+   */
+  const isArmed = () => Boolean(item?.itemId && hg.utils.UserInventory.isArmed(item.itemId));
+
+  /**
+   * Check if the row's button can be used right now.
+   *
+   * @return {boolean} Whether it can.
+   */
+  const canUse = () => {
+    if (isOpening) {
+      return false;
     }
 
-    const quantity = Number.parseInt(elements.quantity.value, 10);
-    elements.button.querySelector('span').textContent = `${item?.actionVerb || 'Open'}${quantity > 0 ? ` ${quantity.toLocaleString()}` : ''}`;
+    switch (item.kind) {
+      case 'trap':
+        return !isArmed();
+      case 'loadout':
+        return isArmed() || item.quantity > 0;
+      case 'message':
+      case 'recipe':
+        return true;
+      default:
+        return item.quantity > 0;
+    }
   };
 
   /**
@@ -255,20 +343,32 @@ const createEntry = (itemType, tab) => {
     if (pin.row && item) {
       const quantity = item.quantity || 0;
 
-      pin.row.classList.toggle('mh-quick-items-menu-message-item', item.isMessageItem);
+      // Message items and recipes aren't used up, so they only get a button on the same line as the name.
+      pin.row.classList.toggle('mh-quick-items-menu-message-item', 'message' === item.kind || 'recipe' === item.kind);
+      pin.row.dataset.kind = item.kind;
+      pin.row.classList.toggle('mh-quick-items-menu-armed', isArmed());
 
       elements.name.textContent = item.name;
       elements.name.title = item.name;
-      elements.owned.textContent = quantity.toLocaleString();
       elements.image.style.backgroundImage = item.thumbnail ? `url(${item.thumbnail})` : '';
 
+      if ('trap' === item.kind) {
+        elements.owned.textContent = getPowerType(item.stats);
+        elements.powerType.hidden = !item.stats?.power_type;
+        elements.powerType.style.backgroundImage = item.stats?.power_type ? `url(https://www.mousehuntgame.com/images/powertypes/${item.stats.power_type}.png)` : '';
+      } else {
+        elements.owned.textContent = quantity.toLocaleString();
+      }
+
+      // Only convertibles use the quantity. Disabled, it can't stop the form from sending when it's hidden.
+      elements.quantity.disabled = 'convertible' !== item.kind;
       elements.quantity.max = quantity;
       if (Number.parseInt(elements.quantity.value, 10) > quantity) {
         elements.quantity.value = Math.max(1, quantity);
       }
 
       updateButtonLabel();
-      elements.button.disabled = isOpening || quantity < 1;
+      elements.button.disabled = !canUse();
       elements.button.classList.toggle('disabled', elements.button.disabled);
 
       // Only show the aura while it's running.
@@ -345,6 +445,7 @@ const createEntry = (itemType, tab) => {
 
     item = Object.assign(item || {}, {
       type: itemType,
+      itemId: userItem.item_id || item?.itemId,
       name: userItem.name,
       thumbnail: userItem.thumbnail_transparent || userItem.thumbnail || item?.thumbnail,
       quantity: Number.parseInt(userItem.quantity, 10) || 0,
@@ -418,6 +519,101 @@ const createEntry = (itemType, tab) => {
   };
 
   /**
+   * Arm the weapon, base, bait, or charm, or disarm the bait or charm if it's armed.
+   */
+  const toggleArmed = () => {
+    if (isOpening || !item || ('trap' === item.kind && isArmed())) {
+      return;
+    }
+
+    const isDisarming = isArmed();
+    isOpening = true;
+    tab.result.textContent = '';
+    tab.el.classList.add('mh-quick-items-menu-busy');
+    render();
+
+    /**
+     * Show the new state once the game has answered.
+     *
+     * @param {boolean} isSuccess Whether it worked.
+     */
+    const done = (isSuccess) => {
+      isOpening = false;
+      tab.el.classList.remove('mh-quick-items-menu-busy');
+      if (!isSuccess) {
+        showError(tab.result, `Couldn't ${isDisarming ? 'disarm' : 'arm'} ${item.name}. Please try again.`);
+      }
+
+      render();
+    };
+
+    const control = isDisarming ? hg.utils.TrapControl.disarmItem(item.classification) : hg.utils.TrapControl.armItem(item.type, item.classification);
+    control.go(
+      () => done(true),
+      () => done(false)
+    );
+  };
+
+  /**
+   * Open the potion's item view, where it can be brewed.
+   */
+  const brewPotion = () => {
+    tab.el.classList.remove('expanded');
+    hg.views.ItemView.show(item.type);
+  };
+
+  /**
+   * Open the game's craft popup for the recipe.
+   */
+  const craftRecipe = () => {
+    const inventoryPage = 'undefined' === typeof app ? null : app?.pages?.InventoryPage;
+    if (!item?.recipe || !inventoryPage?.showConfirmPopup) {
+      showError(tab.result, 'Something went wrong. Please try again.');
+      return;
+    }
+
+    tab.result.textContent = '';
+    tab.el.classList.remove('expanded');
+
+    // The popup reads the recipe from the elements the Recipe Book shows it with.
+    const element = makeElement('div', 'inventoryPage-item');
+    element.dataset.itemType = item.recipe.type;
+    element.dataset.producedItem = item.recipe.producedItem;
+    element.dataset.producedQuantity = item.recipe.producedQuantity;
+    for (const [partType, required] of Object.entries(item.recipe.parts)) {
+      const part = make('div', 'inventoryPage-item-content-description-consumedItem', '', element);
+      part.dataset.itemType = partType;
+      part.dataset.itemRequired = required;
+    }
+
+    inventoryPage.showConfirmPopup(element, 'recipe');
+  };
+
+  /**
+   * Do what the row's button does.
+   */
+  const use = () => {
+    switch (item?.kind) {
+      case 'convertible':
+        openConvertible();
+        break;
+      case 'message':
+        useMessageItem();
+        break;
+      case 'trap':
+      case 'loadout':
+        toggleArmed();
+        break;
+      case 'potion':
+        brewPotion();
+        break;
+      case 'recipe':
+        craftRecipe();
+        break;
+    }
+  };
+
+  /**
    * Build the dropdown row.
    *
    * @return {HTMLElement} The row.
@@ -432,11 +628,7 @@ const createEntry = (itemType, tab) => {
     const form = make('form', 'mh-quick-items-menu-form', '', row);
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      if (item?.isMessageItem) {
-        useMessageItem();
-      } else {
-        openConvertible();
-      }
+      use();
     });
 
     elements.quantity = make('input', 'mh-quick-items-menu-quantity');
@@ -448,6 +640,8 @@ const createEntry = (itemType, tab) => {
     form.append(elements.quantity);
 
     makeElement('span', 'mh-quick-items-menu-separator', '/', form);
+    elements.powerType = make('span', 'mh-quick-items-menu-power-type', '', form);
+    elements.powerType.hidden = true;
     elements.owned = make('span', 'mh-quick-items-menu-owned', '', form);
 
     elements.button = makeMhButton({
@@ -474,17 +668,25 @@ const createEntry = (itemType, tab) => {
     aura = auras[itemType] || null;
     auraExpiry = aura ? sessionGet(getAuraCacheKey(), null) : null;
 
-    const allItems = await getData('items');
+    const [allItems, recipes] = await Promise.all([getData('items'), getRecipes()]);
 
-    const itemData = Array.isArray(allItems) ? allItems.find((i) => i.type === itemType) : null;
-    const isMessageItem = 'message_item' === itemData?.classification;
+    // Recipes aren't items, so they come from the user's Recipe Book instead.
+    const recipe = recipes.get(itemType) || null;
+    const itemData = !recipe && Array.isArray(allItems) ? allItems.find((i) => i.type === itemType) : null;
+    const classification = recipe ? 'recipe' : itemData?.classification;
+    const isMessageItem = 'message_item' === classification;
 
     item = {
       type: itemType,
-      name: itemData?.name || itemType,
-      thumbnail: itemData?.images?.thumbnail,
+      kind: kinds[classification] || 'convertible',
+      classification,
+      itemId: itemData?.id,
+      name: recipe?.name || itemData?.name || itemType,
+      thumbnail: recipe?.thumbnail || itemData?.images?.thumbnail,
       actionVerb: (isMessageItem ? itemData?.button_text : itemData?.action_verb) || (isMessageItem ? 'Use' : 'Open'),
       isMessageItem,
+      stats: itemData?.has_stats,
+      recipe,
       quantity: 0,
     };
 
@@ -520,6 +722,9 @@ const createEntry = (itemType, tab) => {
       }
 
       render();
+    } else if (response?.user && ('trap' === item.kind || 'loadout' === item.kind)) {
+      // What's armed can change from anywhere, like the camp page or another pin.
+      render();
     }
 
     const auraData = aura ? response?.trap_image?.auras?.[aura.type] : null;
@@ -535,7 +740,8 @@ const createEntry = (itemType, tab) => {
     updateAuraFromPage,
     onResponse,
     isAuraActive,
-    useMessageItem,
+    isArmed,
+    use,
     getItem: () => item,
     getItemType: () => itemType,
     getQuantity: () => item?.quantity || 0,
@@ -587,13 +793,14 @@ const createTab = (pin) => {
   tab.result = make('div', 'mh-quick-items-menu-result', '', content);
 
   /**
-   * Get the item to use straight from the tab, when the only item is a message item.
+   * Get the item to use straight from the tab, when the only item is a message item, weapon, or base.
    *
    * @return {Object|null} The item, or null if the tab should open the dropdown.
    */
   const getDirectEntry = () => {
     const [entry] = tab.entries;
-    return 1 === tab.entries.length && entry.getItem()?.isMessageItem ? entry : null;
+    const kind = entry?.getItem()?.kind;
+    return 1 === tab.entries.length && ('message' === kind || 'trap' === kind) ? entry : null;
   };
 
   /**
@@ -633,12 +840,13 @@ const createTab = (pin) => {
 
     tab.el.classList.toggle('mh-quick-items-menu-aura-active', Boolean(display?.isAuraActive()));
     tab.el.classList.toggle('mh-quick-items-menu-direct', Boolean(getDirectEntry()));
+    tab.el.classList.toggle('mh-quick-items-menu-armed', 'trap' === item?.kind && Boolean(getDirectEntry()) && display.isArmed());
 
     if (display?.isAuraActive()) {
       count.textContent = getRemainingShort(display.getAuraExpiry());
     } else {
-      // Message items aren't used up, so their quantity doesn't matter.
-      count.textContent = !item || item.isMessageItem ? '' : (item.quantity || 0).toLocaleString();
+      // Message items, weapons, bases, and recipes aren't used up, so their quantity doesn't matter.
+      count.textContent = item && countedKinds.has(item.kind) ? (item.quantity || 0).toLocaleString() : '';
     }
   };
 
@@ -669,7 +877,7 @@ const createTab = (pin) => {
   tab.el.addEventListener('click', () => {
     const directEntry = getDirectEntry();
     if (directEntry) {
-      directEntry.useMessageItem();
+      directEntry.use();
       return;
     }
 
@@ -677,8 +885,8 @@ const createTab = (pin) => {
     if (isExpanded) {
       tab.entries.forEach((entry) => entry.updateItem());
 
-      // With only one item, select its quantity so Enter opens it straight away.
-      if (1 === tab.entries.length) {
+      // With only one convertible, select its quantity so Enter opens it straight away.
+      if (1 === tab.entries.length && 'convertible' === tab.entries[0].getItem()?.kind) {
         const quantity = tab.entries[0].row?.querySelector('.mh-quick-items-menu-quantity');
         quantity?.focus({ preventScroll: true });
         quantity?.select();
@@ -745,6 +953,9 @@ const init = async () => {
 
   // Pins are added and changed in Custom Menu.
   onEvent('mh-improved-pins-changed', syncTabs);
+
+  // Keep the recipes that can be pinned up to date with what the user has unlocked.
+  onNavigation(updateRecipesFromPage, { page: 'inventory', tab: 'crafting', subtab: 'recipe', onLoad: true });
 };
 
 /**

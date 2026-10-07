@@ -1,9 +1,9 @@
-import { doEvent, getData, getSetting, saveSetting } from '@utils';
+import { cacheGetNoExpiration, cacheSetNoExpiration, doEvent, getData, getSetting, saveSetting } from '@utils';
 
 const pinsKey = 'quick-items-menu.pins';
 
-// Message items, like Scrambles, can be pinned alongside convertibles.
-const classifications = ['convertible', 'message_item'];
+// The kinds of inventory items that can be pinned. Recipes aren't items, so they're kept separately.
+const classifications = ['convertible', 'message_item', 'weapon', 'base', 'bait', 'trinket', 'potion'];
 
 /**
  * Options for a pin's tab, alongside the icon and name choices every item has.
@@ -53,7 +53,7 @@ const makePinId = () => `pinned-${Date.now().toString(36)}${Math.random().toStri
 const decodeName = (name) => new DOMParser().parseFromString(name, 'text/html').documentElement.textContent;
 
 /**
- * Get the convertibles and message items the user owns.
+ * Get the pinnable items the user owns.
  *
  * @return {Promise<Array|null>} The owned items, or null if the inventory couldn't be loaded.
  */
@@ -68,25 +68,148 @@ const getOwnedItems = () => {
 };
 
 let pinnableItems = null;
+let recipes = null;
+let recipesRequest = null;
 
 /**
- * Get the items that can be pinned: the convertibles and message items the user owns, plus any that
- * are already pinned, sorted by name.
+ * Get the storage key for the user's recipes.
  *
- * @return {Promise<Array>} The items, each with a `type`, `name`, and `thumbnail`.
+ * @return {string} The cache key.
+ */
+const getRecipesKey = () => `quick-items-menu-recipes-${user?.user_id}`;
+
+/**
+ * Read the recipes the user knows from a Recipe Book page.
+ *
+ * @param {Document|HTMLElement} container The page.
+ *
+ * @return {Array} The recipes.
+ */
+const parseRecipes = (container) =>
+  [...container.querySelectorAll('.inventoryPage-item.recipe.known')]
+    .map((el) => ({
+      type: el.dataset.itemType,
+      name: el.dataset.name,
+      thumbnail: el.querySelector('.itemImage img')?.getAttribute('src') || '',
+      producedItem: el.dataset.producedItem,
+      producedQuantity: Number.parseInt(el.dataset.producedQuantity, 10) || 1,
+      parts: Object.fromEntries(
+        [...el.querySelectorAll('.inventoryPage-item-content-description-consumedItem')].map((part) => [part.dataset.itemType, Number.parseInt(part.dataset.itemRequired, 10) || 1])
+      ),
+    }))
+    .filter((recipe) => recipe.type && recipe.producedItem);
+
+/**
+ * Save the user's recipes, and make the picker use them.
+ *
+ * @param {Array} list The recipes.
+ *
+ * @return {Promise<Map>} The recipes, keyed by recipe type.
+ */
+const saveRecipes = async (list) => {
+  await cacheSetNoExpiration(getRecipesKey(), list);
+  recipes = Promise.resolve(new Map(list.map((recipe) => [recipe.type, recipe])));
+  pinnableItems = null;
+
+  return recipes;
+};
+
+/**
+ * Get the recipes the user knows by loading their Recipe Book.
+ *
+ * Each player has unlocked different recipes, so they're read from their own Recipe Book page.
+ *
+ * @return {Promise<Map>} The recipes, keyed by recipe type.
+ */
+const fetchRecipes = async () => {
+  const url = new URL('/inventory.php', window.location.origin);
+  url.searchParams.set('tab', 'crafting');
+  url.searchParams.set('sub_tab', 'recipe');
+
+  const response = await fetch(url, { credentials: 'include' });
+  if (!response.ok) {
+    throw new Error(`Couldn't load the Recipe Book (${response.status}).`);
+  }
+
+  const fetched = parseRecipes(new DOMParser().parseFromString(await response.text(), 'text/html'));
+
+  // Don't save an empty list if the page didn't load as expected.
+  if (!fetched.length) {
+    throw new Error("Couldn't find any recipes in the Recipe Book.");
+  }
+
+  return saveRecipes(fetched);
+};
+
+/**
+ * Get the saved recipes.
+ *
+ * @return {Promise<Map|null>} The recipes, keyed by recipe type, or null if they've never been loaded.
+ */
+const getSavedRecipes = () => {
+  recipes ||= cacheGetNoExpiration(getRecipesKey(), null).then((saved) => (Array.isArray(saved) ? new Map(saved.map((recipe) => [recipe.type, recipe])) : null));
+
+  return recipes;
+};
+
+/**
+ * Get the user's recipes, as they were last saved.
+ *
+ * @return {Promise<Map>} The recipes, keyed by recipe type.
+ */
+const getRecipes = async () => (await getSavedRecipes()) || new Map();
+
+/**
+ * Load the user's recipes from their Recipe Book, if they've never been loaded.
+ *
+ * This only happens once: after that, they're kept up to date whenever the user visits the Recipe Book.
+ */
+const loadRecipes = async () => {
+  if (await getSavedRecipes()) {
+    return;
+  }
+
+  recipesRequest ||= fetchRecipes().catch(() => {
+    // Try again the next time the menu editor is opened.
+    recipesRequest = null;
+  });
+
+  await recipesRequest;
+};
+
+/**
+ * Save the recipes shown on the Recipe Book page the user is on.
+ */
+const updateRecipesFromPage = () => {
+  const found = parseRecipes(document);
+  if (found.length) {
+    saveRecipes(found);
+  }
+};
+
+/**
+ * Get the items that can be pinned: the items the user owns and the recipes they've fetched, plus
+ * any that are already pinned, sorted by name.
+ *
+ * @return {Promise<Array>} The items, each with a `type`, `name`, `thumbnail`, and `classification`.
  */
 const getPinnableItems = () => {
-  pinnableItems ||= Promise.all([getOwnedItems(), getData('items')]).then(([owned, allItems]) => {
+  pinnableItems ||= Promise.all([getOwnedItems(), getData('items'), loadRecipes().then(getRecipes)]).then(([owned, allItems, knownRecipes]) => {
     const all = (Array.isArray(allItems) ? allItems : [])
       .filter((item) => classifications.includes(item.classification))
-      .map((item) => ({ type: item.type, name: item.name, thumbnail: item.images?.thumbnail }));
+      .map((item) => ({ type: item.type, name: item.name, thumbnail: item.images?.thumbnail, classification: item.classification }));
 
-    // Fall back to every convertible if the inventory request fails.
+    const recipeItems = [...knownRecipes.values()].map((recipe) => ({ type: recipe.type, name: recipe.name, thumbnail: recipe.thumbnail, classification: 'recipe' }));
+
+    // Fall back to every item if the inventory request fails.
     if (!Array.isArray(owned)) {
-      return all.sort((a, b) => a.name.localeCompare(b.name));
+      return [...all, ...recipeItems].sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    const items = owned.filter((item) => Number(item.quantity) > 0).map((item) => ({ type: item.type, name: decodeName(item.name), thumbnail: item.thumbnail }));
+    const items = owned
+      .filter((item) => Number(item.quantity) > 0)
+      .map((item) => ({ type: item.type, name: decodeName(item.name), thumbnail: item.thumbnail, classification: item.classification }));
+    items.push(...recipeItems);
 
     // Keep pinned items pickable after they're used up.
     for (const type of new Set(getPins().flatMap((pin) => pin.items))) {
@@ -107,4 +230,4 @@ const getPinnableItems = () => {
   return pinnableItems;
 };
 
-export { getPinnableItems, getPins, makePinId, pinOptions, savePins };
+export { getPinnableItems, getPins, getRecipes, loadRecipes, makePinId, pinOptions, savePins, updateRecipesFromPage };
