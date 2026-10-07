@@ -8,6 +8,8 @@ let crowns = 0;
  * @return {Array} The favorite setups.
  */
 const fetch = async () => {
+  crowns = 0;
+
   const crownsData = await doRequest('managers/ajax/pages/page.php', {
     page_class: 'HunterProfile',
     'page_arguments[legacyMode]': '',
@@ -31,7 +33,7 @@ const fetch = async () => {
     group.mice
       .map((mouse) => ({
         name: mouse.name,
-        catches: mouse.num_catches,
+        catches: Number.parseInt(`${mouse.num_catches}`.replaceAll(',', ''), 10) || 0,
       }))
       .sort((a, b) => b.catches - a.catches)
       .forEach((mouse) => {

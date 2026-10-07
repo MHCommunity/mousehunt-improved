@@ -31,7 +31,7 @@ const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly =
     search: '',
   });
 
-  if (null === response.scoreboard_page?.viewer_row) {
+  if (!response?.scoreboard_page?.viewer_row) {
     if (totalItemsEl) {
       totalItemsEl.textContent = '-';
     }

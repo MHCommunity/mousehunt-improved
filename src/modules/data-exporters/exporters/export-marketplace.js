@@ -60,7 +60,7 @@ const fetchTransactions = async () => {
         total_price: item.total_price,
         total_price_without_tariff: item.total_price_without_tariff,
         average: item.average,
-        is_active: item.is_active === '1',
+        is_active: 1 === Number(item.is_active),
         date_updated: item.date_updated,
         date_closed: item.date_closed,
       });
@@ -75,6 +75,11 @@ const fetchTransactions = async () => {
 
     totalItemsEl.textContent = formatNumber(transactions.length);
   } while (response.length > 0);
+
+  // The saved progress is only for resuming an interrupted export, so a later
+  // export starts over and picks up new transactions.
+  sessionSet('export-marketplace-page', 1);
+  sessionSet('export-marketplace-transactions', []);
 
   return transactions;
 };

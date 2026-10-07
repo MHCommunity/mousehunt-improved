@@ -2,6 +2,19 @@ import { dbGetAll, formatNumber } from '@utils';
 import { exportPopup } from '../utils';
 
 /**
+ * Convert journal entry markup to plain text.
+ *
+ * @param {string} html The entry markup.
+ *
+ * @return {string} The entry text.
+ */
+const toPlainText = (html) => {
+  // DOMParser doesn't run scripts or load images, so it's safe for stored markup.
+  const doc = new DOMParser().parseFromString(html.replaceAll(/<br\s*\/?>/gi, ' '), 'text/html');
+  return doc.body.textContent.replaceAll(/\s+/g, ' ').trim();
+};
+
+/**
  * Fetch the journal entries.
  *
  * @return {Promise<Array>} The journal entries.
@@ -18,6 +31,7 @@ const fetch = async () => {
       date: entry?.data?.date || '',
       location: entry?.data?.location || '',
       text: entry?.data?.text || '',
+      text_plain: toPlainText(entry?.data?.text || ''),
       type: entry?.data?.type || '',
       mouse: entry?.data?.mouse || '',
     };
@@ -46,7 +60,7 @@ const exportJournalEntries = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: ['ID', 'Date', 'Location', 'Text', 'Type', 'Mouse'],
+      headers: ['ID', 'Date', 'Location', 'Text', 'Text (Plain)', 'Type', 'Mouse'],
     },
   });
 };

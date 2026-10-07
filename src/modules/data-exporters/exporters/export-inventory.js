@@ -1,6 +1,6 @@
 import { doRequest, formatNumber } from '@utils';
 
-import { exportPopup, recursiveFetch } from '../utils';
+import { exportPopup } from '../utils';
 
 const itemCategories = [
   { id: 'weapon', name: 'Weapons' },
@@ -18,55 +18,44 @@ const itemCategories = [
 ];
 
 /**
- * Get the data for the given classification.
+ * Fetch every classification in a single request, grouped by classification.
  *
- * @param {Object} classification The classification object.
- *
- * @return {Object} The data for the classification.
+ * @return {Promise<Array>} The items for each classification.
  */
-const getData = async (classification) => {
-  const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"] .total-items`);
-
-  if (totalItemsEl) {
-    totalItemsEl.textContent = '…';
-    totalItemsEl.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-    });
-  }
-
-  const response = await doRequest('managers/ajax/users/userInventory.php', {
-    action: 'get_items_by_classification',
-    'classifications[]': classification.id,
+const getData = async () => {
+  const request = { action: 'get_items_by_classification' };
+  itemCategories.forEach((classification, index) => {
+    request[`classifications[${index}]`] = classification.id;
   });
 
-  const items = [];
+  const response = await doRequest('managers/ajax/users/userInventory.php', request);
 
-  // convert the weights to numbers
-  response.items.forEach((item) => {
-    const itemData = {
+  const grouped = Object.fromEntries(itemCategories.map(({ id }) => [id, []]));
+  (response?.items || []).forEach((item) => {
+    grouped[item.classification]?.push({
       item_id: item.item_id || 0,
       type: item.type || '',
       name: item.name || '',
-      classification: item.classification || classification.id,
+      classification: item.classification,
       quantity: item.quantity || 0,
       thumbnail: item.thumbnail || '',
       limited_edition: item.limited_edition || false,
       is_tradable: item.is_tradable || false,
       is_givable: item.is_givable || false,
-    };
-
-    items.push(itemData);
-    if (totalItemsEl) {
-      totalItemsEl.textContent = formatNumber(items.length);
-    }
+    });
   });
 
-  // resolve the promise with the data
-  return {
-    category: classification.name,
-    items,
-  };
+  return itemCategories.map((classification) => {
+    const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"] .total-items`);
+    if (totalItemsEl) {
+      totalItemsEl.textContent = formatNumber(grouped[classification.id].length);
+    }
+
+    return {
+      category: classification.name,
+      items: grouped[classification.id],
+    };
+  });
 };
 
 /**
@@ -92,7 +81,7 @@ const exportInventory = () => {
      *
      * @return {Promise} The promise that resolves when the data is fetched.
      */
-    fetch: () => recursiveFetch(itemCategories, getData),
+    fetch: getData,
     updateSingleTotal: true,
     download: {
       headers: ['Category', 'Item ID', 'Item Type', 'Item Name', 'Classification', 'Quantity', 'Thumbnail', 'Limited Edition', 'Tradable', 'Givable'],

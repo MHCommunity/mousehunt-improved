@@ -8,18 +8,13 @@ import { createPopup, doEvent, formatNumber } from '@utils';
  *
  * @return {Promise<Array>} Resolves with the results.
  */
-const recursiveFetch = (data, callbackToRun) => {
-  return data.reduce((promiseChain, item) => {
-    return promiseChain.then((chainResults) => {
-      return new Promise((resolve) => {
-        // eslint-disable-next-line promise/catch-or-return
-        callbackToRun(item).then((currentResult) => {
-          chainResults.push(currentResult);
-          resolve(chainResults);
-        });
-      });
-    });
-  }, Promise.resolve([]));
+const recursiveFetch = async (data, callbackToRun) => {
+  const results = [];
+  for (const item of data) {
+    results.push(await callbackToRun(item));
+  }
+
+  return results;
 };
 
 /**
@@ -42,14 +37,14 @@ const addDownloadToButton = (opts, callback) => {
 
   exportButton.classList.remove('disabled');
 
-  // download the file when the export button is clicked
-  exportButton.addEventListener('click', () => {
+  // Assigned rather than added so fetching again doesn't stack up downloads.
+  exportButton.onclick = () => {
     if (beforeDownload) {
       results = opts.beforeDownload();
     }
 
     callback(results, filename);
-  });
+  };
 };
 
 /**
@@ -76,9 +71,27 @@ const addJsonDownloadToButton = (opts) => {
     link.href = url;
     link.click();
 
-    // cleanup
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
+};
+
+/**
+ * Escape a value for a CSV cell.
+ *
+ * @param {*} value The value.
+ *
+ * @return {string} The quoted cell.
+ */
+const csvCell = (value) => {
+  if (null === value || undefined === value) {
+    value = '';
+  } else if (Array.isArray(value)) {
+    value = value.join(',');
+  } else if ('object' === typeof value) {
+    value = JSON.stringify(value);
+  }
+
+  return `"${String(value).replaceAll('"', '""')}"`;
 };
 
 /**
@@ -100,14 +113,12 @@ const addCsvDownloadToButton = (opts) => {
 
     let csv = results
       .map((row) => {
-        return Object.values(row)
-          .map((value) => `"${value}"`)
-          .join(',');
+        return Object.values(row).map(csvCell).join(',');
       })
       .join('\n');
 
     if (opts.headers) {
-      csv = `${opts.headers.join(',')}\n${csv}`;
+      csv = `${opts.headers.map(csvCell).join(',')}\n${csv}`;
     }
 
     const blob = new Blob([csv], { type: 'text/csv' });
@@ -117,8 +128,7 @@ const addCsvDownloadToButton = (opts) => {
     link.href = url;
     link.click();
 
-    // cleanup
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 };
 
@@ -129,7 +139,7 @@ const addCsvDownloadToButton = (opts) => {
  */
 const getFormattedDate = () => {
   const date = new Date();
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 };
 
 /**
@@ -176,7 +186,7 @@ const addCopyButton = ({ type, results }) => {
 
   copyButton.classList.remove('disabled');
 
-  copyButton.addEventListener('click', () => {
+  copyButton.onclick = () => {
     copyButton.classList.add('disabled');
     const formattedResults = results.join('\n');
 
@@ -196,7 +206,7 @@ const addCopyButton = ({ type, results }) => {
           copyText.textContent = 'Copy Data';
         }, 2000);
       });
-  });
+  };
 };
 
 /**
@@ -321,29 +331,33 @@ const exportPopup = ({
   fetchButton.addEventListener('click', () => {
     fetchButton.classList.add('disabled');
 
-    // eslint-disable-next-line promise/catch-or-return
-    fetch().then((results) => {
-      if (afterFetch) {
-        afterFetch(results);
-      }
+    fetch()
+      .then((results) => {
+        if (afterFetch) {
+          afterFetch(results);
+        }
 
-      if (updateSingleTotal) {
-        updateSingleTotalEl(results);
-      }
+        if (updateSingleTotal) {
+          updateSingleTotalEl(results);
+        }
 
-      addDownloadButtons({
-        results,
-        type,
-        ...download,
+        addDownloadButtons({
+          results,
+          type,
+          ...download,
+        });
+
+        addCopyButton({
+          type,
+          results,
+        });
+      })
+      .catch((error) => {
+        console.error(`Error exporting ${type}:`, error); // eslint-disable-line no-console
+      })
+      .finally(() => {
+        fetchButton.classList.remove('disabled');
       });
-
-      addCopyButton({
-        type,
-        results,
-      });
-
-      fetchButton.classList.remove('disabled');
-    });
   });
 
   if (dataIsAvailable) {

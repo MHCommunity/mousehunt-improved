@@ -36,6 +36,15 @@ const getWeight = (weight) => {
 };
 
 /**
+ * Parse a count that may be a number or a comma-formatted string.
+ *
+ * @param {number|string} count The count.
+ *
+ * @return {number} The count as a number.
+ */
+const parseCount = (count) => Number.parseInt(`${count ?? 0}`.replaceAll(',', ''), 10) || 0;
+
+/**
  * Get the weight of a mouse formatted.
  *
  * @param {string} weight The weight of the mouse.
@@ -45,8 +54,9 @@ const getWeight = (weight) => {
 const getWeightFormatted = (weight) => {
   const weightOz = getWeight(weight);
 
-  const weightLbs = Math.floor(weightOz / 16);
-  const weightOzRemainder = weightOz % 16;
+  const roundedOz = Math.round(weightOz);
+  const weightLbs = Math.floor(roundedOz / 16);
+  const weightOzRemainder = roundedOz % 16;
 
   if (weightLbs > 0) {
     return `${formatNumber(weightLbs)} lb. ${weightOzRemainder} oz.`;
@@ -101,9 +111,7 @@ const getDataForRegion = async (region) => {
   });
 
   // concat the miceData.mouse_list_category.subgroups array
-  const mice = miceData?.mouse_list_category?.subgroups?.reduce((acc, cur) => {
-    return [...acc, ...cur.mice];
-  }, []);
+  const mice = miceData?.mouse_list_category?.subgroups?.flatMap((subgroup) => subgroup.mice || []) || [];
 
   const weights = [];
   let totalCatches = 0;
@@ -120,7 +128,7 @@ const getDataForRegion = async (region) => {
 
     seenMice.push(mouse.type);
 
-    mouse.num_catches = Number.parseInt(mouse.num_catches.toString().replace(',', ''), 10);
+    mouse.num_catches = parseCount(mouse.num_catches);
 
     const avgWeight = getWeight(mouse.avg_weight);
 
@@ -133,7 +141,7 @@ const getDataForRegion = async (region) => {
       type: mouse.type,
       crown: mouse.crown,
       catches: mouse.num_catches,
-      misses: mouse.num_misses,
+      misses: parseCount(mouse.num_misses),
       avgWeight,
       avgWeightFormatted: getWeightFormatted(mouse.avg_weight),
       heaviest: getWeight(mouse.heaviest_catch),
@@ -141,26 +149,18 @@ const getDataForRegion = async (region) => {
     };
 
     weights.push(mouseWeight);
-
-    miceCaughtEl.textContent = `${miceData.mouse_list_category.caught}/${miceData.mouse_list_category.total}`;
-    const totalCatchesFormatted = formatNumber(totalCatches);
-    totalCatchesEl.textContent = totalCatchesFormatted;
-
-    // convert the total weight to lbs and oz
-    const totalWeightLbs = Math.floor(totalWeight / 16);
-    const totalWeightOz = totalWeight % 16;
-
-    const totalWeightLbsFormatted = formatNumber(totalWeightLbs);
-
-    totalWeightEl.textContent = totalWeightLbs > 0 ? `${totalWeightLbsFormatted} lb. ${totalWeightOz} oz` : `${totalWeightOz} oz`;
   });
+
+  miceCaughtEl.textContent = `${miceData?.mouse_list_category?.caught ?? 0}/${miceData?.mouse_list_category?.total ?? 0}`;
+  totalCatchesEl.textContent = formatNumber(totalCatches);
+  totalWeightEl.textContent = getWeightFormatted(totalWeight);
 
   // resolve the promise with the data
   return {
     category: region.id,
     regionName: region.name,
-    caughtMice: miceData.mouse_list_category.caught - regionSubtract,
-    uniqueMice: miceData.mouse_list_category.total - regionSubtract,
+    caughtMice: (miceData?.mouse_list_category?.caught ?? 0) - regionSubtract,
+    uniqueMice: (miceData?.mouse_list_category?.total ?? 0) - regionSubtract,
     totalCatches,
     totalWeight,
     items: weights,
