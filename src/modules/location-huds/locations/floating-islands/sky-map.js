@@ -1,5 +1,6 @@
-import { debuglog, getCurrentLocation, getMapData, onEvent, onRequest, waitForElement } from '@utils';
-import { refreshMap } from '../utils';
+import { debuglog, getCurrentLocation, getMapData, isModuleEnabled, onEvent, onRequest, waitForElement } from '@utils';
+
+import { refreshMap } from '@/better-maps/utils';
 
 const toHighlight = new Set([
   'arcane_paragon',
@@ -282,6 +283,11 @@ const redrawAfterReroll = async () => {
 };
 
 const main = async () => {
+  // The map highlights are part of Better Maps, so they only show when it's on.
+  if (!isModuleEnabled('better-maps')) {
+    return;
+  }
+
   debuglog('highlighting');
   if ('floating_islands' !== getCurrentLocation()) {
     return;
@@ -321,24 +327,28 @@ let mapData;
 let mapGoals;
 let lastGridSignature = '';
 let islandAdvice = null;
+let hasClickListener = false;
 
 /**
- * Initialize the module.
+ * Initialize the sky map highlights.
  */
 export default () => {
   onEvent('dialog-show-default-floatingislandsadventureboard-floatingislandsdialog-wide-skymap', main);
 
   // The game redraws its "<island> selected" text when a power type is picked, so add our note once it has.
   // Listen in the capture phase, as the game's click handler stops the event from bubbling.
-  document.addEventListener(
-    'click',
-    (event) => {
-      if (islandAdvice && event.target.closest(edgeSelector)) {
-        addNoteAfterRedraw();
-      }
-    },
-    true
-  );
+  if (!hasClickListener) {
+    hasClickListener = true;
+    document.addEventListener(
+      'click',
+      (event) => {
+        if (islandAdvice && event.target.closest(edgeSelector)) {
+          addNoteAfterRedraw();
+        }
+      },
+      true
+    );
+  }
 
   onRequest('environment/floating_islands.php', (resp, req) => {
     if ('reroll_sky_map' === req?.action) {

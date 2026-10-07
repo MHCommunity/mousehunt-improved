@@ -1,5 +1,30 @@
 # Changelog
 
+## Version 0.102.0
+
+### Added
+
+- Custom Menu: Added pinning traps, bait, charms, potions, and recipes. Arm or disarm traps, bait, and charms, brew potions, and craft recipes straight from the top menu
+- Custom Menu: Grouped weapons, bases, and recipes by category in the item picker
+- Location HUDs - Floating Islands: The Sky Map now warns you when you choose an island without a Warden or Paragon, or one where the shrine isn't the first tile. There are also new indicators for the Wardens and Paragons on your map
+- Better Maps: Added invite buttons to the empty hunter slots on maps you own
+- Better Marketplace: Made item names in the listings and history tabs open the item
+- Better Marketplace: Added a collapse toggle to the Markethunt userscript's price chart
+- Beta Features: Added section shortcuts to King's Crowns
+
+### Fixed and Updated
+
+- Better Maps: Renamed "Quick grabs" to "Guaranteed attraction" in the experimental Plan tab, made it collapsible, and hid the Travel button for setups at your current location
+- Better Maps: Removed leaving mice out of the plan in the Plan tab
+- Better Maps: Fixed the Floating Islands sky map highlighting
+- Better Inventory: Compacted the sort and filter controls, simplified the bait filters, and removed the reset link
+- Better Inventory and Better Mice: Kept the category menus visible while scrolling
+- Better Inventory: Split the Magic Essence craft warning onto two lines
+- Custom Menu: Selected the quantity when opening a pin with a single item, so Enter opens it right away
+- Data Exporters: Fixed CSV exports breaking on values with quotes, fixed duplicate downloads after fetching again, and fixed large catch and miss counts in the mice export
+- Better Journal: Compacted sent gift entries in the single-column journal, removed the lantern link from Labyrinth clue entries, and sized highlight badges to fit at larger font sizes
+- Minor style tweaks to journal borders, profile traps, the Labyrinth HUD, and Dark Mode
+
 ## Version 0.101.0
 
 ### Added

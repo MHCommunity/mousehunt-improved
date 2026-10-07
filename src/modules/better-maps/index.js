@@ -33,7 +33,6 @@ import { updateScrollsMarkup, updateSubTabListeners } from './modules/scrolls';
 import catchDates from './modules/catch-dates';
 import draggableHighlight from './modules/draggable-highlight';
 import enhancePreviewButton from './modules/preview';
-import floatingIslands from './modules/floating-islands';
 import sidebar from './modules/sidebar';
 import { updateCommunityListings } from './modules/community';
 import { updateShopsMarkup } from './modules/shops';
@@ -760,8 +759,6 @@ const init = () => {
     clearMapRecovery();
     mapRuntime.reset();
   }, 'map');
-
-  floatingIslands();
 };
 
 /**

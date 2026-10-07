@@ -18,7 +18,10 @@ import {
 
 import { addAirshipRandomizer } from '../../shared/airship-randomizer';
 
+import initSkyMap from './sky-map';
+
 import fullWidthAirshipStyles from './full-width-airship.css';
+import skyMapStyles from './sky-map.css';
 import styles from './styles.css';
 
 let hasJetstreamTimeListener = false;
@@ -528,7 +531,8 @@ const hud = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles([styles, fullWidthAirshipStyles], 'floating-islands');
+  addHudStyles([styles, fullWidthAirshipStyles, skyMapStyles], 'floating-islands');
   addAirshipRandomizer();
   hud();
+  initSkyMap();
 };

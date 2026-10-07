@@ -1,0 +1,23 @@
+{
+  "version": "0.102.0",
+  "summary": "You can now pin traps, bait, charms, potions, and recipes to the top menu, alongside the convertibles and message items you could already pin. Set them up under Personalization → Custom Menu. Happy hunting!",
+  "details": [
+    {
+      "title": "New",
+      "items": [
+        "Custom Menu: Pin traps, bait, charms, potions, and recipes to the top menu",
+        "Location HUDs - Floating Islands: The Sky Map now warns you when you choose an island without a Warden or Paragon, or one where the shrine isn't the first tile. There are also new indicators for the Wardens and Paragons on your map",
+        "Better Maps: Invite hunters by clicking the empty slots on maps you own",
+        "Better Marketplace: Click item names in your listings and history to open them"
+      ]
+    },
+    {
+      "title": "Fixed and Updated",
+      "items": [
+        "Better Inventory: Tidier sort and filter controls, and category menus that stay visible while scrolling",
+        "Data Exporters: More reliable CSV exports",
+        "Better Journal and Dark Mode: Style tweaks"
+      ]
+    }
+  ]
+}
