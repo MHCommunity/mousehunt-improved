@@ -349,7 +349,12 @@ const showCraftWarning = (text, note = '') => {
     existing.remove();
   }
 
-  const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', note ? `${text} ${note}` : text);
+  const tooltip = makeElement('div', 'mhui-craft-warning-tooltip');
+  makeElement('div', '', text, tooltip);
+  if (note) {
+    makeElement('div', '', note, tooltip);
+  }
+
   confirm.parentNode.append(tooltip);
 };
 
