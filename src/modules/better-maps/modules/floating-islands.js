@@ -33,7 +33,7 @@ const getSkyMapMice = () => {
 };
 
 const highlightSkyMap = async () => {
-  await waitForElement('floatingIslandsAdventureBoardSkyMap', { maxAttempts: 100, delay: 100 });
+  await waitForElement('#floatingIslandsAdventureBoardSkyMap', { maxAttempts: 100, delay: 100 });
   if (!mapGoals) {
     main();
     return;
