@@ -722,3 +722,12 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 .mh-improved-skin-preview {
   margin-top: 10px;
 }
+
+/* Keep the category menu on screen while scrolling, scrolling it on its own if it's taller than the window. */
+.inventoryPage-tagDirectory {
+  position: sticky;
+  top: 10px;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}

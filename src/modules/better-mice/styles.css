@@ -509,3 +509,12 @@ ul.minluck-list {
 .mh-category-totals-label {
   opacity: 0.8;
 }
+
+/* Keep the group menu on screen while scrolling, scrolling it on its own as it's usually taller than the window. */
+.mouseListView-categoryDirectory {
+  position: sticky;
+  top: 10px;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
