@@ -21,6 +21,7 @@ import { addPriceChart } from './price-chart';
 import { calculateQuickSell } from './pricing';
 import { createMarketplaceRuntime } from './runtime';
 import { enhanceItemView } from './listing';
+import { makeMarkethuntChartCollapsible } from './markethunt';
 import settings from './settings';
 
 import extras from './styles/extras.css';
@@ -299,6 +300,9 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   actions.insertBefore(buttons, actions.firstChild);
 
   const decorations = [enhanceItemView(itemId, isCurrent)];
+
+  // Not awaited: the Markethunt userscript may never add its chart.
+  makeMarkethuntChartCollapsible(isCurrent);
 
   if (getSetting('better-marketplace.price-history-chart', false)) {
     decorations.push(addPriceChart(itemId));
@@ -626,6 +630,29 @@ const addRelistButtonToCancelled = async () => {
   });
 };
 
+/**
+ * Make item names in the listings and history tables open the item, like the image does.
+ */
+const linkItemNames = () => {
+  document.querySelectorAll('.marketplaceView-table tr').forEach((row) => {
+    const name = row.querySelector('.marketplaceView-table-name');
+    const imageLink = row.querySelector('.marketplaceView-table-image a.marketplaceView-itemImage');
+    if (!name || !imageLink || name.querySelector('a')) {
+      return;
+    }
+
+    const link = makeElement('a', 'mhui-marketplace-item-name');
+    link.textContent = name.textContent.trim();
+    link.href = '#';
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      imageLink.click();
+    });
+
+    name.replaceChildren(link);
+  });
+};
+
 let marketplaceData;
 
 /**
@@ -646,7 +673,11 @@ const init = () => {
 
   marketplaceRuntime.register('item', enhanceItemSession);
   marketplaceRuntime.register('browse', enhanceBrowseSession);
-  marketplaceRuntime.register('listings', addRelistButtonToCancelled);
+  marketplaceRuntime.register('listings', () => {
+    linkItemNames();
+    addRelistButtonToCancelled();
+  });
+  marketplaceRuntime.register('history', linkItemNames);
   marketplaceRuntime.install(hg?.views?.MarketplaceView);
 
   onOverlayChange({

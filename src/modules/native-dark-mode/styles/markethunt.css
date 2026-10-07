@@ -39,3 +39,51 @@
 .mh-dark .marketplaceView-table tr:hover .marketplaceView-listingType.buy {
   background-color: var(--d-blue);
 }
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-bg {
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 50%);
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-title-c {
+  color: var(--d-white);
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-content label {
+  color: var(--d-text);
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-closeIcon {
+  color: var(--d-text-muted);
+  opacity: 1;
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-closeIcon:hover {
+  color: var(--d-white);
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box input {
+  padding: 3px 5px;
+  color: var(--d-input-text);
+  background-color: var(--d-alt);
+  border: 1px solid var(--d-border);
+  border-radius: 3px;
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button:hover {
+  color: var(--d-white);
+  background-color: #6c727e;
+}
