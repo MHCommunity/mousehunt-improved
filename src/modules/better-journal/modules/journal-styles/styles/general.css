@@ -26,7 +26,7 @@
 .journal .content .entry:not(.highlight) {
   margin-bottom: 1px;
   border: none;
-  outline: 1px solid #5b5b5b;
+  outline: 1px solid #808080;
 }
 
 .journal .content .entry.socialGift.socialGift-send:not(.highlight) {
@@ -43,8 +43,8 @@
 
 .journal .content .entry.highlight {
   box-shadow:
-    -1px 0 0 0 #5b5b5b,
-    1px 0 0 0 #5b5b5b;
+    -1px 0 0 0 #808080,
+    1px 0 0 0 #808080;
 }
 
 .mh-dark .journal .content .entry.highlight {
@@ -160,7 +160,7 @@ a.journal-detailLink.full::after {
 }
 
 .journalContainer .pagerView-container {
-  border: 1px solid #5b5b5b;
+  border: 1px solid #808080;
   border-right: none;
   border-left: none;
 }
