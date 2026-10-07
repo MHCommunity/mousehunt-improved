@@ -219,3 +219,109 @@
   height: 41px;
   margin-bottom: 5px;
 }
+
+.mh-crown-has-nav {
+  position: relative;
+}
+
+/* Spans the full height of the crowns so the sticky inner bar follows the scroll and stops at the end. */
+.mh-crown-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60px;
+  z-index: 10;
+}
+
+.mh-crown-nav-inner {
+  position: sticky;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 5px;
+  background-color: rgb(255 255 255 / 85%);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+}
+
+.mh-crown-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 7px;
+  box-shadow: 0 2px 0 #b5b5b5;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s,
+    border-color 0.1s;
+}
+
+.mh-crown-nav-item:hover,
+.mh-crown-nav-item:focus-visible {
+  border-color: #3b7cc0;
+  box-shadow: 0 2px 0 #3b7cc0;
+  transform: translateY(-1px);
+}
+
+.mh-crown-nav-item:active {
+  box-shadow: 0 0 0 #3b7cc0;
+  transform: translateY(2px);
+}
+
+.mh-crown-nav-item .mouseCrownsView-crown {
+  width: 26px;
+  height: 26px;
+  margin: 0;
+}
+
+.mh-crown-nav-item .mh-crown-nav-tooltip {
+  inset: 50% auto auto calc(100% + 14px);
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.mh-crown-nav-item:hover .mh-crown-nav-tooltip,
+.mh-crown-nav-item:focus-visible .mh-crown-nav-tooltip {
+  display: block;
+}
+
+/* Point the arrow left, back at the button. */
+.mh-crown-nav-item .mh-crown-nav-tooltip::after {
+  top: 50%;
+  right: 100%;
+  left: auto;
+  border-color: transparent #000 transparent transparent;
+  border-width: 7px;
+  transform: translateY(-50%);
+}
+
+.mh-dark .mh-crown-nav-inner {
+  background-color: rgb(30 30 30 / 90%);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+}
+
+.mh-dark .mh-crown-nav-item {
+  background-color: #3a3a3a;
+  border-color: #555;
+  box-shadow: 0 2px 0 #1e1e1e;
+}
+
+.mh-dark .mh-crown-nav-item:hover,
+.mh-dark .mh-crown-nav-item:focus-visible {
+  background-color: #444;
+  border-color: #6a9fd8;
+  box-shadow: 0 2px 0 #6a9fd8;
+}

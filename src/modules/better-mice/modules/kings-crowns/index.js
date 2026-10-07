@@ -131,6 +131,11 @@ const applyPowerTypeFilter = (view) => {
     // Profile+ reads the group's class attribute as its key, so use an attribute instead.
     group.toggleAttribute('data-mh-crown-hidden', visible === 0);
   });
+
+  view.querySelectorAll('.mh-crown-nav-item').forEach((item) => {
+    const group = view.querySelector(`.mouseCrownsView-group.${item.getAttribute('data-mh-crown-target')}`);
+    item.classList.toggle('mh-crown-hidden', !group || group.hasAttribute('data-mh-crown-hidden'));
+  });
 };
 
 /**
@@ -283,6 +288,26 @@ const getCollapsedGroups = () => {
 };
 
 /**
+ * Collapse or expand a crown group, and save it.
+ *
+ * @param {Element} group     The crown group.
+ * @param {string}  type      The crown group type.
+ * @param {boolean} collapsed Whether the group should be collapsed.
+ */
+const setGroupCollapsed = (group, type, collapsed) => {
+  group.toggleAttribute('data-mh-crown-collapsed', collapsed);
+
+  const saved = new Set(getCollapsedGroups());
+  if (collapsed) {
+    saved.add(type);
+  } else {
+    saved.delete(type);
+  }
+
+  saveSetting('better-mice.collapsed-crown-groups', [...saved]);
+};
+
+/**
  * Make the crown groups collapsible.
  *
  * The state lives in data attributes rather than classes, as Profile+ uses the group's class attribute
@@ -313,17 +338,60 @@ const addCollapsing = (view) => {
         return;
       }
 
-      const isCollapsed = group.toggleAttribute('data-mh-crown-collapsed');
-      const saved = new Set(getCollapsedGroups());
-      if (isCollapsed) {
-        saved.add(type);
-      } else {
-        saved.delete(type);
-      }
-
-      saveSetting('better-mice.collapsed-crown-groups', [...saved]);
+      setGroupCollapsed(group, type, !group.hasAttribute('data-mh-crown-collapsed'));
     });
   });
+};
+
+/**
+ * Add a floating bar beside the crowns to jump to each crown group.
+ *
+ * @param {Element} view The crowns view.
+ */
+const addNav = (view) => {
+  view.querySelector('.mh-crown-nav')?.remove();
+
+  const nav = makeElement('div', 'mh-crown-nav');
+  const inner = makeElement('div', 'mh-crown-nav-inner');
+
+  const types = [
+    { type: 'favourite', crown: 'favourite', label: 'favourite mice' },
+    { type: 'favorites', crown: 'favourite', label: 'favourite mice' },
+    ...crownTiers.map((tier) => ({ ...tier, label: `${tier.name} crowns` })),
+    { type: 'none', label: 'uncrowned mice' },
+  ];
+  types.forEach(({ type, crown = type, label }) => {
+    const group = view.querySelector(`.mouseCrownsView-group.${type}`);
+    if (!group) {
+      return;
+    }
+
+    const item = makeElement('button', 'mh-crown-nav-item');
+    item.setAttribute('data-mh-crown-target', type);
+    item.setAttribute('aria-label', `Jump to ${label}`);
+
+    makeElement('div', ['mouseCrownsView-crown', crown], '', item);
+    makeElement('span', ['PreferencesPage__blackTooltipText', 'mh-crown-nav-tooltip'], `Jump to ${label}`, item);
+
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (group.hasAttribute('data-mh-crown-collapsed')) {
+        setGroupCollapsed(group, type, false);
+      }
+
+      group.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    inner.append(item);
+  });
+
+  if (!inner.children.length) {
+    return;
+  }
+
+  nav.append(inner);
+  view.classList.add('mh-crown-has-nav');
+  view.prepend(nav);
 };
 
 /**
@@ -376,7 +444,7 @@ const isProfilePlusActive = () => {
 let stylesAdded = false;
 
 /**
- * Add the summary, collapsing, and power types to the King's Crowns view.
+ * Add the summary, collapsing, power types, and section nav to the King's Crowns view.
  *
  * @param {Element} container The element holding the crown groups, defaults to the profile's crowns view.
  */
@@ -388,7 +456,8 @@ const decorateKingsCrowns = async (container = null) => {
 
   const showSummary = getSetting('better-mice.show-crown-summary', true);
   const showPowerTypeMastery = getSetting('better-mice.show-crown-power-type-mastery', false);
-  if ((!showSummary && !showPowerTypeMastery) || isProfilePlusActive()) {
+  const showNav = getSetting('better-mice.show-crown-nav', false);
+  if ((!showSummary && !showPowerTypeMastery && !showNav) || isProfilePlusActive()) {
     return;
   }
 
@@ -399,9 +468,15 @@ const decorateKingsCrowns = async (container = null) => {
 
   powerTypeFilter = null;
 
-  const summary = await addSummary(view, showSummary);
-  if (showPowerTypeMastery) {
-    await addPowerTypes(view, summary);
+  if (showNav) {
+    addNav(view);
+  }
+
+  if (showSummary || showPowerTypeMastery) {
+    const summary = await addSummary(view, showSummary);
+    if (showPowerTypeMastery) {
+      await addPowerTypes(view, summary);
+    }
   }
 
   addCollapsing(view);

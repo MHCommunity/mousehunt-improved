@@ -63,6 +63,11 @@ const init = () => {
       title: 'Better Marketplace: Show Markethunt price history charts',
       load: () => {},
     },
+    {
+      id: 'better-mice.show-crown-nav',
+      title: "Show crown section shortcuts on King's Crowns",
+      load: () => {},
+    },
   ];
 
   onlySettings.forEach((module) => {
