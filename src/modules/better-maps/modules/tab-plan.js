@@ -5,14 +5,14 @@ import { getMouseDataForMap } from './tab-sorted';
 // Tuning for the plan. Rates are percentages.
 const RATE_FLOOR = 5; // A setup only "counts" for a mouse at or above this rate.
 const RATE_CAP = 33; // A mouse's contribution to a setup's score is capped here.
-const QUICK_GRAB_RATE = 90; // Mice at or above this rate anywhere are quick grabs, not plan material.
+const GUARANTEED_RATE = 90; // Mice at or above this rate anywhere are guaranteed attractions, not plan material.
 const DETAIL_ROWS_PER_MOUSE = 5; // MHCT rows shown per mouse in an expanded setup.
 const MIN_HUNTS = 500; // MHCT rows with fewer recorded hunts are only used when a mouse has nothing better.
 const INITIAL_ROWS = 30;
 const FETCH_CONCURRENCY = 8;
 
 const SORT_KEY = 'mh-improved-map-plan-sort';
-const SKIPPED_KEY = 'mh-improved-map-plan-skipped';
+const GUARANTEED_COLLAPSED_KEY = 'mh-improved-map-plan-guaranteed-collapsed';
 
 const SORTS = {
   best: { label: 'Best overall', title: `Sum of attraction rates, with each mouse capped at ${RATE_CAP}% so one easy mouse doesn't dominate.` },
@@ -28,39 +28,8 @@ const LOCATION_ALIASES = {
   'Cursed City': 'Lost City',
 };
 
-// In-memory rates for the map on screen, so skipping a mouse doesn't refetch anything.
+// In-memory rates for the map on screen, so re-rendering doesn't refetch anything.
 let loadedRates = { mapId: null, rates: new Map() };
-
-/**
- * Get the mice the user has chosen to leave out of the plan for a map.
- *
- * @param {string|number} mapId The map ID.
- *
- * @return {Array} Unique IDs of the skipped mice.
- */
-const getSkippedMice = (mapId) => {
-  const skipped = lsGet(SKIPPED_KEY, {}) || {};
-  return Array.isArray(skipped[mapId]) ? skipped[mapId] : [];
-};
-
-/**
- * Toggle whether a mouse is left out of the plan for a map.
- *
- * @param {string|number} mapId    The map ID.
- * @param {string|number} uniqueId The mouse's unique ID.
- */
-const toggleSkippedMouse = (mapId, uniqueId) => {
-  const skipped = lsGet(SKIPPED_KEY, {}) || {};
-  const current = Array.isArray(skipped[mapId]) ? skipped[mapId] : [];
-
-  skipped[mapId] = current.includes(uniqueId) ? current.filter((id) => id !== uniqueId) : [...current, uniqueId];
-
-  if (skipped[mapId].length === 0) {
-    delete skipped[mapId];
-  }
-
-  lsSet(SKIPPED_KEY, skipped);
-};
 
 /**
  * Fetch the attraction rates for a list of mice, a few at a time.
@@ -141,31 +110,24 @@ const expectedHuntsToClear = (rates) => {
  *
  * @param {Array} mice         Uncaught mice on the map.
  * @param {Map}   ratesByMouse Rates keyed by mouse unique ID.
- * @param {Array} skippedIds   Unique IDs the user has chosen to leave out.
  * @param {Function} findEnvironment Resolves a location name to an environment.
  *
  * @return {Object} The plan model.
  */
-const buildPlan = (mice, ratesByMouse, skippedIds, findEnvironment) => {
+const buildPlan = (mice, ratesByMouse, findEnvironment) => {
   const isEventLocation = (name) => {
     const environment = findEnvironment(name);
     return !environment || Boolean(environment.isEvent);
   };
 
   const setups = new Map();
-  const quickGrabs = [];
-  const skipped = [];
+  const guaranteed = [];
   const noData = [];
   const hard = [];
   const locationCounts = new Map();
   const mouseRows = new Map();
 
   for (const mouse of mice) {
-    if (skippedIds.includes(mouse.unique_id)) {
-      skipped.push(mouse);
-      continue;
-    }
-
     const allRows = (ratesByMouse.get(mouse.unique_id) || [])
       .map((row) => ({
         location: row.location,
@@ -186,8 +148,8 @@ const buildPlan = (mice, ratesByMouse, skippedIds, findEnvironment) => {
     }
 
     const best = rows.reduce((top, row) => (row.rate > top.rate ? row : top));
-    if (best.rate >= QUICK_GRAB_RATE) {
-      quickGrabs.push({ mouse, ...best });
+    if (best.rate >= GUARANTEED_RATE) {
+      guaranteed.push({ mouse, ...best });
       continue;
     }
 
@@ -236,7 +198,7 @@ const buildPlan = (mice, ratesByMouse, skippedIds, findEnvironment) => {
     setup.hunts = expectedHuntsToClear(setup.mice.map((entry) => entry.rate / 100));
   }
 
-  return { setups: list, quickGrabs, skipped, noData, hard, mouseRows };
+  return { setups: list, guaranteed, noData, hard, mouseRows };
 };
 
 /**
@@ -347,16 +309,14 @@ const makeEnvironmentFinder = async () => {
 };
 
 /**
- * Make a clickable mouse chip.
+ * Make a mouse chip.
  *
- * @param {Object}   entry   Mouse entry with mouse, rate, and optional hunts.
- * @param {Function} onClick Called with the mouse when clicked.
+ * @param {Object} entry Mouse entry with mouse, rate, and optional hunts.
  *
  * @return {HTMLElement} The chip.
  */
-const makeMouseChip = (entry, onClick) => {
-  const chip = make('button', 'plan-mouse');
-  chip.type = 'button';
+const makeMouseChip = (entry) => {
+  const chip = make('span', 'plan-mouse');
   chip.setAttribute('data-mouse-id', entry.mouse.unique_id);
 
   const details = [`${entry.mouse.name}: ${formatRate(entry.rate)}`];
@@ -369,29 +329,23 @@ const makeMouseChip = (entry, onClick) => {
     details.push('only found in this location');
   }
 
-  details.push('Click to leave this mouse out of the plan');
   chip.title = details.join(' · ');
 
   make('span', 'plan-mouse-name', entry.mouse.name, chip);
   make('span', 'plan-mouse-rate', formatRate(entry.rate), chip);
 
-  chip.addEventListener('click', (event) => {
-    event.stopPropagation();
-    onClick(entry.mouse);
-  });
-
   return chip;
 };
 
 /**
- * Make a travel button for an environment, if we could resolve one.
+ * Make a travel button for an environment, unless we couldn't resolve it or are already there.
  *
  * @param {Object|null} environment The environment.
  *
  * @return {HTMLElement} The button or an empty placeholder.
  */
 const makeTravelButton = (environment) => {
-  if (!environment) {
+  if (!environment || environment.id === getCurrentLocation()) {
     return make('span', 'plan-travel-placeholder');
   }
 
@@ -546,13 +500,12 @@ const makeSetupDetails = ({ setup, mice, mouseRows, findEnvironment }) => {
  * @param {number}   options.hunts           Expected hunts to display.
  * @param {Object}   options.environment     Resolved environment.
  * @param {string}   options.currentLocation The user's current environment ID.
- * @param {Function} options.onToggle        Called with a mouse to skip/restore it.
  * @param {Map}      options.mouseRows       Viable rows per mouse, for the details panel.
  * @param {Function} options.findEnvironment Environment finder.
  *
  * @return {HTMLElement} The row.
  */
-const makeSetupRow = ({ setup, mice, raw, hunts, environment, currentLocation, onToggle, mouseRows, findEnvironment }) => {
+const makeSetupRow = ({ setup, mice, raw, hunts, environment, currentLocation, mouseRows, findEnvironment }) => {
   const row = make('div', 'plan-setup');
   if (environment && environment.id === currentLocation) {
     row.classList.add('plan-setup-current');
@@ -583,13 +536,13 @@ const makeSetupRow = ({ setup, mice, raw, hunts, environment, currentLocation, o
 
   const chips = make('div', 'plan-setup-mice', '', content);
   for (const entry of mice) {
-    chips.append(makeMouseChip(entry, onToggle));
+    chips.append(makeMouseChip(entry));
   }
 
   // Click anywhere else on the row to expand the details. Built on first open.
   let details = null;
   row.addEventListener('click', (event) => {
-    if (event.target.closest('.plan-mouse, .plan-travel, a, button')) {
+    if (event.target.closest('.plan-travel, a, button')) {
       return;
     }
 
@@ -609,44 +562,54 @@ const makeSetupRow = ({ setup, mice, raw, hunts, environment, currentLocation, o
  *
  * @param {string}   label   The label.
  * @param {Array}    entries Mouse entries.
- * @param {Function} onClick Chip click handler.
  * @param {string}   className Extra class for the strip.
  *
  * @return {HTMLElement} The strip.
  */
-const makeMouseStrip = (label, entries, onClick, className = '') => {
+const makeMouseStrip = (label, entries, className = '') => {
   const strip = make('div', ['plan-strip', className]);
   make('div', 'plan-strip-label', label, strip);
 
   const chips = make('div', 'plan-strip-mice', '', strip);
   for (const entry of entries) {
-    chips.append(makeMouseChip(entry, onClick));
+    chips.append(makeMouseChip(entry));
   }
 
   return strip;
 };
 
 /**
- * Render the quick grabs strip.
+ * Render the guaranteed attraction strip. Click it to collapse; the state is remembered.
  *
- * @param {Array}    quickGrabs      Quick grab entries.
+ * @param {Array}    guaranteed      Guaranteed attraction entries.
  * @param {Function} findEnvironment Environment finder.
- * @param {Function} onToggle        Chip click handler.
  *
  * @return {HTMLElement} The strip.
  */
-const makeQuickGrabs = (quickGrabs, findEnvironment, onToggle) => {
-  const strip = make('div', 'plan-strip plan-quick-grabs');
-  const label = make('div', 'plan-strip-label', 'Quick grabs', strip);
-  label.title = `Mice with a ${QUICK_GRAB_RATE}%+ setup somewhere. They don't need a plan, so they're left out of the scores below.`;
+const makeGuaranteed = (guaranteed, findEnvironment) => {
+  const strip = make('div', 'plan-strip plan-guaranteed');
+  strip.classList.toggle('plan-guaranteed-collapsed', lsGet(GUARANTEED_COLLAPSED_KEY, false));
 
-  const list = make('div', 'plan-quick-grabs-list', '', strip);
-  for (const grab of quickGrabs.sort((a, b) => a.mouse.name.localeCompare(b.mouse.name))) {
-    const item = make('div', 'plan-quick-grab', '', list);
-    item.append(makeMouseChip(grab, onToggle));
+  const label = make('div', 'plan-strip-label plan-guaranteed-toggle', '', strip);
+  make('span', 'plan-guaranteed-caret', '', label);
+  make('span', '', `Guaranteed attraction (${guaranteed.length})`, label);
+
+  strip.addEventListener('click', (event) => {
+    if (event.target.closest('.plan-travel, a, button')) {
+      return;
+    }
+
+    const collapsed = strip.classList.toggle('plan-guaranteed-collapsed');
+    lsSet(GUARANTEED_COLLAPSED_KEY, collapsed);
+  });
+
+  const list = make('div', 'plan-guaranteed-list', '', strip);
+  for (const grab of guaranteed.sort((a, b) => a.mouse.name.localeCompare(b.mouse.name))) {
+    const item = make('div', 'plan-guaranteed-item', '', list);
+    item.append(makeMouseChip(grab));
 
     const where = [grab.location, grab.stage, grab.cheese].filter(Boolean).join(' · ');
-    make('span', 'plan-quick-grab-where', where, item);
+    make('span', 'plan-guaranteed-where', where, item);
 
     item.append(makeTravelButton(findEnvironment(grab.location)));
   }
@@ -658,23 +621,17 @@ const makeQuickGrabs = (quickGrabs, findEnvironment, onToggle) => {
  * Render the plan into the container.
  *
  * @param {HTMLElement} container The plan container.
- * @param {Object}      map       The map data.
  * @param {Array}       mice      Uncaught mice.
  * @param {Map}         rates     Rates keyed by mouse unique ID.
  * @param {Function}    findEnvironment Environment finder.
  */
-const renderPlan = (container, map, mice, rates, findEnvironment) => {
+const renderPlan = (container, mice, rates, findEnvironment) => {
   const sort = lsGet(SORT_KEY, 'best');
   const currentLocation = getCurrentLocation();
 
-  const plan = buildPlan(mice, rates, getSkippedMice(map.map_id), findEnvironment);
+  const plan = buildPlan(mice, rates, findEnvironment);
 
-  const rerender = () => renderPlan(container, map, mice, rates, findEnvironment);
-
-  const onToggle = (mouse) => {
-    toggleSkippedMouse(map.map_id, mouse.unique_id);
-    rerender();
-  };
+  const rerender = () => renderPlan(container, mice, rates, findEnvironment);
 
   container.replaceChildren();
 
@@ -699,30 +656,19 @@ const renderPlan = (container, map, mice, rates, findEnvironment) => {
   });
 
   // Notices.
-  if (plan.skipped.length > 0) {
-    const entries = plan.skipped.map((mouse) => ({ mouse, rate: 0 }));
-    const strip = makeMouseStrip('Left out', entries, onToggle, 'plan-skipped');
-    strip.querySelector('.plan-strip-label').title = 'Click a mouse to put it back in the plan';
-    strip.querySelectorAll('.plan-mouse-rate').forEach((rate) => rate.remove());
-    strip.querySelectorAll('.plan-mouse').forEach((chip) => {
-      chip.title = 'Click to put this mouse back in the plan';
-    });
-    container.append(strip);
-  }
-
-  if (plan.quickGrabs.length > 0) {
-    container.append(makeQuickGrabs(plan.quickGrabs, findEnvironment, onToggle));
+  if (plan.guaranteed.length > 0) {
+    container.append(makeGuaranteed(plan.guaranteed, findEnvironment));
   }
 
   if (plan.hard.length > 0) {
-    const strip = makeMouseStrip('No setup above ' + RATE_FLOOR + '%', plan.hard, onToggle, 'plan-hard');
+    const strip = makeMouseStrip('No setup above ' + RATE_FLOOR + '%', plan.hard, 'plan-hard');
     strip.querySelector('.plan-strip-label').title = 'Best known rate shown. These need a dedicated trip, or the map closer.';
     container.append(strip);
   }
 
   if (plan.noData.length > 0) {
     const entries = plan.noData.map((mouse) => ({ mouse, rate: 0 }));
-    const strip = makeMouseStrip('No MHCT data', entries, onToggle, 'plan-no-data');
+    const strip = makeMouseStrip('No MHCT data', entries, 'plan-no-data');
     strip.querySelectorAll('.plan-mouse-rate').forEach((rate) => rate.remove());
     container.append(strip);
   }
@@ -730,7 +676,7 @@ const renderPlan = (container, map, mice, rates, findEnvironment) => {
   const body = make('div', 'plan-body', '', container);
 
   if (plan.setups.length === 0) {
-    make('div', 'plan-empty', 'Nothing to plan — every remaining mouse is a quick grab, left out, or has no data.', body);
+    make('div', 'plan-empty', 'Nothing to plan — every remaining mouse is a guaranteed attraction or has no data.', body);
     return;
   }
 
@@ -750,7 +696,6 @@ const renderPlan = (container, map, mice, rates, findEnvironment) => {
           hunts: setup.hunts,
           environment: findEnvironment(setup.location),
           currentLocation,
-          onToggle,
           mouseRows: plan.mouseRows,
           findEnvironment,
         })
@@ -773,7 +718,6 @@ const renderPlan = (container, map, mice, rates, findEnvironment) => {
           hunts: setup.hunts,
           environment: findEnvironment(setup.location),
           currentLocation,
-          onToggle,
           mouseRows: plan.mouseRows,
           findEnvironment,
         })
@@ -856,7 +800,7 @@ const processPlanTabClick = async () => {
     return;
   }
 
-  renderPlan(container, currentMapData, mice, rates, findEnvironment);
+  renderPlan(container, mice, rates, findEnvironment);
 };
 
 /**
