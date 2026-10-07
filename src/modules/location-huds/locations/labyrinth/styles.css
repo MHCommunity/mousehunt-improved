@@ -115,11 +115,17 @@
 }
 
 .labyrinthHUD-scrambleDoors-quantity.quantity {
-  top: 0.5px;
+  top: 2px;
   right: -7px;
-  height: 9.5px;
-  padding: 4px;
+  height: 9px;
+  padding: 2px 5px 2px 0;
   pointer-events: none; /* allow for actually clicking the scramble button */
+}
+
+/* The game only has a hover state for the active button, so give the disabled one a subtle highlight. */
+.labyrinthHUD-scrambleDoors.disabled:hover {
+  background-color: rgb(255 255 255 / 18%);
+  border-radius: 9px;
 }
 
 .labyrinthHUD-scrambleClues:hover .labyrinthHUD-scrambleClues-name,
