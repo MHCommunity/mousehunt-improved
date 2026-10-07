@@ -5,9 +5,9 @@ import { getMouseDataForMap } from './tab-sorted';
 // Tuning for the plan. Rates are percentages.
 const RATE_FLOOR = 5; // A setup only "counts" for a mouse at or above this rate.
 const RATE_CAP = 33; // A mouse's contribution to a setup's score is capped here.
-const GUARANTEED_RATE = 90; // Mice at or above this rate anywhere are guaranteed attractions, not plan material.
+const GUARANTEED_RATE = 99; // Mice at or above this rate anywhere are guaranteed attractions, not plan material.
 const DETAIL_ROWS_PER_MOUSE = 5; // MHCT rows shown per mouse in an expanded setup.
-const MIN_HUNTS = 500; // MHCT rows with fewer recorded hunts are only used when a mouse has nothing better.
+const MIN_HUNTS = 250; // MHCT rows with fewer recorded hunts are only used when a mouse has nothing better.
 const INITIAL_ROWS = 30;
 const FETCH_CONCURRENCY = 8;
 
