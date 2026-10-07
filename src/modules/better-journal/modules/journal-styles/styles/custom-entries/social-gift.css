@@ -1,5 +1,5 @@
-/* Make the gifts entry normal height and scrollable in the double-column journal */
-.journal.jdouble .entry.socialGift.socialGift-send .journalbody .journaltext {
+/* Make the gifts entry normal height and scrollable */
+.journal .entry.socialGift.socialGift-send .journalbody .journaltext {
   min-height: 40px;
   max-height: 60px;
   padding-right: 10px;
@@ -14,22 +14,22 @@
 /* The scroll shadow sits at the bottom edge of the scroller, so keep that
    edge flush with the entry's bottom: no margins below the scroller and no
    bottom padding on the entry. */
-.journal.jdouble .content .entry.socialGift.socialGift-send .journalbody {
+.journal .content .entry.socialGift.socialGift-send .journalbody {
   margin-bottom: 0;
 }
 
-.journal.jdouble .entry.socialGift.socialGift-send {
+.journal .entry.socialGift.socialGift-send {
   cursor: pointer;
 }
 
-.journal.jdouble .entry.socialGift.socialGift-send.better-journal-gift-expanded .journalbody .journaltext {
+.journal .entry.socialGift.socialGift-send.better-journal-gift-expanded .journalbody .journaltext {
   max-height: unset;
   box-shadow: none;
 }
 
 /* When expanded there's no scroll shadow, so restore the normal breathing
    room below the text. */
-.journal.jdouble .content .entry.socialGift.socialGift-send.better-journal-gift-expanded:not(.highlight) {
+.journal .content .entry.socialGift.socialGift-send.better-journal-gift-expanded:not(.highlight) {
   padding-bottom: 6px;
 }
 
@@ -38,6 +38,6 @@
   display: none;
 }
 
-.journal.jdouble .entry.socialGift-send {
+.journal .entry.socialGift-send {
   padding-bottom: 0;
 }
