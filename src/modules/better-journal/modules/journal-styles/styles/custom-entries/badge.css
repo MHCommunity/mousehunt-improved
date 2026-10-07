@@ -60,13 +60,16 @@
   background: linear-gradient(135deg, #eee, #8bdae9 80%);
 }
 
+/* The game sizes each type's badge to fit its label at the default font size, so it wraps at larger ones. */
 .journal .entry.highlight .journalhighlightbadge {
   top: -3px;
   right: 0;
   display: flex;
   align-items: center;
-  width: 98px;
-  height: 18px;
+  width: auto !important;
+  height: auto;
+  min-height: 18px;
+  padding: 2px 8px 2px 5px;
   background: linear-gradient(90deg, #a32fef 0%, #9612e8 100%);
 }
 
@@ -75,11 +78,22 @@
   right: -3px;
 }
 
-.journal .entry.badge.highlight .journalhighlightbadge .jounalhighlightbadgeimage {
-  margin-top: 0;
-  filter: grayscale(1);
+.journal .content .entry.highlight .journalhighlightbadge .jounalhighlightbadgeimage {
+  width: auto;
+  height: auto;
+  padding-left: 20px;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 15px;
 }
 
-.journal .entry.badge.highlight .journalhighlightbadge {
-  width: 100px;
+.journal .content .entry.highlight .journalhighlightbadge .jounalhighlightbadgeimage::after {
+  position: static;
+  display: inline;
+  white-space: nowrap;
+}
+
+.journal .entry.badge.highlight .journalhighlightbadge .jounalhighlightbadgeimage {
+  filter: grayscale(1);
 }
