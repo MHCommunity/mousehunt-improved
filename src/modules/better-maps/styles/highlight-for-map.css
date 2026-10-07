@@ -17,3 +17,87 @@
   background-color: rgb(55 200 255 / 75%);
   border-radius: 50%;
 }
+
+.mh-sky-map-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 50%));
+}
+
+.mh-sky-map-badge--needed {
+  background: url(https://i.mouse.rip/map-marker.png) 0 0 no-repeat;
+  background-size: 18px;
+}
+
+.floatingIslandsHUD-powerType.mh-sky-map-choose {
+  border-radius: 50%;
+  box-shadow: 0 0 6px 3px #7cfc00;
+}
+
+.mh-sky-map-tooltip-text {
+  margin-top: 3px;
+  font-weight: 600;
+  color: #b8860b;
+}
+
+.mh-sky-map-badge[title] {
+  pointer-events: auto;
+}
+
+/* The game sizes every span in the info box, so this needs the extra specificity. */
+.floatingIslandsAdventureBoard-info .mh-sky-map-info {
+  display: block;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.floatingIslandsAdventureBoard-info .mh-sky-map-info--warning {
+  position: absolute;
+  inset: 0 0 2px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #a12a12;
+  text-align: center;
+  white-space: pre-line;
+  background-color: #ffd2d2a1;
+  border-radius: 4% 6% 5% 6% / 22% 22% 65% 90%;
+}
+
+/* Hide the game's text behind the note. */
+.floatingIslandsAdventureBoard-info:has(.mh-sky-map-info--warning, .mh-sky-map-info--tip) span:not(.mh-sky-map-info),
+.floatingIslandsAdventureBoard-info:has(.mh-sky-map-info--warning, .mh-sky-map-info--tip) span b {
+  color: transparent;
+}
+
+.floatingIslandsAdventureBoard-info .mh-sky-map-info--tip {
+  position: absolute;
+  inset: 0 1px 1px 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-weight: 900;
+  line-height: 1.5;
+  color: #6b4a1f;
+  background-color: rgb(255 150 0 / 43%);
+  border-radius: 4% 6% 5% 6% / 22% 22% 65% 90%;
+}
+
+/* A good pick just tints the box green, behind the game's text. */
+.floatingIslandsAdventureBoard-info .mh-sky-map-info--good {
+  position: absolute;
+  inset: 0 1px 1px 0;
+  z-index: -1;
+  background-color: rgb(110 200 70 / 40%);
+  border-radius: 4% 6% 5% 6% / 22% 22% 65% 90%;
+}
+
+.floatingIslandsAdventureBoard-info:has(.mh-sky-map-info--good) {
+  z-index: 0;
+}
