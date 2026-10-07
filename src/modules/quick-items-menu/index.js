@@ -676,6 +676,13 @@ const createTab = (pin) => {
     const isExpanded = tab.el.classList.toggle('expanded');
     if (isExpanded) {
       tab.entries.forEach((entry) => entry.updateItem());
+
+      // With only one item, select its quantity so Enter opens it straight away.
+      if (1 === tab.entries.length) {
+        const quantity = tab.entries[0].row?.querySelector('.mh-quick-items-menu-quantity');
+        quantity?.focus({ preventScroll: true });
+        quantity?.select();
+      }
     }
   });
 
