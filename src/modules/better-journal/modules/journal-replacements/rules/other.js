@@ -88,4 +88,5 @@ export default defineRules('other', [
   ['The aura will last until', 'The aura expires on'],
   [/The last of the mist dissipated from the atmosphere\. ?I can obtain more Mist Canisters and begin misting again\./, 'The last of the mist dissipated.'],
   ['My Printing Press Base printed through a roll of', 'My Printing Press Base used a roll of'],
+  [/<a [^>]*>(Labyrinth Lantern)<\/a>/gi, '$1', { classes: ['labyrinth-clue', 'labyrinth-lantern-disable'] }],
 ]);
