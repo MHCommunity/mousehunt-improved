@@ -264,15 +264,16 @@
     border-color 0.1s;
 }
 
+/* The bottom edge stays dark and grows as the button lifts, so hovering reads as raised rather than pressed. */
 .mh-crown-nav-item:hover,
 .mh-crown-nav-item:focus-visible {
   border-color: #3b7cc0;
-  box-shadow: 0 2px 0 #3b7cc0;
+  box-shadow: 0 3px 0 #b5b5b5;
   transform: translateY(-1px);
 }
 
 .mh-crown-nav-item:active {
-  box-shadow: 0 0 0 #3b7cc0;
+  box-shadow: 0 0 0 #b5b5b5;
   transform: translateY(2px);
 }
 
@@ -321,7 +322,11 @@
 
 .mh-dark .mh-crown-nav-item:hover,
 .mh-dark .mh-crown-nav-item:focus-visible {
-  background-color: #444;
+  background-color: #4a4a4a;
   border-color: #6a9fd8;
-  box-shadow: 0 2px 0 #6a9fd8;
+  box-shadow: 0 3px 0 #1e1e1e;
+}
+
+.mh-dark .mh-crown-nav-item:active {
+  box-shadow: 0 0 0 #1e1e1e;
 }
