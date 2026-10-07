@@ -137,7 +137,7 @@
   font-size: 11px;
 }
 
-.mh-inventory-sort--active .mh-inventory-sort-footer {
+.mh-inventory-sort-filtering .mh-inventory-sort-footer {
   display: flex;
 }
 
@@ -217,8 +217,4 @@
 
 .mh-dark .mh-inventory-sort-tile-text {
   color: var(--d-text);
-}
-
-.mh-dark .mh-inventory-sort-reset {
-  color: var(--d-link);
 }

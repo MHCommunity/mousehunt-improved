@@ -579,8 +579,6 @@ const addControls = (subtabEl, key, subtab) => {
 
   const footer = make('div', 'mh-inventory-sort-footer', '', panel);
   const countEl = make('span', 'mh-inventory-sort-count', '', footer);
-  const resetLink = make('a', 'mh-inventory-sort-reset', 'Reset', footer);
-  resetLink.href = '#';
 
   const render = () => {
     sortTiles.querySelectorAll('.mh-inventory-sort-tile').forEach((tile) => {
@@ -682,16 +680,6 @@ const addControls = (subtabEl, key, subtab) => {
         render();
       });
     });
-  });
-
-  resetLink.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    Object.keys(filters).forEach((filter) => {
-      filters[filter] = null;
-    });
-
-    setSort(null);
   });
 
   panel.mhRender = render;
