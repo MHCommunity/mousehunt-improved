@@ -729,5 +729,15 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   top: 10px;
   max-height: calc(100vh - 20px);
   overflow-y: auto;
+  scrollbar-color: transparent transparent;
   scrollbar-width: thin;
+}
+
+/* Only show the scrollbar while hovering the menu. */
+.inventoryPage-tagDirectory:hover {
+  scrollbar-color: rgb(0 0 0 / 30%) transparent;
+}
+
+.mh-dark .inventoryPage-tagDirectory:hover {
+  scrollbar-color: rgb(255 255 255 / 25%) transparent;
 }
