@@ -743,7 +743,8 @@ const addSettingsLoadingIndicator = () => {
  * Add the header with the title, version, and search field.
  */
 const addHeaderToSettings = () => {
-  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
+  // Not just the active tab, since the settings are also built when landing on another Preferences tab.
+  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings');
   if (!settingsPage) {
     return;
   }
@@ -818,6 +819,7 @@ const init = async () => {
   onEvent('mh-improved-setting-added-to-page', (module) => {
     // this is the last setting added, so we can run our final setup.
     if (module?.key === 'error-reporting') {
+      addHeaderToSettings();
       createSettingsBrowser();
       highlightLocationHud();
       addAdvancedSettingsButtons();

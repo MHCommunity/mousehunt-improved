@@ -665,6 +665,8 @@ const makeSettingBlank = ({ settingId }) => {
  * @param {string}  options.tab         The tab to add the settings to.
  * @param {Object}  options.settings    The settings for the setting.
  * @param {boolean} options.live        Whether changing the setting takes effect without a refresh.
+ * @param {string}  options.badge       Optional stability label shown next to the name, like 'Beta' or 'Unstable'.
+ * @param {Function} options.showIf     Optional check for whether to show the row, rerun when any setting changes.
  *
  * @return {Object} The setting.
  */
@@ -773,6 +775,11 @@ const addSettingOnce = (options) => {
   settingNameText.setAttribute('data-default', JSON.stringify(defaultValue));
   settingName.append(settingNameText);
 
+  if (options.badge) {
+    const badgeSlug = options.badge.toLowerCase().replaceAll(/[^\da-z]+/g, '-');
+    makeElement('span', ['mhui-setting-badge', `mhui-setting-badge-${badgeSlug}`], options.badge, settingName);
+  }
+
   const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 
   if (settingSettings && (settingSettings.type === 'select' || settingSettings.type === 'multi-select')) {
@@ -831,6 +838,11 @@ const addSettingOnce = (options) => {
   settings.append(settingRow);
   sectionExists.append(settings);
 
+  if (options.showIf) {
+    conditionalRows.set(settingId, options.showIf);
+    settings.hidden = !options.showIf();
+  }
+
   doEvent('mh-improved-setting-added-to-page', {
     name,
     key,
@@ -844,15 +856,51 @@ const addSettingOnce = (options) => {
   return settings;
 };
 
+// Rows that only show when their check passes, keyed by row id.
+const conditionalRows = new Map();
+
+onEvent('mh-improved-settings-changed', () => {
+  for (const [rowId, showIf] of conditionalRows) {
+    const row = document.querySelector(`#${rowId}`);
+    if (row) {
+      row.hidden = !showIf();
+    }
+  }
+});
+
 // Settings changed since the page loaded that need a refresh, keyed to the value they started at.
 // A toggle's starting value is known, so flipping it back clears it; other inputs stay pending.
 const pendingRefresh = new Map();
 const unknownStartValue = Symbol('unknown');
 
 /**
- * Show or hide the refresh banner, depending on whether any changes still need a refresh.
+ * Scroll the page so the banner doesn't cover the setting that was just changed.
+ *
+ * @param {string}      key    The changed setting key.
+ * @param {HTMLElement} banner The refresh banner.
  */
-const updateRefreshBanner = () => {
+const keepSettingAboveBanner = (key, banner) => {
+  // Selects and multi-toggles save under suffixed keys, so fall back to the base key, then to whatever has focus.
+  const label =
+    document.querySelector(`.PagePreferences__settingNameText[data-setting="${CSS.escape(key)}"]`) ||
+    document.querySelector(`.PagePreferences__settingNameText[data-setting="${CSS.escape(key.replace(/-[^.-]+$/, ''))}"]`);
+  const row = (label || document.activeElement)?.closest('.PagePreferences__setting');
+  if (!row) {
+    return;
+  }
+
+  const overlap = row.getBoundingClientRect().bottom - banner.getBoundingClientRect().top;
+  if (overlap > 0) {
+    window.scrollBy(0, overlap + 10);
+  }
+};
+
+/**
+ * Show or hide the refresh banner, depending on whether any changes still need a refresh.
+ *
+ * @param {string} key The setting that was just changed.
+ */
+const updateRefreshBanner = (key) => {
   let banner = document.querySelector('#mh-utils-settings-refresh-message');
 
   if (pendingRefresh.size === 0) {
@@ -878,6 +926,7 @@ const updateRefreshBanner = () => {
 
   document.body.append(banner);
   document.body.classList.add('mh-improved-has-refresh-message');
+  keepSettingAboveBanner(key, banner);
   setTimeout(() => banner.classList.add('mh-ui-fade-in'), 50);
 };
 
@@ -900,7 +949,7 @@ const addSettingRefreshReminder = ({ key, value, type }) => {
     pendingRefresh.delete(key);
   }
 
-  updateRefreshBanner();
+  updateRefreshBanner(key);
 };
 
 onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
@@ -933,6 +982,10 @@ const addSettingForModule = async (module) => {
   }
 
   for (const submodule of module.modules) {
+    if (submodule.showIf && !submodule.showIf()) {
+      continue;
+    }
+
     let moduleSettingRow = null;
     if (!submodule.alwaysLoad && !submodule.beta && !(submodule.hiddenUnlessEnabled && !getSetting(submodule.id, false) && !getFlag('show-deprecated-modules'))) {
       moduleSettingRow = await addSetting({
@@ -941,6 +994,7 @@ const addSettingForModule = async (module) => {
         group: submodule.group,
         default: submodule.default,
         description: submodule.description,
+        badge: submodule.badge,
         module,
       });
     }
@@ -968,6 +1022,8 @@ const addSettingForModule = async (module) => {
           },
           subSettings: subSettings.settings,
           live: subSettings.live,
+          badge: subSettings.badge,
+          showIf: subSettings.showIf,
         });
 
         if (moduleSettingRow && subSettingRow) {
