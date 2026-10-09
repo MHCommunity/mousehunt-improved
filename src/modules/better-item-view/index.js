@@ -20,8 +20,9 @@ import mhctRatesStyles from '../../utils/styles/mhct-rates.css';
 import styles from './styles.css';
 
 /**
- * Keep just the tradable / giveable checklist and a wiki link in the sidebar. The quantity goes
- * under the picture, and anything else moves into the main content.
+ * Keep just the tradable / giveable checklist, the item stats, and a wiki link in the sidebar. The
+ * quantity goes under the picture, the obtain hint goes under the description, and anything else
+ * moves into the main content.
  *
  * @param {HTMLElement} itemView The item view element.
  */
@@ -47,8 +48,14 @@ const updateSidebar = (itemView) => {
   const content = itemView.querySelector('.itemView-content');
   if (content) {
     [...sidebar.children]
-      .filter((child) => !child.matches('.itemView-sidebar-checkList, .itemView-sidebar-socialContainer, .itemView-sidebar-quantity'))
+      .filter((child) => !child.matches('.itemView-sidebar-checkList, .itemView-sidebar-socialContainer, .itemView-sidebar-quantity, .itemViewStatBlock'))
       .forEach((child) => content.append(child));
+  }
+
+  const obtainHint = itemView.querySelector('.itemView-obtainHint');
+  const description = itemView.querySelector('.itemView-description');
+  if (obtainHint && description) {
+    description.after(obtainHint);
   }
 
   const name = itemView.querySelector('.itemView-header-name');

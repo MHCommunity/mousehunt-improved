@@ -334,7 +334,7 @@
 .mh-dark-mode .mouseview-has-mhct .ar-wrapper,
 .mh-dark-mode .itemView-sidebar-checkList,
 .mh-dark-mode .itemViewContainer .itemView-obtainHint,
-.mh-dark-mode .itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+.mh-dark-mode .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-padding {
   background-color: #3d3d3d;
   border-color: #606060;
 }

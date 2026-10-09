@@ -58,18 +58,6 @@
   text-align: center;
 }
 
-.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-padding {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100px;
-}
-
-.itemViewContainer .itemViewStatBlock.trinket {
-  width: 100px;
-  font-size: 13px;
-}
-
 #overlayPopup.itemViewPopup #jsDialogClose {
   right: 6px;
   z-index: 1;
@@ -396,7 +384,7 @@ ul.mh-improved-scroll-to-map-multiple-list {
 
 .itemView-sidebar-checkList,
 .itemViewContainer .itemView-obtainHint,
-.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+.itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-padding {
   box-sizing: border-box;
   padding: 6px 8px;
   background-color: #f2f2f2;
@@ -439,41 +427,71 @@ ul.mh-improved-scroll-to-map-multiple-list {
   text-align: center;
 }
 
-/* Item stats (power, luck, and so on) sit as a row under the picture instead of in the sidebar. */
-.itemView-content > .itemViewStatBlock {
+/* Item stats (power, luck, and so on) stack in the sidebar so they don't push the drop rates down. */
+.itemView-sidebar > .itemViewStatBlock {
   width: auto;
-  padding-top: 10px;
-  clear: both;
+  padding: 0;
+  margin-top: 8px;
   background: none;
   border: none;
 }
 
-.itemView-content > .itemViewStatBlock .itemViewStatBlock-padding {
+.itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-padding {
   display: flex;
-  flex-flow: row wrap;
-  gap: 5px;
+  flex-direction: column;
+  gap: 4px;
   width: auto;
   overflow: visible;
-  background: none;
-  border: none;
 }
 
-.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+.itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat {
   display: flex;
-  flex: 1 1 0;
-  gap: 4px;
+  flex-direction: row;
+  gap: 6px;
   align-items: center;
-  justify-content: center;
-  min-width: max-content;
-  padding: 3px 8px;
-}
-
-.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat-label,
-.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat-value {
-  flex: none;
   width: auto;
+  padding: 0;
   background: none;
   border: none;
+  border-radius: 0;
+}
+
+.itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat.empty {
+  display: none;
+}
+
+.itemViewPopup .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat-label {
+  display: flex;
+  flex: none;
+  width: 20px;
+  height: auto;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat-icon,
+.itemViewPopup .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-label,
+.itemViewPopup .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.itemViewPopup .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-stat-value {
+  flex: 1;
+  justify-content: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  background: none;
+  border: none;
+}
+
+/* The obtain hint is moved under the description; flow-root keeps it beside the floated picture. */
+.itemView-content > .itemView-obtainHint {
+  display: flow-root;
+  margin: 10px 0 0;
 }
 
 /* Keep long descriptions in their column instead of wrapping under the picture. */

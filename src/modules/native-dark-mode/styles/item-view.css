@@ -23,6 +23,10 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .itemViewStatBlock-stat.empty .itemViewStatBlock-stat-value {
+  color: transparent;
+}
+
 .mh-dark .itemViewContainer a {
   color: var(--d-link);
 }
@@ -33,7 +37,7 @@
 
 .mh-dark .itemView-sidebar-checkList,
 .mh-dark .itemViewContainer .itemView-obtainHint,
-.mh-dark .itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+.mh-dark .itemView-sidebar > .itemViewStatBlock .itemViewStatBlock-padding {
   background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
