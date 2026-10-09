@@ -1,0 +1,195 @@
+/*
+ * Light palettes.
+ *
+ * Dark Mode assumes a dark page: it inverts or dims some icons and swaps some game art for dark versions.
+ * Light palettes set `mh-palette-light` on the body, and these rules undo those dark-only pieces so Dark Mode's
+ * color tokens can drive a light theme. Everything here is scoped to that class, so Dark Mode itself is untouched.
+ *
+ * Generated from native-dark-mode's filter and i.mouse.rip image rules. When Dark Mode adds a new filter or dark
+ * image, add its undo here.
+ */
+
+body.mh-dark.mh-palette-light {
+  --d-shadow: rgb(0 0 0 / 18%);
+}
+
+/* Undo the dark-only image filters (inverted icons, dimmed images). */
+body.mh-dark.mh-palette-light .mouseView-imageContainer .mouseView-image[data-mh-mouse]::after,
+body.mh-dark.mh-palette-light .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mouse]::after,
+body.mh-dark.mh-palette-light a.random-title::after,
+body.mh-dark.mh-palette-light #friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon,
+body.mh-dark.mh-palette-light .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon,
+body.mh-dark.mh-palette-light .itemView-header-classification-link::before,
+body.mh-dark.mh-palette-light #messengerUINotification .loading::after,
+body.mh-dark.mh-palette-light .new-tooltip-loading::after,
+body.mh-dark.mh-palette-light .mh-ui-goals-sidebar-toggle,
+body.mh-dark.mh-palette-light a.mh-ui-invite-refresh-button::after,
+body.mh-dark.mh-palette-light .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink::after,
+body.mh-dark.mh-palette-light .marketplaceContentContainer #chartArea svg.highcharts-root,
+body.mh-dark.mh-palette-light .marketplaceContentContainer #chartArea .highcharts-series,
+body.mh-dark.mh-palette-light .marketplaceContentContainer #chartArea .highcharts-markers,
+body.mh-dark.mh-palette-light .marketplaceContentContainer #chartArea .highcharts-legend-item path,
+body.mh-dark.mh-palette-light .marketplaceContentContainer #chartArea .highcharts-legend-item rect,
+body.mh-dark.mh-palette-light .marketplaceView-table tr:hover .marketplaceView-listingType.buy,
+body.mh-dark.mh-palette-light .item-data-wrapper-loading::after,
+body.mh-dark.mh-palette-light .mouse-data-wrapper-loading::after,
+body.mh-dark.mh-palette-light .friend-data-wrapper-loading::after,
+body.mh-dark.mh-palette-light .mh-improved-map-sidebar-title::after,
+body.mh-dark.mh-palette-light .travelPage-map-environment-detail-wiki-link .travelPage-map-environment-detail-link-icon {
+  filter: none;
+}
+
+/* Swap dark-mode art back to the game originals. */
+body.mh-dark.mh-palette-light .hunterProfileItemsView-category {
+  background-image: url(https://www.mousehuntgame.com/images/ui/tabs/mice_inactive.png);
+}
+
+body.mh-dark.mh-palette-light .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-image {
+  background-image: url(https://www.mousehuntgame.com/images/ui/profile/horn_temp.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendMapInvite {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_map_invite.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendGift {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_gift.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendSupplies {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_supplies.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendTournamentInvite {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_tournament_invite.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendTicket {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_ticket.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.canAccept,
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.sendRequest {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/send_request.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.accepted {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/friends.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.requestSent {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/request_sent.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.ignored {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/unfriend.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.requestMapInvite {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/request_map_invite.png);
+}
+
+body.mh-dark.mh-palette-light .userInteractionButtonsView-button.self {
+  background-image: url(https://www.mousehuntgame.com/images/ui/friends/friends.png);
+}
+
+body.mh-dark.mh-palette-light #OnboardArrow.onboardPopup.left {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/infoArrowJumbo_left.png);
+}
+
+body.mh-dark.mh-palette-light #OnboardArrow.onboardPopup.right {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/infoArrowJumbo_right.png);
+}
+
+body.mh-dark.mh-palette-light #OnboardArrow.onboardPopup.top {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/infoArrowJumbo_top.png);
+}
+
+body.mh-dark.mh-palette-light #OnboardArrow.onboardPopup.bottom {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/infoArrowJumbo_bottom.png);
+}
+
+body.mh-dark.mh-palette-light .journal .content .attractionfailurestale {
+  background-image: url(https://www.mousehuntgame.com/images/ui/journal/stale.gif);
+}
+
+body.mh-dark.mh-palette-light .journal .content .captchasolved {
+  background-image: url(https://www.mousehuntgame.com/images/ui/journal/journal_puzzle_reward.gif);
+}
+
+body.mh-dark.mh-palette-light .journal .content .entry.attractionfailure,
+body.mh-dark.mh-palette-light .journal .content .entry.outofsuperbrie,
+body.mh-dark.mh-palette-light .journal .content .entry.catchfailure {
+  background-image: url(https://www.mousehuntgame.com/images/ui/journal/steal.gif);
+}
+
+body.mh-dark.mh-palette-light .journal .content .entry.catchfailuredamage {
+  background-image: url(https://www.mousehuntgame.com/images/ui/journal/pillage.gif);
+}
+
+body.mh-dark.mh-palette-light .springHuntHUD-popup-tabContentContainer.loading::after,
+body.mh-dark.mh-palette-light .eggSweeper-layer.loading::after,
+body.mh-dark.mh-palette-light .giftSelectorView-friendContainer.loading,
+body.mh-dark.mh-palette-light .itemPurchaseView-container.loading .itemPurchaseView-action-state.loading,
+body.mh-dark.mh-palette-light .itemView-loading::after,
+body.mh-dark.mh-palette-light .journalContainer.loading .journalEntries::after,
+body.mh-dark.mh-palette-light .MHCheckoutReviewCartPageView-paymentLoader::after,
+body.mh-dark.mh-palette-light .MHCheckoutTermsOfServicePageView,
+body.mh-dark.mh-palette-light .messageBoardView-loader,
+body.mh-dark.mh-palette-light .mouseListView-categoryContent-loading,
+body.mh-dark.mh-palette-light .mouseView-image.loading,
+body.mh-dark.mh-palette-light .newsArchivesListView.loading .newsArchivesListView-page::after,
+body.mh-dark.mh-palette-light .scoreboardTableView.loading .scoreboardTableView-results::after,
+body.mh-dark.mh-palette-light .halloweenMemoryGame-content.loading,
+body.mh-dark.mh-palette-light .trapSelectorView__codexBrowser .loading,
+body.mh-dark.mh-palette-light .treasureMapDialogView.loading .treasureMapDialogView-content,
+body.mh-dark.mh-palette-light .treasureMapListingsTableView-loading-mouse,
+body.mh-dark.mh-palette-light .treasureMapRootView-content.loading,
+body.mh-dark.mh-palette-light .treasureMapView-block-content.loading::after,
+body.mh-dark.mh-palette-light .userSelector-table tr.loading td,
+body.mh-dark.mh-palette-light .mousehuntHud-page-tabContent-loading,
+body.mh-dark.mh-palette-light .mousehuntHud-page-subTabContent-loading,
+body.mh-dark.mh-palette-light .mousehuntPage-loading,
+body.mh-dark.mh-palette-light .adversariesPage-categoryContent-loading,
+body.mh-dark.mh-palette-light .campPage-trap-itemBrowser-items .loading,
+body.mh-dark.mh-palette-light .campPage-trap-trapEffectivenessContainer .loading,
+body.mh-dark.mh-palette-light .campPage-tabs-tabContent-loading,
+body.mh-dark.mh-palette-light .friendsPage-friendList-content.busy::after,
+body.mh-dark.mh-palette-light .tournamentPage-tournamentRow-loading,
+body.mh-dark.mh-palette-light .adventCalendarView-gift.busy::after,
+body.mh-dark.mh-palette-light .springHuntHUD-dialog-loading,
+body.mh-dark.mh-palette-light .giftSelectorView-content-selectedFriend-loading,
+body.mh-dark.mh-palette-light .giftSelectorView-confirmOverlay.loading .giftSelectorView-confirmPopup-content,
+body.mh-dark.mh-palette-light .giftSelectorView-inbox-loading,
+body.mh-dark.mh-palette-light .riftFuromaHUD-craftingPopup-padding-loading,
+body.mh-dark.mh-palette-light .marketplaceView-item-image,
+body.mh-dark.mh-palette-light .campPage-trap-friendList.loading .campPage-trap-friendList-loading,
+body.mh-dark.mh-palette-light .campPage-trap-itemBrowser-armed .loading,
+body.mh-dark.mh-palette-light .teamPage-acivity-loading {
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/mouse_loading_large.gif);
+}
+
+body.mh-dark.mh-palette-light .tournamentStatusHud:not(.train).pending {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/tournament_pending_bg.png);
+}
+
+body.mh-dark.mh-palette-light .tournamentStatusHud:not(.train).active,
+body.mh-dark.mh-palette-light .tournamentStatusHud:not(.train).active.basic {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/tournament_status_bg.png);
+}
+
+body.mh-dark.mh-palette-light .tournamentStatusHud:not(.train).active.endurance {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/tournament_endurance_bg.png);
+}
+
+body.mh-dark.mh-palette-light .tournamentStatusHud:not(.train).active.boost {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/tournament_boost_bg.png);
+}
+
+body.mh-dark.mh-palette-light .hunterProfileItemsView-category:hover {
+  background-image: url(https://www.mousehuntgame.com/images/ui/tabs/mice_hover.png);
+}
+
+body.mh-dark.mh-palette-light .hunterProfileItemsView-category.active {
+  background-image: url(https://www.mousehuntgame.com/images/ui/tabs/mice_active.png);
+}

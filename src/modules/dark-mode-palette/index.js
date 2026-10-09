@@ -1,8 +1,14 @@
-import { addBodyClass, getSetting, onEvent, onModuleToggle, removeBodyClass } from '@utils';
+import { addBodyClass, addStyles, doEvent, getSetting, onEvent, onModuleToggle, removeBodyClass, saveSetting } from '@utils';
+
+import schemes from './schemes';
+
+import lightStyles from './light.css';
 
 const settingKey = 'dark-mode-palette.palette';
+const schemeSettingKey = 'dark-mode-palette.scheme';
 const styleId = 'mh-improved-dark-mode-palette';
 const lightMenuClass = 'mh-dark-light-menu';
+const lightPaletteClass = 'mh-palette-light';
 
 /**
  * Shared accents for the alternate palettes: aqua links and selection, and status colors tuned for darker surfaces.
@@ -22,12 +28,34 @@ const accents = {
   '--d-orange': '#f3ad66',
   '--d-purple': '#8b4a9a',
   '--d-purple-dark': '#47264f',
+  '--d-tan': '#c49a62',
+  '--d-teal': '#3cbf98',
+};
+
+/**
+ * Shared accents for the light palettes: deep, text-weight status colors and pale tints for their backgrounds.
+ */
+const lightAccents = {
+  ...accents,
+  '--d-green': '#28643a',
+  '--d-green-dark': '#d5e8d4',
+  '--d-red': '#a13042',
+  '--d-red-light': '#923348',
+  '--d-red-darker': '#f1d6db',
+  '--d-yellow': '#f0de99',
+  '--d-yellow-darker': '#eee0b5',
+  '--d-orange': '#934800',
+  '--d-purple': '#744091',
+  '--d-purple-dark': '#e5d7ef',
+  '--d-tan': '#7a5523',
+  '--d-teal': '#1d6b55',
 };
 
 /**
  * Raw palette overrides. Only the raw colors change; the role tokens in _root.css follow them.
  * `page` is the page color as an RGB triple, used for the dark --d-transparent-* overlays.
  * `darkMenu: false` keeps the game's light top menu bar instead of the dark one.
+ * `light: true` marks a light palette: it keeps the light menu and undoes Dark Mode's dark-only images (light.css).
  */
 const palettes = {
   // The earlier Dark Mode tuning preserves its lavender links.
@@ -526,7 +554,7 @@ const palettes = {
   },
   // A light lavender experiment uses plum text and pale lilac selections.
   'cloud-candy': {
-    darkMenu: false,
+    light: true,
     page: '231 226 238',
     colors: {
       '--d': '#e7e2ee',
@@ -538,26 +566,16 @@ const palettes = {
       '--d-text-muted': '#645471',
       '--d-white': '#281d38',
       '--d-text-dark': '#362b47',
-      ...accents,
+      ...lightAccents,
       '--d-link': '#613588',
       '--d-blue': '#8652af',
       '--d-blue-dark': '#ded0ef',
       '--d-blue-darker': '#e8dff4',
-      '--d-green': '#28643a',
-      '--d-green-dark': '#d5e8d4',
-      '--d-red': '#a13042',
-      '--d-red-light': '#923348',
-      '--d-red-darker': '#f1d6db',
-      '--d-yellow': '#f0de99',
-      '--d-yellow-darker': '#eee0b5',
-      '--d-orange': '#934800',
-      '--d-purple': '#744091',
-      '--d-purple-dark': '#e5d7ef',
     },
   },
   // A sunny light experiment mixes lemon cream with dark olive text.
   'lemon-sorbet': {
-    darkMenu: false,
+    light: true,
     page: '238 232 201',
     colors: {
       '--d': '#eee8c9',
@@ -569,26 +587,16 @@ const palettes = {
       '--d-text-muted': '#686047',
       '--d-white': '#282314',
       '--d-text-dark': '#393522',
-      ...accents,
+      ...lightAccents,
       '--d-link': '#615100',
       '--d-blue': '#887000',
       '--d-blue-dark': '#e1d49b',
       '--d-blue-darker': '#eee3bc',
-      '--d-green': '#28643a',
-      '--d-green-dark': '#d5e8d4',
-      '--d-red': '#a13042',
-      '--d-red-light': '#923348',
-      '--d-red-darker': '#f1d6db',
-      '--d-yellow': '#f0de99',
-      '--d-yellow-darker': '#eee0b5',
-      '--d-orange': '#934800',
-      '--d-purple': '#744091',
-      '--d-purple-dark': '#e5d7ef',
     },
   },
   // A light Gnawnia homage pairs meadow mist with forest-green text.
   'gnawnia-morning': {
-    darkMenu: false,
+    light: true,
     page: '223 233 216',
     colors: {
       '--d': '#dfe9d8',
@@ -600,26 +608,16 @@ const palettes = {
       '--d-text-muted': '#53674f',
       '--d-white': '#1c2e1d',
       '--d-text-dark': '#283b29',
-      ...accents,
+      ...lightAccents,
       '--d-link': '#2f6139',
       '--d-blue': '#4b8052',
       '--d-blue-dark': '#cbdcbe',
       '--d-blue-darker': '#deead4',
-      '--d-green': '#28643a',
-      '--d-green-dark': '#d5e8d4',
-      '--d-red': '#a13042',
-      '--d-red-light': '#923348',
-      '--d-red-darker': '#f1d6db',
-      '--d-yellow': '#f0de99',
-      '--d-yellow-darker': '#eee0b5',
-      '--d-orange': '#934800',
-      '--d-purple': '#744091',
-      '--d-purple-dark': '#e5d7ef',
     },
   },
   // A bright coastal experiment sets deep teal text on blue-white porcelain.
   'seaside-porcelain': {
-    darkMenu: false,
+    light: true,
     page: '220 233 239',
     colors: {
       '--d': '#dce9ef',
@@ -631,26 +629,16 @@ const palettes = {
       '--d-text-muted': '#506978',
       '--d-white': '#172e3a',
       '--d-text-dark': '#233c49',
-      ...accents,
+      ...lightAccents,
       '--d-link': '#176176',
       '--d-blue': '#287f94',
       '--d-blue-dark': '#c5dfe8',
       '--d-blue-darker': '#d7eaf2',
-      '--d-green': '#28643a',
-      '--d-green-dark': '#d5e8d4',
-      '--d-red': '#a13042',
-      '--d-red-light': '#923348',
-      '--d-red-darker': '#f1d6db',
-      '--d-yellow': '#f0de99',
-      '--d-yellow-darker': '#eee0b5',
-      '--d-orange': '#934800',
-      '--d-purple': '#744091',
-      '--d-purple-dark': '#e5d7ef',
     },
   },
   // A light rose experiment uses wine-colored text and blush selections.
   'rose-quartz': {
-    darkMenu: false,
+    light: true,
     page: '239 223 223',
     colors: {
       '--d': '#efdfdf',
@@ -662,21 +650,326 @@ const palettes = {
       '--d-text-muted': '#755560',
       '--d-white': '#341e29',
       '--d-text-dark': '#482d37',
-      ...accents,
+      ...lightAccents,
       '--d-link': '#883859',
       '--d-blue': '#af587b',
       '--d-blue-dark': '#e8cbd5',
       '--d-blue-darker': '#f1dce4',
-      '--d-green': '#28643a',
-      '--d-green-dark': '#d5e8d4',
-      '--d-red': '#a13042',
-      '--d-red-light': '#923348',
-      '--d-red-darker': '#f1d6db',
-      '--d-yellow': '#f0de99',
-      '--d-yellow-darker': '#eee0b5',
-      '--d-orange': '#934800',
-      '--d-purple': '#744091',
-      '--d-purple-dark': '#e5d7ef',
+    },
+  },
+  // A warm parchment page close to the classic game look, with brown ink text.
+  parchment: {
+    light: true,
+    page: '238 229 214',
+    colors: {
+      '--d': '#eee5d6',
+      '--d-alt': '#f5ede2',
+      '--d-bg': '#fbf6ee',
+      '--d-action': '#fffdfa',
+      '--d-border': '#b0a38c',
+      '--d-text': '#3a2e1b',
+      '--d-text-muted': '#685c47',
+      '--d-white': '#2a200d',
+      '--d-text-dark': '#3a2e1b',
+      ...lightAccents,
+      '--d-link': '#753b07',
+      '--d-blue': '#94582a',
+      '--d-blue-dark': '#e7cfbf',
+      '--d-blue-darker': '#f1dfd4',
+    },
+  },
+  // Pairs with the Birthday background: frosting blue with a party-pink accent.
+  'birthday-frosting': {
+    light: true,
+    page: '219 232 244',
+    colors: {
+      '--d': '#dbe8f4',
+      '--d-alt': '#e5f0f9',
+      '--d-bg': '#f0f8ff',
+      '--d-action': '#fbfeff',
+      '--d-border': '#93a7ba',
+      '--d-text': '#213241',
+      '--d-text-muted': '#4d6070',
+      '--d-white': '#132331',
+      '--d-text-dark': '#213241',
+      ...lightAccents,
+      '--d-link': '#7e2757',
+      '--d-blue': '#9e4573',
+      '--d-blue-dark': '#edc9d8',
+      '--d-blue-darker': '#f5dbe6',
+    },
+  },
+  // Pairs with the Great Winter Hunt background: snowy blue-white with a pine accent.
+  'winter-hunt-snow': {
+    light: true,
+    page: '219 233 240',
+    colors: {
+      '--d': '#dbe9f0',
+      '--d-alt': '#e6f0f6',
+      '--d-bg': '#f1f8fc',
+      '--d-action': '#fbfeff',
+      '--d-border': '#94a8b3',
+      '--d-text': '#21333c',
+      '--d-text-muted': '#4e616b',
+      '--d-white': '#13242d',
+      '--d-text-dark': '#21333c',
+      ...lightAccents,
+      '--d-link': '#005c4a',
+      '--d-blue': '#1b7a66',
+      '--d-blue-dark': '#c0dbd3',
+      '--d-blue-darker': '#d4e8e2',
+    },
+  },
+  // Pairs with the Halloween background: pumpkin cream with a candy-purple accent.
+  'halloween-pumpkin': {
+    light: true,
+    page: '245 226 212',
+    colors: {
+      '--d': '#f5e2d4',
+      '--d-alt': '#faebe0',
+      '--d-bg': '#fff5ed',
+      '--d-action': '#fffcf9',
+      '--d-border': '#bb9e88',
+      '--d-text': '#412b18',
+      '--d-text-muted': '#715844',
+      '--d-white': '#311c09',
+      '--d-text-dark': '#412b18',
+      ...lightAccents,
+      '--d-link': '#5e3685',
+      '--d-blue': '#7b52a4',
+      '--d-blue-dark': '#dbcded',
+      '--d-blue-darker': '#e8def5',
+    },
+  },
+  // Pairs with the King’s Giveaway background: royal lilac with a gold-brown accent.
+  'kings-giveaway-velvet': {
+    light: true,
+    page: '231 227 247',
+    colors: {
+      '--d': '#e7e3f7',
+      '--d-alt': '#efecfb',
+      '--d-bg': '#f7f5ff',
+      '--d-action': '#fefdff',
+      '--d-border': '#a6a0bd',
+      '--d-text': '#322c43',
+      '--d-text-muted': '#5f5973',
+      '--d-white': '#231d34',
+      '--d-text-dark': '#322c43',
+      ...lightAccents,
+      '--d-link': '#6c4300',
+      '--d-blue': '#8a5f18',
+      '--d-blue-dark': '#e2d2bb',
+      '--d-blue-darker': '#ede1d1',
+    },
+  },
+  // Pairs with the Lunar New Year background: lantern red on warm paper.
+  'lunar-lantern': {
+    light: true,
+    page: '248 224 221',
+    colors: {
+      '--d': '#f8e0dd',
+      '--d-alt': '#fceae8',
+      '--d-bg': '#fff3f2',
+      '--d-action': '#fffcfb',
+      '--d-border': '#be9b97',
+      '--d-text': '#432825',
+      '--d-text-muted': '#745552',
+      '--d-white': '#331917',
+      '--d-text-dark': '#432825',
+      ...lightAccents,
+      '--d-link': '#8d1a1e',
+      '--d-blue': '#af3c3a',
+      '--d-blue-dark': '#f5c8c3',
+      '--d-blue-darker': '#fbdad6',
+    },
+  },
+  // Pairs with the Spring Egg Hunt background: fresh grass with a robin-egg accent.
+  'spring-meadow': {
+    light: true,
+    page: '223 235 217',
+    colors: {
+      '--d': '#dfebd9',
+      '--d-alt': '#e9f2e4',
+      '--d-bg': '#f3f9ef',
+      '--d-action': '#fcfefa',
+      '--d-border': '#9aab91',
+      '--d-text': '#27351f',
+      '--d-text-muted': '#53634b',
+      '--d-white': '#192611',
+      '--d-text-dark': '#27351f',
+      ...lightAccents,
+      '--d-link': '#00596f',
+      '--d-blue': '#00778d',
+      '--d-blue-dark': '#bbdbe3',
+      '--d-blue-darker': '#d1e8ed',
+    },
+  },
+  // Pairs with the Valentine’s background: blush pink with a cherry accent.
+  'valentines-blush': {
+    light: true,
+    page: '246 224 226',
+    colors: {
+      '--d': '#f6e0e2',
+      '--d-alt': '#fbeaeb',
+      '--d-bg': '#fff3f5',
+      '--d-action': '#fffcfc',
+      '--d-border': '#bb9b9f',
+      '--d-text': '#41282c',
+      '--d-text-muted': '#725559',
+      '--d-white': '#311a1d',
+      '--d-text-dark': '#41282c',
+      ...lightAccents,
+      '--d-link': '#8c1832',
+      '--d-blue': '#ae3b4c',
+      '--d-blue-dark': '#f5c7c9',
+      '--d-blue-darker': '#fbd9db',
+    },
+  },
+  // Pairs with the Mint Surf background: sea-glass mint with an ocean-blue accent.
+  'mint-surf': {
+    light: true,
+    page: '215 236 228',
+    colors: {
+      '--d': '#d7ece4',
+      '--d-alt': '#e3f3ec',
+      '--d-bg': '#effaf5',
+      '--d-action': '#fafffd',
+      '--d-border': '#8dada1',
+      '--d-text': '#1b372d',
+      '--d-text-muted': '#48655a',
+      '--d-white': '#0b281f',
+      '--d-text-dark': '#1b372d',
+      ...lightAccents,
+      '--d-link': '#00567d',
+      '--d-blue': '#00739c',
+      '--d-blue-dark': '#bbdae9',
+      '--d-blue-darker': '#d1e7f2',
+    },
+  },
+  // Pairs with the Canary Shine background: buttercup yellow with a marigold accent.
+  'canary-shine': {
+    light: true,
+    page: '240 231 194',
+    colors: {
+      '--d': '#f0e7c2',
+      '--d-alt': '#f6efd3',
+      '--d-bg': '#fcf7e3',
+      '--d-action': '#fffef5',
+      '--d-border': '#b4a56c',
+      '--d-text': '#3d2f00',
+      '--d-text-muted': '#6b5d25',
+      '--d-white': '#2d2000',
+      '--d-text-dark': '#3d2f00',
+      ...lightAccents,
+      '--d-link': '#7a3800',
+      '--d-blue': '#9a5505',
+      '--d-blue-dark': '#eaceb9',
+      '--d-blue-darker': '#f3dfd0',
+    },
+  },
+  // Pairs with the Glacial Gleam background: icy slate with a steel-teal accent.
+  'glacial-gleam': {
+    light: true,
+    page: '219 233 237',
+    colors: {
+      '--d': '#dbe9ed',
+      '--d-alt': '#e6f1f3',
+      '--d-bg': '#f1f8fa',
+      '--d-action': '#fbfeff',
+      '--d-border': '#94a9ae',
+      '--d-text': '#223438',
+      '--d-text-muted': '#4e6166',
+      '--d-white': '#132529',
+      '--d-text-dark': '#223438',
+      ...lightAccents,
+      '--d-link': '#005768',
+      '--d-blue': '#237486',
+      '--d-blue-dark': '#c1d9e0',
+      '--d-blue-darker': '#d5e7eb',
+    },
+  },
+  // Pairs with the Skyline Whisper background: clear sky with a cobalt accent.
+  'skyline-whisper': {
+    light: true,
+    page: '218 233 244',
+    colors: {
+      '--d': '#dae9f4',
+      '--d-alt': '#e5f0f9',
+      '--d-bg': '#f0f8fe',
+      '--d-action': '#fbfeff',
+      '--d-border': '#92a8b9',
+      '--d-text': '#1f3340',
+      '--d-text-muted': '#4c6170',
+      '--d-white': '#112431',
+      '--d-text-dark': '#1f3340',
+      ...lightAccents,
+      '--d-link': '#184998',
+      '--d-blue': '#3566b8',
+      '--d-blue-dark': '#c2d5f5',
+      '--d-blue-darker': '#d6e4fb',
+    },
+  },
+  // Pairs with the Flamingo Fling background: flamingo pink with a magenta accent.
+  'flamingo-fling': {
+    light: true,
+    page: '245 223 233',
+    colors: {
+      '--d': '#f5dfe9',
+      '--d-alt': '#fae9f0',
+      '--d-bg': '#fff3f8',
+      '--d-action': '#fffcfe',
+      '--d-border': '#ba9aa8',
+      '--d-text': '#412733',
+      '--d-text-muted': '#705461',
+      '--d-white': '#311924',
+      '--d-text-dark': '#412733',
+      ...lightAccents,
+      '--d-link': '#871459',
+      '--d-blue': '#a83876',
+      '--d-blue-dark': '#f2c6d9',
+      '--d-blue-darker': '#f9d9e7',
+    },
+  },
+  // Pairs with the Orange Coral background: peach with a coral accent.
+  'orange-coral': {
+    light: true,
+    page: '247 225 217',
+    colors: {
+      '--d': '#f7e1d9',
+      '--d-alt': '#fbeae4',
+      '--d-bg': '#fff4f0',
+      '--d-action': '#fffcfa',
+      '--d-border': '#bd9c91',
+      '--d-text': '#432920',
+      '--d-text-muted': '#73564c',
+      '--d-white': '#331a12',
+      '--d-text-dark': '#432920',
+      ...lightAccents,
+      '--d-link': '#892218',
+      '--d-blue': '#ab4235',
+      '--d-blue-dark': '#f3c9c1',
+      '--d-blue-darker': '#fadbd5',
+    },
+  },
+  // Pairs with the Lavender Lustre background: soft lavender with a violet accent.
+  'lavender-lustre': {
+    light: true,
+    page: '233 227 246',
+    colors: {
+      '--d': '#e9e3f6',
+      '--d-alt': '#f0ecfb',
+      '--d-bg': '#f8f5ff',
+      '--d-action': '#fefdff',
+      '--d-border': '#a89fbc',
+      '--d-text': '#332b43',
+      '--d-text-muted': '#615872',
+      '--d-white': '#251d33',
+      '--d-text-dark': '#332b43',
+      ...lightAccents,
+      '--d-link': '#553494',
+      '--d-blue': '#7152b5',
+      '--d-blue-dark': '#d6cef4',
+      '--d-blue-darker': '#e4dffa',
     },
   },
 };
@@ -705,10 +998,16 @@ const applyPalette = (value = getSetting(`${settingKey}-0`, 'current')) => {
   let style = document.querySelector(`#${styleId}`);
   const palette = palettes[value];
 
-  if (false === palette?.darkMenu) {
+  if (palette?.light || false === palette?.darkMenu) {
     addBodyClass(lightMenuClass, true);
   } else {
     removeBodyClass(lightMenuClass);
+  }
+
+  if (palette?.light) {
+    addBodyClass(lightPaletteClass, true);
+  } else {
+    removeBodyClass(lightPaletteClass);
   }
 
   if (!palette) {
@@ -726,14 +1025,84 @@ const applyPalette = (value = getSetting(`${settingKey}-0`, 'current')) => {
 };
 
 /**
+ * Turn on Dark Mode, so picking a palette is all it takes to switch the color scheme.
+ */
+const enableDarkMode = () => {
+  if (getSetting('native-dark-mode', false)) {
+    return;
+  }
+
+  saveSetting('native-dark-mode', true);
+
+  // Dark Mode is a live module, so this turns it on without a reload.
+  doEvent('mh-improved-settings-changed', {
+    key: 'native-dark-mode',
+    value: true,
+    tab: 'mousehunt-improved-settings',
+    type: 'toggle',
+  });
+
+  // Keep the toggle on the settings page in step, if it's showing.
+  document.querySelector('#mousehunt-improved-settings-native-dark-mode .mousehuntSettingSlider')?.classList.add('active');
+};
+
+/**
+ * Save a picker setting, apply it, and show it on the settings page if it's open.
+ *
+ * @param {string} key   The setting key, without the slot suffix.
+ * @param {string} value The new value.
+ */
+const saveSchemeSetting = (key, value) => {
+  saveSetting(`${key}-0`, value);
+  doEvent('mh-improved-settings-changed', { key: `${key}-0`, value, tab: 'mousehunt-improved-settings', type: 'multi-select' });
+
+  const row = document.querySelector(`#mousehunt-improved-settings-${key.replaceAll('.', '-')}`);
+  const picker = row?.querySelector('.mhui-item-picker');
+  if (picker) {
+    picker.showValue?.(value);
+    return;
+  }
+
+  // Setting a select's value directly doesn't fire its change event, so it isn't saved twice.
+  const select = row?.querySelector('select');
+  if (select) {
+    select.value = value;
+  }
+};
+
+/**
+ * Apply a full color scheme: the palette plus the matching background, shield, horn, and HUD.
+ *
+ * Each piece is saved as that module's own setting, so it can still be changed on its own afterward.
+ *
+ * @param {string} id The scheme ID.
+ */
+const applyScheme = (id) => {
+  const scheme = schemes[id];
+  if (!scheme) {
+    return;
+  }
+
+  saveSchemeSetting(settingKey, scheme.palette);
+
+  for (const [module, value] of Object.entries(scheme.settings)) {
+    saveSchemeSetting(module, value);
+  }
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
+  addStyles(lightStyles, 'dark-mode-palette');
   applyPalette();
 
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
     if (`${settingKey}-0` === key) {
+      enableDarkMode();
       applyPalette(value);
+    } else if (`${schemeSettingKey}-0` === key) {
+      applyScheme(value);
     }
   });
 
@@ -742,6 +1111,7 @@ const init = () => {
     disable: () => {
       document.querySelector(`#${styleId}`)?.remove();
       removeBodyClass(lightMenuClass);
+      removeBodyClass(lightPaletteClass);
     },
   });
 };
@@ -753,48 +1123,89 @@ const init = () => {
  */
 const settings = async () => {
   const options = [
-    { name: 'Current', value: 'current' },
-    { name: 'Original (before tuning)', value: 'original' },
-    { name: 'Neutral', value: 'neutral' },
-    { name: 'Neutral, darker', value: 'neutral-dark' },
-    { name: 'Warm', value: 'warm' },
-    { name: 'Deep navy', value: 'deep-navy' },
-    { name: 'Sea slate', value: 'sea-slate' },
-    { name: 'Graphite', value: 'graphite' },
-    { name: 'Aubergine', value: 'aubergine' },
-    { name: 'Mosswood', value: 'mosswood' },
-    { name: 'Midnight lagoon', value: 'midnight-lagoon' },
-    { name: 'Hearth embers', value: 'hearth-embers' },
-    { name: 'Candlelit parchment', value: 'candlelit-parchment' },
-    { name: 'Neon arcade', value: 'neon-arcade' },
-    { name: 'Pastel goth', value: 'pastel-goth' },
-    { name: 'Dragonfire', value: 'dragonfire' },
-    { name: 'Rift resonance', value: 'rift-resonance' },
-    { name: 'Gnawnia dusk', value: 'gnawnia-dusk' },
-    { name: 'Burroughs copper', value: 'burroughs-copper' },
-    { name: 'Haunted harvest', value: 'haunted-harvest' },
-    { name: 'Winter hearth', value: 'winter-hearth' },
-    { name: 'Spring twilight', value: 'spring-twilight' },
-    { name: 'OLED ink', value: 'oled-ink' },
-    { name: 'Silver signal', value: 'silver-signal' },
-    { name: 'Carbon paper', value: 'carbon-paper' },
-    { name: 'Cloud candy', value: 'cloud-candy' },
-    { name: 'Lemon sorbet', value: 'lemon-sorbet' },
-    { name: 'Gnawnia morning', value: 'gnawnia-morning' },
-    { name: 'Seaside porcelain', value: 'seaside-porcelain' },
-    { name: 'Rose quartz', value: 'rose-quartz' },
+    {
+      name: 'Dark',
+      value: 'group',
+      options: [
+        { name: 'Current', value: 'current' },
+        { name: 'Original (before tuning)', value: 'original' },
+        { name: 'Neutral', value: 'neutral' },
+        { name: 'Neutral, darker', value: 'neutral-dark' },
+        { name: 'Warm', value: 'warm' },
+        { name: 'Deep navy', value: 'deep-navy' },
+        { name: 'Sea slate', value: 'sea-slate' },
+        { name: 'Graphite', value: 'graphite' },
+        { name: 'Aubergine', value: 'aubergine' },
+        { name: 'Mosswood', value: 'mosswood' },
+        { name: 'Midnight lagoon', value: 'midnight-lagoon' },
+        { name: 'Hearth embers', value: 'hearth-embers' },
+        { name: 'Candlelit parchment', value: 'candlelit-parchment' },
+        { name: 'Neon arcade', value: 'neon-arcade' },
+        { name: 'Pastel goth', value: 'pastel-goth' },
+        { name: 'Dragonfire', value: 'dragonfire' },
+        { name: 'Rift resonance', value: 'rift-resonance' },
+        { name: 'Gnawnia dusk', value: 'gnawnia-dusk' },
+        { name: 'Burroughs copper', value: 'burroughs-copper' },
+        { name: 'Haunted harvest', value: 'haunted-harvest' },
+        { name: 'Winter hearth', value: 'winter-hearth' },
+        { name: 'Spring twilight', value: 'spring-twilight' },
+        { name: 'OLED ink', value: 'oled-ink' },
+        { name: 'Silver signal', value: 'silver-signal' },
+        { name: 'Carbon paper', value: 'carbon-paper' },
+      ],
+    },
+    {
+      name: 'Light',
+      value: 'group',
+      options: [
+        { name: 'Birthday frosting', value: 'birthday-frosting' },
+        { name: 'Canary shine', value: 'canary-shine' },
+        { name: 'Cloud candy', value: 'cloud-candy' },
+        { name: 'Flamingo fling', value: 'flamingo-fling' },
+        { name: 'Glacial gleam', value: 'glacial-gleam' },
+        { name: 'Gnawnia morning', value: 'gnawnia-morning' },
+        { name: 'Halloween pumpkin', value: 'halloween-pumpkin' },
+        { name: "King's giveaway velvet", value: 'kings-giveaway-velvet' },
+        { name: 'Lavender lustre', value: 'lavender-lustre' },
+        { name: 'Lemon sorbet', value: 'lemon-sorbet' },
+        { name: 'Lunar lantern', value: 'lunar-lantern' },
+        { name: 'Mint surf', value: 'mint-surf' },
+        { name: 'Orange coral', value: 'orange-coral' },
+        { name: 'Parchment', value: 'parchment' },
+        { name: 'Rose quartz', value: 'rose-quartz' },
+        { name: 'Seaside porcelain', value: 'seaside-porcelain' },
+        { name: 'Skyline whisper', value: 'skyline-whisper' },
+        { name: 'Spring meadow', value: 'spring-meadow' },
+        { name: "Valentine's blush", value: 'valentines-blush' },
+        { name: 'Winter hunt snow', value: 'winter-hunt-snow' },
+      ],
+    },
   ];
+
+  const schemeOptions = [{ name: 'None', value: 'none' }, ...Object.entries(schemes).map(([value, scheme]) => ({ name: scheme.name, value }))];
 
   return [
     {
       id: settingKey,
       title: 'Palette',
       live: true,
-      default: [options[0]],
+      default: [{ name: 'Current', value: 'current' }],
       settings: {
         type: 'multi-select',
         number: 1,
         options,
+      },
+    },
+    {
+      id: schemeSettingKey,
+      title: 'Full color scheme',
+      description: 'Sets the palette, page background, camp background, shield, horn, and HUD together.',
+      live: true,
+      default: [schemeOptions[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options: schemeOptions,
       },
     },
   ];
@@ -802,9 +1213,10 @@ const settings = async () => {
 
 export default {
   id: 'dark-mode-palette',
-  name: 'Dark Mode Palette Test',
-  description: 'Try a different color palette for Dark Mode. Requires Dark Mode.',
-  type: 'beta',
+  name: 'Dark Mode Color Schemes',
+  description: 'Pick a dark or light color scheme. Picking one turns on Dark Mode.',
+  type: 'personalization',
+  badge: 'Experimental',
   default: false,
   liveToggle: true,
   load: init,

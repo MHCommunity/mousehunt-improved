@@ -549,6 +549,12 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
 
   renderTrigger();
 
+  // Show a value that was saved elsewhere, without saving it again.
+  picker.showValue = (newValue) => {
+    selectedValue = newValue;
+    renderTrigger();
+  };
+
   return picker;
 };
 
