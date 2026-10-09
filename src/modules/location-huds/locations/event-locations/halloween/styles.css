@@ -128,7 +128,7 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 }
 
 .mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table-row {

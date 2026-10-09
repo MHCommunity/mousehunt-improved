@@ -17,23 +17,14 @@
   display: none;
 }
 
-.mh-dark .folkloreForestRegionView-dialog-block-description {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
-}
-
 .mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
   outline-color: var(--d-action);
 }
 
-.mh-dark .upsellItemActionView-action-quantity {
-  color: var(--d-text);
-  background-color: var(--d-action);
-}
-
 .mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .headsUpDisplayEpilogueFallsView__scrollButtonLeft,

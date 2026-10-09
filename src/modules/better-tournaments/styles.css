@@ -86,7 +86,7 @@
 
 .mh-dark .tournamentPage-tournament-column .tournamentPage-tournament-teamMember.empty:last-child::before {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-surface-inset);
   box-shadow: none;
 }
 
@@ -180,7 +180,7 @@ a.tournamentPage-tournament-column.name,
 }
 
 .mh-dark .tournamentPage-viewState .mousehuntTabContentContainer {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -213,7 +213,7 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .mh-dark .tournamentPage-profile-summary {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -236,7 +236,7 @@ img.tournamentPage-profile-details-rules-icon {
 .mh-dark .tournamentPage-viewState .mousehuntTabHeader span {
   color: var(--d-text);
   text-shadow: none;
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
@@ -277,7 +277,7 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .mh-dark .tournamentPage-profile-details-padding {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   outline: 1px solid var(--d-border);
   box-shadow: none;
 }
@@ -328,7 +328,7 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .mh-dark .tournamentPage-profile-details-environmentContainer {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -347,7 +347,7 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .mh-dark .tournamentPage-profile-details-generalRules {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -370,7 +370,7 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .mh-dark .tournamentPage-profile-details-mouseGroup {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -402,18 +402,18 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   width: 100%;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .score,
-.tournamentStatusHud:not(.trainStationHUD) > .rank {
+.tournamentStatusHud:not(.train) > .score,
+.tournamentStatusHud:not(.train) > .rank {
   padding: 15px;
   margin: -15px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .teamMembers:hover > .memberHover,
-.tournamentStatusHud:not(.trainStationHUD) > .rank:hover > .scoreHover {
+.tournamentStatusHud:not(.train) > .teamMembers:hover > .memberHover,
+.tournamentStatusHud:not(.train) > .rank:hover > .scoreHover {
   display: block;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .score:hover > .pointsHover {
+.tournamentStatusHud:not(.train) > .score:hover > .pointsHover {
   display: grid;
 }
 
@@ -439,7 +439,7 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 .mh-dark .scoreHover,
 .mh-dark .pointsHover {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
   box-shadow: 1px 3px 3px 0 var(--d-border);
 }
@@ -490,7 +490,7 @@ img.memberImage {
 }
 
 .mh-dark .memberRow:nth-child(even) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 .scoreRow:nth-child(even) {
@@ -498,7 +498,7 @@ img.memberImage {
 }
 
 .mh-dark .scoreRow:nth-child(even) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 .scoreRow:last-child {
@@ -581,23 +581,23 @@ img.pointsMouseIcon {
   text-align: center;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .rank > span,
-.tournamentStatusHud:not(.trainStationHUD) > .score > span {
+.tournamentStatusHud:not(.train) > .rank > span,
+.tournamentStatusHud:not(.train) > .score > span {
   display: inline-block;
   font-size: 13px;
   line-height: 12px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.name,
-.tournamentStatusHud:not(.trainStationHUD) > a.name:visited,
-.tournamentStatusHud:not(.trainStationHUD) > a.name:hover,
-.tournamentStatusHud:not(.trainStationHUD) > a.name:focus {
+.tournamentStatusHud:not(.train) > a.name,
+.tournamentStatusHud:not(.train) > a.name:visited,
+.tournamentStatusHud:not(.train) > a.name:hover,
+.tournamentStatusHud:not(.train) > a.name:focus {
   left: 33px;
   font-size: 12px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .timer,
-.tournamentStatusHud:not(.trainStationHUD).pending > .timer {
+.tournamentStatusHud:not(.train) > .timer,
+.tournamentStatusHud:not(.train).pending > .timer {
   top: -4px;
   left: 160px;
   width: 220px;
@@ -606,11 +606,11 @@ img.pointsMouseIcon {
   text-align: center;
 }
 
-.tournamentStatusHud:not(.trainStationHUD).active > .timer {
+.tournamentStatusHud:not(.train).active > .timer {
   top: 1px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .title {
+.tournamentStatusHud:not(.train) > .title {
   display: none;
 }
 
@@ -632,7 +632,7 @@ img.pointsMouseIcon {
 }
 
 .mh-dark .tournament-normal-time.tournament-time-display-hover {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
   box-shadow: 1px 1px 3px 0 var(--d-border);
 }
@@ -665,7 +665,8 @@ img.pointsMouseIcon {
 }
 
 .mh-dark .tournamentPage-tournamentRow:hover {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .tournamentPage-tournamentRow.signed_up::before {
@@ -726,7 +727,7 @@ img.pointsMouseIcon {
 .mh-dark .tournamentPage-tournamentHeader a {
   color: var(--d-text);
   text-shadow: none;
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
@@ -791,40 +792,40 @@ img.pointsMouseIcon {
   position: relative;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.name,
-.tournamentStatusHud:not(.trainStationHUD) > a.teamMembers,
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline,
-.tournamentStatusHud:not(.trainStationHUD) > .help,
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteTeamMembers,
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteFriends {
+.tournamentStatusHud:not(.train) > a.name,
+.tournamentStatusHud:not(.train) > a.teamMembers,
+.tournamentStatusHud:not(.train) > a.friendsOnline,
+.tournamentStatusHud:not(.train) > .help,
+.tournamentStatusHud:not(.train) > .tournamentInviteTeamMembers,
+.tournamentStatusHud:not(.train) > .tournamentInviteFriends {
   transition: 0.2s;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.name {
+.tournamentStatusHud:not(.train) > a.name {
   border-radius: 23px 20px 20px 29px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.name:hover {
+.tournamentStatusHud:not(.train) > a.name:hover {
   width: 221px;
   padding-left: 10px;
   margin-left: 5px;
   background-color: rgb(230 88 19 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD).pending > a.name:hover {
+.tournamentStatusHud:not(.train).pending > a.name:hover {
   width: 324px;
   padding-left: 11px;
   margin-left: 4px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD).active > a.name {
+.tournamentStatusHud:not(.train).active > a.name {
   width: 205px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.tournamentStatusHud:not(.trainStationHUD).active > a.name:hover {
+.tournamentStatusHud:not(.train).active > a.name:hover {
   z-index: 32;
   width: auto;
   min-width: 205px;
@@ -836,52 +837,52 @@ img.pointsMouseIcon {
   background-color: rgb(230 88 19 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.teamMembers {
+.tournamentStatusHud:not(.train) > a.teamMembers {
   border-radius: 20px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.teamMembers:hover {
+.tournamentStatusHud:not(.train) > a.teamMembers:hover {
   background-color: rgb(200 0 255 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline {
+.tournamentStatusHud:not(.train) > a.friendsOnline {
   border-radius: 0% 100% 100% 0% / 0% 100% 100% 100%;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline:hover {
+.tournamentStatusHud:not(.train) > a.friendsOnline:hover {
   background-color: rgb(167 222 111 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline,
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline:visited,
-.tournamentStatusHud:not(.trainStationHUD) > a.friendsOnline:hover {
+.tournamentStatusHud:not(.train) > a.friendsOnline,
+.tournamentStatusHud:not(.train) > a.friendsOnline:visited,
+.tournamentStatusHud:not(.train) > a.friendsOnline:hover {
   left: 693px;
   font-size: 14px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .help:hover {
+.tournamentStatusHud:not(.train) > .help:hover {
   filter: brightness(1.1);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteTeamMembers {
+.tournamentStatusHud:not(.train) > .tournamentInviteTeamMembers {
   border-radius: 5px 5px 5px 8px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteFriends {
+.tournamentStatusHud:not(.train) > .tournamentInviteFriends {
   width: 63px;
   margin-left: 1px;
   border-radius: 5px 5px 7px 6px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteTeamMembers:hover,
-.tournamentStatusHud:not(.trainStationHUD) > .tournamentInviteFriends:hover {
+.tournamentStatusHud:not(.train) > .tournamentInviteTeamMembers:hover,
+.tournamentStatusHud:not(.train) > .tournamentInviteFriends:hover {
   padding: 2px 0;
   margin-top: -2px;
   background: rgb(232 227 160 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .rank::after,
-.tournamentStatusHud:not(.trainStationHUD) > .score::after {
+.tournamentStatusHud:not(.train) > .rank::after,
+.tournamentStatusHud:not(.train) > .score::after {
   position: absolute;
   inset: 10px 10px 10px 5px;
   content: "";
@@ -889,16 +890,16 @@ img.pointsMouseIcon {
   transition: 0.2s;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .score::after {
+.tournamentStatusHud:not(.train) > .score::after {
   inset: 10px -10px 10px 10px;
   border-radius: 2px 18px 18px 3px;
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .score:hover::after {
+.tournamentStatusHud:not(.train) > .score:hover::after {
   background: rgb(232 227 160 / 50%);
 }
 
-.tournamentStatusHud:not(.trainStationHUD) > .rank:hover::after {
+.tournamentStatusHud:not(.train) > .rank:hover::after {
   background-color: rgb(200 0 255 / 50%);
 }
 
@@ -919,11 +920,11 @@ img.pointsMouseIcon {
 }
 
 .mh-dark .tournamentPage-viewState .mousehuntTabHeader.active span {
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark .tournamentPage-viewState .mousehuntTabHeader:hover span {
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
   border-bottom: 1px solid var(--d-border);
 }
 

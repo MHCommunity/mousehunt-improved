@@ -1,12 +1,3 @@
-/* Taller Train Station HUD */
-.pendingTrainContainer .trainTableBody {
-  height: 340px;
-}
-
-.trainStationHUD {
-  height: 400px;
-}
-
 /* Hide the big wrong environment warning and just show it over the timer bar */
 .trainStationHUD .trainStationPhase .wrongEnvironment b {
   position: absolute;
@@ -30,14 +21,6 @@
   background-color: #645052;
 }
 
-.trainStationHUD.expanded .trainTableBody {
-  height: 75px;
-}
-
-.trainStationHUD.expanded {
-  height: 150px;
-}
-
 .trainStationHUD .trainStationBar::after {
   position: absolute;
   inset: 0 9px 0 8px;
@@ -54,4 +37,12 @@
 
 .pendingTrainContainer {
   filter: drop-shadow(0 3px 2px #3d2c2e);
+}
+
+.trainStationHUD.expanded {
+  margin-bottom: 20px;
+}
+
+.trainStationHUD .trainStationBar {
+  margin-bottom: -13px;
 }

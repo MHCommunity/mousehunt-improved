@@ -374,21 +374,11 @@ a.folkloreForestRegionView-travelButton:hover {
   height: 21px;
 }
 
-.mh-dark .folkloreForestRegionView-dialog-block-name {
-  background-color: var(--d-bg);
-}
-
-.mh-dark .folkloreForestRegionView-dialog-block-description {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-  border-top-color: var(--d-bg);
-}
-
 .mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-recipe.upsell {
   border-top-color: var(--d);
 }
 
 .mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
   border-color: var(--d);
-  box-shadow: 0 0 1px 1px var(--d-bg-alt) inset;
+  box-shadow: 0 0 1px 1px var(--d-alt) inset;
 }
