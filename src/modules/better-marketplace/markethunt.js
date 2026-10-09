@@ -55,6 +55,13 @@ const makeMarkethuntChartCollapsible = async (isCurrent) => {
   });
 
   chartArea.before(header);
+
+  // Keep our price chart above the Markethunt one.
+  const priceChart = chartArea.parentElement.querySelector(':scope > .mhui-marketplace-chart');
+  if (priceChart) {
+    header.before(priceChart);
+  }
+
   setCollapsed(getSetting(collapsedSettingKey, false));
 };
 

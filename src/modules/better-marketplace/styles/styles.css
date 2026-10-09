@@ -321,6 +321,11 @@ td.marketplaceView-table-name {
   color: var(--d-text-muted);
 }
 
+/* Keep the chart laid out at full size while collapsed so the userscript's Highcharts measures it correctly. */
 .mhui-markethunt-chart-collapsed {
-  display: none !important;
+  position: absolute !important;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+  visibility: hidden;
 }

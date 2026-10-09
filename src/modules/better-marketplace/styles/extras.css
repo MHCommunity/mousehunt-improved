@@ -52,7 +52,7 @@ select.mhui-marketplace-trap-filter {
 
 .mh-dark .marketplaceView-table tr.mhui-marketplace-last-viewed,
 .mh-dark .marketplaceView-table tr.mhui-marketplace-last-viewed:nth-child(odd) {
-  background-color: var(--d-green-dark);
+  background-color: var(--d-yellow-darker);
 }
 
 /* Quick price links — label on its own row, then aligned step : price columns. */
@@ -131,4 +131,8 @@ a.mhui-marketplace-quantity-link.mousehuntActionButton {
 /* Hide the listings "Info" (10% tariff) button — the tariff is shown inline. */
 .marketplaceHome-block-viewAll.mousehuntTooltipParent {
   display: none;
+}
+
+.mhui-marketplace-item-row {
+  cursor: pointer;
 }

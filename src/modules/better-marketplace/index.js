@@ -631,25 +631,39 @@ const addRelistButtonToCancelled = async () => {
 };
 
 /**
- * Make item names in the listings and history tables open the item, like the image does.
+ * Make rows in the listings and history tables open the item, like the image does.
+ * Clicks on the row's own links, buttons, and inputs keep their normal behavior.
  */
 const linkItemNames = () => {
   document.querySelectorAll('.marketplaceView-table tr').forEach((row) => {
     const name = row.querySelector('.marketplaceView-table-name');
     const imageLink = row.querySelector('.marketplaceView-table-image a.marketplaceView-itemImage');
-    if (!name || !imageLink || name.querySelector('a')) {
+    if (!name || !imageLink || row.classList.contains('mhui-marketplace-item-row')) {
       return;
     }
 
-    const link = makeElement('a', 'mhui-marketplace-item-name');
-    link.textContent = name.textContent.trim();
-    link.href = '#';
-    link.addEventListener('click', (event) => {
+    row.classList.add('mhui-marketplace-item-row');
+
+    if (!name.querySelector('a')) {
+      const link = makeElement('a', 'mhui-marketplace-item-name');
+      link.textContent = name.textContent.trim();
+      link.href = '#';
+      name.replaceChildren(link);
+    }
+
+    row.addEventListener('click', (event) => {
+      if (event.target.closest('.marketplaceView-table-actions')) {
+        return;
+      }
+
+      const interactive = event.target.closest('a, button, input, select, textarea, label');
+      if (interactive && !interactive.classList.contains('mhui-marketplace-item-name')) {
+        return;
+      }
+
       event.preventDefault();
       imageLink.click();
     });
-
-    name.replaceChildren(link);
   });
 };
 

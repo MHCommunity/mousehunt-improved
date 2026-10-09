@@ -37,8 +37,8 @@
 }
 
 .mh-dark .mhui-marketplace-chart-tabs a:hover {
-  color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mhui-marketplace-chart-tabs a.active {

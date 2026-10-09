@@ -907,7 +907,9 @@ const addPriceChart = async (itemId) => {
     });
   });
 
-  description.before(area);
+  // Keep our chart above the Markethunt userscript's chart if it's already there.
+  const markethuntChart = item.querySelector(':scope > .mhui-markethunt-chart-header, :scope > #chartArea');
+  (markethuntChart || description).before(area);
 
   if (getSetting(collapsedSettingKey, false)) {
     collapse();
