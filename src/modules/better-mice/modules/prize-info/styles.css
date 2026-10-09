@@ -28,7 +28,7 @@
 
 .mh-dark .mh-improved-prize-history-card {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -79,7 +79,7 @@
 
 .mh-dark .mh-improved-prize-history-card-catches {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 

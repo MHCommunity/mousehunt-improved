@@ -97,5 +97,5 @@
 }
 
 .mh-dark #mouse-data-wrapper .mouse-image {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }

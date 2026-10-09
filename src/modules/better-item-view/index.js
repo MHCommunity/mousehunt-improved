@@ -4,47 +4,60 @@ import {
   formatNumber,
   getArForMouse,
   getData,
-  getItemLinks,
   getSetting,
   makeElement,
   makeMathButtons,
   makeMhButton,
-  makeTooltip,
   onNavigation,
   onOverlayChange,
   onRender,
+  wikiUrl,
 } from '@utils';
 
 import hoverItem from './modules/hover-item';
 import settings from './settings';
+import mhctRatesStyles from '../../utils/styles/mhct-rates.css';
 import styles from './styles.css';
 
 /**
- * Add links to the mouse overlay.
+ * Keep just the tradable / giveable checklist and a wiki link in the sidebar. The quantity goes
+ * under the picture, and anything else moves into the main content.
  *
- * @param {string} itemId The ID of the item.
+ * @param {HTMLElement} itemView The item view element.
  */
-const addLinks = (itemId) => {
-  const title = document.querySelector('.itemView-header-name');
-  if (!title) {
+const updateSidebar = (itemView) => {
+  const sidebar = itemView.querySelector('.itemView-sidebar');
+  if (!sidebar || sidebar.querySelector('.mh-improved-item-wiki-link')) {
     return;
   }
 
-  const currentLinks = document.querySelector('.mh-item-links');
-  if (currentLinks) {
-    currentLinks.remove();
+  const quantity = sidebar.querySelector('.itemView-sidebar-quantity');
+  const owned = quantity?.textContent.match(/You Own:\s*(.+)/i)?.[1];
+  if (quantity && owned) {
+    quantity.textContent = '';
+    makeElement('span', 'mh-improved-item-quantity-label', 'You have:', quantity);
+    makeElement('span', 'mh-improved-item-quantity-value', owned.trim(), quantity);
   }
 
-  const div = makeElement('div', 'mh-item-links');
-  div.innerHTML = getItemLinks(title.innerText, itemId);
-  title.append(div);
+  const thumbnailContainer = itemView.querySelector('.itemView-thumbnailContainer');
+  if (quantity && thumbnailContainer) {
+    thumbnailContainer.append(quantity);
+  }
 
-  // Move the values into the main text.
-  const values = document.querySelector('.mouseView-values');
-  const desc = document.querySelector('.mouseView-descriptionContainer');
-  if (values && desc) {
-    // insert as first child of desc
-    desc.insertBefore(values, desc.firstChild);
+  const content = itemView.querySelector('.itemView-content');
+  if (content) {
+    [...sidebar.children]
+      .filter((child) => !child.matches('.itemView-sidebar-checkList, .itemView-sidebar-socialContainer, .itemView-sidebar-quantity'))
+      .forEach((child) => content.append(child));
+  }
+
+  const name = itemView.querySelector('.itemView-header-name');
+  if (name) {
+    const link = makeElement('a', 'mh-improved-item-wiki-link', 'View on wiki →');
+    link.href = wikiUrl(name.innerText.trim());
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    sidebar.append(link);
   }
 };
 
@@ -193,11 +206,6 @@ const showDropRates = async (itemId, itemView) => {
   const title = makeElement('div', 'ar-header');
   const titleText = makeElement('div', 'ar-title', 'Drop Rates');
   title.append(titleText);
-
-  makeTooltip({
-    appendTo: titleText,
-    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noreferrer">MHCT</a>.',
-  });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
@@ -352,10 +360,6 @@ const addConvertibleContents = async (itemId, itemView) => {
   const section = makeElement('div', ['ar-wrapper', 'mh-improved-convertible-contents']);
   const header = makeElement('div', 'ar-header');
   const title = makeElement('div', 'ar-title', 'Possible contents');
-  makeTooltip({
-    appendTo: title,
-    text: 'Possible contents, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noreferrer">MHCT</a>.',
-  });
   header.append(title);
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
@@ -435,33 +439,15 @@ const updateItemView = async () => {
     return;
   }
 
-  const sidebar = document.querySelector('.itemView-sidebar');
-  if (sidebar) {
-    const crafting = document.querySelector('.itemView-action.crafting_item');
-    if (crafting) {
-      sidebar.append(crafting);
+  const smashing = document.querySelector('.itemView-partsContainer');
+  if (smashing && !smashing.getAttribute('data-has-changed-title')) {
+    const smashingTitle = smashing.querySelector('b');
+    if (smashingTitle) {
+      smashingTitle.innerText = "Hunter's Hammer to get:";
+      smashing.setAttribute('data-has-changed-title', 'true');
+
+      smashing.innerHtml = smashing.innerHTML.replace("If you smash it, you'll get:", '');
     }
-
-    const smashing = document.querySelector('.itemView-partsContainer');
-    if (smashing) {
-      sidebar.append(smashing);
-
-      if (!smashing.getAttribute('data-has-changed-title')) {
-        const smashingTitle = smashing.querySelector('b');
-        if (smashingTitle) {
-          smashingTitle.innerText = "Hunter's Hammer to get:";
-          smashing.setAttribute('data-has-changed-title', 'true');
-
-          smashing.innerHtml = smashing.innerHTML.replace("If you smash it, you'll get:", '');
-        }
-      }
-    }
-  }
-
-  const obtainHint = document.querySelector('.itemView-obtainHint');
-  const description = document.querySelector('.itemView-description');
-  if (obtainHint && description) {
-    description.after(obtainHint);
   }
 
   if (itemView.classList.contains('base') || itemView.classList.contains('weapon') || itemView.classList.contains('skin')) {
@@ -482,7 +468,7 @@ const updateItemView = async () => {
 
   updateDescription(itemView);
 
-  addLinks(itemId);
+  updateSidebar(itemView);
   addQuantityButtons(itemView);
   updateForAirshipParts(itemId, itemView);
 
@@ -527,7 +513,7 @@ const addProfileItemClicks = () => {
  * Initialize the module.
  */
 const init = () => {
-  addStyles(styles, 'better-item-view');
+  addStyles([mhctRatesStyles, styles], 'better-item-view');
 
   if (getSetting('better-item-view.show-item-hover', true)) {
     excludeFromStandaloneUserscript: hoverItem();

@@ -8,91 +8,6 @@
   justify-content: space-between;
 }
 
-.mh-item-links {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: -10px;
-}
-
-.mh-item-links a {
-  margin-right: 5px;
-}
-
-.itemView-header-name .mh-item-links span {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 400;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 60px;
-  gap: 10px;
-  place-items: center stretch;
-  width: auto;
-  padding: 5px;
-  font-size: 12px;
-}
-
-.itemViewPopup .mouseview-has-mhct .mouse-ar-wrapper {
-  padding: 5px;
-}
-
-.mouseview-has-mhct .has-stages .mouse-ar-wrapper {
-  grid-template-columns: 2fr 3fr 2fr 50px;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper div {
-  padding: 0 2px;
-}
-
-.mouseview-has-mhct .mice-ar-wrapper {
-  margin-right: 10px;
-}
-
-.mouse-ar-wrapper .stage {
-  font-size: 10px;
-}
-
-.mouse-ar-wrapper .cheese {
-  font-size: 11px;
-}
-
-.mouseview-has-mhct .ar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: auto;
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 900;
-  border-bottom: 1px solid #ccc;
-}
-
-.mh-dark .mouseview-has-mhct .ar-header {
-  border-bottom-color: var(--d-bg-alt);
-}
-
-.ar-title {
-  margin-left: 5px;
-}
-
-.mouseview-has-mhct .ar-link {
-  font-size: 9px;
-}
-
-.mouseview-has-mhct .rate {
-  text-align: right;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: #e7e7e7;
-}
-
-.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: var(--d-bg);
-}
-
 .itemView-action.crafting_item b {
   display: none;
 }
@@ -176,7 +91,7 @@
 }
 
 .itemViewContainer.potion .inventoryPage-item-recipeOptions li {
-  width: 365px;
+  width: auto;
 }
 
 /* wider item view */
@@ -236,6 +151,59 @@ input.itemView-action-convert-quantity {
   visibility: visible;
 }
 
+.itemView-header-classification-link::before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/menu/inventory.png) no-repeat center / contain;
+}
+
+.itemView-header-classification-link.weapon::before,
+.itemView-header-classification-link.base::before,
+.itemView-header-classification-link.skin::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/traps.png);
+}
+
+.itemView-header-classification-link.bait::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/cheese.png);
+}
+
+.itemView-header-classification-link.trinket::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/charm_shoppe.png);
+}
+
+.itemView-header-classification-link.potion::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/potions.png);
+}
+
+.itemView-header-classification-link.torn_page::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/torn_pages.png);
+}
+
+.itemView-header-classification-link.crafting_item::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/crafting.png);
+}
+
+.itemView-header-classification-link.collectible::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/collectibles.png);
+}
+
+.itemView-header-classification-link.stat::before,
+.itemView-header-classification-link.convertible::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/special.png);
+}
+
+.itemView-header-classification-link.map_piece::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/cartographer.png);
+}
+
+.itemView-header-classification-link.message_item::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/send_gift.png);
+}
+
 .itemViewStatBlock-stat {
   display: flex;
   align-items: center;
@@ -274,10 +242,6 @@ input.itemView-action-convert-quantity {
 .convertibleOpenView-itemContainer.num_items_1 .convertibleOpenView-item {
   gap: 20px;
   width: 100%;
-}
-
-.itemView-obtainHint {
-  margin-left: 190px;
 }
 
 .itemViewContainer iframe.socialLink-facebookLike {
@@ -428,4 +392,91 @@ ul.mh-improved-scroll-to-map-multiple-list {
 
 .hunterProfileItemsView-categoryContent-item[data-type] {
   cursor: pointer;
+}
+
+.itemView-sidebar-checkList,
+.itemViewContainer .itemView-obtainHint,
+.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+  box-sizing: border-box;
+  padding: 6px 8px;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.itemView-sidebar-quantity {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: center;
+  margin: 6px 0 0;
+}
+
+.mh-improved-item-quantity-value {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.itemViewContainer .itemView-obtainHint {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  justify-self: center;
+  padding: 10px;
+  margin: 10px 0;
+  line-height: 1;
+}
+
+.itemViewContainer .itemView-obtainHint b {
+  display: block;
+  font-style: normal;
+}
+
+.mh-improved-item-wiki-link {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Item stats (power, luck, and so on) sit as a row under the picture instead of in the sidebar. */
+.itemView-content > .itemViewStatBlock {
+  width: auto;
+  padding-top: 10px;
+  clear: both;
+  background: none;
+  border: none;
+}
+
+.itemView-content > .itemViewStatBlock .itemViewStatBlock-padding {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  width: auto;
+  overflow: visible;
+  background: none;
+  border: none;
+}
+
+.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+  display: flex;
+  flex: 1 1 0;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  padding: 3px 8px;
+}
+
+.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat-label,
+.itemView-content > .itemViewStatBlock .itemViewStatBlock-stat-value {
+  flex: none;
+  width: auto;
+  background: none;
+  border: none;
+}
+
+/* Keep long descriptions in their column instead of wrapping under the picture. */
+.itemView-content > .itemView-description {
+  display: flow-root;
 }

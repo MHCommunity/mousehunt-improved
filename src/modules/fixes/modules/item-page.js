@@ -24,22 +24,10 @@ const fixItemPage = () => {
     return;
   }
 
+  // Some classifications (like stat items) have no inventory link, but their items live on the special tab.
   const link = document.querySelector(`.itemView-header-classification-link.${type[0]} a`);
-  if (!link) {
-    return;
-  }
-
-  // get the onclick attribute, remove 'hg.views.ItemView.hide()', then set the onclick attribute
-  const onclick = link.getAttribute('onclick');
-  if (!onclick) {
-    return;
-  }
-
-  // get the page title and tab via regex
-  const page = onclick.match(/setPage\('(.+?)'.+tab:'(.+)'/);
-  if (!page) {
-    return;
-  }
+  const onclick = link?.getAttribute('onclick') || '';
+  const page = onclick.match(/setPage\('(.+?)'.+tab:'(.+)'/) || [null, 'Inventory', 'special'];
 
   const pageTitle = page[1];
   let tab = page[2];

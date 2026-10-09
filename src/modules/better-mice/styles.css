@@ -1,80 +1,254 @@
-.mouseView-titleContainer {
-  height: 26px;
+/* Mouse view: title row, with the name and group on the left and the catches on the right */
+.mouseview-has-mhct .mouseView-titleContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.mouseView-values {
-  float: none;
-  font-size: 11px;
-  line-height: unset;
+.mouseview-title-text {
+  min-width: 0;
 }
 
-.mouseView-title {
+.mouseview-has-mhct .mouseView-title {
   font-size: 1.2em;
   line-height: 24px;
 }
 
-.mh-ui-mouse-links {
-  display: inline-block;
-  float: right;
-  margin-right: 15px;
-}
-
-.mh-ui-mouse-links-map {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
-}
-
-.mh-ui-mouse-links a {
-  margin-right: 10px;
-}
-
-.mh-ui-mouse-links-map a {
-  margin: 10px 10px 10px 0;
-}
-
-.mouseview-title-group {
+.mouseview-has-mhct .mouseView-titleContainer .mouseview-title-group {
+  display: block;
   font-size: 11px;
+  font-style: italic;
+  opacity: 0.8;
 }
 
-.mh-ui-mouse-links-map .mousehuntActionButton.tiny {
-  margin: 3px;
-}
-
-.mouseView-movedContainer {
+.mouseview-catches {
   display: flex;
-  flex-flow: row wrap;
-  gap: 10px;
-}
-
-.mouseview-has-mhct .mouseView-weaknessContainer {
-  display: flex;
-  flex-direction: column;
+  flex-shrink: 0;
+  gap: 6px;
   align-items: center;
-  width: 90px;
-  border-radius: 10px;
 }
 
-.mh-dark .mouseView-weaknessContainer {
-  background-color: var(--d-bg-alt);
+.mouseview-catches-crown {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
-.mouseview-has-mhct .mouseView-categoryContent-subgroup-mouse-weaknesses {
+.mouseview-catches-text {
+  line-height: 1.1;
+  text-align: right;
+}
+
+.mouseview-catches-count {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mouseview-catches-label {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.mouseview-has-mhct .mouseView-descriptionContainer {
+  display: block;
   width: 100%;
 }
 
-.mouseView-categoryContent-subgroup-mouse-weaknesses {
-  margin-top: 3px;
+.mouseview-has-mhct .mouseView-description {
+  max-height: 285px;
+  padding-right: 8px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.mouseview-wiki-link {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Mouse view: under the image */
+.mouseView-movedContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.mouseview-section-title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mouseview-rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+li.minluck-item,
+.mouseview-effectiveness,
+.mouseview-has-mhct .mouseView-statsContainer-block {
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.mouseview-reward {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.mouseview-reward::before {
+  width: 16px;
+  height: 16px;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mouseview-reward.gold::before {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
+}
+
+.mouseview-reward.points::before {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/7484e1b263f7b0c3f4fc933cc153fb06.png);
+}
+
+.mouseview-reward.wisdom::before {
+  background-image: url(https://i.mouse.rip/tome/icon-tome.png);
+}
+
+img.mouseview-power-type-img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mouse view: minlucks, under the description */
+.mouseview-has-mhct .minluck-container {
+  margin-top: 14px;
+}
+
+ul.minluck-list {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+}
+
+li.minluck-item {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 0;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 3px;
+  font-size: 12px;
+}
+
+li.minluck-item.is-faded {
+  opacity: 0.35;
+}
+
+li.minluck-item.is-faded img {
+  filter: grayscale(1);
+}
+
+/* Mouse view: stats and effectiveness, side by side */
+.mouseview-details {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer {
+  flex: 1;
+  width: auto;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding > b {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding > br {
+  display: none;
+}
+
+/* Catches and misses are what most people look for, so they're larger. */
+.mouseview-has-mhct .mouseView-statsContainer-block-padding tr:nth-child(-n + 2) td + td {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding tr:nth-child(3) td {
+  padding-top: 10px;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding {
+  flex: 1;
+  padding: 10px 8px;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding table {
+  width: 100%;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding td {
+  white-space: nowrap;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding td + td {
+  padding-left: 6px;
+  text-align: right;
+}
+
+.mouseview-effectiveness {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  max-width: 96px;
+  padding: 8px 6px;
+}
+
+.mouseview-effectiveness-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mouseview-effectiveness-row + .mouseview-effectiveness-label {
+  margin-top: 4px;
+}
+
+.mouseview-effectiveness-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
 }
 
 .mouseview-has-mhct .mouseView-socialContainer {
   display: none;
-}
-
-.mouseview-has-mhct .mouseView-statsContainer {
-  display: flex;
-  align-items: stretch;
-  width: 155px;
 }
 
 .mouseView-statsContainer-block {
@@ -83,80 +257,8 @@
   width: 100%;
 }
 
-.mouseview-has-mhct .mouseView-statsContainer-block-padding {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 125px;
-  padding: 10px 8px;
-}
-
-.mouseview-has-mhct .mouseView-descriptionContainer {
-  width: 100%;
-}
-
-.mouseView-categoryContent-subgroup-mouse-weaknesses-label {
-  font-size: 12px;
-  font-weight: 400;
-  font-variant: none;
-}
-
 .mouseview-has-mhct .mouseView-difficulty {
   display: none;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 50px;
-  gap: 10px;
-  place-items: center stretch;
-  width: auto;
-  padding: 5px;
-  font-size: 12px;
-}
-
-.mouseview-has-mhct .has-stages .mouse-ar-wrapper {
-  grid-template-columns: 1fr 1fr 1fr 50px;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper div {
-  font-size: 12px;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper div.rate {
-  font-size: 13px;
-}
-
-.mouseview-has-mhct .ar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 26px;
-  padding-bottom: 2px;
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 900;
-  border-bottom: 1px solid #ccc;
-}
-
-.mouseview-has-mhct .ar-link {
-  font-weight: 400;
-}
-
-.mouseview-has-mhct .rate {
-  text-align: right;
-}
-
-.mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: #e7e7e7;
-}
-
-.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: var(--d-bg);
-}
-
-.mouseview-has-mhct .mouseView-description {
-  line-height: 1.5;
 }
 
 .mh-ui-mouse-links-map-name {
@@ -176,10 +278,6 @@
 
 .mh-ui-mouse-links-map-name:hover {
   text-decoration: underline;
-}
-
-.mh-ui-mouse-links-map .treasureMapView-highlight-group {
-  text-align: center;
 }
 
 .mouseView-image {
@@ -297,63 +395,6 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   transition: 0.2s ease-in;
 }
 
-.mouseViewPopup .mouseView-descriptionContainer {
-  display: grid;
-  grid-template-columns: 4fr 2fr;
-  justify-items: stretch;
-}
-
-.mouseViewPopup .mouseView-values {
-  margin-left: 0;
-}
-
-.mouseViewPopup .mouseView-description {
-  grid-column: span 2;
-  padding-top: 5px;
-}
-
-.mouseViewPopup .mouseView-group.mouseview-title-group {
-  text-align: right;
-}
-
-img.minluck-power-type-img {
-  width: 18px;
-  margin-right: 2px;
-}
-
-li.minluck-item {
-  display: inline-flex;
-  gap: 2px;
-  align-items: center;
-  width: auto;
-  padding: 2px 3px;
-  margin: 2px;
-  font-size: 12px;
-  background-color: #f2f2f2;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-}
-
-ul.minluck-list {
-  display: flex;
-  flex-wrap: wrap;
-  place-content: center flex-start;
-  width: auto;
-  margin-right: -5px;
-}
-
-.minluck-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 2px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 12px;
-  font-weight: 900;
-  border-bottom: 1px solid #ccc;
-}
-
 .mouseview-relicHunter {
   display: flex;
   align-items: center;
@@ -382,7 +423,7 @@ ul.minluck-list {
 
 .mh-dark .mouseview-prize-info {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mouseview-prize-info-cooldown {
@@ -527,4 +568,24 @@ ul.minluck-list {
 
 .mh-dark .mouseListView-categoryDirectory:hover {
   scrollbar-color: rgb(255 255 255 / 25%) transparent;
+}
+
+/* Mouse view: attraction rates sit under the minlucks as a bordered table */
+.mouseView.mouseview-has-mhct .mouseView-contentContainer .ar-wrapper {
+  padding: 0;
+  margin-top: 14px;
+  background: none;
+  border: none;
+}
+
+.mouseview-has-mhct .mouseView-contentContainer .ar-header {
+  height: auto;
+  border: none;
+}
+
+.mouseView-contentContainer .mice-ar-wrapper {
+  overflow: hidden;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
 }

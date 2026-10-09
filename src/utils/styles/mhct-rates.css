@@ -1,0 +1,79 @@
+.mouseview-has-mhct .mice-ar-wrapper {
+  margin-right: 10px;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px;
+  gap: 10px;
+  place-items: center stretch;
+  width: auto;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.mouseview-has-mhct .has-stages .mouse-ar-wrapper {
+  grid-template-columns: 2fr 3fr 2fr 50px;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper div {
+  padding: 0 2px;
+  font-size: 12px;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper div.rate {
+  font-size: 13px;
+}
+
+.mouseview-has-mhct .ar-wrapper {
+  padding: 0 10px 10px;
+  margin-top: 15px;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.mh-dark .mouseview-has-mhct .ar-wrapper {
+  background-color: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+.mouseview-has-mhct .ar-wrapper .mice-ar-wrapper {
+  margin-right: 0;
+}
+
+.mouseview-has-mhct .ar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 34px;
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 900;
+  border-bottom: 1px solid #ccc;
+}
+
+.mh-dark .mouseview-has-mhct .ar-header {
+  border-bottom-color: var(--d-alt);
+}
+
+.ar-title {
+  margin-left: 5px;
+}
+
+.mouseview-has-mhct .ar-link {
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.mouseview-has-mhct .rate {
+  text-align: right;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: var(--d-surface-panel);
+}

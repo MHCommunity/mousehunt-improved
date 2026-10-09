@@ -5,17 +5,16 @@ import {
   getArForMouse,
   getData,
   getFlag,
-  getMouseLinks,
   getRelicHunterLocation,
   getSetting,
   makeElement,
   makeFavoriteButton,
   makeMhButton,
-  makeTooltip,
   onNavigation,
   onOverlayChange,
   onTurn,
   setPage,
+  wikiUrl,
 } from '@utils';
 
 import hoverMice from './modules/hover-mice';
@@ -25,35 +24,27 @@ import settings from './settings';
 import sidebar from './modules/sidebar';
 import { addPrizeInfo, isPrizeMouse, prizeInfo } from './modules/prize-info';
 
+import mhctRatesStyles from '../../utils/styles/mhct-rates.css';
 import styles from './styles.css';
 
 /**
- * Add links to the mouse overlay.
+ * Add a wiki link below the mouse description.
  *
- * @param {string} id The ID of the mouse.
+ * @param {string}      name      The mouse name.
+ * @param {HTMLElement} mouseView The mouse view element.
  */
-const addLinks = (id) => {
-  const title = document.querySelector('.mouseView-title');
-  if (!title) {
+const addWikiLink = (name, mouseView) => {
+  const description = mouseView.querySelector('.mouseView-description');
+  if (!description || mouseView.querySelector('.mouseview-wiki-link')) {
     return;
   }
 
-  const currentLinks = document.querySelector('.mh-ui-mouse-links');
-  if (currentLinks) {
-    currentLinks.remove();
-  }
+  const link = makeElement('a', 'mouseview-wiki-link', 'View on wiki →');
+  link.href = wikiUrl(name);
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
 
-  const div = makeElement('div', 'mh-ui-mouse-links');
-  div.innerHTML = getMouseLinks(title.innerText, id);
-  title.parentNode.insertBefore(div, title);
-
-  // Move the values into the main text.
-  const values = document.querySelector('.mouseView-values');
-  const desc = document.querySelector('.mouseView-descriptionContainer');
-  if (values && desc) {
-    // insert as first child of desc
-    desc.insertBefore(values, desc.firstChild);
-  }
+  description.after(link);
 };
 
 /**
@@ -114,73 +105,45 @@ const addFavoriteButton = async (mouseId, mouseView) => {
     mouseView.append(fave);
   }
 };
+// Power types in the order the minlucks use, which the effectiveness lists follow too. Parental
+// is left out, as no one hunts with it.
+const powerTypes = ['arcane', 'draconic', 'forgotten', 'hydro', 'physical', 'shadow', 'tactical', 'law', 'rift'];
+
+// King's crowns, highest first.
+const crownLevels = [
+  { name: 'diamond', min: 2500 },
+  { name: 'platinum', min: 1000 },
+  { name: 'gold', min: 500 },
+  { name: 'silver', min: 100 },
+  { name: 'bronze', min: 10 },
+];
 
 /**
- * Add the minluck to the mouse view.
+ * Make a power type icon.
  *
- * @param {string}      mouseId   The ID of the mouse.
- * @param {HTMLElement} mouseView The mouse view element.
+ * @param {string} powerType The power type.
+ *
+ * @return {HTMLElement} The icon.
  */
-const addMinluck = async (mouseId, mouseView) => {
-  // get the description container
-  const appendTo = mouseView.querySelector('.mouseView-contentContainer');
-  if (!appendTo) {
-    return;
-  }
+const makePowerTypeIcon = (powerType) => {
+  const icon = makeElement('img', 'mouseview-power-type-img');
+  icon.src = `https://www.mousehuntgame.com/images/powertypes/${powerType}.png`;
+  icon.alt = powerType;
 
-  const minluckContainer = makeElement('div', 'minluck-container');
-  const titleText = makeElement('div', 'minluck-title', 'Minlucks');
-
-  makeTooltip({
-    appendTo: titleText,
-    text: 'If your current luck is above the minluck, you are guaranteed to catch the mouse if you attract it.',
-  });
-
-  minluckContainer.append(titleText);
-
-  // foreach minluck, output the power type and the minluck
-  const minluckList = makeElement('ul', 'minluck-list');
-
-  if (!minlucks) {
-    minlucks = await getData('minlucks');
-  }
-
-  // find the mouse in the minlucks data by id
-  const minluck = minlucks.find((m) => m.id === Number.parseInt(mouseId, 10));
-  const mouseMinlucks = minluck?.minlucks || {};
-
-  // We need the keys and values in our loop,
-  // so we can't use a for...in loop.
-  Object.keys(mouseMinlucks).forEach((powerType) => {
-    if (!mouseMinlucks[powerType] || '∞' === mouseMinlucks[powerType]) {
-      return;
-    }
-
-    const minluckItem = makeElement('li', 'minluck-item');
-
-    const powerTypeImg = makeElement('img', 'minluck-power-type-img');
-    powerTypeImg.src = `https://www.mousehuntgame.com/images/powertypes/${powerType.toLowerCase()}.png`;
-    minluckItem.append(powerTypeImg);
-
-    makeElement('div', 'minluck-power-type-minluck', mouseMinlucks[powerType], minluckItem);
-
-    minluckList.append(minluckItem);
-  });
-
-  minluckContainer.append(minluckList);
-
-  appendTo.append(minluckContainer);
+  return icon;
 };
 
 /**
- * Add the wisdom to the mouse view.
+ * Fill in the gold, points, and wisdom pills.
  *
  * @param {string}      mouseId   The ID of the mouse.
  * @param {HTMLElement} mouseView The mouse view element.
+ * @param {HTMLElement} wrapper   The element to add the rewards to.
  */
-const addWisdom = async (mouseId, mouseView) => {
+const addRewards = async (mouseId, mouseView, wrapper) => {
   const values = mouseView.querySelector('.mouseView-values');
   if (!values) {
+    wrapper.remove();
     return;
   }
 
@@ -188,13 +151,143 @@ const addWisdom = async (mouseId, mouseView) => {
     wisdoms = await getData('wisdom');
   }
 
-  let wisdom = wisdoms.find((m) => m.id === Number.parseInt(mouseId, 10));
+  const wisdom = wisdoms.find((m) => m.id === Number.parseInt(mouseId, 10))?.wisdom;
 
-  wisdom = wisdom?.wisdom || 0;
+  const rewards = [
+    { key: 'gold', label: 'Gold', value: values.textContent.match(/([\d,]+)\s*Gold/i)?.[1] },
+    { key: 'points', label: 'Points', value: values.textContent.match(/([\d,]+)\s*Points/i)?.[1] },
+    { key: 'wisdom', label: 'Wisdom', value: wisdom ? wisdom.toLocaleString() : null },
+  ];
 
-  // comma separate the wisdom number
-  wisdom = wisdom.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
-  makeElement('span', 'wisdom-container', ` / ${wisdom} Wisdom`, values);
+  rewards.forEach(({ key, label, value }) => {
+    if (!value) {
+      return;
+    }
+
+    const reward = makeElement('div', ['mouseview-reward', key], `${value} ${label.toLowerCase()}`);
+    reward.title = `${value} ${label}`;
+    wrapper.append(reward);
+  });
+
+  values.classList.add('hidden');
+};
+
+/**
+ * Fill in the minlucks, showing every power type and fading the ones that can't catch the mouse.
+ * Rift only gets a spot when it can, as it's otherwise noise for most mice.
+ *
+ * @param {string}      mouseId The ID of the mouse.
+ * @param {HTMLElement} section The element to add the minlucks to.
+ */
+const addMinluck = async (mouseId, section) => {
+  if (!minlucks) {
+    minlucks = await getData('minlucks');
+  }
+
+  const mouseMinlucks = minlucks.find((m) => m.id === Number.parseInt(mouseId, 10))?.minlucks || {};
+  const isEffective = (powerType) => mouseMinlucks[powerType] && '∞' !== mouseMinlucks[powerType];
+  if (!powerTypes.some((powerType) => isEffective(powerType))) {
+    section.remove();
+    return;
+  }
+
+  makeElement('div', ['minluck-title', 'mouseview-section-title'], 'Minlucks', section);
+
+  const minluckList = makeElement('ul', 'minluck-list');
+  powerTypes
+    .filter((powerType) => 'rift' !== powerType || isEffective(powerType))
+    .forEach((powerType) => {
+      const effective = isEffective(powerType);
+      const minluckItem = makeElement('li', ['minluck-item', effective ? 'is-effective' : 'is-faded']);
+      minluckItem.title = effective ? `${powerType}: ${mouseMinlucks[powerType]}` : `${powerType}: not effective`;
+      minluckItem.append(makePowerTypeIcon(powerType));
+
+      if (effective) {
+        makeElement('div', 'minluck-power-type-minluck', mouseMinlucks[powerType], minluckItem);
+      }
+
+      minluckList.append(minluckItem);
+    });
+
+  section.append(minluckList);
+};
+
+/**
+ * Swap the game's weakness lists for ones in the minluck order, without parental.
+ *
+ * @param {HTMLElement} mouseView The mouse view element.
+ * @param {HTMLElement} section   The element to add the lists to.
+ */
+const addEffectiveness = (mouseView, section) => {
+  const weaknessContainer = mouseView.querySelector('.mouseView-weaknessContainer');
+  if (!weaknessContainer) {
+    section.remove();
+    return;
+  }
+
+  weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses').forEach((group) => {
+    const types = new Set([...group.querySelectorAll('.mouseView-weakness')].map((weakness) => weakness.getAttribute('title')?.toLowerCase()));
+    const effective = powerTypes.filter((powerType) => types.has(powerType));
+    if (!effective.length) {
+      return;
+    }
+
+    const label = group.querySelector('.mouseView-categoryContent-subgroup-mouse-weaknesses-label')?.textContent.trim() || 'Effective';
+    makeElement('div', 'mouseview-effectiveness-label', label, section);
+
+    const row = makeElement('div', 'mouseview-effectiveness-row');
+    effective.forEach((powerType) => {
+      const icon = makePowerTypeIcon(powerType);
+      icon.title = powerType;
+      row.append(icon);
+    });
+
+    section.append(row);
+  });
+
+  weaknessContainer.classList.add('hidden');
+
+  if (!section.children.length) {
+    section.remove();
+  }
+};
+
+/**
+ * Show the catches large in the title row, with the crown they've earned.
+ *
+ * @param {HTMLElement} mouseView The mouse view element.
+ */
+const addCatches = (mouseView) => {
+  const titleContainer = mouseView.querySelector('.mouseView-titleContainer');
+  const catchesRow = [...mouseView.querySelectorAll('.mouseView-statsContainer tr')].find((row) => /catches/i.test(row.textContent));
+  const catches = catchesRow
+    ?.querySelector('abbr')
+    ?.getAttribute('title')
+    ?.replace(/\s*catches\s*/i, '')
+    .trim();
+  if (!titleContainer || !catches) {
+    return;
+  }
+
+  const count = Number.parseInt(catches.replaceAll(',', ''), 10) || 0;
+  const crown = crownLevels.find((c) => count >= c.min);
+
+  const badge = makeElement('div', ['mouseview-catches', crown ? crown.name : 'no-crown']);
+  badge.title = crown ? `${catches} catches: ${crown.name} crown` : `${catches} catches`;
+
+  if (crown) {
+    const crownImg = makeElement('img', 'mouseview-catches-crown');
+    crownImg.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crown.name}.png`;
+    crownImg.alt = `${crown.name} crown`;
+    badge.append(crownImg);
+  }
+
+  const text = makeElement('div', 'mouseview-catches-text');
+  makeElement('div', 'mouseview-catches-count', catches, text);
+  makeElement('div', 'mouseview-catches-label', 1 === count ? 'catch' : 'catches', text);
+  badge.append(text);
+
+  titleContainer.append(badge);
 };
 
 /**
@@ -216,106 +309,105 @@ const updateMouseView = async () => {
     return;
   }
 
-  const catchesEl = document.querySelectorAll('.mouseView-statsContainer-block-padding td abbr');
-  if (catchesEl && catchesEl.length > 0) {
-    catchesEl.forEach((el) => {
-      // remove the ' catches' from the title and use it as the text
-      const catchesNumber = el.getAttribute('title').replace(' Catches', '').replace(' catches', '').replace(' Misses', '').replace(' misses', '').trim();
-      if (catchesNumber) {
-        el.innerText = catchesNumber;
-      }
-    });
-  }
-
-  addLinks(mouseId);
-
-  addFavoriteButton(mouseId, mouseView);
-
-  addMinluck(mouseId, mouseView);
-
-  addWisdom(mouseId, mouseView);
-
-  addPrizeInfo(mouseId, mouseView);
-
-  mouseView.classList.add('mouseview-has-mhct');
-
-  const group = document.querySelector('.mouseView-group');
-  if (group) {
-    group.classList.add('mouseview-title-group');
-
-    const descContainer = document.querySelector('.mouseView-descriptionContainer');
-    if (descContainer) {
-      if (descContainer.childNodes.length > 1) {
-        descContainer.insertBefore(group, descContainer.childNodes[1]);
-      } else {
-        descContainer.append(group);
-      }
-    }
-  }
-
-  const groupTitle = mouseView.querySelector('.mouseView-group.mouseview-title-group');
-  if (groupTitle) {
-    let newHtml = groupTitle.innerHTML.replace('Group: ', '');
-    const subGroups = newHtml.split('(');
-    if (subGroups.length > 1) {
-      newHtml = `<span class="mouseview-group">${subGroups[0]}</span><span class="mouseview-subgroup">(${subGroups[1]}</span>`;
-      groupTitle.classList.add('mouseview-title-group-has-subgroup');
-    } else {
-      newHtml = `<span class="mouseview-group">${newHtml}</span>`;
-    }
-
-    groupTitle.innerHTML = newHtml;
-  }
-
-  const container = mouseView.querySelector('.mouseView-contentContainer');
-  if (!container) {
+  const imageContainer = mouseView.querySelector('.mouseView-imageContainer');
+  if (!imageContainer || mouseView.classList.contains('mouseview-has-mhct')) {
     return;
   }
 
-  const imageContainer = mouseView.querySelector('.mouseView-imageContainer');
-  if (imageContainer) {
-    const movedContainer = makeElement('div', 'mouseView-movedContainer');
+  mouseView.classList.add('mouseview-has-mhct');
 
-    const statsContainer = mouseView.querySelector('.mouseView-statsContainer');
-    if (statsContainer) {
-      movedContainer.append(statsContainer);
+  // Show the full catches and misses instead of the abbreviated ones.
+  mouseView.querySelectorAll('.mouseView-statsContainer-block-padding td abbr').forEach((el) => {
+    const number = el
+      .getAttribute('title')
+      .replace(/\s*(catches|misses)\s*/i, '')
+      .trim();
+    if (number) {
+      el.innerText = number;
     }
+  });
 
-    const weaknessContainer = mouseView.querySelector('.mouseView-weaknessContainer');
-    if (weaknessContainer) {
-      movedContainer.append(weaknessContainer);
-      const weaknesses = weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses-padding');
-      weaknesses.forEach((w) => {
-        const weakness = w.querySelector('.mouseView-weakness');
-        if (!weakness) {
-          w.classList.add('mouseview-weakness-empty');
-          w.classList.add('hidden');
-        }
+  // The name and group stack on the left of the title row, with the catches on the right.
+  const titleContainer = mouseView.querySelector('.mouseView-titleContainer');
+  if (titleContainer) {
+    const titleText = makeElement('div', 'mouseview-title-text');
+    titleContainer.prepend(titleText);
+    titleText.append(name);
+
+    const group = mouseView.querySelector('.mouseView-group');
+    if (group) {
+      group.classList.add('mouseview-title-group');
+      titleText.append(group);
+
+      const subGroups = group.innerHTML.replace('Group: ', '').split('(');
+      group.innerHTML =
+        subGroups.length > 1
+          ? `<span class="mouseview-group">${subGroups[0]}</span><span class="mouseview-subgroup">(${subGroups[1]}</span>`
+          : `<span class="mouseview-group">${subGroups[0]}</span>`;
+    }
+  }
+
+  addCatches(mouseView);
+  addWikiLink(name.innerText, mouseView);
+  addFavoriteButton(mouseId, mouseView);
+
+  // The stats and effectiveness sit under the image. The minlucks and attraction rates go under
+  // the description.
+  const movedContainer = makeElement('div', 'mouseView-movedContainer');
+  imageContainer.append(movedContainer);
+
+  // The rewards sit between the title and the description.
+  const rewards = makeElement('div', 'mouseview-rewards');
+  if (titleContainer) {
+    titleContainer.after(rewards);
+  } else {
+    movedContainer.append(rewards);
+  }
+  addRewards(mouseId, mouseView, rewards);
+
+  const minluckSection = makeElement('div', ['minluck-container', 'mouseview-section']);
+  const descriptionContainer = mouseView.querySelector('.mouseView-descriptionContainer');
+  if (descriptionContainer) {
+    descriptionContainer.after(minluckSection);
+  } else {
+    movedContainer.append(minluckSection);
+  }
+
+  addMinluck(mouseId, minluckSection);
+
+  const details = makeElement('div', 'mouseview-details');
+  const statsContainer = mouseView.querySelector('.mouseView-statsContainer');
+  if (statsContainer) {
+    details.append(statsContainer);
+  }
+
+  const effectivenessSection = makeElement('div', 'mouseview-effectiveness');
+  details.append(effectivenessSection);
+  addEffectiveness(mouseView, effectivenessSection);
+
+  movedContainer.append(details);
+
+  addPrizeInfo(mouseId, mouseView);
+
+  if (401 === Number.parseInt(mouseId, 10)) {
+    const location = await getRelicHunterLocation();
+
+    if (location && location.name) {
+      const relicHunterBox = makeElement('div', ['mouseview-relicHunter', 'mouseview-relicHunter']);
+      makeElement('div', 'hint', location.name, relicHunterBox);
+
+      makeMhButton({
+        text: 'Travel',
+        size: 'small',
+        callback: () => {
+          hg.utils.User.travel(location.id);
+          setPage('Camp');
+        },
+        appendTo: relicHunterBox,
       });
+
+      movedContainer.append(relicHunterBox);
     }
-
-    if (401 === Number.parseInt(mouseId, 10)) {
-      const location = await getRelicHunterLocation();
-
-      if (location && location.name) {
-        const relicHunterBox = makeElement('div', ['mouseview-relicHunter', 'mouseview-relicHunter']);
-        makeElement('div', 'hint', location.name, relicHunterBox);
-
-        makeMhButton({
-          text: 'Travel',
-          size: 'small',
-          callback: () => {
-            hg.utils.User.travel(location.id);
-            setPage('Camp');
-          },
-          appendTo: relicHunterBox,
-        });
-
-        movedContainer.append(relicHunterBox);
-      }
-    }
-
-    imageContainer.append(movedContainer);
   }
 
   // Prize mice show cooldown info instead of attraction rates.
@@ -323,15 +415,11 @@ const updateMouseView = async () => {
     return;
   }
 
+  const contentContainer = mouseView.querySelector('.mouseView-contentContainer');
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
   const titleText = makeElement('div', 'ar-title', 'Attraction Rates');
   title.append(titleText);
-
-  makeTooltip({
-    appendTo: titleText,
-    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noreferrer">MHCT</a>.',
-  });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://api.mouse.rip/mhct-redirect/${mouseId}`;
@@ -366,7 +454,7 @@ const updateMouseView = async () => {
       ...weights,
     };
 
-    const availableWidth = 450 - 50 - 10 - 10 * 3 - (hasStages ? 10 : 0);
+    const availableWidth = (contentContainer?.clientWidth || 450) - 20 - 60 - 10 * 3 - (hasStages ? 10 : 0);
 
     const calculateLengths = (key) => {
       const keyLengths = mhctJson.map((mouseAr) => mouseAr[key]?.length || 0).filter((l) => l > 0);
@@ -431,7 +519,7 @@ const updateMouseView = async () => {
   mhctJson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
     if (!getFlag('better-mice-no-new-ar-widths')) {
-      mouseArWrapper.style.gridTemplateColumns = hasStages ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 50px` : `${locationWidth}px ${cheeseWidth}px 50px`;
+      mouseArWrapper.style.gridTemplateColumns = hasStages ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 60px` : `${locationWidth}px ${cheeseWidth}px 60px`;
     }
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
@@ -448,7 +536,7 @@ const updateMouseView = async () => {
 
   if (mhctJson.length > 0) {
     arWrapper.append(miceArWrapper);
-    container.append(arWrapper);
+    (contentContainer || mouseView).append(arWrapper);
   }
 };
 
@@ -618,7 +706,7 @@ let minlucks;
  * Initialize the module.
  */
 const init = () => {
-  addStyles(styles, 'better-mice');
+  addStyles([mhctRatesStyles, styles], 'better-mice');
   main();
   mousePage();
   kingsCrowns();
