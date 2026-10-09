@@ -333,7 +333,7 @@ let hasClickListener = false;
  * Initialize the sky map highlights.
  */
 export default () => {
-  onEvent('dialog-show-default-floatingislandsadventureboard-floatingislandsdialog-wide-skymap', main);
+  onEvent('dialog-show-floatingislandsadventureboard-floatingislandsdialog-skymap', main);
 
   // The game redraws its "<island> selected" text when a power type is picked, so add our note once it has.
   // Listen in the capture phase, as the game's click handler stops the event from bubbling.

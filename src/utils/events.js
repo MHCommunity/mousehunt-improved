@@ -340,18 +340,25 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       // Get all the tokens and check the content.
       const tokens = activejsDialog.getAllTokens();
 
-      // Make sure we have the 'content' key.
+      if (!tokens) {
+        return;
+      }
+
       // For item and mouse views, the entire event fires twice, once while loading and
       // once when the content is loaded. We only want to run this once, so we check if
       // the content is empty in a weird way.
-      if (
-        !tokens ||
-        !tokens['{*content*}'] ||
-        !tokens['{*content*}'].value ||
-        tokens['{*content*}'].value === '' ||
-        tokens['{*content*}'].value.includes('data-item-type=""') || // Item view.
-        tokens['{*content*}'].value.includes('data-mouse-id=""') // Mouse view.
-      ) {
+      const content = tokens['{*content*}'];
+      if (content) {
+        if (
+          !content.value ||
+          content.value.includes('data-item-type=""') || // Item view.
+          content.value.includes('data-mouse-id=""') // Mouse view.
+        ) {
+          return;
+        }
+      } else if (!tokens['{*prefix*}']?.value && !tokens['{*suffix*}']?.value) {
+        // Some dialogs (like the daily reward selector) render into the prefix/suffix
+        // tokens instead of content, so only bail if nothing has been rendered at all.
         return;
       }
 

@@ -1,12 +1,15 @@
 import { addStyles, getFlag, isLegacyHUD } from '@utils';
 
 import bigTimer from './modules/big-timer';
+import dailyRewardTabs from './modules/daily-reward-tabs';
+import dialogIntoView from './modules/dialog-into-view';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
 import maintenance from './modules/maintenance';
 import pageSelector from './modules/page-selector';
 import replaceFavicon from './modules/replace-favicon';
+import reverseDailyDraw from './modules/reverse-daily-draw';
 import team from './modules/team';
 import tournamentTrophies from './modules/tournament-trophies';
 import userscriptStyles from './modules/userscripts-styles';
@@ -16,6 +19,8 @@ import squareProfilePicsStyles from './modules/square-profile-pics/styles.css';
 
 const featureManifest = [
   { id: 'big-timer', load: bigTimer },
+  { id: 'daily-reward-tabs', load: dailyRewardTabs },
+  { id: 'dialog-into-view', load: dialogIntoView },
   { id: 'friends', load: friends },
   { id: 'kings-promo', load: kingsPromo },
   { id: 'maintenance', load: maintenance },
@@ -29,6 +34,11 @@ const featureManifest = [
     id: 'square-profile-pics',
     condition: () => getFlag('better-ui-square-profile-pics'),
     load: () => addStyles(squareProfilePicsStyles, 'consistent-profile-pics'),
+  },
+  {
+    id: 'reverse-daily-draw',
+    condition: () => getFlag('better-ui-reverse-daily-draw'),
+    load: reverseDailyDraw,
   },
   {
     id: 'legacy-styles',

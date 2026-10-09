@@ -73,12 +73,4 @@ const init = () => {
   };
 };
 
-/**
- * Initialize the module.
- */
-export default {
-  id: 'reverse-daily-draw-order',
-  name: 'Daily Draw: Reverse Order',
-  default: false,
-  load: init,
-};
+export default init;

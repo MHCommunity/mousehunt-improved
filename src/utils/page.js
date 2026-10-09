@@ -90,11 +90,10 @@ const getCurrentDialog = () => {
     MHCheckout: 'premiumShop',
   };
 
-  const overlayType = overlay.classList.value
-    .split(' ')
-    .map((cls) => replaceMap[cls] || cls)
-    .join(' ')
-    .trim();
+  const overlayType = [...overlay.classList]
+    .map((cls) => (cls in replaceMap ? replaceMap[cls] : cls))
+    .filter(Boolean)
+    .join(' ');
 
   return 'Popup' === overlayType ? '' : overlayType;
 };
