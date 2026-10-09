@@ -4,6 +4,7 @@ import settings from './settings';
 
 import qtyButtons from './modules/quantity-buttons';
 import qtyButtonsStyles from './modules/quantity-buttons/styles.css';
+import qtyTotals from './modules/quantity-totals';
 
 import maxOwnedHide from './modules/hide-max-owned/styles.css';
 
@@ -56,6 +57,8 @@ const updateInputField = async () => {
 
       input.addEventListener('keydown', onKeydown);
     }
+
+    qtyTotals(block, input);
 
     if (addQuantityButtons) {
       const container = block.closest('.itemPurchaseView-container');
@@ -154,6 +157,10 @@ const main = () => {
 
   shopQty.forEach((qty) => {
     qty.setAttribute('maxlength', '100');
+
+    // A number input gets the arrows and scroll wheel stepping, and the game reads it on input.
+    qty.type = 'number';
+    qty.min = 0;
   });
 
   const itemStats = document.querySelectorAll('.itemViewStatBlock');

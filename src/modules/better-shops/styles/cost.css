@@ -6,6 +6,7 @@
   padding: 2px;
   padding-right: 5px;
   margin: 0;
+  background-color: inherit;
 }
 
 .itemPurchaseView-action-goldGost {
@@ -104,8 +105,14 @@ a.itemPurchaseView-action-form-button.sell {
   font-size: 11px;
 }
 
+/* Large quantity totals overflow onto the item image, so give the text the row's background. */
 .itemPurchaseView-action-itemCost-table-cell.cost {
   z-index: 1;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 100%;
+  padding-right: 4px;
+  background-color: inherit;
 }
 
 .itemPurchaseView-container.chrome .itemPurchaseView-action-container .itemPurchaseView-action-goldGost {
@@ -132,4 +139,29 @@ a.itemPurchaseView-action-form-button.sell {
 
 .chrome .itemPurchaseView-action-complete-title {
   color: #fff;
+}
+
+.itemPurchaseView-action-goldGost .mh-improved-shop-each {
+  margin-left: 6px;
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+.itemPurchaseView-action-goldGost.mh-improved-shop-not-enough-gold {
+  color: #c33;
+}
+
+.mh-dark .itemPurchaseView-action-goldGost.mh-improved-shop-not-enough-gold,
+.mh-dark-mode .itemPurchaseView-action-goldGost.mh-improved-shop-not-enough-gold {
+  color: #f66060;
+}
+
+.mh-improved-shop-sell-value {
+  padding: 0 5px 4px 20px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.mh-improved-shop-sell-value:empty {
+  display: none;
 }

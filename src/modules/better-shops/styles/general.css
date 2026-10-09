@@ -181,7 +181,7 @@ a.itemPurchaseView-content-skin-link {
   border-bottom: 1px solid #ccc;
 }
 
-.mh-dark .shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
+.mh-dark.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
   border-color: var(--d-border);
 }
 
@@ -534,14 +534,15 @@ a.itemPurchaseView-action-buySuperBrie {
   margin-bottom: 10px;
 }
 
+/* Keep the padding small so two-line labels don't get clipped by the inventory card. */
 .itemViewStatBlock-stat-helper {
-  padding: 10px;
+  padding: 5px 4px;
   font-size: 10px;
   color: #fff;
   text-align: center;
   background: #000;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .itemViewStatBlock-stat-helper-arrow::after {
@@ -586,11 +587,6 @@ a.itemPurchaseView-action-buySuperBrie {
 
 .itemViewPopup .itemViewStatBlock-stat.cheeseEffect {
   order: 5;
-}
-
-.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-stat.empty {
-  display: flex;
-  opacity: 0.6;
 }
 
 .itemViewPopup .itemView-thumbnailContainer a {
