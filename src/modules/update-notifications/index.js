@@ -1,4 +1,6 @@
-import { addStyles, createPopup, deleteSetting, getSetting, onEvent, saveSetting } from '@utils';
+import { addStyles, cacheGetNoExpiration, cacheSetNoExpiration, createPopup, deleteSetting, fetchMouseRip, getSetting, makeElement, onEvent, saveSetting } from '@utils';
+
+import icon from '@images/icons/icon-64.png';
 
 import styles from './styles.css';
 
@@ -201,6 +203,99 @@ const showUpdateSummary = async (from = '0.0.0', force = false, previewFlags = n
 };
 
 /**
+ * Show the update notice in the bottom corner.
+ *
+ * @param {string} version The version that's available.
+ */
+const showUpdateAvailable = (version) => {
+  document.querySelector('.mh-improved-update-available')?.remove();
+
+  const isUserscript = 'userscript' === mhImprovedPlatform;
+
+  const notice = makeElement('div', 'mh-improved-update-available');
+  notice.setAttribute('role', 'status');
+
+  const image = makeElement('img', 'mh-improved-update-available-icon');
+  image.src = icon;
+  image.alt = '';
+  notice.append(image);
+
+  const content = makeElement('div', 'mh-improved-update-available-content');
+  makeElement('div', 'mh-improved-update-available-title', 'MouseHunt Improved update available', content);
+  makeElement(
+    'div',
+    'mh-improved-update-available-text',
+    isUserscript
+      ? `Get version ${version} from <a href="https://greasyfork.org/scripts/465139-mousehunt-improved" target="_blank" rel="noopener noreferrer">Greasy Fork</a>.`
+      : `Restart your browser to get version ${version}.`,
+    content
+  );
+  notice.append(content);
+
+  const dismiss = () => {
+    cacheSetNoExpiration('update-available-dismissed', version);
+    notice.classList.remove('mh-improved-update-available-visible');
+    setTimeout(() => notice.remove(), 300);
+  };
+
+  content.querySelector('a')?.addEventListener('click', dismiss);
+
+  const close = makeElement('button', 'mh-improved-update-available-close', '×');
+  close.type = 'button';
+  close.setAttribute('aria-label', 'Dismiss');
+  close.addEventListener('click', dismiss);
+  notice.append(close);
+
+  document.body.append(notice);
+  requestAnimationFrame(() => requestAnimationFrame(() => notice.classList.add('mh-improved-update-available-visible')));
+};
+
+/**
+ * Get the live store versions, checking at most every six hours.
+ *
+ * @return {Promise<Object|null>} The versions keyed by platform, or null if unavailable.
+ */
+const getStoreVersions = async () => {
+  const cached = await cacheGetNoExpiration('store-versions', null);
+  if (cached?.data && Date.now() - cached.checked < 6 * 60 * 60 * 1000) {
+    return cached.data;
+  }
+
+  const data = await fetchMouseRip('mh-improved/versions');
+  if (!data || typeof data !== 'object') {
+    return cached?.data || null;
+  }
+
+  await cacheSetNoExpiration('store-versions', { checked: Date.now(), data });
+
+  return data;
+};
+
+/**
+ * Let the user know when a newer version has been live in their store for a while.
+ *
+ * Versions come from the stores themselves rather than GitHub, so nothing shows
+ * while a release is still in review. Browsers update extensions on their own,
+ * so we wait 12 hours to only catch the ones that didn't.
+ */
+const checkForUpdate = async () => {
+  const latest = (await getStoreVersions())?.[mhImprovedPlatform];
+  if (!latest?.version || compareVersions(latest.version, mhImprovedVersion) <= 0) {
+    return;
+  }
+
+  if (Date.now() - Date.parse(latest.since) < 12 * 60 * 60 * 1000) {
+    return;
+  }
+
+  if ((await cacheGetNoExpiration('update-available-dismissed', '')) === latest.version) {
+    return;
+  }
+
+  showUpdateAvailable(latest.version);
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
@@ -209,12 +304,7 @@ const init = async () => {
   onEvent('mh-improved-updated', showUpdateSummary);
   onEvent('mh-improved-update-summary', () => showUpdateSummary('0.0.0', true));
 
-  window.mhuiDebug = window.mhuiDebug || {};
-  // Mimic updating from a version, e.g. showUpdateSummary('0.99.15', { flags: [{ flag: 'my-flag', label: 'My option' }] }).
-  // Never reads or changes the saved settings.
-  window.mhuiDebug.showUpdateSummary = (from = '0.0.0', options = {}) => {
-    showUpdateSummary(from, false, Array.isArray(options.flags) ? options.flags : []);
-  };
+  checkForUpdate();
 };
 
 /**
