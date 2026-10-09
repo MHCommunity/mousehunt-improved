@@ -16,7 +16,7 @@ import {
   waitForElement,
 } from '@utils';
 
-import { addAirshipRandomizer } from '../../shared/airship-randomizer';
+import { addAirshipRandomizer, randomizeAirship } from '../../shared/airship-randomizer';
 
 import initSkyMap from './sky-map';
 
@@ -525,6 +525,16 @@ const hud = () => {
 
     setTimeout(() => run(), 2000);
   });
+
+  onRequest(
+    'environment/floating_islands.php',
+    (request, data) => {
+      if (('launch' === data?.action || 'launch_vault' === data?.action) && getSetting('location-huds.fi-airship-randomizer', false)) {
+        randomizeAirship();
+      }
+    },
+    true
+  );
 };
 
 /**

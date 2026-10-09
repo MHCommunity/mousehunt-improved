@@ -22,6 +22,12 @@ export default async () => {
       title: 'Floating Islands: Allow dragging the airship',
     },
     {
+      id: 'location-huds.fi-airship-randomizer',
+      title: 'Floating Islands: Equip a random airship for each island',
+      description: 'Picks a random hull, sail, and balloon when you launch an island or vault.',
+      badge: 'Beta',
+    },
+    {
       id: 'location-huds.school-of-sorcery-clean-chalkboard',
       title: 'School of Sorcery: Clean chalkboard',
     },
