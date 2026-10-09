@@ -207,13 +207,15 @@
   background-color: #f6f3eb;
 }
 
-.mh-dark .mh-improved-favorite-setups-component-picker .prefix,
-.mh-dark .mh-improved-favorite-setups-component-picker .content {
-  background-color: var(--d-surface-panel);
+/* The item cards are panels, so the popup sits on the page surface to keep them distinct. */
+.mh-dark #overlayPopup.mh-improved-favorite-setups-component-picker .jsDialogContainer {
+  --d-popup-bg: var(--d-surface-page);
+  --d-input-bg: var(--d-bg);
 }
 
+/* Leave room for the popup frame and footer so the Continue button stays on screen. */
 .mh-improved-favorite-setups-component-picker .content .content {
-  max-height: 90vh;
+  max-height: calc(100vh - 160px);
   overflow: auto;
 }
 

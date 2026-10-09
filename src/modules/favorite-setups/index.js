@@ -541,6 +541,9 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
   const items = components.filter((item) => item.classification === type);
 
+  // Stats are compared against the component of this type that's armed right now.
+  const armed = items.find((item) => item.item_id === Number(user[`${type}_item_id`]));
+
   let content = '<div class="mh-improved-favorite-setups-component-picker-popup">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-search">';
@@ -556,18 +559,21 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
      * @param {string} stat      The stat to get the row for.
      * @param {string} title     The title of the stat.
      * @param {string} formatted The formatted value of the stat.
-     * @param {number} compare   The value to compare the stat to.
      *
      * @return {string} The stat row markup.
      */
-    const getStatRow = (stat, title, formatted, compare) => {
-      let compareStat = item[stat];
-      if ('cheese_effect' === stat) {
-        compareStat = getCheeseEffect(item);
-        compare = getCheeseEffect(compare);
-      }
+    const getStatRow = (stat, title, formatted) => {
+      let compareClass = '';
+      if (armed && armed.item_id !== item.item_id) {
+        const value = 'cheese_effect' === stat ? getCheeseEffect(item[stat]) : Number(item[stat]);
+        const armedValue = 'cheese_effect' === stat ? getCheeseEffect(armed[stat]) : Number(armed[stat]);
 
-      const compareClass = compare === compareStat ? '' : compare > compareStat ? 'better' : 'worse';
+        if (value > armedValue) {
+          compareClass = 'better';
+        } else if (value < armedValue) {
+          compareClass = 'worse';
+        }
+      }
 
       // The game's stat icon styles use powerBonus rather than the API's power_bonus.
       const statClass = 'power_bonus' === stat ? 'powerBonus' : stat;
@@ -597,11 +603,11 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
     if (item.has_stats) {
       content += '<div class="campPage-trap-itemBrowser-item-statContainer">';
-      content += item.has_power ? getStatRow('power', 'Power', item.power_formatted, user.trap_power) : '';
-      content += item.has_power_bonus ? getStatRow('power_bonus', 'Power Bonus', item.power_bonus_formatted, user.trap_power_bonus) : '';
-      content += item.has_attraction_bonus ? getStatRow('attraction_bonus', 'Attraction Bonus', item.attraction_bonus_formatted, user.trap_attraction_bonus) : '';
-      content += item.has_luck ? getStatRow('luck', 'Luck', item.luck_formatted, user.trap_luck) : '';
-      content += getStatRow('cheese_effect', 'Cheese Effect', item.cheese_effect, user.trap_cheese_effect);
+      content += item.has_power ? getStatRow('power', 'Power', item.power_formatted) : '';
+      content += item.has_power_bonus ? getStatRow('power_bonus', 'Power Bonus', item.power_bonus_formatted) : '';
+      content += item.has_attraction_bonus ? getStatRow('attraction_bonus', 'Attraction Bonus', item.attraction_bonus_formatted) : '';
+      content += item.has_luck ? getStatRow('luck', 'Luck', item.luck_formatted) : '';
+      content += getStatRow('cheese_effect', 'Cheese Effect', item.cheese_effect);
       content += '</div>';
     }
 
