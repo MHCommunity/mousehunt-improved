@@ -1,0 +1,8 @@
+body.mh-max-title-progress-bar .mousehuntHud-userStat.title .mousehuntHud-userStat-maxTitle {
+  display: none;
+}
+
+body.mh-max-title-progress-bar .mousehuntHud-userStat.title .value,
+body.mh-max-title-progress-bar .mousehuntHud-userStat.title .mousehuntHud-titleProgressBar {
+  display: block;
+}
