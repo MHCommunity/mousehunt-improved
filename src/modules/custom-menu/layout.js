@@ -25,6 +25,21 @@ const nativeItems = [
   { id: 'settings', name: 'Settings', selector: '.settings', side: 'right' },
   { id: 'community', name: 'Community', selector: '.community', side: 'right' },
   { id: 'help', name: 'Help', selector: '.support', side: 'right' },
+  { id: 'hunters-online', name: 'Hunters Online', selector: '[data-mh-menu-id="hunters-online"]', side: 'info' },
+  { id: 'friends-online', name: 'Friends Online', selector: '[data-mh-menu-id="friends-online"]', side: 'info' },
+];
+
+/**
+ * The sides an item can be on: the two sides of the menu, and the info bar under it.
+ */
+const sides = ['left', 'right', 'info'];
+
+/**
+ * The game's items in the info bar, which have no classes of their own, so they're found by what they are.
+ */
+const infoItems = [
+  { id: 'hunters-online', match: (el) => 'SPAN' === el.tagName && el.textContent.includes('Hunters Online') },
+  { id: 'friends-online', match: (el) => el.matches('a[href*="friends.php"]') },
 ];
 
 /**
@@ -46,9 +61,10 @@ const getDefaultSide = (id) => nativeItems.find((item) => item.id === id)?.side 
 const isNativeItem = (id) => nativeItems.some((item) => item.id === id);
 
 /**
- * Get the two groups of menu items: the tabs on the left and the dropdown container on the right.
+ * Get the groups of menu items: the tabs on the left, the dropdown container on the right, and the
+ * info bar with Hunters Online.
  *
- * @return {Object} The left and right containers, either of which may be null.
+ * @return {Object} The left, right, and info containers, any of which may be null.
  */
 const getContainers = () => {
   const left = document.querySelector('.mousehuntHeaderView-gameTabs');
@@ -56,8 +72,48 @@ const getContainers = () => {
   return {
     left,
     right: left?.querySelector(':scope > .mousehuntHeaderView-dropdownContainer') || null,
+    info: document.querySelector('.mousehuntHud-gameInfo'),
   };
 };
+
+/**
+ * Mark the game's items in the info bar, so they can be moved like menu items.
+ *
+ * The game only fills them in when the page loads, but if it ever adds them again, the new ones
+ * replace the ones that were moved.
+ *
+ * @param {HTMLElement} info The info bar.
+ *
+ * @return {boolean} Whether any were marked.
+ */
+const markInfoItems = (info) => {
+  let isMarked = false;
+
+  for (const el of info.querySelectorAll(':scope > :not([data-mh-menu-id])')) {
+    const infoItem = infoItems.find((item) => item.match(el));
+    if (!infoItem) {
+      continue;
+    }
+
+    const old = document.querySelector(`.menuItem[data-mh-menu-id="${infoItem.id}"]`);
+    el.dataset.mhMenuId = infoItem.id;
+    el.classList.add('menuItem', ...(old ? [...old.classList] : []));
+    old?.remove();
+    isMarked = true;
+  }
+
+  return isMarked;
+};
+
+/**
+ * Check whether an item can go in the info bar, which only has room for links, not dropdowns or
+ * items with unread counts, like Inbox and Gifts.
+ *
+ * @param {HTMLElement} el The menu item.
+ *
+ * @return {boolean} Whether it can.
+ */
+const canBeInInfo = (el) => !el.matches('.inbox, .freeGifts') && !el.querySelector('.dropdownContent');
 
 /**
  * Get the id for a menu item.
@@ -94,13 +150,16 @@ const getGroupItems = (container) => {
     return [];
   }
 
-  return [...container.querySelectorAll(':scope > .menuItem')].map((el) => ({ el, id: getItemId(el) })).filter((item) => item.id);
+  // The MH Improved icon is put in the info bar while the menu is hidden, like in the tutorial, but it isn't one of its items.
+  const isInfo = container.classList.contains('mousehuntHud-gameInfo');
+
+  return [...container.querySelectorAll(':scope > .menuItem')].map((el) => ({ el, id: getItemId(el) })).filter((item) => item.id && !(isInfo && lockedItems.has(item.id)));
 };
 
 /**
  * Get the saved layout, falling back to the defaults.
  *
- * @return {Object} The layout, with `left` and `right` orders, the `hidden` ids, the added `links`,
+ * @return {Object} The layout, with `left`, `right`, and `info` orders, the `hidden` ids, the added `links`,
  *                  the display `styles` for each item, and each item's other `options`.
  */
 const getLayout = () => {
@@ -109,6 +168,7 @@ const getLayout = () => {
   return {
     left: Array.isArray(saved?.left) ? saved.left : [],
     right: Array.isArray(saved?.right) ? saved.right : [],
+    info: Array.isArray(saved?.info) ? saved.info : [],
     hidden: getHiddenMenuItems(saved),
     links: Array.isArray(saved?.links) ? saved.links : [],
     styles: saved?.styles && 'object' === typeof saved.styles ? saved.styles : {},
@@ -207,7 +267,7 @@ const applyOrder = (container, order) => {
 const getItemSelector = (id) => {
   const native = nativeItems.find((item) => item.id === id);
 
-  return native ? `.mousehuntHeaderView-gameTabs .menuItem${native.selector}` : `.mousehuntHeaderView-gameTabs .menuItem[data-mh-menu-id="${CSS.escape(id)}"]`;
+  return `:is(.mousehuntHeaderView-gameTabs, .mousehuntHud-gameInfo) .menuItem${native ? native.selector : `[data-mh-menu-id="${CSS.escape(id)}"]`}`;
 };
 
 /**
@@ -246,51 +306,70 @@ const updateEndItems = (container) => {
 };
 
 /**
+ * Put an item at the end of a container, before the MH Improved icon on the right.
+ *
+ * @param {HTMLElement} container The container.
+ * @param {HTMLElement} el        The item.
+ */
+const addToContainer = (container, el) => {
+  container.insertBefore(el, container.querySelector(':scope > #mousehunt-improved-icon-menu'));
+};
+
+/**
+ * Get the side an item has been put on.
+ *
+ * @param {Object} layout The layout.
+ * @param {string} id     The item id.
+ *
+ * @return {string|null} The side, or null if it hasn't been put anywhere.
+ */
+const getSavedSide = (layout, id) => sides.find((side) => layout[side].includes(id)) || null;
+
+/**
  * Add the links that have been added to the menu, put them on the right side, and remove the
  * ones that have been taken out.
  *
- * @param {Object}      layout The layout.
- * @param {HTMLElement} left   The left container.
- * @param {HTMLElement} right  The right container.
+ * @param {Object} layout     The layout.
+ * @param {Object} containers The containers.
  */
-const updateLinks = (layout, left, right) => {
+const updateLinks = (layout, containers) => {
   const linkIds = new Set(layout.links.map((link) => link.id));
-  left.querySelectorAll('.mhui-custom-menu-link').forEach((el) => {
+  const linkEls = sides.flatMap((side) => (containers[side] ? [...containers[side].querySelectorAll(':scope > .mhui-custom-menu-link')] : []));
+
+  linkEls.forEach((el) => {
     if (!linkIds.has(el.dataset.mhMenuId)) {
       el.remove();
     }
   });
 
   for (const link of layout.links) {
-    const container = layout.left.includes(link.id) ? left : right;
+    const container = containers[getSavedSide(layout, link.id) || 'right'];
     if (!container) {
       continue;
     }
 
-    const el = left.querySelector(`.mhui-custom-menu-link[data-mh-menu-id="${CSS.escape(link.id)}"]`) || makeLinkElement(link);
+    const el = linkEls.find((linkEl) => linkEl.dataset.mhMenuId === link.id) || makeLinkElement(link);
     if (el.parentElement !== container) {
-      container.insertBefore(el, container === right ? container.querySelector(':scope > #mousehunt-improved-icon-menu') : null);
+      addToContainer(container, el);
     }
   }
 };
 
 /**
- * Move items that have been put on the other side of the menu into that side's container.
+ * Move items that have been put on another side, or in the info bar, into that side's container.
  *
- * @param {Object}      layout The layout.
- * @param {HTMLElement} left   The left container.
- * @param {HTMLElement} right  The right container.
+ * @param {Object} layout     The layout.
+ * @param {Object} containers The containers.
  */
-const moveItemsToSides = (layout, left, right) => {
-  for (const { el, id } of getGroupItems(right)) {
-    if (layout.left.includes(id) && !lockedItems.has(id)) {
-      left.append(el);
-    }
-  }
+const moveItemsToSides = (layout, containers) => {
+  for (const side of sides) {
+    for (const { el, id } of getGroupItems(containers[side])) {
+      const target = getSavedSide(layout, id);
+      if (!target || target === side || !containers[target] || lockedItems.has(id) || ('info' === target && !canBeInInfo(el))) {
+        continue;
+      }
 
-  for (const { el, id } of getGroupItems(left)) {
-    if (layout.right.includes(id)) {
-      right.insertBefore(el, right.querySelector(':scope > #mousehunt-improved-icon-menu'));
+      addToContainer(containers[target], el);
     }
   }
 };
@@ -405,27 +484,58 @@ const applyStyles = (container, styles) => {
  * @param {Object} layout The layout, defaults to the saved one.
  */
 const applyLayout = (layout = getLayout()) => {
-  const { left, right } = getContainers();
+  const containers = getContainers();
+  const { left, info } = containers;
   if (!left) {
     return;
   }
 
+  if (info) {
+    markInfoItems(info);
+  }
+
   updateHiddenStyles(layout.hidden);
-  updateLinks(layout, left, right);
-  moveItemsToSides(layout, left, right);
-  applyOrder(left, layout.left);
-  applyOrder(right, layout.right);
-  applyStyles(left, layout.styles);
-  applyStyles(right, layout.styles);
+  updateLinks(layout, containers);
+  moveItemsToSides(layout, containers);
+
+  for (const side of sides) {
+    applyOrder(containers[side], layout[side]);
+    applyStyles(containers[side], layout.styles);
+  }
+
+  const allItems = sides.flatMap((side) => getGroupItems(containers[side]));
+
+  // Items in the info bar are shown as links rather than tabs.
+  for (const { el } of allItems) {
+    el.classList.toggle('mhui-menu-info-item', el.parentElement === info);
+  }
 
   // The SUPER|brie+ label is bare text, so it needs a span to be hidden.
-  const superBrie = [...getGroupItems(left), ...getGroupItems(right)].find((item) => 'super-brie' === item.id);
+  const superBrie = allItems.find((item) => 'super-brie' === item.id);
   if (superBrie) {
     wrapOwnText(superBrie.el);
   }
 
-  applyItemOptions([...getGroupItems(left), ...getGroupItems(right)], layout);
+  applyItemOptions(allItems, layout);
   updateEndItems(left);
+
+  // With everything taken out of the info bar, its background goes too.
+  info?.classList.toggle('mhui-menu-info-empty', ![...info.children].some((el) => 'none' !== getComputedStyle(el).display));
 };
 
-export { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, isNativeItem, lockedItems, saveLayout };
+export {
+  applyLayout,
+  canBeInInfo,
+  getContainers,
+  getDefaultOrder,
+  getDefaultSide,
+  getGroupItems,
+  getItemName,
+  getLayout,
+  getStyleInfo,
+  isNativeItem,
+  lockedItems,
+  markInfoItems,
+  saveLayout,
+  sides,
+};

@@ -1,16 +1,33 @@
 import { createPopup, defaultHiddenMenuItems, getSetting, groupItemOptions, make, makeElement, makeMhButton, saveSetting } from '@utils';
 import { makeItemPicker } from '../../utils/settings-item-picker';
 
-import { applyLayout, getContainers, getDefaultOrder, getDefaultSide, getGroupItems, getItemName, getLayout, getStyleInfo, isNativeItem, lockedItems, saveLayout } from './layout';
+import {
+  applyLayout,
+  canBeInInfo,
+  getContainers,
+  getDefaultOrder,
+  getDefaultSide,
+  getGroupItems,
+  getItemName,
+  getLayout,
+  getStyleInfo,
+  isNativeItem,
+  lockedItems,
+  saveLayout,
+} from './layout';
 import { getItemOptions, getOptionValue, setOptionValue } from './item-options';
 import { enableModuleItem, getPendingModuleItems, getUnavailableModuleItems, plainLinkIds } from './module-items';
 import { getAvailableLinks, getMenus } from './menu-links';
-import { getPinnableItems, getPins, loadRecipes, makePinId, savePins } from '@/quick-items-menu/pins';
+import { getPinnableItems, getPins, loadRecipes, makePinId, refreshPins, savePins } from '@/quick-items-menu/pins';
 
 const groups = [
   { id: 'left', name: 'Left side' },
   { id: 'right', name: 'Right side' },
+  { id: 'info', name: 'Info bar' },
 ];
+
+// The two sides of the menu bar, without the info bar.
+const menuGroups = groups.filter((group) => 'info' !== group.id);
 
 const styleOptions = [
   { id: 'icon', name: 'Icon' },
@@ -57,7 +74,7 @@ const mergeOrder = (newOrder, oldOrder) => {
 const getItemCopy = (el) => {
   const copy = el.cloneNode(true);
   copy.querySelectorAll('.dropdownContent, .mousehuntHeaderView-menu-notification').forEach((child) => child.remove());
-  copy.classList.remove('expanded', 'first', 'last');
+  copy.classList.remove('expanded', 'first', 'last', 'mhui-menu-info-item');
 
   for (const node of [copy, ...copy.querySelectorAll('*')]) {
     for (const name of node.getAttributeNames()) {
@@ -155,15 +172,16 @@ const getEditorItems = (layout) => {
           style,
           options,
           hasOptions: Boolean(style || pin) || options.length > 0,
+          canBeInInfo: canBeInInfo(el),
         };
       })
       .sort((a, b) => Number(lockedItems.has(a.id)) - Number(lockedItems.has(b.id)));
   }
 
   // Items from modules that were just turned on take their spot, even though they won't be on the page until it's refreshed.
-  const pageIds = new Set([...items.left, ...items.right].map((item) => item.id));
+  const pageIds = new Set(groups.flatMap((group) => items[group.id]).map((item) => item.id));
   for (const moduleItem of pending.filter((item) => !pageIds.has(item.id) && !item.link)) {
-    const group = layout.left.includes(moduleItem.id) ? 'left' : 'right';
+    const group = groups.find((g) => layout[g.id].includes(moduleItem.id))?.id || 'right';
     const order = layout[group];
     const after = order.slice(order.indexOf(moduleItem.id) + 1);
     const before = order.includes(moduleItem.id) ? items[group].find((item) => after.includes(item.id)) : null;
@@ -231,6 +249,11 @@ const makeChip = (item, isHidden = false) => {
   // Taking a pin out of the menu removes it, like a link.
   if (item.pin) {
     chip.dataset.pin = 'true';
+  }
+
+  // Dropdowns don't fit in the info bar.
+  if (!item.canBeInInfo) {
+    chip.dataset.noInfo = 'true';
   }
 
   // Icon-only items get their name over them, so it's clear what they are.
@@ -349,10 +372,46 @@ const canDrop = (chip, zone) => {
     return !chip.classList.contains('locked');
   }
 
+  // The info bar only has room for links, and items from modules that are off or waiting for a
+  // refresh might be dropdowns.
+  if ('info' === zone.dataset.zone) {
+    const { needsModule, noInfo, pin, template } = chip.dataset;
+    return !chip.classList.contains('locked') && !chip.classList.contains('mhui-menu-editor-pending-item') && !needsModule && !noInfo && !pin && !template;
+  }
+
   return true;
 };
 
+/**
+ * Check whether a chip can be moved with the move buttons. Items from modules that are off are
+ * added with their own button, once the module is turned on.
+ *
+ * @param {HTMLElement} chip The chip.
+ *
+ * @return {boolean} Whether it can.
+ */
+const canMove = (chip) => !chip.classList.contains('locked') && 'true' !== chip.dataset.needsModule;
+
 const moveDuration = 160;
+
+/**
+ * Check whether the editor should be used by tapping rather than dragging, like on a phone.
+ *
+ * The game doesn't set a mobile viewport, so phones lay the page out at full width, and a touch
+ * screen is the better sign.
+ *
+ * @return {boolean} Whether it should.
+ */
+const isTapLayout = () => window.matchMedia('(pointer: coarse), (max-width: 700px)').matches;
+
+/**
+ * Check whether a chip can be selected, to change its options or, without dragging, to move it.
+ *
+ * @param {HTMLElement} chip The chip.
+ *
+ * @return {boolean} Whether it can.
+ */
+const isSelectable = (chip) => chip.classList.contains('has-options') || (isTapLayout() && canMove(chip));
 
 // Refreshes the open editor, if there is one.
 let refreshEditor = null;
@@ -461,8 +520,9 @@ const openMenuEditor = () => {
   // Shown until it's dismissed.
   if (!getSetting('custom-menu.seen-tip', false)) {
     const help = make('div', 'mhui-menu-editor-help', '', editor);
-    make('p', 'mhui-menu-editor-help-text', '', help).textContent =
-      'Drag items to move them, or drop them below to take them out of the menu. Click an item to change its options. Changes are automatically saved.';
+    make('p', 'mhui-menu-editor-help-text', '', help).textContent = isTapLayout()
+      ? 'Tap an item to move it, take it out of the menu, or change its options. Changes are automatically saved.'
+      : 'Drag items to move them, or drop them below to take them out of the menu. Click an item to change its options. Changes are automatically saved.';
     makeMhButton({
       text: 'Got it',
       size: 'small',
@@ -478,20 +538,59 @@ const openMenuEditor = () => {
   const zones = {};
   // One bar like the real menu, with the left side's items on the left and the right side's on the right.
   const menubar = make('div', ['mhui-menu-editor-section', 'mhui-menu-editor-menubar'], '', editor);
-  for (const group of groups) {
+  for (const group of menuGroups) {
     zones[group.id] = make('div', ['mhui-menu-editor-zone', 'mhui-menu-editor-bar'], '', menubar);
     zones[group.id].dataset.zone = group.id;
     zones[group.id].setAttribute('aria-label', group.name);
   }
+
+  // The info bar under the menu, with Hunters Online, where items are links rather than tabs.
+  const infobar = make('div', ['mhui-menu-editor-section', 'mhui-menu-editor-infobar'], '', editor);
+  make('span', 'mhui-menu-editor-infobar-label', 'Info bar', infobar);
+  zones.info = make('div', ['mhui-menu-editor-zone', 'mhui-menu-editor-info'], '', infobar);
+  zones.info.dataset.zone = 'info';
+  zones.info.setAttribute('aria-label', 'Info bar');
+
+  /**
+   * Split the bar into a bar for each side when they don't fit on one line, rather than wrapping
+   * items from one side under the other.
+   */
+  const updateMenubarSplit = () => {
+    menubar.classList.remove('is-split');
+
+    // Measured with both sides sharing the bar, where an item on a lower line means it didn't fit.
+    const chips = menuGroups.flatMap((group) => [...zones[group.id].children]);
+    const top = Math.min(...chips.map((chip) => chip.getBoundingClientRect().top));
+    menubar.classList.toggle(
+      'is-split',
+      chips.some((chip) => chip.getBoundingClientRect().top > top + 1)
+    );
+  };
 
   // Opens under the selected item.
   const optionsPanel = make('div', 'mhui-menu-editor-options', '', editor);
   optionsPanel.hidden = true;
 
   // The hidden items and the links that can be added share one list, with the hidden items first.
-  const availableSection = make('div', 'mhui-menu-editor-section', '', editor);
+  const availableSection = make('div', ['mhui-menu-editor-section', 'mhui-menu-editor-available-section'], '', editor);
   zones.available = make('div', ['mhui-menu-editor-zone', 'mhui-menu-editor-available'], '', availableSection);
   zones.available.dataset.zone = 'available';
+
+  // The same as dragging Pinned items into the menu, for when it's hard to find in the list.
+  makeMhButton({
+    text: 'Pin item',
+    size: '',
+    className: 'mhui-menu-editor-pin-new',
+    appendTo: availableSection,
+    callback: (event) => {
+      event.preventDefault();
+
+      const chip = makeTabChip({ id: 'pinned-items', label: 'Pinned items', icon: pinTemplateIcon });
+      chip.dataset.template = 'pin';
+      zones.right.insertBefore(chip, zones.right.querySelector(':scope > .locked'));
+      commit(null, chip.dataset.id);
+    },
+  });
 
   // The hidden items: the game's go under Default, and MH Improved's under Other, along with the items
   // from modules that are off, which can be turned on from here.
@@ -556,19 +655,28 @@ const openMenuEditor = () => {
     const item = Object.values(items)
       .flat()
       .find((i) => i.id === selectedId && i.hasOptions);
-    const chip = item ? [...editor.querySelectorAll('.mhui-menu-editor-item.has-options:not(.mhui-menu-editor-available-item)')].find(isSelectedChip) : null;
+    const optionsChip = item ? [...editor.querySelectorAll('.mhui-menu-editor-item.has-options:not(.mhui-menu-editor-available-item)')].find(isSelectedChip) : null;
 
+    // Without dragging, every item that can move gets buttons to move it.
+    const movableChip = isTapLayout() ? [...editor.querySelectorAll('.mhui-menu-editor-item')].find((el) => isSelectedChip(el) && canMove(el)) : null;
+
+    const chip = optionsChip || movableChip;
     optionsPanel.hidden = !chip;
     if (!chip) {
       return;
     }
 
-    if (item.moduleItem) {
+    if (optionsChip && item.moduleItem) {
       renderModuleOptions(item, chip);
-    } else if (item.pin) {
+    } else if (optionsChip && item.pin) {
       renderPinOptions(item, shownItems);
-    } else {
+    } else if (optionsChip) {
       renderItemOptions(item);
+    }
+
+    // Just before how it's shown, after a pin's items, or after the rest when there's no choice.
+    if (movableChip) {
+      optionsPanel.insertBefore(renderMoveOptions(movableChip), optionsPanel.querySelector(':scope > .mhui-menu-editor-style-row'));
     }
 
     // Center it under the item, keeping it inside the editor.
@@ -579,6 +687,162 @@ const openMenuEditor = () => {
 
     optionsPanel.style.left = `${Math.max(0, left)}px`;
     optionsPanel.style.top = `${chipRect.bottom - editorRect.top + 6}px`;
+  };
+
+  /**
+   * Check whether a chip is in the menu, rather than in the list below it.
+   *
+   * @param {HTMLElement} chip The chip.
+   *
+   * @return {boolean} Whether it is.
+   */
+  const isInMenu = (chip) => groups.some((group) => chip.parentElement === zones[group.id]);
+
+  /**
+   * Get where a chip would go if it moved a spot to the left or right, crossing to the other side of
+   * the menu at the ends. Items in the info bar stay in it.
+   *
+   * @param {HTMLElement} chip      The chip.
+   * @param {string}      direction 'left' or 'right'.
+   *
+   * @return {Function|null} Moves it there, or null if it's already as far as it goes.
+   */
+  const getStep = (chip, direction) => {
+    const zone = chip.parentElement;
+
+    if ('left' === direction) {
+      const prev = chip.previousElementSibling;
+      if (prev) {
+        return () => zone.insertBefore(chip, prev);
+      }
+
+      return zone === zones.right ? () => zones.left.insertBefore(chip, zones.left.querySelector(':scope > .locked')) : null;
+    }
+
+    const next = chip.nextElementSibling;
+    if (next && !next.classList.contains('locked')) {
+      return () => zone.insertBefore(chip, next.nextElementSibling);
+    }
+
+    return zone === zones.left ? () => zones.right.prepend(chip) : null;
+  };
+
+  /**
+   * Move a chip, the same way dragging it would.
+   *
+   * @param {HTMLElement} chip   The chip.
+   * @param {string}      action 'left' or 'right' to move it a spot, 'out' to take it out of the menu, 'in' to add it,
+   *                             or 'to-info' or 'to-menu' to move it between the menu and the info bar.
+   *
+   * @return {Object|null} Whether it was added to the menu, or null if it didn't move.
+   */
+  const moveChip = (chip, action) => {
+    if (!canMove(chip)) {
+      return null;
+    }
+
+    if ('in' === action) {
+      if (isInMenu(chip)) {
+        return null;
+      }
+
+      // Hidden items go back on their own side, and links where they'd go by default.
+      const zone = isInHiddenList(chip) && zones[chip.dataset.group] ? zones[chip.dataset.group] : zones.right;
+      zone.insertBefore(chip, zone.querySelector(':scope > .locked'));
+      return { isAdded: true };
+    }
+
+    if (!isInMenu(chip)) {
+      return null;
+    }
+
+    if ('to-info' === action || 'to-menu' === action) {
+      const zone = 'to-info' === action ? zones.info : zones.right;
+      if (chip.parentElement === zone || !canDrop(chip, zone)) {
+        return null;
+      }
+
+      zone.insertBefore(chip, zone.querySelector(':scope > .locked'));
+      return { isAdded: false };
+    }
+
+    if ('out' === action) {
+      // Links and pins are removed, and the rest are hidden.
+      if (chip.dataset.link || chip.dataset.pin) {
+        chip.remove();
+      } else {
+        getHiddenList(chip.dataset.id).append(chip);
+      }
+
+      return { isAdded: false };
+    }
+
+    const step = getStep(chip, action);
+    if (!step) {
+      return null;
+    }
+
+    step();
+    return { isAdded: false };
+  };
+
+  /**
+   * Move a chip and save it, keeping it selected so it can keep moving.
+   *
+   * @param {HTMLElement} chip   The chip.
+   * @param {string}      action The move, as for moveChip().
+   */
+  const moveAndCommit = (chip, action) => {
+    const moved = moveChip(chip, action);
+    if (moved) {
+      commit(chip.isConnected ? chip.dataset.id : null, moved.isAdded ? chip.dataset.id : null);
+    }
+  };
+
+  /**
+   * Show buttons to move the selected item, for when it can't be dragged.
+   *
+   * @param {HTMLElement} chip The item's chip.
+   *
+   * @return {HTMLElement} The row.
+   */
+  const renderMoveOptions = (chip) => {
+    const row = make('div', ['mhui-menu-editor-options-row', 'mhui-menu-editor-move-row'], '', optionsPanel);
+    const choices = make('div', 'mhui-menu-editor-style-choices', '', row);
+
+    /**
+     * Add a move button.
+     *
+     * @param {string}  text     The button text.
+     * @param {string}  label    The accessible name.
+     * @param {string}  action   The move.
+     * @param {boolean} disabled Whether it can't move that way.
+     */
+    const addButton = (text, label, action, disabled = false) => {
+      const button = make('button', ['mhui-menu-editor-style-option', 'mhui-menu-editor-move'], text, choices);
+      button.type = 'button';
+      button.disabled = disabled;
+      button.setAttribute('aria-label', label);
+      button.addEventListener('click', () => moveAndCommit(chip, action));
+    };
+
+    if (!isInMenu(chip)) {
+      addButton('Add to menu', 'Add to menu', 'in');
+      return row;
+    }
+
+    const removeLabel = chip.dataset.link || chip.dataset.pin ? 'Remove' : 'Hide';
+    addButton('←', 'Move left', 'left', !getStep(chip, 'left'));
+    addButton(removeLabel, removeLabel, 'out');
+    addButton('→', 'Move right', 'right', !getStep(chip, 'right'));
+
+    if (chip.parentElement === zones.info) {
+      addButton('To menu', 'Move to the menu', 'to-menu');
+    } else if (canDrop(chip, zones.info)) {
+      addButton('To info bar', 'Move to the info bar', 'to-info');
+    }
+
+    return row;
   };
 
   /**
@@ -666,7 +930,24 @@ const openMenuEditor = () => {
     }
 
     const itemsRow = make('div', ['mhui-menu-editor-options-row', 'mhui-menu-editor-pin-row'], '', optionsPanel);
-    make('span', 'mhui-menu-editor-options-label', '', itemsRow).textContent = 'Items';
+    const itemsHeader = make('div', 'mhui-menu-editor-pin-header', '', itemsRow);
+    make('span', 'mhui-menu-editor-options-label', '', itemsHeader).textContent = 'Items';
+
+    // Items can arrive without the menu hearing about it, like supplies sent by a friend.
+    const refresh = make('button', 'mhui-menu-editor-pin-refresh', '', itemsHeader);
+    refresh.type = 'button';
+    refresh.title = 'Refresh quantities';
+    refresh.setAttribute('aria-label', 'Refresh quantities');
+    refresh.addEventListener('click', async () => {
+      if (refresh.classList.contains('loading')) {
+        return;
+      }
+
+      refresh.classList.add('loading');
+      await refreshPins();
+      refresh.classList.remove('loading');
+      render();
+    });
 
     // The items load in the background, so keep showing the ones from before until they're ready,
     // rather than emptying the list and filling it back up.
@@ -771,7 +1052,9 @@ const openMenuEditor = () => {
     const layout = getLayout();
 
     if (item.style) {
-      const choices = make('div', 'mhui-menu-editor-style-choices', '', makeRow('Show:'));
+      const styleRow = makeRow('Show:');
+      styleRow.classList.add('mhui-menu-editor-style-row');
+      const choices = make('div', 'mhui-menu-editor-style-choices', '', styleRow);
       choices.setAttribute('role', 'group');
 
       for (const option of styleOptions) {
@@ -801,6 +1084,14 @@ const openMenuEditor = () => {
        */
       const flip = () => {
         setOptionValue(layout, item.id, option, !isOn);
+
+        // Turning on an option that takes the same spot turns off the one that was there.
+        if (!isOn) {
+          for (const other of item.options.filter((o) => option.excludes?.includes(o.key))) {
+            setOptionValue(layout, item.id, other, false);
+          }
+        }
+
         saveAndRender(layout);
       };
 
@@ -820,7 +1111,7 @@ const openMenuEditor = () => {
    * @param {HTMLElement} chip The item's chip.
    */
   const select = (chip) => {
-    if (!chip.classList.contains('has-options')) {
+    if (!isSelectable(chip)) {
       return;
     }
 
@@ -830,7 +1121,7 @@ const openMenuEditor = () => {
     }
 
     selectedId = chip.dataset.id;
-    editor.querySelectorAll('.mhui-menu-editor-item').forEach((el) => el.classList.toggle('selected', isSelectedChip(el)));
+    editor.querySelectorAll('.mhui-menu-editor-item').forEach((el) => el.classList.toggle('selected', isSelectedChip(el) && isSelectable(el)));
     renderOptions();
   };
 
@@ -893,7 +1184,12 @@ const openMenuEditor = () => {
     pinTemplate.title = 'Drag into the menu, then pick what to pin';
     hiddenLists.mhui.append(pinTemplate);
 
-    renderedPinIds = new Set([...items.left, ...items.right].filter((item) => item.pin).map((item) => item.id));
+    renderedPinIds = new Set(
+      groups
+        .flatMap((group) => items[group.id])
+        .filter((item) => item.pin)
+        .map((item) => item.id)
+    );
 
     // The game's own hidden items, and the empty list that's ready for them when there aren't any.
     zones.available.replaceChildren();
@@ -929,8 +1225,10 @@ const openMenuEditor = () => {
     addLinkGroup('MH Improved', chips.mhui, hiddenLists.mhui);
     addLinkGroup('MouseHunt', chips.game);
 
-    editor.querySelectorAll('.mhui-menu-editor-item').forEach((chip) => chip.classList.toggle('selected', isSelectedChip(chip) && chip.classList.contains('has-options')));
+    editor.querySelectorAll('.mhui-menu-editor-item').forEach((chip) => chip.classList.toggle('selected', isSelectedChip(chip) && isSelectable(chip)));
     renderOptions();
+
+    updateMenubarSplit();
 
     if (focusId) {
       editor.querySelector(`.mhui-menu-editor-item[data-id="${CSS.escape(focusId)}"]`)?.focus();
@@ -987,7 +1285,7 @@ const openMenuEditor = () => {
       });
     }
 
-    const shown = { left: getZoneIds('left'), right: getZoneIds('right') };
+    const shown = Object.fromEntries(groups.map((group) => [group.id, getZoneIds(group.id)]));
     const hiddenIds = getZoneIds('hidden');
 
     // Links dragged in from below carry their details with them.
@@ -1006,7 +1304,7 @@ const openMenuEditor = () => {
       });
     }
 
-    const barIds = new Set([...shown.left, ...shown.right]);
+    const barIds = new Set(Object.values(shown).flat());
     const removedLinks = new Set([...links.keys()].filter((id) => !barIds.has(id)));
 
     // Pins taken out of the menu are removed, and new ones start out empty, ready to pick what to pin.
@@ -1025,7 +1323,7 @@ const openMenuEditor = () => {
     };
 
     for (const group of groups) {
-      const other = 'left' === group.id ? shown.right : shown.left;
+      const other = groups.filter((g) => g.id !== group.id).flatMap((g) => shown[g.id]);
 
       // Hidden items, and items that aren't on the page right now, keep the spot they had.
       const pageOrder = mergeOrder(
@@ -1055,7 +1353,7 @@ const openMenuEditor = () => {
     const layout = { hidden: defaultHiddenMenuItems, links: [], styles: {}, options: {} };
 
     // Put everything back on the side it started on, in its starting order.
-    const allItems = [...getGroupItems(containers.left), ...getGroupItems(containers.right)].filter((item) => !item.el.classList.contains('mhui-custom-menu-link'));
+    const allItems = groups.flatMap((group) => getGroupItems(containers[group.id])).filter((item) => !item.el.classList.contains('mhui-custom-menu-link'));
     for (const group of groups) {
       layout[group.id] = getDefaultOrder(allItems.filter((item) => getDefaultSide(item.id) === group.id));
     }
@@ -1294,12 +1592,8 @@ const openMenuEditor = () => {
       return;
     }
 
-    const zone = chip.parentElement;
-    const prev = chip.previousElementSibling;
-    const next = chip.nextElementSibling;
     const isAvailable = Boolean(chip.dataset.linkData || chip.dataset.template) && zones.available.contains(chip);
-    let changed = false;
-    let isAdded = false;
+    let action = null;
 
     if ('true' === chip.dataset.needsModule) {
       if (['Enter', ' '].includes(event.key)) {
@@ -1309,34 +1603,23 @@ const openMenuEditor = () => {
     } else if (isAvailable) {
       // Add it to the end of the right side.
       if (['Enter', ' '].includes(event.key)) {
-        zones.right.insertBefore(chip, zones.right.querySelector(':scope > .locked'));
-        changed = true;
-        isAdded = true;
+        action = 'in';
       }
-    } else if ('ArrowLeft' === event.key && prev && !prev.classList.contains('locked')) {
-      zone.insertBefore(chip, prev);
-      changed = true;
-    } else if ('ArrowRight' === event.key && next && !next.classList.contains('locked')) {
-      zone.insertBefore(chip, next.nextElementSibling);
-      changed = true;
+    } else if ('ArrowLeft' === event.key) {
+      action = 'left';
+    } else if ('ArrowRight' === event.key) {
+      action = 'right';
     } else if (['Delete', 'Backspace'].includes(event.key)) {
-      if (chip.dataset.link || chip.dataset.pin) {
-        chip.remove();
-      } else {
-        isAdded = isInHiddenList(chip);
-        const target = isAdded ? zones[chip.dataset.group] : getHiddenList(chip.dataset.id);
-        target.insertBefore(chip, target.querySelector(':scope > .locked'));
-      }
-
-      changed = true;
+      // Hidden items go back in the menu.
+      action = isInMenu(chip) ? 'out' : 'in';
     } else if (['Enter', ' '].includes(event.key)) {
       select(chip);
       event.preventDefault();
     }
 
-    if (changed) {
+    if (action) {
       event.preventDefault();
-      commit(chip.isConnected ? chip.dataset.id : null, isAdded ? chip.dataset.id : null);
+      moveAndCommit(chip, action);
     }
   });
 

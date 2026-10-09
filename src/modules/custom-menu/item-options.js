@@ -1,6 +1,6 @@
 import { getSetting, isModuleEnabled, saveSetting } from '@utils';
 
-import { getPins, pinOptions } from '@/quick-items-menu/pins';
+import { auras, getPins, pinOptions } from '@/quick-items-menu/pins';
 
 /**
  * Extra options for specific menu items.
@@ -34,9 +34,11 @@ const itemOptions = {
  * @return {Array} The options.
  */
 const getItemOptions = (id) => {
-  const options = itemOptions[id] || (getPins().some((pin) => pin.id === id) ? pinOptions : []);
+  const pin = getPins().find((p) => p.id === id);
+  const hasAura = Boolean(pin?.items.some((type) => auras[type]));
+  const options = itemOptions[id] || (pin ? pinOptions : []);
 
-  return options.filter((option) => !option.module || isModuleEnabled(option.module));
+  return options.filter((option) => (!option.module || isModuleEnabled(option.module)) && (!option.aura || hasAura));
 };
 
 /**

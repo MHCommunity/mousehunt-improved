@@ -30,18 +30,6 @@ const mhctRedirectUrl = (id, { item = false } = {}) => {
 };
 
 /**
- * Build the MHCT (Attraction Rate) + Wiki link markup for a mouse.
- *
- * @param {string}        name The mouse name.
- * @param {string|number} id   The mouse type / id.
- *
- * @return {string} The link markup.
- */
-const getMouseLinks = (name, id) => {
-  return makeLink('MHCT AR', mhctRedirectUrl(id)) + makeLink('Wiki', wikiUrl(name), true);
-};
-
-/**
  * Build the MHCT + Wiki link markup for an item.
  *
  * @param {string}        name The item name.
@@ -461,6 +449,7 @@ const defaultHiddenMenuItems = [
   'mousehunt-improved-location-huds',
   'mousehunt-improved-adventure-book',
   'mousehunt-improved-dark-mode-toggle',
+  'mousehunt-improved-hud-toggle',
 ];
 
 /**
@@ -478,7 +467,7 @@ const getHiddenMenuItems = (saved) => {
     return defaultHiddenMenuItems;
   }
 
-  const known = new Set([...saved.hidden, ...(saved.left || []), ...(saved.right || [])]);
+  const known = new Set([...saved.hidden, ...(saved.left || []), ...(saved.right || []), ...(saved.info || [])]);
 
   return [...saved.hidden, ...defaultHiddenMenuItems.filter((id) => !known.has(id))];
 };
@@ -562,7 +551,6 @@ const getExtensionLinkText = () => {
 export {
   wikiUrl,
   mhctRedirectUrl,
-  getMouseLinks,
   getItemLinks,
   addItemToGameInfoBar,
   addSubmenuItem,

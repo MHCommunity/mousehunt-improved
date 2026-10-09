@@ -34,7 +34,7 @@ const getIconSettings = async () => {
     classname: 'mousehunt-improved-location-huds-icon',
     title: 'Location HUD toggle',
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/travel.png',
-    text: value ? 'Disable HUD' : 'Enable HUD',
+    text: value ? 'Disable HUD Changes' : 'Enable HUD Changes',
     position: 'prepend',
 
     /**
@@ -48,11 +48,11 @@ const getIconSettings = async () => {
       saveSetting(key, !value);
 
       if (value) {
-        icon.textContent = 'Enable HUD';
+        icon.textContent = 'Enable HUD Changes';
         icon.classList.add('disabled');
         icon.classList.remove('enabled');
       } else {
-        icon.textContent = 'Disable HUD';
+        icon.textContent = 'Disable HUD Changes';
         icon.classList.remove('disabled');
         icon.classList.add('enabled');
       }

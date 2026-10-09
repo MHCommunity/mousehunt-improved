@@ -2,7 +2,8 @@ import { addStyles, onEvent } from '@utils';
 
 import addAdventureBook from './adventure-book';
 import addDarkModeToggle from './dark-mode-toggle';
-import { applyLayout } from './layout';
+import addHudToggle from './hud-toggle';
+import { applyLayout, getContainers } from './layout';
 import openMenuEditor, { refreshMenuEditor } from './editor';
 import settings from './settings';
 
@@ -27,6 +28,23 @@ const queueApplyLayout = () => {
 };
 
 /**
+ * Apply the layout again if the game adds Hunters Online or Friends Online to the info bar again,
+ * so a new count replaces the one that was moved.
+ */
+const watchInfoBar = () => {
+  const { info } = getContainers();
+  if (!info) {
+    return;
+  }
+
+  new MutationObserver(() => {
+    if (info.querySelector(':scope > :not([data-mh-menu-id]):is(span, a[href*="friends.php"])')) {
+      queueApplyLayout();
+    }
+  }).observe(info, { childList: true });
+};
+
+/**
  * Initialize the module.
  */
 const init = () => {
@@ -34,7 +52,9 @@ const init = () => {
 
   addAdventureBook();
   addDarkModeToggle();
+  addHudToggle();
   applyLayout();
+  watchInfoBar();
   onEvent('mh-improved-header-menu-changed', queueApplyLayout);
 
   document.addEventListener('click', (event) => {

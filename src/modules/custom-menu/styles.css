@@ -5,6 +5,7 @@
   --mhui-menu-hidden-bg: #f5f5f5;
   --mhui-menu-hidden-border: #bbb;
   --mhui-menu-popover: #fff;
+  --mhui-menu-link: #3b5998;
 
   display: flex;
   flex-direction: column;
@@ -63,6 +64,31 @@
   justify-content: flex-end;
 }
 
+/* When the two sides don't fit on one line, each gets its own bar, with the outer corner rounded like
+   that end of the real menu. */
+.mhui-menu-editor-menubar.is-split {
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+}
+
+.mhui-menu-editor-menubar.is-split .mhui-menu-editor-bar {
+  background: var(--mhui-menu-tab) 0 0 repeat-x;
+  border: 1px solid var(--mhui-menu-border);
+  border-bottom: none;
+}
+
+.mhui-menu-editor-menubar.is-split .mhui-menu-editor-bar[data-zone="left"] {
+  align-self: flex-start;
+  border-radius: 10px 0 0;
+}
+
+.mhui-menu-editor-menubar.is-split .mhui-menu-editor-bar[data-zone="right"] {
+  align-self: flex-end;
+  border-radius: 0 10px 0 0;
+}
+
 /* The bar itself shows where items can go. */
 .mhui-menu-editor.is-dragging .mhui-menu-editor-zone.mhui-menu-editor-bar.can-drop {
   box-shadow: none;
@@ -111,15 +137,17 @@
   display: none !important;
 }
 
-/* The game's menu icons are brown, so they're grayed to match the rest of the menu. */
+/* Icons are flattened to one shade, whatever color their image is, so they match each other and
+   the toggles, like Dark Mode's, and brighten on hover. */
 .mhui-menu-icon {
   flex: none;
   width: 18px;
   height: 18px;
-  filter: grayscale(1);
+  filter: grayscale(1) brightness(0);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  opacity: 0.5;
 }
 
 .mhui-menu-label {
@@ -127,14 +155,25 @@
 }
 
 .mh-dark .mhui-menu-icon {
-  filter: invert(1) grayscale(1);
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+/* Palettes with the light menu keep dark icons on its tabs, like the toggles. */
+.mh-dark.mh-dark-light-menu .mousehuntHeaderView .mhui-menu-icon {
+  filter: grayscale(1) brightness(0);
+  opacity: 0.5;
+}
+
+.menuItem:hover .mhui-menu-icon {
+  opacity: 1;
 }
 
 /* Item options */
 .mousehuntHeaderView .menuItem.mhui-menu-hide-count .mousehuntHeaderView-menu-notification,
-.mousehuntHeaderView .menuItem.mhui-menu-hide-name .mhui-menu-own-text,
-.mousehuntHeaderView .menuItem.mhui-menu-hide-get-more .getMore,
-.mousehuntHeaderView .menuItem.mhui-menu-hide-quantity .mh-quick-items-menu-tab-count {
+:is(.mousehuntHeaderView, .mousehuntHud-gameInfo) .menuItem.mhui-menu-hide-name .mhui-menu-own-text,
+:is(.mousehuntHeaderView, .mousehuntHud-gameInfo) .menuItem.mhui-menu-hide-get-more .getMore,
+:is(.mousehuntHeaderView, .mousehuntHud-gameInfo) .menuItem.mhui-menu-hide-quantity .mh-quick-items-menu-tab-count {
   display: none !important;
 }
 
@@ -353,6 +392,43 @@
   min-width: 0;
 }
 
+.mhui-menu-editor-pin-header {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mhui-menu-editor-pin-refresh {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  cursor: pointer;
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border: none;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.mh-dark .mhui-menu-editor-pin-refresh {
+  filter: invert(1);
+}
+
+.mhui-menu-editor-pin-refresh:hover {
+  background-color: rgb(74 144 217 / 15%);
+  opacity: 0.9;
+}
+
+.mhui-menu-editor-pin-refresh.loading {
+  animation: mh-improved-spin 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mhui-menu-editor-pin-refresh.loading {
+    animation: none;
+  }
+}
+
 .mhui-menu-editor-pin-remove {
   flex: none;
   padding: 0 6px;
@@ -499,6 +575,135 @@
   border-left-color: transparent;
 }
 
+/* Buttons to move the selected item, for when it can't be dragged. Big enough to tap. */
+.mhui-menu-editor-move-row {
+  display: flex;
+  justify-content: center;
+}
+
+.mhui-menu-editor-move-row .mhui-menu-editor-style-choices {
+  flex: 1;
+}
+
+.mhui-menu-editor-move {
+  flex: 1;
+  min-height: 34px;
+  font-weight: 700;
+}
+
+.mhui-menu-editor-move:disabled {
+  cursor: default;
+  background: none;
+  opacity: 0.35;
+}
+
+/* Menu items moved to the info bar are links, like Friends Online, rather than tabs. */
+.mousehuntHud-gameInfo > .menuItem.mhui-menu-info-item {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  height: 20px;
+  margin: 0 2px 0 10px;
+  font-size: 10px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.mousehuntHud-gameInfo > .mhui-menu-info-item span {
+  margin: 0;
+  font-size: inherit;
+}
+
+.mousehuntHud-gameInfo > .mhui-menu-info-item .mhui-menu-icon,
+.mousehuntHud-gameInfo > .mhui-menu-info-item::before {
+  width: 14px;
+  height: 14px;
+}
+
+/* Icons get a highlight on hover, since they have no underline. */
+.mousehuntHud-gameInfo > .mhui-menu-info-item.mhui-menu-style-icon {
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+.mousehuntHud-gameInfo > .mhui-menu-info-item.mhui-menu-style-icon:hover {
+  background-color: rgb(127 127 127 / 20%);
+}
+
+/* The info bar stays dark with the light menu, so the toggles stay light in it. */
+.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mousehunt-improved-dark-mode-toggle::before {
+  filter: none;
+}
+
+.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mousehunt-improved-hud-toggle::before {
+  filter: invert(1);
+}
+
+.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mhui-menu-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+/* Nothing's left in the info bar, so its background isn't left behind either. */
+.mousehuntHud-gameInfo.mhui-menu-info-empty {
+  display: none;
+}
+
+/* The info bar in the editor, tucked under the right end of the menu like the real one. */
+.mhui-menu-editor-infobar {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  align-self: flex-end;
+  max-width: 100%;
+  padding: 0 6px 0 12px;
+  margin-top: -12px;
+  background: var(--mhui-menu-popover);
+  border: 1px solid var(--mhui-menu-border);
+  border-top: none;
+  border-radius: 0 0 0 10px;
+}
+
+.mhui-menu-editor-infobar-label {
+  font-size: 10px;
+  color: var(--mhui-menu-muted);
+}
+
+.mhui-menu-editor-zone.mhui-menu-editor-info {
+  flex: 0 1 auto;
+  justify-content: flex-end;
+  min-width: 40px;
+  min-height: 22px;
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-info > .menuItem {
+  box-sizing: border-box;
+  float: none;
+  width: auto;
+  min-width: 0;
+  height: 22px;
+  padding: 0 3px;
+  margin-left: 7px;
+  font-size: 10px;
+  line-height: 22px;
+  color: var(--mhui-menu-link);
+  border: none;
+  border-radius: 3px;
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-info > .menuItem:not(.dragging) {
+  background: none;
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-info > .menuItem[data-id="hunters-online"] {
+  color: var(--mhui-menu-muted);
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-info .mhui-menu-icon {
+  width: 14px;
+  height: 14px;
+}
+
 /* Links that can be added */
 
 /* A column of groups, rather than the wrapping row the other zones use. */
@@ -509,7 +714,6 @@
   max-height: 280px;
   padding: 6px;
   overflow-y: auto;
-  background-color: var(--d-action);
   border: 1px solid var(--mhui-menu-hidden-border);
   border-radius: 4px;
 }
@@ -518,7 +722,6 @@
   margin-bottom: 3px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--d-text);
 }
 
 .mhui-menu-editor-available-list {
@@ -531,6 +734,18 @@
 .mhui-menu-editor .mhui-menu-editor-available .mhui-menu-editor-item {
   border: 1px solid var(--mhui-menu-border);
   border-radius: 4px;
+}
+
+/* Pin item sits in the top corner of the list, and stays there while it scrolls. */
+.mhui-menu-editor-available-section {
+  position: relative;
+}
+
+#overlayPopup .mhui-menu-editor .mhui-menu-editor-pin-new {
+  position: absolute;
+  top: 6px;
+  right: 18px;
+  z-index: 1;
 }
 
 /* Scroll the groups rather than squashing them together. */
@@ -594,12 +809,8 @@
 }
 
 /* Dark mode */
-.mh-dark #overlayPopup.mh-improved-custom-menu-popup .content {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-}
 
-.mh-dark .mousehuntHeaderView .menuItem.last {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.last {
   border-right-color: var(--d-border);
 }
 
@@ -608,12 +819,25 @@
 }
 
 .mh-dark .mhui-menu-editor {
-  --mhui-menu-tab: url(https://i.mouse.rip/dark/menuItem.png);
-  --mhui-menu-muted: color-mix(in srgb, var(--d-text) 70%, transparent);
+  --mhui-menu-muted: var(--d-text-muted);
   --mhui-menu-border: var(--d-border);
-  --mhui-menu-hidden-bg: rgb(255 255 255 / 4%);
+  --mhui-menu-hidden-bg: var(--d-surface-inset);
   --mhui-menu-hidden-border: var(--d-border);
-  --mhui-menu-popover: #2e3039;
+  --mhui-menu-popover: var(--d-surface-popover);
+  --mhui-menu-link: var(--d-link);
+}
+
+/* Palettes that keep the light top menu keep the light tabs in the preview too. */
+.mh-dark:not(.mh-dark-light-menu) .mhui-menu-editor {
+  --mhui-menu-tab: url(https://i.mouse.rip/dark/menuItem.png);
+}
+
+.mh-dark .mhui-menu-editor-zone.mhui-menu-editor-available {
+  background-color: var(--d-surface-inset);
+}
+
+.mh-dark .mhui-menu-editor-available-label {
+  color: var(--d-text);
 }
 
 .mousehuntHeaderView .menuItem.mousehunt-improved-dark-mode-toggle {
@@ -641,6 +865,52 @@
   opacity: 0.7;
 }
 
-.mousehuntHeaderView .menuItem.mousehunt-improved-dark-mode-toggle:hover::before {
+.mh-dark.mh-dark-light-menu .mousehunt-improved-dark-mode-toggle::before {
+  filter: invert(1);
+}
+
+.menuItem.mousehunt-improved-dark-mode-toggle:hover::before {
   opacity: 1;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-hud-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 25px;
+  padding: 0 6px;
+}
+
+.mousehunt-improved-hud-toggle::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  content: "";
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.5;
+  transition: transform 0.15s;
+}
+
+.mh-improved-hud-hidden .mousehunt-improved-hud-toggle::before {
+  transform: rotate(180deg);
+}
+
+.mh-dark .mousehunt-improved-hud-toggle::before {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.mh-dark.mh-dark-light-menu .mousehunt-improved-hud-toggle::before {
+  filter: none;
+}
+
+.menuItem.mousehunt-improved-hud-toggle:hover::before {
+  opacity: 1;
+}
+
+.mh-improved-hud-hidden #hudLocationContent {
+  display: none;
 }
