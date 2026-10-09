@@ -213,6 +213,17 @@ const addQuickQuantityButtons = () => {
 
   const maxQty = Number.parseInt(match[1].replaceAll(',', ''), 10);
 
+  // A number input gets the arrows and scroll wheel stepping.
+  input.type = 'number';
+  input.min = 0;
+  input.max = maxQty;
+
+  // The arrows and wheel only fire input, but the game only reads the quantity on keyup.
+  if (input.dataset.mhuiQtyKeyup !== 'true') {
+    input.dataset.mhuiQtyKeyup = 'true';
+    input.addEventListener('input', () => input.dispatchEvent(new Event('keyup')));
+  }
+
   const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
 
   makeMathButtons([1, 5, 10, 100], {

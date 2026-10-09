@@ -20,6 +20,21 @@ import styles from './quick-send.css';
 const STATE = new Map(); // btn => { wrapper, aborter, outsideClick }
 const HOVER_DELAY = 400;
 
+// Minimum time between sends, shared across every panel so reopening one doesn't bypass it.
+const SEND_COOLDOWN = 1000;
+let nextSendAt = 0;
+
+// Reserve the next send slot and wait for it, so sends are always at least SEND_COOLDOWN apart.
+const waitForSendSlot = async () => {
+  const sendAt = Math.max(Date.now(), nextSendAt);
+  nextSendAt = sendAt + SEND_COOLDOWN;
+
+  const delay = sendAt - Date.now();
+  if (delay > 0) {
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+};
+
 const buildItems = async () => {
   const tradables = await getTradableItems('all');
   const opts = await getPinnedSupplyItems(tradables);
@@ -181,18 +196,30 @@ const buildPanel = async (btn, snuid) => {
       return;
     }
 
-    const sent = await sendSupplies({
-      aborter,
-      snuid,
-      qty,
-      itemType,
-      itemName,
-      button: sendBtn,
-      container: controls,
-    });
+    // Disabling the button also makes any clicks while we wait get ignored.
+    sendBtn.classList.add('disabled', 'loading');
 
-    if (sent) {
-      qtyInput.value = '';
+    try {
+      await waitForSendSlot();
+      if (aborter.signal.aborted) {
+        return;
+      }
+
+      const sent = await sendSupplies({
+        aborter,
+        snuid,
+        qty,
+        itemType,
+        itemName,
+        button: sendBtn,
+        container: controls,
+      });
+
+      if (sent) {
+        qtyInput.value = '';
+      }
+    } finally {
+      sendBtn.classList.remove('loading');
     }
   };
 

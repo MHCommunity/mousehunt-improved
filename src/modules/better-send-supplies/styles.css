@@ -151,7 +151,9 @@
 
 .mh-dark .mhui-supply-sort-wrapper a:hover,
 .mh-dark .mhui-supply-sort-wrapper a.focus {
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 #supplytransfer .listContainer a.element.item.pinned {
@@ -222,7 +224,7 @@
 }
 
 .mh-dark #supplytransfer .tabs .tab .image {
-  background: var(--d-alt);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -265,7 +267,7 @@
 
 .mh-dark #supplytransfer .tabs .tab .image,
 .mh-dark #supplytransfer .tabs .tab .image.empty {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
