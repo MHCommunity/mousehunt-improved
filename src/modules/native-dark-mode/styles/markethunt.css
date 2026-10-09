@@ -61,7 +61,7 @@
   color: var(--d-text);
   background-color: var(--d-surface-panel);
   border: 1px solid var(--d-border);
-  box-shadow: 0 4px 16px rgb(0 0 0 / 50%);
+  box-shadow: 0 4px 16px var(--d-shadow);
 }
 
 .mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-title-c {

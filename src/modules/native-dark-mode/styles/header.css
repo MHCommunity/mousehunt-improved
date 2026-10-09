@@ -28,12 +28,12 @@
 
 .mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
   border-top-color: transparent;
-  border-bottom-color: #ededed;
+  border-bottom-color: var(--d-white);
 }
 
 .mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown.expanded .arrow,
 .mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown.expanded:hover .arrow {
-  border-top-color: #999;
+  border-top-color: var(--d-text-muted);
   border-bottom-color: transparent;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.new {
-  color: #fff;
+  color: var(--d-white);
   text-shadow: 1px 1px var(--d-black);
   filter: brightness(1.2);
 }

@@ -5,6 +5,7 @@
 .mh-dark .itemView-loading::after,
 .mh-dark .journalContainer.loading .journalEntries::after,
 .mh-dark .MHCheckoutReviewCartPageView-paymentLoader::after,
+.mh-dark .MHCheckoutRootView-page-content.loading,
 .mh-dark .MHCheckoutTermsOfServicePageView,
 .mh-dark .messageBoardView-loader,
 .mh-dark .mouseListView-categoryContent-loading,

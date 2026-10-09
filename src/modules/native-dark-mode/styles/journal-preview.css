@@ -33,6 +33,10 @@
   box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
+.mh-dark .journalThemeSelectorView-filter label {
+  color: var(--d-text);
+}
+
 .mh-dark .journalThemeSelectorView-theme.disabled {
   color: var(--d-text-muted);
 }

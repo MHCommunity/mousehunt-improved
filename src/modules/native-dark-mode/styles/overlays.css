@@ -41,7 +41,7 @@
 .mh-dark .notificationMessageList .message .actions input[type="button"],
 .mh-dark .notificationMessageList .message .actions input[value="View Profile"],
 .mh-dark .notificationMessageList .message .actions input[value="View Profile"].ignoreRequest.ignoreRequest {
-  box-shadow: 0 -5px 8px -2px #ffae00 inset;
+  box-shadow: 0 -5px 8px -2px var(--d-gold) inset;
 }
 
 .mh-dark #overlayPopup.livingGardenRecipes .recipe .name,

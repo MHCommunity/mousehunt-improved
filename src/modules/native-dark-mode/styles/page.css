@@ -28,7 +28,7 @@
 
 /* Darken the footer artwork without dimming the link on top of it. */
 .mh-dark .mousehuntFooter-image {
-  box-shadow: inset 0 0 0 999px rgb(38 43 51 / 75%);
+  box-shadow: inset 0 0 0 999px color-mix(in srgb, var(--d) 75%, transparent);
 }
 
 .mh-dark .mousehuntFooter-toggleMobile {

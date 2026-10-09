@@ -262,13 +262,31 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .treasureMapView-scoreboard-table a.treasureMapView-block-row {
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row .treasureMapView-block-cell-name {
+  color: var(--d-link);
+}
+
 .mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row:hover {
   color: var(--d-hover-text);
   background-color: var(--d-hover);
 }
 
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row:hover .treasureMapView-block-cell-name {
+  color: var(--d-hover-text);
+}
+
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active,
 .mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active:hover {
+  color: var(--d-purple-dark);
   background-color: var(--d-yellow);
+}
+
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active .treasureMapView-block-cell-name {
+  color: var(--d-purple-dark);
 }
 
 .mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active:hover .treasureMapView-block-cell-name-cutoff {
@@ -355,6 +373,7 @@
 
 .mh-dark .treasureMapRootView-header-navigation-item::after {
   background: var(--d-border);
+  border-right-color: var(--d-border);
 }
 
 .mh-dark .treasureMapRootView-tabContainer.hasTabs {
@@ -418,7 +437,7 @@
 }
 
 .mh-dark .treasureMapView-hunter.upgrader .treasureMapView-hunter-image {
-  box-shadow: 0 0 1px 3px #ffb40c;
+  box-shadow: 0 0 1px 3px var(--d-gold);
 }
 
 .mh-dark #sorted-mice-container .mouse-container-selected,
@@ -644,6 +663,6 @@
   --mhui-empty-hunter-border: var(--d-action);
   --mhui-empty-hunter-plus: var(--d-text-muted);
   --mhui-empty-hunter-hover-bg: var(--d-bg);
-  --mhui-empty-hunter-hover-border: #7294f3;
-  --mhui-empty-hunter-hover-plus: #a9bff8;
+  --mhui-empty-hunter-hover-border: var(--d-interactive);
+  --mhui-empty-hunter-hover-plus: color-mix(in srgb, var(--d-interactive) 50%, var(--d-white));
 }

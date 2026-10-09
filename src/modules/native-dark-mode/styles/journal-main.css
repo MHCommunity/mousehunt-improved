@@ -46,7 +46,7 @@
 }
 
 .mh-dark .journal .content .entry:last-child {
-  border-bottom-color: #5b5b5b;
+  border-bottom-color: var(--d-action);
 }
 
 .mh-dark .campPage-quests-objective-container {

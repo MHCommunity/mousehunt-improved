@@ -5,3 +5,22 @@
 .mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.owned {
   color: var(--d-text-dark);
 }
+
+/* Spooky Shuffle keeps its artwork frame, but the footer bar below it goes dark. */
+.mh-dark #overlayPopup.halloweenMemoryGame {
+  --d-popup-footer: var(--d-surface-header);
+}
+
+.mh-dark .halloweenMemoryGame-rewardTier {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .halloweenBoilingCauldronHUD-bulkConversion-button {
+  color: var(--d-white);
+}
+
+/* The Recipe Book is parchment artwork, so its quantity field keeps the game's light look. */
+.mh-dark .halloweenBoilingCauldronRecipeView-recipe-action-quantity {
+  --d-input-bg: #fcf2c6;
+  --d-input-text: var(--d-text-dark);
+}

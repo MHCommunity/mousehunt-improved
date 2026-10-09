@@ -36,13 +36,15 @@ body.mh-dark {
 }
 
 .mh-dark .huntersHornView__hornImage {
+  --horn-outline: color-mix(in srgb, var(--d-text-muted) 50%, transparent);
+
   /* stylelint-disable-next-line */
   filter:
-    drop-shadow(1px 1px 0  rgb(175 175 175 / 50%))
-    drop-shadow(-1px 1px 0  rgb(175 175 175 / 50%))
-    drop-shadow(1px -1px 0 rgb(175 175 175 / 50%))
-    drop-shadow(-1px -1px 0  rgb(175 175 175 / 50%))
-    drop-shadow(1px 4px 3px #6b6b6b);
+    drop-shadow(1px 1px 0  var(--horn-outline))
+    drop-shadow(-1px 1px 0  var(--horn-outline))
+    drop-shadow(1px -1px 0 var(--horn-outline))
+    drop-shadow(-1px -1px 0  var(--horn-outline))
+    drop-shadow(1px 4px 3px var(--d-action));
 }
 
 .mh-dark .treasureMapRootView .messageBoardView .pagerView-section.previous .pagerView-link,
@@ -110,7 +112,7 @@ body.mh-dark {
 }
 
 .mh-dark .flexibleDialogWarmBrown.shopDescription b {
-  color: #fc6;
+  color: var(--d-gold);
   text-shadow: none;
 }
 

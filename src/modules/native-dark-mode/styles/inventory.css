@@ -33,9 +33,9 @@
 }
 
 .mh-dark .inventoryPage-item.small .inventoryPage-item-button {
-  color: #000;
-  background-color: #fc6;
-  border-color: #ddd;
+  color: var(--d-black);
+  background-color: var(--d-gold);
+  border-color: var(--d-white);
 }
 
 .mh-dark .inventoryPage-item.small.armed .inventoryPage-item-margin {
@@ -127,25 +127,25 @@
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"],
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"] {
   color: var(--d-black);
-  background-color: #fc6;
+  background-color: var(--d-gold);
 }
 
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"]:hover,
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"]:hover {
   color: var(--d-black);
-  background-color: #fc9;
+  background-color: var(--d-gold-light);
 }
 
 .mh-dark .inventoryPage-item.torn_page input:is(.viewFront, .viewBack) {
   color: var(--d-black);
   text-shadow: none;
-  background-color: #fc6;
+  background-color: var(--d-gold);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .inventoryPage-item.torn_page input:is(.viewFront, .viewBack):hover {
-  background-color: #fc9;
+  background-color: var(--d-gold-light);
 }
 
 .mh-dark .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {

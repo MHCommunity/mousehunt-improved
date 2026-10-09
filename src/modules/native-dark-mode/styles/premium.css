@@ -6,9 +6,27 @@
   color: var(--d-text);
 }
 
+.mh-dark .MHCheckout-goldenShield-small,
 .mh-dark .MHCheckout-goldenShield-tiny {
-  color: var(--d-text-dark);
+  color: var(--d-text);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .MHCheckout-goldenShield-block {
+  color: var(--d-text);
+  background-color: var(--d-yellow-darker);
+  border-color: var(--d-yellow-dark);
+  box-shadow: none;
+}
+
+.mh-dark .MHCheckout-goldenShield-block b {
+  color: var(--d-yellow);
+}
+
+.mh-dark .MHCheckout-superBrieOldFooter {
+  background: var(--d-yellow-darker);
 }
 
 /* Premium Shop. Event splash pages are artwork and keep their own look. */
@@ -96,4 +114,75 @@
 .mh-dark .MHCheckoutHeaderCartView-numTotalItems {
   color: var(--d-text);
   background-color: var(--d-surface-inset);
+}
+
+/* Event splashes restyle these with more specific selectors, so keep them at the game's specificity. */
+:where(.mh-dark) .MHCheckout-title {
+  color: var(--d-white);
+}
+
+:where(.mh-dark) .MHCheckout-featuredItemTransparent .MHCheckout-featuredItem-name {
+  color: var(--d-text);
+  background: var(--d-surface-inset);
+}
+
+:where(.mh-dark) .MHCheckout-featuredItemTransparent:hover .MHCheckout-featuredItem-name {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
+:where(.mh-dark) .MHCheckout-groupedItems-description span {
+  text-shadow: 1px 1px 2px var(--d-shadow);
+}
+
+.mh-dark .MHCheckoutTooltipView-item-padding {
+  color: var(--d-text);
+}
+
+.mh-dark .MHCheckoutRewardPageView-quantityOwned {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .MHCheckoutRewardPageView-relatedItems {
+  box-shadow: inset 5px 10px 10px var(--d-shadow);
+}
+
+.mh-dark .MHCheckout-featuredItem-padding {
+  box-shadow: 0 0 5px var(--d-shadow);
+}
+
+.mh-dark .MHCheckoutRootView-page-dialog,
+.mh-dark .MHCheckoutPurchaseButtonView-backButton:hover {
+  box-shadow: none;
+}
+
+.mh-dark .MHCheckoutReviewCartPageView-stepProgress.active {
+  color: var(--d-white);
+}
+
+.mh-dark .MHCheckoutReviewCartPageView-paymentLoader {
+  background-color: var(--d-surface-panel);
+}
+
+.mh-dark .MHCheckoutReviewCartPageView-paymentFormContainer .braintree-heading {
+  color: var(--d-text);
+}
+
+.mh-dark .MHCheckoutPaymentGatewayView {
+  color: var(--d-text);
+  background-color: var(--d-surface-inset);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .MHCheckoutPaymentGatewayView-gateway {
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutPaymentGatewayView-gateway.active,
+.mh-dark .MHCheckoutPaymentGatewayView-gateway:hover {
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward-addItemsToEmptyCart .MHCheckoutCartTableView-returnToHome {
+  color: var(--d-link);
 }

@@ -219,7 +219,7 @@
 }
 
 .mh-dark .marketplaceView-listing-progressLabel {
-  color: #e7eaee;
+  color: var(--d-white);
   text-shadow:
     0 1px var(--d-transparent-90),
     0 -1px var(--d-transparent-90),

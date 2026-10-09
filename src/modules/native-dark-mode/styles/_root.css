@@ -28,6 +28,8 @@
   --d-blue-darker: #08435e;
   --d-cyan: #0f7f80;
   --d-cyan-dark: #0f6c6b;
+  --d-tan: #a07a45;
+  --d-teal: #1fa37f;
   --d-green: #40ba12;
   --d-green-dark: #105507;
   --d-green-darker: #063300;
@@ -38,6 +40,9 @@
   --d-red-light: #e07070;
   --d-red-dark: #a02c2c;
   --d-red-darker: #732639;
+  --d-gold: #fc6;
+  --d-gold-light: #fc9;
+  --d-shadow: rgb(0 0 0 / 50%);
 
   /*
    * Surface roles. Component CSS uses these for backgrounds, never the raw surface colors above.
@@ -78,6 +83,7 @@
 
   /* Raised controls: plain buttons, small action buttons, count badges. */
   --d-button: var(--d-action);
+  --d-button-confirm: #6a8b23;
 
   /* Text fields. Panels swap the field background to --d so fields stay visible on them. */
   --d-input-bg: var(--d-bg);
