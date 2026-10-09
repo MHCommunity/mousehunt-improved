@@ -1,6 +1,6 @@
 .mh-dark .shopsPage-kingsCalibratorPromo {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: inset -1px -1px 2px var(--d-border);
 }
@@ -11,18 +11,18 @@
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgradeContainer {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   box-shadow: none;
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-tabHeader span {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-tab);
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-tabHeader:hover span,
 .mh-dark .kingsGiveawayCalibratorPopup-tabHeader.active span {
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgrade.active {
@@ -32,7 +32,7 @@
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgrade-description {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgrade {
@@ -42,7 +42,7 @@
 .mh-dark .kingsGiveawayCalibratorPopup-numCredits {
   color: var(--d-text);
   text-shadow: none;
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgrade-name {

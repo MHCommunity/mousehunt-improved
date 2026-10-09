@@ -14,7 +14,7 @@
 .mh-dark .itemPurchaseView-container .itemPurchaseView-margin,
 .mh-dark .itemPurchaseView-image-container,
 .mh-dark .itemPurchaseView-content-container {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .itemPurchaseView-container {
@@ -26,14 +26,14 @@
 }
 
 .mh-dark .itemPurchaseView-action-container {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .itemPurchaseView-action-goldGost,
 .mh-dark .itemPurchaseView-action-purchaseHelper-owned {
   color: var(--d-text-muted);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -55,7 +55,7 @@
 .mh-dark.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,
 .mh-dark .itemPurchaseView-container .itemViewStatBlock-stat.powerType,
 .mh-dark.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .mh-dark .itemPurchaseView-action-itemCost-table {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -78,7 +78,7 @@
 }
 
 .mh-dark .shopsPage-otherEnvironment {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -89,7 +89,7 @@
 }
 
 .mh-dark.shopCustomization .PageShops .itemViewStatBlock-stat {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -115,6 +115,6 @@
 
 .mh-dark .shopsPage-header-container {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }

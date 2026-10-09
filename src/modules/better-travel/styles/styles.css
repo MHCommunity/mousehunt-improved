@@ -146,7 +146,7 @@
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink.current {
-  color: var(--d-text-muted);
+  color: var(--d-selected-text);
 }
 
 #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
@@ -358,7 +358,7 @@
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-item.mh-improved-better-travel-favorites .travelPage-regionMenu-item-contents::before {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 /* Fix it so that the icon is clickable */

@@ -76,7 +76,7 @@
 }
 
 .mh-dark .mh-improved-cre-highlight::before {
-  background-color: var(--d-action);
+  background-color: var(--d-hover);
 }
 
 .mh-improved-cre-data-good {

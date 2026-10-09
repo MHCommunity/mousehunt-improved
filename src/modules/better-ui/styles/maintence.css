@@ -7,7 +7,7 @@
 }
 
 .mh-dark .maintenance-banner {
-  background-color: var(--d-alt) !important;
+  background-color: var(--d-surface-inset) !important;
   border-color: var(--d-border) !important;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .mh-dark .maintenance-banner .close {
-  background: var(--d-bg);
+  background: var(--d-button);
   border-color: var(--d-border);
 }
 

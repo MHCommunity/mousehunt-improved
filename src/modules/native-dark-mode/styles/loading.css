@@ -46,7 +46,7 @@
 }
 
 .mh-dark .mousehuntPage-loading {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark #messengerUINotification .loading {

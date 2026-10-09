@@ -4,7 +4,7 @@
 .mh-dark .hunterInfoView-wrapper div.messageBoardView-message-container,
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabContentContainer {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -21,7 +21,7 @@
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock .hunterInfoView-favoritesBlock-body,
 .mh-dark .hunterInfoView-achievementsBlock .mousehuntTabContentContainer-padding {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock .hunterInfoView-favoritesBlock-body,
@@ -33,7 +33,7 @@
 }
 
 .mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark input.messageBoardView-message-submit,
@@ -50,16 +50,16 @@
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header {
   color: var(--d-text);
-  background: var(--d-bg-alt);
+  background: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
 .mh-dark .hunterInfoView-wrapper .messageBoardView-title {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .hunterInfoView-wrapper .friendsPage-friendRow {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   outline: 1px solid var(--d-border);
 }
 
@@ -74,7 +74,7 @@
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-container,
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -88,7 +88,7 @@
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-hunterId {
   color: var(--d-link);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-hunterId:hover {
@@ -105,7 +105,7 @@
 }
 
 .mh-dark .hunterInfoView-wrapper .friendsPage-friendRow-statsContainer {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   box-shadow: none;
 }
 
@@ -134,22 +134,19 @@
 .mh-dark .hunterInfoView-wrapper .messageBoardView-title,
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader {
   color: var(--d-text);
-  background: var(--d-bg-alt);
+  background: var(--d-surface-header);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader {
-  background: var(--d-alt);
+  background: var(--d-tab);
 }
 
-.mh-dark .mh-dark .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {
-  background: var(--d-bg-alt);
-}
-
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader.active,
 .mh-dark .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:hover,
 .mh-dark .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
-  background: var(--d-bg-alt);
+  background: var(--d-tab-active);
 }
 
 .mh-dark a.hunterProfileItemsView-filter {
@@ -157,15 +154,13 @@
 }
 
 .mh-dark .hunterProfileItemsView-filter:hover {
-  background-color: var(--d-bg-alt);
-}
-
-.mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader.active {
-  background: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .hunterInfoView-wrapper .messageBoardView .pagerView-container {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
@@ -195,7 +190,7 @@
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-tabDot {
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-bg);
 }
 
@@ -233,7 +228,7 @@
 .mh-dark .hunterProfileItemsView-category-margin {
   padding-bottom: 5px;
   color: var(--d-text-muted);
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border: 1px solid var(--d-border);
   border-right: none;
   border-radius: 10px 0 0 10px;

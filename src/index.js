@@ -284,7 +284,7 @@ const init = async () => {
     // eslint-disable-next-line no-console
     console.log(
       `%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`,
-      'color: #ca77ff; font-weight: 900; font-size: 1.1em',
+      'color: #a9b4ff; font-weight: 900; font-size: 1.1em',
       'color: inherit; font-weight: inherit; font-size: inherit'
     );
 

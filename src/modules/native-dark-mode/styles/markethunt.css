@@ -1,6 +1,15 @@
 .mh-dark .marketplaceContentContainer #chartArea,
 .mh-dark .marketplaceContentContainer #stockChartContainer {
-  background-color: #2d2d2d !important;
+  background-color: var(--d-surface-inset) !important;
+}
+
+/* The chart is drawn light and inverted below, so its white background would turn black. */
+.mh-dark .marketplaceContentContainer :is(#chartArea, #stockChartContainer) .highcharts-background {
+  fill: transparent;
+}
+
+.mh-dark .marketplaceContentContainer :is(#chartArea, #stockChartContainer) .highcharts-plot-band {
+  opacity: 0.25;
 }
 
 .mh-dark .marketplaceContentContainer #chartArea svg.highcharts-root,
@@ -37,7 +46,8 @@
 }
 
 .mh-dark .marketplaceView-table tr:hover .marketplaceView-listingType.buy {
-  background-color: var(--d-blue);
+  background-color: var(--d-green-dark);
+  filter: brightness(1.25);
 }
 
 .mh-dark .jconfirm.jconfirm-light .jconfirm-bg {
@@ -46,8 +56,10 @@
 }
 
 .mh-dark .jconfirm.jconfirm-light .jconfirm-box {
+  --d-input-bg: var(--d);
+
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border: 1px solid var(--d-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 50%);
 }
@@ -72,18 +84,18 @@
 .mh-dark .jconfirm.jconfirm-light .jconfirm-box input {
   padding: 3px 5px;
   color: var(--d-input-text);
-  background-color: var(--d-alt);
-  border: 1px solid var(--d-border);
+  background-color: var(--d-input-bg);
+  border: 1px solid var(--d-input-border);
   border-radius: 3px;
 }
 
 .mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border: 1px solid var(--d-border);
 }
 
 .mh-dark .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button:hover {
-  color: var(--d-white);
-  background-color: #6c727e;
+  color: var(--d-hover-text);
+  border-color: var(--d-interactive);
 }

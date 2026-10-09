@@ -116,7 +116,7 @@
 }
 
 .mh-dark .mh-ui-keyboard-shortcut kbd {
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
   box-shadow:
     0 1px rgb(0 0 0 / 20%),
@@ -153,7 +153,7 @@
 }
 
 .mh-dark .mh-ui-keyboard-shortcuts-popup-content-category summary {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .mh-ui-keyboard-shortcuts-popup-content-category {
@@ -170,7 +170,6 @@
 
 .mh-dark #overlayPopup.mh-ui-keyboard-shortcuts-popup .content {
   color: var(--d-text-muted);
-  background-color: var(--d-bg);
 }
 
 .mh-dark #overlayPopup.mh-ui-keyboard-shortcuts-popup h2 {

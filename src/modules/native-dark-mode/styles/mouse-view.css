@@ -2,33 +2,29 @@
   color: var(--d-text);
 }
 
-.mh-dark .minluck-title,
 .mh-dark .mouseView-titleContainer,
+.mh-dark .mouseview-has-mhct .mouseView-titleContainer,
 .mh-dark .mouseview-has-mhct .ar-header {
-  border-bottom-color: var(--d-bg-alt);
+  border-color: var(--d-alt);
 }
 
-.mh-dark .mouseview-has-mhct .mouse-ar-wrapper {
-  background-color: var(--d-bg);
-}
-
-.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(even) {
-  background-color: var(--d-alt);
-}
-
-.mh-dark li.minluck-item {
-  background-color: var(--d);
+.mh-dark li.minluck-item,
+.mh-dark .mouseView-contentContainer .mice-ar-wrapper,
+.mh-dark .mouseview-effectiveness,
+.mh-dark .mouseview-has-mhct .mouseView-statsContainer-block {
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
 .mh-dark .mouseView-categoryContent-subgroup-mouse-weaknesses-label {
-  border-color: var(--d-bg-alt);
+  border-color: var(--d-alt);
 }
 
 .mh-dark .mouseView-statsContainer-block {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
+.mh-dark .mouseview-wiki-link,
 .mh-dark .mouseview-has-mhct .ar-link {
   color: var(--d-link);
 }

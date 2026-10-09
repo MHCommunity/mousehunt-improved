@@ -85,6 +85,7 @@
   outline-offset: 1px;
 }
 
+/* Tips are a callout meant to stand out from ordinary info boxes, so they keep their own blue. */
 .mh-dark .mh-improved-tip {
   color: #d8eafa;
   background: #263743;

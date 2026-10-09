@@ -5,6 +5,7 @@
     "stylelint-stylistic/config",
     "stylelint-prettier/recommended"
   ],
+  "plugins": ["./scripts/stylelint-dark-mode-colors.cjs"],
   "ignoreFiles": [
     "dist/**/*",
     "src/extension/static/*"
@@ -39,6 +40,7 @@
     "selector-type-no-unknown": true,
     "shorthand-property-no-redundant-values": true,
     "unit-no-unknown": true,
+    "mhui/dark-mode-colors": true,
     "value-keyword-case": "lower",
     "stylistic/declaration-colon-space-after": null,
     "stylistic/max-line-length": [120, { "ignore": ["non-comments"] }],

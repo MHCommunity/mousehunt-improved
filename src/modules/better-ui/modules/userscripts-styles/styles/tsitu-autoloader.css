@@ -11,7 +11,7 @@
 }
 
 .mh-dark #mht-bookmarklet-loader {
-  background: var(--d-bg) !important;
+  background: var(--d-surface-panel) !important;
 }
 
 #mht-bookmarklet-loader button:first-of-type {
@@ -37,9 +37,10 @@
 }
 
 .mh-dark #mht-bookmarklet-loader button:first-of-type:hover {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 #mht-bookmarklet-loader br + br,

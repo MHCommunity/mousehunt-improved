@@ -1,13 +1,12 @@
 .mh-dark .itemViewContainer {
-  margin-right: -1px;
-  margin-left: -1px;
-  background-color: var(--d-bg-alt);
-  border-bottom-color: var(--d-bg);
+  background: var(--d-surface-page);
+  border: none;
 }
 
 .mh-dark .itemView-padding {
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
+  background-color: var(--d-surface-page);
+  border: none;
+  border-left: 1px solid var(--d-border);
 }
 
 .mh-dark .itemView-character-name {
@@ -16,7 +15,7 @@
 }
 
 .mh-dark .itemView-header {
-  border-color: var(--d-transparent-10);
+  border-color: var(--d-border);
   border-width: 1px;
 }
 
@@ -24,21 +23,24 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .mh-dark .itemViewStatBlock-stat-value {
-  background-color: transparent;
-}
-
 .mh-dark .itemViewContainer a {
   color: var(--d-link);
 }
 
-.mh-dark .itemView-obtainHint {
+.mh-dark .itemView-header-classification-link::before {
+  filter: brightness(0) invert(0.8);
+}
+
+.mh-dark .itemView-sidebar-checkList,
+.mh-dark .itemViewContainer .itemView-obtainHint,
+.mh-dark .itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
 .mh-dark ul.mh-improved-scroll-to-map-multiple-list,
 .mh-dark .mh-improved-scroll-to-map-multiple {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-popover);
 }
 
 /* Item descriptions use inline green and red text, which is too dark to read here. */

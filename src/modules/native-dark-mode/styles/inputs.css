@@ -17,7 +17,10 @@
   border-color: var(--d-input-border-hover);
 }
 
-/* Popups use --d-bg for their background, so fields inside them go darker to stay visible. */
+/*
+ * Popups are panels (--d-bg), so fields inside them go darker to stay visible.
+ * Item and mouse view popups switch back in overlays.css.
+ */
 .mh-dark #overlayPopup .jsDialogContainer {
   --d-input-bg: var(--d);
 }

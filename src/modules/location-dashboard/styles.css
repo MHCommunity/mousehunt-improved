@@ -210,7 +210,7 @@ img.locationImage {
 }
 
 .mh-dark .location-refresh-item {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -365,7 +365,7 @@ img.locationImage {
 }
 
 .mh-dark .dashboard-crucible {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .dashboard-crucible-type {

@@ -3,10 +3,97 @@
 }
 
 .mh-dark #overlayPopup.MHCheckout .jsDialogContainer .content {
-  color: #000;
+  color: var(--d-text);
 }
 
 .mh-dark .MHCheckout-goldenShield-tiny {
   color: var(--d-text-dark);
   border-color: var(--d-border);
+}
+
+/* Premium Shop. Event splash pages are artwork and keep their own look. */
+.mh-dark .MHCheckoutRootView-pageContainer,
+.mh-dark .MHCheckoutRootView-page-content.loading,
+.mh-dark .MHCheckoutRootView-page-dialog-frame,
+.mh-dark .MHCheckoutDialogView-content {
+  color: var(--d-text);
+  background-color: var(--d-surface-panel);
+}
+
+.mh-dark .MHCheckoutRootView-category,
+.mh-dark .MHCheckoutPageView-tab-padding {
+  color: var(--d-text);
+  background-color: var(--d-tab);
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutRootView-category:hover,
+.mh-dark .MHCheckoutRootView-category.active,
+.mh-dark .MHCheckoutPageView-tab:hover .MHCheckoutPageView-tab-padding,
+.mh-dark .MHCheckoutPageView-tab.active .MHCheckoutPageView-tab-padding {
+  color: var(--d-white);
+  background-color: var(--d-tab-active);
+  border-bottom-color: var(--d-tab-active);
+}
+
+.mh-dark .MHCheckoutPageView-tab-name {
+  color: inherit;
+}
+
+.mh-dark .MHCheckout-featuredItem-padding,
+.mh-dark .MHCheckout-groupedItems-imageContainer,
+.mh-dark .MHCheckoutRootView-message,
+.mh-dark .MHCheckoutRewardPageView-relatedItems {
+  color: var(--d-text);
+  background-color: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckout-featuredItem-name {
+  color: var(--d-white);
+}
+
+.mh-dark .MHCheckout-featuredItem-shortDescription-padding {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .MHCheckoutTooltipView-itemGroup-title,
+.mh-dark .MHCheckoutReviewCartPageView-paymentActions label:hover {
+  background-color: var(--d-surface-header);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward:nth-child(even) {
+  background-color: var(--d-row-alt);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward:hover,
+.mh-dark .MHCheckoutRegionsView-environment:hover,
+.mh-dark .MHCheckoutHeaderCartView-reward:hover,
+.mh-dark .MHCheckout-region-seeAllEnvironments:hover,
+.mh-dark .MHCheckoutPageView-backButton:hover {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
+.mh-dark .MHCheckoutRegionsView-environment.active {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward-confirmRemove {
+  color: var(--d-text);
+  background-color: var(--d-surface-popover);
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutTransactionErrorPageView__footer {
+  color: var(--d-text-muted);
+  background-color: var(--d-surface-header);
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutHeaderCartView-header-totalCost,
+.mh-dark .MHCheckoutHeaderCartView-numTotalItems {
+  color: var(--d-text);
+  background-color: var(--d-surface-inset);
 }

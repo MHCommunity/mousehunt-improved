@@ -205,7 +205,7 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 }
 
 .mh-dark .kingsGiveawayCalibratorPopup-upgrade-action-kingsCredits {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .kingsGiveawayCalibratorPopup-upgrade.locked .kingsGiveawayCalibratorPopup-upgrade-action.locked {

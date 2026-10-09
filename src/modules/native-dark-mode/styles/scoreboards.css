@@ -1,6 +1,6 @@
 .mh-dark .scoreboardTableView-content {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .mh-dark .scoreboardTableView-header {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -56,7 +56,7 @@
 .mh-dark .tournamentPage-tournamentHeader {
   color: var(--d-text);
   text-shadow: none;
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
   box-shadow: none;
 }

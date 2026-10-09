@@ -337,12 +337,22 @@ a.adventureBookPopup-title.active {
 
 .mh-dark .highlight .adventureBookPopup-adventure-header,
 .mh-dark .highlight .adventureBookPopup-adventure-footer {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .highlight.claimed .adventureBookPopup-adventure-header,
 .highlight.claimed .adventureBookPopup-adventure-footer {
   background-color: #62aa42;
+}
+
+/* Light green would put white text at low contrast, so dark mode marks the highlight with a border instead. */
+.mh-dark .highlight.claimed .adventureBookPopup-adventure-header,
+.mh-dark .highlight.claimed .adventureBookPopup-adventure-footer {
+  background-color: var(--d-green-dark);
+}
+
+.mh-dark .adventureBookPopup-adventureContainer.highlight.claimed {
+  border-color: var(--d-green);
 }
 
 .adventureBookPopup-adventure-button.disabled {

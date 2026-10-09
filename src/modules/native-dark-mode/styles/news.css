@@ -18,7 +18,7 @@
 
 .mh-dark .newsArchivesListView-post {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -45,13 +45,13 @@
 }
 
 .mh-dark .newsPage-container {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .newsPage-inner-container {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   background-image: none;
   border-color: var(--d-border);
 }
@@ -75,7 +75,7 @@
 }
 
 .mh-dark .newsPage-container .newsPage-post-item {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .newsPage-container .newsPage-post-item-description {
@@ -93,7 +93,7 @@
 
 .mh-dark .newsPage-container .newsPage-readMore {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }
 
 .mh-dark .newsPage-container .newsPage-post-item:hover .newsPage-readMore {
@@ -101,7 +101,7 @@
 }
 
 .mh-dark .newsPage-container .newsPage-post-item.inactive {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -113,11 +113,11 @@
 
 .mh-dark .newsPage-container .newsPage-post-item.inactive .newsPage-readMore {
   color: var(--d-text-muted);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .newsPage-container .newsPage-post-patchItem {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   box-shadow: none;
 }
 
@@ -134,9 +134,10 @@
 }
 
 .mh-dark .newsPage-container .newsPage-archiveButton:hover {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   border-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .newsPage-container .newsPage-breakingNewsBanner {
@@ -148,7 +149,7 @@
 }
 
 .mh-dark #newsPost {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark #newsPost .newsPostFooter {
@@ -185,7 +186,7 @@
 .mh-dark .newsPostSubscribeContainer,
 .mh-dark .newsPostFacebookContainer {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .newsPostSubscribeContainer-footer {
@@ -195,7 +196,7 @@
 
 .mh-dark .newsPostBody #news-post-responsive {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   box-shadow: 0 0 4px 1px var(--d-border) inset;
 }
 
@@ -236,7 +237,7 @@
 }
 
 .mh-dark .newsPostBody #news-post-responsive .highlight {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -267,7 +268,7 @@
 }
 
 .mh-dark .newsPostBody #news-post-responsive section.showcaseBlock {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   box-shadow: none;
 }
 
@@ -278,7 +279,7 @@
 
 .mh-dark .newsPostBody #news-post-responsive h2.headerLink a {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 

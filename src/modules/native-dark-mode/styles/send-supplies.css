@@ -1,10 +1,10 @@
 .mh-dark #supplytransfer .categoryMenu a {
   color: var(--d-link);
-  background-color: var(--d);
+  background-color: var(--d-tab);
 }
 
 .mh-dark #supplytransfer .drawer {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark #supplytransfer .drawer .tabContent h2 {
@@ -17,7 +17,7 @@
 }
 
 .mh-dark #supplytransfer .listContainer a.element.item {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -43,9 +43,10 @@
 .mh-dark #supplytransfer .listContainer a.element.recipient:hover,
 .mh-dark #supplytransfer .tabs .tab .image:hover,
 .mh-dark #supplytransfer .tabs .tab .image.empty:hover {
-  color: var(--d-text-dark);
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   border-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark #supplytransfer .tabs .tab .image:hover,
@@ -58,12 +59,12 @@
 }
 
 .mh-dark #supplytransfer .listContainer a.element.recipient {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark #supplytransfer .drawer .tabContent .summary .box {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark #supplytransfer .tabContent.recipient .listContainer span.content {
@@ -84,7 +85,7 @@
 }
 
 .mh-dark #supplytransfer .tabs {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 

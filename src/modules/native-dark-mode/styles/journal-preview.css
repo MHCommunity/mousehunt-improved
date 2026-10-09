@@ -1,12 +1,12 @@
 .mh-dark .mousehuntTabContentContainer-padding {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .journalThemeSelectorView-category-description {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -28,8 +28,9 @@
 }
 
 .mh-dark .journalThemeSelectorView-theme:hover {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .journalThemeSelectorView-theme.disabled {
@@ -44,11 +45,6 @@
 }
 
 .mh-dark .journalThemeSelectorView .mousehuntTabHeader::before {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   box-shadow: 1px 0 1px var(--d-alt);
-}
-
-.mh-dark #overlayPopup.journalThemeSelectorViewContainer .jsDialogContainer .suffix {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
 }

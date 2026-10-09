@@ -27,7 +27,7 @@
 .mh-dark .campPage-trap-baseQuantity {
   color: var(--d-text);
   text-shadow: none;
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: -1px -1px 1px var(--d-bg) inset;
 }
@@ -53,5 +53,5 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity.base-quantity {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }

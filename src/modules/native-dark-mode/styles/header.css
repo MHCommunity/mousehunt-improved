@@ -1,19 +1,19 @@
 .mh-dark .mousehuntHud-gameInfo {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-right: none;
 }
 
-.mh-dark .mousehuntHud-menu ul li a {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHud-menu ul li a {
   height: 25px;
-  color: var(--d-border);
+  color: var(--d-black);
   text-shadow: none;
 }
 
-.mh-dark .mousehuntHud-menu ul li ul li a {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHud-menu ul li ul li a {
   height: 31px;
 }
 
-.mh-dark .mousehuntHud-menu.default {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHud-menu.default {
   background-image: url(https://i.mouse.rip/mousehuntHud-dark.png);
 }
 
@@ -21,18 +21,18 @@
   background-blend-mode: exclusion;
 }
 
-.mh-dark .mousehuntHud-menu ul li:hover a,
-.mh-dark .mousehuntHud-menu ul li.active a {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHud-menu ul li:hover a,
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHud-menu ul li.active a {
   text-shadow: none;
 }
 
-.mh-dark .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
   border-top-color: transparent;
   border-bottom-color: #ededed;
 }
 
-.mh-dark .mousehuntHeaderView .menuItem.dropdown.expanded .arrow,
-.mh-dark .mousehuntHeaderView .menuItem.dropdown.expanded:hover .arrow {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown.expanded .arrow,
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.dropdown.expanded:hover .arrow {
   border-top-color: #999;
   border-bottom-color: transparent;
 }
@@ -47,22 +47,22 @@
   color: var(--d-text-dark);
 }
 
-.mh-dark .mousehuntHeaderView-gameTabs,
-.mh-dark .mousehuntHeaderView .menuItem {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView-gameTabs,
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem {
   background: url(https://i.mouse.rip/dark-menuItem.png) 0 0 repeat-x;
 }
 
-.mh-dark .mousehuntHeaderView-gameTabs {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView-gameTabs {
   border-color: var(--d-border);
 }
 
-.mh-dark .mousehuntHeaderView .menuItem {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem {
   color: var(--d-text);
   border-color: var(--d-border);
 }
 
-.mh-dark .mousehunt-improved-favorite-setups-icon::before,
-.mh-dark .mousehunt-improved-journal-privacy-icon::before {
+.mh-dark:not(.mh-dark-light-menu) .mousehunt-improved-favorite-setups-icon::before,
+.mh-dark:not(.mh-dark-light-menu) .mousehunt-improved-journal-privacy-icon::before {
   filter: invert(1);
 }
 
@@ -70,17 +70,17 @@
   color: var(--d-link);
 }
 
-.mh-dark .mousehuntHeaderView .menuItem.new {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem.new {
   color: #fff;
   text-shadow: 1px 1px var(--d-black);
   filter: brightness(1.2);
 }
 
-.mh-dark .mousehuntHeaderView .menuItem:hover {
+.mh-dark:not(.mh-dark-light-menu) .mousehuntHeaderView .menuItem:hover {
   background-position: 0 -13px;
 }
 
-.mh-dark .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
+.mh-dark:not(.mh-dark-light-menu) .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
   background-image: url(https://i.mouse.rip/dark-menuItem.png);
   background-position-y: -13px;
 }

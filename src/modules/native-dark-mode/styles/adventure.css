@@ -1,5 +1,5 @@
 .mh-dark .adventureBookPopup-adventure-details {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .adventureBookPopup-adventure-details a {
@@ -7,7 +7,7 @@
 }
 
 .mh-dark .adventureBookPopup-adventure-details-block-goalGroup.visible {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border: 1px solid var(--d-border);
   box-shadow: none;
 }
@@ -15,13 +15,13 @@
 .mh-dark .adventureBookPopup-adventure-details-powerTypeContainer {
   margin-right: 0;
   margin-left: 0;
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
 .mh-dark .adventureBookPopup-adventure-footer {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .adventureBookPopup-adventure-details-description-reason {
@@ -32,16 +32,16 @@
 .mh-dark a.adventureBookPopup-title,
 .mh-dark a.adventureBookPopup-title.complete {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
 .mh-dark a.adventureBookPopup-title.complete {
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
 }
 
 .mh-dark .adventureBookPopup-adventure-details-block-step.multi_choice {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .adventureBookBanner-goalImage {
@@ -91,6 +91,6 @@
 }
 
 .mh-dark .adventureBookPopup-adventure-details-block-step-checkmark {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-action);
 }

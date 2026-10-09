@@ -241,8 +241,9 @@
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover {
-  background-color: var(--d-alt);
-  box-shadow: -1px 1px 0 3px var(--d-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 h4.mh-ui-assignment-details-title {

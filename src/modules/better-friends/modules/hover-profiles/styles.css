@@ -230,7 +230,7 @@
 }
 
 .mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-titleBar-icon::after {
-  background: var(--d-action);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -242,7 +242,7 @@
 
 .mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-image,
 .mh-dark .friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon {
-  background: var(--d-action);
+  background: var(--d-surface-inset);
 }
 
 .friendsPage-friendRow.loading .friendsPage-friendRow-image {

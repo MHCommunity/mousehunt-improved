@@ -5,7 +5,7 @@
 .mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
 .mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
   box-shadow: 1px 1px 1px var(--d-bg);
 }
@@ -13,7 +13,7 @@
 .mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader.active span,
 .mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
   border-color: var(--d-border);
   box-shadow: 1px 1px 1px var(--d-bg);
 }
@@ -32,17 +32,20 @@
 }
 
 .mh-dark .campPage-tabs-tabContentContainer {
+  --d-input-bg: var(--d);
+
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
-  border-top-color: var(--d-bg);
+  border-top-color: var(--d-surface-panel);
   box-shadow: 1px 1px 1px var(--d-border);
 }
 
 .mh-dark .campPage-tabs-tabContent.active[data-tab="daily"],
 .mh-dark .campPage-tabs-tabContent-larryTip-container,
 .mh-dark .campPage-quests-container {
-  background-color: var(--d);
+  /* Sunk to the page color inside the panel, like the light version. */
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -68,12 +71,12 @@
 
 .mh-dark .campPage-quests-footer-smash {
   color: var(--d-link);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
 .mh-dark .adventureBookBanner-container {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
   box-shadow: -1px 1px 3px var(--d-bg) inset;
 }
@@ -94,7 +97,7 @@
 
 .mh-dark span.mh-ui-tem-crown-text {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
@@ -108,7 +111,7 @@
 
 .mh-dark img.mh-ui-tem-crown-icon,
 .mh-dark .campPage-trap-trapEffectiveness-mouse-powerType {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
@@ -117,7 +120,7 @@
 }
 
 .mh-dark .campPage-quests-objective-progressBar {
-  background-color: var(--d-action);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: 0 -1px 3px -1px #9b9b9b inset;
 }

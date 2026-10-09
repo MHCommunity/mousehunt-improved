@@ -20,7 +20,7 @@
 }
 
 .mh-dark .mh-catch-stats-wrapper {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow:
     1px 1px 1px var(--d-transparent-50),
@@ -44,7 +44,7 @@
 }
 
 .mh-dark .mh-catch-stats-header {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -85,9 +85,10 @@
 .mh-dark .mh-catch-stats-close:focus,
 .mh-dark .mh-catch-stats-refresh:hover,
 .mh-dark .mh-catch-stats-refresh:focus {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-catch-stats-refreshing {
@@ -118,7 +119,7 @@
 }
 
 .mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd) {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-catch-stats {
@@ -131,7 +132,7 @@
 
 .mh-dark .mh-catch-stats {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-catch-stats:hover,
@@ -146,8 +147,8 @@
 .mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,
 .mh-dark .mh-catch-stats:focus,
 .mh-dark .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d-border);
 }
 

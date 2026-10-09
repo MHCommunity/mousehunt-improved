@@ -33,7 +33,7 @@
 }
 
 .mh-dark .mh-catch-stats-summary-progress {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-catch-stats-summary-progress-fill {
@@ -104,7 +104,7 @@
 }
 
 .mh-dark .mh-catch-stats-summary-group > summary {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -138,7 +138,7 @@
 }
 
 .mh-dark .mh-catch-stats-summary-location-current > summary {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-header);
 }
 
 .mh-catch-stats-summary-location-body {

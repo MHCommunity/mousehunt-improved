@@ -133,6 +133,17 @@ div#dailyRewardTimer {
   text-shadow: 0 0 2px #ffcd6f;
 }
 
+.mh-dark .campPage-daily-content {
+  background: none;
+}
+
+.mh-dark .campPage-daily-container.draw,
+.mh-dark .campPage-daily-tomorrow,
+.mh-dark .campPage-daily-container.draw .campPage-daily-content {
+  overflow: hidden;
+  border-radius: 5px;
+}
+
 .campPage-daily-draw-prize-name {
   font-size: 12px;
 }

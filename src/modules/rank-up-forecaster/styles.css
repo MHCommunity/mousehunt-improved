@@ -332,21 +332,17 @@
 
 /* ── Dark mode ─────────────────────────────────────── */
 
-.mh-dark #overlayPopup.mh-improved-rank-up-forecaster .jsDialogContainer .content {
-  background: var(--d-bg);
-}
-
 .mh-dark .rank-up-forecaster {
   --mhui-rank-up-forecaster-text: var(--d-text);
   --mhui-rank-up-forecaster-text-muted: var(--d-text-muted);
   --mhui-rank-up-forecaster-accent: var(--d-link);
   --mhui-rank-up-forecaster-rank: var(--d-white);
   --mhui-rank-up-forecaster-warn: var(--d-red-light);
-  --mhui-rank-up-forecaster-hero-bg: linear-gradient(135deg, var(--d-alt) 0%, var(--d-bg-alt) 100%);
+  --mhui-rank-up-forecaster-hero-bg: linear-gradient(135deg, var(--d-alt) 0%, var(--d) 100%);
   --mhui-rank-up-forecaster-hero-border: var(--d-border);
   --mhui-rank-up-forecaster-card-bg: var(--d-alt);
   --mhui-rank-up-forecaster-card-border: var(--d-border);
-  --mhui-rank-up-forecaster-heading-bg: var(--d-bg-alt);
+  --mhui-rank-up-forecaster-heading-bg: var(--d-surface-header);
   --mhui-rank-up-forecaster-divider: var(--d-border);
   --mhui-rank-up-forecaster-progress-track: var(--d-black);
   --mhui-rank-up-forecaster-progress-border: var(--d-border);
@@ -361,7 +357,7 @@
 }
 
 .mh-dark .mh-improved-rank-up-forecaster .jsDialogContainer {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-improved-rank-up-forecaster .title {
@@ -370,6 +366,6 @@
 
 .mh-dark .rank-up-forecaster-actions select {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-input-bg);
   border-color: var(--d-border);
 }

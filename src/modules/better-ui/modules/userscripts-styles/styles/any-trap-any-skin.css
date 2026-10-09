@@ -21,7 +21,7 @@
 
 .mh-dark .buttonstyle {
   color: var(--d-text);
-  background-color: var(--d-alt) !important;
+  background-color: var(--d-button) !important;
   border-color: var(--d-border);
 }
 
@@ -31,8 +31,9 @@
 }
 
 .mh-dark .buttonstyle:hover {
-  color: var(--d-text);
-  background-color: var(--d-action) !important;
+  color: var(--d-hover-text);
+  background-color: var(--d-hover) !important;
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 /* activated button */

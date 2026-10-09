@@ -22,7 +22,7 @@
 
 .mh-dark .mh-improved-scoreboard-dropdown,
 .mh-dark .mousehuntPage-content select.mh-improved-scoreboard-dropdown {
-  background-color: var(--d-action);
+  background-color: var(--d-input-bg);
   border-color: var(--d-border);
 }
 

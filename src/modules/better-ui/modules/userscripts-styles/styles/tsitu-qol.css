@@ -16,7 +16,7 @@
 
 .mh-dark #tsitu-hunter-id-nav-ui button {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }
 
 #tsitu-hunter-id-nav-ui {

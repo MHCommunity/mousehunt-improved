@@ -1,5 +1,5 @@
 .mh-dark .hd-popup {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -26,7 +26,7 @@
 }
 
 .mh-dark .hd-table tr:nth-child(even) {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-dark .hd-table .hd-table-td {

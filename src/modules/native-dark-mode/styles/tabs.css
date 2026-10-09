@@ -3,31 +3,34 @@
 .mh-dark .mousehuntHud-page-tabHeader:hover span,
 .mh-dark .mousehuntHud-page-tabHeader:focus span {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
-  border-bottom-color: var(--d-alt);
+  border-bottom-color: var(--d-tab);
   box-shadow: 1px 1px 1px var(--d-border);
 }
 
 .mh-dark .mousehuntHud-page-tabHeader.active span,
 .mh-dark .mousehuntHud-page-tabHeader:hover span {
-  background-color: var(--d);
-  border-bottom-color: var(--d);
-  box-shadow: 1px 1px 1px var(--d);
+  /* Page tabs open onto the page, so the active one matches the page instead of a panel. */
+  background-color: var(--d-surface-page);
+  border-bottom-color: var(--d-surface-page);
+  box-shadow: 1px 1px 1px var(--d-surface-page);
 }
 
 .mh-dark .mousehuntTabHeader span {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
 .mh-dark .mousehuntTabHeader.active span,
 .mh-dark .mousehuntTabHeader:hover span {
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark .mousehuntTabContentContainer {
-  background-color: var(--d-bg);
+  --d-input-bg: var(--d);
+
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }

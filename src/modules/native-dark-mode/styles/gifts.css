@@ -1,11 +1,10 @@
 .mh-dark .giftSelectorView-content-rightBar {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .giftSelectorView-claimableGift.accordion_disabled,
 .mh-dark .giftSelectorView-claimableGift.expanded {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
+  border-color: transparent;
 }
 
 .mh-dark .giftSelectorView-claimableGift-titleContainer {
@@ -14,43 +13,47 @@
 
 .mh-dark a.giftSelectorView-friendRow-action.ignore {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-button);
   outline-color: var(--d-border);
 }
 
 .mh-dark a.giftSelectorView-friendRow-action.ignore:hover {
-  background-color: var(--d-bg);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-friendRow:hover {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d);
 }
 
 .mh-dark .giftSelectorView-claimableGift::after {
   box-shadow:
-    0 -1px 1px #434651 inset,
-    0 -20px 50px #434651 inset;
+    0 -1px 1px var(--d-surface-panel) inset,
+    0 -20px 50px var(--d-surface-panel) inset;
 }
 
 .mh-dark .giftSelectorView-claimableGift.expanded::after {
-  box-shadow: 0 -1px 1px #434651 inset;
+  box-shadow: 0 -1px 1px var(--d-surface-panel) inset;
 }
 
 .mh-dark .giftSelectorView-tabHeader:hover span,
 .mh-dark .giftSelectorView-tabHeader.active span {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark .giftSelectorView-tabHeader span {
   color: var(--d-text-muted);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-tab);
 }
 
 .mh-dark .giftSelectorView-gift .giftSelectorView-gift-padding {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -62,17 +65,19 @@
 .mh-dark .giftSelectorView-friend-padding,
 .mh-dark .giftSelectorView-confirmPopup-block-actionItem .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
   color: var(--d-link);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
-  background-color: var(--d);
-  box-shadow: none;
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-friend.selected:hover .giftSelectorView-friend-padding {
-  color: var(--d-text);
-  background-color: var(--d-blue-dark);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-actionContainer,
@@ -95,15 +100,30 @@
 }
 
 .mh-dark .giftSelectorView-tabContent {
-  background-color: var(--d);
+  --d-input-bg: var(--d);
+
+  background-color: var(--d-surface-panel);
+}
+
+/*
+ * Choosing friends: the chosen gift sits in a sidebar inset.
+ * A shadow draws its edge, since a border wraps the floated layout.
+ */
+.mh-dark .giftSelectorView-content-leftBar {
+  background-color: var(--d-surface-inset);
+  box-shadow: inset -1px 0 var(--d-border);
+}
+
+.mh-dark .giftSelectorView-content-leftBar .giftSelectorView-gift .giftSelectorView-gift-padding {
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-content-leftBar-highlightBlock {
-  background-color: var(--d);
+  background-color: transparent;
 }
 
 .mh-dark .giftSelectorView-content-leftBar-highlightBlock {
-  background-color: var(--d-bg);
+  background-color: transparent;
 }
 
 .mh-dark .giftSelectorView-content-leftBar > .giftSelectorView-content-leftBar-highlightBlock::before {
@@ -112,14 +132,24 @@
 
 .mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding,
-.mh-dark .giftSelectorView-gift.active .giftSelectorView-gift-padding,
 .mh-dark .giftSelectorView-gift:hover .giftSelectorView-gift-padding {
-  color: var(--d-text);
-  background-color: var(--d-blue-dark);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .giftSelectorView-gift.active .giftSelectorView-gift-padding,
+.mh-dark .giftSelectorView-content-selectedGift .giftSelectorView-gift .giftSelectorView-gift-padding {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+}
+
+.mh-dark .giftSelectorView-gift.active:hover .giftSelectorView-gift-padding {
+  border-color: var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-confirmPopup-content {
@@ -141,7 +171,7 @@
 
 .mh-dark .giftSelectorView-inbox-footer {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -151,23 +181,25 @@
 
 .mh-dark a.giftSelectorView-inboxHeader-closeButton {
   color: var(--d-red);
-  background-color: var(--d-alt);
+  background-color: var(--d-button);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark a.giftSelectorView-inboxHeader-closeButton:hover {
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-inboxHeader {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .giftSelectorView-inboxGiftOfTheDay {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -176,7 +208,7 @@
 }
 
 .mh-dark .giftSelectorView-inbox-giftContainer {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .giftSelectorView-inbox-gift-details {
@@ -192,7 +224,7 @@
 }
 
 .mh-dark .giftSelectorView-inbox-giftRow:nth-child(even) {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .giftSelectorView-inbox-giftRow {
@@ -242,21 +274,29 @@
   background-color: var(--d-blue-dark);
 }
 
-.mh-dark .giftSelectorView-content-viewState.selectFriends .favorite .giftSelectorView-friend-padding {
-  color: var(--d-link);
-  background-color: var(--d-alt);
+.mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend .giftSelectorView-friend-padding {
+  color: var(--d-text);
+  background-color: var(--d-surface-inset);
+  box-shadow: none;
 }
 
-.mh-dark .giftSelectorView-content-viewState.selectFriends .selected .giftSelectorView-friend-padding {
-  color: var(--d-white);
-  background-color: var(--d-blue);
+.mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
-.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding,
-.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
-  color: var(--d-white);
+.mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend.selected .giftSelectorView-friend-padding {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
-.mh-dark .giftSelectorView-tabContent.active[data-tab="send_free_gifts"] .favorite .giftSelectorView-friend-padding:hover {
-  background-color: var(--d-blue);
+.mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend.selected:hover .giftSelectorView-friend-padding {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}
+
+.mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend.complete .giftSelectorView-friend-padding {
+  background-color: var(--d-green-dark);
 }

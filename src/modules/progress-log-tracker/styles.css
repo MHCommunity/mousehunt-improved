@@ -97,7 +97,7 @@
 /* ── Dark mode ─────────────────────────────────────── */
 
 .mh-dark .mh-jlt-summary {
-  background: linear-gradient(var(--d-alt) 40%, var(--d-bg-alt) 100%);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -124,16 +124,12 @@
 
 .mh-dark .mh-jlt-table thead th {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-bottom-color: var(--d-border);
 }
 
 .mh-dark .mh-jlt-table tbody tr:nth-child(even) td {
   background-color: var(--d-transparent-10);
-}
-
-.mh-dark #overlayPopup.mh-jlt-overlay .content {
-  background-color: var(--d-bg);
 }
 
 .mh-dark #overlayPopup.mh-jlt-overlay .prefix h2 {

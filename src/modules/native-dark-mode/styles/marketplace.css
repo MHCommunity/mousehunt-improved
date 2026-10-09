@@ -1,13 +1,9 @@
-.mh-dark .mh-dark .marketplaceView-browse-sidebar-link.active {
-  color: var(--d-text);
-}
-
 .mh-dark .marketplaceHome {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .marketplaceView .marketplaceContentContainer {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .marketplaceView h1,
@@ -19,7 +15,7 @@
 .mh-dark a.marketplaceView-moreLink,
 .mh-dark .marketplaceHome-block-viewAll {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -30,20 +26,20 @@
 
 .mh-dark .marketplaceView-table tr {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .marketplaceView-table-empty {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .marketplaceView-table tr:nth-child(odd) {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-dark .marketplaceView-table tr.empty {
-  background-color: var(--d-alt) !important;
+  background-color: var(--d-surface-inset) !important;
 }
 
 .mh-dark .marketplaceView-itemImage.favourite {
@@ -57,23 +53,22 @@
 }
 
 .mh-dark .marketplaceView-header-tabHeader {
-  background-color: var(--d-border);
+  background-color: var(--d-tab);
 }
 
 .mh-dark .marketplaceView-header-tabHeader:hover,
 .mh-dark .marketplaceView-header-tabHeader.active {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark .marketplaceView-table,
-.mh-dark a.marketplaceView-header-tabHeader,
-.mh-dark .mh-dark .marketplaceView-browse-sidebar-link {
+.mh-dark a.marketplaceView-header-tabHeader {
   color: var(--d-text-muted);
 }
 
 .mh-dark .marketplaceView-item-footer {
-  background-color: var(--d);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .marketplaceView-item-footer .marketplaceView-table {
@@ -85,7 +80,7 @@
 }
 
 .mh-dark .marketplaceView-listing-progressBar-padding {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .marketplaceView-table-name a,
@@ -95,14 +90,19 @@
 
 .mh-dark .marketplaceView-browse-sidebar-link {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border: 1px solid var(--d-border);
 }
 
-.mh-dark .marketplaceView-browse-sidebar-link.active,
 .mh-dark .marketplaceView-browse-sidebar-link:hover {
-  color: var(--d-text);
-  background-color: var(--d-blue-dark);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}
+
+.mh-dark .marketplaceView-browse-sidebar-link.active {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .marketplaceView-browse-filter label {
@@ -110,13 +110,13 @@
 }
 
 .mh-dark .marketplaceView-browse-sidebar::after {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .marketplaceView-item-leftBlock .marketplaceHome-block-viewAll,
 .mh-dark a.marketplaceHome-block-viewAll {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
@@ -126,7 +126,7 @@
 
 .mh-dark .marketplaceView-breadcrumb {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   border-width: 1px;
 }
@@ -136,7 +136,7 @@
 }
 
 .mh-dark .marketplaceView-listingBody {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .marketplaceView-item-quickListings a.marketplaceView-goldValue {
@@ -168,13 +168,13 @@
 
 .mh-dark .marketplaceView-trendContainer {
   color: var(--d-text-muted);
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
 .mh-dark .marketplaceView-floatingTooltip {
   color: var(--d-text-muted);
-  background-color: var(--d);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
 }
 
@@ -198,12 +198,12 @@
 }
 
 .mh-dark .marketplaceView-item-cancelButton {
-  background-color: var(--d);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
 .mh-dark .marketplaceView-dialog {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .marketplaceView-item-image {
@@ -237,7 +237,7 @@
 }
 
 .mh-dark .marketplaceView-listingType.buy {
-  background-color: var(--d-blue-dark);
+  background-color: var(--d-green-dark);
 }
 
 .mh-dark .marketplaceView-listingType.sell {
@@ -258,7 +258,7 @@
 }
 
 .mh-dark .marketplaceView-table-filterReminder {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .marketplaceView-table tr.buy.canceled,
@@ -275,7 +275,7 @@
 
 .mh-dark .mhui-marketplace-quick-sell-wrapper {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -302,5 +302,5 @@
 
 .mh-dark .loading .marketplaceView-itemImage,
 .mh-dark .empty .marketplaceView-itemImage {
-  background-color: var(--d-action);
+  background-color: var(--d-surface-inset);
 }

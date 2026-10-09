@@ -78,7 +78,7 @@
 
 .mh-dark .journal .entry.log_summary,
 .mh-dark .journal .entry.shop_purchase {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .journal .entry.adventureBook-journal {

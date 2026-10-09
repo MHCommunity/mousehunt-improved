@@ -213,5 +213,7 @@
 }
 
 .mh-dark #overlayPopup.hunting_summary .lootContainer a:hover .wrapper {
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }

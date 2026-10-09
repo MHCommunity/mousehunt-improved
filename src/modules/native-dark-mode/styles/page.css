@@ -1,6 +1,6 @@
 /* The game gives this a white background that Better UI normally hides. */
 .mh-dark .pageFrameView-contentContainer {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .pageFrameView-content,
@@ -8,12 +8,12 @@
 .mh-dark #mousehuntContainer,
 .mh-dark .pageSidebarView,
 .mh-dark .bg-color {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d);
 }
 
 .mh-dark #mousehuntContainer.PageCamp {
-  background: var(--d);
+  background: var(--d-surface-page);
   box-shadow: none;
 }
 

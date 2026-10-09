@@ -32,7 +32,7 @@
 }
 
 .mh-dark .mouseCrownsView .toolBar {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -103,8 +103,8 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 
 .mh-dark .mouseCrownsView-group-header.community,
 .mh-dark .mouseCrownsView-group-header.powerCrown {
-  background-color: #434651 !important;
-  box-shadow: 0 0 1px 1px #111;
+  background-color: var(--d-surface-panel) !important;
+  box-shadow: 0 0 1px 1px var(--d-border);
 }
 
 .mouseCrownsView-crown.community,

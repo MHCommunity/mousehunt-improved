@@ -1,5 +1,5 @@
 .mh-dark .campPage-trap {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: -1px -1px 1px var(--d-border) inset;
 }
@@ -36,7 +36,7 @@
 .mh-dark .campPage-trap-trapEffectivenessContainer,
 .mh-dark .campPage-trap-itemBrowser-itemContainer {
   color: var(--d-text);
-  background: var(--d);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: -1px 1px 3px var(--d-bg) inset;
 }
@@ -66,7 +66,7 @@
   right: -5px;
   bottom: 4px;
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: -1px -1px 1px var(--d-bg) inset;
 }
@@ -77,7 +77,7 @@
 
 .mh-dark .campPage-trap-trapStat .value {
   color: var(--d-text);
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -91,15 +91,16 @@
 }
 
 .mh-dark .campPage-trap-armedItem.active {
-  background-color: var(--d-alt);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .campPage-trap-armedItem.inactive {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .campPage-trap-itemBrowser-favorites {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .campPage-trap-trapEffectiveness span {
@@ -110,7 +111,7 @@
 .mh-dark .campPage-trap-itemBrowser-armed .loading,
 .mh-dark .campPage-trap-itemBrowser-empty-container {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -124,7 +125,7 @@
 
 .mh-dark .campPage-trap-blueprint-closeButton {
   color: var(--d-text);
-  background: var(--d-bg);
+  background: var(--d-button);
   border-color: var(--d-border);
 }
 
@@ -134,16 +135,16 @@
 }
 
 .mh-dark .empty .campPage-trap-itemBrowser-favorite-item-image {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
 }
 
 .mh-dark .campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-improved-favorite-setups-blueprint-container {
   color: var(--d-text);
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: 2px 2px 3px var(--d-border) inset;
 }
@@ -153,7 +154,7 @@
 }
 
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -163,12 +164,12 @@
 
 .mh-dark .campPage-trap-itemBrowser-tagGroup-name {
   color: var(--d-text-muted);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
 .mh-dark .campPage-trap-itemBrowser-quickLinks {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .campPage-trap-itemBrowser-quickLinks-header {
@@ -176,7 +177,7 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-item-statContainer {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   box-shadow:
     0 0 1px var(--d-black),
     0 1px 30px var(--d) inset;
@@ -204,18 +205,20 @@
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:focus,
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover,
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:focus {
-  background-color: var(--d-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .campPage-trap-itemBrowser-item {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .campPage-trap-itemBrowser-tagGroup-empty {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -226,7 +229,7 @@
 .mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity {
   box-sizing: content-box;
   color: var(--d-text);
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -236,7 +239,7 @@
 }
 
 .mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item::after {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mousehuntActionButton {
@@ -252,11 +255,11 @@
 }
 
 .mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: var(--d-alt);
+  background-color: var(--d-hover);
 }
 
 .mh-dark .campPage-trap-trapStat .math {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: -1px -1px 1px var(--d) inset;
 }
@@ -297,21 +300,25 @@
 
 .mh-dark .trapSelectorView__codexFilterButton {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
 .mh-dark .trapSelectorView__codexFilterButton.active {
-  background-color: var(--d-bg-alt);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,
 .mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus {
-  background-color: var(--d);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item.quicklinks-filter[data-selected="true"] .campPage-trap-itemBrowser-favorite-item-image {
-  background-color: var(--d-action);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
   border-radius: 4px;
   box-shadow: inset 0 0 0 2px var(--d-orange);
 }
@@ -322,7 +329,7 @@
 
 .mh-dark .campPage-trap-trapEffectivenessContainer .loading,
 .mh-dark .campPage-trap-itemBrowser-items .loading {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -332,12 +339,13 @@
 
 .mh-dark .campPage-trap-trapEffectiveness-difficultyGroup {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .campPage-trap-trapEffectiveness-mouse:hover {
-  background-color: var(--d-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   border-color: var(--d-border);
   outline-color: var(--d-border);
 }
@@ -355,7 +363,7 @@
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait,
 .mh-dark #mh-improved-cre {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
   box-shadow: -1px 1px 3px var(--d-bg) inset;
 }
@@ -365,7 +373,8 @@
 }
 
 .mh-dark .mh-improved-cre-row:hover {
-  background-color: var(--d-bg);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   box-shadow: none;
 }
 
@@ -389,7 +398,7 @@
 
 .mh-dark .campPage-trap-itemBrowser-item-favorite,
 .mh-dark .campPage-trap-itemBrowser-item.largeQuantity .campPage-trap-itemBrowser-item-quantity .quantity {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .trapSelectorView__armedItem--empty .trapSelectorView__armedItemImage {
@@ -425,7 +434,7 @@
 }
 
 .mh-dark .campPage-trap-trapEffectivenessBar {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -449,7 +458,7 @@
 
 .mh-dark .campPage-trap-itemBrowser-itemDescriptionHover {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
 }
 
@@ -459,4 +468,24 @@
 
 .mh-dark .campPage-trap-itemBrowser-itemDescriptionHover.left .mousehuntTooltip-arrow::after {
   border-left-color: var(--d-bg);
+}
+
+/* Trap selector hover tooltips. Only colors change; the game's arrow sizes stay. */
+.mh-dark .trapSelectorView__tooltip {
+  color: var(--d-text);
+  background: var(--d-surface-popover);
+  border-color: var(--d-border);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 50%);
+}
+
+.mh-dark .trapSelectorView__tooltipContent {
+  color: var(--d-text);
+}
+
+.mh-dark .trapSelectorView__tooltip::before {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .trapSelectorView__tooltip::after {
+  border-top-color: var(--d-surface-popover);
 }

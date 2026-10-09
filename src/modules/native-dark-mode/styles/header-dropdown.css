@@ -1,6 +1,6 @@
 .mh-dark .mousehuntHeaderView .dropdownContent {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
 }
 
@@ -18,11 +18,12 @@
 }
 
 .mh-dark .mousehuntHeaderView .dropdownContent a:hover {
-  background-color: var(--d-bg);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mh-dark .regionName {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -31,11 +32,11 @@
 }
 
 .mh-dark .locationWrapper {
-  background-color: var(--d);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark .locationWrapper:nth-child(2n) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-dark .dashboardWrapper {
@@ -44,7 +45,7 @@
 }
 
 .mh-dark .scoreboardRelativeRankingTableView-table {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 

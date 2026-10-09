@@ -1,6 +1,6 @@
 body.mh-dark {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   scrollbar-color: var(--d-text-muted) var(--d-alt);
 }
 
@@ -9,7 +9,7 @@ body.mh-dark {
 }
 
 .mh-dark .quickSendWrapper {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -21,10 +21,9 @@ body.mh-dark {
   color: var(--d-text-dark);
 }
 
-.mh-dark .mousehuntPage-content select,
 .mh-dark .mousehuntPage-content input:is([type="submit"], [type="button"], [type="reset"]) {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
@@ -71,7 +70,7 @@ body.mh-dark {
 }
 
 .mh-dark code {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark #overlayPopup.mh-improved-update-summary code {
@@ -152,7 +151,7 @@ body.mh-dark {
 
 .mh-dark #minluck-list {
   color: var(--d-text-muted);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .chro-minluck-overall-cr.bad-minluck {
@@ -173,7 +172,7 @@ body.mh-dark {
 }
 
 .mh-dark .pagerView-link {
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
   border-style: solid;
 }
@@ -181,20 +180,22 @@ body.mh-dark {
 .mh-dark .pagerView-section.previous .pagerView-link,
 .mh-dark .pagerView-section.next .pagerView-link {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab);
   border-color: var(--d-action);
 }
 
 .mh-dark .pagerView-section.previous.active .pagerView-link,
 .mh-dark .pagerView-section.next.active .pagerView-link {
   color: var(--d-text-muted);
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
 .mh-dark .pagerView-section.previous.active .pagerView-link:hover,
 .mh-dark .pagerView-section.next.active .pagerView-link:hover {
-  background-color: var(--d);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .mousehuntPage-content select:hover {
@@ -246,7 +247,7 @@ body.mh-dark {
 
 .mh-dark #OnboardArrow.onboardPopup.top .canShare .larryTip {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
   border: none;
 }
 
@@ -272,7 +273,7 @@ body.mh-dark {
 }
 
 .mh-dark .mh-page-selector {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   border-top: none;
 }

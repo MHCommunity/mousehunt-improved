@@ -115,7 +115,7 @@
 
 .mh-dark .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip {
   color: var(--d-text-muted);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
 }
 
@@ -591,8 +591,10 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .mh-dark .inventoryPage-item.small:hover .inventoryPage-item-margin,
 .mh-dark .inventoryPage-item.small:focus .inventoryPage-item-margin {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   border-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
@@ -641,7 +643,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 }
 
 .mh-dark .inventoryPage-item-recipeOptions li.inactive {
-  background: var(--d-alt);
+  background: var(--d-surface-inset);
 }
 
 .inventoryPage-item-recipeOptions li.inactive:hover {
@@ -723,21 +725,8 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   margin-top: 10px;
 }
 
-/* Keep the category menu on screen while scrolling, scrolling it on its own if it's taller than the window. */
+/* Keep the category menu on screen while scrolling. */
 .inventoryPage-tagDirectory {
   position: sticky;
   top: 10px;
-  max-height: calc(100vh - 20px);
-  overflow-y: auto;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: thin;
-}
-
-/* Only show the scrollbar while hovering the menu. */
-.inventoryPage-tagDirectory:hover {
-  scrollbar-color: rgb(0 0 0 / 30%) transparent;
-}
-
-.mh-dark .inventoryPage-tagDirectory:hover {
-  scrollbar-color: rgb(255 255 255 / 25%) transparent;
 }

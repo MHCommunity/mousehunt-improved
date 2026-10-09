@@ -1,0 +1,140 @@
+/*
+ * Baseline defaults. These replace the game's own defaults so screens without specific dark styles
+ * still come out dark. Element defaults use :where(.mh-dark) to tie with the game's bare element
+ * rules (and win by loading later), so any game rule with a class keeps its own color.
+ */
+
+body.mh-dark {
+  accent-color: var(--d-interactive);
+  color-scheme: dark;
+}
+
+/* The game colors links with a bare `a { color: #3B5998 }`. */
+:where(.mh-dark) a {
+  color: var(--d-link);
+}
+
+/* The game sets `h1, h2, h3, h4, h5, h6 { color: #333 }`. */
+:where(.mh-dark) :is(h1, h2, h3, h4, h5, h6) {
+  color: inherit;
+}
+
+/*
+ * Popups. Every popup gets a panel body and a header-colored footer. These match the game's own
+ * `#overlayPopup …` rules in specificity and win by loading later, so any game or MH Improved rule
+ * written for a specific popup (`#overlayPopup.someClass …`) still takes over.
+ */
+:where(.mh-dark) #overlayPopup .jsDialogContainer {
+  color: var(--d-popup-text, var(--d-text));
+  background-color: var(--d-popup-bg, var(--d-surface-panel));
+}
+
+:where(.mh-dark) #overlayPopup .jsDialogContainer .prefix,
+:where(.mh-dark) #overlayPopup .jsDialogContainer .content {
+  background-color: var(--d-popup-bg, var(--d-surface-panel));
+}
+
+:where(.mh-dark) #overlayPopup .jsDialogContainer .suffix {
+  background-color: var(--d-popup-footer, var(--d-surface-header));
+  border-color: var(--d-border);
+}
+
+/* Popups whose frame or content is artwork keep it: a solid color would cover the art. */
+.mh-dark #overlayPopup.CampHudCheesyPipePartyView-newGameDialog,
+.mh-dark #overlayPopup.airshipViewPopup,
+.mh-dark #overlayPopup.blue,
+.mh-dark #overlayPopup.brown,
+.mh-dark #overlayPopup.ceruleanSkyportRaidChoiceDialogPopup,
+.mh-dark #overlayPopup.ceruleanSkyportShipmentChoiceDialogPopup,
+.mh-dark #overlayPopup.dailyRewardPopup,
+.mh-dark #overlayPopup.fabledForestDialog,
+.mh-dark #overlayPopup.facebookSunsetScroll,
+.mh-dark #overlayPopup.floatingIslandsDialog,
+.mh-dark #overlayPopup.floatingIslandsWorkshop,
+.mh-dark #overlayPopup.greatWinterHuntDialog,
+.mh-dark #overlayPopup.halloweenBoilingCauldronRecipePopup,
+.mh-dark #overlayPopup.harvestBinPopup,
+.mh-dark #overlayPopup.larryOffice,
+.mh-dark #overlayPopup.levelup_share,
+.mh-dark #overlayPopup.springHuntPopup,
+.mh-dark #overlayPopup.sunkenCitySonar,
+.mh-dark #overlayPopup.superBrieFactoryVendingMachinePopup,
+.mh-dark #overlayPopup.tableOfContentsClaimDialogPopup,
+.mh-dark #overlayPopup.mh-improved-update-summary,
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup {
+  --d-popup-text: #333;
+  --d-popup-bg: transparent;
+  --d-popup-footer: transparent;
+}
+
+/*
+ * Form controls. Text fields are in inputs.css; selects look like fields, and plain buttons
+ * (not the game's image-based .mousehuntActionButton) get a raised grey look.
+ */
+.mh-dark select {
+  color: var(--d-input-text);
+  background-color: var(--d-input-bg);
+  border-color: var(--d-input-border);
+}
+
+.mh-dark select:is(:hover, :focus) {
+  border-color: var(--d-input-border-hover);
+}
+
+.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"]),
+.mh-dark button:not([class]) {
+  color: var(--d-text);
+  background-color: var(--d-button);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"]):hover,
+.mh-dark button:not([class]):hover {
+  color: var(--d-hover-text);
+  border-color: var(--d-interactive);
+}
+
+.mh-dark :is(input, select, textarea, button):focus-visible {
+  outline: 2px solid var(--d-interactive);
+  outline-offset: 1px;
+}
+
+/* Game tooltips are white with a black border and a matching arrow. */
+.mh-dark .mousehuntTooltip {
+  color: var(--d-text);
+  background: var(--d-surface-popover);
+  border-color: var(--d-border);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 50%);
+}
+
+.mh-dark .mousehuntTooltip.top .mousehuntTooltip-arrow {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .mousehuntTooltip.top .mousehuntTooltip-arrow::after {
+  border-top-color: var(--d-surface-popover);
+}
+
+.mh-dark .mousehuntTooltip.bottom .mousehuntTooltip-arrow {
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .mousehuntTooltip.bottom .mousehuntTooltip-arrow::after {
+  border-bottom-color: var(--d-surface-popover);
+}
+
+.mh-dark .mousehuntTooltip.left .mousehuntTooltip-arrow {
+  border-left-color: var(--d-border);
+}
+
+.mh-dark .mousehuntTooltip.left .mousehuntTooltip-arrow::after {
+  border-left-color: var(--d-surface-popover);
+}
+
+.mh-dark .mousehuntTooltip.right .mousehuntTooltip-arrow {
+  border-right-color: var(--d-border);
+}
+
+.mh-dark .mousehuntTooltip.right .mousehuntTooltip-arrow::after {
+  border-right-color: var(--d-surface-popover);
+}

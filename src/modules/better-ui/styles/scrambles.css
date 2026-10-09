@@ -462,7 +462,7 @@
   )
   .jsDialogContainer
   .suffix {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -486,7 +486,7 @@
     .pumpkin_spice_latte_message_item,
     .peppermint_latte_message_item
   ) {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
 }
 
 .mh-dark

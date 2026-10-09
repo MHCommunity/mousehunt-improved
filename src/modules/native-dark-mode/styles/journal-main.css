@@ -8,7 +8,7 @@
 
 .mh-dark .journal .content .entry {
   color: var(--d-text) !important;
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
@@ -41,7 +41,7 @@
 }
 
 .mh-dark .pagerView-container {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -50,7 +50,7 @@
 }
 
 .mh-dark .campPage-quests-objective-container {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -59,7 +59,7 @@
 }
 
 .mh-dark .campPage-quests-objective-container.locked {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   box-shadow: none;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .mh-dark .journal-history-page-selector {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   border-top: none;
 }
@@ -89,18 +89,18 @@
 
 .mh-dark .journal-history-page-selector button {
   color: var(--d-text-muted);
-  background-color: var(--d-bg);
+  background-color: var(--d-button);
 }
 
 .mh-dark .journal.jsingle .close a::after {
   color: var(--d-red);
-  background-color: var(--d-alt);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
 .mh-dark .journal.jsingle .close a:hover::after {
   color: var(--d-red);
-  background-color: var(--d-action);
+  background-color: var(--d-hover);
 }
 
 .mh-dark .journal .entry.adventureBook-journal.goal {
@@ -127,5 +127,5 @@
 }
 
 .mh-dark .journalEntries {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }

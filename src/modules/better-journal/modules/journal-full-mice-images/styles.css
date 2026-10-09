@@ -22,7 +22,7 @@
 .mh-dark .entry.catchsuccess .journalimage img,
 .mh-dark .entry.catchsuccessloot .journalimage img,
 .mh-dark .entry.catchsuccessprize .journalimage img {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 /* The mouse art is a JPEG on a white background. Where the browser can composite

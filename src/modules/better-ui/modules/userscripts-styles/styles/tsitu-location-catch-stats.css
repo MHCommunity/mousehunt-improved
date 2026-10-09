@@ -11,7 +11,7 @@
 }
 
 .mh-dark #tsitu-location-stats {
-  background: var(--d-bg) !important;
+  background: var(--d-surface-panel) !important;
 }
 
 #tsitu-location-stats span[style="font-weight: bold; font-size: 18px; text-decoration: underline; padding-left: 20px;"] {
@@ -48,8 +48,9 @@
 }
 
 .mh-dark #tsitu-location-stats button[style="float: right; font-size: 8px;"]:hover {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 #tsitu-location-stats > div br {
@@ -124,7 +125,7 @@
 }
 
 .mh-dark #tsitu-location-stats details details:nth-child(even) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 #tsitu-location-stats details[style="font-size: 16px;"] {

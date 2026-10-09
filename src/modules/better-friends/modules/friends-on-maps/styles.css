@@ -186,18 +186,18 @@
 }
 
 .mh-dark .mh-friends-on-maps-list {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .mh-friends-on-maps-row {
   color: var(--d-text);
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .mh-friends-on-maps-row.captain {
-  background: var(--d-bg-alt);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: 3px 0 var(--d-yellow-darker) inset;
 }

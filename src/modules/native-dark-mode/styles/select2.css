@@ -1,28 +1,29 @@
 .mh-dark .select2-container .select2-choice {
   text-shadow: none;
-  background: var(--d-alt);
+  background: var(--d-input-bg);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .select2-container .select2-choice .select2-arrow {
-  background: var(--d-alt);
+  background: var(--d-input-bg);
   border-color: var(--d-border);
 }
 
 .mh-dark .friendsPage-list-filter.active {
-  background-color: var(--d);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .select2-drop {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark .select2-results .select2-no-results,
 .mh-dark .select2-results .select2-searching,
 .mh-dark .select2-results .select2-selection-limit {
   color: var(--d-text-muted);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark input[type="text"] {
@@ -43,16 +44,16 @@
 
 .mh-dark .select2-results .select2-result-label {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark .PageAdversaries .adversariesPage-list-filter #select2-drop li,
 .mh-dark .PageFriends .adversariesPage-list-filter #select2-drop li {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark .PageAdversaries .adversariesPage-list-filter #select2-drop li:nth-child(even) {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-dark .select2-drop li.select2-highlighted,

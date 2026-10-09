@@ -180,7 +180,7 @@
 }
 
 .mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item::after {
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
@@ -189,7 +189,7 @@
 }
 
 .mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: var(--d-alt);
+  background-color: var(--d-hover);
 }
 
 .mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-favorite-item:hover .campPage-trap-itemBrowser-favorite-item-image {
@@ -209,7 +209,7 @@
 
 .mh-dark .mh-improved-favorite-setups-component-picker .prefix,
 .mh-dark .mh-improved-favorite-setups-component-picker .content {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-improved-favorite-setups-component-picker .content .content {
@@ -278,7 +278,7 @@ a.random-title::after {
 }
 
 .mh-dark a.random-title::after {
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }
 
 a.random-title:hover::after {
@@ -286,7 +286,7 @@ a.random-title:hover::after {
 }
 
 .mh-dark a.random-title:hover::after {
-  background-color: var(--d-alt);
+  background-color: var(--d-hover);
 }
 
 a.random-title.loading::after {

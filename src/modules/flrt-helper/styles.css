@@ -219,7 +219,7 @@
 
 .mh-dark .flrt-helper-popup .jsDialog.background .content {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .flrt-helper-popup h2.title {
@@ -227,7 +227,7 @@
 }
 
 .mh-dark .mh-improved-flrt-helper-popup .flrt-item {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -248,7 +248,7 @@
 
 .mh-dark .mh-improved-flrt-helper-popup .friendsPage-community-hunterResult .error {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .mh-improved-flrt-helper-popup .flrt-search-form {

@@ -5,14 +5,14 @@
 
 .pageFrameView #mousehuntContainer.PageCamp,
 .pageFrameView #mousehuntContainer.PageJournal {
-  background-color: #383e49;
+  background-color: var(--d-alt, #333943);
 }
 
 body .mousehuntHud-marbleDrawer {
   background:
     url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,
     url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat;
-  background-color: #383e49;
+  background-color: var(--d-alt, #333943);
 }
 
 .pageFrameView .pageFrameView-contentContainer,

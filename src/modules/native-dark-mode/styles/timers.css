@@ -1,25 +1,11 @@
-.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-}
-
-.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer h2 {
-  color: var(--d-text);
-}
-
-.mh-dark #overlayPopup.mh-improved-timers .jsDialogContainer .suffix {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
-}
-
 .mh-dark .mh-timers-location {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: 0 1px 2px var(--d-transparent-50);
 }
 
 .mh-dark .mh-timers-header {
-  background-color: var(--d);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 

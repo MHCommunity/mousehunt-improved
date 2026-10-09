@@ -1,0 +1,26 @@
+{
+  "version": "0.103.0",
+  "summary": "Shops now show the total cost for the quantity you enter, the mouse view has a fresh new look, and Dark Mode got a color refresh. Happy hunting!",
+  "details": [
+    {
+      "title": "New",
+      "items": [
+        "Better Shops: See the total gold cost and item costs for the quantity you enter",
+        "Better Mice: A redesigned mouse view, with your catches, crown, minlucks, and rewards up front",
+        "Better Item View: A tidier sidebar, with your quantity under the picture",
+        "Custom Menu: Hide and show the location HUD from the top menu",
+        "Better Maps: Collapse the found mice in the Goals tab and locations in the Sorted tab"
+      ]
+    },
+    {
+      "title": "Fixed and Updated",
+      "items": [
+        "Dark Mode: Refreshed colors, with blue links in place of purple",
+        "Custom Menu: Opening pinned convertibles now shows the new journal entries",
+        "Better Maps: Toxic Spill maps sorted by pollution level",
+        "Better Marketplace: Click anywhere on a row in your listings and history to open the item",
+        "Location HUDs - Cerulean Skyport: Fixed large intel counts in the raid picker"
+      ]
+    }
+  ]
+}

@@ -505,7 +505,7 @@ a.friendsProfileView-randomFriend {
 }
 
 .mh-dark .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName {

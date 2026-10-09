@@ -1,14 +1,15 @@
 .mh-dark .folkloreForestRegionView-dialog-block-name {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .folkloreForestRegionView-dialog-block-description {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
+  border-top-color: var(--d-surface-panel);
 }
 
 .mh-dark .upsellItemActionView-action-quantity {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }

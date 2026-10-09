@@ -9,14 +9,13 @@
   --d-transparent-90: rgb(38 43 51 / 90%);
   --d-black: #222;
   --d-white: #e7eaee;
-  --d-alt: #383e49;
-  --d-bg: #434651;
-  --d-bg-alt: #383838;
+  --d-alt: #333943;
+  --d-bg: #424852;
   --d-border: #111;
-  --d-action: #5e646f;
+  --d-action: #565d67;
   --d-text: #c8ced8;
   --d-text-dark: #555;
-  --d-text-muted: #a7adb9;
+  --d-text-muted: #b1b7c3;
   --d-link: #bf93ff;
   --d-orange: #fcb671;
   --d-orange-dark: #eb7805;
@@ -40,10 +39,62 @@
   --d-red-dark: #a02c2c;
   --d-red-darker: #732639;
 
-  /* Text fields. Popups sit on --d-bg, so inputs.css swaps the field background there. */
+  /*
+   * Surface roles. Component CSS uses these for backgrounds, never the raw surface colors above.
+   * Darkest to lightest: page (--d), inset/header/tab (--d-alt), panel (--d-bg), hover (--d-action).
+   */
+
+  /* The page canvas, and anything flush with it. Item and mouse view popups use it too. */
+  --d-surface-page: var(--d);
+
+  /* Containers lifted off the page: dialogs, tab content panels, standalone cards. */
+  --d-surface-panel: var(--d-bg);
+
+  /* Bars that frame a panel: table headers, section headers, popup footers. */
+  --d-surface-header: var(--d-alt);
+
+  /* Info boxes, hints, callouts, empty states. Sits between page and panel, so it works on either. */
+  --d-surface-inset: var(--d-alt);
+
+  /* Anything floating over content: tooltips, hover cards, dropdown menus. */
+  --d-surface-popover: var(--d-bg);
+
+  /* Inactive tabs. An active tab matches whatever it opens onto (panel, or page for page tabs). */
+  --d-tab: var(--d-alt);
+  --d-tab-active: var(--d-surface-panel);
+
+  /* Zebra stripe on even rows. */
+  --d-row-alt: var(--d-alt);
+
+  /*
+   * Interaction states. Blue edge = interactive, blue fill = selected.
+   * --d-interactive is for edges only (borders, outlines, accents): no text color passes on it.
+   */
+  --d-hover: var(--d-action);
+  --d-hover-text: var(--d-white);
+  --d-interactive: var(--d-blue);
+  --d-selected: var(--d-blue-dark);
+  --d-selected-text: var(--d-white);
+
+  /* Raised controls: plain buttons, small action buttons, count badges. */
+  --d-button: var(--d-action);
+
+  /* Text fields. Panels swap the field background to --d so fields stay visible on them. */
   --d-input-bg: var(--d-bg);
   --d-input-text: var(--d-text);
   --d-input-border: var(--d-border);
   --d-input-border-hover: var(--d-action);
   --d-input-placeholder: var(--d-text-muted);
+
+  /* Location catch stats rows tinted by crown, base and odd-row stripe. */
+  --d-crown-bronze: #5f4537;
+  --d-crown-bronze-alt: #6b4d3d;
+  --d-crown-silver: #464d58;
+  --d-crown-silver-alt: #505865;
+  --d-crown-gold: #5a5134;
+  --d-crown-gold-alt: #665c3a;
+  --d-crown-platinum: #3d5557;
+  --d-crown-platinum-alt: #466163;
+  --d-crown-diamond: #563f56;
+  --d-crown-diamond-alt: #624862;
 }

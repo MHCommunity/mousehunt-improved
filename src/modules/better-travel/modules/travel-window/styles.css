@@ -133,10 +133,6 @@ input.mh-improved-travel-window-search-input[type="text"] {
   opacity: 0.4;
 }
 
-.mh-dark #overlayPopup.mh-improved-travel-window-popup .content {
-  background-color: var(--d-bg);
-}
-
 .mh-improved-travel-window-sort-name {
   width: 150px;
 }

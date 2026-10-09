@@ -1,6 +1,6 @@
 .mh-dark .tournamentPage-tournamentHeader a {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
@@ -11,7 +11,7 @@
 }
 
 .mh-dark .tournamentPage-tournamentRow {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -28,22 +28,22 @@
 .mh-dark .tournamentPage-profile-details-rewardContainer,
 .mh-dark .tournamentPage-profile-details-padding {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .tournamentPage-profileContainer.train .tournamentPage-tournamentHeader {
   color: var(--d-text);
-  background: var(--d-alt);
+  background: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
 .mh-dark .tournamentPage-profileContainer.train .tournamentPage-profile-details-rewardContainer {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
 }
 
 .mh-dark .tournamentPage-profile-summaryDetailsContainer {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   border-radius: 0;
 }

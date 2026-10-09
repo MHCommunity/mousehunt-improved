@@ -315,15 +315,26 @@
 }
 
 .mh-dark-mode .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: #3d3d3d;
+  background-color: #4a4a4a;
 }
 
-.mh-dark-mode .minluck-title,
+.mh-dark-mode .mouseView-titleContainer,
 .mh-dark-mode .mouseview-has-mhct .ar-header {
   border-color: #606060;
 }
 
-.mh-dark-mode li.minluck-item {
+.mh-dark-mode .itemView-header-classification-link::before {
+  filter: brightness(0) invert(0.8);
+}
+
+.mh-dark-mode li.minluck-item,
+.mh-dark-mode .mouseView-contentContainer .mice-ar-wrapper,
+.mh-dark-mode .mouseview-effectiveness,
+.mh-dark-mode .mouseview-has-mhct .mouseView-statsContainer-block,
+.mh-dark-mode .mouseview-has-mhct .ar-wrapper,
+.mh-dark-mode .itemView-sidebar-checkList,
+.mh-dark-mode .itemViewContainer .itemView-obtainHint,
+.mh-dark-mode .itemView-content > .itemViewStatBlock .itemViewStatBlock-stat {
   background-color: #3d3d3d;
   border-color: #606060;
 }

@@ -1,92 +1,12 @@
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer .content,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .content,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .content,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .content {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-}
+/*
+ * Every popup gets its panel body and footer from _base.css. Item and mouse views are also shown
+ * inline on pages (item.php, the mouse pages), so their popups use the page surface to match.
+ */
+.mh-dark #overlayPopup:is(.itemViewPopup, .mouseViewPopup) .jsDialogContainer,
+.mh-dark #overlayPopup:is(.itemViewPopup, .mouseViewPopup) .jsDialogContainer :is(.prefix, .content) {
+  --d-input-bg: var(--d-bg);
 
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer {
-  background-color: var(--d-bg);
-}
-
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .suffix,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .suffix {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
-}
-
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .prefix,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .prefix {
-  background-color: var(--d-bg);
-}
-
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer .jsDialog.bottom,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .jsDialog.bottom {
-  background-color: var(--d-alt);
-  border-radius: 0 0 15px 15px;
-}
-
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer h2,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h2,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer h2,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h2,
-.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.largerImage .jsDialogContainer h3,
-.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h3,
-.mh-dark #overlayPopup.livingGardenRecipes .jsDialogContainer h3,
-.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h3 {
-  color: var(--d-text);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark #overlayBg {
@@ -94,18 +14,18 @@
 }
 
 .mh-dark .mh-improved-travel-window.greatWinterHuntGolemDestinationView {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentName {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   border-radius: 0;
   box-shadow: none;
@@ -113,7 +33,8 @@
 
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentName,
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentName {
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mh-dark #overlayPopup .button,
@@ -129,18 +50,13 @@
 }
 
 .mh-dark #overlayPopup.livingGardenRecipes .recipe:hover {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mh-dark #overlayPopup.livingGardenRecipes .recipe .image img,
 .mh-dark #overlayPopup.livingGardenRecipes .recipe .parts .part img {
   box-shadow: none;
-}
-
-.mh-dark #overlayPopup.tornPage .jsDialogContainer {
-  color: var(--d-text);
-  background-color: var(--d-bg);
 }
 
 .mh-dark #overlayPopup.tornPage .jsDialogContainer h2,
@@ -153,29 +69,14 @@
 }
 
 /* Inventory confirm popup (brew / open / use) has no popup class, so match on its content. */
-.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer,
-.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .prefix,
-.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .content {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-}
-
-.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer h2 {
-  color: var(--d-text);
-}
-
-.mh-dark #overlayPopup:has(.inventoryPage-confirmPopup) .jsDialogContainer .suffix {
-  background-color: var(--d-alt);
-  border-color: var(--d-border);
-}
 
 .mh-dark .inventoryPage-confirmPopup-itemContainer {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .inventoryPage-confirmPopup-itemTable {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .inventoryPage-confirmPopup-itemTable-title {
@@ -225,11 +126,11 @@
 }
 
 .mh-dark .mousehuntCharacterGuideBox-content {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .convertibleOpenView-header {
-  background-color: var(--d);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark .convertibleOpenView-header a {
@@ -237,7 +138,7 @@
 }
 
 .mh-dark #overlayPopup.hunting_summary .jsDialogContainer {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark #overlayPopup.hunting_summary .title {
@@ -245,7 +146,7 @@
 }
 
 .mh-dark #overlayPopup.hunting_summary .jsDialogContainer .suffix {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -256,11 +157,11 @@
 }
 
 .mh-dark .convertibleOpenView-auraContainer {
-  background-color: var(--d);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .convertibleOpenView-aura.QuestChromeAura {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-red-darker);
 }
 
@@ -282,7 +183,7 @@
 /* Item message popups (using, opening, or receiving items), e.g. "singleItemLeft super_briefs_message_item". */
 .mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .jsDialogContainer {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .jsDialogContainer h2 {
@@ -295,26 +196,7 @@
 
 .mh-dark #overlayPopup:is(.singleItemLeft, .singleItemRight, .multipleItems) .itemImage .quantity {
   color: var(--d-text);
-  background: var(--d-alt);
-  border-color: var(--d-border);
-}
-
-/*
- * Plain game popups from the default, error, and loading templates. A default popup without a
- * custom class gets "overlayPopup" as its class; classed ones (including MH Improved's own) are
- * usually custom designs, so only the plain ones and a few known classes are matched.
- */
-.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-}
-
-.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer h2 {
-  color: var(--d-text);
-}
-
-.mh-dark #overlayPopup:is(.default.overlayPopup, .teamPageConfirm-dialog, .shopsPageTrapPreview, .error, .loading) .jsDialogContainer .suffix {
-  background-color: var(--d-alt);
+  background: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -324,6 +206,7 @@
 
 /* The default loader dots disappear on a dark footer, so use the green loader instead. */
 .mh-dark #overlayPopup.loading .jsDialogContainer .suffix {
+  background-color: var(--d-surface-header);
   background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
   background-position: 98% 10px;
   background-size: 110px;

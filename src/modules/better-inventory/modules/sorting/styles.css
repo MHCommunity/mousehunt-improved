@@ -191,7 +191,7 @@
 }
 
 .mh-dark .mh-inventory-sort {
-  background-color: var(--d);
+  background-color: var(--d-surface-popover);
   border-color: var(--d-border);
 }
 
@@ -207,11 +207,14 @@
 
 .mh-dark .mh-inventory-sort-tile:hover,
 .mh-dark .mh-inventory-sort-tile:focus {
-  background-color: var(--d-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .mh-inventory-sort-tile.active {
-  background-color: var(--d-action);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
   box-shadow: inset 0 0 0 2px var(--d-orange);
 }
 

@@ -1,5 +1,33 @@
 # Changelog
 
+## Version 0.103.0
+
+### Added
+
+- Better Shops: Showed the total gold cost, sell value, and item costs for the quantity you enter, and flagged when you can't afford it
+- Better Mice: Redesigned the mouse view, with your catches and crown in the title, gold, points, and wisdom pills, minlucks for every power type, and a wiki link under the description
+- Better Item View: Tidied the sidebar to just the tradable and giveable checklist and a wiki link, and moved your quantity under the picture
+- Custom Menu: Added a toggle that hides and shows the location HUD
+- Custom Menu: Added a button to refresh pinned item quantities in the editor
+- Custom Menu: Added the Lucky Golden Shield timer to pinned SB+ supply packs
+- Better Maps: Grouped the "found these mice" lists into one collapsible section in the Goals tab
+- Better Maps: Made locations collapsible in the Sorted tab, and sorted by location by default
+- Beta Features: Added Dark Mode Palette Test to try different Dark Mode color palettes
+
+### Fixed and Updated
+
+- Dark Mode: Refreshed the colors, with blue links in place of purple, and made screens without their own dark styles come out dark
+- Custom Menu: Fixed opening a pinned convertible not showing the new journal entries
+- Custom Menu: Hid the quantity for pinned items you have none of, and checked for new ones sooner
+- Better Send Supplies: Spaced out quick sends so rapid clicks don't send too fast
+- Better Maps: Updated the Toxic Spill map groups to sort mice by pollution level and the rank they're best at
+- Better Maps: Fixed rare maps not matching their map groups in the Sorted tab
+- Better Maps: Removed the MHCT and Wiki links from the mouse and item details on maps
+- Better Marketplace: Made the whole row open the item in the listings and history tabs
+- Location HUDs - Cerulean Skyport: Fixed intel counts over 99 overlapping the progress bar in the raid picker, and fixed the ledger opening from the airship after travelling
+- Fixed the item page link for items without an inventory tab, like stat items
+- Minor style tweaks across Better Maps, Better Inventory, Better Journal, Location Catch Stats, and other modules
+
 ## Version 0.102.0
 
 ### Added

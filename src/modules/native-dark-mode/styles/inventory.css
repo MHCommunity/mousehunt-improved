@@ -1,5 +1,5 @@
 .mh-dark .inventoryPage-item.small .inventoryPage-item-margin {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border: 1px solid var(--d-border);
 }
 
@@ -14,7 +14,7 @@
 
 .mh-dark a.inventoryPage-tagDirectory-tag {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
@@ -39,7 +39,7 @@
 }
 
 .mh-dark .inventoryPage-item.small.armed .inventoryPage-item-margin {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-green);
   box-shadow: inset 0 0 4px var(--d-green);
 }
@@ -51,7 +51,7 @@
 .mh-dark a.mousehuntHud-page-subTabContent-prefix-filter-option,
 .mh-dark .mousehuntHud-page-subTabHeader span {
   color: var(--d-text);
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -61,8 +61,14 @@
 .mh-dark .mousehuntHud-page-subTabHeader.active span,
 .mh-dark .mousehuntHud-page-subTabHeader:hover span,
 .mh-dark .mousehuntHud-page-subTabHeader:focus span {
-  color: var(--d-text-muted);
-  background-color: var(--d-blue-darker);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
+.mh-dark .mousehuntHud-page-subTabContent-prefix-filter-option.active,
+.mh-dark .mousehuntHud-page-subTabHeader.active span {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .mousehuntHud-page-subTabContent-prefix-filter-options {
@@ -74,7 +80,7 @@
 }
 
 .mh-dark .inventoryPage-item-margin {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -92,7 +98,7 @@
 }
 
 .mh-dark .itemViewStatBlock-stat-label {
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }
 
 .mh-dark .inventoryPage-item-content-description-text {
@@ -143,11 +149,13 @@
 }
 
 .mh-dark .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .inventoryPage-item-margin {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .mousehuntHud-page-subTabContent-prefix-title {
@@ -156,17 +164,17 @@
 }
 
 .mh-dark .inventoryPage-craftingTable-slotContainer {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mousehuntHud-page-subTabContent.crafting_table .inventoryPage-craftingTable {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .inventoryPage-craftingTable-slot {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -184,12 +192,13 @@
 }
 
 .mh-dark .tiny-item:nth-child(even) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-dark .tiny-item:hover,
 .mh-dark .tiny-item:nth-child(even):hover {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mh-dark .inventoryPage-craftingTable-slot-item .itemImage {
@@ -202,7 +211,7 @@
 
 .mh-dark .inventoryPage-craftingTable-slot-item-controls a {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-button);
 }
 
 .mh-dark .inventoryPage-craftingTable-slot-item-controls input[type="text"]:hover {
@@ -210,8 +219,9 @@
 }
 
 .mh-dark .inventoryPage-craftingTable-slot-item-controls a:hover {
-  color: var(--d-text-muted);
-  background-color: var(--d);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
@@ -249,7 +259,7 @@
   font-size: 15px;
   color: var(--d-red);
   text-align: center;
-  background-color: var(--d-alt);
+  background-color: var(--d-button);
   border-color: var(--d-border);
   border-radius: 20px;
   box-shadow: none;
@@ -257,12 +267,13 @@
 
 .mh-dark .inventoryPage-craftingTable-slot-item-remove:hover {
   color: var(--d-red);
-  background-color: var(--d-action);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .inventoryPage-item .tooltip {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-surface-popover);
 }
 
 .mh-dark .inventoryPage-item .tooltip .arrow {

@@ -11,7 +11,7 @@
 }
 
 .mh-dark .journalContainer-selectTheme {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-improved-random-journal {
@@ -25,6 +25,6 @@
 }
 
 .mh-dark #journalContainer .journal__privacy-button {
-  background: var(--d-action);
+  background: var(--d-button);
   border-color: var(--d-border);
 }

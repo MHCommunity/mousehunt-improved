@@ -1,7 +1,7 @@
 .mh-dark .travelPage-regionMenu-environments,
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-item,
 .mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
@@ -12,16 +12,20 @@
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
-.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus,
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight,
 .mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
-  color: var(--d-text);
-  background-color: var(--d-blue);
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
 }
 
 .mh-dark .travelPage-regionMenu-stats {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight {
@@ -29,37 +33,39 @@
   border-right: none;
 }
 
+/* Region names are headers. The game marks expanded regions .active, and Better Travel expands them all. */
 .mh-dark .travelPage-regionMenu-item.active .travelPage-regionMenu-regionLink {
-  background-color: var(--d-blue-dark);
-  box-shadow: 2px 2px 2px var(--d-blue-dark) inset;
+  color: var(--d-white);
+  background-color: var(--d-surface-header);
+  box-shadow: none;
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-item {
-  border-color: var(--d-blue-dark);
+  border-color: var(--d-border);
 }
 
 .mh-dark a.travelPage-regionMenu-environmentLink,
 .mh-dark a.travelPage-regionMenu-regionLink {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
   border-color: var(--d-border);
 }
 
 .mh-dark .travelPage-map-pieces-detail-title {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
 .mh-dark .travelPage-map-pieces-row {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
 .mh-dark .travelPage-map-pieces-row.locked {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .travelPage-map-pieces-row.locked .travelPage-map-pieces-detail-title {
-  background-color: var(--d-action);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .travelPage-map-pieces-detail-environment-title {
@@ -67,7 +73,7 @@
 }
 
 .mh-dark .travelPage-map-environment-detailContainer {
-  background: var(--d);
+  background: var(--d-surface-page);
   border-color: var(--d-border);
   border-bottom: none;
   box-shadow: none;
@@ -103,13 +109,13 @@
 
 .mh-dark .travelPage-regionMenu-environmentLink.active,
 .mh-dark .travelPage-regionMenu-environmentLink.current {
-  color: var(--d-text);
-  background: var(--d-blue);
+  color: var(--d-selected-text);
+  background: var(--d-selected);
 }
 
 .mh-dark .travelPage-map-prefix {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
@@ -118,5 +124,5 @@
 }
 
 .mh-dark .travelPage-map-image-background {
-  background-color: var(--d);
+  background-color: var(--d-surface-page);
 }

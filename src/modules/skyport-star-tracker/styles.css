@@ -24,7 +24,7 @@
 }
 
 .mh-dark .mh-skyport-star-tracker-wrapper {
-  background: var(--d-bg);
+  background: var(--d-surface-panel);
   border-color: var(--d-border);
   box-shadow:
     1px 1px 1px var(--d-transparent-50),
@@ -48,7 +48,7 @@
 }
 
 .mh-dark .mh-skyport-star-tracker-header {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
@@ -89,9 +89,10 @@
 .mh-dark .mh-skyport-star-tracker-close:focus,
 .mh-dark .mh-skyport-star-tracker-refresh:hover,
 .mh-dark .mh-skyport-star-tracker-refresh:focus {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-skyport-star-tracker-refreshing {
@@ -147,13 +148,13 @@
 
 .mh-dark .mh-skyport-star-tracker-raid-header {
   color: var(--d-text);
-  background: var(--d-alt);
+  background: var(--d-surface-header);
 }
 
 .mh-dark .mh-skyport-star-tracker-raid-header:hover,
 .mh-dark .mh-skyport-star-tracker-raid-header:focus {
-  color: var(--d-text);
-  background: var(--d-action);
+  color: var(--d-hover-text);
+  background: var(--d-hover);
 }
 
 .mh-skyport-star-tracker-raid-collapse-icon {
@@ -205,11 +206,11 @@
 
 .mh-dark .mh-skyport-star-tracker-mouse {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mh-skyport-star-tracker-mouse.odd {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-row-alt);
 }
 
 .mh-skyport-star-tracker-mouse:hover,
@@ -220,8 +221,8 @@
 
 .mh-dark .mh-skyport-star-tracker-mouse:hover,
 .mh-dark .mh-skyport-star-tracker-mouse:focus {
-  color: var(--d-text);
-  background-color: var(--d-action);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   outline-color: var(--d-border);
 }
 
@@ -302,4 +303,8 @@
   background:
     url(https://www.mousehuntgame.com/images/icons/checkmark_greenplain.png) no-repeat left 4px center / 10px,
     #fff;
+}
+
+.mh-skyport-star-tracker-raid-intel.mh-skyport-star-tracker-raid-complete span {
+  opacity: 0.5;
 }

@@ -1,42 +1,42 @@
 .mh-dark #messengerUINotification {
-  background-color: var(--d-bg) !important;
+  background-color: var(--d-surface-panel) !important;
   border-color: var(--d-border);
 }
 
 .mh-dark #messengerUINotification .tabs a.active {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab-active);
   border-color: var(--d-border);
 }
 
 .mh-dark #messengerUINotification .notificationHeader {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-header);
 }
 
 .mh-dark #messengerUINotification .tabs a,
 .mh-dark #messengerUINotification .tabs a:hover,
 .mh-dark #messengerUINotification .tabs a:visited {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-tab);
   border-color: var(--d-border);
 }
 
 .mh-dark #messengerUINotification .tabs a:hover,
 .mh-dark #messengerUINotification .tabs a.active {
-  background-color: var(--d-action);
+  background-color: var(--d-tab-active);
 }
 
 .mh-dark #messengerUINotification .tabs a.active .arrow {
-  border-left-color: var(--d-action);
+  border-left-color: var(--d-tab-active);
 }
 
 .mh-dark .notificationMessageList .message:nth-child(even) {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
   border-color: var(--d-border);
 }
 
 .mh-dark .notificationMessageList .message:nth-child(odd) {
-  background-color: var(--d-alt);
+  background-color: var(--d-row-alt);
   border-color: var(--d-border);
 }
 
@@ -57,7 +57,7 @@
 }
 
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message .date,
@@ -67,12 +67,14 @@
 
 .mh-dark #messengerUINotification .messengerUINotificationClose {
   color: var(--d-text-muted);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
   border-color: var(--d-border);
 }
 
 .mh-dark #messengerUINotification .messengerUINotificationClose:hover {
-  background-color: var(--d);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .notificationMessageList .message .messageText {
@@ -85,7 +87,7 @@
 
 .mh-dark .notificationMessageList .empty {
   color: var(--d-text-muted);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
 }
 
 .mh-dark .notificationMessageList .message {

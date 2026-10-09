@@ -1,6 +1,6 @@
 .mh-dark .PagePreferences__title,
 .mh-dark .PagePreferences__section {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-inset);
   border-color: var(--d-border);
 }
 
@@ -71,7 +71,7 @@
 
 .mh-dark .mh-utils-settings-refresh-message {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-inset);
   border-top-color: var(--d-yellow-darker);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup .jsDialogContainer {
-  background-color: var(--d-bg);
+  background-color: var(--d-surface-panel);
 }
 
 .mh-dark .mousehunt-improved-settings-export-popup .title,
@@ -96,7 +96,7 @@
 }
 
 .mh-dark .accountVerificationRewardsView__title {
-  background-color: var(--d-action);
+  background-color: var(--d-surface-header);
   border-color: var(--d-border);
 }
 
