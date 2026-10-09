@@ -6,9 +6,31 @@ const pinsKey = 'quick-items-menu.pins';
 const classifications = ['convertible', 'message_item', 'weapon', 'base', 'bait', 'trinket', 'potion'];
 
 /**
- * Options for a pin's tab, alongside the icon and name choices every item has.
+ * Trap auras granted by convertibles, keyed by the convertible's item type.
  */
-const pinOptions = [{ key: 'quantity', label: 'Show quantity', default: false }];
+const auras = {
+  kilohertz_processor_convertible: { type: 'QuestMillenniaura', name: 'Millenniaura' },
+  cursed_skull_convertible: { type: 'QuestSpookyAura', name: 'Spooky Aura' },
+  chrome_skull_convertible: { type: 'QuestChromeAura', name: 'Chrome Aura' },
+  jet_stream_crate_convertible: { type: 'QuestJetStreamAura', name: 'Jet Stream Aura' },
+  g_birthday_2025_treasure_chest_convertible: { type: 'QuestAnniversaryAura', name: 'Anniversary Aura' },
+  rare_g_birthday_2025_treasure_chest_convertible: { type: 'QuestAnniversaryAura', name: 'Anniversary Aura' },
+  dragon_skull_convertible: { type: 'QuestDragonsMightAura', name: "Dragon's Might Aura" },
+  lightning_slayer_chest_convertible: { type: 'QuestLightningAura', name: 'Lightning Aura' },
+  rare_lightning_slayer_chest_convertible: { type: 'QuestLightningAura', name: 'Lightning Aura' },
+  sb_supply_pack: { type: 'lgs', name: 'Lucky Golden Shield' },
+  festive_sb_supply_pack: { type: 'lgs', name: 'Lucky Golden Shield' },
+};
+
+/**
+ * Options for a pin's tab, alongside the icon and name choices every item has. Ones marked `aura`
+ * are only offered for pins with an item from `auras`, and turning on one in `excludes` turns the
+ * others off.
+ */
+const pinOptions = [
+  { key: 'quantity', label: 'Show quantity', default: false, excludes: ['aura'] },
+  { key: 'aura', label: 'Show aura time left', default: true, aura: true, excludes: ['quantity'] },
+];
 
 /**
  * Get the pins, each with an `id` and the item types it has. One with more than one item is a group.
@@ -68,6 +90,27 @@ const getOwnedItems = () => {
 };
 
 let pinnableItems = null;
+let pinRefresher = null;
+
+/**
+ * Set what refreshes the pinned items' quantities in the menu.
+ *
+ * @param {Function} refresher Returns a promise that resolves once they're refreshed.
+ */
+const setPinRefresher = (refresher) => {
+  pinRefresher = refresher;
+};
+
+/**
+ * Fetch the user's inventory again, for the menu's quantities and the items that can be pinned.
+ *
+ * @return {Promise} Resolves once it's done.
+ */
+const refreshPins = async () => {
+  pinnableItems = null;
+  await Promise.all([pinRefresher?.(), getPinnableItems()]);
+};
+
 let recipes = null;
 let recipesRequest = null;
 
@@ -230,4 +273,4 @@ const getPinnableItems = () => {
   return pinnableItems;
 };
 
-export { getPinnableItems, getPins, getRecipes, loadRecipes, makePinId, pinOptions, savePins, updateRecipesFromPage };
+export { auras, getPinnableItems, getPins, getRecipes, loadRecipes, makePinId, pinOptions, refreshPins, savePins, setPinRefresher, updateRecipesFromPage };

@@ -4,6 +4,8 @@ import {
   cacheGet,
   cacheSet,
   doEvent,
+  doRequest,
+  getFlag,
   getData,
   getUserItems,
   make,
@@ -17,22 +19,11 @@ import {
   sessionSet,
 } from '@utils';
 
-import { getPins, getRecipes, updateRecipesFromPage } from './pins';
+import { auras, getPins, getRecipes, setPinRefresher, updateRecipesFromPage } from './pins';
 
 import styles from './styles.css';
 
 const moduleId = 'quick-items-menu';
-
-/**
- * Trap auras granted by convertibles, keyed by the convertible's item type.
- */
-const auras = {
-  kilohertz_processor_convertible: { type: 'QuestMillenniaura', name: 'Millenniaura' },
-  cursed_skull_convertible: { type: 'QuestSpookyAura', name: 'Spooky Aura' },
-  dragon_skull_convertible: { type: 'QuestDragonsMightAura', name: "Dragon's Might Aura" },
-  lightning_slayer_chest_convertible: { type: 'QuestLightningAura', name: 'Lightning Aura' },
-  rare_lightning_slayer_chest_convertible: { type: 'QuestLightningAura', name: 'Lightning Aura' },
-};
 
 // The menu tabs, keyed by pin id.
 const tabs = new Map();
@@ -42,6 +33,19 @@ let userItemsRequest = null;
 // How long the pinned items' inventory data is reused before it's fetched again. Quantities are kept
 // in step from game responses in between, and opening an item always refetches.
 const userItemsCacheTtl = 24 * 60 * 60 * 1000;
+
+// Items can arrive without a response that says so, like supplies sent by a friend, so a pinned item
+// the user has none of is checked again much sooner.
+const emptyUserItemsCacheTtl = 5 * 60 * 1000;
+
+/**
+ * Get how long the inventory data can be reused.
+ *
+ * @param {Map|Array} items The inventory data.
+ *
+ * @return {number} The time in milliseconds.
+ */
+const getUserItemsCacheTtl = (items) => ([...items.values()].some((userItem) => !Number.parseInt(userItem.quantity, 10)) ? emptyUserItemsCacheTtl : userItemsCacheTtl);
 
 /**
  * Get the storage key for the pinned items' inventory data.
@@ -59,7 +63,7 @@ const saveUserItemsCache = () => {
   }
 
   const { key, items, fetchedAt } = userItemsCache;
-  const remaining = userItemsCacheTtl - (Date.now() - fetchedAt);
+  const remaining = getUserItemsCacheTtl(items) - (Date.now() - fetchedAt);
   if (remaining > 0) {
     cacheSet(getUserItemsStorageKey(), { key, fetchedAt, items: [...items.values()] }, remaining);
   }
@@ -74,7 +78,7 @@ const saveUserItemsCache = () => {
  */
 const loadUserItemsCache = async (key) => {
   const saved = await cacheGet(getUserItemsStorageKey(), null);
-  if (saved?.key !== key || !Array.isArray(saved.items) || Date.now() - saved.fetchedAt >= userItemsCacheTtl) {
+  if (saved?.key !== key || !Array.isArray(saved.items) || Date.now() - saved.fetchedAt >= getUserItemsCacheTtl(saved.items)) {
     return null;
   }
 
@@ -108,7 +112,7 @@ const getPinnedUserItems = async (forceUpdate = false) => {
     return new Map();
   }
 
-  const isCacheFresh = userItemsCache?.key === key && Date.now() - userItemsCache.fetchedAt < userItemsCacheTtl;
+  const isCacheFresh = userItemsCache?.key === key && Date.now() - userItemsCache.fetchedAt < getUserItemsCacheTtl(userItemsCache.items);
   if (!forceUpdate && isCacheFresh) {
     return userItemsCache.items;
   }
@@ -151,7 +155,18 @@ const getPinnedUserItems = async (forceUpdate = false) => {
 };
 
 /**
- * Get the time remaining until an expiry in a compact format, like "1h 12m".
+ * Round down to the nearest half, like 3.5, leaving off the ".0".
+ *
+ * @param {number} value The value.
+ *
+ * @return {string} The rounded value.
+ */
+const toHalf = (value) => `${Math.floor(value * 2) / 2}`;
+
+/**
+ * Get the time remaining until an expiry in a compact format, like "3.5d", "6.5h", or "45m".
+ *
+ * The `quick-items-menu-full-aura-time` flag shows it in full instead, like "1h 12m".
  *
  * @param {number} expiry The expiry timestamp.
  *
@@ -162,11 +177,31 @@ const getRemainingShort = (expiry) => {
   const days = Math.floor(minutes / 1440);
   const hours = Math.floor((minutes % 1440) / 60);
 
-  if (days > 0) {
-    return `${days}d ${hours}h`;
+  if (getFlag('quick-items-menu-full-aura-time')) {
+    if (days > 0) {
+      return `${days}d ${hours}h`;
+    }
+
+    return hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
   }
 
-  return hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
+  if (minutes > 4 * 1440) {
+    return `${days}d`;
+  }
+
+  if (minutes >= 1440) {
+    return `${toHalf(minutes / 1440)}d`;
+  }
+
+  if (minutes > 12 * 60) {
+    return `${Math.floor(minutes / 60)}h`;
+  }
+
+  if (minutes >= 60) {
+    return `${toHalf(minutes / 60)}h`;
+  }
+
+  return `${minutes}m`;
 };
 
 /**
@@ -286,7 +321,7 @@ const createEntry = (itemType, tab) => {
     switch (item?.kind) {
       case 'convertible': {
         const quantity = Number.parseInt(elements.quantity.value, 10);
-        label.textContent = `${item.actionVerb || 'Open'}${quantity > 0 ? ` ${quantity.toLocaleString()}` : ''}`;
+        label.textContent = `${item.actionVerb || 'Open'}${quantity > 0 && item.quantity > 0 ? ` ${quantity.toLocaleString()}` : ''}`;
         break;
       }
       case 'trap':
@@ -347,6 +382,7 @@ const createEntry = (itemType, tab) => {
       pin.row.classList.toggle('mh-quick-items-menu-message-item', 'message' === item.kind || 'recipe' === item.kind);
       pin.row.dataset.kind = item.kind;
       pin.row.classList.toggle('mh-quick-items-menu-armed', isArmed());
+      pin.row.classList.toggle('mh-quick-items-menu-none-owned', quantity < 1);
 
       elements.name.textContent = item.name;
       elements.name.title = item.name;
@@ -410,10 +446,30 @@ const createEntry = (itemType, tab) => {
   };
 
   /**
+   * Update the shield expiry from the user data.
+   *
+   * @param {Object} userData The user data.
+   */
+  const updateShieldFromUser = (userData) => {
+    if (undefined === userData?.shield_seconds) {
+      return;
+    }
+
+    const seconds = Number.parseInt(userData.shield_seconds, 10) || 0;
+    setAuraExpiry(userData.has_shield && seconds > 0 ? Date.now() + seconds * 1000 : null);
+  };
+
+  /**
    * Read the aura status from the trap image on the page, if it's there.
    */
   const updateAuraFromPage = async () => {
     if (!aura) {
+      return;
+    }
+
+    // The shield isn't a trap aura, so it comes from the user data instead.
+    if ('lgs' === aura.type) {
+      updateShieldFromUser(user);
       return;
     }
 
@@ -462,7 +518,7 @@ const createEntry = (itemType, tab) => {
   /**
    * Open the chosen quantity of the convertible.
    */
-  const openConvertible = () => {
+  const openConvertible = async () => {
     if (isOpening || !item) {
       return;
     }
@@ -482,21 +538,24 @@ const createEntry = (itemType, tab) => {
     tab.result.textContent = '';
     render();
 
-    hg.utils.UserInventory.useConvertible(
-      item.type,
-      quantity,
-      async (data) => {
-        isOpening = false;
-        showResult(tab.result, item, quantity, data);
-        await updateItem(true);
-        await updateAuraFromPage();
-      },
-      (data) => {
-        isOpening = false;
-        showError(tab.result, data?.error || data?.message || 'Something went wrong. Please try again.');
-        render();
-      }
-    );
+    // The game's useConvertible doesn't send the last read journal entry, so
+    // the response has no new journal entries for the journal to show.
+    const data = await doRequest('managers/ajax/users/useconvertible.php', { item_type: item.type, item_qty: quantity }, true);
+    isOpening = false;
+
+    if (!data?.success) {
+      showError(tab.result, data?.error || data?.message || 'Something went wrong. Please try again.');
+      render();
+      return;
+    }
+
+    // Let the game update the journal, inventory, and HUD like its own request would.
+    eventRegistry.doEvent('ajax_response', data);
+    eventRegistry.doEvent(hg.utils.UserInventory.EventInventoryUseConvertible, { itemType: item.type, quantity, data });
+
+    showResult(tab.result, item, quantity, data);
+    await updateItem(true);
+    await updateAuraFromPage();
   };
 
   /**
@@ -727,6 +786,11 @@ const createEntry = (itemType, tab) => {
       render();
     }
 
+    if ('lgs' === aura?.type) {
+      updateShieldFromUser(response?.user);
+      return;
+    }
+
     const auraData = aura ? response?.trap_image?.auras?.[aura.type] : null;
     if (auraData) {
       updateAuraFromStatus(auraData.status, auraData.expiry);
@@ -780,6 +844,7 @@ const createTab = (pin) => {
   const icon = make('span', ['mh-quick-items-menu-tab-icon', 'mhui-menu-item-icon'], '', title);
   const label = make('span', ['mh-quick-items-menu-tab-label', 'mhui-menu-label'], '', title);
   const count = make('span', 'mh-quick-items-menu-tab-count', '', title);
+  const auraTime = make('span', 'mh-quick-items-menu-tab-aura', '', title);
   makeElement('div', 'arrow', '', tab.el);
 
   const dropdownContent = make('div', 'dropdownContent', '', tab.el);
@@ -842,12 +907,11 @@ const createTab = (pin) => {
     tab.el.classList.toggle('mh-quick-items-menu-direct', Boolean(getDirectEntry()));
     tab.el.classList.toggle('mh-quick-items-menu-armed', 'trap' === item?.kind && Boolean(getDirectEntry()) && display.isArmed());
 
-    if (display?.isAuraActive()) {
-      count.textContent = getRemainingShort(display.getAuraExpiry());
-    } else {
-      // Message items, weapons, bases, and recipes aren't used up, so their quantity doesn't matter.
-      count.textContent = item && countedKinds.has(item.kind) ? (item.quantity || 0).toLocaleString() : '';
-    }
+    // Both are kept up to date, and the pin's options choose which one shows while the aura is running.
+    auraTime.textContent = display?.isAuraActive() ? getRemainingShort(display.getAuraExpiry()) : '';
+
+    // Message items, weapons, bases, and recipes aren't used up, so their quantity doesn't matter.
+    count.textContent = item && countedKinds.has(item.kind) ? (item.quantity || 0).toLocaleString() : '';
   };
 
   /**
@@ -953,6 +1017,9 @@ const init = async () => {
 
   // Pins are added and changed in Custom Menu.
   onEvent('mh-improved-pins-changed', syncTabs);
+
+  // Custom Menu can ask for fresh quantities, for items that arrived without a response saying so.
+  setPinRefresher(() => Promise.all(getEntries().map((entry) => entry.updateItem(true))));
 
   // Keep the recipes that can be pinned up to date with what the user has unlocked.
   onNavigation(updateRecipesFromPage, { page: 'inventory', tab: 'crafting', subtab: 'recipe', onLoad: true });

@@ -1,28 +1,28 @@
-.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active {
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura) {
   color: #fff;
   text-shadow: 1px 1px #666;
   background: url(https://www.mousehuntgame.com/images/ui/hgbar/inbox_new.png) repeat-x;
 }
 
-.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:hover {
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura):hover {
   background-image: url(https://i.mouse.rip/inbox_new.png);
 }
 
-.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active .arrow {
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura) .arrow {
   border-bottom-color: #fff;
 }
 
-.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active.expanded .arrow {
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura).expanded .arrow {
   border-top-color: #fff;
   border-bottom-color: transparent;
 }
 
-.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active {
+.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura) {
   text-shadow: 1px 1px var(--d-black, #222);
   box-shadow: inset 0 0 0 100px rgb(0 0 0 / 25%);
 }
 
-.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:hover {
+.mh-dark .mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura):hover {
   box-shadow: inset 0 0 0 100px rgb(0 0 0 / 15%);
 }
 
@@ -168,22 +168,15 @@
 
 .mh-quick-items-menu-quantity {
   box-sizing: border-box;
-  width: 44px;
+  width: 56px;
   height: 22px;
   padding: 1px 4px;
   font-size: 12px;
   color: var(--mhui-quick-items-text);
   text-align: right;
-  appearance: textfield;
   background-color: var(--mhui-quick-items-input-bg);
   border: 1px solid var(--mhui-quick-items-border);
   border-radius: 3px;
-}
-
-.mh-quick-items-menu-quantity::-webkit-inner-spin-button,
-.mh-quick-items-menu-quantity::-webkit-outer-spin-button {
-  margin: 0;
-  appearance: none;
 }
 
 .mh-quick-items-menu-separator,
@@ -289,4 +282,24 @@
 
 .mousehuntHeaderView .menuItem.mh-quick-items-menu .dropdownContent {
   text-shadow: none;
+}
+
+/* With none left, there's no quantity to choose. */
+.mh-quick-items-menu-none-owned .mh-quick-items-menu-quantity,
+.mh-quick-items-menu-none-owned .mh-quick-items-menu-separator {
+  display: none;
+}
+
+/* While the aura is running, its time left shows in place of the quantity, unless the pin's options
+   say otherwise. */
+.mh-quick-items-menu-tab-aura {
+  display: none;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura) .mh-quick-items-menu-tab-aura:not(:empty) {
+  display: inline;
+}
+
+.mousehuntHeaderView .menuItem.mh-quick-items-menu.mh-quick-items-menu-aura-active:not(.mhui-menu-hide-aura) .mh-quick-items-menu-tab-count {
+  display: none;
 }
