@@ -1,63 +1,8 @@
-import {
-  addMHCTData,
-  debuglog,
-  doRequest,
-  getData,
-  getFlag,
-  isAppleOS,
-  makeElement,
-  makeLink,
-  makeMhButton,
-  mhctRedirectUrl,
-  sessionGet,
-  sessionSet,
-  showErrorMessage,
-  wikiUrl,
-} from '@utils';
+import { addMHCTData, debuglog, doRequest, getFlag, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';
 import addConsolationPrizes from './consolation-prizes';
-
-let allMiceData;
-
-/**
- * Get the link markup for a mouse.
- *
- * @param {string} name      The mouse name.
- * @param {string} mouseType The mouse type.
- *
- * @return {string} The link markup.
- */
-const getLinkMarkup = (name, mouseType) => {
-  if (!allMiceData) {
-    return '';
-  }
-
-  const mouse = allMiceData.find((m) => m.type === mouseType);
-  if (mouse) {
-    name = mouse.name
-      .replaceAll(' ', '_')
-      .replaceAll("'", '%27')
-      .replaceAll('"', '%22')
-      .replaceAll(/(^\w|\s\w)/g, (m) => m.toUpperCase())
-      .replaceAll(' ', '_');
-  }
-
-  return makeLink('MHCT AR', mhctRedirectUrl(mouseType)) + makeLink('Wiki', wikiUrl(name, false));
-};
-
-/**
- * Get the link markup for an item.
- *
- * @param {string} name The item name.
- *
- * @return {string} The link markup.
- */
-const getItemLinkMarkup = (name) => {
-  name = name.replace(' ', '_');
-  return makeLink('MHCT DR', mhctRedirectUrl(name, { item: true }), true) + makeLink('Wiki', wikiUrl(name, false), true);
-};
 
 /**
  * Add links to the mouse details on the map.
@@ -120,36 +65,6 @@ const addMouseLinksToMap = async () => {
       });
 
       title.setAttribute('data-mouse-id', mouseType);
-
-      const existing = document.querySelector(`#mh-ui-mouse-links-map-${mouseType}-${type}`);
-      if (existing) {
-        return;
-      }
-
-      if ('mouse' === type) {
-        const div = makeElement('div', 'mh-ui-mouse-links-map');
-        div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
-        div.innerHTML = getLinkMarkup(title.innerText, mouseType);
-
-        const envs = document.querySelector('.treasureMapView-highlight-environments');
-        if (envs) {
-          envs.parentNode.insertBefore(div, envs.nextSibling);
-        }
-      } else if ('item' === type) {
-        const div = makeElement('div', 'mh-ui-mouse-links-map');
-        div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
-        div.innerHTML = getItemLinkMarkup(mouseType);
-
-        const desc = document.querySelector('.treasureMapView-highlight-description');
-        if (desc) {
-          desc.prepend(div);
-        }
-      }
-
-      let appendMHCTto = document.querySelector('.treasureMapView-highlight-weaknessContainer');
-      if (!appendMHCTto) {
-        appendMHCTto = document.querySelector('.mh-ui-mouse-links-map');
-      }
 
       const existingArs = document.querySelectorAll('.mh-ui-mouse-links-map-ars');
       if (existingArs && existingArs.length > 0) {
@@ -265,71 +180,58 @@ const addClassesToGroups = (mapData) => {
       replacementTitle.append(count);
     }
 
-    const toggleGroup = makeElement('div', 'mh-ui-goals-group-toggle');
-    const isStartingToggled = sessionGet('better-maps-groups-toggled', []);
-
-    const expand = () => {
-      toggleGroup.setAttribute('data-toggled', 'false');
-      toggleGroup.setAttribute('title', `Collapse (Hold ${isAppleOS() ? '⌘ Command' : 'Ctrl'} to toggle all)`);
-      toggleGroup.classList.remove('collapsed');
-      toggleGroup.classList.add('expanded');
-      group.classList.remove('mh-ui-goals-group-collapsed');
-      group.classList.add('mh-ui-goals-group-expanded');
-    };
-
-    const collapse = () => {
-      toggleGroup.setAttribute('data-toggled', 'true');
-      toggleGroup.setAttribute('title', `Expand (Hold ${isAppleOS() ? '⌘ Command' : 'Ctrl'} to toggle all)`);
-      toggleGroup.classList.remove('expanded');
-      toggleGroup.classList.add('collapsed');
-      group.classList.remove('mh-ui-goals-group-expanded');
-      group.classList.add('mh-ui-goals-group-collapsed');
-    };
-
-    if (isStartingToggled.includes(hunter.sn_user_id)) {
-      collapse();
-    } else {
-      expand();
-    }
-
-    toggleGroup.addEventListener('click', (event) => {
-      const toggled = toggleGroup.getAttribute('data-toggled');
-      const currentSessionToggled = sessionGet('better-maps-groups-toggled', []);
-      if (currentSessionToggled.includes(hunter.sn_user_id)) {
-        currentSessionToggled.splice(currentSessionToggled.indexOf(hunter.sn_user_id), 1);
-      } else {
-        currentSessionToggled.push(hunter.sn_user_id);
-      }
-      sessionSet('better-maps-groups-toggled', currentSessionToggled);
-
-      if ('true' === toggled) {
-        expand();
-      } else {
-        collapse();
-      }
-
-      // if the user is holding down command/ctrl, toggle all groups.
-      if (event.ctrlKey || event.metaKey) {
-        const allGroups = document.querySelectorAll('.treasureMapView-goals-groups');
-        allGroups.forEach((g) => {
-          // find the toggle and if its not the same as the current one, click it.
-          const toggle = g.querySelector('.mh-ui-goals-group-toggle');
-          if (toggle && toggle !== toggleGroup) {
-            const isThisOneToggled = toggle.getAttribute('data-toggled');
-            if (isThisOneToggled === toggled) {
-              toggle.click();
-            }
-          }
-        });
-      }
-    });
-
-    replacementTitle.append(toggleGroup);
-
     if (title) {
       title.replaceWith(replacementTitle);
     }
   });
+
+  addCompletedSection();
+};
+
+/**
+ * Gather every hunter's "found these mice" group into one section that collapses as a whole.
+ */
+const addCompletedSection = () => {
+  const groups = document.querySelectorAll('.treasureMapView-leftBlock .mh-ui-goals-group.completed');
+  let section = document.querySelector('.treasureMapView-leftBlock .mh-ui-goals-completed-section');
+  if (!groups.length) {
+    section?.remove();
+    return;
+  }
+
+  if (!section) {
+    section = makeElement('div', 'mh-ui-goals-completed-section');
+
+    const heading = makeElement('div', ['treasureMapView-block-content-heading', 'mh-ui-goals-completed-heading']);
+    const isScavenger = [...groups].some((group) => / found (?:these|this) items?:/.test(group.textContent));
+    makeElement('span', 'mh-ui-caret', '', heading);
+    heading.append(document.createTextNode(isScavenger ? 'Hunters found these items:' : 'Hunters found these mice:'));
+    makeElement('span', 'treasureMapView-block-content-heading-count', '', heading);
+
+    const setCollapsed = (collapsed) => {
+      section.classList.toggle('mh-ui-goals-completed-collapsed', collapsed);
+      heading.title = collapsed ? 'Expand' : 'Collapse';
+    };
+
+    setCollapsed(sessionGet('better-maps-completed-collapsed', false));
+
+    heading.addEventListener('click', () => {
+      const collapsed = !section.classList.contains('mh-ui-goals-completed-collapsed');
+      sessionSet('better-maps-completed-collapsed', collapsed);
+      setCollapsed(collapsed);
+    });
+
+    section.append(heading);
+    groups[0].before(section);
+  }
+
+  let total = 0;
+  groups.forEach((group) => {
+    total += Number.parseInt(group.getAttribute('data-mouse-count'), 10) || 0;
+    section.append(group);
+  });
+
+  section.querySelector('.mh-ui-goals-completed-heading .treasureMapView-block-content-heading-count').textContent = `(${total})`;
 };
 
 /**
@@ -791,10 +693,6 @@ const showGoalsTab = async (mapData) => {
 
   if (!getFlag('better-maps-no-solver-links')) {
     addMapSolverLinks(mapData);
-  }
-
-  if (!allMiceData) {
-    allMiceData = await getData('mice');
   }
 };
 

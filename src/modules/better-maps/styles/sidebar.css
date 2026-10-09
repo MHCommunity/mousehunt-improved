@@ -33,7 +33,7 @@
 }
 
 .mh-dark .mh-improved-map-sidebar-title {
-  background-color: var(--d-alt);
+  background-color: var(--d-surface-header);
 }
 
 .mh-improved-map-sidebar-title:hover {
@@ -75,7 +75,8 @@
 }
 
 .mh-dark .mh-improved-map-sidebar-goal:hover {
-  background-color: var(--d-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
 }
 
 .mh-improved-map-sidebar-goal-active {

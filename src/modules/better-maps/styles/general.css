@@ -489,6 +489,15 @@ input.treasureMapView-block-search-text {
   text-align: center;
 }
 
+.treasureMapView-highlight.item .treasureMapView-highlight-group,
+.treasureMapView-highlight.item .treasureMapView-highlight-description {
+  display: none;
+}
+
+.treasureMapView-highlight.item .treasureMapView-highlight-content {
+  min-height: 0;
+}
+
 .treasureMapView-highlight-catcher-title {
   display: inline-block;
   margin-top: -20px;
@@ -868,6 +877,10 @@ input.treasureMapView-block-search-text {
 .treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-block-content-heading {
   margin: 10px 10px 5px;
   border: none;
+}
+
+.treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-block-content-heading:first-child {
+  margin-top: 0;
 }
 
 .treasureMapInventoryView-scrollCase-content br + br {

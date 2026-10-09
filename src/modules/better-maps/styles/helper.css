@@ -29,5 +29,5 @@
 }
 
 .mh-dark .mh-improved-map-helper-popup pre {
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-surface-inset);
 }

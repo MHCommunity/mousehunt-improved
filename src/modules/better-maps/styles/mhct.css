@@ -44,7 +44,8 @@
 }
 
 .mh-dark .mh-ui-mouse-links-map-ars .mhct-row[data-environment]:hover {
-  background-color: var(--d-bg-alt);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
   box-shadow: none;
 }
 

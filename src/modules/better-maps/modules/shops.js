@@ -82,13 +82,22 @@ const updateShopsMarkup = async (root = document) => {
       container.classList.add('hidden');
     }
 
+    environmentEl.classList.toggle('mh-ui-shop-collapsed', container.classList.contains('hidden'));
+
     const existingPin = heading.querySelector('.treasureMapPopup-shop-pinIcon');
     if (existingPin) {
       return;
     }
 
-    heading.addEventListener('click', () => {
-      container.classList.toggle('hidden');
+    heading.prepend(makeElement('span', 'mh-ui-caret'));
+
+    heading.addEventListener('click', (event) => {
+      if (event.target.closest('.treasureMapPopup-shop-pinIcon')) {
+        return;
+      }
+
+      const collapsed = container.classList.toggle('hidden');
+      environmentEl.classList.toggle('mh-ui-shop-collapsed', collapsed);
     });
 
     const pinIconWrapper = makeElement('div', ['treasureMapPopup-shop-pinIcon', 'mousehuntTooltipParent']);

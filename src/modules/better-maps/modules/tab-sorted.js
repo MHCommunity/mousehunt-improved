@@ -9,6 +9,8 @@ import {
   makeMhButton,
   mapData,
   mapModel,
+  sessionGet,
+  sessionSet,
   showTravelConfirmation,
   showTravelConfirmationNoDetails,
 } from '@utils';
@@ -18,11 +20,13 @@ import doHighlighting from './highlighting';
 
 import mouseGroups from '@data/map-groups.json';
 
+const LOCATIONS_COLLAPSED_KEY = 'better-maps-sorted-locations-collapsed';
+
 /**
  * Normalize a map name for matching against the map group names.
  *
- * Uses the sorted words of the name (minus "Treasure") so in-game names like
- * "Whisker Woods Rift Treasure Map" match the MHCT-style names in the data.
+ * Uses the sorted words of the name (minus "Treasure" and "Rare") so in-game names like
+ * "Rare Whisker Woods Rift Treasure Map" match the MHCT-style names in the data.
  *
  * @param {string} name The map name.
  *
@@ -33,7 +37,7 @@ const normalizeMapName = (name) => {
     .toLowerCase()
     .replaceAll(/[^\da-z]+/g, ' ')
     .split(' ')
-    .filter((word) => word.length > 1 && 'treasure' !== word)
+    .filter((word) => word.length > 1 && 'treasure' !== word && 'rare' !== word)
     .sort()
     .join(' ');
 };
@@ -719,6 +723,8 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
       const name = locationData.name || environment?.name || 'Other';
       const image = locationData.image || environment?.image || '';
 
+      makeElement('span', 'mh-ui-caret', '', header);
+
       if (image) {
         const headerImage = makeElement('div', ['treasureMapView-block-content-heading-image', 'scavenger-location-icon']);
         headerImage.style.backgroundImage = `url(${image})`;
@@ -745,6 +751,29 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
 
       locationWrapper.append(locationContent);
       locationWrappers.push(locationWrapper);
+
+      const setCollapsed = (collapsed) => {
+        locationWrapper.classList.toggle('mh-ui-goals-completed-collapsed', collapsed);
+        header.title = collapsed ? 'Expand' : 'Collapse';
+      };
+
+      setCollapsed(sessionGet(LOCATIONS_COLLAPSED_KEY, []).includes(location));
+
+      header.addEventListener('click', (event) => {
+        // The location name is a travel link.
+        if (event.target.closest('.scavenger-location-name[data-environment-id]')) {
+          return;
+        }
+
+        const collapsed = !locationWrapper.classList.contains('mh-ui-goals-completed-collapsed');
+        const stored = sessionGet(LOCATIONS_COLLAPSED_KEY, []).filter((id) => id !== location);
+        if (collapsed) {
+          stored.push(location);
+        }
+
+        sessionSet(LOCATIONS_COLLAPSED_KEY, stored);
+        setCollapsed(collapsed);
+      });
     });
 
     // Swap views atomically after every async location lookup has finished.
@@ -874,6 +903,10 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
     target.prepend(toggleWrapper);
   }
 
+  if ('location' === initialSort) {
+    await queueSort(() => sortMiceIntoLocations('descending'));
+  }
+
   // Once the background AR fetches finish, re-sort with the full data.
   const resortWhenArsArrive = async () => {
     await Promise.allSettled(pendingArFills);
@@ -944,7 +977,7 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
     target.append(mouseDiv);
   }
 
-  await makeScavengerSortedPage(isNormal, sortedPage, sortedUnsorted);
+  await makeScavengerSortedPage(isNormal, sortedPage, sortedUnsorted, 'location');
 };
 
 /**

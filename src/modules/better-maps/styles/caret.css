@@ -1,0 +1,27 @@
+/* Shared expand/collapse caret: points down when open, right when collapsed. */
+.mh-ui-caret {
+  display: inline-block;
+  flex: none;
+  width: 0;
+  height: 0;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-top: 6px solid currentcolor;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  opacity: 0.5;
+  transition:
+    transform 200ms,
+    opacity 200ms;
+}
+
+*:hover > .mh-ui-caret {
+  opacity: 0.9;
+}
+
+.mh-ui-goals-completed-collapsed .mh-ui-caret,
+.mh-ui-shop-collapsed .mh-ui-caret,
+#map-plan-container .plan-guaranteed-collapsed .mh-ui-caret,
+#map-plan-container .plan-setup:not(.plan-setup-open) .mh-ui-caret {
+  transform: rotate(-90deg);
+}

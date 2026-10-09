@@ -1,6 +1,8 @@
 .treasureMapPopup-shop .treasureMapView-block-content-heading {
   padding: 10px;
   margin: 0;
+  cursor: pointer;
+  user-select: none;
   border-color: transparent;
 }
 

@@ -46,7 +46,7 @@
 
 .mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request {
   color: var(--d-text);
-  background-color: var(--d-action);
+  background-color: var(--d-button);
 }
 
 .treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover,
@@ -59,7 +59,9 @@
 .mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover,
 .mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:focus,
 .mh-dark .treasureMapDialogView-deleteInviteRequest.reject-invite-request:active {
-  background-color: var(--d);
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .treasureMapView-allyRow:last-child .treasureMapView-allyCell.hunters-last-slot {

@@ -532,7 +532,7 @@ const makeSetupRow = ({ setup, mice, raw, hunts, environment, currentLocation, m
 
   head.append(makeTravelButton(environment));
 
-  make('span', 'plan-setup-caret', '', head);
+  make('span', 'mh-ui-caret', '', head);
 
   const chips = make('div', 'plan-setup-mice', '', content);
   for (const entry of mice) {
@@ -591,7 +591,7 @@ const makeGuaranteed = (guaranteed, findEnvironment) => {
   strip.classList.toggle('plan-guaranteed-collapsed', lsGet(GUARANTEED_COLLAPSED_KEY, false));
 
   const label = make('div', 'plan-strip-label plan-guaranteed-toggle', '', strip);
-  make('span', 'plan-guaranteed-caret', '', label);
+  make('span', 'mh-ui-caret', '', label);
   make('span', '', `Guaranteed attraction (${guaranteed.length})`, label);
 
   strip.addEventListener('click', (event) => {
