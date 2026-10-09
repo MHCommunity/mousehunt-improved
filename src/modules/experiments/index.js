@@ -31,78 +31,14 @@ const loadExperimentModule = (module) => {
   loadedExperimentModules.add(module.id);
 };
 
+modules.sort((a, b) => getModuleTitle(a).localeCompare(getModuleTitle(b), undefined, { sensitivity: 'base' }));
+
 /**
  * Load the experiments.
  */
 const init = () => {
-  const onlySettings = [
-    {
-      id: 'better-inventory.favorites',
-      title: 'Better Inventory: Add Favorites tab',
-      description: 'Star items in your inventory to collect them in one tab.',
-      load: () => {},
-    },
-    {
-      id: 'better-inventory.add-trap-sorting',
-      title: 'Better Inventory: Show sorting and filtering controls',
-      load: () => {},
-    },
-    {
-      id: 'better-maps.draggable-highlight',
-      title: 'Better Maps: Allow dragging the highlight',
-      load: () => {},
-    },
-    {
-      id: 'better-maps.plan-tab',
-      title: 'Better Maps: Add Plan tab',
-      description: 'Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.',
-      load: () => {},
-    },
-    {
-      id: 'better-marketplace.price-history-chart',
-      title: 'Better Marketplace: Show Markethunt price history charts',
-      load: () => {},
-    },
-    {
-      id: 'better-mice.show-crown-nav',
-      title: "Show crown section shortcuts on King's Crowns",
-      load: () => {},
-    },
-  ];
-
-  onlySettings.forEach((module) => {
-    modules.push(module);
-  });
-
-  // Sort by name, but put all the ones that have a ":" in the name before the ones that don't.
-  modules.sort((a, b) => {
-    const aTitle = getModuleTitle(a);
-    const bTitle = getModuleTitle(b);
-    const aHasColon = aTitle.includes(':');
-    const bHasColon = bTitle.includes(':');
-
-    if (aHasColon && !bHasColon) {
-      return -1;
-    }
-
-    if (!aHasColon && bHasColon) {
-      return 1;
-    }
-
-    if (aTitle < bTitle) {
-      return -1;
-    }
-
-    if (aTitle > bTitle) {
-      return 1;
-    }
-
-    return 0;
-  });
-
-  // Not every experiment has a load function, because most of them are used by
-  // checking for the setting in their respective modules. These ones aren't contained
-  // in a module, so they need to be loaded here.
+  // Experiments that belong to a module live in that module's settings with a badge.
+  // These ones aren't contained in a module, so they need to be loaded here.
   modules.forEach((module) => {
     if (getSetting(module.id, false)) {
       loadExperimentModule(module);

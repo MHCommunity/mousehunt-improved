@@ -30,5 +30,11 @@ export default async () => {
       title: "Show power type mastery on King's Crowns",
       default: false,
     },
+    {
+      id: 'better-mice.show-crown-nav',
+      title: "Show crown section shortcuts on King's Crowns",
+      default: false,
+      badge: 'Beta',
+    },
   ];
 };

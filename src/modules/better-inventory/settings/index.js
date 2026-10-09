@@ -20,5 +20,18 @@ export default async () => {
       title: 'Sort inventory alphabetically',
       default: true,
     },
+    {
+      id: 'better-inventory.favorites',
+      title: 'Add Favorites tab',
+      description: 'Star items in your inventory to collect them in one tab.',
+      default: false,
+      badge: 'Beta',
+    },
+    {
+      id: 'better-inventory.add-trap-sorting',
+      title: 'Show sorting and filtering controls',
+      default: false,
+      badge: 'Beta',
+    },
   ];
 };

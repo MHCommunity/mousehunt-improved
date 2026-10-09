@@ -32,5 +32,18 @@ export default async () => {
       description: 'Dates are approximate.',
       default: false,
     },
+    {
+      id: 'better-maps.plan-tab',
+      title: 'Add Plan tab',
+      description: 'Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.',
+      default: false,
+      badge: 'Beta',
+    },
+    {
+      id: 'better-maps.draggable-highlight',
+      title: 'Allow dragging the highlight',
+      default: false,
+      badge: 'Beta',
+    },
   ];
 };

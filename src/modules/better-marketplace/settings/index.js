@@ -21,6 +21,12 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-marketplace.price-history-chart',
+      title: 'Show Markethunt price history charts',
+      default: false,
+      badge: 'Experimental',
+    },
+    {
       id: 'better-marketplace.show-chart-images',
       title: 'Show small price history charts when browsing categories',
       default: false,
