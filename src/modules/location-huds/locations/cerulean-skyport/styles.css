@@ -39,6 +39,27 @@ button.headsUpDisplayCeruleanSkyportView__basicBaitButton {
 
 .ceruleanSkyportRaidChoiceDialogView__raidCostContainer {
   right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBarContainer {
+  width: 130px;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidBarCostContainer .ceruleanSkyportRaidChoiceDialogView__userQuantity {
+  font-size: 15px;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBarCostContainer.mh-skyport-intel-overflow .ceruleanSkyportRaidChoiceDialogView__userQuantity {
+  padding-left: 10px;
+  background-color: #fff;
+  box-shadow: -5px 0 0 -4px #828282;
+}
+
+.ceruleanSkyportRaidChoiceDialogView__raidBlock button.ceruleanSkyportRaidChoiceDialogView__selectRaidButton:hover {
+  background-position-y: 62.66%;
 }
 
 .ceruleanSkyportRaidChoiceDialogView__raidBlock .ceruleanSkyportRaidChoiceDialogView__raidProgressBar[data-intel-level="low"] {

@@ -203,17 +203,21 @@ const addLedgerButton = async (model) => {
   model.textEl.append(button);
 };
 
+// Tracked here rather than marked on the HUD, which is shared by every location
+// and would carry the marker with it after travelling away.
+const hullClickHuds = new WeakSet();
+
 /**
  * Open the ledger when the shipment's airship is clicked, matching the log
  * button on the HUD frame.
  */
 const addHullClick = () => {
   const hud = document.querySelector('#hudLocationContent');
-  if (!hud || hud.getAttribute('data-mh-improved-skyport-ledger')) {
+  if (!hud || hullClickHuds.has(hud)) {
     return;
   }
 
-  hud.setAttribute('data-mh-improved-skyport-ledger', 'true');
+  hullClickHuds.add(hud);
 
   // Delegated from the HUD, which outlives the shipping view the game swaps out
   // whenever the shipment changes.

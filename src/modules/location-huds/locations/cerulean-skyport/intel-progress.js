@@ -11,7 +11,13 @@ const colorIntelProgressBars = () => {
     const progressBar = cost.querySelector('.ceruleanSkyportRaidChoiceDialogView__raidProgressBar');
     const quantity = Number(quantityText?.replaceAll(',', '').trim());
 
-    if (!progressBar || !Number.isFinite(quantity)) {
+    if (!Number.isFinite(quantity)) {
+      return;
+    }
+
+    cost.classList.toggle('mh-skyport-intel-overflow', 99 < quantity);
+
+    if (!progressBar) {
       return;
     }
 
