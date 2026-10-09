@@ -1,4 +1,4 @@
-import { addModuleBodyClass, addStyles, createPopup, getSetting, isDarkMode, isMHCT, saveSetting } from '@utils';
+import { addModuleBodyClass, addStyles, createPopup, getSetting, isDarkMode, isMHCT, onEvent, saveSetting } from '@utils';
 
 import miceImages from './mice-images';
 import settings from './settings';
@@ -45,6 +45,14 @@ const maybeShowDarkModeConflictWarning = () => {
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
   addModuleBodyClass('native-dark-mode', 'mh-dark');
+
+  // The tint styles are scoped to this class, so the setting applies without a refresh.
+  document.body.classList.toggle('mh-dark-entry-colors', getSetting('native-dark-mode.tint-journal-entries', false));
+  onEvent('mh-improved-settings-changed', ({ key, value }) => {
+    if ('native-dark-mode.tint-journal-entries' === key) {
+      document.body.classList.toggle('mh-dark-entry-colors', Boolean(value));
+    }
+  });
 
   setTimeout(maybeShowDarkModeConflictWarning, 2000);
 

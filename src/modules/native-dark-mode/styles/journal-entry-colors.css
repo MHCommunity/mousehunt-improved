@@ -1,0 +1,673 @@
+/*
+ * Tinted journal entries (the native-dark-mode.tint-journal-entries setting).
+ *
+ * Tints journal entries by the hue the game gives them, so event and location entries stand out in dark mode.
+ * Two tiers per hue: "subtle" for the game's pastel defaults (#a3dbe9, #edd1f3, ...), and "strong" for its
+ * saturated colors. Only background-color and the inset glow are set, so icons and better-journal's sizing stay.
+ *
+ * Scoped to body.mh-dark.mh-dark-entry-colors so these win over the existing native-dark-mode and better-journal
+ * entry overrides while the setting is on, and disappear entirely when it's off.
+ */
+
+body.mh-dark.mh-dark-entry-colors {
+  /*
+   * Hue sources. Only the hue angle is used. These are the default dark-mode colors, hardcoded rather than read from
+   * --d-blue etc., because the alternate palettes repurpose those tokens as accents (teal, copper, pink, ...), which
+   * would make blue entries collide with teal or tan ones. Entry hues stay the same on every palette.
+   */
+  --d-entry-blue-hue: #0e7fbf;
+  --d-entry-purple-hue: #923293;
+  --d-entry-red-hue: #c63636;
+  --d-entry-orange-hue: #eb7805;
+  --d-entry-green-hue: #40ba12;
+  --d-entry-yellow-hue: #4e4a3c;
+  --d-entry-cyan-hue: #0f7f80;
+  --d-entry-tan-hue: #a07a45;
+  --d-entry-teal-hue: #1fa37f;
+
+  /* Every hue shares the same lightness and chroma per tier, so no family is louder than another. */
+  --d-entry-subtle-l: 0.33;
+  --d-entry-subtle-c: 0.04;
+  --d-entry-strong-l: 0.4;
+  --d-entry-strong-c: 0.08;
+  --d-entry-glow-l: 0.55;
+  --d-entry-glow-c: 0.12;
+  --d-entry-blue-subtle: oklch(from var(--d-entry-blue-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-blue: oklch(from var(--d-entry-blue-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-blue-glow: oklch(from var(--d-entry-blue-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-purple-subtle: oklch(from var(--d-entry-purple-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-purple: oklch(from var(--d-entry-purple-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-purple-glow: oklch(from var(--d-entry-purple-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-red-subtle: oklch(from var(--d-entry-red-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-red: oklch(from var(--d-entry-red-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-red-glow: oklch(from var(--d-entry-red-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-orange-subtle: oklch(from var(--d-entry-orange-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-orange: oklch(from var(--d-entry-orange-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-orange-glow: oklch(from var(--d-entry-orange-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-yellow-subtle: oklch(from var(--d-entry-yellow-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-yellow: oklch(from var(--d-entry-yellow-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-yellow-glow: oklch(from var(--d-entry-yellow-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-tan-subtle: oklch(from var(--d-entry-tan-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-tan: oklch(from var(--d-entry-tan-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-tan-glow: oklch(from var(--d-entry-tan-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-green-subtle: oklch(from var(--d-entry-green-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-green: oklch(from var(--d-entry-green-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-green-glow: oklch(from var(--d-entry-green-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-teal-subtle: oklch(from var(--d-entry-teal-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-teal: oklch(from var(--d-entry-teal-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-teal-glow: oklch(from var(--d-entry-teal-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-cyan-subtle: oklch(from var(--d-entry-cyan-hue) var(--d-entry-subtle-l) var(--d-entry-subtle-c) h);
+  --d-entry-cyan: oklch(from var(--d-entry-cyan-hue) var(--d-entry-strong-l) var(--d-entry-strong-c) h);
+  --d-entry-cyan-glow: oklch(from var(--d-entry-cyan-hue) var(--d-entry-glow-l) var(--d-entry-glow-c) h);
+  --d-entry-neutral: var(--d-surface-inset);
+  --d-entry-neutral-glow: var(--d-border);
+}
+
+/* Light palettes: pale tints instead of dark ones, with a deeper glow so it still shows on a light page. */
+body.mh-dark.mh-palette-light.mh-dark-entry-colors {
+  --d-entry-subtle-l: 0.94;
+  --d-entry-subtle-c: 0.03;
+  --d-entry-strong-l: 0.89;
+  --d-entry-strong-c: 0.06;
+  --d-entry-glow-l: 0.68;
+  --d-entry-glow-c: 0.13;
+}
+
+/* ----------------------------------------
+ * Parent classes, first so the modifier classes below can override them.
+ */
+
+/* blue / subtle (3) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-nightJournal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_advance,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth {
+  --d-entry-glow: var(--d-entry-blue-glow);
+
+  background-color: var(--d-entry-blue-subtle);
+}
+
+/* blue / strong (1) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_pushback {
+  --d-entry-glow: var(--d-entry-blue-glow);
+
+  background-color: var(--d-entry-blue);
+}
+
+/* orange / strong (1) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-debuff {
+  --d-entry-glow: var(--d-entry-orange-glow);
+
+  background-color: var(--d-entry-orange);
+}
+
+/* yellow / strong (4) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth-lantern,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.re-engagement-claimed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase {
+  --d-entry-glow: var(--d-entry-yellow-glow);
+
+  background-color: var(--d-entry-yellow);
+}
+
+/* cyan / subtle (1) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.advent_chocolate {
+  --d-entry-glow: var(--d-entry-cyan-glow);
+
+  background-color: var(--d-entry-cyan-subtle);
+}
+
+/* ----------------------------------------
+ * By hue.
+ */
+
+/* blue / subtle (83) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.anniversaryAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday_2014,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday_factory.enter_room,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday_factory.upgrade_room,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.chromeAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conga_complete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conga_progress,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.convertible_open,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.course_loot_entry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.craft.item,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.craft.newrecipe,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.curse_lifted,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertpenaltyblock,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertstreak,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-incinerateReplicartLoot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.dragonsMightAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-activateBoost,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-reachedWaterfall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.jetStreamExtend,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.jetStreamLoot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_advance.explode,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_advance.wax,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_drill,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.jetStreamAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth-lantern-disable,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinthSmall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lightningAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lunar_new_year.progress,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.millenniauraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.drops,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_start.dewdrop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_start.orange_drops,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_start.red_drops,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_start.yellow_drops,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minimalJournalImage.moonbeam_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousoleum.build_wall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.pirate_sleigh_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.raiderAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refractorBaseEffect-dragonhide_sliver_forge_base,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.shop_purchase,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.slayerAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.snowball_showdown_claim_prize,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.snowball_showdown_completed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spookyAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.springHunt2013_factory_complete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.stage_upgrade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.stuck_snowball_catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.sunken_city.dive.end,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.sunken_city.dive.start,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.sunken_city.zone,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.load_supply_crates,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.minigame_start,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.progress,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.raider_wave_defeated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.stoke_furnace,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.use_mouse_repellent,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.warehouse_manager_catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.warehouse_manager_done,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.vegetation_base_trigger.blue,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.wanted_poster-catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.wanted_poster-complete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.wanted_poster-start,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winterAuraActivated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.bonus_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.fort,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.general,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.stuck_snowball,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.upcoming_wave_boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2013.wave_boss_catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.completed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.lost,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.nitro_craft,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.nitro_off,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.obstacle_fail,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.obstacle_pass,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.start,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.upgrade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2015.win,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.claimAllTreeGifts,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_obstacle {
+  --d-entry-glow: var(--d-entry-blue-glow);
+
+  background-color: var(--d-entry-blue-subtle);
+}
+
+/* blue / strong (26) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.goal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.baitkeep_idle,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday2018-rewind-charm,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ceruleanSkyport-raidFinished,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ceruleanSkyport-shipmentStarted,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-finishWriting,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.denture_base_decay_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertPortal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-farmToTable,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_advance_prevented,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_advance_prevented.general,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_pushback_prevented,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth-intersection,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.premium_cheesy_pipe_game_journal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.champions_fire_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.claim_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.enter_tower,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.moved_forward,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.upgrade_longstride,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.upgrade_siphon,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.upgrade_stamina,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour_completed_floor,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.titlechange,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.minigame_done,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.world_aspect_normal {
+  --d-entry-glow: var(--d-entry-blue-glow);
+
+  background-color: var(--d-entry-blue);
+}
+
+/* purple / subtle (54) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adminJournalEntry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.afterwordAcres-droidActivity,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ancient-stealth,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-eggInflationIncrease,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.burroughs_rift.regulator_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.chesla_trap_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-claimReplicartLoot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-exitCavern,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-newCavernDepth,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-reinforceCavern,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-rerollCrucible,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.defeatedEnemy,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.defeatedVaultEnemy,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.dirigibleTravel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.discoveredMod,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.discoveredVaultMod,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.emptyBottledWind,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.fullyExplored,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.oculusUpgrade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.rocketBoosterUpgrade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.floatingIslands.skyPalaceTravel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.kings_giveaway_bonus_prize_entry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lantern_claimed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.living_grove_base_trigger.nightshade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.marketplace,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minimalJournalImage.eggscavator_purchase_entry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousehunt_birthday_cake_claim,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.printing_press_base_journal_entry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-acolyteComplete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-buff,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-debuffRemoved,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-enterPortal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-lootBooster,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-obeliskFull,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-reset,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-scramblePortals,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.riftFuroma,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_mist_diffuser_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_century_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_charge_trinket_effect,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_explorer_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_freshly_painted_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_larry_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_market_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_newspost_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_relic_hunter_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_teamwork_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_warmonger_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spring_hunt_workshop_egg_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.theteam,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.torch_charm_event,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.valour_rift_map_quest_entry {
+  --d-entry-glow: var(--d-entry-purple-glow);
+
+  background-color: var(--d-entry-purple-subtle);
+}
+
+/* purple / strong (15) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.alchemists_cookbook_base_bonus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.cerulean_chrome_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.denture_base_saved_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-reachedGrotto,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-candy,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-recluse,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.dark_magi,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.grubling,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.king_grub,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.king_scarab,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_done.shattered_carmine,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.minigame_start.grubling,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refractorBaseEffect-dragons_breath_opal_refractor_base,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.schoolOfSorcery-completed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.world_aspect_corrupted {
+  --d-entry-glow: var(--d-entry-purple-glow);
+
+  background-color: var(--d-entry-purple);
+}
+
+/* red / strong (28) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.curse_added,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertbeastfailure,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertpenalty,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.donation.donation_error,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-wallDamage,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-wallRam,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.generic_falure,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-pillowcase-full,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.hard_curse_added,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_chest_lost,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lunar_new_year_bonus_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousoleum.damage_wall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.out_of_candles,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.pollutinum_stolen,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refractorBaseEffect-royal_ruby_refractor_base,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_boost_off,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_failure,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-wasted,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.no_loot_retreat,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.out_of_stamina,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.push_back,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.push_back_mouse,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift_valour.retreat,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.schoolOfSorcery-droppedOut,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.sunken_city.bait_warning,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.warning,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.nitroEmpty,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.sledLand {
+  --d-entry-glow: var(--d-entry-red-glow);
+
+  background-color: var(--d-entry-red);
+}
+
+/* orange / subtle (5) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desert_heater_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desert_heater_base_trigger.fail,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-tableOfContents,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.remote_pump_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rogue_grappler_loot_doubling {
+  --d-entry-glow: var(--d-entry-orange-glow);
+
+  background-color: var(--d-entry-orange-subtle);
+}
+
+/* orange / strong (21) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.claim,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ancient-boss-catch,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.boiling_cauldron_potion_bonus.boon_potion_bonus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-earnedNotoriety,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-burnReplicartLoot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.gloomyGreenwood-incense,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.gloomyGreenwood-insidious_incense_disabled,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-special-loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween2019_shot_supplies,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth-clue-bad,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.labyrinth-clue-m,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousoleum.break_wall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_canyon_pump_upgraded,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_canyon_queso_pumped,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-acolyteSandEmpty,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-acolyteSandStolen,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-lootMagnetEmpty,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-bristlewoods-retreat,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.spooky_flashlight_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.standard_cheesy_pipe_game_journal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.vegetation_base_trigger.red {
+  --d-entry-glow: var(--d-entry-orange-glow);
+
+  background-color: var(--d-entry-orange);
+}
+
+/* yellow / subtle (4) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-startWriting,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lunar_new_year_double_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_complete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_start {
+  --d-entry-glow: var(--d-entry-yellow-glow);
+
+  background-color: var(--d-entry-yellow-subtle);
+}
+
+/* yellow / strong (25) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.advent_chocolate_special,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday2018-anniversary-trap-trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-giantChase,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-goldenHarpStrings,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ceruleanSkyport-raidStarted,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-disarmedBait,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertboss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.elixir_exchanger_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-unlockUpgrade,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-open-pillowcase,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-spookyShuffle,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.lunar_new_year_triple_loot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_cannonstorm_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_cannonstorm_base_trigger.fail,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.re-engagement-claimed-final,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.re-engagement-progress,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-catch-boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-catch-miniboss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase-high,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase-miniboss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.september-challenge,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.strange_clue,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.vegetation_base_trigger.yellow,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.canFly {
+  --d-entry-glow: var(--d-entry-yellow-glow);
+
+  background-color: var(--d-entry-yellow);
+}
+
+/* tan / subtle (2) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.birthday_factory.claim_package,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.furoma_base_trigger {
+  --d-entry-glow: var(--d-entry-tan-glow);
+
+  background-color: var(--d-entry-tan-subtle);
+}
+
+/* tan / strong (18) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-robust_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-simple_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-sturdy_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-finishRiverRun,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousoleum.creepy_coffin_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.build_cork_basic,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.build_cork_heavy,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.build_cork_improved,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.build_cork_sticky,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.dusted_nest_loot_summary,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.eruption_finished,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.eruption_started,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.nest_loot_summary,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.pressure_increased,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.wild_tonic_cork_drop,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.wild_tonic_disabled,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_geyser.wild_tonic_pressure_increased,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.slac_in_a_box_trigger {
+  --d-entry-glow: var(--d-entry-tan-glow);
+
+  background-color: var(--d-entry-tan);
+}
+
+/* green / subtle (12) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.baitkeep_popped,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertbonus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.drawwinner,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-forewordFarm,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-lootFuelBoost,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folklore_forest_prerelease_secret_entry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-super,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween_boiling_cauldron,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.living_grove_base_trigger.cavern_fungus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.marketrebuild,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.mousoleum.repair_wall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.reatomizer_trap_trigger {
+  --d-entry-glow: var(--d-entry-green-glow);
+
+  background-color: var(--d-entry-green-subtle);
+}
+
+/* green / strong (28) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.completed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-plantedVine,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.donationComplete,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-repairFort,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-upgradeFort,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.generic_green,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween2017-ghostshipDefeated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween2017-ghostshipLooted,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween2019_reward_claimed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.harbour,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_defeated,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.iceberg_phase_change,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.larryGift,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.noelWeaponEffect,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refine_pollutinum,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_boost_on,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.relicHunter_slayer_aura_relic_bonus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.slac_in_a_box_trigger.popped,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.phase_boarding,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.phase_bridge_jump,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.prize_claimed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.train_done,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.train_leave,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.train_station.train_start,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.welcome,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.repeatingReward,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.shipOrder,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2016.takeFlight {
+  --d-entry-glow: var(--d-entry-green-glow);
+
+  background-color: var(--d-entry-green);
+}
+
+/* teal / subtle (1) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.timepiece_trigger {
+  --d-entry-glow: var(--d-entry-teal-glow);
+
+  background-color: var(--d-entry-teal-subtle);
+}
+
+/* teal / strong (12) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.airship_charm_delivery,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.aurora_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ceruleanSkyport-shipmentFinished,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-addPostscriptHunts,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-rerollChapter,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.curse_breaker_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertArtilleryStrike,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.desertwave,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.refractorBaseEffect-empyrean_jewel_base,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.smelly_sodium_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ultimate_intact,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ultimate_pop {
+  --d-entry-glow: var(--d-entry-teal-glow);
+
+  background-color: var(--d-entry-teal);
+}
+
+/* cyan / subtle (8) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-defeatedGiant,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_canyon_tonic_plains,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_canyon_tonic_quarry,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.queso_canyon_tonic_river,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ronza_chrome_voucher_claim,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.springHunt2018-eggCartonClaim,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.unstable_charm_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.wild_tonic_remote_pump_trigger {
+  --d-entry-glow: var(--d-entry-cyan-glow);
+
+  background-color: var(--d-entry-cyan-subtle);
+}
+
+/* cyan / strong (13) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.ceruleanSkyport-cannonballLoot,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.draconicDepths-enterCavern,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-tableOfContents.mythweaverIncrease,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.schoolOfSorcery-enrolled,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.schoolOfSorcery-wandUsed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winterTaiga,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winterTaiga_reward_track.reward_track_claimed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.claimGolemReward,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.cometCollapse,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.golemUpgraded,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.instantReturnGolem,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.layerSmashed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.winter_hunt_2021.sendGolem {
+  --d-entry-glow: var(--d-entry-cyan-glow);
+
+  background-color: var(--d-entry-cyan);
+}
+
+/* neutral / strong (3) */
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.burroughs_rift.danger_zone,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.electromagnetic_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween-flashlight-off {
+  --d-entry-glow: var(--d-entry-neutral-glow);
+
+  background-color: var(--d-entry-neutral);
+}
+
+/* ----------------------------------------
+ * The game gives these entries a bright inset glow; redraw it in the entry's own hue.
+ */
+
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.claim,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.completed,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.adventureBook-journal.goal,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.afterwordAcres-droidActivity,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.boiling_cauldron_potion_bonus.boon_potion_bonus,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.bountifulBeanstalk-giantChase,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.cerulean_chrome_base_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-addPostscriptHunts,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-disarmedBait,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-finishWriting,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-rerollChapter,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.conclusionCliffs-startWriting,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-activateBoost,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-robust_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-simple_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-craftBarrel-sturdy_barrel,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-finishRiverRun,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-reachedGrotto,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.epilogueFalls-reachedWaterfall,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.folkloreForest-tableOfContents.mythweaverIncrease,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.fortRox-boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.halloween_boiling_cauldron,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.remote_pump_trigger,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-catch-boss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-catch-miniboss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase-high,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.rift-whisker-woods-increase-miniboss,
+body.mh-dark.mh-dark-entry-colors .journal .content .entry.wild_tonic_remote_pump_trigger {
+  box-shadow: inset 0 0 12px var(--d-entry-glow);
+}
+
+/* stylelint-disable stylistic/max-line-length */
+
+/*
+ * Mice catches, left as-is for now (game rules for reference, not applied):
+ *
+ * .journal .content .attractionfailure { background: url(https://www.mousehuntgame.com/images/ui/journal/steal.gif?asset_cache_version=8) no-repeat 8px 8px }
+ * .journal .content .attractionfailurestale { background: url(https://www.mousehuntgame.com/images/ui/journal/stale.gif?asset_cache_version=8) no-repeat 8px 8px }
+ * .journal .content .outofsuperbrie { background: url(https://www.mousehuntgame.com/images/ui/journal/steal.gif?asset_cache_version=8) no-repeat 8px 8px }
+ * .journal .content .outofsuperbriebutton { display: block;  margin-left: 35px }
+ * .journal .content .captchasolved { background: #ddf url(https://www.mousehuntgame.com/images/ui/journal/journal_puzzle_reward.gif?asset_cache_version=8) no-repeat 8px 8px;  min-height: 40px }
+ * .journal .content .catchfailure { background: url(https://www.mousehuntgame.com/images/ui/journal/steal.gif?asset_cache_version=8) no-repeat 8px 8px }
+ * .journal .content .catchfailuredamage { background: #ffbfbf url(https://www.mousehuntgame.com/images/ui/journal/pillage.gif?asset_cache_version=8) no-repeat 8px 8px }
+ * .journal .content .catchsuccess { background-color: #ffc }
+ * .journal .content .catchsuccessloot { background-color: #ffa }
+ * .journal .content .highlights { border: 2px solid blue;  margin-bottom: 9px }
+ * .journal .content .bonuscatchsuccess,.journal .content .bonuscatchfailure { position: relative;  padding-top: 10px;  box-shadow: 0 0 1px 1px #9eaefe inset }
+ * .journal .content .bonuscatchsuccess { background: linear-gradient(-45deg,rgb(158,240,254),#f1fbff) }
+ * .journal .content .bonuscatchfailure { background: linear-gradient(-45deg,rgb(255,172,191),#def3fb) }
+ * .journal .content .tournamentpoints,.journal .content .tournamentpointswithloot { border-bottom: 1px solid #ccc;  font-style: italic;  background: #dbd1b4 url(https://www.mousehuntgame.com/images/ui/journal/tournament_points.png?asset_cache_version=8) no-repeat 0 50% }
+ * .journal .content .catchsuccessprize { background-color: #6f6 }
+ * .journal .content .catchfailprize { background-color: #fdd }
+ * /* end of mice catches *\/
+ *
+ */
+
+/*
+ * Skipped: full-entry images, gradients, white glow charms, and child elements.
+ *
+ * .journal .entry.boiling_cauldron_potion_bonus
+ * .journal .entry.chocolateshop_item_purchased
+ * .journal .entry.chocolateshop_reward_claimed
+ * .journal .entry.christmas_crystalabra_trigger
+ * .journal .entry.folkloreForest-tableOfContents.wordCount
+ * .journal .entry.gift_wrapped_charm_trigger
+ * .journal .entry.golden_anchor_trigger
+ * .journal .entry.kings_giveaway_bonus_prize_entry .journalimage
+ * .journal .entry.kings_giveaway_vault_prize_entry
+ * .journal .entry.kings_giveaway_vault_prize_entry .journalimage
+ * .journal .entry.oxygen_burst_trigger
+ * .journal .entry.rainbowQuillSpecialEffect
+ * .journal .entry.refractorBaseEffect-rainbow_diamond_refractor_base
+ * .journal .entry.smart_water_jet_trigger
+ * .journal .entry.super_rift_vacuum_trigger
+ * .journal .entry.valentines_matchmaker
+ * .journal .entry.vending_machine_purchase
+ * .journal.jsingle .newEntry.entry.vending_machine_purchase
+ */
+/* stylelint-enable stylistic/max-line-length */
