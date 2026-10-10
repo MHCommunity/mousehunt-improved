@@ -920,7 +920,7 @@ input.treasureMapView-block-search-text {
   height: 10px;
   visibility: visible;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png?asset_cache_version=3) no-repeat 50% 50% / contain;
+  background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png) no-repeat 50% 50% / contain;
 }
 
 .treasureMapTooltipView-hunterText-state.upgrader {

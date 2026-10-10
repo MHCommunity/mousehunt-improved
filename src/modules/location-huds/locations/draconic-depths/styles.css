@@ -103,7 +103,7 @@
   height: 25px;
   text-indent: -9999px;
   cursor: pointer;
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_minus.png?asset_cache_version=3);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_minus.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -113,7 +113,7 @@
   height: 25px;
   text-indent: -9999px;
   cursor: pointer;
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_plus.png?asset_cache_version=3);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_plus.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
