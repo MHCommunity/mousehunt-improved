@@ -12,6 +12,7 @@
 }
 
 .mhui-trap-editor-list {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -29,12 +30,6 @@
   background: var(--mhui-trap-editor-row);
   border: 1px solid var(--mhui-trap-editor-border);
   border-radius: 4px;
-}
-
-.mhui-trap-editor-row.mhui-trap-editor-dragging {
-  cursor: grabbing;
-  border-color: var(--mhui-trap-editor-muted);
-  box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
 }
 
 .mhui-trap-editor-handle {
@@ -110,10 +105,11 @@
   transform: translateX(14px);
 }
 
-/* The blocks in the preview are dragged as a whole, so what's in them doesn't get the pointer. */
+/* The blocks in the preview are dragged as a whole, so what's in them doesn't get the pointer.
+   Some blocks set their own cursor, like the catch rates' id, so this has to win over them. */
 .mhui-trap-editor-preview [data-block] {
   touch-action: none;
-  cursor: grab;
+  cursor: grab !important;
   user-select: none;
 }
 
@@ -121,9 +117,49 @@
   pointer-events: none;
 }
 
-.mhui-trap-editor-preview .mhui-trap-editor-dragging {
-  cursor: grabbing;
-  opacity: 0.7;
+/* Where the dragged block will go. */
+.mhui-trap-editor .mhui-trap-editor-dragging {
+  background: rgb(74 144 217 / 18%);
+  border-radius: 4px;
+  outline: 2px dashed #4a90d9;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.mhui-trap-editor .mhui-trap-editor-dragging > * {
+  opacity: 0.35;
+}
+
+/* The copy that follows the pointer. It lifts up when picked up and glides into its spot when put down. */
+.mhui-trap-editor .mhui-trap-editor-ghost {
+  position: fixed;
+  z-index: 100000;
+  box-sizing: border-box;
+  margin: 0;
+  pointer-events: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+  transition:
+    transform 0.16s ease-out,
+    box-shadow 0.16s ease-out;
+}
+
+.mhui-trap-editor .mhui-trap-editor-ghost.lifted {
+  box-shadow: 0 10px 22px rgb(0 0 0 / 35%);
+  transform: rotate(-1deg) scale(1.03);
+}
+
+.mhui-trap-editor .mhui-trap-editor-ghost.settling {
+  transition:
+    left 0.16s ease-out,
+    top 0.16s ease-out,
+    transform 0.16s ease-out,
+    box-shadow 0.16s ease-out;
+}
+
+.mhui-trap-editor-is-dragging,
+.mhui-trap-editor-is-dragging * {
+  cursor: grabbing !important;
 }
 
 .mhui-trap-editor-preview .trapSelectorView__trap {
@@ -132,10 +168,15 @@
   margin: 0;
 }
 
+/* Same width as the trap selector on the camp page. */
 .mhui-trap-editor-preview .trapSelectorView__trapStatSummaryContainer {
+  position: relative;
+  box-sizing: content-box;
+  width: 324px;
   min-height: 40px;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin: 0;
 }
 
 .mhui-trap-editor-preview .mhui-trap-editor-highlight {
