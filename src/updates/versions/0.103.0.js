@@ -1,4 +1,4 @@
-import { defaultHiddenMenuItems, deleteSetting, getSetting, migrateSetting, saveSetting } from '@utils';
+import { defaultHiddenMenuItems, deleteSetting, getSetting, lsGet, migrateSetting, saveSectionCollapsed, saveSetting } from '@utils';
 
 import replaceSettingsWithFlags from '../replace-settings-with-flags';
 
@@ -72,6 +72,45 @@ const migrateFabledMaxTitle = () => {
   migrateSetting('experiments.fabled-custom-title-text', 'fabled-max-title.custom-text');
 };
 
+/**
+ * Collapsible sections share one setting now, so carry over the ones that were saved separately.
+ */
+const migrateCollapsedSections = () => {
+  const lists = [
+    ['better-mice.collapsed-crown-groups', 'kings-crowns'],
+    ['skyport-star-tracker.collapsed-raids', 'skyport-star-tracker'],
+  ];
+
+  for (const [key, prefix] of lists) {
+    const collapsed = getSetting(key, []);
+    if (Array.isArray(collapsed)) {
+      collapsed.forEach((id) => saveSectionCollapsed(`${prefix}.${id}`, true));
+    }
+
+    deleteSetting(key);
+  }
+
+  const toggles = [
+    ['better-marketplace.markethunt-chart-collapsed', 'marketplace.markethunt-chart'],
+    ['better-marketplace.price-history-chart-collapsed', 'marketplace.price-chart'],
+  ];
+
+  for (const [key, section] of toggles) {
+    if (true === getSetting(key, false)) {
+      saveSectionCollapsed(section, true);
+    }
+
+    deleteSetting(key);
+  }
+
+  const planKey = 'mh-improved-map-plan-guaranteed-collapsed';
+  if (true === lsGet(planKey, false)) {
+    saveSectionCollapsed('maps.plan-guaranteed', true);
+  }
+
+  localStorage.removeItem(planKey);
+};
+
 export default {
   version: '0.103.0',
   update: async () => {
@@ -79,6 +118,7 @@ export default {
     migrateSetting('experiments.airship-randomizer', 'location-huds.fi-airship-randomizer');
     migrateReverseDailyDraw();
     migrateFabledMaxTitle();
+    migrateCollapsedSections();
 
     replaceSettingsWithFlags([
       ['better-trap-selector.larger-skin-images', 'better-trap-selector-no-larger-skin-images', 'Show the small skin images in the trap selector'],
