@@ -142,15 +142,17 @@ const getLabel = (result) => {
 /**
  * Get the current stage for both attraction rate sources.
  *
+ * @param {Object} [source] The user to get the stage for. Defaults to the global user.
+ *
  * @return {Object} The stage, with the data's environment and MHCT's location to look it up in,
  *                  and a label for it (null for locations without stages).
  */
-const getStage = () => {
-  const environment = user.environment_type;
+const getStage = (source = user) => {
+  const environment = source.environment_type;
   const stage = {
     dataEnvironment: environment,
     // MHCT's rates are keyed by location name.
-    liveLocation: user.environment_name || '',
+    liveLocation: source.environment_name || '',
     data: '-',
     live: undefined,
     label: null,
@@ -164,12 +166,12 @@ const getStage = () => {
 
   try {
     const result = stager({
-      quests: user.quests || {},
-      viewingAtts: user.viewing_atts || {},
-      bait: user.bait_name,
-      base: user.base_name,
-      charm: user.trinket_name,
-      charmId: Number(user.trinket_item_id),
+      quests: source.quests || {},
+      viewingAtts: source.viewing_atts || {},
+      bait: source.bait_name,
+      base: source.base_name,
+      charm: source.trinket_name,
+      charmId: Number(source.trinket_item_id),
     });
 
     stage.data = result.data;

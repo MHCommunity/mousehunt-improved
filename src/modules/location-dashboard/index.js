@@ -12,12 +12,12 @@ import {
   makeElement,
   makeMhButton,
   onEvent,
+  onRequest,
   onTurn,
   sessionSet,
   sleep,
   travelTo,
 } from '@utils';
-import { onLocationAction } from '@utils/shared/stages/location-actions';
 
 import styles from './styles.css';
 
@@ -140,11 +140,15 @@ const legacyQuests = ['QuestFieryWarpath', 'QuestSeasonalGarden', 'QuestZugzwang
  *
  * Quests are cached by quest key. Viewing attributes, which some locations keep their HUD data in,
  * are cached by location along with when the location was last cached.
+ *
+ * @param {Object} [response] The response that changed the location's data. Its user is used when
+ *                            it has one, as the game may not have updated the global user yet.
  */
-const cacheLocationData = async () => {
-  await sleep(300);
-  const environment = user.environment_type;
-  if (!environment || !user.quests) {
+const cacheLocationData = async (response) => {
+  const source = response?.user?.quests ? response.user : user;
+  const environment = source.environment_type || user.environment_type;
+  const quests = source.quests;
+  if (!environment || !quests) {
     return;
   }
 
@@ -154,8 +158,8 @@ const cacheLocationData = async () => {
   // Combine the cached quests with the current quests. The game reports
   // quests for other locations as false or empty once you've left, so keep
   // the last-known cached data instead of letting those wipe it.
-  const questsCombined = Object.assign({}, questsCached, user.quests);
-  for (const [questKey, questValue] of Object.entries(user.quests)) {
+  const questsCombined = Object.assign({}, questsCached, quests);
+  for (const [questKey, questValue] of Object.entries(quests)) {
     const isEmpty = !questValue || (typeof questValue === 'object' && Object.keys(questValue).length === 0);
     if (isEmpty && questsCached[questKey]) {
       questsCombined[questKey] = questsCached[questKey];
@@ -168,7 +172,7 @@ const cacheLocationData = async () => {
 
   const locations = await dataGet('dashboard-locations', {});
   locations[environment] = {
-    viewingAtts: user.viewing_atts || {},
+    viewingAtts: source.viewing_atts || user.viewing_atts || {},
     updatedAt: Date.now(),
   };
 
@@ -542,7 +546,9 @@ const init = async () => {
   cacheLocationData();
   onEvent('travel_complete', cacheLocationData);
   onTurn(cacheLocationData);
-  onLocationAction(cacheLocationData);
+  // Every location HUD action, since some change what's shown without a hunt (repairing the
+  // Mousoleum wall, upgrading Valour Rift power-ups, ...).
+  onRequest('environment/', cacheLocationData);
 
   makeDashboardTab();
 };

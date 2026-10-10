@@ -1,16 +1,17 @@
-import { onTurn } from '@utils';
+import { onRequest, onTurn } from '@utils';
 import { getStage } from '@utils/shared/stages';
-import { onLocationAction } from '@utils/shared/stages/location-actions';
 
 let lastStageKey = null;
 
 /**
- * Get a key for the current stage, to tell when it changes.
+ * Get a key for a stage, to tell when it changes.
+ *
+ * @param {Object} [source] The user to get the stage for. Defaults to the global user.
  *
  * @return {string} The stage key.
  */
-const getStageKey = () => {
-  const stage = getStage();
+const getStageKey = (source) => {
+  const stage = getStage(source);
   return JSON.stringify([stage.dataEnvironment, stage.data, stage.live]);
 };
 
@@ -22,19 +23,22 @@ const saveRenderedStage = () => {
 };
 
 /**
- * Refresh the list when the mice that can be attracted change: after location actions, and after
- * a hunt that moves to a new stage (a new Sunken City zone, Valour Rift floor, Fort Rox phase, ...).
+ * Refresh the list when the mice that can be attracted change: after a location action or a hunt
+ * that moves to a new stage (a new Sunken City zone, Valour Rift floor, Fort Rox phase, ...).
  *
  * @param {Function} refresh Refreshes the list with fresh effectiveness data.
  */
 const addRefreshTriggers = (refresh) => {
-  onLocationAction(() => refresh());
-
-  onTurn(() => {
-    if (null !== lastStageKey && getStageKey() !== lastStageKey) {
+  const refreshIfStageChanged = (response) => {
+    // The game may not have updated the global user from the response yet.
+    const source = response?.user ? { ...user, ...response.user } : user;
+    if (null !== lastStageKey && getStageKey(source) !== lastStageKey) {
       refresh();
     }
-  });
+  };
+
+  onRequest('environment/', refreshIfStageChanged);
+  onTurn(refreshIfStageChanged);
 };
 
 export { addRefreshTriggers, saveRenderedStage };
