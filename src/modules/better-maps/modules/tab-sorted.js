@@ -1,25 +1,10 @@
-import {
-  getArEl,
-  getData,
-  getHighestArForMouse,
-  getLocationsForMouse,
-  getMapData,
-  make,
-  makeElement,
-  mapData,
-  mapModel,
-  sessionGet,
-  sessionSet,
-  showTravelConfirmation,
-} from '@utils';
+import { getArEl, getData, getHighestArForMouse, getLocationsForMouse, getMapData, make, makeCollapsible, makeElement, mapData, mapModel, showTravelConfirmation } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
 import { makeGoalHighlight } from './goal-highlight';
 
 import mouseGroups from '@data/map-groups.json';
-
-const LOCATIONS_COLLAPSED_KEY = 'better-maps-sorted-locations-collapsed';
 
 /**
  * Normalize a map name for matching against the map group names.
@@ -629,8 +614,6 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
       const name = locationData.name || environment?.name || 'Other';
       const image = locationData.image || environment?.image || '';
 
-      makeElement('span', 'mh-ui-caret', '', header);
-
       if (image) {
         const headerImage = makeElement('div', ['treasureMapView-block-content-heading-image', 'scavenger-location-icon']);
         headerImage.style.backgroundImage = `url(${image})`;
@@ -658,27 +641,12 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
       locationWrapper.append(locationContent);
       locationWrappers.push(locationWrapper);
 
-      const setCollapsed = (collapsed) => {
-        locationWrapper.classList.toggle('mh-ui-goals-completed-collapsed', collapsed);
-        header.title = collapsed ? 'Expand' : 'Collapse';
-      };
-
-      setCollapsed(sessionGet(LOCATIONS_COLLAPSED_KEY, []).includes(location));
-
-      header.addEventListener('click', (event) => {
+      makeCollapsible({
+        key: `maps.sorted-location.${location}`,
+        section: locationWrapper,
+        header,
         // The location name is a travel link.
-        if (event.target.closest('.scavenger-location-name[data-environment-id]')) {
-          return;
-        }
-
-        const collapsed = !locationWrapper.classList.contains('mh-ui-goals-completed-collapsed');
-        const stored = sessionGet(LOCATIONS_COLLAPSED_KEY, []).filter((id) => id !== location);
-        if (collapsed) {
-          stored.push(location);
-        }
-
-        sessionSet(LOCATIONS_COLLAPSED_KEY, stored);
-        setCollapsed(collapsed);
+        ignore: '.scavenger-location-name[data-environment-id]',
       });
     });
 

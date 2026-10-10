@@ -5,6 +5,7 @@ import {
   doRequest,
   getCurrentLocation,
   getSetting,
+  makeCollapsible,
   makeElement,
   makeElementDraggable,
   onJournalEntry,
@@ -12,7 +13,6 @@ import {
   onTravel,
   onTurn,
   parseNumber,
-  saveSetting,
 } from '@utils';
 import { onSkyportRaidDialogHide, onSkyportRaidDialogShow } from '@utils/shared/skyport-raid-dialog';
 
@@ -188,7 +188,6 @@ const makeRaidHeader = (raid, done, total) => {
     header.classList.add('mh-skyport-star-tracker-raid-complete');
   }
 
-  makeElement('div', 'mh-skyport-star-tracker-raid-collapse-icon', '', header);
   makeElement('div', 'mh-skyport-star-tracker-raid-title', raid.name, header);
   makeElement('div', 'mh-skyport-star-tracker-raid-progress', `${done} of ${total}`, header);
 
@@ -200,33 +199,17 @@ const makeRaidHeader = (raid, done, total) => {
  *
  * @param {Object} raid      The raid group.
  * @param {Object} threshold The active threshold.
- * @param {Set}    collapsed The set of collapsed raid ids.
  *
  * @return {Element} The raid section.
  */
-const makeRaidSection = (raid, threshold, collapsed) => {
+const makeRaidSection = (raid, threshold) => {
   const section = makeElement('div', 'mh-skyport-star-tracker-raid-section');
-  if (collapsed.has(raid.id)) {
-    section.classList.add('collapsed');
-  }
 
   const needed = getNeededMice(raid, threshold);
 
   const header = makeRaidHeader(raid, raid.mice.length - needed.length, raid.mice.length);
-  header.addEventListener('click', () => {
-    const isCollapsed = section.classList.toggle('collapsed');
-
-    const stored = new Set(getSetting('skyport-star-tracker.collapsed-raids', []));
-    if (isCollapsed) {
-      stored.add(raid.id);
-    } else {
-      stored.delete(raid.id);
-    }
-
-    saveSetting('skyport-star-tracker.collapsed-raids', [...stored]);
-  });
-
   section.append(header);
+  makeCollapsible({ key: `skyport-star-tracker.${raid.id}`, section, header });
 
   const miceWrapper = makeElement('div', 'mh-skyport-star-tracker-raid-mice');
 
@@ -286,8 +269,6 @@ const render = () => {
 
   progress.textContent = `${done} of ${allMice.length} ${threshold.progressLabel}`;
 
-  const collapsed = new Set(getSetting('skyport-star-tracker.collapsed-raids', []));
-
   // Show the raid the hunter is currently on first.
   const currentRaid = getCurrentRaid();
   const raids = [...skyportRaids.raids].sort((a, b) => {
@@ -295,7 +276,7 @@ const render = () => {
   });
 
   raids.forEach((raid) => {
-    list.append(makeRaidSection(raid, threshold, collapsed));
+    list.append(makeRaidSection(raid, threshold));
   });
 };
 

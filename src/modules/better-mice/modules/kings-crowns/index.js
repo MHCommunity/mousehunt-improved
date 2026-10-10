@@ -1,4 +1,4 @@
-import { addStyles, getData, getSetting, makeElement, onNavigation, saveSetting, waitForElement } from '@utils';
+import { addStyles, getData, getSetting, makeCollapsible, makeElement, onNavigation, saveSetting, waitForElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -277,35 +277,8 @@ const addSummary = async (view, showTotals) => {
   return summary;
 };
 
-/**
- * Get the saved collapsed crown groups.
- *
- * @return {string[]} The collapsed group types.
- */
-const getCollapsedGroups = () => {
-  const collapsed = getSetting('better-mice.collapsed-crown-groups', []);
-  return Array.isArray(collapsed) ? collapsed : [];
-};
-
-/**
- * Collapse or expand a crown group, and save it.
- *
- * @param {Element} group     The crown group.
- * @param {string}  type      The crown group type.
- * @param {boolean} collapsed Whether the group should be collapsed.
- */
-const setGroupCollapsed = (group, type, collapsed) => {
-  group.toggleAttribute('data-mh-crown-collapsed', collapsed);
-
-  const saved = new Set(getCollapsedGroups());
-  if (collapsed) {
-    saved.add(type);
-  } else {
-    saved.delete(type);
-  }
-
-  saveSetting('better-mice.collapsed-crown-groups', [...saved]);
-};
+// The collapsible for each crown group, by type, so the nav can expand them.
+const crownGroupCollapsibles = new Map();
 
 /**
  * Make the crown groups collapsible.
@@ -316,8 +289,6 @@ const setGroupCollapsed = (group, type, collapsed) => {
  * @param {Element} view The crowns view.
  */
 const addCollapsing = (view) => {
-  const collapsed = new Set(getCollapsedGroups());
-
   view.querySelectorAll('.mouseCrownsView-group').forEach((group) => {
     const type = ['mh-crown-summary', ...crownTiers.map((t) => t.type), 'none', 'favourite', 'favorites'].find((t) => group.classList.contains(t));
     const header = group.querySelector('.mouseCrownsView-group-header');
@@ -326,20 +297,14 @@ const addCollapsing = (view) => {
     }
 
     group.setAttribute('data-mh-crown-collapsible', '');
-    group.toggleAttribute('data-mh-crown-collapsed', collapsed.has(type));
-
-    if (header.getAttribute('data-mh-collapsible')) {
-      return;
-    }
-
-    header.setAttribute('data-mh-collapsible', true);
-    header.addEventListener('click', (e) => {
-      if (e.target.closest('a, button')) {
-        return;
-      }
-
-      setGroupCollapsed(group, type, !group.hasAttribute('data-mh-crown-collapsed'));
+    const collapsible = makeCollapsible({
+      key: `kings-crowns.${type}`,
+      section: group,
+      header,
+      ignore: 'a, button',
+      apply: (collapsed) => group.toggleAttribute('data-mh-crown-collapsed', collapsed),
     });
+    crownGroupCollapsibles.set(type, collapsible);
   });
 };
 
@@ -375,9 +340,7 @@ const addNav = (view) => {
 
     item.addEventListener('click', (e) => {
       e.preventDefault();
-      if (group.hasAttribute('data-mh-crown-collapsed')) {
-        setGroupCollapsed(group, type, false);
-      }
+      crownGroupCollapsibles.get(type)?.setCollapsed(false);
 
       group.scrollIntoView({ behavior: 'smooth' });
     });

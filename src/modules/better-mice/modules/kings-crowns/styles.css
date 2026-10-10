@@ -1,29 +1,5 @@
 [data-mh-crown-collapsible] .mouseCrownsView-group-header {
   position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-[data-mh-crown-collapsible] .mouseCrownsView-group-header::after {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  width: 8px;
-  height: 8px;
-  content: "";
-  border-right: 2px solid #555;
-  border-bottom: 2px solid #555;
-  opacity: 0.6;
-  transition: transform 0.15s;
-  transform: translateY(-75%) rotate(45deg);
-}
-
-[data-mh-crown-collapsible] .mouseCrownsView-group-header:hover::after {
-  opacity: 1;
-}
-
-[data-mh-crown-collapsed] .mouseCrownsView-group-header::after {
-  transform: translateY(-50%) rotate(-45deg);
 }
 
 [data-mh-crown-collapsed] .mouseCrownsView-group-header {

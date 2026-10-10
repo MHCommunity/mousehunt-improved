@@ -1,9 +1,10 @@
-import { addMHCTData, debuglog, doRequest, getFlag, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
+import { addMHCTData, debuglog, doRequest, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';
 import addConsolationPrizes from './consolation-prizes';
 import { watchNativeHighlight } from './goal-highlight';
+import addSendToMaptain from './send-to-maptain';
 
 /**
  * Add links to the mouse details on the map.
@@ -205,24 +206,11 @@ const addCompletedSection = () => {
 
     const heading = makeElement('div', ['treasureMapView-block-content-heading', 'mh-ui-goals-completed-heading']);
     const isScavenger = [...groups].some((group) => / found (?:these|this) items?:/.test(group.textContent));
-    makeElement('span', 'mh-ui-caret', '', heading);
     heading.append(document.createTextNode(isScavenger ? 'Hunters found these items:' : 'Hunters found these mice:'));
     makeElement('span', 'treasureMapView-block-content-heading-count', '', heading);
 
-    const setCollapsed = (collapsed) => {
-      section.classList.toggle('mh-ui-goals-completed-collapsed', collapsed);
-      heading.title = collapsed ? 'Expand' : 'Collapse';
-    };
-
-    setCollapsed(sessionGet('better-maps-completed-collapsed', false));
-
-    heading.addEventListener('click', () => {
-      const collapsed = !section.classList.contains('mh-ui-goals-completed-collapsed');
-      sessionSet('better-maps-completed-collapsed', collapsed);
-      setCollapsed(collapsed);
-    });
-
     section.append(heading);
+    makeCollapsible({ key: 'maps.found-mice', section, header: heading });
     groups[0].before(section);
   }
 
@@ -688,6 +676,7 @@ const showGoalsTab = async (mapData) => {
   addClassesToGroups(mapData);
   moveLeaveButton(mapData);
   addQuickInvite(mapData);
+  addSendToMaptain(mapData);
   addSidebarToggle();
   addPreviewClass();
   moveAuras();

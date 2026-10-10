@@ -11,6 +11,11 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-item-view.show-droppers',
+      title: 'Show which mice drop the item',
+      default: true,
+    },
+    {
       id: 'better-item-view.show-item-hover',
       title: 'Show item details when hovering in the journal',
       default: true,

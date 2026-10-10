@@ -19,9 +19,17 @@
   opacity: 0.9;
 }
 
-.mh-ui-goals-completed-collapsed .mh-ui-caret,
-.mh-ui-shop-collapsed .mh-ui-caret,
-#map-plan-container .plan-guaranteed-collapsed .mh-ui-caret,
+[aria-expanded="false"] > .mh-ui-caret,
 #map-plan-container .plan-setup:not(.plan-setup-open) .mh-ui-caret {
   transform: rotate(-90deg);
+}
+
+/* Sections made with makeCollapsible(). */
+.mh-ui-collapsible-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.mh-ui-collapsed > :not(.mh-ui-collapsible-header) {
+  display: none !important;
 }

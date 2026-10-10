@@ -6,6 +6,7 @@ import {
   getData,
   getSetting,
   loadFeatures,
+  makeCollapsible,
   makeElement,
   makeMathButtons,
   makeMhButton,
@@ -14,6 +15,8 @@ import {
   onRender,
   wikiUrl,
 } from '@utils';
+
+import { isIgnoredLootItem, makeItemDroppersSection } from '@utils/shared/loot';
 
 import featureManifest from './feature-manifest';
 import settings from './settings';
@@ -180,21 +183,7 @@ const addQuantityButtons = (itemView) => {
 };
 
 const showDropRates = async (itemId, itemView) => {
-  // don't show drop rates for items that aren't consistent.
-  const id = Number.parseInt(itemId, 10);
-  const ignored = [
-    2473, // Mina's gift
-    823, // party charm
-    803, // chrome charm
-    420, // king's credits
-    1980, // king's keys
-    585, // scrambles
-    412, // sb supply pack
-    2541, // RLC
-    2863, // Chrome bits.
-  ];
-
-  if (ignored.includes(id)) {
+  if (isIgnoredLootItem(itemId)) {
     return;
   }
 
@@ -214,6 +203,7 @@ const showDropRates = async (itemId, itemView) => {
   const title = makeElement('div', 'ar-header');
   const titleText = makeElement('div', 'ar-title', 'Drop Rates');
   title.append(titleText);
+  makeElement('div', 'mh-improved-loot-unit', 'Per catch', title);
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
@@ -221,31 +211,24 @@ const showDropRates = async (itemId, itemView) => {
   title.append(link);
 
   arWrapper.append(title);
-  const itemsArWrapper = makeElement('div', 'item-ar-wrapper');
-
-  // check if there are stages in any of the item
-  const hasStages = mhctJson.some((itemAr) => itemAr.stage);
-
-  if (hasStages) {
-    itemsArWrapper.classList.add('has-stages');
-  }
+  const itemsArWrapper = makeElement('div', ['item-ar-wrapper', 'mh-improved-drop-rates']);
 
   // shrink the mhct json array to only include items with non-zero drop rates and a maximum of 15 items
   // drop_pct is a string like '0.27', so parse it as a float to keep rates under 1%.
   mhctJson = mhctJson.filter((itemAr) => Number.parseFloat(itemAr.drop_pct) > 0).slice(0, 10);
 
   mhctJson.forEach((itemAr) => {
-    const dropPercent = Number.parseFloat(itemAr.drop_pct).toFixed(2);
-    if (dropPercent !== '0.00') {
+    const dropPercent = Number(Number.parseFloat(itemAr.drop_pct).toFixed(2));
+    if (dropPercent > 0) {
       const itemArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
       makeElement('div', 'location', itemAr.location, itemArWrapper);
 
-      if (hasStages) {
-        makeElement('div', 'stage', itemAr.stage, itemArWrapper);
-      }
-
-      makeElement('div', 'cheese', itemAr.cheese, itemArWrapper);
+      // The stage and cheese share a line, with the full text on hover when it's cut off.
+      const setup = makeElement('div', 'setup');
+      setup.textContent = [itemAr.stage, itemAr.cheese].filter(Boolean).join(' · ');
+      setup.title = setup.textContent;
+      itemArWrapper.append(setup);
 
       makeElement('div', 'rate', `${dropPercent}%`, itemArWrapper);
       itemsArWrapper.append(itemArWrapper);
@@ -254,8 +237,33 @@ const showDropRates = async (itemId, itemView) => {
 
   if (mhctJson.length > 0) {
     arWrapper.append(itemsArWrapper);
-    container.append(arWrapper);
+    makeCollapsible({ key: 'item-view.drop-rates', section: arWrapper, header: title });
+
+    // The droppers go after the drop rates, whichever loads first.
+    const droppers = container.querySelector('.mh-improved-loot');
+    if (droppers) {
+      droppers.before(arWrapper);
+    } else {
+      container.append(arWrapper);
+    }
   }
+};
+
+/**
+ * Add the mice that drop the item.
+ *
+ * @param {string}      itemId   The item id.
+ * @param {HTMLElement} itemView The item view.
+ */
+const addItemDroppers = async (itemId, itemView) => {
+  const section = await makeItemDroppersSection(itemId);
+  const container = itemView.querySelector('.itemView-padding');
+  if (!section || !container || !isCurrentItemView(itemView, itemId) || itemView.querySelector('.mh-improved-loot')) {
+    return;
+  }
+
+  itemView.classList.add('mouseview-has-mhct');
+  container.append(section);
 };
 
 const maybeShowMiceOnMapLink = async (itemId, itemView) => {
@@ -289,11 +297,6 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
 
   const title = makeElement('div', 'mh-improved-scroll-to-map-multiple');
   makeElement('strong', 'mh-improved-scroll-to-map-title-text', 'Maps for this scroll case:', title);
-
-  const tooltip = makeElement('div', ['PreferencesPage__blackTooltip', 'mh-improved-tooltip']);
-  makeElement('span', 'PreferencesPage__blackTooltipText', 'Click the map to view the possible mice on MHCT.', tooltip);
-  title.append(tooltip);
-
   mapLink.append(title);
 
   // TODO: update these.
@@ -358,6 +361,11 @@ const addConvertibleContents = async (itemId, itemView) => {
     return;
   }
 
+  // Scroll cases only record Rare Map Dust, so their contents are meaningless.
+  if (item.tags?.includes('scroll_case')) {
+    return;
+  }
+
   const padding = itemView.querySelector('.itemView-padding');
   if (!padding || itemView.querySelector('.mh-improved-convertible-contents')) {
     return;
@@ -374,6 +382,7 @@ const addConvertibleContents = async (itemId, itemView) => {
   link.target = '_blank';
   header.append(link);
   section.append(header);
+  makeCollapsible({ key: 'item-view.contents', section, header });
 
   const loading = makeElement('div', 'mh-improved-convertible-contents-loading', 'Loading contents…');
   section.append(loading);
@@ -482,6 +491,10 @@ const updateItemView = async () => {
 
   if (getSetting('better-item-view.show-drop-rates', true)) {
     showDropRates(itemId, itemView);
+  }
+
+  if (getSetting('better-item-view.show-droppers', true)) {
+    addItemDroppers(itemId, itemView);
   }
 
   await Promise.all([addConvertibleContents(itemId, itemView), maybeShowMiceOnMapLink(itemId, itemView)]);

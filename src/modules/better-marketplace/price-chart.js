@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts';
 import 'highcharts/modules/stock'; // eslint-disable-line import/no-unassigned-import, sort-imports
 
-import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeElement, saveSetting } from '@utils';
+import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeCollapsible, makeElement } from '@utils';
 
 /**
  * Price history charts for the marketplace item view, using data from
@@ -14,8 +14,6 @@ const dayInMs = 24 * 60 * 60 * 1000;
 let priceChart = null;
 let stockChart = null;
 let zoomLabelHidden = false;
-
-const collapsedSettingKey = 'better-marketplace.price-history-chart-collapsed';
 
 /**
  * Convert a UTC ISO date string (YYYY-MM-DD) to milliseconds since epoch.
@@ -851,38 +849,13 @@ const addPriceChart = async (itemId) => {
 
   const expand = () => {
     area.classList.remove('mhui-marketplace-chart-collapsed');
-    toggle.classList.remove('collapsed');
-    toggle.classList.add('expanded');
-    toggle.setAttribute('title', 'Minimize chart');
-    toggle.setAttribute('aria-label', 'Minimize chart');
-    toggle.setAttribute('aria-expanded', 'true');
 
     // Charts rendered while hidden have no size, so we only load once visible.
     showActiveChart(itemId, area);
     [priceChart, stockChart].forEach((chart) => chart?.reflow());
   };
 
-  const collapse = () => {
-    area.classList.add('mhui-marketplace-chart-collapsed');
-    toggle.classList.remove('expanded');
-    toggle.classList.add('collapsed');
-    toggle.setAttribute('title', 'Expand chart');
-    toggle.setAttribute('aria-label', 'Expand chart');
-    toggle.setAttribute('aria-expanded', 'false');
-  };
-
-  toggle.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const isCollapsed = area.classList.contains('mhui-marketplace-chart-collapsed');
-    saveSetting(collapsedSettingKey, !isCollapsed);
-
-    if (isCollapsed) {
-      expand();
-    } else {
-      collapse();
-    }
-  });
+  let collapsible = null;
 
   const tabs = area.querySelectorAll('.mhui-marketplace-chart-tabs a');
   tabs.forEach((tab) => {
@@ -896,10 +869,9 @@ const addPriceChart = async (itemId) => {
       tabs.forEach((otherTab) => otherTab.classList.toggle('active', otherTab === tab));
       area.classList.toggle('mhui-marketplace-chart-show-stock', 'stock' === tab.dataset.chart);
 
-      if (area.classList.contains('mhui-marketplace-chart-collapsed')) {
+      if (collapsible?.isCollapsed()) {
         // Switching tabs while minimized re-opens the chart so the click does something visible.
-        saveSetting(collapsedSettingKey, false);
-        expand();
+        collapsible.setCollapsed(false);
         return;
       }
 
@@ -911,11 +883,13 @@ const addPriceChart = async (itemId) => {
   const markethuntChart = item.querySelector(':scope > .mhui-markethunt-chart-header, :scope > #chartArea');
   (markethuntChart || description).before(area);
 
-  if (getSetting(collapsedSettingKey, false)) {
-    collapse();
-  } else {
-    expand();
-  }
+  // Set up once it's on the page, as expanding draws the chart.
+  collapsible = makeCollapsible({
+    key: 'marketplace.price-chart',
+    section: area,
+    header: toggle,
+    apply: (collapsed) => (collapsed ? area.classList.add('mhui-marketplace-chart-collapsed') : expand()),
+  });
 };
 
 export { addPriceChart };

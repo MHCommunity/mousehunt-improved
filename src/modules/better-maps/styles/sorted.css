@@ -305,20 +305,6 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
   filter: invert(1);
 }
 
-.mh-ui-goals-completed-heading,
-.scavenger-location-header {
-  cursor: pointer;
-  user-select: none;
-}
-
-.scavenger-location-wrapper.mh-ui-goals-completed-collapsed .scavenger-location-content {
-  display: none;
-}
-
-.mh-ui-goals-completed-collapsed > .mh-ui-goals-group {
-  display: none;
-}
-
 .treasureMapView-leftBlock.full-width {
   width: 100%;
 }
@@ -332,7 +318,7 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
   display: flex;
   gap: 4px 16px;
   align-items: center;
-  padding: 4px 10px 4px 4px;
+  padding: 4px 10px 4px 6px;
   margin-left: auto;
   background-color: #f6f3eb;
   border: 1px solid #d7cbb6;
@@ -350,13 +336,12 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
 }
 
 .mh-ui-sorted-sort-label {
-  flex: 0 0 20px;
-  width: 20px;
   font-size: 11px;
+  line-height: 1;
   color: #96704b;
-  text-align: center;
   white-space: nowrap;
-  transform: rotate(-90deg);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 .mh-ui-sorted-sort-tiles {

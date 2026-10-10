@@ -99,7 +99,6 @@
 }
 
 #map-plan-container .plan-guaranteed {
-  cursor: pointer;
   background: rgb(214 240 205 / 70%);
 }
 
@@ -111,11 +110,6 @@
   display: flex;
   gap: 4px;
   align-items: center;
-  cursor: pointer;
-}
-
-#map-plan-container .plan-guaranteed-collapsed .plan-guaranteed-list {
-  display: none;
 }
 
 #map-plan-container .plan-guaranteed-list {

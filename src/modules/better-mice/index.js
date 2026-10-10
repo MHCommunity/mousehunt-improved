@@ -8,6 +8,7 @@ import {
   getRelicHunterLocation,
   getSetting,
   loadFeatures,
+  makeCollapsible,
   makeElement,
   makeFavoriteButton,
   makeMhButton,
@@ -17,6 +18,8 @@ import {
   setPage,
   wikiUrl,
 } from '@utils';
+
+import { makeMouseLootSection } from '@utils/shared/loot';
 
 import featureManifest from './feature-manifest';
 import settings from './settings';
@@ -168,6 +171,21 @@ const addRewards = async (mouseId, mouseView, wrapper) => {
   });
 
   values.classList.add('hidden');
+};
+
+/**
+ * Add what the mouse drops, after the attraction rates.
+ *
+ * @param {string}      mouseId   The ID of the mouse.
+ * @param {HTMLElement} mouseView The mouse view.
+ */
+const addLoot = async (mouseId, mouseView) => {
+  const section = await makeMouseLootSection(mouseId);
+  if (!section || !mouseView.isConnected || mouseView.getAttribute('data-mouse-id') !== `${mouseId}` || mouseView.querySelector('.mh-improved-loot')) {
+    return;
+  }
+
+  (mouseView.querySelector('.mouseView-contentContainer') || mouseView).append(section);
 };
 
 /**
@@ -408,6 +426,10 @@ const updateMouseView = async () => {
     }
   }
 
+  if (getSetting('better-mice.show-loot', true)) {
+    addLoot(mouseId, mouseView);
+  }
+
   // Prize mice show cooldown info instead of attraction rates.
   if (isPrizeMouse(mouseId) || !getSetting('better-mice.show-attraction-rates', true)) {
     return;
@@ -534,7 +556,15 @@ const updateMouseView = async () => {
 
   if (mhctJson.length > 0) {
     arWrapper.append(miceArWrapper);
-    (contentContainer || mouseView).append(arWrapper);
+    makeCollapsible({ key: 'mouse-view.attraction-rates', section: arWrapper, header: title });
+
+    // The loot goes after the attraction rates, whichever loads first.
+    const loot = mouseView.querySelector('.mh-improved-loot');
+    if (loot) {
+      loot.before(arWrapper);
+    } else {
+      (contentContainer || mouseView).append(arWrapper);
+    }
   }
 };
 

@@ -1,4 +1,5 @@
 export * from './blueprint';
+export * from './collapsible';
 export * from './db';
 export * from './data';
 export * from './date';

@@ -1,4 +1,4 @@
-import { debug, getCurrentLocation, getSetting, makeElement, saveSetting } from '@utils';
+import { debug, getCurrentLocation, getSetting, makeCollapsible, makeElement, saveSetting } from '@utils';
 
 /**
  * Update the shops markup.
@@ -78,31 +78,25 @@ const updateShopsMarkup = async (root = document) => {
       return;
     }
 
-    if (!environmentEl.classList.contains('active')) {
-      container.classList.add('hidden');
-    }
+    const environmentType = environmentEl.getAttribute('data-environment-type') || '';
 
-    environmentEl.classList.toggle('mh-ui-shop-collapsed', container.classList.contains('hidden'));
+    // Shops start open only for the map's current location.
+    makeCollapsible({
+      key: `maps.shop.${environmentType}`,
+      section: environmentEl,
+      header: heading,
+      defaultCollapsed: !environmentEl.classList.contains('active'),
+      ignore: '.treasureMapPopup-shop-pinIcon, a[href], button',
+      apply: (collapsed) => container.classList.toggle('hidden', collapsed),
+    });
 
     const existingPin = heading.querySelector('.treasureMapPopup-shop-pinIcon');
     if (existingPin) {
       return;
     }
 
-    heading.prepend(makeElement('span', 'mh-ui-caret'));
-
-    heading.addEventListener('click', (event) => {
-      if (event.target.closest('.treasureMapPopup-shop-pinIcon')) {
-        return;
-      }
-
-      const collapsed = container.classList.toggle('hidden');
-      environmentEl.classList.toggle('mh-ui-shop-collapsed', collapsed);
-    });
-
     const pinIconWrapper = makeElement('div', ['treasureMapPopup-shop-pinIcon', 'mousehuntTooltipParent']);
     pinIconWrapper.title = 'Pin this shop';
-    const environmentType = environmentEl.getAttribute('data-environment-type') || '';
 
     if (getPinnedShops.includes(environmentType)) {
       pinIconWrapper.classList.add('pinned');

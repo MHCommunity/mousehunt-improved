@@ -1,4 +1,4 @@
-import { getArForMouse, getCurrentLocation, getData, getSetting, lsGet, lsSet, make, makeMhButton, mapData, showTravelConfirmationNoDetails } from '@utils';
+import { getArForMouse, getCurrentLocation, getData, getSetting, lsGet, lsSet, make, makeCollapsible, makeMhButton, mapData, showTravelConfirmationNoDetails } from '@utils';
 
 import { getMouseDataForMap } from './tab-sorted';
 
@@ -12,7 +12,6 @@ const INITIAL_ROWS = 30;
 const FETCH_CONCURRENCY = 8;
 
 const SORT_KEY = 'mh-improved-map-plan-sort';
-const GUARANTEED_COLLAPSED_KEY = 'mh-improved-map-plan-guaranteed-collapsed';
 
 const SORTS = {
   best: { label: 'Best overall', title: `Sum of attraction rates, with each mouse capped at ${RATE_CAP}% so one easy mouse doesn't dominate.` },
@@ -579,7 +578,7 @@ const makeMouseStrip = (label, entries, className = '') => {
 };
 
 /**
- * Render the guaranteed attraction strip. Click it to collapse; the state is remembered.
+ * Render the guaranteed attraction strip, which collapses.
  *
  * @param {Array}    guaranteed      Guaranteed attraction entries.
  * @param {Function} findEnvironment Environment finder.
@@ -588,20 +587,10 @@ const makeMouseStrip = (label, entries, className = '') => {
  */
 const makeGuaranteed = (guaranteed, findEnvironment) => {
   const strip = make('div', 'plan-strip plan-guaranteed');
-  strip.classList.toggle('plan-guaranteed-collapsed', lsGet(GUARANTEED_COLLAPSED_KEY, false));
 
   const label = make('div', 'plan-strip-label plan-guaranteed-toggle', '', strip);
-  make('span', 'mh-ui-caret', '', label);
   make('span', '', `Guaranteed attraction (${guaranteed.length})`, label);
-
-  strip.addEventListener('click', (event) => {
-    if (event.target.closest('.plan-travel, a, button')) {
-      return;
-    }
-
-    const collapsed = strip.classList.toggle('plan-guaranteed-collapsed');
-    lsSet(GUARANTEED_COLLAPSED_KEY, collapsed);
-  });
+  makeCollapsible({ key: 'maps.plan-guaranteed', section: strip, header: label });
 
   const list = make('div', 'plan-guaranteed-list', '', strip);
   for (const grab of guaranteed.sort((a, b) => a.mouse.name.localeCompare(b.mouse.name))) {
