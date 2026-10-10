@@ -158,12 +158,6 @@
 .mh-dark #chartArea {
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #fff;
-}
-
-.mh-dark #markethuntInfobox,
-.mh-dark #markethuntInfobox .marketplaceView-goldValue {
-  color: #000;
 }
 
 .mh-dark .marketplaceView-trendContainer {

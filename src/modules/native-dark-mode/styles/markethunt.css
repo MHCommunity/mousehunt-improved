@@ -20,6 +20,11 @@
   filter: invert(1);
 }
 
+/* Highcharts sets an inline #ccc fill on hidden series, which the inversion turns near-black. */
+.mh-dark .marketplaceContentContainer #chartArea .highcharts-legend-item-hidden text {
+  fill: hsl(0deg 0% 60%) !important;
+}
+
 .mh-dark .marketplaceView-item-averagePrice.infobox-stat img {
   display: none;
 }

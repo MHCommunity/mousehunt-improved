@@ -318,14 +318,39 @@ td.marketplaceView-table-name {
 }
 
 .mh-dark .mhui-markethunt-chart-header {
+  margin-top: 5px;
   color: var(--d-text-muted);
+  background-color: var(--d-surface-inset);
+  border-top: 1px solid var(--d-border);
 }
 
-/* Keep the chart laid out at full size while collapsed so the userscript's Highcharts measures it correctly. */
+/* Header and chart read as one inset box, sharing our price chart's bottom border when it's above. */
+.mh-dark .mhui-marketplace-chart + .mhui-markethunt-chart-header {
+  margin-top: 0;
+  border-top: none;
+}
+
+.mh-dark .mhui-markethunt-chart-header:not(.collapsed) {
+  padding-bottom: 0;
+}
+
+.mh-dark .mhui-markethunt-chart-header.collapsed {
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--d-border);
+}
+
+.mh-dark .mhui-markethunt-chart-header + #chartArea {
+  margin-top: 0;
+  border-bottom: 1px solid var(--d-border);
+}
+
+/* Keep the chart laid out at full size while collapsed so the userscript's Highcharts measures it correctly.
+   The clip hides the buttons Highcharts marks visibility="visible", which would otherwise show through. */
 .mhui-markethunt-chart-collapsed {
   position: absolute !important;
   right: 0;
   left: 0;
+  clip-path: inset(50%);
   pointer-events: none;
   visibility: hidden;
 }

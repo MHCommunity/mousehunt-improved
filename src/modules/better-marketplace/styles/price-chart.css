@@ -9,8 +9,16 @@
   border-bottom: 1px solid #dfe3e8;
 }
 
+.mh-dark .mhui-marketplace-chart {
+  padding-top: 5px;
+  margin-top: 5px;
+  background-color: var(--d-surface-inset);
+  border-top: 1px solid var(--d-border);
+  border-bottom: 1px solid var(--d-border);
+}
+
 .mh-dark .mhui-marketplace-chart-toolbar {
-  border-bottom-color: var(--d-border);
+  border-bottom: none;
 }
 
 .mhui-marketplace-chart-tabs {

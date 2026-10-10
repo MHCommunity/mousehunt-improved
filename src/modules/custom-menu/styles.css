@@ -631,7 +631,7 @@
   background-color: rgb(127 127 127 / 20%);
 }
 
-/* The info bar stays dark with the light menu, so the toggles stay light in it. Light palettes make the bar light too. */
+/* The info bar stays dark with the light menu, so the toggles stay light in it. */
 .mh-dark.mh-dark-light-menu:not(.mh-palette-light) .mousehuntHud-gameInfo .mousehunt-improved-dark-mode-toggle::before {
   filter: none;
 }
