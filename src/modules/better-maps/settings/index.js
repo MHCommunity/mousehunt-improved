@@ -33,6 +33,11 @@ export default async () => {
       default: false,
     },
     {
+      id: 'better-maps.send-to-maptain',
+      title: 'Show SUPER|brie+ sender for the Maptain',
+      default: true,
+    },
+    {
       id: 'better-maps.plan-tab',
       title: 'Add Plan tab',
       description: 'Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.',
