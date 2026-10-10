@@ -1,4 +1,4 @@
-import { addStyles, getSetting } from '@utils';
+import { addStyles, getSetting, loadFeatures } from '@utils';
 
 import featureManifest from './feature-manifest';
 import settings from './settings';
@@ -14,17 +14,7 @@ const init = () => {
     addStyles(styles, 'better-ui');
   }
 
-  for (const feature of featureManifest) {
-    if (feature.condition && !feature.condition()) {
-      continue;
-    }
-
-    if (feature.setting && !getSetting(feature.setting, feature.default)) {
-      continue;
-    }
-
-    feature.load();
-  }
+  loadFeatures(featureManifest);
 };
 
 /**

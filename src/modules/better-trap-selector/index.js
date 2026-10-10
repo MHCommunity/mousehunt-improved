@@ -1,4 +1,4 @@
-import { getSetting } from '@utils';
+import { loadFeatures } from '@utils';
 
 import featureManifest from './feature-manifest';
 import settings from './settings';
@@ -8,13 +8,7 @@ import { startTrapSelectorRuntime } from './trap-selector-runtime';
  * Initialize the module.
  */
 const init = async () => {
-  for (const feature of featureManifest) {
-    if (feature.setting && !getSetting(feature.setting, feature.default)) {
-      continue;
-    }
-
-    await feature.load();
-  }
+  await loadFeatures(featureManifest);
 
   startTrapSelectorRuntime();
 };

@@ -5,6 +5,7 @@ import {
   getArForMouse,
   getData,
   getSetting,
+  loadFeatures,
   makeElement,
   makeMathButtons,
   makeMhButton,
@@ -522,13 +523,7 @@ const addProfileItemClicks = () => {
 const init = () => {
   addStyles([mhctRatesStyles, styles], 'better-item-view');
 
-  for (const feature of featureManifest) {
-    if (feature.setting && !getSetting(feature.setting, feature.default)) {
-      continue;
-    }
-
-    feature.load();
-  }
+  loadFeatures(featureManifest);
 
   shortenRecipeGoldHint();
   addProfileItemClicks();
