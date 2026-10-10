@@ -434,9 +434,9 @@ const getStyleInfo = (el, id) => {
   return {
     iconUrl,
     needsLabel,
-    // Items we add an icon to, like the HUD toggle and Dashboard, start out the way they were, as text,
-    // and so do pins, which go by their item's name.
-    defaultStyle: iconUrl || el.dataset.mhMenuPin ? 'text' : 'icon',
+    // Items we add an icon to, like the HUD toggle and Dashboard, start out with their icon and name,
+    // and pins, which go by their item's name, start out as text.
+    defaultStyle: el.dataset.mhMenuPin ? 'text' : iconUrl ? 'icon-text' : 'icon',
   };
 };
 

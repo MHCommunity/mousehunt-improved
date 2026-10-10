@@ -1,4 +1,4 @@
-import { createPopup, defaultHiddenMenuItems, getSetting, groupItemOptions, make, makeElement, makeMhButton, saveSetting } from '@utils';
+import { createPopup, defaultHiddenMenuItems, groupItemOptions, make, makeElement, makeMhButton } from '@utils';
 import { makeItemPicker } from '../../utils/settings-item-picker';
 
 import {
@@ -517,23 +517,9 @@ const openMenuEditor = () => {
 
   const editor = makeElement('div', ['mhui-menu-editor', 'mousehuntHeaderView']);
 
-  // Shown until it's dismissed.
-  if (!getSetting('custom-menu.seen-tip', false)) {
-    const help = make('div', 'mhui-menu-editor-help', '', editor);
-    make('p', 'mhui-menu-editor-help-text', '', help).textContent = isTapLayout()
-      ? 'Tap an item to move it, take it out of the menu, or change its options. Changes are automatically saved.'
-      : 'Drag items to move them, or drop them below to take them out of the menu. Click an item to change its options. Changes are automatically saved.';
-    makeMhButton({
-      text: 'Got it',
-      size: 'small',
-      className: 'mhui-menu-editor-help-dismiss',
-      appendTo: help,
-      callback: () => {
-        saveSetting('custom-menu.seen-tip', true);
-        help.remove();
-      },
-    });
-  }
+  make('p', 'mhui-menu-editor-help', '', editor).textContent = isTapLayout()
+    ? 'Tap an item to move it, add it to or take it out of the menu, or change its options. Changes are saved as you go.'
+    : 'Drag items to rearrange the menu. Drag items from the lists below into the menu to add them, or back down to take them out. Click an item to change its options. Changes are saved as you go.';
 
   const zones = {};
   // One bar like the real menu, with the left side's items on the left and the right side's on the right.

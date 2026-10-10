@@ -23,18 +23,11 @@
 }
 
 .mhui-menu-editor-help {
-  display: flex;
-  gap: 10px;
-  align-items: center;
   padding: 8px 10px;
+  margin: 0;
   background: rgb(74 144 217 / 12%);
   border: 1px solid rgb(74 144 217 / 50%);
   border-radius: 4px;
-}
-
-.mhui-menu-editor-help-text {
-  flex: 1;
-  margin: 0;
 }
 
 .mhui-menu-editor-zone {
@@ -148,6 +141,11 @@
   background-position: center;
   background-size: contain;
   opacity: 0.5;
+}
+
+/* Egg images have a soft ground shadow that turns into a smudge when flattened, so trim it off. */
+.mhui-menu-icon[style*="887162c61d0e01985ffc12e41c03d952"] {
+  clip-path: ellipse(38% 46% at 51% 47%);
 }
 
 .mhui-menu-label {

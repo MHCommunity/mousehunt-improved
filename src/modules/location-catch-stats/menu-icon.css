@@ -16,7 +16,7 @@
   content: "";
   background-color: currentcolor;
   opacity: 0.5;
-  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 3a4 4 0 0 0-2.6 7A8 8 0 0 0 4 13c0 4.4 3.6 8 8 8s8-3.6 8-8a8 8 0 0 0-.4-3A4 4 0 1 0 14.3 5 8 8 0 0 0 12 5a8 8 0 0 0-2.3.3A4 4 0 0 0 7 3Zm2.5 9a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Zm5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 16l1.5 1.5h-3L12 16Z"/></svg>'); /* stylelint-disable-line */
+  mask-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/mice.png);
   mask-repeat: no-repeat;
   mask-size: contain;
 }
