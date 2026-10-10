@@ -1187,7 +1187,7 @@ const settings = async () => {
   return [
     {
       id: settingKey,
-      title: 'Palette',
+      title: 'Color scheme',
       live: true,
       default: [{ name: 'Current', value: 'current' }],
       settings: {
@@ -1198,8 +1198,8 @@ const settings = async () => {
     },
     {
       id: schemeSettingKey,
-      title: 'Full color scheme',
-      description: 'Sets the palette, page background, camp background, shield, horn, and HUD together.',
+      title: 'Theme preset',
+      description: 'Apply matching interface colors, page and camp backgrounds, shield, horn, and HUD.',
       live: true,
       default: [schemeOptions[0]],
       settings: {
@@ -1214,7 +1214,7 @@ const settings = async () => {
 export default {
   id: 'dark-mode-palette',
   name: 'Dark Mode Color Schemes',
-  description: 'Pick a dark or light color scheme. Picking one turns on Dark Mode.',
+  description: 'Choose a dark or light appearance. Selecting a color scheme turns on Dark Mode.',
   type: 'personalization',
   badge: 'Experimental',
   default: false,

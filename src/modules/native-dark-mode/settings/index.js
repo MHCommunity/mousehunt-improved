@@ -13,7 +13,7 @@ export default async () => {
     {
       id: 'native-dark-mode.tint-journal-entries',
       title: 'Tint journal entries',
-      description: 'Event and location entries get a dark version of the color the game gives them.',
+      description: "Use darker shades of the game's event and location colors.",
       default: false,
       live: true,
       badge: 'Beta',

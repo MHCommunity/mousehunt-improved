@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-ui.styles',
-      title: 'Styles: Apply general UI improvements and fixes',
+      title: 'Apply general UI improvements and fixes',
       default: true,
     },
     {
@@ -17,7 +17,7 @@ export default async () => {
     },
     {
       id: 'better-ui.replace-favicon',
-      title: 'Use the MouseHunt Improved favicon',
+      title: 'Use a cleaner shield favicon',
       default: true,
     },
   ];

@@ -24,7 +24,6 @@ export default async () => {
     {
       id: 'location-huds.fi-airship-randomizer',
       title: 'Floating Islands: Equip a random airship for each island',
-      description: 'Picks a random hull, sail, and balloon when you launch an island or vault.',
       badge: 'Beta',
     },
     {
