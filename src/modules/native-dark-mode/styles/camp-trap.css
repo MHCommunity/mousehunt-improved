@@ -297,7 +297,7 @@
 
 .mh-dark a.campPage-trap-itemBrowser-item-armButton,
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
-  color: var(--d-white);
+  color: #fff;
 }
 
 .mh-dark a.campPage-trap-itemBrowser-item-armButton {
@@ -439,7 +439,7 @@
 }
 
 .mh-dark #mh-improved-cre thead {
-  box-shadow: 0 -1px var(--d-transparent-10) inset;
+  box-shadow: 0 -1px 0 0 var(--d-border) inset;
 }
 
 .mh-dark .mh-improved-cre-data-bad {

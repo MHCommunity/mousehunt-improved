@@ -297,8 +297,11 @@ span.mh-improved-cre-no-mice {
 
 #mh-improved-cre .mh-improved-cre-overall td {
   padding-top: 3px;
-  font-weight: 700;
   box-shadow: 0 1px 0 0 #d3cecb inset;
+}
+
+#mh-improved-cre .mh-improved-cre-overall td:last-child {
+  font-weight: 700;
 }
 
 .mh-dark #mh-improved-cre .mh-improved-cre-overall td {
