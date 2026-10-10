@@ -477,15 +477,27 @@ const getHighestArText = async (id, type = 'mouse') => {
 const inflightArRequests = new Map();
 
 /**
+ * Get the MHCT filter to use for attraction rates. Halloween maps use the last Halloween event's
+ * data, since MHCT's all-time rates leave out the Halloween mice.
+ *
+ * @return {string} The filter, or an empty string for all time.
+ */
+const getMhctFilter = () => {
+  const mapType = mapData()?.map_type || '';
+  return mapType.toLowerCase().includes('halloween') ? 'hlwn_25' : '';
+};
+
+/**
  * Fetch the attraction rates for the given mouse or item from the API and cache them.
  *
  * @param {string} id       ID to fetch the attraction rates for, either mouse or item ID.
  * @param {string} type     Type of attraction rate to fetch, either 'mouse' or 'item'.
  * @param {string} cacheKey Cache key to store the rates under.
+ * @param {string} [filter] MHCT filter to use, e.g. 'hlwn_25', or empty for all time.
  *
  * @return {Array} Array of attraction rates, empty if none were found.
  */
-const fetchArForMouse = async (id, type, cacheKey) => {
+const fetchArForMouse = async (id, type, cacheKey, filter = '') => {
   let mhctJson = [];
 
   const isItem = 'item' === type;
@@ -493,13 +505,7 @@ const fetchArForMouse = async (id, type, cacheKey) => {
 
   let mhctData = [];
 
-  // Temp hack for halloween.
-  const data = mapData() || {};
-  const mapType = data?.map_type || '';
-  let url = `https://api.mouse.rip/${mhctPath}/${id}`;
-  if (mapType.toLowerCase().includes('halloween')) {
-    url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
-  }
+  const url = `https://api.mouse.rip/${mhctPath}/${id}${filter ? `-${filter}` : ''}`;
 
   // No sense in fetching the data for the m400 mouse.
   // eslint-disable-next-line eqeqeq
@@ -526,6 +532,11 @@ const fetchArForMouse = async (id, type, cacheKey) => {
   }
 
   mhctJson = await mhctData.json();
+
+  // The Halloween filter only has data for Halloween mice and items, so fall back to all time for anything else.
+  if (filter && (!mhctJson || mhctJson.length === 0)) {
+    return fetchArForMouse(id, type, cacheKey);
+  }
 
   if (!mhctJson || mhctJson.length === 0) {
     return [];
@@ -587,7 +598,8 @@ const fetchArForMouse = async (id, type, cacheKey) => {
  * @return {Array|boolean} Array of attraction rates or false if not found.
  */
 const getArForMouse = async (id, type = 'mouse', options = {}) => {
-  const cacheKey = `${type}-${id}`;
+  const filter = getMhctFilter();
+  const cacheKey = `${type}-${id}${filter ? `-${filter}` : ''}`;
 
   // check if the attraction rates are cached
   const cachedAr = await cacheGet(cacheKey);
@@ -603,7 +615,7 @@ const getArForMouse = async (id, type = 'mouse', options = {}) => {
   if (!inflightArRequests.has(cacheKey)) {
     inflightArRequests.set(
       cacheKey,
-      fetchArForMouse(id, type, cacheKey).finally(() => {
+      fetchArForMouse(id, type, cacheKey, filter).finally(() => {
         inflightArRequests.delete(cacheKey);
       })
     );
