@@ -49,10 +49,10 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Location Catch Stats](docs/location-catch-stats.md)**: Add a "Location Catch Stats" option to the Mice menu to see your catch stats for the current location.
 - **[Location Dashboard](docs/location-dashboard.md)**: See location HUD progress from a top-menu dashboard.
 - **[Lucky Golden Shield Timer](docs/lucky-golden-shield-duration-and-reminder.md)**: Show your LGS duration in the HUD and warn you when it’s about to expire.
+- **[Max Title](docs/max-title.md)**: Show custom text, a random title, or the completed progress bar in place of the max title (Fabled only).
 - **[Metric Units](docs/metric-units.md)**: Use metric units instead of imperial units.
 - **[Rank-Up Forecaster](docs/rank-up-forecaster.md)**: Track your wisdom history and forecast when you’ll reach your next rank.
 - **[Shield Goes to Camp](docs/shield-goes-to-camp.md)**: Click the shield to go to the Camp page if you’re not already there, otherwise, it will take you to your Hunter Profile.
-- **[Show Auras](docs/show-auras.md)**: Show auras and their expiry time below the trap stats.
 - **[Taller Windows](docs/taller-windows.md)**: Make popup and dialog windows taller.
 - **[TEM Crowns](docs/tem-crowns.md)**: Add crowns and catches to the Trap Effectiveness Meter.
 - **[Location Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
@@ -67,6 +67,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Custom Horn](docs/custom-horn.md)**: Customize the horn with event or color themes.
 - **[Custom HUD Background](docs/custom-hud.md)**: Change the marbled HUD background.
 - **[Custom Shield](docs/custom-shield.md)**: Change the shield to an event shield, color, title shield, or silly shield.
+- **[Custom Trap Selector](docs/custom-trap-selector.md)**: Rearrange and hide the blocks under your trap, like the trap effectiveness, auras, catch rates, and codex.
 - **[Custom CSS Styles](docs/custom-styles.md)**: Apply your own CSS.
 
 ### 🛑 Element Hiding

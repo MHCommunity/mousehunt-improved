@@ -14,7 +14,7 @@ import {
   wikiUrl,
 } from '@utils';
 
-import hoverItem from './modules/hover-item';
+import featureManifest from './feature-manifest';
 import settings from './settings';
 import mhctRatesStyles from '../../utils/styles/mhct-rates.css';
 import styles from './styles.css';
@@ -522,8 +522,12 @@ const addProfileItemClicks = () => {
 const init = () => {
   addStyles([mhctRatesStyles, styles], 'better-item-view');
 
-  if (getSetting('better-item-view.show-item-hover', true)) {
-    excludeFromStandaloneUserscript: hoverItem();
+  for (const feature of featureManifest) {
+    if (feature.setting && !getSetting(feature.setting, feature.default)) {
+      continue;
+    }
+
+    feature.load();
   }
 
   shortenRecipeGoldHint();

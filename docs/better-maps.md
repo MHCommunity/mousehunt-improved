@@ -25,6 +25,8 @@ Enhances the map interface with additional functionality and improved organizati
 - **Show map join & catch dates**: Shows the approximate date you started/joined
   a map and when each mouse was caught. This is off by default, but the data is
   still cached for when you need it.
+- **Add Plan tab** (Beta): Ranks locations, stages, and cheeses by how many of the remaining map mice they attract, and suggests a route.
+- **Allow dragging the highlight** (Beta): Drag and reposition the sticky highlight.
 
 ## Sorted Tab Features
 

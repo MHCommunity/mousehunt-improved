@@ -25,6 +25,7 @@ selling items.
 - **Smaller images**: Makes item images smaller in the Browse tab for a more compact view.
 - **Show price change percentages next to trend icons**: Display the exact
   percentage change next to the trend arrows for better price tracking.
+- **Show Markethunt price history charts** (Beta): Adds the interactive price history charts to item views.
 - **Show small price history chart overlays while on categories**: Adds compact
   history previews while browsing category pages.
 - **Add a "Filter by trap" dropdown to the Skins category**: Narrows skins to a single base trap. (Enabled by default)

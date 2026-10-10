@@ -62,6 +62,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 |Flag|Description|
 |---|---|
+|`better-ui-reverse-daily-draw`|Shows the newest Daily Draw entries first in the inbox.|
 |`better-ui-square-profile-pics`|Makes profile pictures square in more places for consistency.|
 
 #### Better Travel
@@ -76,6 +77,14 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |`no-travel-menu-hiding`|Disables the travel dropdown menu hiding styles.|
 |`better-travel-no-travel-window`|Removes the Travel Window from the Travel menu.|
 |`better-travel-no-travel-window-environment-icon`|Stops the environment icon from opening the Travel Window.|
+
+#### Better Trap Selector
+
+|Flag|Description|
+|---|---|
+|`better-trap-selector-no-larger-skin-images`|Shows the game's small skin images instead of larger ones.|
+|`better-trap-selector-no-unowned-skins`|Hides skins you don't own from the skin selector.|
+|`custom-trap-selector-no-larger-codices`|Shows the game's small codex images in the codex picker instead of larger ones.|
 
 #### Better Tournaments
 

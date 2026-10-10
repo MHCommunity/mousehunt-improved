@@ -20,3 +20,5 @@ Enhances your inventory with a modern look and several quality-of-life improveme
 - **Show one item per row**: Display each inventory item on its own row for a more spacious layout (instead of two per row).
 - **Show larger images**: Increase the size of item images for better visibility.
 - **Sort inventory alphabetically**: Organize your inventory items in alphabetical order for quick searching.
+- **Add Favorites tab** (Beta): Star items in your inventory to collect them in one tab.
+- **Show sorting and filtering controls** (Beta): Adds the trap sorting and filtering controls.

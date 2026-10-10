@@ -17,3 +17,4 @@ Makes the mouse view and stats pages more informative and interactive, giving yo
 - **Show attraction rates**: Toggle whether attraction rates from MHCT are shown in the mouse view popup.
 - **Show mouse details on hover (in journal)**: When hovering over a mouse in the journal, a small popup will show the mouse's name, image, and your catch count.
 - **Show available mice in sidebar**: Adds a sidebar block listing available mice for your current location or map.
+- **Show crown section shortcuts on King's Crowns** (Beta): Adds shortcuts to jump between crown sections.

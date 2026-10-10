@@ -6,7 +6,6 @@ Hide parts of the page you don’t use. Choose which ones to hide:
 - **Ads** for Feedback Friday, the mobile apps, and more.
 - **Share buttons** (hidden by default).
 - **News ticker** in the header (hidden by default).
-- **Hunters Online and Friends Online bar** above the HUD.
 - **Footer**
 - **Daily Draw** inbox tab and its notifications.
 - **Daily reward popup**, which is closed automatically.

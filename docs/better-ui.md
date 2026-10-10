@@ -12,6 +12,7 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 - **LE Badge & Aura Hiding**: Hides Limited Edition badges and active auras until you hover over your trap image.
 - **Consistent Popup Buttons**: Updates popup buttons to match the rest of the UI.
 - **Full Name on Hover**: Hovering over your Cheese, Charm, or Map name shows the full name.
+- **Popups Scroll Into View**: If a popup opens above or below the part of the page you are looking at, the page scrolls to it.
 - **Big Timer**: Click the horn countdown to switch between a normal and large size.
 - **Adventure Book Task Styling**: Makes the current adventure book task look nicer.
 - **Inbox & Profile Polish**: Reorders inbox tabs, improves inbox styling, and
@@ -21,9 +22,9 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 
 ## Options
 
-- **Styles: Various UI improvements and fixes**: Turns on the full Better UI visual polish package across menus, dialogs, tabs, selectors, and page layouts.
+- **Apply general UI improvements and fixes**: Turns on the full Better UI visual polish package across menus, dialogs, tabs, selectors, and page layouts.
 - **Menu & HUD: Kingdom link goes to News, shows full title percent on hover, etc.**
-- **Use the MouseHunt Improved favicon**: Replaces the browser tab icon with a more fitting one.
+- **Use a cleaner shield favicon**: Replaces the browser tab icon with a cleaner version of the MouseHunt shield.
 
 The trap selector options are in [Better Trap Selector](./better-trap-selector.md), and the Egg Master icon and On Maps tab are in [Better Friends](./better-friends.md).
 
