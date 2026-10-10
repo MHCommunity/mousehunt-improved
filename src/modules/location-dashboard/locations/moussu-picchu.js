@@ -8,22 +8,23 @@ import { uppercaseFirstLetter } from '@utils';
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (!(quests.QuestMoussuPicchu && quests.QuestMoussuPicchu.elements)) {
+  const elements = quests.QuestMoussuPicchu?.elements;
+  if (!elements) {
     return '';
   }
 
-  const quest = {
-    rainPercent: quests?.QuestMoussuPicchu?.elements?.rain?.percent || 0,
-    rainLevel: quests?.QuestMoussuPicchu?.elements?.rain?.level || null,
-    stormPercent: quests?.QuestMoussuPicchu?.elements?.storm?.percent || 0,
-    stormLevel: quests?.QuestMoussuPicchu?.elements?.storm?.level || null,
-    windPercent: quests?.QuestMoussuPicchu?.elements?.wind?.percent || 0,
-    windLevel: quests?.QuestMoussuPicchu?.elements?.wind?.level || null,
-  };
+  const rain = elements.rain || {};
+  const wind = elements.wind || {};
+  const storm = elements.storm || {};
 
-  if (quest.rainPercent === 100 && quest.windPercent === 100) {
+  if (rain.percent === 100 && wind.percent === 100) {
     return 'Max Storm · Wind (100%) · Rain (100%)';
   }
 
-  return `${uppercaseFirstLetter(quest.windLevel)} Wind (${quest.windPercent}%) · ${uppercaseFirstLetter(quest.rainLevel)} · Rain (${quest.rainPercent}%)`;
+  const text = `${uppercaseFirstLetter(wind.level || '')} Wind (${wind.percent || 0}%) · ${uppercaseFirstLetter(rain.level || '')} Rain (${rain.percent || 0}%)`;
+  if (!storm.level || 'none' === storm.level) {
+    return text;
+  }
+
+  return `${text}<div class="stats">${uppercaseFirstLetter(storm.level)} Storm</div>`;
 };

@@ -12,17 +12,15 @@ import {
   makeElement,
   makeMhButton,
   onEvent,
-  onRequest,
+  onTurn,
   sessionSet,
   sleep,
   travelTo,
 } from '@utils';
+import { onLocationAction } from '@utils/shared/stages/location-actions';
 
 import styles from './styles.css';
 
-import { getFieryWarpathText, setFieryWarpathData } from './locations/desert-warpath';
-import { getSeasonalGardenText, setSeasonalGardenData } from './locations/seasonal-garden';
-import { getZugzwangTowerText, setZugzwangTowerData } from './locations/zugzwang-tower';
 import getAfterwordAcresText from './locations/afterword-acres';
 import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
 import getBristleWoodsRiftText from './locations/rift-bristle-woods';
@@ -31,6 +29,7 @@ import getCeruleanSkyportText from './locations/cerulean-skyport';
 import getConclusionCliffsText from './locations/conclusion-cliffs';
 import getDraconicDepthsText from './locations/draconic-depths';
 import getEpilogueFallsText from './locations/epilogue-falls';
+import getFieryWarpathText from './locations/desert-warpath';
 import getFloatingIslandsText from './locations/floating-islands';
 import getForewordFarmText from './locations/foreword-farm';
 import getFortRoxText from './locations/fort-rox';
@@ -44,16 +43,17 @@ import getMoussuPicchuText from './locations/moussu-picchu';
 import getQuesoGeyserText from './locations/queso-geyser';
 import getSandDunesText from './locations/sand-dunes';
 import getSchoolOfSorceryText from './locations/school-of-sorcery';
+import getSeasonalGardenText from './locations/seasonal-garden';
 import getSunkenCityText from './locations/sunken-city';
 import getTableOfContentsText from './locations/table-of-contents';
 import getToxicSpillText from './locations/pollution-outbreak';
 import getValourRiftText from './locations/rift-valour';
 import getWhiskerWoodsRiftText from './locations/whisker-woods-rift';
 import getZokorText from './locations/ancient-city';
+import getZugzwangTowerText from './locations/zugzwang-tower';
 
 /**
- * The dashboard locations, grouped by region. Locations with a condition are
- * only shown when it returns true for the cached quest data.
+ * The dashboard locations, grouped by region.
  */
 const dashboardLocations = [
   {
@@ -79,18 +79,8 @@ const dashboardLocations = [
   {
     region: 'Rodentia',
     locations: [
-      {
-        id: 'zugzwang_tower',
-        name: "Zugzwang's Tower",
-        getText: getZugzwangTowerText,
-        condition: (quests) => quests?.QuestZugzwangTower?.amp >= 1,
-      },
-      {
-        id: 'seasonal_garden',
-        name: 'Seasonal Garden',
-        getText: getSeasonalGardenText,
-        condition: (quests) => !(quests?.QuestZugzwangTower?.amp >= 1),
-      },
+      { id: 'zugzwang_tower', name: "Zugzwang's Tower", getText: getZugzwangTowerText },
+      { id: 'seasonal_garden', name: 'Seasonal Garden', getText: getSeasonalGardenText },
       { id: 'iceberg', name: 'Iceberg', getText: getIcebergText },
       { id: 'sunken_city', name: 'Sunken City', getText: getSunkenCityText },
     ],
@@ -134,31 +124,28 @@ const dashboardLocations = [
   },
 ];
 
+// Locations that replace each other: being at one clears the other's data, so only one shows.
+const exclusiveLocations = {
+  labyrinth: { location: 'ancient_city', quest: 'QuestAncientCity' },
+  ancient_city: { location: 'labyrinth', quest: 'QuestLabyrinth' },
+  zugzwang_tower: { location: 'seasonal_garden' },
+  seasonal_garden: { location: 'zugzwang_tower' },
+};
+
+// Quest data older versions built from the HUD, now read from the viewing attributes.
+const legacyQuests = ['QuestFieryWarpath', 'QuestSeasonalGarden', 'QuestZugzwangTower'];
+
 /**
  * Cache the location data for the current location.
+ *
+ * Quests are cached by quest key. Viewing attributes, which some locations keep their HUD data in,
+ * are cached by location along with when the location was last cached.
  */
 const cacheLocationData = async () => {
   await sleep(300);
-  if (!user.environment_type || !user.quests) {
+  const environment = user.environment_type;
+  if (!environment || !user.quests) {
     return;
-  }
-
-  // For some environments, we need to build the data from the quests.
-  if (user.environment_type === 'desert_warpath') {
-    const fwQuestData = setFieryWarpathData();
-    if (fwQuestData) {
-      user.quests.QuestFieryWarpath = fwQuestData;
-    }
-  } else if (user.environment_type === 'zugzwang_tower') {
-    const ztQuestData = setZugzwangTowerData();
-    if (ztQuestData) {
-      user.quests.QuestZugzwangTower = ztQuestData;
-    }
-  } else if (user.environment_type === 'seasonal_garden') {
-    const sgQuestData = setSeasonalGardenData();
-    if (sgQuestData) {
-      user.quests.QuestSeasonalGarden = sgQuestData;
-    }
   }
 
   // Get the current cached quests.
@@ -175,19 +162,28 @@ const cacheLocationData = async () => {
     }
   }
 
-  if (user.environment_type === 'labyrinth') {
-    questsCombined.QuestAncientCity = {};
-  } else if (user.environment_type === 'ancient_city') {
-    questsCombined.QuestLabyrinth = {};
-  } else if (user.environment_type === 'zugzwang_tower') {
-    questsCombined.QuestSeasonalGarden = {};
-  } else if (user.environment_type === 'seasonal_garden') {
-    questsCombined.QuestZugzwangTower = {};
+  for (const quest of legacyQuests) {
+    delete questsCombined[quest];
+  }
+
+  const locations = await dataGet('dashboard-locations', {});
+  locations[environment] = {
+    viewingAtts: user.viewing_atts || {},
+    updatedAt: Date.now(),
+  };
+
+  const exclusive = exclusiveLocations[environment];
+  if (exclusive) {
+    delete locations[exclusive.location];
+    if (exclusive.quest) {
+      questsCombined[exclusive.quest] = {};
+    }
   }
 
   // Save the combined data to localStorage.
   try {
     await dataSet('quests', questsCombined);
+    await dataSet('dashboard-locations', locations);
   } catch (error) {
     debug('Error saving dashboard data.', error);
   }
@@ -436,14 +432,20 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
 /**
  * Build the markup for a location.
  *
- * @param {string}   id       The location ID.
- * @param {string}   name     The location name.
- * @param {Function} progress The progress function.
- * @param {Element}  appendTo The element to append to.
- * @param {Object}   quests   The quests object.
+ * @param {string}   id          The location ID.
+ * @param {string}   name        The location name.
+ * @param {Function} progress    The progress function.
+ * @param {Element}  appendTo    The element to append to.
+ * @param {Object}   quests      The quests object.
+ * @param {Object}   viewingAtts The location's viewing attributes.
  */
-const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
-  const markup = progress(quests);
+const makeLocationMarkup = (id, name, progress, appendTo, quests, viewingAtts) => {
+  let markup = '';
+  try {
+    markup = progress(quests, viewingAtts);
+  } catch (error) {
+    debuglog('location-dashboard', `Error getting the dashboard text for ${id}`, error);
+  }
 
   if (!markup) {
     return;
@@ -494,8 +496,9 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
  */
 const getDashboardContents = async () => {
   const quests = await dataGet('quests', {});
+  const locations = await dataGet('dashboard-locations', {});
 
-  debuglog('location-dashboard', 'quests', quests);
+  debuglog('location-dashboard', 'quests', quests, locations);
 
   const contentsWrapper = makeElement('div', 'dashboardContents');
 
@@ -504,11 +507,7 @@ const getDashboardContents = async () => {
     const regionContents = document.createElement('div');
 
     for (const location of region.locations) {
-      if (location.condition && !location.condition(quests)) {
-        continue;
-      }
-
-      makeLocationMarkup(location.id, location.name, location.getText, regionContents, quests);
+      makeLocationMarkup(location.id, location.name, location.getText, regionContents, quests, locations[location.id]?.viewingAtts || {});
     }
 
     if (regionContents.children.length > 0) {
@@ -542,7 +541,8 @@ const init = async () => {
 
   cacheLocationData();
   onEvent('travel_complete', cacheLocationData);
-  onRequest('*', cacheLocationData);
+  onTurn(cacheLocationData);
+  onLocationAction(cacheLocationData);
 
   makeDashboardTab();
 };

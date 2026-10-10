@@ -383,6 +383,7 @@ const addAdvancedSettingsButtons = () => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure you want to reset your dashboard data?')) {
       await dataSet('quests', {});
+      await dataSet('dashboard-locations', {});
       window.location.reload();
     }
   });

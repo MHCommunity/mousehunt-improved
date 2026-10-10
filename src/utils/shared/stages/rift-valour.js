@@ -43,31 +43,54 @@ const getRange = (floor) => {
 };
 
 /**
- * Get the Valour Rift stage.
+ * Get the Valour Rift state.
  *
  * @param {Object} context        The stager context.
  * @param {Object} context.quests The user's quests.
  *
+ * @return {Object} The floor, its range and type, and the power-up levels.
+ */
+const getValourRiftState = ({ quests }) => {
+  const quest = quests.QuestRiftValour;
+  const floor = quest.floor || 1;
+  const powerUps = quest.power_up_data || {};
+
+  return {
+    isOutside: 'farming' === quest.state,
+    isUmbra: Boolean(quest.is_eclipse_mode),
+    floor,
+    floorName: quest.floor_name || '',
+    floorType: floorTypes[(quest.floor_type ? quest.floor_type - 1 : floor - 1) % 8],
+    range: getRange(floor),
+    huntsRemaining: quest.hunts_remaining || 0,
+    speed: (powerUps.long_stride?.current_level ?? 0) + 1,
+    sync: (powerUps.hunt_limit?.current_level ?? 0) + 1,
+    siphon: (powerUps.boss_extension?.current_level ?? 0) + 1,
+  };
+};
+
+/**
+ * Get the Valour Rift stage.
+ *
+ * @param {Object} context The stager context.
+ *
  * @return {Object} The stage for each source.
  */
-const getStage = ({ quests }) => {
-  const quest = quests.QuestRiftValour;
-  if ('farming' === quest.state) {
+const getStage = (context) => {
+  const { isOutside, isUmbra, range, floorType } = getValourRiftState(context);
+  if (isOutside) {
     return { data: 'Outside', live: 'Outside' };
   }
-
-  const floor = quest.floor || 1;
-  const range = getRange(floor);
-  const floorType = floorTypes[(quest.floor_type ? quest.floor_type - 1 : floor - 1) % 8];
 
   // The data splits floor ranges by floor type.
   const data = 'Eclipse' === range ? range : `${range} - ${floorType}`;
 
   return {
-    data: quest.is_eclipse_mode ? `Umbra ${data}` : data,
-    live: quest.is_eclipse_mode ? `UU ${range}` : range,
+    data: isUmbra ? `Umbra ${data}` : data,
+    live: isUmbra ? `UU ${range}` : range,
     liveFloorMice: 'Eclipse' === range ? null : floorMice,
   };
 };
 
 export default getStage;
+export { getValourRiftState };

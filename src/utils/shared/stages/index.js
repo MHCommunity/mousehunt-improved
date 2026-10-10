@@ -1,5 +1,5 @@
 /**
- * Stage detection for attraction rates.
+ * Location stages, used for attraction rates.
  *
  * Attraction rates depend on a location's stage, and the two sources name stages differently:
  * - `data`: the api's mice-attraction-rates-by-location file, built from MH-Tools population
@@ -12,8 +12,13 @@
  * - `data` and `live`: the stage. `null` means it can't be determined, and `undefined` that the
  *   source doesn't stage the location. A `live` stage can be an array when MHCT records the stage
  *   as an object, which the api splits into a row for each part.
+ * - `label`: a readable name for the stage, when neither source's name works as one. Defaults to
+ *   the first stage name that is set.
  * - `isTwisted`: for the twisted locations, which share their environment id with the normal ones.
  * - `liveFloorMice`: mice MHCT spreads across a stage's floors (Valour Rift).
+ *
+ * Stagers that decode a location's quest data export the decoded state too (`getFortRoxState`,
+ * ...), so other features can show it without decoding it again.
  */
 
 import ancientCity from './ancient-city';
@@ -102,6 +107,9 @@ const stagers = {
   zugzwang_tower: zugzwangTower,
 };
 
+// The label for a stage that can't be determined.
+const unknownStageLabel = 'Unknown stage';
+
 // The data's environment and MHCT's location for the twisted locations.
 const twistedLocations = {
   desert_oasis: { dataEnvironment: 'twisted_garden', liveLocation: 'Twisted Garden' },
@@ -110,9 +118,32 @@ const twistedLocations = {
 };
 
 /**
+ * Get a readable label for a stager's result.
+ *
+ * @param {Object} result The stager's result.
+ *
+ * @return {string|null} The label, or null for a location without stages.
+ */
+const getLabel = (result) => {
+  if (result.label) {
+    return result.label;
+  }
+
+  const names = [result.data, result.live].map((name) => (Array.isArray(name) ? name.join(' · ') : name));
+  const label = names.find((name) => name && '-' !== name);
+  if (label) {
+    return label;
+  }
+
+  // '-' is a location without stages, like Sand Crypts.
+  return '-' === result.data && undefined === result.live ? null : unknownStageLabel;
+};
+
+/**
  * Get the current stage for both attraction rate sources.
  *
- * @return {Object} The stage, with the data's environment and MHCT's location to look it up in.
+ * @return {Object} The stage, with the data's environment and MHCT's location to look it up in,
+ *                  and a label for it (null for locations without stages).
  */
 const getStage = () => {
   const environment = user.environment_type;
@@ -122,6 +153,7 @@ const getStage = () => {
     liveLocation: user.environment_name || '',
     data: '-',
     live: undefined,
+    label: null,
     liveFloorMice: null,
   };
 
@@ -142,6 +174,7 @@ const getStage = () => {
 
     stage.data = result.data;
     stage.live = result.live;
+    stage.label = getLabel(result);
     stage.liveFloorMice = result.liveFloorMice ?? null;
 
     if (result.isTwisted) {
@@ -150,6 +183,7 @@ const getStage = () => {
   } catch {
     stage.data = null;
     stage.live = null;
+    stage.label = unknownStageLabel;
   }
 
   return stage;

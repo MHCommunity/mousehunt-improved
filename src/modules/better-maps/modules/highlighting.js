@@ -159,7 +159,7 @@ const areaHighlightingWarpath = () => {
     return false;
   }
 
-  const wave = Number.parseInt(user?.quests?.QuestFieryWarpath?.wave, 10) || 0;
+  const wave = Number.parseInt(user?.viewing_atts?.desert_warpath?.wave, 10) || 0;
 
   if (!wave) {
     return false;

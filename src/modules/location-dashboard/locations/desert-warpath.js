@@ -1,55 +1,23 @@
-import { getFieryWarpathPercent, getFieryWarpathRemainingInWave, getFieryWarpathStreak, getFieryWarpathWave } from '@utils/shared/fiery-warpath';
-import { getCurrentLocation } from '@utils';
+import { getFieryWarpathState } from '@utils/shared/stages/desert-warpath';
 
 /**
  * Dashboard output.
  *
- * @param {Object} quests The quests data.
+ * @param {Object} quests      The quests data.
+ * @param {Object} viewingAtts The location's viewing attributes.
  *
  * @return {string} The dashboard output.
  */
-const getFieryWarpathText = (quests) => {
-  if (!quests.QuestFieryWarpath) {
+export default (quests, viewingAtts) => {
+  if (!viewingAtts.desert_warpath) {
     return '';
   }
 
-  const quest = {
-    wave: quests?.QuestFieryWarpath?.wave || 0,
-    streak: quests?.QuestFieryWarpath?.streak || 0,
-    remaining: quests?.QuestFieryWarpath?.remaining || 0,
-    percent: quests?.QuestFieryWarpath?.percent || 100,
-  };
+  const { wave, isPortal, guardsRemaining, streak, morale } = getFieryWarpathState({ viewingAtts });
 
-  let streakText = '';
-  if (quest.streak !== 0) {
-    streakText = ` · ${quest.streak} streak`;
+  if (isPortal) {
+    return `Portal: ${guardsRemaining} guards remaining`;
   }
 
-  if ('portal' === quest.wave) {
-    return `Portal: ${Math.max(0, quest.remaining - 1)} guards remaining `;
-  }
-
-  return `Wave ${quest.wave}: ${100 - quest.percent}% remaining${streakText} `;
+  return `Wave ${wave}: ${100 - morale}% remaining${streak ? ` · ${streak} streak` : ''}`;
 };
-
-/**
- * Set the Fiery Warpath data.
- *
- * @return {boolean|Object} The Fiery Warpath data.
- */
-const setFieryWarpathData = () => {
-  if ('desert_warpath' !== getCurrentLocation()) {
-    return false;
-  }
-
-  const wave = getFieryWarpathWave();
-
-  return {
-    wave,
-    streak: getFieryWarpathStreak(),
-    remaining: getFieryWarpathRemainingInWave(wave),
-    percent: getFieryWarpathPercent(),
-  };
-};
-
-export { getFieryWarpathText, setFieryWarpathData };

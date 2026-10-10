@@ -14,6 +14,7 @@ import {
   onTravel,
   parseNumber,
 } from '@utils';
+import { getStage } from '@utils/shared/stages';
 
 import { getAttractionRates } from './attraction-rates';
 import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, getMousePower } from './data';
@@ -310,8 +311,8 @@ const makeOverallRow = (rows, overallCatchRate) => {
 
   makeElement('td', 'mh-improved-cre-name', 'Overall', row);
 
-  const totalAttractionRate = rows.reduce((total, mouseRow) => total + (mouseRow.attractionRate ?? 0), 0);
-  makeElement('td', ['mh-improved-cre-data', 'mh-improved-cre-ar'], formatAttractionRate(totalAttractionRate), row);
+  // Attraction rates are normalized, so they always add up to 100%.
+  makeElement('td', ['mh-improved-cre-data', 'mh-improved-cre-ar'], '', row);
 
   const maxMinluck = Math.max(...rows.map((mouseRow) => Number(mouseRow.minluck) || 0));
   makeElement('td', getRateClasses(overallCatchRate, maxMinluck), maxMinluck, row);
@@ -447,6 +448,7 @@ const renderList = async (list) => {
 
   const attractionRates = await getAttractionRates(list);
   const hasAttractionRates = attractionRates.size > 0;
+  const stageLabel = getStage().label;
 
   const existing = document.querySelector('#mh-improved-cre-table');
   if (existing) {
@@ -463,7 +465,12 @@ const renderList = async (list) => {
 
   const columns = [
     { key: 'mouse', label: 'Mouse', className: 'name' },
-    hasAttractionRates && { key: 'attractionRate', label: 'AR', className: 'mh-improved-cre-ar', title: 'Attraction rate: the share of attractions that are this mouse' },
+    hasAttractionRates && {
+      key: 'attractionRate',
+      label: 'AR',
+      className: 'mh-improved-cre-ar',
+      title: `Attraction rate${stageLabel ? ` at ${stageLabel}` : ''}: the share of attractions that are this mouse`,
+    },
     { key: 'minluck', label: 'Minluck' },
     { key: 'catchRate', label: 'Catch Rate' },
   ].filter(Boolean);

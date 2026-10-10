@@ -19,7 +19,6 @@ export default ({ quests }) => {
     archduke_archduchess: ['Archduke/Archduchess', 'Archduke/Archduchess'],
   };
 
-
   const active = Object.entries(quests.QuestPollutionOutbreak?.titles || {}).find(([, status]) => status.active)?.[0];
   const [data, live] = titles[active] ?? [null, null];
 

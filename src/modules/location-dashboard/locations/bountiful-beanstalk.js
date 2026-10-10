@@ -1,4 +1,5 @@
 import { formatNumber } from '@utils';
+import { getBountifulBeanstalkState } from '@utils/shared/stages/bountiful-beanstalk';
 
 /**
  * Dashboard output.
@@ -12,36 +13,26 @@ export default (quests) => {
     return '';
   }
 
-  if (!quests?.QuestBountifulBeanstalk?.in_castle) {
-    const room = quests?.QuestBountifulBeanstalk?.beanstalk?.current_zone?.name || '';
-    const huntsRemaining = quests?.QuestBountifulBeanstalk?.beanstalk?.hunts_remaining_text || '';
-    const isBoss = quests?.QuestBountifulBeanstalk?.beanstalk?.is_boss_encounter || false;
+  const state = getBountifulBeanstalkState({ quests });
 
-    return `${room} (Beanstalk) <div class="stats">${isBoss ? 'At Boss · ' : ''}${huntsRemaining}</div>`;
+  if (!state.inCastle) {
+    return `${state.zone} (Beanstalk) <div class="stats">${state.isBoss ? 'At Boss · ' : ''}${state.huntsRemainingText}</div>`;
   }
 
-  const huntsRemaining = quests?.QuestBountifulBeanstalk?.castle?.hunts_remaining_text || '';
-  const isBoss = quests?.QuestBountifulBeanstalk?.castle?.is_boss_encounter || false;
-  const isChase = quests?.QuestBountifulBeanstalk?.castle?.is_boss_chase || false;
-  const noise = quests?.QuestBountifulBeanstalk?.castle?.noise_level || 0;
-  const maxNoise = quests?.QuestBountifulBeanstalk?.castle?.max_noise_level || 0;
+  let noiseText = `♪ ${formatNumber(state.noise)}/${formatNumber(state.maxNoise)}`;
+  if (state.isBoss) {
+    noiseText = 'Boss';
+  } else if (state.isChase) {
+    noiseText = 'Chase';
+  }
 
-  const roomQuality = quests?.QuestBountifulBeanstalk?.castle?.current_room?.type.replace('_room', '').split('_').pop().trim();
-
-  const roomName = quests?.QuestBountifulBeanstalk?.castle?.current_room?.name
-    .replace(' Room', '')
-    .replace(`${roomQuality.charAt(0).toUpperCase() + roomQuality.slice(1).toLowerCase()} `, '')
-    .trim();
-
-  const noiseString = isBoss ? 'Boss' : isChase ? 'Chase' : `♪ ${formatNumber(noise)}/${formatNumber(maxNoise)}`;
-
-  const embellishmentsText = quests?.QuestBountifulBeanstalk?.embellishments.filter((item) => item.is_active).map((item) => `<span class="tile ${item.type}"></span>`);
+  const embellishments = state.embellishments.map((type) => `<span class="tile ${type}"></span>`).join('');
 
   let returnText = '<div class="dashboard-bb">';
-  returnText += `<div class="dashboard-bb-wrap room-name"><span class="tile ${roomQuality}"></span><div class="name">${roomName}</div>`;
-  returnText += `<div class="dashboard-bb-wrap embellishments">${embellishmentsText.join('')}</div>`;
+  returnText += `<div class="dashboard-bb-wrap room-name"><span class="tile ${state.roomQuality}"></span><div class="name">${state.room}</div>`;
+  returnText += `<div class="dashboard-bb-wrap embellishments">${embellishments}</div>`;
   returnText += '</div>';
-  returnText += `<div class="stats">${noiseString} · ${huntsRemaining}</div>`;
+  returnText += `<div class="stats">${noiseText} · ${state.huntsRemainingText}</div>`;
 
   return returnText;
 };

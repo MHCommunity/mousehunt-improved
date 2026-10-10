@@ -1,78 +1,23 @@
-/**
- * Get the chess progress based on the number of pieces.
- *
- * @param {number} pieces The number of chess pieces.
- *
- * @return {string} The chess progress.
- */
-const getChessProgress = (pieces) => {
-  if (pieces <= 8) {
-    return 'Pawns';
-  }
-
-  if (pieces <= 10) {
-    return 'Knights';
-  }
-
-  if (pieces <= 12) {
-    return 'Bishops';
-  }
-
-  if (pieces <= 14) {
-    return 'Rooks';
-  }
-
-  if (pieces <= 15) {
-    return 'Queen';
-  }
-
-  return 'King';
-};
+import { getZugzwangTowerState } from '@utils/shared/stages/zugzwang-tower';
 
 /**
- * Get the Zugzwang Tower text.
+ * Dashboard output.
  *
- * @param {Object} quests The quests object.
+ * @param {Object} quests      The quests data.
+ * @param {Object} viewingAtts The location's viewing attributes.
  *
- * @return {string} The Zugzwang Tower text.
+ * @return {string} The dashboard output.
  */
-const getZugzwangTowerText = (quests) => {
-  if (!quests.QuestZugzwangTower) {
+export default (quests, viewingAtts) => {
+  if (undefined === viewingAtts.zzt_tech_progress) {
     return '';
   }
 
-  const returnText = `${quests.QuestZugzwangTower.amp || 0}%`;
+  const { amp, mysticPiece, techPiece } = getZugzwangTowerState({ viewingAtts });
 
-  const techProgress = quests.QuestZugzwangTower.tech_progress || 0;
-  const mythProgress = quests.QuestZugzwangTower.myth_progress || 0;
-
-  if (techProgress >= 16 && mythProgress >= 16) {
-    return `Amp: ${returnText}<div class="statss">Chessmaster</div>`;
+  if ('Chess Master' === mysticPiece && 'Chess Master' === techPiece) {
+    return `Amp: ${amp}%<div class="stats">Chess Master</div>`;
   }
 
-  return `Amp: ${returnText}<div class="stats">Technic: ${getChessProgress(techProgress)} · Mystic: ${getChessProgress(mythProgress)}</div>`;
+  return `Amp: ${amp}%<div class="stats">Technic: ${techPiece} · Mystic: ${mysticPiece}</div>`;
 };
-
-/**
- * Set the Zugzwang Tower data.
- *
- * @return {Object} The Zugzwang Tower data.
- */
-const setZugzwangTowerData = () => {
-  const ampEl = document.querySelector('.zuzwangsTowerHUD-currentAmplifier span');
-  const amp = ampEl ? Number.parseInt(ampEl.innerText, 10) : 0;
-
-  const techProgressEl = document.querySelectorAll('.zuzwangsTowerHUD-progress.tech img');
-  const techProgress = techProgressEl ? techProgressEl.length : 0;
-
-  const mythProgressEl = document.querySelectorAll('.zuzwangsTowerHUD-progress.magic img');
-  const mythProgress = mythProgressEl ? mythProgressEl.length : 0;
-
-  return {
-    amp,
-    techProgress,
-    mythProgress,
-  };
-};
-
-export { getZugzwangTowerText, setZugzwangTowerData };

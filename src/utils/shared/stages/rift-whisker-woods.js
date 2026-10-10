@@ -27,8 +27,11 @@ const getRageBand = (level, prefix) => {
 export default ({ quests }) => {
   const { clearing, tree, lagoon } = quests.QuestRiftWhiskerWoods.zones;
 
+  const statuses = [clearing, tree, lagoon].map((zone) => dataStatuses[zone.status] ?? zone.status);
+
   return {
-    data: [clearing, tree, lagoon].map((zone) => dataStatuses[zone.status] ?? zone.status).join('/'),
+    data: statuses.join('/'),
+    label: `Clearing ${statuses[0]} · Tree ${statuses[1]} · Lagoon ${statuses[2]}`,
     // MHCT stages by all three zones together, which comes back as a row for each.
     live: [getRageBand(Number(clearing.level), 'CC'), getRageBand(Number(tree.level), 'GGT'), getRageBand(Number(lagoon.level), 'DL')],
   };

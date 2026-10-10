@@ -1,6 +1,6 @@
 import { debuglog, getArForMouse, getData, getFlag } from '@utils';
 
-import { getStage } from './stages';
+import { getStage } from '@utils/shared/stages';
 
 // Where attraction rates come from: 'data' for the api's MH-Tools-based file, or 'live' for MHCT.
 // The `cre-live-attraction-rates` flag switches to live.

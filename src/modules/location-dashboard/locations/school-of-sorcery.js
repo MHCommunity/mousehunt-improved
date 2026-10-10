@@ -6,24 +6,22 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  if (!quests?.QuestSchoolOfSorcery) {
+  const quest = quests?.QuestSchoolOfSorcery;
+  if (!quest) {
     return '';
   }
 
-  const currentCourse = quests?.QuestSchoolOfSorcery?.current_course;
-  if (!currentCourse && !currentCourse?.in_course) {
+  const currentCourse = quest.current_course;
+  if (!currentCourse || !(quest.in_course ?? currentCourse.in_course)) {
     return 'Not enrolled';
   }
 
-  const courseName = currentCourse?.course_name;
-  const courseType = currentCourse?.course_type;
-  const powerType = currentCourse?.power_type === 'arcane' ? 'Arcane' : 'Shadow';
-  const isBoss = currentCourse?.is_boss_encounter;
+  const powerType = currentCourse.power_type === 'arcane' ? 'Arcane' : 'Shadow';
 
   let examText = '';
-  if ('exam_course' === courseType) {
-    examText = `${powerType}, ${currentCourse?.power_type_hunts_remaining} hunts until ${powerType === 'Arcane' ? 'Shadow' : 'Arcane'}`;
+  if ('exam_course' === currentCourse.course_type) {
+    examText = `${powerType}, ${currentCourse.power_type_hunts_remaining} hunts until ${powerType === 'Arcane' ? 'Shadow' : 'Arcane'}`;
   }
 
-  return `${courseName} · ${currentCourse?.hunts_remaining || 0} hunts remaining<div class="stats">${examText}${isBoss ? ' At Boss' : ''}</div>`;
+  return `${currentCourse.course_name} · ${currentCourse.hunts_remaining || 0} hunts remaining<div class="stats">${examText}${currentCourse.is_boss_encounter ? ' At Boss' : ''}</div>`;
 };

@@ -1,3 +1,5 @@
+import { formatNumber } from '@utils';
+
 /**
  * Dashboard output.
  *
@@ -11,7 +13,7 @@ export default (quests) => {
   }
 
   const quest = quests.QuestSunkenCity;
-  const oxygen = quest?.items?.oxygen_stat_item || 0;
+  const oxygen = formatNumber(quest?.items?.oxygen_stat_item || 0);
 
   if (!quest?.is_diving) {
     const canDive = quest?.can_dive ? 'can dive' : 'cannot dive';

@@ -1,3 +1,5 @@
+import { getValourRiftState } from '@utils/shared/stages/rift-valour';
+
 /**
  * Dashboard output.
  *
@@ -10,21 +12,8 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    floor: quests?.QuestRiftValour?.floor || 0,
-    floor_name: quests?.QuestRiftValour?.floor_name || 'Outside',
-    floor_steps: quests?.QuestRiftValour?.floor_steps || 0,
-    hunts_remaining: quests?.QuestRiftValour?.hunts_remaining || 0,
-    current_step_formatted: quests?.QuestRiftValour?.current_step_formatted || '0',
-    speed: quests?.QuestRiftValour?.power_up_data?.long_stride?.current_level + 1 || 1,
-    sync: quests?.QuestRiftValour?.power_up_data?.hunt_limit?.current_level + 1 || 1,
-    siphon: quests?.QuestRiftValour?.power_up_data?.boss_extension?.current_level + 1 || 1,
-    uu: quests?.QuestRiftValour?.is_eclipse_mode || false,
-  };
+  const state = getValourRiftState({ quests });
+  const text = state.isOutside ? 'Outside' : `Floor ${state.floor} (${state.floorName}) · ${state.huntsRemaining} hunts remaining`;
 
-  let text = '';
-
-  text = quest.floor === 0 ? 'Outside' : `Floor ${quest.floor} (${quest.floor_name}) · ${quest.hunts_remaining} hunts remaining`;
-
-  return `<div>${quest.uu ? 'Ultimate Umbra' : ''}</div> ${text} <div class="stats">Speed ${quest.speed} · Sync ${quest.sync} · Siphon ${quest.siphon}</div>`;
+  return `<div>${state.isUmbra ? 'Ultimate Umbra' : ''}</div> ${text} <div class="stats">Speed ${state.speed} · Sync ${state.sync} · Siphon ${state.siphon}</div>`;
 };
