@@ -1,4 +1,5 @@
 import { doRequest, getCurrentLocation, getData } from '@utils';
+import { getFieryWarpathState } from '@utils/shared/stages/desert-warpath';
 
 let miceEffs;
 let hasGottenEffs = false;
@@ -73,27 +74,158 @@ const getMouseEffectiveness = async (mouseId) => {
 };
 
 /**
- * Get the minluck based on the mouse power and effectiveness.
+ * Load the item and mouse group data the special effects need.
+ */
+const loadSpecialEffectData = async () => {
+  if (!items) {
+    items = await getData('items');
+  }
+
+  if (!miceGroups) {
+    miceGroups = await getData('cre-mice-groups');
+  }
+};
+
+/**
+ * Get the type of an equipped item.
+ *
+ * @param {number|string} id The item ID.
+ *
+ * @return {string|undefined} The item type.
+ */
+const getItemType = (id) => items.find((item) => item.id === Number.parseInt(id))?.type;
+
+/**
+ * Get a Fort Rox fort upgrade level.
+ *
+ * @param {string} upgrade The upgrade key, 'b' for the Ballista or 'c' for the Cannon.
+ *
+ * @return {number} The level.
+ */
+const getFortRoxLevel = (upgrade) => Number(user?.quests?.QuestFortRox?.fort?.[upgrade]?.level) || 0;
+
+/**
+ * Apply the area mechanics and items that change a mouse's power or effectiveness.
+ *
+ * These change the mouse itself, so they apply to the minluck as well as the catch rate.
+ *
+ * Props Maidenless @ github.com/MaidenlessINC/Maidenless-INC.
  *
  * @param {Object} options               The options.
+ * @param {string} options.mouseType     The mouse type.
  * @param {number} options.mousePower    The mouse power.
- * @param {number} options.effectiveness The mouse effectiveness.
+ * @param {number} options.effectiveness The mouse effectiveness (0-1+).
+ *
+ * @return {Promise<Object>} The adjusted mousePower and effectiveness.
+ */
+const applyMouseEffects = async ({ mouseType, mousePower, effectiveness }) => {
+  await loadSpecialEffectData();
+
+  const charm = getItemType(user?.trinket_item_id);
+  const weapon = getItemType(user?.weapon_item_id);
+  const trapPowerType = user.trap_power_type_name.toLowerCase();
+
+  // Guaranteed catches.
+  const isGuaranteed = () => {
+    mousePower = 0;
+    effectiveness = 1;
+  };
+
+  switch (getCurrentLocation()) {
+    case 'ancient_city':
+      if ('retired_minotaur' === mouseType) {
+        mousePower *= (user?.quests?.QuestAncientCity?.width || 100) / 100;
+      } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === trapPowerType) {
+        effectiveness += 1;
+      }
+
+      break;
+    case 'claw_shot_city': // Using a Sheriff's Badge charm against the Bounty Hunter in Claw Shot City.
+      if ('bounty_hunter' === mouseType && 'sheriff_badge_trinket' === charm) {
+        isGuaranteed();
+      }
+
+      break;
+    case 'crystal_library': // Zurreal the Enternal and not using Zurreal's Folly in the Crystal Library.
+      if ('library_boss' === mouseType && 'zurreals_folly_weapon' !== weapon) {
+        effectiveness = 0;
+      }
+
+      break;
+    case 'desert_warpath': {
+      // The Warmonger and Artillery Commander can't be caught while their guards remain.
+      const { wave, guardsRemaining } = getFieryWarpathState({ viewingAtts: user.viewing_atts });
+      if (guardsRemaining > 0 && (('desert_boss' === mouseType && 4 === Number(wave)) || ('desert_artillery_commander' === mouseType && 'portal' === wave))) {
+        effectiveness = 0;
+      }
+
+      break;
+    }
+    case 'fort_rox':
+      // By default the values in the sheet we use are set to balista level 1, so we want to reset them.
+      if ((miceGroups.fort_rox?.weremice.includes(mouseType) && getFortRoxLevel('b') === 0) || (miceGroups.fort_rox?.cosmic.includes(mouseType) && getFortRoxLevel('c') === 0)) {
+        mousePower *= 2;
+      } else if (('nightmancer' === mouseType && getFortRoxLevel('b') === 3) || ('nightfire' === mouseType && getFortRoxLevel('c') === 3)) {
+        isGuaranteed();
+      } else if ('battering_ram_night' === mouseType && 'battering_ram_buster_weapon' === weapon) {
+        // Battering Ram Buster weapon against Battering Ram mice.
+        isGuaranteed();
+      } else if ('heart_of_the_meteor' === mouseType) {
+        // Heart of the Meteor gets weaker with each hunt.
+        mousePower *= (user?.quests?.QuestFortRox?.lair_width || 100) / 100;
+      }
+
+      break;
+    case 'rift_bristle_woods':
+      // The Absolute Acolyte can't be caught until its sand is drained.
+      if ('rift_acolyte' === mouseType && (user?.quests?.QuestRiftBristleWoods?.acolyte_sand || 0) > 0) {
+        effectiveness = 0;
+      }
+      break;
+    case 'sand_dunes': // Calculate power when salted in the Sand Crypts.
+      if (miceGroups.sand_dunes?.includes(mouseType) && !user?.quests?.QuestSandDunes?.is_normal) {
+        mousePower = calculatePowerWhenSalted(mousePower, user?.quests?.QuestSandDunes?.minigame?.salt_charms_used || 0, mouseType);
+      }
+
+      break;
+    case 'sunken_city': // Ultimate Anchor Charm.
+      if ('ultimate_anchoring_trinket' === charm) {
+        isGuaranteed();
+      }
+
+      break;
+  }
+
+  return { mousePower, effectiveness };
+};
+
+/**
+ * Get the minluck: the lowest luck that guarantees a catch with no power at all.
+ *
+ * Props tsitu @ github.com:tsitu/MH-Tools, and Beeejk and Neb for the float handling.
+ *
+ * @param {Object} options               The options.
+ * @param {string} options.mouseType     The mouse type.
+ * @param {number} options.mousePower    The mouse power.
+ * @param {number} options.effectiveness The mouse effectiveness (0-1+).
  *
  * @return {Promise<number | '∞'>} The minluck.
  */
 const getMinluck = async (options) => {
-  let { mousePower, effectiveness } = options;
-
-  effectiveness = effectiveness * 100;
+  const { mousePower, effectiveness } = await applyMouseEffects(options);
 
   if (effectiveness === 0) {
     return '∞';
   }
 
-  // Props tsitu @ github.com:tsitu/MH-Tools.
-  const minluck = Math.ceil(Math.ceil(Math.sqrt(mousePower / 2)) / Math.min(effectiveness / 100, 1.4));
+  const luckEffectiveness = Math.min(effectiveness, 1.4);
+  const minluck = Math.ceil(Math.ceil(Math.sqrt(mousePower / 2)) / luckEffectiveness);
+  if (minluck >= 9999) {
+    return '∞';
+  }
 
-  return minluck;
+  // Floating point error can leave the result one short, so check that it actually guarantees a catch.
+  return 2 * Math.pow(Math.floor(luckEffectiveness * minluck), 2) >= mousePower ? minluck : minluck + 1;
 };
 
 /**
@@ -109,39 +241,6 @@ const getPercent = (rate) => {
   }
 
   return `${Math.max(0, rate * 100).toFixed(2)}%`;
-};
-
-/**
- * Check for a Fiery Warpath wave and if it has remaining mice.
- *
- * @param {string} waveToCheck The wave to check.
- *
- * @return {boolean} If the wave has remaining mice.
- */
-const isWaveAndHasRemaining = (waveToCheck) => {
-  if (!waveToCheck || !waveToCheck.classList) {
-    return false;
-  }
-
-  const waveClass = [...waveToCheck.classList].find((className) => className.startsWith('wave'));
-  const wave = waveClass.replace('wave', '').replace('_', '');
-
-  if (waveToCheck !== wave) {
-    return false;
-  }
-
-  let remaining = 0;
-  const remainingEl = document.querySelectorAll(`.warpathHUD-wave.wave_${wave} .warpathHUD-wave-mouse-population`);
-  if (remainingEl.length) {
-    remaining = [...remainingEl].reduce((sum, el) => {
-      if (el.innerText) {
-        sum += Number.parseInt(el.innerText);
-      }
-      return sum;
-    }, 0);
-  }
-
-  return remaining > 0;
 };
 
 const kingScarabThresholds = [0, 30, 40, 50];
@@ -202,44 +301,15 @@ const getAmplifier = () => {
  * @return {Promise<number>} The catch rate.
  */
 const applySpecialEffectsAndGetCatchRate = async (options) => {
-  if (!items) {
-    items = await getData('items');
-  }
+  const { mousePower, effectiveness } = await applyMouseEffects(options);
+  let { mouseType, trapPower, trapPowerBoost, trapLuck, trapPowerBonus, trapAuras } = options;
 
-  if (!miceGroups) {
-    miceGroups = await getData('cre-mice-groups');
-  }
-
-  let { mouseType, mousePower, effectiveness, trapPower, trapPowerBoost, trapLuck, trapPowerBonus, trapAuras } = options;
-
-  const charm = items.find((item) => item.id === Number.parseInt(user?.trinket_item_id))?.type;
-  const weapon = items.find((item) => item.id === Number.parseInt(user?.weapon_item_id))?.type;
-  const trapPowerType = user.trap_power_type_name.toLowerCase();
+  const charm = getItemType(user?.trinket_item_id);
+  const weapon = getItemType(user?.weapon_item_id);
   const location = getCurrentLocation();
 
   // Location specific
   switch (location) {
-    case 'ancient_city':
-      if ('retired_minotaur' === mouseType) {
-        mousePower *= (user?.quests?.QuestAncientCity?.width || 100) / 100;
-      } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === trapPowerType) {
-        effectiveness += 1;
-      }
-
-      break;
-    case 'claw_shot_city': // Using a Sheriff's Badge charm against the Bounty Hunter in Claw Shot City.
-      if ('bounty_hunter' === mouseType && 'sheriff_badge_trinket' === charm) {
-        mousePower = 0;
-        effectiveness = 1;
-      }
-
-      break;
-    case 'crystal_library': // Zurreal the Enternal and not using Zurreal's Folly in the Crystal Library.
-      if ('library_boss' === mouseType && 'zurreals_folly_weapon' !== weapon) {
-        effectiveness = 0;
-      }
-
-      break;
     case 'desert_warpath':
       if (
         (miceGroups.fiery_warpath?.archers.includes(mouseType) && 'super_flame_march_archer_trinket' === charm) ||
@@ -250,56 +320,6 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
         (miceGroups.fiery_warpath?.commanders.includes(mouseType) && 'super_flame_march_commander_trinket' === charm)
       ) {
         trapPowerBonus += 50;
-      }
-
-      if ('desert_boss' === mouseType && isWaveAndHasRemaining('4')) {
-        // Warmonger when there are remaining mice in wave 4.
-        effectiveness = 0;
-      } else if ('desert_artillery_commander' === mouseType && 'portal' === isWaveAndHasRemaining('portal')) {
-        // Artillery Commander when there are remaining mice in the portal.
-        effectiveness = 0;
-      }
-
-      break;
-    case 'fort_rox':
-      // By default the values in the sheet we use are set to balista level 1, so we want to reset them.
-      if (
-        (miceGroups.fort_rox?.weremice.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 0) ||
-        (miceGroups.fort_rox?.cosmic.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 0)
-      ) {
-        mousePower *= 2;
-      } else if (
-        ('nightmancer' === mouseType && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 3) ||
-        ('nightfire' === mouseType && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 3)
-      ) {
-        mousePower = 0;
-        effectiveness = 1;
-      } else if ('battering_ram_night' === mouseType && 'battering_ram_buster_weapon' === weapon) {
-        // Battering Ram Buster weapon against Battering Ram mice.
-        mousePower = 0;
-        effectiveness = 1;
-      } else if ('heart_of_the_meteor' === mouseType) {
-        // Heart of the Meteor gets weaker with each hunt.
-        mousePower *= (user?.quests?.QuestFortRox?.lair_width || 100) / 100;
-      }
-
-      break;
-    case 'rift_bristle_woods':
-      // if AA and has more than 0 sand, 0 effectiveness.
-      if ('rift_acolyte' === mouseType && (user?.quests?.QuestRiftBristleWoods?.QuestRiftBristleWoods?.acolyte_sand || 0) > 0) {
-        effectiveness = 0;
-      }
-      break;
-    case 'sand_dunes': // Calculate power when salted in the Sand Crypts.
-      if (miceGroups.sand_dunes?.includes(mouseType) && !user?.quests?.QuestSandDunes?.is_normal) {
-        mousePower = calculatePowerWhenSalted(mousePower, user?.quests?.QuestSandDunes?.minigame?.salt_charms_used || 0, mouseType);
-      }
-
-      break;
-    case 'sunken_city': // Ultimate Anchor Charm.
-      if ('ultimate_anchoring_trinket' === charm) {
-        mousePower = 0;
-        effectiveness = 1;
       }
 
       break;
@@ -374,12 +394,8 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     catchRate += (1 - catchRate) * 0.1;
   } else if (
     'fort_rox' === location &&
-    // Weremice get a 50% auto catch with Ballista 2 or 3.
-    ((miceGroups.fort_rox?.weremice.includes(mouseType) &&
-      (Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level === 2) || Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level === 3))) ||
-      // Cosmic Critters get a 50% auto catch with Cannon 2 or 3.
-      (miceGroups.fort_rox?.cosmic.includes(mouseType) &&
-        (Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level === 2) || Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level === 3))))
+    // Weremice get a 50% auto catch with Ballista 2 or 3, and Cosmic Critters with Cannon 2 or 3.
+    ((miceGroups.fort_rox?.weremice.includes(mouseType) && getFortRoxLevel('b') >= 2) || (miceGroups.fort_rox?.cosmic.includes(mouseType) && getFortRoxLevel('c') >= 2))
   ) {
     catchRate += (1 - catchRate) * 0.5;
   }

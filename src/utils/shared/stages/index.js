@@ -16,6 +16,10 @@
  *   the first stage name that is set.
  * - `isTwisted`: for the twisted locations, which share their environment id with the normal ones.
  * - `liveFloorMice`: mice MHCT spreads across a stage's floors (Valour Rift).
+ * - `boss`: a boss both sources fold into the stage's rates (Zokor, the Beanstalk castle giants), as
+ *   `{ type, isActive, share }`. It can't be attracted while inactive, and while active it's
+ *   attracted at `share` of the time (1 for a guaranteed encounter), or at its rate in the data when
+ *   `share` is null.
  *
  * Stagers that decode a location's quest data export the decoded state too (`getFortRoxState`,
  * ...), so other features can show it without decoding it again.
@@ -157,6 +161,7 @@ const getStage = (source = user) => {
     live: undefined,
     label: null,
     liveFloorMice: null,
+    boss: null,
   };
 
   const stager = stagers[environment];
@@ -178,6 +183,7 @@ const getStage = (source = user) => {
     stage.live = result.live;
     stage.label = getLabel(result);
     stage.liveFloorMice = result.liveFloorMice ?? null;
+    stage.boss = result.boss ?? null;
 
     if (result.isTwisted) {
       Object.assign(stage, twistedLocations[environment]);

@@ -1,13 +1,4 @@
-import {
-  addStyles,
-  getFlag,
-  getUserTitle,
-  getUserTitleShield,
-  makeElement,
-  onDialogShow,
-  onJournalEntry,
-  setMultipleTimeout,
-} from '@utils';
+import { addStyles, getFlag, getUserTitle, getUserTitleShield, makeElement, onDialogShow, onJournalEntry, setMultipleTimeout } from '@utils';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;

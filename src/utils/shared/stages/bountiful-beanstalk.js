@@ -1,3 +1,10 @@
+// The giant on each castle floor.
+const floorGiants = {
+  Dungeon: 'dungeon_master',
+  Ballroom: 'malevolent_maestro',
+  'Great Hall': 'mythical_giant_king',
+};
+
 /**
  * Get the Bountiful Beanstalk state.
  *
@@ -53,6 +60,8 @@ export default (context) => {
   return {
     data: state.isBoss ? 'Castle Giants' : state.floor,
     live: `${state.floor}${state.isBoss ? ' Giant' : ''} - ${state.room}`,
+    // The data combines the giants, but each floor's giant is guaranteed when it's encountered.
+    boss: state.isBoss && floorGiants[state.floor] ? { type: floorGiants[state.floor], isActive: true, share: 1 } : null,
   };
 };
 

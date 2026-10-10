@@ -138,6 +138,43 @@ const getLiveRates = async (mice, stage) => {
 };
 
 /**
+ * Split out a boss that the rates combine with the stage's other mice.
+ *
+ * @param {Map<string, number>} rates Mouse type to rate.
+ * @param {Object|null}         boss  The stage's boss.
+ * @param {Array}               mice  The mice that can be attracted.
+ *
+ * @return {Map<string, number>} The rates for the boss's current state.
+ */
+const applyBossState = (rates, boss, mice) => {
+  // A guaranteed boss is the only mouse attracted, whatever the rates say.
+  if (boss?.isActive && 1 === boss.share && mice.some((mouse) => mouse.type === boss.type)) {
+    return new Map([[boss.type, 1]]);
+  }
+
+  if (!boss || !rates.has(boss.type)) {
+    return rates;
+  }
+
+  if (!boss.isActive) {
+    rates.delete(boss.type);
+    return rates;
+  }
+
+  if (null === boss.share) {
+    return rates;
+  }
+
+  // The boss takes its share, and the other mice split the rest in proportion.
+  const othersTotal = [...rates].reduce((total, [type, rate]) => (type === boss.type ? total : total + rate), 0);
+  if (othersTotal <= 0) {
+    return rates;
+  }
+
+  return new Map([...rates].map(([type, rate]) => [type, type === boss.type ? boss.share : (rate / othersTotal) * (1 - boss.share)]));
+};
+
+/**
  * Get the attraction rate for each mouse, as a share of the mice that can be attracted.
  *
  * Rates are normalized across the given mice that have a rate, so they add up to 100%.
@@ -153,6 +190,12 @@ const getAttractionRates = async (mice) => {
   let rates = new Map();
   try {
     rates = 'live' === source ? await getLiveRates(mice, stage) : await getDataRates(mice, stage);
+    // The data is missing some stage and cheese combinations that MHCT has.
+    if ('data' === source && rates.size === 0) {
+      rates = await getLiveRates(mice, stage);
+    }
+
+    rates = applyBossState(rates, stage.boss, mice);
   } catch (error) {
     debuglog('cre', 'Error getting attraction rates', error);
   }
