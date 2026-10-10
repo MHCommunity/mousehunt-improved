@@ -1,5 +1,5 @@
 {
-  "names": ["Birthday Event Map"],
+  "names": ["Birthday Event Map", "11th Birthday Event Map", "Gilded 11th Birthday Event Map", "10th Birthday Map"],
   "categories": [
     {
       "name": "Mixing Room",
@@ -103,7 +103,14 @@
         "incompetent_ice_climber",
         "living_ice",
         "pack",
-        "snow_bowler"
+        "snow_bowler",
+        "zombie",
+        "spring_familiar",
+        "pyrite",
+        "archer",
+        "brimstone",
+        "rift_monk",
+        "werehauler"
       ]
     }
   ],
