@@ -1,4 +1,4 @@
-import { addStyles, getData, getSetting, makeElement } from '@utils';
+import { addStyles, getData, getFlag, makeElement } from '@utils';
 
 import { registerTrapSelectorDecorator } from '../../trap-selector-runtime';
 
@@ -18,7 +18,7 @@ const addSkin = (skin) => {
     <a data-item-id="${id}" href="#" class="campPage-trap-itemBrowser-item-favorite no"></a>
 </div>`;
 
-  if (getSetting('better-trap-selector.larger-skin-images', true)) {
+  if (!getFlag('better-trap-selector-no-larger-skin-images')) {
     markup = `<div class="itembrowser-skin-image-wrapper">
       <img class="itembrowser-skin-image" src="${imageUrl}" data-item-classification="skin" data-item-id="${id}">
     </div>${markup}`;

@@ -1,10 +1,9 @@
-import { addStyles, getCurrentPage, getSetting, humanizeTime, makeElement, onNavigation, parseMouseHuntDate } from '@utils';
+import { addStyles, getCurrentPage, humanizeTime, makeElement, onNavigation, parseMouseHuntDate } from '@utils';
 
-import settings from './settings';
+import { isBlockHidden } from '@/custom-trap-selector/blocks';
 
-import gridStyles from './styles/grid.css';
-import listStyles from './styles/list.css';
-import onlyIconsStyles from './styles/icons.css';
+import { applyAuraLayout } from './layout';
+
 import styles from './styles/styles.css';
 
 /**
@@ -208,23 +207,18 @@ let aurasExpiry = [];
  * Initialize the module.
  */
 const init = async () => {
-  const stylesToUse = [styles];
-  const layout = getSetting('show-auras.layout-0', 'grid');
-  if ('icons' === layout) {
-    stylesToUse.push(onlyIconsStyles);
-  } else if ('list' === layout) {
-    stylesToUse.push(listStyles);
-  } else {
-    stylesToUse.push(gridStyles);
-  }
-
-  addStyles(stylesToUse, 'show-auras');
+  addStyles(styles, 'show-auras');
+  applyAuraLayout();
 
   onNavigation(
     () => {
       setTimeout(async () => {
         await getAuras();
-        addExpiryWarning();
+        // The block is still added when it's hidden, so showing it in Custom Trap Selector is instant.
+        if (!isBlockHidden('auras')) {
+          addExpiryWarning();
+        }
+
         addTrapBlock();
       }, 1000);
     },
@@ -239,8 +233,8 @@ export default {
   id: 'show-auras',
   name: 'Show Auras',
   type: 'hunting-traps',
-  default: true,
+  // Shown, hidden, and laid out in Custom Trap Selector.
+  alwaysLoad: true,
   description: 'Show your active auras and when they expire below your trap stats.',
   load: init,
-  settings,
 };
