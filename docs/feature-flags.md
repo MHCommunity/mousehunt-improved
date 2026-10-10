@@ -30,6 +30,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 |Flag|Description|
 |---|---|
+|`better-maps-ar-toggle`|Shows the Show/Hide AR button on the Goals and Sorted tabs. Without it, rates always show.|
 |`better-maps-no-solver-links`|Hides the map solver links on the Goals tab.|
 |`better-maps-show-inactive-community-maps`|Shows old and inactive maps in the Community Maps listing.|
 
