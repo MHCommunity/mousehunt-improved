@@ -16,7 +16,6 @@ const validDataFiles = new Set([
   'library-assignments',
   'm400-locations',
   'marketplace-hidden-items',
-  'mice-attraction-rates-by-location',
   'mice-groups',
   'mice-powertype-mastery',
   'mice-regions',

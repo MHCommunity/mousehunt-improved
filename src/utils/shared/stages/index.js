@@ -2,7 +2,7 @@
  * Location stages, used for attraction rates.
  *
  * Attraction rates depend on a location's stage, and the two sources name stages differently:
- * - `data`: the api's mice-attraction-rates-by-location file, built from MH-Tools population
+ * - `data`: the api's attraction/location rates, built from MH-Tools population
  *   CSVs. Stage names follow MH-Tools' CRE bookmarklet (src/bookmarklet/bm-cre.js).
  * - `live`: MHCT, via api.mouse.rip/mhct. Stage names follow MHCT's stagers
  *   (mh-helper-extension src/scripts/modules/stages/environments).

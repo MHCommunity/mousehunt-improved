@@ -40,9 +40,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'e
       ['mh-improved-memory-game', `mh-improved-memory-game-${mode}`],
       `<div class="mh-improved-memory-game-header">
         <h1>${title}</h1>
-        <svg class="mh-improved-memory-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M18 6L6 18M6 6l12 12"></path>
-        </svg>
+        <button type="button" class="mh-improved-memory-close mh-improved-close" aria-label="Close">✕</button>
       </div>
       <div class="mh-improved-memory-grid"></div>
       <div class="mh-improved-memory-message">

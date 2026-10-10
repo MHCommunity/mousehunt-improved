@@ -450,6 +450,11 @@ const defaultHiddenMenuItems = [
   'mousehunt-improved-adventure-book',
   'mousehunt-improved-dark-mode-toggle',
   'mousehunt-improved-hud-toggle',
+  'mousehunt-improved-location-catch-stats',
+  'mousehunt-improved-egg-hunt-helper',
+  'mousehunt-improved-journal-log-tracker',
+  'mousehunt-improved-keyboard-shortcuts',
+  'favorite-setups',
 ];
 
 /**

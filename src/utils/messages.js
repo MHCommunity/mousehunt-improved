@@ -79,9 +79,10 @@ const showLoadingError = (e) => {
   makeElement('h1', 'mousehunt-improved-error-title', 'Error loading MouseHunt Improved', errorElement);
 
   if (e && e.message && e.stack) {
-    const errorText = makeElement('textarea', 'mousehunt-improved-error-message', `${e.message}\n\n${e.stack}`);
-    errorText.setAttribute('readonly', 'readonly');
-    errorText.setAttribute('rows', '10');
+    const errorText = makeElement('pre', 'mousehunt-improved-error-stack');
+    // Chrome's stack already starts with the message; Firefox's doesn't.
+    errorText.textContent = e.stack.includes(e.message) ? e.stack : `${e.message}\n\n${e.stack}`;
+    errorText.tabIndex = 0;
     errorElement.append(errorText);
   }
 
@@ -92,7 +93,9 @@ const showLoadingError = (e) => {
     errorElement
   );
 
-  const closeButton = makeElement('button', 'mousehunt-improved-error-close', 'Close');
+  const closeButton = makeElement('button', 'mousehunt-improved-error-close', '×');
+  closeButton.type = 'button';
+  closeButton.setAttribute('aria-label', 'Close');
   closeButton.addEventListener('click', () => {
     errorElement.remove();
   });

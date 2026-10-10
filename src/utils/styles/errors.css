@@ -15,6 +15,7 @@
 }
 
 .mousehunt-improved-error h1 {
+  padding-right: 16px;
   margin: 0 0 0.75em;
   font-size: 1.3em;
   font-weight: 900;
@@ -27,24 +28,61 @@
   line-height: 1.5;
 }
 
-textarea.mousehunt-improved-error-message {
-  min-height: 50px;
+.mousehunt-improved-error-stack {
+  max-height: 150px;
+  padding: 6px 8px;
+  margin: 0;
+  overflow: auto;
+  font-family: monospace;
   font-size: 11px;
-  background-color: #ffbfbf;
-  border-color: #dc7878;
+  white-space: pre;
+  user-select: all;
+  background-color: rgb(255 255 255 / 45%);
+  border-radius: 4px;
 }
 
 .mousehunt-improved-error-close {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  color: #fff;
-  background-color: #9f2223;
-  border: 1px solid #4e2727;
-  border-radius: 1px;
+  top: 4px;
+  right: 6px;
+  padding: 0 4px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #9f2223;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
 }
 
 .mousehunt-improved-error-close:hover,
 .mousehunt-improved-error-close:focus {
-  background-color: #e03a3a;
+  color: #4e1111;
+}
+
+.mh-dark .mousehunt-improved-error {
+  color: var(--d-text);
+  background-color: var(--d-surface-panel);
+  border-color: var(--d-red-dark);
+  box-shadow: 0 4px 14px var(--d-shadow);
+}
+
+.mh-dark .mousehunt-improved-error h1,
+.mh-dark .mousehunt-improved-error-close {
+  color: var(--d-red-light);
+}
+
+.mh-dark .mousehunt-improved-error p {
+  color: var(--d-text);
+}
+
+.mh-dark .mousehunt-improved-error-stack {
+  color: var(--d-text-muted);
+  background-color: var(--d-surface-inset);
+}
+
+.mh-dark .mousehunt-improved-error-close:hover,
+.mh-dark .mousehunt-improved-error-close:focus {
+  color: var(--d-white);
 }

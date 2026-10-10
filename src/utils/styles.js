@@ -180,8 +180,8 @@ const getExtensionBaseUrl = () => {
  *
  * All platforms load from api.mouse.rip so server-side updates are picked up
  * without a release; extensions fall back to their bundled static copy if the
- * remote fetch fails. The cache-buster includes the date so the browser
- * revalidates at most daily rather than caching until the next version bump.
+ * remote fetch fails. The cache-buster is just the version, so the browser keeps
+ * the stylesheet cached until the next release.
  *
  * @param {string} filename The filename of the external styles from the static server.
  *
@@ -189,7 +189,7 @@ const getExtensionBaseUrl = () => {
  */
 const addExternalStyles = async (filename) => {
   const identifier = filename.split('.').shift();
-  const cacheBuster = `?v=${mhImprovedVersion}-${new Date().toISOString().slice(0, 10)}`;
+  const cacheBuster = `?v=${mhImprovedVersion}`;
 
   const existingStyles = document.querySelector(`#${identifier}-external`);
 

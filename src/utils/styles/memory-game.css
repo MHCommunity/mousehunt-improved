@@ -33,15 +33,6 @@
   color: #f6f3eb;
 }
 
-.mh-improved-memory-close:hover,
-.mh-improved-memory-close:focus {
-  color: #8e6642;
-  cursor: pointer;
-  background-color: #eee;
-  border-radius: 50%;
-  outline: 1px solid #ccc;
-}
-
 .mh-improved-memory-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -134,10 +125,6 @@
   text-align: center;
 }
 
-.mh-dark .mh-improved-card-name {
-  color: var(--d-text-dark);
-}
-
 .mh-improved-memory-card:hover .mh-improved-card-front {
   background: #eee;
   outline: 1px solid #ccc;
@@ -193,7 +180,7 @@
   animation: mh-improved-shake-tiny 0.5s ease-in-out;
 }
 
-.mh-improved-memory-game.victory .memory-message {
+.mh-improved-memory-game.victory .mh-improved-memory-message {
   color: #155724;
   background: #d4edda;
   border-color: #28a745;
@@ -214,6 +201,82 @@
   text-decoration: none;
   background: #6f4b2c;
   outline: 1px solid #ccc;
+}
+
+.mh-dark .mh-improved-memory-game {
+  background: var(--d-surface-panel);
+  border-color: var(--d-border);
+  box-shadow: 0 4px 14px var(--d-shadow);
+}
+
+.mh-dark .mh-improved-memory-game-header {
+  color: var(--d-text);
+  background-color: var(--d-surface-header);
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-memory-game-header h1 {
+  color: var(--d-white);
+}
+
+.mh-dark .mh-improved-memory-grid {
+  background: var(--d-surface-panel);
+}
+
+.mh-dark .mh-improved-card-front {
+  color: var(--d-text-muted);
+  background: var(--d-button);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-memory-card:hover .mh-improved-card-front {
+  background: var(--d-hover);
+  outline-color: var(--d-interactive);
+}
+
+.mh-dark .mh-improved-card-back {
+  background: var(--d-surface-page);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-card-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-memory-game-nope .mh-improved-card-name {
+  background: var(--d-surface-popover);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-memory-card.matched .mh-improved-card-back {
+  background: var(--d-green-darker);
+  border-color: var(--d-green);
+}
+
+.mh-dark .mh-improved-memory-message {
+  color: var(--d-text);
+  background: var(--d-surface-inset);
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-memory-game.victory .mh-improved-memory-message {
+  color: var(--d-text);
+  background: var(--d-green-darker);
+  border-color: var(--d-green);
+}
+
+.mh-dark .mh-improved-memory-play-again {
+  color: var(--d-text);
+  background: var(--d-button);
+}
+
+.mh-dark .mh-improved-memory-play-again:hover,
+.mh-dark .mh-improved-memory-play-again:focus {
+  color: var(--d-hover-text);
+  background: var(--d-hover);
+  outline-color: var(--d-interactive);
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

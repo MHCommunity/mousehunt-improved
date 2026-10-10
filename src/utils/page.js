@@ -38,13 +38,13 @@ const getCurrentTab = () => {
     return getCurrentPage();
   }
 
-  const tab = hg.utils.PageUtil.getCurrentPageTab() || '';
-
-  if (tab.length <= 0) {
+  // The game occasionally returns a non-string tab (e.g. a number or object).
+  const tab = hg.utils.PageUtil.getCurrentPageTab();
+  if (typeof tab !== 'string' || tab.length <= 0) {
     return getCurrentPage();
   }
 
-  return tab ? tab?.toLowerCase() : getCurrentPage();
+  return tab.toLowerCase();
 };
 
 /**
@@ -53,12 +53,12 @@ const getCurrentTab = () => {
  * @return {string} The page tab.
  */
 const getCurrentSubtab = () => {
-  const subtab = hg.utils.PageUtil.getCurrentPageSubTab();
-  if (!subtab || subtab.length <= 0) {
+  const subtab = hg?.utils?.PageUtil?.getCurrentPageSubTab?.();
+  if (typeof subtab !== 'string' || subtab.length <= 0) {
     return getCurrentTab();
   }
 
-  return subtab ? subtab?.toLowerCase() : getCurrentTab();
+  return subtab.toLowerCase();
 };
 
 /**
