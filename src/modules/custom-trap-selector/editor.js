@@ -1,6 +1,6 @@
 import { createPopup, getSetting, make, makeMhButton } from '@utils';
 
-import { getOverallTrapEffectiveness, setOverallTrapEffectiveness } from '@/catch-rate-estimate/trap-effectiveness';
+import { getOverallTrapEffectiveness, setOverallTrapEffectiveness, updateTrapEffectivenessText } from '@/catch-rate-estimate/trap-effectiveness';
 import { getAuraIconsOnly, getAuraLayout, layoutOptions as auraLayoutOptions, setAuraIconsOnly, setAuraLayout } from '@/show-auras/layout';
 
 import { getLayout, resetLayout, saveLayout } from './blocks';
@@ -218,6 +218,9 @@ const openTrapSelectorEditor = (applyLayout) => {
 
   let snapshot = getSnapshot();
 
+  make('p', 'mhui-trap-editor-help', '', root).textContent =
+    'Drag the blocks in the list or the preview to rearrange them, and turn off any you want to hide. Changes are saved as you go.';
+
   const editor = make('div', 'mhui-trap-editor', '', root);
   const previewWrapper = make('div', 'mhui-trap-editor-preview', '', editor);
   const list = make('div', 'mhui-trap-editor-list', '', editor);
@@ -260,6 +263,9 @@ const openTrapSelectorEditor = (applyLayout) => {
       el.addEventListener('mouseleave', () => highlight(null));
       preview.append(el);
     }
+
+    // Saved copies can have the other rating, so show the one that's set.
+    updateTrapEffectivenessText();
   };
 
   const renderList = () => {
