@@ -8,15 +8,15 @@ import {
   getCurrentTab,
   getData,
   getSetting,
+  loadFeatures,
   makeElement,
   onNavigation,
   onOverlayChange,
   onRequest,
 } from '@utils';
 
-import favorites from './modules/favorites';
-import recipes from './modules/recipes';
-import sorting, { reapplySorting } from './modules/sorting';
+import featureManifest from './feature-manifest';
+import { reapplySorting } from './modules/sorting';
 import settings from './settings';
 
 import doubleWidthStyles from './styles/double-width-item.css';
@@ -358,19 +358,11 @@ const main = async () => {
     }
   );
 
-  if (getSetting('better-inventory.add-trap-sorting', false)) {
-    sorting();
-  }
-
-  if (getSetting('better-inventory.favorites', false)) {
-    favorites();
-  }
+  loadFeatures(featureManifest);
 
   if (getSetting('better-inventory.sort-inventory', true)) {
     addResortInventory();
   }
-
-  recipes();
 };
 
 /**
