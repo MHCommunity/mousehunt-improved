@@ -159,8 +159,9 @@
   opacity: 0.7;
 }
 
-/* Palettes with the light menu keep dark icons on its tabs, like the toggles. */
-.mh-dark.mh-dark-light-menu .mousehuntHeaderView .mhui-menu-icon {
+/* Palettes with the light menu keep dark icons on its tabs, like the toggles. Light palettes light the info bar too. */
+.mh-dark.mh-dark-light-menu .mousehuntHeaderView .mhui-menu-icon,
+.mh-dark.mh-palette-light .mousehuntHud-gameInfo .mhui-menu-icon {
   filter: grayscale(1) brightness(0);
   opacity: 0.5;
 }
@@ -630,16 +631,16 @@
   background-color: rgb(127 127 127 / 20%);
 }
 
-/* The info bar stays dark with the light menu, so the toggles stay light in it. */
-.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mousehunt-improved-dark-mode-toggle::before {
+/* The info bar stays dark with the light menu, so the toggles stay light in it. Light palettes make the bar light too. */
+.mh-dark.mh-dark-light-menu:not(.mh-palette-light) .mousehuntHud-gameInfo .mousehunt-improved-dark-mode-toggle::before {
   filter: none;
 }
 
-.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mousehunt-improved-hud-toggle::before {
+.mh-dark.mh-dark-light-menu:not(.mh-palette-light) .mousehuntHud-gameInfo .mousehunt-improved-hud-toggle::before {
   filter: invert(1);
 }
 
-.mh-dark.mh-dark-light-menu .mousehuntHud-gameInfo .mhui-menu-icon {
+.mh-dark.mh-dark-light-menu:not(.mh-palette-light) .mousehuntHud-gameInfo .mhui-menu-icon {
   filter: brightness(0) invert(1);
   opacity: 0.7;
 }
