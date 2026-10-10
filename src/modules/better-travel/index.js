@@ -21,7 +21,7 @@ import {
   travelTo,
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting } from './utils';
+import { getLocationDisplayName, getTravelSetting, saveTravelSetting } from './utils';
 
 import addReminders from './modules/reminders';
 import travelWindow from './modules/travel-window';
@@ -546,7 +546,7 @@ const addToTravelDropdown = async () => {
   if (previousLocation) {
     addSubmenuItem({
       menu: 'travel',
-      label: `Back to ${previousLocation.name}`,
+      label: `Back to ${getLocationDisplayName(previousLocation)}`,
       icon: 'https://i.mouse.rip/icons/back.png',
       callback: goToPreviousLocation,
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
@@ -567,7 +567,7 @@ const addToTravelDropdown = async () => {
     addSubmenuItem({
       id: `better-travel-${region.id}`,
       menu: 'travel',
-      label: region.name,
+      label: getLocationDisplayName(region),
       icon: region.image,
       callback: () => travelTo(region.id),
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-region-location',
@@ -587,7 +587,7 @@ const addToTravelDropdown = async () => {
         addSubmenuItem({
           id: `better-travel-favorite-${favorite}`,
           menu: 'travel',
-          label: favoriteRegion.name,
+          label: getLocationDisplayName(favoriteRegion),
           icon: favoriteRegion.image,
           callback: () => travelTo(favoriteRegion.id),
           class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-favorite-location',

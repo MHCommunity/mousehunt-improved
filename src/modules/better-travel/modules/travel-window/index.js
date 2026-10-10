@@ -1,6 +1,6 @@
 import { addOnboardingTip, addStyles, addSubmenuItem, createPopup, debug, getCurrentLocation, getData, getFlag, isUserTitleAtLeast, onDialogHide, onEvent, travelTo } from '@utils';
 
-import { getTravelSetting, saveTravelSetting } from '../../utils';
+import { getAlternateLocationName, getTravelSetting, saveTravelSetting } from '../../utils';
 
 import styles from './styles.css';
 
@@ -304,7 +304,10 @@ const openTravelWindow = async () => {
       const environmentType = button.getAttribute('data-environment-type');
       const environment = environmentById.get(environmentType);
 
-      button.style.display = environment.name.toLowerCase().includes(value) ? 'block' : 'none';
+      const names = [environment.name, getAlternateLocationName(environmentType)].filter(Boolean);
+      const isMatch = names.some((name) => name.toLowerCase().includes(value));
+
+      button.style.display = isMatch ? 'block' : 'none';
     });
   });
 
