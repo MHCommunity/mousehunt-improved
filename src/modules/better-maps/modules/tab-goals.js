@@ -3,6 +3,7 @@ import { addMHCTData, debuglog, doRequest, getFlag, makeElement, makeMhButton, s
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';
 import addConsolationPrizes from './consolation-prizes';
+import { watchNativeHighlight } from './goal-highlight';
 
 /**
  * Add links to the mouse details on the map.
@@ -682,6 +683,7 @@ const addInfoToCompletedMap = async (mapData) => {
 const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
+  watchNativeHighlight();
   addConsolationPrizes();
   addClassesToGroups(mapData);
   moveLeaveButton(mapData);

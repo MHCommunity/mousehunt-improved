@@ -89,9 +89,22 @@ const updateBlockContent = (block, type) => {
   if ('environments' === type) {
     const environments = block.querySelectorAll('.treasureMapView-environment');
     const sortedEnvironments = [...environments].sort((a, b) => a.innerText.localeCompare(b.innerText));
-    sortedEnvironments.forEach((env) => {
-      block.append(env);
-    });
+
+    // Environments with every goal found go in their own group below the rest.
+    const incomplete = sortedEnvironments.filter((env) => !env.classList.contains('complete'));
+    const complete = sortedEnvironments.filter((env) => env.classList.contains('complete'));
+
+    block.querySelector('.mh-ui-environments-completed-heading')?.remove();
+    block.append(...incomplete);
+
+    if (complete.length) {
+      const heading = makeElement('div', 'mh-ui-environments-completed-heading', 'Completed');
+      if (!incomplete.length) {
+        heading.classList.add('mh-ui-environments-completed-heading-first');
+      }
+
+      block.append(heading, ...complete);
+    }
   }
 };
 

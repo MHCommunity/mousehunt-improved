@@ -1,22 +1,21 @@
 import {
-  addMHCTData,
   getArEl,
   getData,
   getHighestArForMouse,
   getLocationsForMouse,
   getMapData,
+  make,
   makeElement,
-  makeMhButton,
   mapData,
   mapModel,
   sessionGet,
   sessionSet,
   showTravelConfirmation,
-  showTravelConfirmationNoDetails,
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
+import { makeGoalHighlight } from './goal-highlight';
 
 import mouseGroups from '@data/map-groups.json';
 
@@ -128,64 +127,82 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   };
 };
 
-let minlucksData = null;
-
 /**
- * Get the minlucks data, cached after the first fetch.
+ * Position a mouse popup next to its mouse, keeping it on screen.
  *
- * @return {Promise<Array>} The minlucks list.
+ * @param {HTMLElement} highlight The popup.
+ * @param {HTMLElement} mouseDiv  The mouse element.
  */
-const getMinlucks = async () => {
-  if (!minlucksData) {
-    minlucksData = await getData('minlucks');
+const positionMouseHighlight = (highlight, mouseDiv) => {
+  const rect = mouseDiv.getBoundingClientRect();
+  const popupRect = highlight.getBoundingClientRect();
+  const container = highlight.offsetParent;
+  const bounds = container?.getBoundingClientRect() || { left: 0, top: 0, right: window.innerWidth };
+  const margin = 10;
+  const gap = 5;
+
+  // Beside the mouse when it fits in the sorted area, otherwise below it.
+  let left = rect.right + gap;
+  let top = Math.max(Math.min(rect.top, window.innerHeight - margin - popupRect.height), margin);
+  if (left + popupRect.width > bounds.right) {
+    left = rect.left - popupRect.width - gap;
   }
 
-  return Array.isArray(minlucksData) ? minlucksData : [];
+  // Below it, the popup can run off screen and be scrolled to, so it never covers the mouse.
+  if (left < bounds.left) {
+    left = Math.min(Math.max(rect.left, bounds.left), bounds.right - popupRect.width);
+    top = rect.bottom + gap;
+  }
+
+  // The popup scrolls with the page, so it's placed relative to the sorted container.
+  highlight.style.left = `${left - bounds.left}px`;
+  highlight.style.top = `${top - bounds.top}px`;
 };
 
 /**
- * Add the minluck values for a mouse to the extra info popup.
- *
- * @param {Object}      mouse    The mouse data.
- * @param {HTMLElement} appendTo The element to append to.
+ * Close the open mouse popup on the sorted page.
  */
-const addMinluckData = async (mouse, appendTo) => {
-  if (appendTo.querySelector('.mouse-minluck')) {
+const closeMouseHighlight = () => {
+  document.querySelectorAll('#sorted-mice-container .mh-ui-goal-highlight').forEach((highlight) => highlight.remove());
+  document.querySelectorAll('#sorted-mice-container .mouse-container-selected').forEach((selected) => {
+    selected.classList.remove('mouse-container-selected');
+  });
+};
+
+/**
+ * Open or close the mouse popup for a mouse on the sorted page. It's the same popup the
+ * Goals tab shows.
+ *
+ * @param {HTMLElement} mouseDiv The mouse element.
+ * @param {Object}      mouse    The mouse data.
+ * @param {string}      type     The goal type, 'mouse' or 'item'.
+ */
+const toggleMouseHighlight = (mouseDiv, mouse, type) => {
+  const wasSelected = mouseDiv.classList.contains('mouse-container-selected');
+  closeMouseHighlight();
+
+  const container = mouseDiv.closest('#sorted-mice-container');
+  if (wasSelected || !container) {
     return;
   }
 
-  const minlucks = await getMinlucks();
-  const mouseMinlucks = minlucks.find((m) => m.type === (mouse.type ?? mouse.unique_id))?.minlucks;
-  if (!mouseMinlucks) {
+  const highlight = makeGoalHighlight(mouse, type);
+  if (!highlight) {
     return;
   }
 
-  const values = Object.entries(mouseMinlucks)
-    .filter(([, value]) => value && value > 0)
-    .sort((a, b) => a[1] - b[1]);
+  mouseDiv.classList.add('mouse-container-selected');
+  container.append(highlight);
 
-  if (!values.length) {
-    return;
-  }
-
-  const wrapper = makeElement('div', 'mouse-minluck');
-  makeElement('span', 'mouse-minluck-title', 'Minluck', wrapper);
-
-  values.forEach(([power, value]) => {
-    const powerEl = makeElement('span', 'mouse-minluck-value');
-    powerEl.title = `${power.charAt(0).toUpperCase()}${power.slice(1)} minluck: ${value}`;
-
-    const icon = makeElement('img', 'mouse-minluck-icon');
-    icon.src = `https://www.mousehuntgame.com/images/powertypes/${power}.png`;
-    icon.alt = power;
-    powerEl.append(icon);
-
-    makeElement('span', 'mouse-minluck-number', value, powerEl);
-
-    wrapper.append(powerEl);
+  highlight.querySelector('.treasureMapView-highlight-close')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    closeMouseHighlight();
   });
 
-  appendTo.append(wrapper);
+  const reposition = () => positionMouseHighlight(highlight, mouseDiv);
+  reposition();
+  highlight.addEventListener('mh-ui-goal-highlight-resized', reposition);
+  highlight.querySelectorAll('img').forEach((img) => img.addEventListener('load', reposition, { once: true }));
 };
 
 // Background AR fetches for the current sorted page, so we can re-sort when they're all done.
@@ -241,110 +258,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
   // Mouse header close.
   mouseDiv.append(mouseData);
 
-  // Mouse extra info.
-  const mouseExtraInfoWrapper = makeElement('div', 'mouse-mhct-extra-info-wrapper');
-  const mouseExtraInfo = makeElement('div', 'mouse-extra-info');
-
-  if (Array.isArray(mouse.environment_ids)) {
-    // Mouse locations.
-    const locationText = makeElement('div', 'location-text-wrapper');
-    makeElement('span', 'location-text', 'Found in ', locationText);
-
-    mouse.environment_ids.forEach((environmentID, index) => {
-      const environment = mapData().environments.find((env) => env.id === environmentID);
-
-      if (environment) {
-        const locationLink = makeElement('a', 'mouse-location-link', environment.name);
-
-        locationLink.title = `Travel to ${environment.name}`;
-        locationLink.setAttribute('data-environment-id', environment.id);
-
-        locationLink.addEventListener('click', () => {
-          showTravelConfirmationNoDetails(environment);
-        });
-
-        // If it's not the first item, append a comma before it
-        if (index !== 0) {
-          locationText.append(document.createTextNode(', '));
-        }
-
-        locationText.append(locationLink);
-      }
-    });
-
-    mouseExtraInfo.append(locationText);
-  }
-
-  // Mouse extra info close.
-  mouseExtraInfoWrapper.append(mouseExtraInfo);
-
-  // Link to MHCT at the bottom of the popup, like the mouse and item popups have.
-  const mhctLink = makeElement('a', 'mouse-mhct-link', 'View on MHCT →');
-  mhctLink.href = `https://api.mouse.rip/mhct-redirect${'item' === type ? '-item' : ''}/${mouse.unique_id}`;
-  mhctLink.target = '_blank';
-  mhctLink.addEventListener('click', (event) => {
-    // Don't toggle the popup closed when clicking the link.
-    event.stopPropagation();
-  });
-  mouseExtraInfoWrapper.append(mhctLink);
-
-  mouseDiv.append(mouseExtraInfoWrapper);
-
-  /**
-   * Position the extra info popup near the mouse, keeping it on screen.
-   */
-  const positionExtraInfo = () => {
-    const rect = mouseDiv.getBoundingClientRect();
-    let top = rect.top + 50;
-    let left = rect.left;
-
-    mouseExtraInfoWrapper.style.top = `${top}px`;
-    mouseExtraInfoWrapper.style.left = `${left}px`;
-
-    // Measure where it actually ended up, then keep it within the viewport.
-    const popupRect = mouseExtraInfoWrapper.getBoundingClientRect();
-    const margin = 10;
-    const leftOffset = popupRect.left - left;
-    const topOffset = popupRect.top - top;
-
-    if (popupRect.bottom > window.innerHeight - margin) {
-      top = rect.top - popupRect.height - 5 - topOffset;
-    }
-
-    left = Math.min(Math.max(left, margin - leftOffset), window.innerWidth - margin - popupRect.width - leftOffset);
-    top = Math.min(Math.max(top, margin - topOffset), window.innerHeight - margin - popupRect.height - topOffset);
-
-    mouseExtraInfoWrapper.style.top = `${top}px`;
-    mouseExtraInfoWrapper.style.left = `${left}px`;
-  };
-
-  // Click handler.
-  mouseDiv.addEventListener('click', async () => {
-    const isSelected = mouseDiv.classList.contains('mouse-container-selected');
-    if (isSelected) {
-      mouseDiv.classList.remove('mouse-container-selected');
-      return;
-    }
-
-    // Only allow one mouse to be selected at a time.
-    const allSelected = document.querySelectorAll('.mouse-container-selected');
-    if (allSelected) {
-      allSelected.forEach((selected) => {
-        selected.classList.remove('mouse-container-selected');
-      });
-    }
-
-    mouseDiv.classList.add('mouse-container-selected');
-    positionExtraInfo();
-
-    // Append minluck and MHCT data, then reposition since the popup size changed.
-    if ('mouse' === type) {
-      await addMinluckData(mouse, mouseExtraInfo);
-    }
-
-    await addMHCTData(mouse, mouseExtraInfo, type);
-    positionExtraInfo();
-  });
+  mouseDiv.addEventListener('click', () => toggleMouseHighlight(mouseDiv, mouse, type));
 
   return mouseDiv;
 };
@@ -586,7 +500,7 @@ const sortMiceByAr = (mice, direction) => {
  * @param {Array}       allMice     The mice data for the map.
  * @param {string}      initialSort The initial sort mode.
  */
-const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSort = 'none') => {
+const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSort = 'location') => {
   target.setAttribute('data-scavenger-sorted-by', initialSort);
   target.setAttribute('data-scavenger-sort-direction', 'descending');
 
@@ -639,20 +553,6 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
     return uniqueMice;
   };
 
-  /**
-   * Sort the mice by the AR.
-   *
-   * @param {string} direction The direction to sort in.
-   */
-  const sortMice = (direction = 'descending') => {
-    activateSortView();
-    const miceArray = sortMiceByAr(getUniqueMice(), direction);
-
-    // Replace the whole grouped/location view so no empty category wrappers or
-    // location-sort copies can survive when switching back to rate sorting.
-    container.replaceChildren(...miceArray);
-  };
-
   const environments = await getData('environments');
   if (!environments) {
     return;
@@ -703,9 +603,15 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
       }
     }
 
-    // Sort the locations by the number of mice in them
+    // Sort the locations by the number of mice in them. The direction flips the location
+    // order; the mice inside each location stay highest rate first. "Other" always goes last.
     const sortedLocations = Object.keys(miceByLocation).sort((a, b) => {
-      return miceByLocation[b].length - miceByLocation[a].length;
+      if ('other' === a || 'other' === b) {
+        return 'other' === a ? 1 : -1;
+      }
+
+      const difference = miceByLocation[b].length - miceByLocation[a].length;
+      return 'ascending' === direction ? -difference : difference;
     });
 
     // Make a header for each location and then append the mice to it
@@ -745,7 +651,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
 
       locationWrapper.append(header);
 
-      sortMiceByAr(miceByLocation[location], direction).forEach((mouse) => {
+      sortMiceByAr(miceByLocation[location], 'descending').forEach((mouse) => {
         locationContent.append(mouse);
       });
 
@@ -835,72 +741,76 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
     await sortMiceIntoLocations(direction);
   };
 
+  // View tiles, matching the inventory and trap selector sort controls. Clicking the active
+  // location tile again flips the location order.
+  const sortPanel = makeElement('div', 'mh-ui-sorted-sort');
+  const sortGroup = make('div', 'mh-ui-sorted-sort-group', '', sortPanel);
+  makeElement('div', 'mh-ui-sorted-sort-label', 'Show', sortGroup);
+  const sortTiles = make('div', 'mh-ui-sorted-sort-tiles', '', sortGroup);
+
+  const sortOptions = [{ id: 'location', text: 'Locations', title: 'Show by location', sort: sortByLocation }];
+
+  // Maps with groups start on them, so they're the first option.
+  if ('group' === initialSort) {
+    sortOptions.unshift({ id: 'group', text: 'Groups', title: 'Show the map groups', sort: () => processSortedTabClick(true) });
+  }
+
   /**
-   * Sort by attraction or drop rate, showing each goal exactly once.
+   * Mark the active sort tile and its direction.
    */
-  const sortByRate = () => {
-    const direction = getDirectionForSort('none');
-    target.setAttribute('data-scavenger-sorted-by', 'none');
-    target.setAttribute('data-scavenger-sort-direction', direction);
-    sortMice(direction);
+  const updateSortTiles = () => {
+    const sortBy = target.getAttribute('data-scavenger-sorted-by');
+    const direction = target.getAttribute('data-scavenger-sort-direction');
+
+    sortTiles.querySelectorAll('.mh-ui-sorted-sort-tile').forEach((tile) => {
+      const isActive = tile.getAttribute('data-sort') === sortBy;
+      tile.classList.toggle('active', isActive);
+
+      if (isActive && 'group' !== sortBy) {
+        tile.setAttribute('data-order', 'ascending' === direction ? 'asc' : 'desc');
+      } else {
+        tile.removeAttribute('data-order');
+      }
+    });
   };
 
-  // make buttons to toggle between drop rate sorting or by location
-  const toggleWrapper = makeElement('div', 'scavenger-toggle-wrapper');
+  sortOptions.forEach((option) => {
+    const tile = make('a', 'mh-ui-sorted-sort-tile', option.text, sortTiles);
+    tile.href = '#';
+    tile.title = option.title;
+    tile.setAttribute('data-sort', option.id);
 
-  makeMhButton({
-    element: 'button',
-    text: 'Sort by Location',
-    className: 'scavenger-toggle-button',
-    callback: async (event) => {
-      const button = event.currentTarget;
-      button.classList.add('disabled');
-      try {
-        await queueSort(sortByLocation);
-      } finally {
-        button.classList.remove('disabled');
+    tile.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      if (tile.classList.contains('disabled') || ('group' === option.id && tile.classList.contains('active'))) {
+        return;
       }
-    },
-    appendTo: toggleWrapper,
+
+      closeMouseHighlight();
+      tile.classList.add('disabled');
+      try {
+        await queueSort(option.sort);
+      } finally {
+        tile.classList.remove('disabled');
+        updateSortTiles();
+      }
+    });
   });
 
-  makeMhButton({
-    element: 'button',
-    text: isNormal ? 'Sort by Attraction Rate' : 'Sort by Drop Rate',
-    className: 'scavenger-toggle-button',
-    callback: async (event) => {
-      const button = event.currentTarget;
-      button.classList.add('disabled');
-      try {
-        await queueSort(sortByRate);
-      } finally {
-        button.classList.remove('disabled');
-      }
-    },
-    appendTo: toggleWrapper,
-  });
+  updateSortTiles();
 
-  makeMhButton({
-    element: 'button',
-    text: 'Reset Sort',
-    className: 'scavenger-toggle-button',
-    callback: async (event) => {
-      const button = event.currentTarget;
-      button.classList.add('disabled');
-      try {
-        await processSortedTabClick(true);
-      } finally {
-        button.classList.remove('disabled');
-      }
-    },
-    appendTo: toggleWrapper,
-  });
+  // Sit in the tab row, next to the tabs.
+  document.querySelectorAll('.mh-ui-sorted-sort').forEach((panel) => panel.remove());
 
+  const tabRow = document.querySelector('.treasureMapRootView-subTabRow');
   const sortedContainer = target.closest('#sorted-mice-container');
-  if (sortedContainer) {
-    sortedContainer.prepend(toggleWrapper);
+  if (tabRow) {
+    tabRow.append(sortPanel);
+  } else if (sortedContainer) {
+    sortedContainer.prepend(sortPanel);
   } else {
-    target.prepend(toggleWrapper);
+    target.prepend(sortPanel);
   }
 
   if ('location' === initialSort) {
@@ -921,8 +831,6 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
 
       if ('location' === sortBy) {
         await sortMiceIntoLocations(direction);
-      } else if ('none' === sortBy) {
-        sortMice(direction);
       }
     });
   };
@@ -1159,6 +1067,7 @@ const showSortedTab = () => {
  */
 const hideSortedTab = () => {
   removeArToggle();
+  document.querySelectorAll('.mh-ui-sorted-sort').forEach((panel) => panel.remove());
 };
 
 /**

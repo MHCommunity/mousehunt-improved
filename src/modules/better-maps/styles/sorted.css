@@ -1,10 +1,11 @@
 #sorted-mice-container {
+  position: relative;
   margin: 20px 5px;
 }
 
 /* While the sorted view is shown, the native goal/environment highlight popup has no
    visible anchor and no mouseout to dismiss it, so keep it from floating over the mice. */
-.treasureMapView-blockWrapper:has(#sorted-mice-container) .treasureMapView-highlight {
+.treasureMapView-blockWrapper:has(#sorted-mice-container) .treasureMapView-highlight:not(.mh-ui-goal-highlight) {
   display: none !important;
 }
 
@@ -63,6 +64,12 @@
   opacity: 0.9;
 }
 
+#sorted-mice-container .mouse-category-icon[src*="/images/environments/"] {
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 35%);
+  opacity: 1;
+}
+
 #sorted-mice-container .mouse-category-icon-title-wrapper {
   display: flex;
   align-items: center;
@@ -109,40 +116,11 @@
   flex: 1;
 }
 
-#sorted-mice-container .mouse-extra-info {
-  display: none;
-}
-
 #sorted-mice-container .mouse-container-selected,
 #sorted-mice-container .mouse-container:hover,
 #sorted-mice-container .mouse-container:focus {
   background: rgb(255 255 255 / 50%);
   outline: 1px solid rgb(25 25 25 / 35%);
-}
-
-#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
-  position: fixed;
-  z-index: 10;
-  box-sizing: border-box;
-  display: block;
-  width: 350px;
-  max-width: calc(100vw - 20px);
-  max-height: calc(100vh - 20px);
-  overflow-y: auto;
-  background-color: #eaeaea;
-  border: 1px solid #666;
-  border-radius: 3px;
-  box-shadow: 0 10px 15px 0 rgb(0 0 0 / 50%);
-  transform: translate(-75px);
-}
-
-#sorted-mice-container .mouse-subcategory-mice .mouse-container-selected .mouse-mhct-extra-info-wrapper {
-  right: -15px;
-  left: -15px;
-}
-
-#sorted-mice-container .mouse-container-selected .mouse-extra-info {
-  display: block;
 }
 
 #sorted-mice-container .mouse-image {
@@ -196,94 +174,6 @@
 
 #sorted-mice-container .mouse-subcategory-mice {
   padding: 4px;
-}
-
-#sorted-mice-container .mouse-locations {
-  display: flex;
-  flex-direction: column;
-}
-
-#sorted-mice-container .mouse-location {
-  display: inline-block;
-  margin-bottom: 5px;
-}
-
-#sorted-mice-container .mhct {
-  margin-top: 15px;
-}
-
-#sorted-mice-container .location-text-wrapper {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-}
-
-#sorted-mice-container .mouse-minluck {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  font-size: 11px;
-  border-bottom: 1px solid #ccc;
-}
-
-.mh-dark #sorted-mice-container .mouse-minluck {
-  border-color: var(--d-alt);
-}
-
-#sorted-mice-container .mouse-minluck-title {
-  font-weight: 700;
-}
-
-#sorted-mice-container .mouse-minluck-value {
-  display: inline-flex;
-  gap: 2px;
-  align-items: center;
-}
-
-#sorted-mice-container .mouse-minluck-icon {
-  width: 14px;
-  height: 14px;
-}
-
-.mh-dark #sorted-mice-container .mouse-mhct-link,
-.mh-dark #sorted-mice-container .location-text-wrapper {
-  border-color: var(--d-alt);
-}
-
-#sorted-mice-container .mouse-weakness {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-#sorted-mice-container .weakness-type {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-#sorted-mice-container .power-types img {
-  width: 15px;
-  height: 15px;
-  margin: 1px;
-}
-
-#sorted-mice-container .weakness-name {
-  flex: 0 0 100%;
-  margin-right: 2px;
-  margin-bottom: 2px;
-  font-size: 10px;
-  text-align: center;
-}
-
-#sorted-mice-container .mouse-locations-wrapper {
-  display: flex;
 }
 
 /* Keep overflow visible for the location pins and mouse details popovers. */
@@ -364,6 +254,7 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 30px;
+  padding: 0 10px;
 }
 
 .scavenger-location-content .mh-ui-ar {
@@ -436,31 +327,133 @@ hunter is standing in gets a smaller pin of its own rather than a second face. *
   width: calc(20% - 5px);
 }
 
-.scavenger-toggle-wrapper {
+/* Sort controls, matching the inventory sort panel. */
+.mh-ui-sorted-sort {
   display: flex;
-  gap: 10px;
-  justify-content: flex-start;
-  margin-bottom: 20px;
+  gap: 4px 16px;
+  align-items: center;
+  padding: 4px 10px 4px 4px;
+  margin-left: auto;
+  background-color: #f6f3eb;
+  border: 1px solid #d7cbb6;
+  border-radius: 5px;
 }
 
-.sorted-page[data-scavenger-sorted-by="none"] .sorted-page-content.treasureMapView-block-content.scavenger-sorted-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 30px;
+.mh-ui-sorted-sort-group {
+  display: flex;
+  align-items: center;
 }
 
-#sorted-mice-container .mhct-row {
-  padding: 5px;
-}
-
-#sorted-mice-container .mouse-mhct-link {
+/* Only on the Sorted tab. */
+.treasureMapRootView-subTabRow:not(:has(.sorted-map-tab.active)) .mh-ui-sorted-sort {
   display: none;
-  padding: 5px 10px;
-  font-size: 11px;
-  text-align: center;
-  border-top: 1px solid #ccc;
 }
 
-#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper .mouse-mhct-link {
-  display: block;
+.mh-ui-sorted-sort-label {
+  flex: 0 0 20px;
+  width: 20px;
+  font-size: 11px;
+  color: #96704b;
+  text-align: center;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+}
+
+.mh-ui-sorted-sort-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.mh-ui-sorted-sort-tile {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4e2f0b;
+  border: 1px solid #4e2f0b;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px #cdc9c6 inset;
+}
+
+.mh-ui-sorted-sort-tile:hover,
+.mh-ui-sorted-sort-tile:focus {
+  color: #4e2f0b;
+  text-decoration: none;
+  background-color: #cac0b2;
+}
+
+.mh-ui-sorted-sort-tile.active {
+  background-color: #e9dcc0;
+  box-shadow: inset 0 0 0 2px #e99b2c;
+}
+
+.mh-ui-sorted-sort-tile.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Sort direction badge on the active tile */
+.mh-ui-sorted-sort-tile[data-order]::after {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 14px;
+  height: 14px;
+  font-size: 8px;
+  line-height: 14px;
+  color: #fff;
+  text-align: center;
+  content: "▼";
+  background-color: #e99b2c;
+  border-radius: 50%;
+}
+
+.mh-ui-sorted-sort-tile[data-order="asc"]::after {
+  content: "▲";
+}
+
+.mh-dark .mh-ui-sorted-sort {
+  background-color: var(--d-surface-popover);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-ui-sorted-sort-label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-ui-sorted-sort-tile {
+  color: var(--d-text);
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px var(--d-border) inset;
+}
+
+.mh-dark .mh-ui-sorted-sort-tile:hover,
+.mh-dark .mh-ui-sorted-sort-tile:focus {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}
+
+.mh-dark .mh-ui-sorted-sort-tile.active {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+  box-shadow: inset 0 0 0 2px var(--d-orange);
+}
+
+/* The mouse popup, the same one the Goals tab shows. */
+#sorted-mice-container .treasureMapView-highlight.mh-ui-goal-highlight {
+  top: 0;
+  right: auto;
+  left: 0;
+  width: 300px;
+  max-width: calc(100vw - 20px);
 }

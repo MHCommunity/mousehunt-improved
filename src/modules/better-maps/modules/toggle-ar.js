@@ -1,4 +1,4 @@
-import { getArEl, makeMhButton, mapper } from '@utils';
+import { getArEl, getFlag, makeMhButton, mapper } from '@utils';
 
 /**
  * Add AR data to the map.
@@ -167,6 +167,18 @@ const addArToggle = async (tab = 'goals') => {
 
   isAdding = tab;
 
+  // The rates always show unless the flag brings back the button to hide them.
+  if (!getFlag('better-maps-ar-toggle')) {
+    mapView.classList.add('mh-ui-ar-showing');
+    mapView.classList.remove('mh-ui-ar-hidden');
+    if ('goals' === tab) {
+      await addArDataToMap(mapper('mapData'));
+    }
+
+    isAdding = false;
+    return;
+  }
+
   const exists = document.querySelector('.mh-ui-toggle-ar-button');
   if (exists) {
     exists.classList.remove('hidden');
@@ -219,4 +231,4 @@ const removeArToggle = () => {
   }
 };
 
-export { addArToggle, removeArToggle, clickArToggle };
+export { addArToggle, removeArToggle, clickArToggle, toggleAr };

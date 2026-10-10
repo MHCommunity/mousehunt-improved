@@ -447,16 +447,6 @@
   outline: 1px solid rgb(0 0 0 / 95%);
 }
 
-.mh-dark #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
-  color: var(--d-text);
-  background-color: var(--d-surface-inset);
-  border-color: var(--d-border);
-}
-
-.mh-dark #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper a {
-  color: var(--d-link);
-}
-
 .mh-dark .mhct-row {
   color: var(--d-text-muted);
   background-color: var(--d-surface-page);

@@ -1069,6 +1069,7 @@ input.treasureMapView-block-search-text {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  margin-left: 4px;
 }
 
 .mh-ui-map-solver-links {
@@ -1128,4 +1129,121 @@ input.treasureMapView-block-search-text {
 
 .mh-ui-completed-info-wrapper.mh-ui-completed-duster-wrapper {
   margin-left: 20px;
+}
+
+/* Let the goals list grow to fit every goal. */
+.mh-ui-goals-block .treasureMapView-block-content {
+  max-height: none;
+}
+
+/* Line the environments list up with the goals list: the goals set the height, and the
+   environments scroll inside it when there are more of them. */
+.treasureMapView-blockWrapper > div:has(> .treasureMapView-leftBlock > .mh-ui-goals-block):has(> .treasureMapView-rightBlock > .mh-ui-environments-block) {
+  display: flex;
+  align-items: stretch;
+}
+
+.treasureMapView-leftBlock:has(> .mh-ui-goals-block) {
+  display: flex;
+  flex-direction: column;
+}
+
+.treasureMapView-leftBlock > .mh-ui-goals-block {
+  flex: 1 1 auto;
+}
+
+.treasureMapView-rightBlock:has(> .mh-ui-environments-block):not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  contain: size;
+}
+
+.treasureMapView-rightBlock > .mh-ui-environments-block {
+  flex: 1 1 0;
+  min-height: 0;
+  margin-bottom: 10px;
+  overflow-y: auto;
+}
+
+.mh-ui-environments-completed-heading {
+  padding-top: 6px;
+  margin: 6px 4px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  border-top: 1px solid #ccc;
+}
+
+.mh-ui-environments-completed-heading-first {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+.mh-dark .mh-ui-environments-completed-heading {
+  color: var(--d-text-muted);
+  border-color: var(--d-border);
+}
+
+/* Environment popup: cap the height and scroll a long list of mice. */
+.treasureMapView-highlight.environment.active,
+.treasureMapView-highlight.environment.mh-ui-highlight-hovered {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 35px);
+}
+
+.treasureMapView-highlight.environment .treasureMapView-highlight-content {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.treasureMapView-highlight.environment .treasureMapView-goals-groups > div:not(.treasureMapView-block-content-heading) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 6px;
+}
+
+.treasureMapView-highlight.environment .treasureMapView-goals-group-goal {
+  min-width: 0;
+  margin: 0;
+}
+
+.treasureMapView-highlight.environment .treasureMapView-goals-group-goal-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Minluck values, shown in place of the weaknesses in the mouse popup. */
+.treasureMapView-highlight .mouse-minluck {
+  padding: 6px 4px 0;
+  text-align: center;
+}
+
+.treasureMapView-highlight .mouse-minluck-title {
+  margin-bottom: 4px;
+  font-size: 8.4px;
+  font-weight: 700;
+}
+
+.treasureMapView-highlight .mouse-minluck-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.treasureMapView-highlight .mouse-minluck-value {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.treasureMapView-highlight .mouse-minluck-icon {
+  width: 15px;
+  height: 15px;
 }
