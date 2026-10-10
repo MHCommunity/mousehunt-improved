@@ -10,7 +10,7 @@
 
 #sorted-mice-container .mouse-category-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 10px;
   place-items: stretch stretch;
   margin-bottom: 25px;
@@ -18,17 +18,21 @@
 
 #sorted-mice-container .mouse-category-wrapper {
   position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  padding-bottom: 5px;
   color: #000;
 
   /* Shorthand so category colors can also be gradients. */
   background: var(--mhui-map-group-color, #e6e6e6);
-  border: 1px solid rgb(5 5 5 / 50%);
-  box-shadow: 0 2px 1px -1px #909090;
+  border: 1px solid #999;
+  border-radius: 6px;
+  box-shadow: -1px -1px 1px #ccc inset;
 }
 
 .mh-dark #sorted-mice-container .mouse-category-wrapper {
   color: var(--d-text);
-  background: var(--mhui-map-group-color-dark, var(--mhui-map-group-color, var(--d-alt)));
+  background: var(--mhui-map-group-color-dark, var(--mhui-map-group-color, var(--d-surface-panel)));
   border-color: var(--d-border);
   box-shadow: none;
 }
@@ -38,23 +42,24 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 6px 10px;
-  margin-bottom: 3px;
+  padding: 5px;
   color: #000;
   background-color: rgb(255 255 255 / 65%);
-  border-bottom: 1px solid rgb(5 5 5);
+  border-radius: 5px 5px 0 0;
+  box-shadow: -1px -1px 1px #ccc inset;
 }
 
 .mh-dark #sorted-mice-container .mouse-category-header {
   color: var(--d-text);
   background-color: var(--d-transparent-70);
-  border-bottom-color: var(--d-border);
+  box-shadow: 0 -1px var(--d-border) inset;
 }
 
 #sorted-mice-container .mouse-category-icon {
+  flex-shrink: 0;
   width: 30px;
   height: 30px;
-  margin-right: 10px;
+  margin-right: 5px;
   opacity: 0.9;
 }
 
@@ -65,6 +70,7 @@
 
 #sorted-mice-container .mouse-category-title {
   font-size: 14px;
+  font-weight: 700;
 }
 
 #sorted-mice-container .mouse-category-subtitle {
@@ -74,7 +80,12 @@
 }
 
 #sorted-mice-container .mouse-category-mice {
-  padding: 4px;
+  padding: 5px 5px 0;
+}
+
+#sorted-mice-container .mouse-category-mice:empty,
+#sorted-mice-container .mouse-category-subtitle:empty {
+  display: none;
 }
 
 #sorted-mice-container .mouse-container {
@@ -82,6 +93,10 @@
   margin-bottom: 5px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+#sorted-mice-container .mouse-container:last-child {
+  margin-bottom: 0;
 }
 
 #sorted-mice-container .mouse-data {
@@ -151,30 +166,36 @@
 }
 
 #sorted-mice-container .mouse-subcategory-wrapper {
-  margin: 3px;
+  margin: 5px 5px 0;
   background: var(--mhui-map-subgroup-color, rgb(255 255 255 / 60%));
-  border: 1px solid rgb(0 0 0 / 60%);
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  box-shadow: -1px -1px 1px #ccc inset;
 }
 
 .mh-dark #sorted-mice-container .mouse-subcategory-wrapper {
   background: var(--mhui-map-subgroup-color-dark, var(--mhui-map-subgroup-color, var(--d-transparent-70)));
   border-color: var(--d-border);
+  box-shadow: none;
 }
 
 #sorted-mice-container .mouse-subcategory-header {
   position: relative;
-  padding: 8px;
-  margin-bottom: 3px;
+  padding: 5px;
   font-size: 11px;
-  border-bottom: 1px solid #999;
+  font-weight: 700;
+  background-color: rgb(255 255 255 / 75%);
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
 }
 
 .mh-dark #sorted-mice-container .mouse-subcategory-header {
+  background-color: var(--d-transparent-50);
   border-bottom-color: var(--d-border);
 }
 
 #sorted-mice-container .mouse-subcategory-mice {
-  padding: 0 5px;
+  padding: 4px;
 }
 
 #sorted-mice-container .mouse-locations {
@@ -265,6 +286,11 @@
   display: flex;
 }
 
+/* Keep overflow visible for the location pins and mouse details popovers. */
+#sorted-mice-container .mouse-category-current-floor .mouse-category-header {
+  padding-right: 34px;
+}
+
 .mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after {
   position: absolute;
   top: -4px;
@@ -293,17 +319,6 @@
   background-position: center;
   background-position-y: 0;
   background-size: 100%;
-}
-
-#sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
-  margin-bottom: 3px;
-  background-color: rgb(255 255 255 / 75%);
-  border-bottom: 1px solid rgb(0 0 0 / 60%);
-}
-
-.mh-dark #sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
-  background-color: var(--d-transparent-50);
-  border-bottom-color: var(--d-transparent-70);
 }
 
 /* The category around it is already carrying the profile pin, so the subcategory the
