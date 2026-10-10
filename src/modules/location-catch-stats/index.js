@@ -1,9 +1,11 @@
 import { addStyles, addSubmenuItem, getSetting } from '@utils';
 
+import addMenuIcon from './menu-icon';
 import { showSimplifiedModal } from './stats';
 import { showSummaryModal } from './summary';
 
 import crownColoredRowsStyles from './crown-colored-rows.css';
+import menuIconStyles from './menu-icon.css';
 import styles from './styles.css';
 import summaryStyles from './summary.css';
 
@@ -26,7 +28,7 @@ const showModal = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([styles, summaryStyles, getSetting('location-catch-stats.crown-colored-rows', true) ? crownColoredRowsStyles : null], 'location-catch-stats');
+  addStyles([styles, summaryStyles, menuIconStyles, getSetting('location-catch-stats.crown-colored-rows', true) ? crownColoredRowsStyles : null], 'location-catch-stats');
 
   addSubmenuItem({
     menu: 'mice',
@@ -34,6 +36,8 @@ const init = async () => {
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?',
     callback: showModal,
   });
+
+  addMenuIcon(showModal);
 };
 
 /**
@@ -44,7 +48,8 @@ export default {
   name: 'Location Catch Stats',
   type: 'progress-stats',
   default: true,
-  description: 'Add a “Location Catch Stats” option to the Mice menu to see your catch stats for the current location and every other location.',
+  description:
+    'Add a “Location Catch Stats” option to the Mice menu to see your catch stats for the current location and every other location. Use Custom Menu to add an uncaught mice count to the top menu.',
   load: init,
   settings,
 };

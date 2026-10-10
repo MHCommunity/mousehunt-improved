@@ -61,7 +61,6 @@
   border-color: var(--d-border);
 }
 
-.mh-dark:not(.mh-dark-light-menu) .mousehunt-improved-favorite-setups-icon::before,
 .mh-dark:not(.mh-dark-light-menu) .mousehunt-improved-journal-privacy-icon::before {
   filter: invert(1);
 }

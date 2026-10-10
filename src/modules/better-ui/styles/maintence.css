@@ -15,34 +15,6 @@
   position: absolute;
   top: -5px;
   right: 5px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 23px;
-  height: 23px;
-  padding: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: unset;
-  color: #e03a3a;
-  text-align: center;
-  content: "";
-  background: #fff;
-  border: 1px solid #d1d0cf;
-  border-color: #d1d0cf;
-  border-radius: 20px;
-  box-shadow: inset 0 0 3px -1px #d1d0cf;
-}
-
-.mh-dark .maintenance-banner .close {
-  background: var(--d-button);
-  border-color: var(--d-border);
-}
-
-.maintenance-banner .close:hover {
-  color: #fff;
-  background-color: #e03a3a;
 }
 
 #noscript .pEntry {

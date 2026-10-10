@@ -156,7 +156,7 @@
   background-color: var(--d-blue-darker);
 }
 
-.mh-dark .giftSelectorView-confirmPopup-content a {
+.mh-dark .giftSelectorView-confirmPopup-content a:not(.mh-improved-close) {
   color: var(--d-link);
 }
 
@@ -177,19 +177,6 @@
 
 .mh-dark #giftSelectorView-inbox {
   border-color: var(--d-border);
-}
-
-.mh-dark a.giftSelectorView-inboxHeader-closeButton {
-  color: var(--d-red);
-  background-color: var(--d-button);
-  border-color: var(--d-border);
-  box-shadow: none;
-}
-
-.mh-dark a.giftSelectorView-inboxHeader-closeButton:hover {
-  color: var(--d-hover-text);
-  background-color: var(--d-hover);
-  box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
 .mh-dark .giftSelectorView-inboxHeader {

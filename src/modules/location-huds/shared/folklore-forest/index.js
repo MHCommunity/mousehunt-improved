@@ -224,7 +224,7 @@ const addCloseToWarning = () => {
     return;
   }
 
-  const closeButton = makeElement('div', 'mhui-close-button', '×');
+  const closeButton = makeElement('div', ['mhui-close-button', 'mh-improved-close'], '✕');
   warning.append(closeButton);
   closeButton.addEventListener('click', () => {
     warning.classList.remove('active');

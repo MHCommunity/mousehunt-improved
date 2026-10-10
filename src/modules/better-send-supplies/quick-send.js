@@ -237,7 +237,7 @@ const buildPanel = async (btn, snuid) => {
 
   controls.append(qtyInput, sendBtn);
 
-  const close = makeElement('div', ['quickSendClose'], 'x');
+  const close = makeElement('div', ['quickSendClose', 'mh-improved-close', 'mh-improved-close-small'], '✕');
   close.setAttribute('role', 'button');
   close.setAttribute('tabindex', '0');
 

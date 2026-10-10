@@ -1,4 +1,4 @@
-import { addStyles, createPopup, getCurrentDialog, getCurrentPage, getSetting, hasMiniCRE, isAppleOS, onNavigation, saveSetting } from '@utils';
+import { addIconToMenu, addStyles, createPopup, getCurrentDialog, getCurrentPage, getSetting, hasMiniCRE, isAppleOS, onNavigation, saveSetting } from '@utils';
 
 import actions from './actions';
 
@@ -515,6 +515,18 @@ const init = async () => {
   addStyles(styles, 'keyboard-shortcuts');
 
   listenForKeypresses();
+
+  // Hidden until it's shown with Custom Menu.
+  addIconToMenu({
+    id: 'mousehunt-improved-keyboard-shortcuts',
+    title: 'Keyboard Shortcuts',
+    icon: 'https://i.mouse.rip/icons/help.png',
+    position: 'prepend',
+    action: (e) => {
+      e.preventDefault();
+      showHelpPopup();
+    },
+  });
 
   onNavigation(hasMiniCRE, {
     page: 'camp',

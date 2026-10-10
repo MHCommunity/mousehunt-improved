@@ -208,10 +208,6 @@ body.mh-dark {
   border-color: var(--d);
 }
 
-.mh-dark .mousehunt-improved-error p {
-  color: var(--d-red-dark);
-}
-
 .mh-dark .claimGiftPage__giftQuantity,
 .mh-dark .claimGiftPage__giftDescription {
   color: var(--d-text-dark);

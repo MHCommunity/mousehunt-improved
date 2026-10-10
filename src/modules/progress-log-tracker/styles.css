@@ -143,3 +143,9 @@
 .mh-dark .mh-jlt-table tbody td {
   color: var(--d-text-muted);
 }
+
+/* Classes rather than the id, so Custom Menu's copy of the item in its editor matches too. */
+.mousehunt-improved-journal-log-tracker.mhui-menu-show-countdown .mh-jlt-menu-name,
+.mousehunt-improved-journal-log-tracker:not(.mhui-menu-show-countdown) .mh-jlt-menu-countdown {
+  display: none;
+}

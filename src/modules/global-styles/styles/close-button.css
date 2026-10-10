@@ -1,0 +1,64 @@
+/*
+ * Shared round close button. Add .mh-improved-close to our own buttons and keep only
+ * positioning in the module CSS. The id/pseudo selectors are game markup we can't add a
+ * class to; they're listed here so they match the game's own specificity.
+ */
+.mh-improved-close,
+#messengerUINotification .messengerUINotificationClose,
+.journal.jsingle .close a::after {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #e03a3a;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d1d0cf;
+  border-radius: 50%;
+  box-shadow: 1px 2px 6px -4px #3e3e3e;
+}
+
+.mh-improved-close.mh-improved-close-small {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+}
+
+.mh-improved-close:hover,
+.mh-improved-close:focus-visible,
+#messengerUINotification .messengerUINotificationClose:hover,
+.journal.jsingle .close a:hover::after,
+.journal.jsingle .close a:focus-visible::after {
+  color: #c63636;
+  text-decoration: none;
+  background: #fde8e8;
+  border-color: #e8a5a5;
+}
+
+.mh-dark .mh-improved-close,
+.mh-dark #messengerUINotification .messengerUINotificationClose,
+.mh-dark .journal.jsingle .close a::after {
+  color: var(--d-text-muted);
+  background: var(--d-button);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-close:hover,
+.mh-dark .mh-improved-close:focus-visible,
+.mh-dark #messengerUINotification .messengerUINotificationClose:hover,
+.mh-dark .journal.jsingle .close a:hover::after,
+.mh-dark .journal.jsingle .close a:focus-visible::after {
+  color: var(--d-hover-text);
+  background: var(--d-hover);
+  border-color: var(--d-border);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}

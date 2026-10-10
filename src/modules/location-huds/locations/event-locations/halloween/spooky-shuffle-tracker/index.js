@@ -2,13 +2,16 @@ import { addStyles, lsGet, lsSet, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+// Keyed by year, so a game left unfinished last year doesn't show its cards on this year's board.
+const storageKey = `mh-spooky-shuffle-cards-${new Date().getFullYear()}`;
+
 const getSavedCards = () => {
-  return lsGet('mh-spooky-shuffle-cards', []);
+  return lsGet(storageKey, []);
 };
 
 const saveCard = (card, savedCards) => {
   savedCards[card.id] = card;
-  lsSet('mh-spooky-shuffle-cards', savedCards);
+  lsSet(storageKey, savedCards);
 
   return savedCards;
 };
@@ -46,7 +49,7 @@ const renderSavedCard = (card) => {
 };
 
 const cleanUpCompleteGame = () => {
-  localStorage.removeItem('mh-spooky-shuffle-cards');
+  localStorage.removeItem(storageKey);
   const shownCards = document.querySelectorAll('.halloweenMemoryGame-card-flipper');
   if (shownCards) {
     shownCards.forEach((card) => {
@@ -114,5 +117,8 @@ const processRequest = (req) => {
 
 export const spookyShuffleTracker = () => {
   addStyles(styles, 'spooky-shuffle-tracker');
+
+  // Saved cards from before the key included the year.
+  localStorage.removeItem('mh-spooky-shuffle-cards');
   onRequest('events/spooky_shuffle.php', processRequest);
 };

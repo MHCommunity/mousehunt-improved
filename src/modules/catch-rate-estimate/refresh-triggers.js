@@ -37,7 +37,8 @@ const addRefreshTriggers = (refresh) => {
     }
   };
 
-  onRequest('environment/', refreshIfStageChanged);
+  // Some location actions succeed with `success: 0` (starting a Skyport shipment), so don't require it.
+  onRequest('environment/', refreshIfStageChanged, true);
   onTurn(refreshIfStageChanged);
 };
 

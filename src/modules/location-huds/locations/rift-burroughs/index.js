@@ -66,7 +66,8 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
  * Update the HUD.
  */
 const hud = () => {
-  if (!user?.quests?.QuestRiftBurroughs) {
+  // Requests can fire before the mice data has loaded.
+  if (!areaMice || !user?.quests?.QuestRiftBurroughs) {
     return;
   }
 
@@ -108,6 +109,9 @@ const hud = () => {
   wrapper.append(mist);
 
   const availableMice = areaMice[mistTier];
+  if (!availableMice) {
+    return;
+  }
 
   const mouseWrapper = makeElement('div', 'mouse-list');
 

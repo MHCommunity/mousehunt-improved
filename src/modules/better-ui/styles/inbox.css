@@ -143,27 +143,10 @@ div#messengerUINotification {
   text-align: center;
 }
 
+/* Look comes from global-styles/close-button.css. */
 #messengerUINotification .messengerUINotificationClose {
   top: -14px;
   right: -5px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  font-size: 14px;
-  line-height: unset;
-  color: #e03a3a;
-  text-align: center;
-  border-color: #d1d0cf;
-  box-shadow: 1px 2px 6px -4px #3e3e3e;
-}
-
-#messengerUINotification .messengerUINotificationClose:hover {
-  color: #fff;
-  background-color: #e03a3a;
 }
 
 /* mini journal close */
@@ -173,57 +156,6 @@ div#messengerUINotification {
   margin: 0;
   background-color: transparent;
   border: none;
-
-  /* height: 0; */
-}
-
-.journal.jsingle .close a::after {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  z-index: 15;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: unset;
-  color: #e03a3a;
-  text-align: center;
-  content: "✕";
-  background: #fff;
-  border: 1px solid #ccc;
-  border-color: #d1d0cf;
-  border-radius: 20px;
-}
-
-.giftSelectorView-inboxHeader-closeButton {
-  position: absolute;
-  top: 3px;
-  right: 5px;
-  z-index: 15;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 23px;
-  height: 23px;
-  padding: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: unset;
-  color: #e03a3a;
-  text-align: center;
-  content: "✕";
-  background: #fff;
-  border: 1px solid #d1d0cf;
-  border-color: #d1d0cf;
-  border-radius: 20px;
-  box-shadow: inset 0 0 3px -1px #d1d0cf;
 }
 
 .journal.jsingle .close a {
@@ -233,12 +165,12 @@ div#messengerUINotification {
   color: transparent;
 }
 
-.giftSelectorView-inboxHeader-closeButton:hover,
-.giftSelectorView-inboxHeader-closeButton:focus,
-.journal.jsingle .close a:hover::after,
-.journal.jsingle .close a:focus::after {
-  color: #fff;
-  background-color: #e03a3a;
+.journal.jsingle .close a::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 15;
+  content: "✕";
 }
 
 #messengerUINotification .notificationMessageList .tab[data-tab="marketplace"] .message .clear-block {

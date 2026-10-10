@@ -8,6 +8,12 @@ const MODULE_ID = 'gifts-in-inbox';
 const STATE_KEY = 'mh-improved-gift-links-in-inbox-state-v1';
 const TAB_TYPE = 'gift_links';
 const TAB_NAME = 'Gift Links';
+const CACHE_KEY = 'mh-improved-gift-links-cache-v1';
+
+/**
+ * The minimum time between requests to the gift links API.
+ */
+const FETCH_INTERVAL = 15 * 60 * 1000;
 
 /**
  * How old a gift link can be and still count as new.
@@ -15,8 +21,6 @@ const TAB_NAME = 'Gift Links';
 const NEW_GIFT_MAX_AGE = 5 * 24 * 60 * 60 * 1000;
 
 let didBindClicks = false;
-let cachedLinks = [];
-let cacheTime = 0;
 let pendingFetch = null;
 
 /**
@@ -281,26 +285,60 @@ const normalizeLink = (link) => {
 };
 
 /**
- * Fetch the gift links from the API, using a short cache.
+ * Get the gift links cache saved by this or another tab.
  *
- * @param {boolean} force Whether to bypass the cache.
+ * @return {Object} The cache, with `links` and the `attemptedAt` time of the last request.
+ */
+const getCache = () => {
+  try {
+    const cache = lsGet(CACHE_KEY, {});
+    return {
+      links: Array.isArray(cache.links) ? cache.links : [],
+      attemptedAt: Number(cache.attemptedAt) || 0,
+    };
+  } catch (error) {
+    debug('Unable to read gift links cache', error);
+    return { links: [], attemptedAt: 0 };
+  }
+};
+
+/**
+ * Save the gift links cache to localStorage.
+ *
+ * @param {Object} cache The cache to save.
+ */
+const saveCache = (cache) => {
+  try {
+    lsSet(CACHE_KEY, cache);
+  } catch (error) {
+    debug('Unable to save gift links cache', error);
+  }
+};
+
+/**
+ * Fetch the gift links from the API. The cache is shared across page loads and tabs, and the API
+ * is requested at most once per FETCH_INTERVAL, whether or not the last request succeeded.
  *
  * @return {Promise<Array>} The gift links.
  */
-const fetchRewardLinks = async (force = false) => {
-  // cacheTime is only set on success, so an empty result is cached but failures still retry.
-  if (!force && cacheTime && Date.now() - cacheTime < 10 * 60 * 1000) {
-    // 10 minutes.
-    return cachedLinks;
-  }
-
+const fetchRewardLinks = async () => {
   // Share a request that's already running, so the pre-warm and the game's tab render on page
   // load don't each hit the API.
   if (pendingFetch) {
     return pendingFetch;
   }
 
+  const cache = getCache();
+  if (Date.now() - cache.attemptedAt < FETCH_INTERVAL) {
+    return cache.links;
+  }
+
+  // Record the attempt before requesting, so other tabs and failed requests wait out the interval.
+  saveCache({ ...cache, attemptedAt: Date.now() });
+
   pendingFetch = (async () => {
+    let links = cache.links;
+
     try {
       const response = await fetch('https://api.mouse.rip/gift-links', {
         credentials: 'omit',
@@ -312,17 +350,17 @@ const fetchRewardLinks = async (force = false) => {
       }
 
       const data = await response.json();
-      cachedLinks = Array.isArray(data.links) ? data.links.map((link) => normalizeLink(link)) : [];
-      cacheTime = Date.now();
+      links = Array.isArray(data.links) ? data.links.map((link) => normalizeLink(link)) : [];
+      saveCache({ links, attemptedAt: getCache().attemptedAt });
 
-      pruneState(cachedLinks);
+      pruneState(links);
     } catch (error) {
       debug('Unable to fetch reward links', error);
     } finally {
       pendingFetch = null;
     }
 
-    return cachedLinks;
+    return links;
   })();
 
   return pendingFetch;

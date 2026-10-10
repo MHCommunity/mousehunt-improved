@@ -23,6 +23,7 @@ const getBackgroundUrl = (el) => {
  *
  * Leaves out dividers, the travel shortcuts that change with the current location, the memory games,
  * the guide, and the shops other than the Marketplace, which are all a click away in the HUD menu anyway.
+ * The Egg Hunt Helper's link is only there during the event, so it's offered as its own item instead.
  *
  * @param {HTMLElement} item    The submenu item.
  * @param {string}      menuKey The menu it's in.
@@ -35,7 +36,7 @@ const isOfferedLink = (item, menuKey, key) => {
     return false;
   }
 
-  if (key.includes('memory')) {
+  if (key.includes('memory') || 'egg-hunt-helper' === key) {
     return false;
   }
 

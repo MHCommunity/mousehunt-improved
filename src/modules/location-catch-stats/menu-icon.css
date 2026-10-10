@@ -1,0 +1,44 @@
+.mousehuntHeaderView .menuItem.mh-catch-stats-menu-icon {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 25px;
+  padding: 0 4px;
+}
+
+.mh-catch-stats-menu-icon::before {
+  display: block;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  content: "";
+  background-color: currentcolor;
+  opacity: 0.5;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 3a4 4 0 0 0-2.6 7A8 8 0 0 0 4 13c0 4.4 3.6 8 8 8s8-3.6 8-8a8 8 0 0 0-.4-3A4 4 0 1 0 14.3 5 8 8 0 0 0 12 5a8 8 0 0 0-2.3.3A4 4 0 0 0 7 3Zm2.5 9a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Zm5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 16l1.5 1.5h-3L12 16Z"/></svg>'); /* stylelint-disable-line */
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.mh-catch-stats-menu-icon:hover::before {
+  opacity: 1;
+}
+
+.mh-catch-stats-menu-count {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mh-catch-stats-menu-count:empty {
+  display: none;
+}
+
+.mh-catch-stats-menu-complete .mh-catch-stats-menu-count {
+  color: #3a8a2f;
+}
+
+.mh-dark .mh-catch-stats-menu-complete .mh-catch-stats-menu-count {
+  color: var(--d-green);
+}

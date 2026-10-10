@@ -30,7 +30,7 @@ const addMaintenanceClasses = () => {
     }
   });
 
-  const close = makeElement('div', 'close', '✕');
+  const close = makeElement('div', ['close', 'mh-improved-close'], '✕');
   close.addEventListener('click', () => {
     banner.classList.add('mh-ui-fade-out');
 

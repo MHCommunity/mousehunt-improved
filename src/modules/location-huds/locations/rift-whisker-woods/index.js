@@ -27,8 +27,7 @@ const showTauntingWarning = () => {
   warning.classList.add('mhui-taunting-warning', 'active');
   warning.innerHTML = "You don't have a Taunting Charm equipped! You may reset your rage!";
 
-  const warningClose = makeElement('div', 'mhui-taunting-warning-close');
-  warningClose.innerHTML = '×';
+  const warningClose = makeElement('div', ['mhui-taunting-warning-close', 'mh-improved-close'], '✕');
 
   /**
    * Close the warning.

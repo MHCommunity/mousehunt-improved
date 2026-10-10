@@ -1,4 +1,4 @@
-import { debuglog, getArForMouse, getData, getFlag } from '@utils';
+import { cacheGet, cacheSet, debuglog, fetchMouseRip, getArForMouse, getData, getFlag } from '@utils';
 
 import { getStage } from '@utils/shared/stages';
 
@@ -37,6 +37,34 @@ const getAttractionRateSource = () => {
   return getFlag('cre-live-attraction-rates') ? 'live' : defaultAttractionRateSource;
 };
 
+const inflightLocationRates = new Map();
+
+/**
+ * Get a location's attraction rates from the api, nested by stage, cheese and charm, cached.
+ *
+ * @param {string} environment The data's environment.
+ *
+ * @return {Promise<Object|null>} The rates, or null when the location has none.
+ */
+const getLocationRates = async (environment) => {
+  const cacheKey = `cre-attraction-rates-${environment}`;
+  const cached = await cacheGet(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  if (!inflightLocationRates.has(environment)) {
+    inflightLocationRates.set(
+      environment,
+      fetchMouseRip(`attraction/location/${encodeURIComponent(environment)}`)
+        .then((rates) => (rates && Object.keys(rates).length ? cacheSet(cacheKey, rates) : null))
+        .finally(() => inflightLocationRates.delete(environment))
+    );
+  }
+
+  return inflightLocationRates.get(environment);
+};
+
 /**
  * Get attraction rates from the api's location-keyed data.
  *
@@ -51,7 +79,7 @@ const getDataRates = async (mice, stage) => {
     return rates;
   }
 
-  const locationRates = (await getData('mice-attraction-rates-by-location'))?.[stage.dataEnvironment];
+  const locationRates = await getLocationRates(stage.dataEnvironment);
   if (!locationRates) {
     return rates;
   }

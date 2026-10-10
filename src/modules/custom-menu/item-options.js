@@ -20,6 +20,16 @@ const itemOptions = {
       default: false,
     },
   ],
+  'favorite-setups': [
+    {
+      key: 'location-only',
+      label: 'Only list setups for your current location',
+      setting: 'favorite-setups.menu-location-only',
+      module: 'favorite-setups',
+      default: false,
+    },
+  ],
+  'mousehunt-improved-journal-log-tracker': [{ key: 'countdown', label: 'Show the countdown to your next log', default: true }],
   'super-brie': [
     { key: 'name', label: 'Show “SUPER|brie+:”', default: true },
     { key: 'get-more', label: 'Show “Get More”', default: true },

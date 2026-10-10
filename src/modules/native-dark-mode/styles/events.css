@@ -24,3 +24,46 @@
   --d-input-bg: #fcf2c6;
   --d-input-text: var(--d-text-dark);
 }
+
+/* The Eggscavator. */
+.mh-dark .springHuntHUD-popup hr {
+  height: 2px;
+  background-color: var(--d-border);
+  border: none;
+}
+
+.mh-dark .springHuntHUD-popup-regionDirectory {
+  border-right-color: var(--d-border);
+}
+
+.mh-dark .springHuntHUD-popup-regionDirectory-link {
+  box-sizing: border-box;
+  color: var(--d-text);
+  background: var(--d-tab);
+  border: 1px solid var(--d-border);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+}
+
+.mh-dark .springHuntHUD-popup-regionDirectory-link:hover {
+  color: var(--d-hover-text);
+  background: var(--d-hover);
+}
+
+.mh-dark .springHuntHUD-popup-regionDirectory-link.active {
+  color: var(--d-selected-text);
+  background: var(--d-selected);
+}
+
+.mh-dark .springHuntHUD-popup-egg-quantity {
+  color: var(--d-text);
+  background-color: var(--d-transparent-90);
+  border-color: var(--d-border);
+}
+
+/* The game sets this field's background with !important. */
+.mh-dark .springHuntHUD-input {
+  color: var(--d-input-text);
+  background-color: var(--d-surface-page) !important;
+  border-color: var(--d-input-border);
+}

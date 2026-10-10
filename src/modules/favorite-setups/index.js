@@ -1,5 +1,5 @@
 import {
-  addIconToMenu,
+  addHeaderMenuTab,
   addOnboardingTip,
   addStyles,
   cacheGet,
@@ -8,6 +8,7 @@ import {
   debuglog,
   doRequest,
   getCurrentLocation,
+  getCurrentLocationName,
   getCurrentPage,
   getData,
   getFlag,
@@ -721,6 +722,84 @@ const armItem = async (items) => {
 };
 
 /**
+ * Arm a favorite setup. A charm or bait that's run out is left out rather than blocking the rest.
+ *
+ * @param {FavoriteSetup} setup The setup to arm.
+ *
+ * @return {Promise<boolean>} Whether it was armed.
+ */
+const armSetup = async (setup) => {
+  // Don't try to arm items that we don't have, since the game will just throw an error.
+  let armable = await getArmableItemIds();
+  if (armable.size && getMissingItemTypes(setup, armable).length) {
+    // The cached list may be stale (e.g. bait crafted from a location HUD), so check again.
+    clearTrapComponents();
+    armable = await getArmableItemIds();
+  }
+
+  let trinketId = setup.trinket_id;
+  let baitId = setup.bait_id;
+  if (armable.size) {
+    const missing = getMissingItemTypes(setup, armable);
+    if (missing.includes('trinket')) {
+      trinketId = null;
+    }
+
+    if (missing.includes('bait')) {
+      baitId = null;
+    }
+
+    if (missing.some((type) => !optionalItemTypes.includes(type))) {
+      return false;
+    }
+  }
+
+  const toArm = [];
+
+  // eslint-disable-next-line eqeqeq
+  if (setup.base_id && setup.base_id != user.base_item_id) {
+    toArm.push({ id: setup.base_id, type: 'base' });
+  }
+
+  // eslint-disable-next-line eqeqeq
+  if (setup.weapon_id && setup.weapon_id != user.weapon_item_id) {
+    toArm.push({ id: setup.weapon_id, type: 'weapon' });
+  }
+
+  // A setup without a charm or bait means those slots should be empty, so disarm them.
+  if (trinketId) {
+    // eslint-disable-next-line eqeqeq
+    if (trinketId != user.trinket_item_id) {
+      toArm.push({ id: trinketId, type: 'trinket' });
+    }
+  } else if (user.trinket_item_id) {
+    toArm.push({ id: null, type: 'trinket' });
+  }
+
+  if (baitId) {
+    // eslint-disable-next-line eqeqeq
+    if (baitId != user.bait_item_id) {
+      toArm.push({ id: baitId, type: 'bait' });
+    }
+  } else if (user.bait_item_id) {
+    toArm.push({ id: null, type: 'bait' });
+  }
+
+  if (!toArm.length) {
+    return true;
+  }
+
+  try {
+    await armItem(toArm);
+    return true;
+  } catch {
+    // The arm failed, so refresh what we have for next time.
+    clearTrapComponents();
+    return false;
+  }
+};
+
+/**
  * Make the setups sortable with drag and drop.
  *
  * @param {Element} container The container element with the setup rows.
@@ -992,85 +1071,15 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           return;
         }
 
-        // Don't try to arm items that we don't have, since the game will just throw an error.
-        let armable = await getArmableItemIds();
-        if (armable.size && getMissingItemTypes(thisSetup, armable).length) {
-          // The cached list may be stale (e.g. bait crafted from a location HUD), so check again.
-          clearTrapComponents();
-          armable = await getArmableItemIds();
-        }
+        if (!(await armSetup(thisSetup))) {
+          await highlightMissingItems([setupContainer]);
 
-        // A missing charm or bait shouldn't block the setup, it just gets armed without it.
-        let trinketId = thisSetup.trinket_id;
-        let baitId = thisSetup.bait_id;
-        if (armable.size) {
-          const missing = getMissingItemTypes(thisSetup, armable);
-          if (missing.includes('trinket')) {
-            trinketId = null;
-          }
+          setupContainer.classList.add('flash-error');
+          setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
 
-          if (missing.includes('bait')) {
-            baitId = null;
-          }
+          armButton.classList.remove('loading');
 
-          if (missing.some((type) => !optionalItemTypes.includes(type))) {
-            await highlightMissingItems([setupContainer]);
-
-            setupContainer.classList.add('flash-error');
-            setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
-
-            armButton.classList.remove('loading');
-
-            return;
-          }
-        }
-
-        const toArm = [];
-
-        // eslint-disable-next-line eqeqeq
-        if (thisSetup.base_id && thisSetup.base_id != user.base_item_id) {
-          toArm.push({ id: thisSetup.base_id, type: 'base' });
-        }
-
-        // eslint-disable-next-line eqeqeq
-        if (thisSetup.weapon_id && thisSetup.weapon_id != user.weapon_item_id) {
-          toArm.push({ id: thisSetup.weapon_id, type: 'weapon' });
-        }
-
-        // A setup without a charm or bait means those slots should be empty, so disarm them.
-        if (trinketId) {
-          // eslint-disable-next-line eqeqeq
-          if (trinketId != user.trinket_item_id) {
-            toArm.push({ id: trinketId, type: 'trinket' });
-          }
-        } else if (user.trinket_item_id) {
-          toArm.push({ id: null, type: 'trinket' });
-        }
-
-        if (baitId) {
-          // eslint-disable-next-line eqeqeq
-          if (baitId != user.bait_item_id) {
-            toArm.push({ id: baitId, type: 'bait' });
-          }
-        } else if (user.bait_item_id) {
-          toArm.push({ id: null, type: 'bait' });
-        }
-
-        if (toArm.length) {
-          try {
-            await armItem(toArm);
-          } catch {
-            // The arm failed, so refresh what we have and highlight anything that's missing.
-            clearTrapComponents();
-            await highlightMissingItems([setupContainer]);
-
-            setupContainer.classList.add('flash-error');
-            setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
-
-            armButton.classList.remove('loading');
-
-            return;
-          }
+          return;
         }
 
         const currentSetupRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="current"]');
@@ -1623,17 +1632,133 @@ const toggleFavoriteSetups = async () => {
   toggleBlueprint('favorite-setups', content);
 };
 
+const starIcon = `data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#e8b23a"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" /></svg>'
+)}`;
+
 /**
- * Add an icon to the menu.
+ * Get the setups to list in the top menu dropdown: the current location's first, or only those if
+ * the dropdown is set to only show them.
+ *
+ * @return {Promise<FavoriteSetup[]>} The setups.
  */
-const addIcon = () => {
-  addIconToMenu({
-    id: 'favorite-setups',
-    classname: 'mousehunt-improved-favorite-setups-icon',
-    title: 'Favorite Setups',
-    action: toggleFavoriteSetups,
-    position: 'prepend',
+const getMenuSetups = async () => {
+  const setups = (await getFavoriteSetups(false)).filter((setup) => setup?.id);
+  const location = getCurrentLocation();
+  const here = setups.filter((setup) => setup.location && setup.location === location);
+
+  if (getSetting('favorite-setups.menu-location-only', false)) {
+    return here;
+  }
+
+  return [...here, ...setups.filter((setup) => !here.includes(setup))];
+};
+
+/**
+ * Check whether a setup is the one that's armed.
+ *
+ * @param {FavoriteSetup} setup The setup.
+ *
+ * @return {boolean} Whether it's armed.
+ */
+const isArmedSetup = (setup) => {
+  const current = getCurrentSetup();
+  return ['bait_id', 'base_id', 'weapon_id', 'trinket_id'].every((key) => (setup[key] || '') === (current[key] || ''));
+};
+
+/**
+ * Fill the top menu dropdown with the favorite setups.
+ *
+ * @param {HTMLElement} tab     The dropdown tab.
+ * @param {HTMLElement} content The dropdown content.
+ */
+const renderMenuDropdown = async (tab, content) => {
+  const setups = await getMenuSetups();
+  content.replaceChildren();
+
+  if (!setups.length) {
+    const empty = makeElement('div', 'mh-improved-favorite-setups-menu-empty');
+    empty.textContent = getSetting('favorite-setups.menu-location-only', false) ? `No setups saved for ${getCurrentLocationName()}` : 'No setups saved yet';
+    content.append(empty);
+  }
+
+  for (const setup of setups) {
+    const row = makeElement('a', 'mh-improved-favorite-setups-menu-setup');
+    row.href = '#';
+    row.textContent = setup.name || 'Unnamed setup';
+    row.classList.toggle('armed', isArmedSetup(setup));
+    row.classList.toggle('here', Boolean(setup.location) && setup.location === getCurrentLocation());
+
+    row.addEventListener('click', async (event) => {
+      event.preventDefault();
+      if (row.classList.contains('loading')) {
+        return;
+      }
+
+      row.classList.add('loading');
+      const armed = await armSetup(setup);
+      row.classList.remove('loading');
+
+      if (!armed) {
+        row.classList.add('failed');
+        row.title = 'You’re missing an item from this setup';
+        setTimeout(() => row.classList.remove('failed'), 1500);
+        return;
+      }
+
+      tab.classList.remove('expanded');
+      updateFavoriteSetupName();
+    });
+
+    content.append(row);
+  }
+
+  const manage = makeElement('a', 'mh-improved-favorite-setups-menu-manage');
+  manage.href = '#';
+  manage.textContent = 'Manage setups';
+  manage.addEventListener('click', (event) => {
+    event.preventDefault();
+    tab.classList.remove('expanded');
+    toggleFavoriteSetups();
   });
+  content.append(manage);
+};
+
+/**
+ * Add a Favorite Setups dropdown to the top menu, to arm a setup from any page. It's hidden until
+ * it's shown with Custom Menu.
+ */
+const addMenuDropdown = () => {
+  if (document.querySelector('.menuItem.mh-improved-favorite-setups-menu')) {
+    return;
+  }
+
+  const tab = makeElement('div', ['menuItem', 'dropdown', 'mh-improved-favorite-setups-menu']);
+  tab.title = 'Favorite Setups';
+  const label = makeElement('span', 'mhui-menu-label');
+  label.textContent = 'Favorite Setups';
+  const content = makeElement('div', 'dropdownContent');
+  tab.append(label, makeElement('div', 'arrow'), content);
+
+  tab.addEventListener('click', (event) => {
+    if (content.contains(event.target)) {
+      return;
+    }
+
+    const isOpening = !tab.classList.contains('expanded');
+    tab.classList.toggle('expanded', isOpening);
+    if (isOpening) {
+      renderMenuDropdown(tab, content);
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!tab.contains(event.target)) {
+      tab.classList.remove('expanded');
+    }
+  });
+
+  addHeaderMenuTab(tab, { id: 'favorite-setups', name: 'Favorite Setups', icon: starIcon, order: 10 });
 };
 
 /**
@@ -1662,9 +1787,7 @@ const init = async () => {
   onRequest('users/gettrapcomponents.php', clearTrapComponents);
   onRequest('users/changetrap.php', clearTrapComponents);
 
-  if (getSetting('experiments.favorite-setups-toggle', false)) {
-    addIcon();
-  }
+  addMenuDropdown();
 
   onEvent('mh-improved-toggle-favorite-setups', toggleFavoriteSetups);
 };

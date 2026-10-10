@@ -209,7 +209,7 @@ const addCloseButtonToConfirmPopup = (resp, req) => {
     return;
   }
 
-  const closeButton = makeElement('a', 'giftSelectorView-confirmPopup-submitCloseButton', '✕');
+  const closeButton = makeElement('a', ['giftSelectorView-confirmPopup-submitCloseButton', 'mh-improved-close'], '✕');
   closeButton.addEventListener('click', () => {
     hg.views.GiftSelectorView.submitConfirm(closeButton);
   });
@@ -225,7 +225,7 @@ const lineBreakGiftFooter = () => {
     ['more free gifts today. You can', 'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'],
     [
       'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
-      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>',
+      'class="giftSelectorView-inboxHeader-closeButton mh-improved-close" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>',
     ],
   ]);
 };

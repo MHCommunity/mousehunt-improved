@@ -92,17 +92,6 @@
   background-color: var(--d-button);
 }
 
-.mh-dark .journal.jsingle .close a::after {
-  color: var(--d-red);
-  background-color: var(--d-button);
-  border-color: var(--d-border);
-}
-
-.mh-dark .journal.jsingle .close a:hover::after {
-  color: var(--d-red);
-  background-color: var(--d-hover);
-}
-
 .mh-dark .journal .entry.adventureBook-journal.goal {
   background-color: var(--d-blue-dark);
   box-shadow: -10px 0 57px var(--d-blue) inset;

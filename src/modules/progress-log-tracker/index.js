@@ -1,4 +1,5 @@
 import {
+  addIconToMenu,
   addStyles,
   createPopup,
   dbGetAll,
@@ -20,6 +21,7 @@ import {
 import styles from './styles.css';
 
 const MODULE_ID = 'journal-log-tracker';
+const MENU_ID = 'mousehunt-improved-journal-log-tracker';
 const DB_STORE = 'journal-log-tracker';
 
 /**
@@ -43,6 +45,7 @@ const EXACT_TIMESTAMP_LIMIT = 250;
 
 let cachedLogs = [];
 let buttonInterval = null;
+let menuInterval = null;
 let currentPopup = null;
 
 /**
@@ -740,11 +743,67 @@ const migrateFromUserscript = async () => {
 };
 
 /**
+ * Update the countdown on the top menu item.
+ */
+const updateMenuItem = () => {
+  const countdown = document.querySelector(`#${MENU_ID} .mh-jlt-menu-countdown`);
+  if (countdown) {
+    countdown.textContent = getButtonLabel();
+  }
+};
+
+/**
+ * Add a top menu item that opens the tracker. It's hidden until it's shown with Custom Menu, which
+ * also picks whether it shows its name or the countdown to the next log.
+ */
+const addMenuItem = () => {
+  addIconToMenu({
+    id: MENU_ID,
+    title: 'Journal Log Tracker',
+    icon: 'https://i.mouse.rip/icons/book.png',
+    position: 'prepend',
+    action: (event) => {
+      event.preventDefault();
+      showPopup();
+    },
+  });
+
+  const item = document.querySelector(`#${MENU_ID}`);
+  if (!item) {
+    return;
+  }
+
+  const label = makeElement('span', 'mhui-menu-label');
+  makeElement('span', 'mh-jlt-menu-name', 'Journal Logs', label);
+  makeElement('span', 'mh-jlt-menu-countdown', '', label);
+  item.append(label);
+  updateMenuItem();
+
+  // Timers only show minutes, so updating once a minute is enough.
+  if (!menuInterval) {
+    menuInterval = setInterval(updateMenuItem, 60 * 1000);
+  }
+};
+
+/**
+ * Remove the top menu item.
+ */
+const removeMenuItem = () => {
+  if (menuInterval) {
+    clearInterval(menuInterval);
+    menuInterval = null;
+  }
+
+  document.querySelector(`#${MENU_ID}`)?.remove();
+};
+
+/**
  * Refresh tracker state after the journal pipeline settles a batch.
  */
 const processJournalBatch = async () => {
   await scrapeJournal();
   showButton();
+  updateMenuItem();
 };
 
 /**
@@ -760,8 +819,13 @@ const init = async () => {
   onJournalEntriesProcessed(processJournalBatch);
 
   onModuleToggle(MODULE_ID, {
-    enable: processJournalBatch,
+    enable: () => {
+      addMenuItem();
+      processJournalBatch();
+    },
     disable: () => {
+      removeMenuItem();
+
       if (buttonInterval) {
         clearInterval(buttonInterval);
         buttonInterval = null;
@@ -770,6 +834,8 @@ const init = async () => {
       document.querySelector('.mh-jlt-button')?.remove();
     },
   });
+
+  addMenuItem();
 
   await refreshLogsCache();
   await migrateFromUserscript();
