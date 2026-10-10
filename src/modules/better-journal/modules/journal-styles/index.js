@@ -1,4 +1,13 @@
-import { addStyles, getFlag, getUserTitle, getUserTitleShield, makeElement, onJournalEntry } from '@utils';
+import {
+  addStyles,
+  getFlag,
+  getUserTitle,
+  getUserTitleShield,
+  makeElement,
+  onDialogShow,
+  onJournalEntry,
+  setMultipleTimeout,
+} from '@utils';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -206,6 +215,27 @@ const addGiftEntryToggle = (model) => {
 };
 
 /**
+ * Wrap the mouse names in the progress log popup so they can be truncated.
+ */
+const wrapProgressLogMouseNames = () => {
+  const mice = document.querySelectorAll('#overlayPopup.hunting_summary .miceContainer a');
+  mice.forEach((mouse) => {
+    if (mouse.querySelector('.mh-improved-mouse-name')) {
+      return;
+    }
+
+    const textNode = [...mouse.childNodes].findLast((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    if (!textNode) {
+      return;
+    }
+
+    const name = makeElement('span', 'mh-improved-mouse-name');
+    name.textContent = textNode.textContent.trim();
+    textNode.replaceWith(name);
+  });
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
@@ -214,6 +244,8 @@ export default async () => {
   if (!getFlag('show-lucky-icon')) {
     addStyles('.journal .content .entry .journaltext .lucky::after { display: none; }', 'better-journal-styles-hide-lucky-icon');
   }
+
+  onDialogShow('hunting_summary', () => setMultipleTimeout(wrapProgressLogMouseNames, 500, 1000, 3000));
 
   onJournalEntry(cleanBadgeText, {
     id: 'better-journal-styles-badge-text',

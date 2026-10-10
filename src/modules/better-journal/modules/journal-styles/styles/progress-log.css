@@ -122,17 +122,51 @@
 
 #overlayPopup.hunting_summary .miceContainer a {
   display: grid;
-  grid-template-columns: 0 50px auto;
+  grid-template-columns: 0 50px minmax(0, 1fr);
   align-items: center;
   padding: 6px 0;
   font-size: 10px;
   line-height: 14px;
 }
 
+#overlayPopup.hunting_summary .miceContainer a:hover {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  width: max-content;
+  min-width: 100%;
+  background-color: #eee;
+}
+
+#overlayPopup.hunting_summary .miceContainer .mh-improved-mouse-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#overlayPopup.hunting_summary .miceContainer a:hover .mh-improved-mouse-name {
+  padding-right: 6px;
+  overflow: visible;
+}
+
 #overlayPopup.hunting_summary .miceContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   place-items: start stretch;
+}
+
+/* Only one location hunted: span both columns with 4 mice per row. */
+#overlayPopup.hunting_summary .leftColumn:has(+ .rightColumn:empty) {
+  float: none;
+  width: auto;
+}
+
+#overlayPopup.hunting_summary .leftColumn:has(+ .rightColumn:empty) .miceContainer {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#overlayPopup.hunting_summary .leftColumn:has(+ .rightColumn:empty) + .rightColumn {
+  display: none;
 }
 
 #overlayPopup.hunting_summary .miceContainer .catches {
@@ -151,6 +185,7 @@
 }
 
 #overlayPopup.hunting_summary .lootContainer a {
+  position: relative;
   width: 160px;
 }
 
@@ -207,9 +242,17 @@
 
 #overlayPopup.hunting_summary .lootContainer a:hover .wrapper {
   position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
   width: fit-content;
+  min-width: 100%;
   overflow: visible;
   background-color: #eee;
+}
+
+.mh-dark #overlayPopup.hunting_summary .lootContainer a:hover {
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .mh-dark #overlayPopup.hunting_summary .lootContainer a:hover .wrapper {
