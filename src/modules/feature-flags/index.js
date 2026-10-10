@@ -1,31 +1,13 @@
-import { getFlag, getSetting, onSettingsChange, saveSetting } from '@utils';
+import { getSetting, loadFeatures, onSettingsChange, saveSetting } from '@utils';
 
-import infiniteSuperBrie from './modules/infinite-super-brie';
-import rankupForecaster from './modules/rank-up-forecaster';
-import showFabledProgressBarText from './modules/fake-fabled';
-import socialNoop from './modules/social';
-
+import featureManifest from './feature-manifest';
 import settings from './settings';
 
 /**
  * Initialize the module.
  */
 const init = () => {
-  if (getFlag('social-noop') || getFlag('twitter')) {
-    socialNoop();
-  }
-
-  if (!getFlag('userscript-styles-no-rankup-forecaster')) {
-    rankupForecaster();
-  }
-
-  if (getFlag('fake-fabled')) {
-    showFabledProgressBarText();
-  }
-
-  if (getFlag('infinite-super-brie')) {
-    infiniteSuperBrie();
-  }
+  loadFeatures(featureManifest);
 
   onSettingsChange('override-flags', () => {
     const overrideFlags = getSetting('override-flags', '');

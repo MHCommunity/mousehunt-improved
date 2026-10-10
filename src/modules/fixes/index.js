@@ -1,11 +1,6 @@
-import { addStyles } from '@utils';
+import { addStyles, loadFeatures } from '@utils';
 
-import itemPage from './modules/item-page';
-import marketplaceBuyButton from './modules/marketplace-buy-button';
-import passingParcel from './modules/passing-parcel';
-import riftTooltipQuantities from './modules/rift-tooltip-quantities';
-import teamMemberLinks from './modules/team-member-links';
-import trapSelectorDoubleBinding from './modules/trap-selector-double-binding';
+import featureManifest from './feature-manifest';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -16,12 +11,7 @@ const styles = imported;
 const init = () => {
   addStyles(styles, 'fixes');
 
-  itemPage();
-  marketplaceBuyButton();
-  passingParcel();
-  riftTooltipQuantities();
-  teamMemberLinks();
-  trapSelectorDoubleBinding();
+  loadFeatures(featureManifest);
 };
 
 /**
