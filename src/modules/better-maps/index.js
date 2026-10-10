@@ -4,12 +4,12 @@ import {
   addStyles,
   doEvent,
   getData,
+  getFlag,
   getGlobal,
   getMapData,
   getRelicHunterLocation,
-  getFlag,
   getSetting,
-  isSidebarHidden,
+  loadFeatures,
   makeElement,
   makeMhButton,
   onDialogHide,
@@ -30,13 +30,11 @@ import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import { updateScrollsMarkup, updateSubTabListeners } from './modules/scrolls';
-import catchDates from './modules/catch-dates';
-import draggableHighlight from './modules/draggable-highlight';
 import enhancePreviewButton from './modules/preview';
-import sidebar from './modules/sidebar';
 import { updateCommunityListings } from './modules/community';
 import { updateShopsMarkup } from './modules/shops';
 
+import featureManifest from './feature-manifest';
 import { createMapRuntime } from './runtime';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
@@ -717,18 +715,7 @@ const init = () => {
 
   installSurfaceHooks();
 
-  // Only add map goals to the sidebar when there's a sidebar to add them to and they've been asked for.
-  if (!isSidebarHidden() && getSetting('better-maps.show-sidebar-goals', true)) {
-    sidebar();
-  }
-
-  if (getSetting('better-maps.catch-dates', false)) {
-    catchDates();
-  }
-
-  if (getSetting('better-maps.draggable-highlight')) {
-    draggableHighlight();
-  }
+  loadFeatures(featureManifest);
 
   onEvent('map_navigation_tab_click', runMapEnhancements);
 

@@ -7,6 +7,7 @@ import {
   getFlag,
   getRelicHunterLocation,
   getSetting,
+  loadFeatures,
   makeElement,
   makeFavoriteButton,
   makeMhButton,
@@ -17,12 +18,9 @@ import {
   wikiUrl,
 } from '@utils';
 
-import hoverMice from './modules/hover-mice';
-import kingsCrowns from './modules/kings-crowns';
-import mousePage from './modules/mouse-page';
+import featureManifest from './feature-manifest';
 import settings from './settings';
-import sidebar from './modules/sidebar';
-import { addPrizeInfo, isPrizeMouse, prizeInfo } from './modules/prize-info';
+import { addPrizeInfo, isPrizeMouse } from './modules/prize-info';
 
 import mhctRatesStyles from '../../utils/styles/mhct-rates.css';
 import styles from './styles.css';
@@ -708,17 +706,8 @@ let minlucks;
 const init = () => {
   addStyles([mhctRatesStyles, styles], 'better-mice');
   main();
-  mousePage();
-  kingsCrowns();
-  prizeInfo();
 
-  if (getSetting('better-mice.show-mouse-hover', true)) {
-    excludeFromStandaloneUserscript: hoverMice();
-  }
-
-  if (getSetting('better-mice.show-sidebar', true)) {
-    excludeFromStandaloneUserscript: sidebar();
-  }
+  loadFeatures(featureManifest);
 
   replaceShowMouseImage();
 
