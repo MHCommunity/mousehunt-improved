@@ -71,6 +71,7 @@ body.mh-dark {
 /*
  * Form controls. Text fields are in inputs.css; selects look like fields, and plain buttons
  * (not the game's image-based .mousehuntActionButton) get a raised grey look.
+ * Message-board submit buttons keep their orange treatment from profile.css.
  */
 .mh-dark select {
   color: var(--d-input-text);
@@ -82,14 +83,14 @@ body.mh-dark {
   border-color: var(--d-input-border-hover);
 }
 
-.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"]),
+.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"], .messageBoardView-message-submit),
 .mh-dark button:not([class]) {
   color: var(--d-text);
   background-color: var(--d-button);
   border: 1px solid var(--d-border);
 }
 
-.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"]):hover,
+.mh-dark input:is([type="submit"], [type="button"], [type="reset"]):not([class*="mousehuntActionButton"], [class*="Button"], [class*="button"], .messageBoardView-message-submit):hover,
 .mh-dark button:not([class]):hover {
   color: var(--d-hover-text);
   border-color: var(--d-interactive);
