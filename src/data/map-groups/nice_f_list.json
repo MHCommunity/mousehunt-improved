@@ -51,14 +51,27 @@
       "id": "nice-workshop-pecan",
       "color": "#fce5cd",
       "color-dark": "#72481d",
-      "mice": ["winter_hunt_toy", "christmas_tree", "toy", "present", "ridiculous_sweater", "snowman_architect", "toy_builder", "elf", "nutcracker", "ribbon", "stocking"]
+      "mice": [
+        "winter_hunt_toy",
+        "christmas_tree",
+        "toy",
+        "present",
+        "ridiculous_sweater",
+        "snowman_architect",
+        "toy_builder",
+        "elf",
+        "nutcracker",
+        "ribbon",
+        "stocking",
+        "ornament"
+      ]
     },
     {
       "name": "Golem Workshop",
       "subtitle": "Standard cheese",
       "id": "nice-workshop-standard",
       "color": "#f9cb9c",
-      "color-dark": "#72481d",
+      "color-dark": "#7a3a1d",
       "mice": [
         "gingerbread",
         "winter_past",
