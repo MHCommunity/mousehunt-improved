@@ -1,5 +1,5 @@
 {
-  "names": ["Lunar New Year Map"],
+  "names": ["Lunar New Year Map", "Lunar New Year Event Map"],
   "categories": [
     {
       "name": "Standard",
@@ -38,6 +38,30 @@
       "color": "#ffa4a4",
       "color-dark": "#721d1d",
       "mice": ["red_candle"]
+    },
+    {
+      "name": "Other Mice",
+      "id": "lny-other",
+      "color": "#e0e0e0",
+      "color-dark": "#4a4a4a",
+      "mice": [
+        "student_of_the_cheese_belt",
+        "student_of_the_cheese_claw",
+        "student_of_the_cheese_fang",
+        "lightning_rod",
+        "abominable_snow",
+        "bionic",
+        "chipper",
+        "cowardly",
+        "diamond",
+        "dwarf",
+        "field",
+        "frosty_snow",
+        "gold",
+        "pirate",
+        "pugilist",
+        "spotted"
+      ]
     }
   ]
 }

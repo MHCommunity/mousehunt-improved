@@ -126,7 +126,7 @@
     {
       "name": "Dungeon",
       "id": "boun-dungeon-split",
-      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
+      "icon": "/items/bait/large/367c93dfba0708a08bd4515c3d696e15.png",
       "color": "#919ac7",
       "color-dark": "#394270",
       "mice": ["cell_sweeper", "dungeon_master", "gate_keeper", "jovial_jailor", "key_master", "lethargic_guard", "wrathful_warden"]
@@ -134,7 +134,7 @@
     {
       "name": "Ballroom",
       "id": "boun-ballroom-split",
-      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
+      "icon": "/items/bait/large/d38beac0a83f0df7dbcd3df33a1de870.png",
       "color": "#e0b1b2",
       "color-dark": "#783031",
       "mice": ["chafed_cellist", "malevolent_maestro", "obstinate_oboist", "peevish_piccoloist", "sultry_saxophonist", "treacherous_tubaist", "violent_violinist"]
@@ -142,7 +142,7 @@
     {
       "name": "Great Hall",
       "id": "boun-great-hall-split",
-      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
+      "icon": "/items/bait/large/86f620c07ab394de415fb258cefbf1d8.png",
       "color": "#d68d0a",
       "color-dark": "#6f562a",
       "mice": ["baroness_von_bean", "cagey_countess", "dastardly_duchess", "malicious_marquis", "mythical_giant_king", "pernicious_prince", "vindictive_viscount"]
@@ -336,7 +336,7 @@
       "id": "afterword-acres-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
-      "color-dark": "#84840a",
+      "color-dark": "#56561d",
       "mice": ["brash_birch", "maniacal_maple", "wailing_willow"]
     },
     {
@@ -344,7 +344,7 @@
       "id": "afterword-acres-sirene-split",
       "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",
-      "color-dark": "#0a8484",
+      "color-dark": "#1f5c5c",
       "mice": ["blight_incarnate", "furious_fir", "heinous_hemlock", "rampaging_redwood"]
     },
     {
@@ -368,7 +368,7 @@
       "id": "epilogue-falls-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
-      "color-dark": "#84840a",
+      "color-dark": "#56561d",
       "mice": ["loutish_loach", "pesky_pleco", "shifty_shrimp"]
     },
     {
@@ -376,24 +376,16 @@
       "id": "epilogue-falls-sirene-split",
       "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",
-      "color-dark": "#0a8484",
+      "color-dark": "#1f5c5c",
       "mice": ["chaotic_chiton", "killer_krill", "muscular_mussel"]
     },
     {
-      "name": "Waterfall",
+      "name": "Falls Bosses",
       "id": "waterfall-split",
       "icon": "/environments/de315cfc322a251f74da564ccc44343a.jpg",
       "color": "#abfdf4",
-      "color-dark": "#0a8476",
-      "mice": ["falls_guardian"]
-    },
-    {
-      "name": "Hidden Grotto",
-      "id": "hidden-grotto-split",
-      "icon": "/environments/de315cfc322a251f74da564ccc44343a.jpg",
-      "color": "#8fbc8f",
-      "color-dark": "#315c31",
-      "mice": ["grotto_elder"]
+      "color-dark": "#1f4f5d",
+      "mice": ["falls_guardian", { "mouse": "grotto_elder", "subcategory": "hidden-grotto" }]
     },
     {
       "name": "Conclusion Cliffs",
@@ -661,6 +653,12 @@
     {
       "id": "dem",
       "name": "Deus Ex Maconnais"
+    },
+    {
+      "id": "hidden-grotto",
+      "name": "Hidden Grotto",
+      "color": "#8fbc8f",
+      "color-dark": "#315c31"
     }
   ]
 }

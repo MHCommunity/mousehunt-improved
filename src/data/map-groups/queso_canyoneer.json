@@ -13,14 +13,14 @@
       "id": "qc-prickly-plains",
       "color": "#efc922",
       "mice": ["spice_seer", "spice_collector", "spice_farmer", "spice_grower", "spice_finder", "spice_sovereign", "spice_reaper", "spice_raider"],
-      "color-dark": "#846d0a"
+      "color-dark": "#5f5320"
     },
     {
       "name": "Cantera Quarry",
       "id": "qc-cantera-quarry",
       "color": "#5ae031",
       "mice": ["chip_chiseler", "tiny_toppler", "ore_chipper", "rubble_rummager", "nachore_golem", "rubble_rouser", "grampa_golem", "fiery_crusher"],
-      "color-dark": "#2b7c12"
+      "color-dark": "#2e5e1f"
     },
     {
       "name": "Bosses",

@@ -12,14 +12,14 @@
       "name": "FW: Wave 2",
       "id": "muri-warpath-wave-2",
       "color": "#ea947b",
-      "color-dark": "#7a3f2e",
+      "color-dark": "#7a4a2e",
       "mice": ["desert_archer", "desert_cavalry", "desert_mage", "desert_scout", "desert_warrior"]
     },
     {
       "name": "FW: Wave 3",
       "id": "muri-warpath-wave-3",
       "color": "#ff835f",
-      "color-dark": "#7a3f2e",
+      "color-dark": "#803a1d",
       "mice": ["desert_archer_epic", "desert_artillery", "desert_cavalry_strong", "desert_mage_strong", "desert_scout_epic", "desert_warrior_epic"]
     },
     {
@@ -40,7 +40,7 @@
       "name": "Muridae Market",
       "id": "muri-market",
       "color": "#ffe599",
-      "color-dark": "#84650a",
+      "color-dark": "#5a4a1d",
       "mice": [
         "desert_nomad",
         "desert_worker_mouse",

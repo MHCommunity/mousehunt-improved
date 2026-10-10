@@ -22,7 +22,7 @@
       "id": "cs-dock",
       "icon": "/items/stats/transparent_thumb/bf8218a3c425cba58c3ccf26097c66ff.png",
       "color": "#cfb9a5",
-      "color-dark": "#9d5c6e",
+      "color-dark": "#5c4a44",
       "mice": [
         "sly_skulking_scrapper",
         "stubby_scrap_scavenger",
@@ -86,7 +86,7 @@
       "id": "cs-raid",
       "icon": "/items/bait/transparent_thumb/967aaef6b2d53486157eb5de2a8a4641.png",
       "color": "#fde671",
-      "color-dark": "#996126",
+      "color-dark": "#5e541f",
       "mice": ["captain_crook"]
     }
   ],

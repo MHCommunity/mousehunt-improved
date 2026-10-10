@@ -14,7 +14,7 @@
       "id": "l-farming-district",
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/075a2bbef9d263b41822be1c318e9ee0.png",
       "color": "#11f400",
-      "color-dark": "#087a00",
+      "color-dark": "#245f20",
       "mice": ["mushroom_harvester", "nightshade_nanny", "mush_monster", "reanimated_carver", "nightshade_fungalmancer"]
     },
     {
@@ -22,7 +22,7 @@
       "id": "l-treasury-district",
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/a819e8cc5a7a9cada4a0cedb151e66f4.png",
       "color": "#ffe400",
-      "color-dark": "#836f00",
+      "color-dark": "#5b551e",
       "mice": ["mimic", "hired_eidolon", "treasure_brawler", "matron_of_wealth"]
     },
     {
@@ -46,7 +46,7 @@
       "id": "l-tech-district",
       "icon": "https://www.mousehuntgame.com/images/items/crafting_items/large/b52aff1549b63c0b00983f0a78aa8363.png",
       "color": "#21e2ff",
-      "color-dark": "#08758a",
+      "color-dark": "#215b64",
       "mice": ["rr_8", "ash_golem", "fungal_technomorph", "automated_stone_sentry", "tech_golem", "manaforge_smith"]
     }
   ]

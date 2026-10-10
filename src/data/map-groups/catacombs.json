@@ -16,7 +16,7 @@
       "id": "cata-ancient",
       "icon": "https://i.mouse.rip/upscaled/e1f6cabec96832f1aa8e60ea1144a3b3.png",
       "color": "#ffe599",
-      "color-dark": "#84650a",
+      "color-dark": "#635221",
       "mice": ["gorgon", "sorcerer", "spectre", "keeper", "keepers_assistant", "ooze", "skeleton", "spider"]
     },
     {

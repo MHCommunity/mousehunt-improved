@@ -5,7 +5,7 @@
       "name": "SG: Spring",
       "id": "z-seasonal-garden-spring",
       "color": "#84f7a1",
-      "color-dark": "#0a8429",
+      "color-dark": "#205f30",
       "mice": ["puddlemancer", "tanglefoot", "vinetail", "spring_familiar", "hydrophobe", "derpicorn"]
     },
     {
@@ -40,7 +40,7 @@
       "name": "ZT: Technic",
       "id": "z-zugzwang-s-tower-technic",
       "color": "#a88bff",
-      "color-dark": "#290a84",
+      "color-dark": "#4a2a7a",
       "mice": ["tech_pawn", "tech_knight", "tech_bishop", "tech_rook", "tech_queen", "tech_king"]
     },
     {

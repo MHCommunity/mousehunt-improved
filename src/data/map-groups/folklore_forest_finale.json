@@ -22,14 +22,14 @@
       "id": "afterword-acres-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
-      "color-dark": "#84840a",
+      "color-dark": "#56561d",
       "mice": ["brash_birch", "maniacal_maple", "wailing_willow"]
     },
     {
       "name": "AA: Sirene",
       "id": "afterword-acres-sirene-split",
       "color": "#b2ffff",
-      "color-dark": "#0a8484",
+      "color-dark": "#1f5c5c",
       "mice": ["blight_incarnate", "furious_fir", "heinous_hemlock", "rampaging_redwood"]
     },
     {
@@ -60,7 +60,7 @@
       "id": "epilogue-falls-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
-      "color-dark": "#84840a",
+      "color-dark": "#56561d",
       "mice": ["loutish_loach", "pesky_pleco", "shifty_shrimp"]
     },
     {
@@ -68,14 +68,14 @@
       "id": "epilogue-falls-sirene-split",
       "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",
-      "color-dark": "#0a8484",
+      "color-dark": "#1f5c5c",
       "mice": ["chaotic_chiton", "killer_krill", "muscular_mussel"]
     },
     {
       "name": "Waterfall",
       "id": "waterfall-split",
       "color": "#abfdf4",
-      "color-dark": "#0a8476",
+      "color-dark": "#1f4f5d",
       "mice": ["falls_guardian"]
     },
     {

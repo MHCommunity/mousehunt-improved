@@ -5,7 +5,12 @@
     "Toxic Spill Map (Count/Countess)",
     "Toxic Spill Map (Duke/Duchess)",
     "Toxic Spill Map (Grand Duke/Duchess)",
-    "Toxic Spill Map (Archduke/Archduchess)"
+    "Toxic Spill Map (Archduke/Archduchess)",
+    "Easy Toxic Spill Map",
+    "Medium Toxic Spill Map",
+    "Hard Toxic Spill Map",
+    "Elaborate Toxic Spill Map",
+    "Arduous Toxic Spill Map"
   ],
   "categories": [
     {
@@ -14,7 +19,7 @@
       "id": "ts-low-pollution",
       "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
       "color": "#d9ead3",
-      "color-dark": "#3b612e",
+      "color-dark": "#4d5a3a",
       "mice": [
         { "mouse": "swamp_runner", "subcategory": "hero-rancid" },
         { "mouse": "mutated_siblings", "subcategory": "hero-rancid" },

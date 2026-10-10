@@ -75,7 +75,7 @@
       "name": "Pearl Patch",
       "id": "sc-pearl-patch",
       "color": "#f9cb9c",
-      "color-dark": "#9c5a1e",
+      "color-dark": "#714c26",
       "mice": ["pearl_diver"]
     },
     {
@@ -89,7 +89,7 @@
       "name": "Monster Trench",
       "id": "sc-monster-trench",
       "color": "#cfb9a5",
-      "color-dark": "#9d5c6e",
+      "color-dark": "#5c4a44",
       "mice": ["serpent_monster"]
     }
   ]

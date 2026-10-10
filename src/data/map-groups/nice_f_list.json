@@ -1,5 +1,5 @@
 {
-  "names": ["Nice List"],
+  "names": ["Nice List", "Nice 2019 List", "Nice 2020 List", "Nice 2021 List", "Nice 2022 List"],
   "categories": [
     {
       "name": "Bosses",
@@ -43,7 +43,7 @@
       "id": "nice-grove-standard",
       "color": "#acf28d",
       "color-dark": "#37721d",
-      "mice": ["candy_cane", "nice_knitting", "green_circle_boss", "snow_scavenger", "toboggan_technician", "winter_boss_2019"]
+      "mice": ["candy_cane", "nice_knitting", "green_circle_boss", "snow_scavenger", "toboggan_technician", "winter_boss_2019", "winter_boss_2020", "winter_boss_2021"]
     },
     {
       "name": "Golem Workshop",
@@ -77,7 +77,7 @@
       "id": "nice-fortress-pecan",
       "color": "#c9daf8",
       "color-dark": "#1d3c72",
-      "mice": ["winter_boss_2016", "winter_boss_2017", "snowball_general_two", "snowball_bully", "snow_fort", "builder"]
+      "mice": ["winter_boss_2016", "winter_boss_2017", "winter_boss_2018", "snowball_general_two", "snowball_bully", "snow_fort", "builder"]
     },
     {
       "name": "Ice Fortress",

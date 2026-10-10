@@ -174,7 +174,7 @@
       "id": "esp-tactical",
       "icon": "/powertypes/tactical.png",
       "color": "#fff935",
-      "color-dark": "#6f6b24",
+      "color-dark": "#58561d",
       "mice": [
         "gyrologer",
         "seasoned_islandographer",
@@ -198,7 +198,7 @@
       "id": "esp-sky_palace",
       "icon": "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png",
       "color": "#85c1e9",
-      "color-dark": "#2e5f7a",
+      "color-dark": "#2e4a7a",
       "mice": [
         {
           "mouse": "empyrean_charm_hoarder",

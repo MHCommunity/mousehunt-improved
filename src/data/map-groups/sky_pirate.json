@@ -1,5 +1,5 @@
 {
-  "names": ["Sky Pirate Map (4 Person)", "Sky Pirate Map (5 Person)"],
+  "names": ["Sky Pirate Map (4 Person)", "Sky Pirate Map (5 Person)", "Floating Isles Pirate Map"],
   "categories": [
     {
       "name": "Launchpad",
@@ -22,7 +22,7 @@
       "id": "sp-arcane",
       "icon": "/powertypes/arcane.png",
       "color": "#0be496",
-      "color-dark": "#0a8458",
+      "color-dark": "#1f5e48",
       "mice": [
         "sky_glass_sorcerer",
         "sky_glass_glazier",
@@ -102,7 +102,7 @@
       "id": "sp-physical",
       "icon": "/powertypes/physical.png",
       "color": "#5ae031",
-      "color-dark": "#2b7c12",
+      "color-dark": "#2e5e1f",
       "mice": [
         "ground_gavaleer",
         "sky_swordsman",
@@ -162,7 +162,7 @@
       "id": "sp-tactical",
       "icon": "/powertypes/tactical.png",
       "color": "#fff935",
-      "color-dark": "#84800a",
+      "color-dark": "#58561d",
       "mice": [
         "worried_wayfinder",
         "gyrologer",

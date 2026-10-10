@@ -229,7 +229,7 @@
       "id": "corky-friends",
       "icon": "/items/crafting_items/large/df9677b546c356c680e1cd4ddc91d3df.png",
       "color": "#f4c47e",
-      "color-dark": "#73562b",
+      "color-dark": "#5e5233",
       "mice": [
         "geyser_cork_dropper_bland",
         "geyser_cork_dropper_medium",
@@ -261,7 +261,7 @@
       "id": "be-trio",
       "icon": "/powertypes/draconic.png",
       "color": "#ffb1b1",
-      "color-dark": "#7a2e2e",
+      "color-dark": "#7a2e46",
       "mice": ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"]
     },
     {
@@ -291,7 +291,7 @@
       "id": "fiery-warpath",
       "icon": "/environments/50c140c25725c308d70f14ef96279ab6.jpg",
       "color": "#f4cccc",
-      "color-dark": "#7a2e2e",
+      "color-dark": "#6b3a2e",
       "mice": ["desert_beast"]
     },
     {

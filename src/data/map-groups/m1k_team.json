@@ -14,7 +14,7 @@
       "id": "m1000team-floating-islands-empyrean-palace",
       "icon": "/items/bait/large/0ae707c97067446e1dffa95eca697c3b_v2.png",
       "color": "#c9daf8",
-      "color-dark": "#1d3c72",
+      "color-dark": "#3a4a7a",
       "mice": ["empyrean_treasure_guardian", "empyrean_oreglass_miner", "empyrean_cloudstone_miner", "empyrean_charm_hoarder", "empyrean_loot_cache_guardian", "richard_rich"]
     },
     {
@@ -22,7 +22,7 @@
       "id": "m1000team-floating-islands-sky-pirates",
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
       "color": "#ead1dc",
-      "color-dark": "#622d44",
+      "color-dark": "#5e3a4a",
       "mice": ["admiral_cloudbeard", "empyrean_pirate"]
     },
     {
@@ -30,7 +30,7 @@
       "id": "m1000team-bountiful-beanstalk",
       "icon": "/items/bait/large/86f620c07ab394de415fb258cefbf1d8.png",
       "color": "#d9ead3",
-      "color-dark": "#3b612e",
+      "color-dark": "#3f5c1a",
       "mice": ["mythical_giant_king", "malevolent_maestro", "dungeon_master", "vinneus_stalkhome"]
     },
     {
@@ -62,7 +62,7 @@
       "id": "m1000team-queso-geyser",
       "icon": "/items/bait/large/fcd306116ab4e8f36a801b69d506401f.png",
       "color": "#f6b26b",
-      "color-dark": "#72481d",
+      "color-dark": "#7a3a1d",
       "mice": [
         {
           "mouse": "geyser_pressure_builder_flaming",
@@ -107,7 +107,7 @@
       "id": "m1000team-valour-rift",
       "icon": "/items/bait/large/4641aed8c8e370fd1193207961f296ec.png",
       "color": "#b4a7d6",
-      "color-dark": "#3c2d61",
+      "color-dark": "#5a2d61",
       "mice": ["rift_gaunt_monster", "rift_gaunt_eclipse", "rift_gaunt_final_eclipse"]
     },
     {
@@ -144,7 +144,7 @@
       "id": "m1000team-gnawnia-bristle-woods-rifts",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#d0e0e3",
-      "color-dark": "#32565d",
+      "color-dark": "#3d4f66",
       "mice": [
         {
           "mouse": "rift_field",
@@ -169,7 +169,7 @@
       "id": "m1000team-fort-rox",
       "icon": "https://i.mouse.rip/upscaled/ad09220c2ff326c9e1a078b783ce0638.png",
       "color": "#fff2cc",
-      "color-dark": "#725c1d",
+      "color-dark": "#5a5048",
       "mice": ["monster_of_the_meteor", "dawn_guardian"]
     },
     {
@@ -209,7 +209,7 @@
       "id": "m1000team-sand-dunes",
       "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
       "color": "#fce5cd",
-      "color-dark": "#72481d",
+      "color-dark": "#5e4f36",
       "mice": ["king_grub", "king_scarab"]
     },
     {
@@ -217,7 +217,7 @@
       "id": "m1000team-iceberg",
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#c3def5",
-      "color-dark": "#1d4b72",
+      "color-dark": "#1d5a7a",
       "mice": ["icewing", "deep"]
     },
     {
@@ -225,7 +225,7 @@
       "id": "m1000team-dracano",
       "icon": "https://i.mouse.rip/upscaled/a2c33e3908f19ffab038cb3643ae2915.png",
       "color": "#cf9e64",
-      "color-dark": "#6d4b22",
+      "color-dark": "#5e3a2a",
       "mice": ["dragon", "draconic_warden", "whelpling"]
     },
     {
@@ -233,7 +233,7 @@
       "id": "m1000team-tribal-isles",
       "icon": "https://i.mouse.rip/upscaled/d825364d9c8556bf43efcece51048dc2.png",
       "color": "#a4c0c1",
-      "color-dark": "#325b5d",
+      "color-dark": "#255c48",
       "mice": [
         {
           "mouse": "balack_the_banished",
@@ -254,7 +254,7 @@
       "id": "m1000team-burroughs",
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#f4cccc",
-      "color-dark": "#721d1d",
+      "color-dark": "#6b2e3d",
       "mice": ["abominable_snow", "big_bad_burroughs", "monster", "menace"]
     },
     {
@@ -278,7 +278,7 @@
       "id": "m1000team-table-of-contents",
       "icon": "/items/bait/large/38e4c8bed6a1a021e307a950bb51399d.png",
       "color": "#ffe599",
-      "color-dark": "#725c1d",
+      "color-dark": "#5a581a",
       "mice": ["bitter_grammarian"]
     },
     {

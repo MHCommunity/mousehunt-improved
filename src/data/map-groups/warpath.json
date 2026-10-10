@@ -12,14 +12,14 @@
       "name": "Wave 2",
       "id": "warpath-wave-2",
       "color": "#ea947b",
-      "color-dark": "#7a3f2e",
+      "color-dark": "#7a4a2e",
       "mice": ["desert_mage", "desert_archer", "desert_warrior", "desert_scout", "desert_cavalry"]
     },
     {
       "name": "Wave 3",
       "id": "warpath-wave-3",
       "color": "#ff835f",
-      "color-dark": "#7a3f2e",
+      "color-dark": "#803a1d",
       "mice": ["desert_artillery", "desert_mage_strong", "desert_scout_epic", "desert_archer_epic", "desert_cavalry_strong", "desert_warrior_epic"]
     },
     {

@@ -6,7 +6,7 @@
       "subtitle": "0–300 ft",
       "id": "i-treacherous-tunnels",
       "color": "#99e6ff",
-      "color-dark": "#0a6684",
+      "color-dark": "#235a73",
       "mice": ["icebreaker", "chipper", "snow_slinger", "snow_soldier", "incompetent_ice_climber"]
     },
     {
@@ -14,7 +14,7 @@
       "subtitle": "300–600 ft",
       "id": "i-brutal-bulwark",
       "color": "#66d9ff",
-      "color-dark": "#0a6584",
+      "color-dark": "#1d4a66",
       "mice": ["polar_bear", "iceblock", "mammoth"]
     },
     {
@@ -22,7 +22,7 @@
       "subtitle": "600–1,600 ft",
       "id": "i-bombing-run",
       "color": "#b3ecff",
-      "color-dark": "#0a6584",
+      "color-dark": "#183b58",
       "mice": ["saboteur", "stickybomber", "heavy_blaster"]
     },
     {
@@ -30,7 +30,7 @@
       "subtitle": "1,600–1,800 ft",
       "id": "i-the-mad-depths",
       "color": "#ccefff",
-      "color-dark": "#0a5e84",
+      "color-dark": "#112a42",
       "mice": ["wolfskie", "snowblind", "iceblade", "water_wielder"]
     },
     {
@@ -38,14 +38,14 @@
       "subtitle": "After 1,800 ft",
       "id": "i-icewing-s-lair",
       "color": "#00b3e6",
-      "color-dark": "#0a6984",
+      "color-dark": "#3b3f78",
       "mice": ["frostlance_guard", "frostwing_commander", "icewing"]
     },
     {
       "name": "Slushy Shoreline",
       "id": "i-slushy-shoreline",
       "color": "#e6faff",
-      "color-dark": "#0a6b84",
+      "color-dark": "#1f5a55",
       "mice": ["snow_bowler", "snow_sniper", "yeti", "living_ice"]
     }
   ]

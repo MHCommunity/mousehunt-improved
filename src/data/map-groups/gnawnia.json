@@ -41,7 +41,7 @@
       "id": "gnawnia-super-brie",
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#cfe2f3",
-      "color-dark": "#1d4a72",
+      "color-dark": "#3a4a66",
       "mice": ["nibbler", "tiny", "fast", "flying_mouse", "silvertail", "fog", "frosty_snow", "farmhand", "zombie"]
     },
     {
