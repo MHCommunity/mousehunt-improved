@@ -226,6 +226,17 @@
   box-shadow: inset 0 0 0 1px var(--d-interactive);
 }
 
+/* Draw the hover ring above the quantity badge so it isn't covered. */
+.mh-dark button.trapSelectorView__armedItem:hover::after,
+.mh-dark button.trapSelectorView__armedItem:focus::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}
+
 .mh-dark .campPage-trap-itemBrowser-item {
   color: var(--d-text);
   background-color: var(--d-surface-panel);
