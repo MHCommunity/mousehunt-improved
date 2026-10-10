@@ -1,0 +1,412 @@
+.mh-egg-helper {
+  --mh-egg-helper-border: #ccc;
+  --mh-egg-helper-muted: #666;
+  --mh-egg-helper-surface: #f6f3eb;
+  --mh-egg-helper-hover: #fff;
+  --mh-egg-helper-selected: #e3eefc;
+  --mh-egg-helper-accent: #3b5998;
+  --mh-egg-helper-found: #2c672c;
+  --mh-egg-helper-missing: #a33;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.mh-egg-helper-loading {
+  padding: 40px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.mh-egg-helper-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.mh-egg-helper-title {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.mh-egg-helper-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.mh-egg-helper-progress,
+.mh-egg-helper-muted {
+  color: var(--mh-egg-helper-muted);
+}
+
+.mh-egg-helper-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.mh-egg-helper-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+.mh-egg-helper-search {
+  flex: 1 1 200px;
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.mh-egg-helper-category-select {
+  padding: 4px;
+}
+
+.mh-egg-helper-checkbox {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mh-egg-helper-checkbox input {
+  margin: 0;
+}
+
+.mh-egg-helper-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 10px;
+  height: min(560px, 65vh);
+}
+
+.mh-egg-helper-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 6px;
+  padding: 6px;
+  overflow-y: auto;
+  background: var(--mh-egg-helper-surface);
+  border: 1px solid var(--mh-egg-helper-border);
+  border-radius: 6px;
+}
+
+.mh-egg-helper-egg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  padding: 4px 2px;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.2;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.mh-egg-helper-egg:hover {
+  background: var(--mh-egg-helper-hover);
+  border-color: var(--mh-egg-helper-accent);
+}
+
+.mh-egg-helper-egg[aria-pressed="true"] {
+  background: var(--mh-egg-helper-selected);
+  border-color: var(--mh-egg-helper-accent);
+}
+
+.mh-egg-helper-egg-image {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.mh-egg-helper-egg.found::after {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/icons/checkmark_greenglow.png) center / contain no-repeat;
+}
+
+.mh-egg-helper-egg.missing .mh-egg-helper-egg-image {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+.mh-egg-helper-egg.missing:is(:hover, [aria-pressed="true"]) .mh-egg-helper-egg-image {
+  filter: none;
+  opacity: 1;
+}
+
+.mh-egg-helper-empty {
+  grid-column: 1 / -1;
+  padding: 30px 10px;
+  color: var(--mh-egg-helper-muted);
+  text-align: center;
+}
+
+.mh-egg-helper-details {
+  padding: 10px 12px;
+  overflow-y: auto;
+  border: 1px solid var(--mh-egg-helper-border);
+  border-radius: 6px;
+}
+
+.mh-egg-helper-details p {
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.mh-egg-helper-overview-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.mh-egg-helper-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mh-egg-helper-category {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 7px 8px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: var(--mh-egg-helper-surface);
+  border: 1px solid var(--mh-egg-helper-border);
+  border-radius: 6px;
+}
+
+.mh-egg-helper-category:hover {
+  background: var(--mh-egg-helper-hover);
+  border-color: var(--mh-egg-helper-accent);
+}
+
+.mh-egg-helper-category[aria-pressed="true"] {
+  background: var(--mh-egg-helper-selected);
+  border-color: var(--mh-egg-helper-accent);
+}
+
+.mh-egg-helper-category-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.mh-egg-helper-category-name {
+  font-weight: 700;
+}
+
+.mh-egg-helper-bar {
+  height: 6px;
+  overflow: hidden;
+  background: var(--mh-egg-helper-border);
+  border-radius: 3px;
+}
+
+.mh-egg-helper-bar-fill {
+  height: 100%;
+  background: var(--mh-egg-helper-found);
+}
+
+.mh-egg-helper-back {
+  padding: 0;
+  margin-bottom: 8px;
+  font: inherit;
+  color: var(--mh-egg-helper-accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.mh-egg-helper-back:hover {
+  text-decoration: underline;
+}
+
+.mh-egg-helper-detail-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mh-egg-helper-detail-image {
+  flex: none;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.mh-egg-helper-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mh-egg-helper-detail-title h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.mh-egg-helper-status {
+  font-weight: 700;
+}
+
+.mh-egg-helper-status.found {
+  color: var(--mh-egg-helper-found);
+}
+
+.mh-egg-helper-status.missing {
+  color: var(--mh-egg-helper-missing);
+}
+
+.mh-egg-helper-hint {
+  font-style: italic;
+  color: var(--mh-egg-helper-muted);
+}
+
+.mh-egg-helper-section {
+  padding-top: 8px;
+  margin-top: 10px;
+  border-top: 1px solid var(--mh-egg-helper-border);
+}
+
+.mh-egg-helper-section-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.mh-egg-helper-locations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.mh-egg-helper-location {
+  padding: 3px 7px;
+  font: inherit;
+  font-size: 11px;
+  color: inherit;
+  cursor: pointer;
+  background: var(--mh-egg-helper-surface);
+  border: 1px solid var(--mh-egg-helper-border);
+  border-radius: 10px;
+}
+
+.mh-egg-helper-location:not(:disabled):hover {
+  background: var(--mh-egg-helper-hover);
+  border-color: var(--mh-egg-helper-accent);
+}
+
+.mh-egg-helper-location:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.mh-egg-helper-location.current {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.mh-egg-helper-droppers {
+  display: flex;
+  flex-direction: column;
+}
+
+.mh-egg-helper-dropper {
+  display: grid;
+  grid-template-areas:
+    "name rate"
+    "location rate";
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--mh-egg-helper-border);
+}
+
+.mh-egg-helper-dropper[hidden] {
+  display: none;
+}
+
+.mh-egg-helper-dropper-name {
+  grid-area: name;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-egg-helper-dropper-rate {
+  grid-area: rate;
+  align-self: center;
+  font-weight: 700;
+}
+
+.mh-egg-helper-dropper-location {
+  grid-area: location;
+  font-size: 11px;
+  color: var(--mh-egg-helper-muted);
+}
+
+.mh-egg-helper-more {
+  padding: 0;
+  margin: 6px 0;
+  font: inherit;
+  color: var(--mh-egg-helper-accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.mh-egg-helper-section > .mh-egg-helper-muted:last-child {
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+@media (width <= 760px) {
+  .mh-egg-helper-body {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .mh-egg-helper-list {
+    max-height: 45vh;
+  }
+}
+
+.mh-dark .mh-egg-helper {
+  --mh-egg-helper-border: var(--d-border);
+  --mh-egg-helper-muted: var(--d-text-muted);
+  --mh-egg-helper-surface: var(--d-surface-inset);
+  --mh-egg-helper-hover: var(--d-hover);
+  --mh-egg-helper-selected: var(--d-selected);
+  --mh-egg-helper-accent: var(--d-interactive);
+  --mh-egg-helper-found: var(--d-green);
+  --mh-egg-helper-missing: var(--d-red-light);
+}
+
+.mh-dark .mh-egg-helper :is(.mh-egg-helper-egg, .mh-egg-helper-category, .mh-egg-helper-location:not(:disabled)):hover,
+.mh-dark .mh-egg-helper :is(.mh-egg-helper-egg, .mh-egg-helper-category)[aria-pressed="true"] {
+  color: var(--d-hover-text);
+}
+
+.mh-dark .mh-egg-helper :is(.mh-egg-helper-back, .mh-egg-helper-more) {
+  color: var(--d-link);
+}

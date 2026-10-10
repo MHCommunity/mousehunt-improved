@@ -2,6 +2,7 @@ import { addStyles, onEvent } from '@utils';
 
 import addAdventureBook from './adventure-book';
 import addDarkModeToggle from './dark-mode-toggle';
+import addEggHuntHelper from './egg-hunt-helper';
 import addHudToggle from './hud-toggle';
 import { applyLayout, getContainers } from './layout';
 import openMenuEditor, { refreshMenuEditor } from './editor';
@@ -52,6 +53,7 @@ const init = () => {
 
   addAdventureBook();
   addDarkModeToggle();
+  addEggHuntHelper();
   addHudToggle();
   applyLayout();
   watchInfoBar();

@@ -77,3 +77,73 @@
 .mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
   background-color: var(--d-surface-panel);
 }
+
+/* Loot: what a mouse drops, and the mice that drop an item */
+.mouseview-has-mhct .mh-improved-loot-list .mouse-ar-wrapper {
+  grid-template-columns: 1fr 50px 60px;
+}
+
+.mouseview-has-mhct .mh-improved-loot-list.has-location .mouse-ar-wrapper {
+  grid-template-columns: 1fr 1fr 60px;
+}
+
+.mouseview-has-mhct .mh-improved-loot-list .quantity {
+  text-align: right;
+}
+
+.mouseview-has-mhct .mh-improved-loot-location {
+  max-width: 50%;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.mouseView-contentContainer .mh-improved-loot-list {
+  overflow: hidden;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.mh-dark .mouseView-contentContainer .mh-improved-loot-list {
+  background-color: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+/* Collapsible sections: the caret sits by the title, with any link still on the right. */
+.mouseview-has-mhct .ar-header.mh-ui-collapsible-header .ar-title {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.mouseview-has-mhct .mh-ui-collapsed .ar-header {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.mouseview-has-mhct .ar-wrapper.mh-ui-collapsed {
+  padding-bottom: 0;
+}
+
+/* Item view: drop rates and droppers, one line per row */
+.mouseview-has-mhct .mh-improved-loot-unit {
+  margin-right: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  color: #777;
+}
+
+.mh-dark .mouseview-has-mhct .mh-improved-loot-unit {
+  color: var(--d-text-muted);
+}
+
+.mouseview-has-mhct .mh-improved-drop-rates .mouse-ar-wrapper {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr) 55px;
+}
+
+.mouseview-has-mhct .mh-improved-drop-rates .setup,
+.mouseview-has-mhct .mh-improved-loot-list .name,
+.mouseview-has-mhct .mh-improved-loot-list .location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

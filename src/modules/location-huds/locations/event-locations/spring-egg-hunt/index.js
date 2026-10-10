@@ -1,6 +1,7 @@
-import { addStyles, makeElement, onDialogShow, onEvent, onRequest, setMultipleTimeout } from '@utils';
+import { addStyles, addSubmenuItem, makeElement, onDialogShow, onEvent, onRequest, setMultipleTimeout } from '@utils';
 
 import { updateDateDates } from '../shared';
+import { openEggHelper } from './egg-helper';
 
 import styles from './styles.css';
 
@@ -34,7 +35,14 @@ const addUnfoundEggHighlight = () => {
     }
   });
 
-  stats.append(highlightEl);
+  const links = makeElement('div', 'springHuntHUD-totalEggStats-links');
+  links.append(highlightEl);
+  stats.append(links);
+
+  const helperEl = makeElement('a', 'springHuntHUD-openEggHelper', 'Egg Hunt Helper');
+  helperEl.addEventListener('click', openEggHelper);
+
+  links.append(helperEl);
 };
 
 /**
@@ -87,6 +95,13 @@ const rightclickToFlag = () => {
  */
 const springEggHuntGlobal = async () => {
   addStyles(styles, 'location-hud-events-spring-egg-hunt');
+
+  addSubmenuItem({
+    menu: 'camp',
+    label: 'Egg Hunt Helper',
+    icon: 'https://www.mousehuntgame.com/images/items/convertibles/transparent_thumb/887162c61d0e01985ffc12e41c03d952.png',
+    callback: openEggHelper,
+  });
 
   onDialogShow('springHuntPopup', () => {
     addUnfoundEggHighlightWithTimeout();

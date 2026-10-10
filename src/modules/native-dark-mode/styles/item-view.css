@@ -42,9 +42,13 @@
   border-color: var(--d-border);
 }
 
-.mh-dark ul.mh-improved-scroll-to-map-multiple-list,
+.mh-dark .mh-improved-scroll-to-map {
+  background-color: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
 .mh-dark .mh-improved-scroll-to-map-multiple {
-  background-color: var(--d-surface-popover);
+  border-bottom-color: var(--d-alt);
 }
 
 /* Item descriptions use inline green and red text, which is too dark to read here. */
