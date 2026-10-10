@@ -24,15 +24,15 @@
   position: absolute;
   inset: 0;
   top: -10px;
+  display: flex;
+  align-items: center;
   padding: 15px;
   overflow-y: hidden;
+  line-height: 1.5;
+  text-overflow: ellipsis;
   background-color: rgb(255 255 255 / 80%);
   opacity: 0;
   transition: 0.5s;
-  text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
-  line-height: 1.5;
 }
 
 .campPage-trap-itemBrowser-item.codex:hover .campPage-trap-itemBrowser-item-description {
