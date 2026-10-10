@@ -145,6 +145,10 @@
   background: rgb(250 226 200 / 70%);
 }
 
+#map-plan-container .plan-body + .plan-hard {
+  margin-top: 12px;
+}
+
 .mh-dark #map-plan-container .plan-hard {
   background: rgb(120 80 40 / 35%);
 }

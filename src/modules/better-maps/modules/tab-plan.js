@@ -660,10 +660,11 @@ const renderPlan = (container, mice, rates, findEnvironment) => {
     container.append(makeGuaranteed(plan.guaranteed, findEnvironment));
   }
 
+  // Mice with no good setup go below the setups, since there's nothing to plan for them.
+  let hardStrip = null;
   if (plan.hard.length > 0) {
-    const strip = makeMouseStrip('No setup above ' + RATE_FLOOR + '%', plan.hard, 'plan-hard');
-    strip.querySelector('.plan-strip-label').title = 'Best known rate shown. These need a dedicated trip, or the map closer.';
-    container.append(strip);
+    hardStrip = makeMouseStrip('No setup above ' + RATE_FLOOR + '%', plan.hard, 'plan-hard');
+    hardStrip.querySelector('.plan-strip-label').title = 'Best known rate shown. These need a dedicated trip, or the map closer.';
   }
 
   if (plan.noData.length > 0) {
@@ -677,6 +678,9 @@ const renderPlan = (container, mice, rates, findEnvironment) => {
 
   if (plan.setups.length === 0) {
     make('div', 'plan-empty', 'Nothing to plan — every remaining mouse is a guaranteed attraction or has no data.', body);
+    if (hardStrip) {
+      container.append(hardStrip);
+    }
     return;
   }
 
@@ -737,6 +741,10 @@ const renderPlan = (container, mice, rates, findEnvironment) => {
       },
     });
     body.append(more);
+  }
+
+  if (hardStrip) {
+    container.append(hardStrip);
   }
 };
 
