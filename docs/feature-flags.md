@@ -99,6 +99,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |---|---|
 |`catch-rate-estimate-more-refresh`|Refreshes the estimates after more requests, rather than just trap changes.|
 |`cre-show-trap-highlight`|Shows a catch rate indicator above the trap view.|
+|`cre-live-attraction-rates`|Uses live MHCT attraction rates instead of MouseHunt Improved's data.|
 
 #### Image Upscaling & Transparency
 
