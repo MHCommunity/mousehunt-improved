@@ -200,10 +200,6 @@
   color: var(--d-red-light);
 }
 
-.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait:hover
-.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait:focus,
-.mh-dark .trapSelectorView__armedItem.trapSelectorView__armedItemBorder.campPage-trap-armedItem:hover,
-.mh-dark .trapSelectorView__armedItem.trapSelectorView__armedItemBorder.campPage-trap-armedItem:focus,
 .mh-dark .trapSelectorView__armedItem:hover,
 .mh-dark .trapSelectorView__armedItem:focus,
 .mh-dark .campPage-trap-armedItem:hover,
@@ -214,6 +210,13 @@
 .mh-dark .campPage-trap-armedItem.active:focus,
 .mh-dark .trapSelectorView__activeCodexContainer:hover,
 .mh-dark .trapSelectorView__activeCodexContainer:focus,
+.mh-dark button.trapSelectorView__armedItem:hover,
+.mh-dark button.trapSelectorView__armedItem:focus,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait:hover,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait:focus,
+.mh-dark .trapSelectorView__armedItem.trapSelectorView__armedItemBorder.campPage-trap-armedItem:hover,
+.mh-dark .trapSelectorView__armedItem.trapSelectorView__armedItemBorder.campPage-trap-armedItem:focus,
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover,
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:focus,
 .mh-dark .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover,

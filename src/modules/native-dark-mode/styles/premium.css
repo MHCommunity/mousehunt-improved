@@ -75,8 +75,7 @@
   color: var(--d-text-muted);
 }
 
-.mh-dark .MHCheckoutTooltipView-itemGroup-title,
-.mh-dark .MHCheckoutReviewCartPageView-paymentActions label:hover {
+.mh-dark .MHCheckoutTooltipView-itemGroup-title {
   background-color: var(--d-surface-header);
 }
 
@@ -88,8 +87,146 @@
 .mh-dark .MHCheckoutRegionsView-environment:hover,
 .mh-dark .MHCheckoutHeaderCartView-reward:hover,
 .mh-dark .MHCheckout-region-seeAllEnvironments:hover,
-.mh-dark .MHCheckoutPageView-backButton:hover {
+.mh-dark .MHCheckoutPageView-backButton:hover,
+.mh-dark a.MHCheckoutRewardPageView-breadcrumb:hover {
   color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
+/* Bordered controls: back button, "Found in" breadcrumbs, "See all Environments". */
+.mh-dark .MHCheckoutPageView-backButton,
+.mh-dark a.MHCheckoutRewardPageView-breadcrumb,
+.mh-dark .MHCheckout-region-seeAllEnvironments {
+  color: var(--d-text);
+  background-color: var(--d-button);
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutPageView-backButton:hover,
+.mh-dark a.MHCheckoutRewardPageView-breadcrumb:hover,
+.mh-dark .MHCheckout-region-seeAllEnvironments:hover {
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .MHCheckoutPageView-backButton::before {
+  border-right-color: var(--d-text);
+}
+
+.mh-dark .MHCheckoutPageView-backButton:hover::before {
+  border-right-color: var(--d-hover-text);
+}
+
+/* Environments list. */
+.mh-dark .MHCheckoutRegionsView-region,
+.mh-dark .MHCheckoutRegionsView-environment {
+  color: var(--d-text);
+}
+
+.mh-dark .MHCheckoutRegionsView-region-title,
+.mh-dark .MHCheckout-region-activeRegion {
+  color: var(--d-white);
+}
+
+.mh-dark .MHCheckoutRegionsView-environment.unknown {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .MHCheckoutRegionsView-environment-image {
+  background-color: var(--d-surface-inset);
+}
+
+.mh-dark .MHCheckoutRegionsView-environment.unknown .MHCheckoutRegionsView-environment-image {
+  box-shadow: inset 0 0 1px var(--d-border);
+}
+
+.mh-dark .MHCheckoutRegionsView-environment.active:hover {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+  box-shadow: inset 0 0 0 1px var(--d-interactive);
+}
+
+/* Header cart dropdown. */
+.mh-dark .MHCheckoutRootView-header-block {
+  background-color: var(--d-surface-popover);
+}
+
+.mh-dark .MHCheckoutRootView-header-block-dropdown {
+  color: var(--d-text);
+  background: var(--d-surface-popover);
+  border-color: var(--d-border);
+  box-shadow: 0 2px 6px var(--d-shadow);
+}
+
+.mh-dark .MHCheckoutHeaderCartView-reward {
+  color: var(--d-text);
+}
+
+.mh-dark .MHCheckoutHeaderCartView-reward.empty:hover {
+  color: var(--d-text);
+  background-color: transparent;
+}
+
+/* Structural borders the game draws in light grey. */
+.mh-dark .MHCheckoutHeaderCartView-rewardsContainer,
+.mh-dark .MHCheckoutPageView-tabContainer,
+.mh-dark .MHCheckoutRewardPageView-breadcrumbContainer,
+.mh-dark .MHCheckoutRewardPageView-trapImagePreview-name,
+.mh-dark .MHCheckoutCartTableView th {
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutRewardPageView-quantityOwned,
+.mh-dark .MHCheckoutCartTableView-totalRow {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutPageView-tab .MHCheckoutPageView-tab-padding::after,
+.mh-dark .MHCheckoutRewardPageView-skinTrapContainer,
+.mh-dark .MHCheckoutRewardPageView-skinTrap-warning-icon,
+.mh-dark .MHCheckoutRewardPageView-actions-limitedProgress,
+.mh-dark .MHCheckoutReviewCartPageView-paymentActions label,
+.mh-dark .MHCheckoutCartTableView-reward-cancelButton,
+.mh-dark .MHCheckoutTooltipView-itemGroup-padding,
+.mh-dark .MHCheckoutTransactionErrorPageView__helpButton {
+  border-color: var(--d-border);
+}
+
+.mh-dark .MHCheckoutReviewCartPageView-stepSpacer {
+  border-bottom-color: var(--d-text-muted);
+}
+
+/* Cart table controls. */
+.mh-dark .MHCheckoutCartTableView-reward-removeCartItem {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward-removeCartItem:hover,
+.mh-dark .MHCheckoutReviewCartPageView-paymentForm div[data-braintree-id="toggle"]:hover {
+  color: var(--d-white);
+}
+
+.mh-dark .MHCheckoutCartTableView-reward-showRemoveConfirm:hover,
+.mh-dark .MHCheckoutCartTableView-reward-cancelButton:hover,
+.mh-dark .MHCheckoutReviewCartPageView-paymentActions label:hover,
+.mh-dark .MHCheckoutTransactionErrorPageView__helpButton:hover {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+}
+
+.mh-dark .MHCheckoutReviewCartPageView-paymentForm div[data-braintree-id="toggle"] {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .MHCheckoutTransactionErrorPageView__helpButton {
+  color: var(--d-link);
+}
+
+/* Item popups opened from inside the shop. */
+.mh-dark .MHCheckoutDialogView-closeButton {
+  background-color: var(--d-button);
+}
+
+.mh-dark .MHCheckoutDialogView-closeButton:hover {
   background-color: var(--d-hover);
 }
 

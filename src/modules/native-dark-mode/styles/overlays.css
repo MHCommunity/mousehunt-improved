@@ -208,6 +208,7 @@
 .mh-dark #overlayPopup.loading .jsDialogContainer .suffix {
   background-color: var(--d-surface-header);
   background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
+  background-repeat: no-repeat;
   background-position: 98% 10px;
   background-size: 110px;
 }
