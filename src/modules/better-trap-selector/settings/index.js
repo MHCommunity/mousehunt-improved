@@ -33,10 +33,5 @@ export default async () => {
       title: 'Show toothlet and printing paper counts',
       default: true,
     },
-    {
-      id: 'better-trap-selector.supply-runway',
-      title: 'Show how long your cheese and charms will last',
-      default: true,
-    },
   ];
 };

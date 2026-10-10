@@ -9,7 +9,6 @@ import realBaseStats from './modules/real-base-stats';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
 import specialEffects from './modules/special-effects';
-import supplyRunway from './modules/supply-runway';
 
 import trapGradientBackgroundStyles from './modules/trap-gradient-background/styles.css';
 
@@ -29,7 +28,6 @@ const featureManifest = [
   },
   { id: 'real-base-stats', setting: 'better-trap-selector.real-base-stats', default: true, load: realBaseStats },
   { id: 'base-item-counters', setting: 'better-trap-selector.base-item-counters', default: true, load: baseItemCounters },
-  { id: 'supply-runway', setting: 'better-trap-selector.supply-runway', default: true, load: supplyRunway },
 ];
 
 export default featureManifest;
