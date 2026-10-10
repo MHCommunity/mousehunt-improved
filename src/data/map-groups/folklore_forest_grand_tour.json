@@ -110,6 +110,7 @@
     {
       "name": "Final Draft Derby",
       "id": "final-draft-derby-split",
+      "icon": "/items/bait/large/38e4c8bed6a1a021e307a950bb51399d.png",
       "color": "#d0accc",
       "color-dark": "#5c3158",
       "mice": ["bitter_grammarian", "mythweaver"]
@@ -117,6 +118,7 @@
     {
       "name": "Beanstalk",
       "id": "boun-beanstalk-split",
+      "icon": "/ui/hud/bountiful_beanstalk/beanstalk/boss_marker.png",
       "color": "#45890e",
       "color-dark": "#426426",
       "mice": ["vinneus_stalkhome"]
@@ -124,6 +126,7 @@
     {
       "name": "Dungeon",
       "id": "boun-dungeon-split",
+      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
       "color": "#919ac7",
       "color-dark": "#394270",
       "mice": ["cell_sweeper", "dungeon_master", "gate_keeper", "jovial_jailor", "key_master", "lethargic_guard", "wrathful_warden"]
@@ -131,6 +134,7 @@
     {
       "name": "Ballroom",
       "id": "boun-ballroom-split",
+      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
       "color": "#e0b1b2",
       "color-dark": "#783031",
       "mice": ["chafed_cellist", "malevolent_maestro", "obstinate_oboist", "peevish_piccoloist", "sultry_saxophonist", "treacherous_tubaist", "violent_violinist"]
@@ -138,6 +142,7 @@
     {
       "name": "Great Hall",
       "id": "boun-great-hall-split",
+      "icon": "/environments/1559cd101730b5ae0b90e212b0b7a0fd.jpg",
       "color": "#d68d0a",
       "color-dark": "#6f562a",
       "mice": ["baroness_von_bean", "cagey_countess", "dastardly_duchess", "malicious_marquis", "mythical_giant_king", "pernicious_prince", "vindictive_viscount"]
@@ -319,7 +324,7 @@
       ]
     },
     {
-      "name": "Afterword Acres: Metaphor Manchego",
+      "name": "AA: Metaphor Manchego",
       "id": "afterword-acres-manchego-split",
       "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
       "color": "#ffbb45",
@@ -327,7 +332,7 @@
       "mice": ["sardonic_sapling", "sour_sprout", "twisted_twig"]
     },
     {
-      "name": "Afterword Acres: Allegory Anari",
+      "name": "AA: Allegory Anari",
       "id": "afterword-acres-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
@@ -335,8 +340,9 @@
       "mice": ["brash_birch", "maniacal_maple", "wailing_willow"]
     },
     {
-      "name": "Afterword Acres: Sirene",
+      "name": "AA: Sirene",
       "id": "afterword-acres-sirene-split",
+      "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",
       "color-dark": "#0a8484",
       "mice": ["blight_incarnate", "furious_fir", "heinous_hemlock", "rampaging_redwood"]
@@ -344,12 +350,13 @@
     {
       "name": "Herbicidal Maniac",
       "id": "herbicidal-maniac-split",
+      "icon": "/environments/9e2ede5751cdfa4bdb29128d26f9d269.jpg",
       "color": "#f2b2eb",
       "color-dark": "#7a146f",
       "mice": ["herbicidal_maniac"]
     },
     {
-      "name": "Epilogue Falls: Metaphor Manchego",
+      "name": "EF: Metaphor Manchego",
       "id": "epilogue-falls-manchego-split",
       "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
       "color": "#ffbb45",
@@ -357,7 +364,7 @@
       "mice": ["anguished_anemone", "belligerent_berghia", "menacing_medusozoa"]
     },
     {
-      "name": "Epilogue Falls: Allegory Anari",
+      "name": "EF: Allegory Anari",
       "id": "epilogue-falls-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
@@ -365,7 +372,7 @@
       "mice": ["loutish_loach", "pesky_pleco", "shifty_shrimp"]
     },
     {
-      "name": "Epilogue Falls: Symbolic Sirene",
+      "name": "EF: Symbolic Sirene",
       "id": "epilogue-falls-sirene-split",
       "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",
@@ -375,6 +382,7 @@
     {
       "name": "Waterfall",
       "id": "waterfall-split",
+      "icon": "/environments/de315cfc322a251f74da564ccc44343a.jpg",
       "color": "#abfdf4",
       "color-dark": "#0a8476",
       "mice": ["falls_guardian"]
@@ -382,6 +390,7 @@
     {
       "name": "Hidden Grotto",
       "id": "hidden-grotto-split",
+      "icon": "/environments/de315cfc322a251f74da564ccc44343a.jpg",
       "color": "#8fbc8f",
       "color-dark": "#315c31",
       "mice": ["grotto_elder"]

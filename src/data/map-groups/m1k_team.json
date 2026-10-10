@@ -18,7 +18,7 @@
       "mice": ["empyrean_treasure_guardian", "empyrean_oreglass_miner", "empyrean_cloudstone_miner", "empyrean_charm_hoarder", "empyrean_loot_cache_guardian", "richard_rich"]
     },
     {
-      "name": "Floating Islands: Sky Pirates",
+      "name": "FI: Sky Pirates",
       "id": "m1000team-floating-islands-sky-pirates",
       "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
       "color": "#ead1dc",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "name": "Gnawnia & Bristle Woods Rifts",
+      "name": "Gnawnia & BW Rifts",
       "id": "m1000team-gnawnia-bristle-woods-rifts",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#d0e0e3",
@@ -183,6 +183,7 @@
     {
       "name": "Sunken City",
       "id": "m1000team-sunken-city",
+      "icon": "/environments/1502b125ffa059a0a25f47f86606a3ae.jpg",
       "color": "#9fc5e8",
       "color-dark": "#1d4972",
       "mice": ["tritus", "ancient_of_the_deep"]
@@ -257,8 +258,9 @@
       "mice": ["abominable_snow", "big_bad_burroughs", "monster", "menace"]
     },
     {
-      "name": "Gnawnia & Whisker Woods",
+      "name": "Gnawnia & WW",
       "id": "m1000team-gnawnia-whisker-woods",
+      "icon": "/environments/654263a6596f5a90da200554961dc25e.jpg",
       "color": "#b4ffff",
       "color-dark": "#1d7272",
       "mice": ["captain_croissant", "eclipse", "silth"]
@@ -282,6 +284,7 @@
     {
       "name": "Other",
       "id": "m1000team-other",
+      "icon": "/items/stats/large/74836c5d377e7f13b294db7ea0984b44.png",
       "color": "#c2c2c2",
       "color-dark": "#5d3232",
       "mice": ["m400"]

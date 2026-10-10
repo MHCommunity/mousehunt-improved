@@ -10,7 +10,7 @@
   "categories": [
     {
       "name": "Low Pollution",
-      "subtitle": "Hero to Duke",
+      "subtitle": "Hero to Baron",
       "id": "ts-low-pollution",
       "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
       "color": "#d9ead3",
@@ -27,7 +27,7 @@
     },
     {
       "name": "Mid Pollution",
-      "subtitle": "Every level, but Rancid only works from Lord or Count up",
+      "subtitle": "Baron to Count",
       "id": "ts-mid-pollution",
       "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
       "color": "#b6d7a8",
@@ -44,7 +44,7 @@
     },
     {
       "name": "High Pollution",
-      "subtitle": "Every level with Magical, Rancid only works from Duke up",
+      "subtitle": "Duke and up",
       "id": "ts-high-pollution",
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#a2c4c9",
@@ -59,8 +59,8 @@
       ]
     },
     {
-      "name": "Archduke Only",
-      "subtitle": "Magical Rancid Radioactive Blue",
+      "name": "Max Pollution",
+      "subtitle": "Archduke only",
       "id": "ts-archduke",
       "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#fde671",
@@ -69,7 +69,7 @@
     },
     {
       "name": "Charm Required",
-      "subtitle": "Every level, either cheese",
+      "subtitle": "Any level",
       "id": "ts-charm",
       "icon": "https://i.mouse.rip/upscaled/e9f1d5f0bb9d29b9db313cd837bb8028.png",
       "color": "#c9daf8",

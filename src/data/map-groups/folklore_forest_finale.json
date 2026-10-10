@@ -2,7 +2,7 @@
   "names": ["Folklore Forest Finale Map"],
   "categories": [
     {
-      "name": "Afterword Acres: Standard",
+      "name": "AA: Standard",
       "id": "afterword-acres-standard-split",
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ffe1ad",
@@ -10,7 +10,7 @@
       "mice": ["bark_burner", "branch_breaker", "moss_comber", "sap_stealer"]
     },
     {
-      "name": "Afterword Acres: Metaphor Manchego",
+      "name": "AA: Metaphor Manchego",
       "id": "afterword-acres-manchego-split",
       "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
       "color": "#ffbb45",
@@ -18,7 +18,7 @@
       "mice": ["sardonic_sapling", "sour_sprout", "twisted_twig"]
     },
     {
-      "name": "Afterword Acres: Allegory Anari",
+      "name": "AA: Allegory Anari",
       "id": "afterword-acres-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
@@ -26,7 +26,7 @@
       "mice": ["brash_birch", "maniacal_maple", "wailing_willow"]
     },
     {
-      "name": "Afterword Acres: Sirene",
+      "name": "AA: Sirene",
       "id": "afterword-acres-sirene-split",
       "color": "#b2ffff",
       "color-dark": "#0a8484",
@@ -40,7 +40,7 @@
       "mice": ["herbicidal_maniac"]
     },
     {
-      "name": "Epilogue Falls: Standard",
+      "name": "EF: Standard",
       "id": "epilogue-falls-standard-split",
       "icon": "/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png",
       "color": "#ffe1ad",
@@ -48,7 +48,7 @@
       "mice": ["abrasive_abalone", "barbaric_barnacle", "crusty_crab", "scornful_scallop"]
     },
     {
-      "name": "Epilogue Falls: Metaphor Manchego",
+      "name": "EF: Metaphor Manchego",
       "id": "epilogue-falls-manchego-split",
       "icon": "/items/bait/large/9a8f9b0373d71c41e89ccc0d112e26be.png",
       "color": "#ffbb45",
@@ -56,7 +56,7 @@
       "mice": ["anguished_anemone", "belligerent_berghia", "menacing_medusozoa"]
     },
     {
-      "name": "Epilogue Falls: Allegory Anari",
+      "name": "EF: Allegory Anari",
       "id": "epilogue-falls-anari-split",
       "icon": "/items/bait/large/6380c5472e9b046fa07df70e30051300.png",
       "color": "#ffff44",
@@ -64,7 +64,7 @@
       "mice": ["loutish_loach", "pesky_pleco", "shifty_shrimp"]
     },
     {
-      "name": "Epilogue Falls: Symbolic Sirene",
+      "name": "EF: Symbolic Sirene",
       "id": "epilogue-falls-sirene-split",
       "icon": "/items/bait/large/ae92517a75f7de4f1724060ecc569579.png",
       "color": "#b2ffff",

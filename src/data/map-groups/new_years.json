@@ -28,7 +28,6 @@
       "name": "All Areas",
       "subtitle": "Pecan Pecorino",
       "id": "nyp-all-areas",
-      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#c3def5",
       "color-dark": "#1d4b72",
       "mice": [
@@ -48,7 +47,6 @@
       "name": "Cinnamon Hill",
       "subtitle": "Pecan Pecorino",
       "id": "nyp-grove",
-      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
       "mice": ["sporty_ski_instructor", "snowball_hoarder", "nitro_racer", "golem_jockey", "wreath_thief"]
@@ -57,7 +55,6 @@
       "name": "Golem Workshop",
       "subtitle": "Pecan Pecorino",
       "id": "nyp-workshop",
-      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#fce5cd",
       "color-dark": "#72481d",
       "mice": ["toy_builder", "present", "winter_hunt_toy", "christmas_tree", "ridiculous_sweater"]
@@ -66,7 +63,6 @@
       "name": "Ice Fortress",
       "subtitle": "Pecan Pecorino",
       "id": "nyp-fortress",
-      "icon": "/items/bait/large/80c4c6e1c78063dd2ced38709ed5bd68.png",
       "color": "#c9daf8",
       "color-dark": "#1d3c72",
       "mice": ["snowball_bully", "winter_boss_2016", "winter_boss_2017", "squeaker_claws", "slay"]

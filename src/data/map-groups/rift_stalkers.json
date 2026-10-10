@@ -4,6 +4,7 @@
     {
       "name": "Gnawnia Rift",
       "id": "gnawnia-rift",
+      "icon": "/environments/8b51987e048966a5c6f74418e89dd88c.jpg",
       "color": "#f7e8f9",
       "color-dark": "#712e7a",
       "mice": ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"]
@@ -11,6 +12,7 @@
     {
       "name": "Training Grounds",
       "id": "furoma-rift-outside",
+      "icon": "/environments/0929ca477211f380c0856663cd825195.jpg",
       "color": "#e5a571",
       "color-dark": "#7a502e",
       "mice": ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"]
@@ -18,6 +20,7 @@
     {
       "name": "Pagoda",
       "id": "furoma-rift-inside",
+      "icon": "/environments/0929ca477211f380c0856663cd825195.jpg",
       "color": "#cb7136",
       "color-dark": "#7a4c2e",
       "mice": [
