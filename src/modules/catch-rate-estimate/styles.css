@@ -16,33 +16,67 @@
   box-shadow: 0 -1px 0 0 #5c5c5c inset;
 }
 
-#mh-improved-cre thead:hover th.name {
+#mh-improved-cre th.name {
   position: relative;
 }
 
-#mh-improved-cre thead:hover th.name::after {
+#mh-improved-cre .mh-improved-cre-refresh {
   position: absolute;
-  top: 5px;
+  top: 50%;
   right: 0;
-  box-sizing: border-box;
-  display: block;
   width: 17px;
   height: 17px;
-  padding: 9px;
-  margin: 1px;
-  content: "";
+  padding: 0;
+  cursor: pointer;
   background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border: none;
   border-radius: 50%;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+#mh-improved-cre thead:hover .mh-improved-cre-refresh,
+#mh-improved-cre .mh-improved-cre-refresh:focus-visible {
   opacity: 0.3;
 }
 
-.mh-dark #mh-improved-cre thead:hover th.name::after {
+#mh-improved-cre thead .mh-improved-cre-refresh:hover {
+  opacity: 0.7;
+}
+
+.mh-dark #mh-improved-cre .mh-improved-cre-refresh {
   filter: invert(1);
+}
+
+#mh-improved-cre .mh-improved-cre-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+#mh-improved-cre .mh-improved-cre-sortable:hover {
+  text-decoration: underline;
+}
+
+#mh-improved-cre .mh-improved-cre-sorted-asc::after,
+#mh-improved-cre .mh-improved-cre-sorted-desc::after {
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 8px;
+  vertical-align: middle;
+}
+
+#mh-improved-cre .mh-improved-cre-sorted-asc::after {
+  content: "▲";
+}
+
+#mh-improved-cre .mh-improved-cre-sorted-desc::after {
+  content: "▼";
 }
 
 #mh-improved-cre table th {
   font-weight: 700;
   text-align: center;
+  white-space: nowrap;
 }
 
 #mh-improved-cre table th.name {
@@ -145,16 +179,40 @@
 }
 
 .mh-improved-cre-name {
-  max-width: 170px;
+  width: 100%;
+  max-width: 0;
   padding-left: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mh-improved-cre-name:hover {
+/* Long names are cut off, so show the whole name over the other columns on hover. */
+#mh-improved-cre .mh-improved-cre-name-truncated:hover {
   overflow: visible;
-  text-overflow: revert;
+}
+
+#mh-improved-cre .mh-improved-cre-name-truncated:hover a {
+  position: relative;
+  z-index: 2;
+  padding: 2px 6px;
+  margin: -3px -7px;
+  background-color: #fff;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+}
+
+.mh-dark #mh-improved-cre .mh-improved-cre-name-truncated:hover a {
+  background-color: var(--d-surface-popover);
+  border-color: var(--d-border);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 50%);
+}
+
+.mh-dark-mode #mh-improved-cre .mh-improved-cre-name-truncated:hover a {
+  background-color: #2b2b2b;
+  border-color: #5c5c5c;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 50%);
 }
 
 .mh-improved-cre-name a {
@@ -231,4 +289,22 @@ span.mh-improved-cre-no-mice {
 .mh-improved-cre-no-mice {
   padding: 10px;
   font-size: 13px;
+}
+
+#mh-improved-cre .mh-improved-cre-ar {
+  min-width: 40px;
+}
+
+#mh-improved-cre .mh-improved-cre-overall td {
+  padding-top: 3px;
+  font-weight: 700;
+  box-shadow: 0 1px 0 0 #d3cecb inset;
+}
+
+.mh-dark #mh-improved-cre .mh-improved-cre-overall td {
+  box-shadow: 0 1px 0 0 var(--d-border) inset;
+}
+
+.mh-dark-mode #mh-improved-cre .mh-improved-cre-overall td {
+  box-shadow: 0 1px 0 0 #5c5c5c inset;
 }

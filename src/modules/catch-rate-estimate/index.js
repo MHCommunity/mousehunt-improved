@@ -1,10 +1,29 @@
-import { addStyles, cacheGet, cacheSet, debuglog, doEvent, getCurrentLocation, getCurrentPage, getFlag, makeElement, onNavigation, onRequest, onTravel, parseNumber } from '@utils';
+import {
+  addStyles,
+  cacheGet,
+  cacheSet,
+  debuglog,
+  doEvent,
+  getCurrentLocation,
+  getCurrentPage,
+  getFlag,
+  make,
+  makeElement,
+  onNavigation,
+  onRequest,
+  onTravel,
+  parseNumber,
+} from '@utils';
 
+import { getAttractionRates } from './attraction-rates';
 import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, getMousePower } from './data';
+import { addRefreshTriggers, saveRenderedStage } from './refresh-triggers';
+import { updateTrapEffectivenessText } from './trap-effectiveness';
 
 import styles from './styles.css';
 
 let lastStats = '';
+let sortState = { key: null, direction: 'asc' };
 let effectiveness = null;
 let isUpdating = false;
 
@@ -165,7 +184,7 @@ const updateMinLucks = async (useCachedData = false) => {
   }
 };
 
-const updateTrapView = (rows) => {
+const updateTrapView = (rows, overallCatchRate = null) => {
   if (!getFlag('cre-show-trap-highlight')) {
     return;
   }
@@ -189,18 +208,221 @@ const updateTrapView = (rows) => {
   // if our average is worse than 40%, add a bad class. if it's better than 60%, add a good class. Better than 75%, add a great class.
   trapView.classList.add('mh-improved-cre-highlight');
 
-  // eslint-disable-next-line eqeqeq
-  if (1075 == user.trinket_item_id) {
+  if (hasUltimateCharm()) {
     trapView.classList.add('mh-improved-cre-highlight-ultimate');
   } else if (rows.every((row) => user.trap_luck >= row.minluck)) {
     trapView.classList.add('mh-improved-cre-highlight-minlucked');
   } else {
-    const averageCatchRate = rows.reduce((acc, row) => acc + row.catchRateValue, 0) / rows.length;
+    const averageCatchRate = overallCatchRate ?? rows.reduce((acc, row) => acc + row.catchRateValue, 0) / rows.length;
     if (averageCatchRate >= 0.75) {
       trapView.classList.add('mh-improved-cre-highlight-good');
     } else if (averageCatchRate <= 0.4) {
       trapView.classList.add('mh-improved-cre-highlight-bad');
     }
+  }
+};
+
+/**
+ * Check whether the Ultimate Charm is equipped, which catches everything.
+ *
+ * @return {boolean} Whether it is.
+ */
+// eslint-disable-next-line eqeqeq
+const hasUltimateCharm = () => 1075 == user.trinket_item_id;
+
+/**
+ * Get the classes that color a catch rate or minluck cell.
+ *
+ * @param {number} rate    The catch rate (0-1).
+ * @param {number} minluck The minluck.
+ *
+ * @return {Array} The classes.
+ */
+const getRateClasses = (rate, minluck) => {
+  const classes = ['mh-improved-cre-data'];
+  if (hasUltimateCharm()) {
+    classes.push('mh-improved-cre-data-ultimate');
+    return classes;
+  }
+
+  if (rate >= 1) {
+    classes.push('mh-improved-cre-data-good');
+  } else if (rate >= 0.85) {
+    classes.push('mh-improved-cre-data-goodish');
+  } else if (rate <= 0.6) {
+    classes.push('mh-improved-cre-data-bad');
+  }
+
+  if (user.trap_luck >= minluck) {
+    classes.push('mh-improved-cre-data-minlucked');
+  }
+
+  return classes;
+};
+
+/**
+ * Format an attraction rate as a percentage.
+ *
+ * @param {number} rate The attraction rate (0-1).
+ *
+ * @return {string} The formatted rate.
+ */
+const formatAttractionRate = (rate) => {
+  const percent = rate * 100;
+  if (percent > 0 && percent < 0.1) {
+    return '<0.1%';
+  }
+
+  return `${percent.toFixed(percent < 10 ? 1 : 0)}%`;
+};
+
+/**
+ * Get the chance of catching whichever mouse is attracted: each mouse's catch rate weighted
+ * by its attraction rate. Attraction rates are already normalized across the mice that have one.
+ *
+ * @param {Array} rows The mouse rows.
+ *
+ * @return {number|null} The overall catch rate (0-1), or null without attraction rates.
+ */
+const getOverallCatchRate = (rows) => {
+  const weighted = rows.filter((row) => undefined !== row.attractionRate);
+  if (weighted.length === 0) {
+    return null;
+  }
+
+  const overall = weighted.reduce((total, row) => total + row.attractionRate * row.catchRateValue, 0);
+
+  // Round off floating point error, so all guaranteed catches add up to exactly 100%.
+  return Math.min(1, Math.round(overall * 1_000_000) / 1_000_000);
+};
+
+/**
+ * Make the overall row shown below the mice.
+ *
+ * @param {Array}  rows             The mouse rows.
+ * @param {number} overallCatchRate The overall catch rate (0-1).
+ *
+ * @return {HTMLElement} The row.
+ */
+const makeOverallRow = (rows, overallCatchRate) => {
+  const row = makeElement('tr', ['mh-improved-cre-row', 'mh-improved-cre-overall']);
+  row.title = 'Catch rates weighted by attraction rate';
+
+  makeElement('td', 'mh-improved-cre-name', 'Overall', row);
+
+  const totalAttractionRate = rows.reduce((total, mouseRow) => total + (mouseRow.attractionRate ?? 0), 0);
+  makeElement('td', ['mh-improved-cre-data', 'mh-improved-cre-ar'], formatAttractionRate(totalAttractionRate), row);
+
+  const maxMinluck = Math.max(...rows.map((mouseRow) => Number(mouseRow.minluck) || 0));
+  makeElement('td', getRateClasses(overallCatchRate, maxMinluck), maxMinluck, row);
+
+  // Up to 2 decimals, without trailing zeros.
+  makeElement('td', getRateClasses(overallCatchRate, maxMinluck), `${Number((overallCatchRate * 100).toFixed(2))}%`, row);
+
+  return row;
+};
+
+// The direction a column sorts in when it's first clicked.
+const defaultSortDirections = {
+  mouse: 'asc',
+  attractionRate: 'desc',
+  minluck: 'desc',
+  catchRate: 'asc',
+};
+
+/**
+ * Compare rows in the default order: lowest catch rate first, then highest minluck.
+ *
+ * @param {Object} a A mouse row.
+ * @param {Object} b Another mouse row.
+ *
+ * @return {number} The sort order.
+ */
+const byDefault = (a, b) => a.catchRateValue - b.catchRateValue || b.minluck - a.minluck;
+
+/**
+ * Sort the mouse rows by the current sort column. Without one, the lowest catch rates come first.
+ *
+ * @param {Array} rows The mouse rows.
+ *
+ * @return {Array} The sorted rows.
+ */
+const sortRows = (rows) => {
+  if (!sortState.key) {
+    return [...rows].sort(byDefault);
+  }
+
+  const direction = 'asc' === sortState.direction ? 1 : -1;
+  const compare = {
+    mouse: (a, b) => a.mouse.localeCompare(b.mouse),
+    attractionRate: (a, b) => a.attractionRate - b.attractionRate,
+    minluck: (a, b) => a.minluck - b.minluck,
+    catchRate: (a, b) => a.catchRateValue - b.catchRateValue,
+  }[sortState.key];
+
+  return [...rows].sort((a, b) => {
+    // Mice without an attraction rate stay at the bottom either way.
+    if ('attractionRate' === sortState.key && (undefined === a.attractionRate || undefined === b.attractionRate)) {
+      return (undefined === a.attractionRate) - (undefined === b.attractionRate) || byDefault(a, b);
+    }
+
+    return direction * compare(a, b) || byDefault(a, b);
+  });
+};
+
+/**
+ * Mark the header of the current sort column.
+ *
+ * @param {Array<HTMLElement>} headers The column headers.
+ */
+const updateSortIndicators = (headers) => {
+  for (const header of headers) {
+    const isSorted = header.dataset.sort === sortState.key;
+    header.classList.toggle('mh-improved-cre-sorted-asc', isSorted && 'asc' === sortState.direction);
+    header.classList.toggle('mh-improved-cre-sorted-desc', isSorted && 'desc' === sortState.direction);
+
+    let ariaSort = 'none';
+    if (isSorted) {
+      ariaSort = 'asc' === sortState.direction ? 'ascending' : 'descending';
+    }
+    header.setAttribute('aria-sort', ariaSort);
+  }
+};
+
+/**
+ * Render the mouse rows, sorted by the current sort column.
+ *
+ * @param {HTMLElement} tbody              The table body.
+ * @param {Array}       rows               The mouse rows.
+ * @param {boolean}     hasAttractionRates Whether to show the attraction rate column.
+ */
+const renderRows = (tbody, rows, hasAttractionRates) => {
+  tbody.replaceChildren();
+
+  for (const { mouse, type, attractionRate, minluck, catchRate, crClass, minluckClass } of sortRows(rows)) {
+    const row = makeElement('tr', 'mh-improved-cre-row');
+    const name = makeElement('td', 'mh-improved-cre-name');
+    const nameLink = makeElement('a', '', mouse);
+    nameLink.setAttribute('onclick', `return hg.views.MouseView.show('${type}');`);
+    nameLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      hg.views.MouseView.show(type);
+    });
+    name.append(nameLink);
+    name.addEventListener('mouseenter', () => {
+      name.classList.toggle('mh-improved-cre-name-truncated', name.scrollWidth > name.clientWidth);
+    });
+    row.append(name);
+
+    if (hasAttractionRates) {
+      makeElement('td', ['mh-improved-cre-data', 'mh-improved-cre-ar'], undefined === attractionRate ? '–' : formatAttractionRate(attractionRate), row);
+    }
+
+    makeElement('td', minluckClass, minluck, row);
+    makeElement('td', crClass, catchRate, row);
+
+    tbody.append(row);
   }
 };
 
@@ -223,6 +445,9 @@ const renderList = async (list) => {
     statsContainer.append(minluckList);
   }
 
+  const attractionRates = await getAttractionRates(list);
+  const hasAttractionRates = attractionRates.size > 0;
+
   const existing = document.querySelector('#mh-improved-cre-table');
   if (existing) {
     existing.remove();
@@ -234,11 +459,44 @@ const renderList = async (list) => {
   table.id = 'mh-improved-cre-table';
 
   const tableheader = makeElement('thead');
-  makeElement('th', 'name', 'Mouse', tableheader);
-  makeElement('th', '', 'Minluck', tableheader);
-  makeElement('th', '', 'Catch Rate', tableheader);
+  const tbody = makeElement('tbody');
 
-  tableheader.addEventListener('click', async (e) => {
+  const columns = [
+    { key: 'mouse', label: 'Mouse', className: 'name' },
+    hasAttractionRates && { key: 'attractionRate', label: 'AR', className: 'mh-improved-cre-ar', title: 'Attraction rate: the share of attractions that are this mouse' },
+    { key: 'minluck', label: 'Minluck' },
+    { key: 'catchRate', label: 'Catch Rate' },
+  ].filter(Boolean);
+
+  const headers = columns.map((column) => {
+    const header = make('th', ['mh-improved-cre-sortable', column.className], column.label, tableheader);
+    header.dataset.sort = column.key;
+    if (column.title) {
+      header.title = column.title;
+    }
+
+    header.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (sortState.key === column.key) {
+        sortState = { key: column.key, direction: 'asc' === sortState.direction ? 'desc' : 'asc' };
+      } else {
+        sortState = { key: column.key, direction: defaultSortDirections[column.key] };
+      }
+
+      renderRows(tbody, rows, hasAttractionRates);
+      updateSortIndicators(headers);
+    });
+
+    return header;
+  });
+
+  const refreshButton = makeElement('button', 'mh-improved-cre-refresh');
+  refreshButton.type = 'button';
+  refreshButton.title = 'Refresh';
+  refreshButton.setAttribute('aria-label', 'Refresh catch rates');
+  refreshButton.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -248,7 +506,9 @@ const renderList = async (list) => {
     minluckList.classList.remove('cre-loading');
     minluckList.classList.remove('cre-loading-refresh');
   });
+  headers[0].append(refreshButton);
 
+  updateSortIndicators(headers);
   table.append(tableheader);
 
   const rows = [];
@@ -277,37 +537,18 @@ const renderList = async (list) => {
       };
     }
 
-    const crClass = ['mh-improved-cre-data'];
-    const minluckClass = ['mh-improved-cre-data'];
-
-    // Ultimate charm.
-    // eslint-disable-next-line eqeqeq
-    if (1075 == user.trinket_item_id) {
-      crClass.push('mh-improved-cre-data-ultimate');
-      minluckClass.push('mh-improved-cre-data-ultimate');
+    if (hasUltimateCharm()) {
       catchRate.rate = 1;
       catchRate.percent = '100%';
-    } else {
-      if (catchRate.rate * 100 >= 100) {
-        crClass.push('mh-improved-cre-data-good');
-        minluckClass.push('mh-improved-cre-data-good');
-      } else if (catchRate.rate * 100 >= 85) {
-        crClass.push('mh-improved-cre-data-goodish');
-        minluckClass.push('mh-improved-cre-data-goodish');
-      } else if (catchRate.rate * 100 <= 60) {
-        crClass.push('mh-improved-cre-data-bad');
-        minluckClass.push('mh-improved-cre-data-bad');
-      }
-
-      if (user.trap_luck >= minluck) {
-        crClass.push('mh-improved-cre-data-minlucked');
-        minluckClass.push('mh-improved-cre-data-minlucked');
-      }
     }
+
+    const crClass = getRateClasses(catchRate.rate, minluck);
+    const minluckClass = getRateClasses(catchRate.rate, minluck);
 
     rows.push({
       mouse: mouse.name,
       type: mouse.type,
+      attractionRate: attractionRates.get(mouse.type),
       minluck,
       catchRateValue: catchRate.rate,
       catchRate: catchRate.percent,
@@ -316,14 +557,6 @@ const renderList = async (list) => {
     });
   }
 
-  rows.sort((a, b) => {
-    if (a.catchRateValue !== b.catchRateValue) {
-      return a.catchRateValue - b.catchRateValue;
-    }
-
-    return b.minluck - a.minluck;
-  });
-
   if (rows.length === 0) {
     makeElement('span', 'mh-improved-cre-no-mice', 'No mice found.', table);
     minluckList.append(table);
@@ -331,28 +564,21 @@ const renderList = async (list) => {
     return;
   }
 
-  rows.forEach(({ mouse, type, minluck, catchRate, crClass, minluckClass }) => {
-    const row = makeElement('tr', 'mh-improved-cre-row');
-    const name = makeElement('td', 'mh-improved-cre-name');
-    const nameLink = makeElement('a', '', mouse);
-    nameLink.setAttribute('onclick', `return hg.views.MouseView.show('${type}');`);
-    nameLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      hg.views.MouseView.show(type);
-    });
-    name.append(nameLink);
-    row.append(name);
+  renderRows(tbody, rows, hasAttractionRates);
+  table.append(tbody);
 
-    makeElement('td', minluckClass, minluck, row);
-    makeElement('td', crClass, catchRate, row);
-
-    table.append(row);
-  });
+  const overallCatchRate = hasAttractionRates ? getOverallCatchRate(rows) : null;
+  if (null !== overallCatchRate) {
+    const tfoot = makeElement('tfoot');
+    tfoot.append(makeOverallRow(rows, overallCatchRate));
+    table.append(tfoot);
+  }
 
   minluckList.append(table);
 
-  updateTrapView(rows);
+  updateTrapView(rows, overallCatchRate);
+  updateTrapEffectivenessText(overallCatchRate);
+  saveRenderedStage();
 
   doEvent('mh-improved-cre-list-rendered');
 };
@@ -375,6 +601,7 @@ const main = async () => {
   } else {
     onRequest('users/changetrap.php', updateMinLucks);
     onTravel(null, { callback: updateMinLucks });
+    addRefreshTriggers(() => updateMinLucks(false));
   }
 };
 
