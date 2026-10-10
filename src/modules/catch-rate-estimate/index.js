@@ -246,11 +246,12 @@ const getRateClasses = (rate, minluck) => {
     return classes;
   }
 
-  if (rate >= 1) {
+  // The same colors as the Trap Effectiveness bar's tiers.
+  if (rate >= 0.8) {
     classes.push('mh-improved-cre-data-good');
-  } else if (rate >= 0.85) {
-    classes.push('mh-improved-cre-data-goodish');
-  } else if (rate <= 0.6) {
+  } else if (rate >= 0.4) {
+    classes.push('mh-improved-cre-data-okay');
+  } else {
     classes.push('mh-improved-cre-data-bad');
   }
 

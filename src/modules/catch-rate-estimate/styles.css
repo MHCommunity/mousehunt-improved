@@ -141,6 +141,18 @@
   background-color: #b3d88b;
 }
 
+.mh-improved-cre-data-okay {
+  color: #a17a00;
+}
+
+.mh-dark .mh-improved-cre-data-okay {
+  color: var(--d-yellow);
+}
+
+.mh-dark-mode .mh-improved-cre-data-okay {
+  color: #e6cd66;
+}
+
 .mh-improved-cre-data-bad {
   color: #bb4646;
 }
@@ -310,4 +322,9 @@ span.mh-improved-cre-no-mice {
 
 .mh-dark-mode #mh-improved-cre .mh-improved-cre-overall td {
   box-shadow: 0 1px 0 0 #5c5c5c inset;
+}
+
+/* The Trap Effectiveness bar, filled to the overall catch rate. */
+.campPage-trap-trapEffectiveness .campPage-trap-trapEffectivenessBar.mhui-tem-fill::after {
+  width: var(--mhui-tem-fill);
 }
