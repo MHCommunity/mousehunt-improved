@@ -44,7 +44,7 @@
     {
       "name": "Zugzwang's Tower",
       "id": "m1000team-zugzwangs-tower",
-      "icon": "/items/bait/large/651b4a513b18742aae8809b00ba31854.png",
+      "icon": "https://i.mouse.rip/upscaled/e6ac0fe824e3dda80e3dd54e9ccd7f3e.png",
       "color": "#d9d2e9",
       "color-dark": "#3e2f60",
       "mice": [
@@ -97,7 +97,7 @@
     {
       "name": "Whisker Woods Rift",
       "id": "m1000team-whisker-woods-rift",
-      "icon": "/items/bait/large/72c907ab7ed5661f1ec8e740e03584d9.png",
+      "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#b5a1e3",
       "color-dark": "#38216e",
       "mice": ["rift_centaur", "rift_cyclops", "rift_hydra"]
@@ -121,7 +121,7 @@
     {
       "name": "Furoma",
       "id": "m1000team-furoma",
-      "icon": "/items/bait/large/d11cebfb16707087ff08e9e4ea336d32.png",
+      "icon": "https://i.mouse.rip/upscaled/d7b036fd847529d3d12638bc16f0d44a.png",
       "color": "#a2c4c9",
       "color-dark": "#32575d",
       "mice": [
@@ -167,7 +167,7 @@
     {
       "name": "Fort Rox",
       "id": "m1000team-fort-rox",
-      "icon": "/items/bait/large/0d69edd56ca4ff2a1919654b4104013b.png",
+      "icon": "https://i.mouse.rip/upscaled/ad09220c2ff326c9e1a078b783ce0638.png",
       "color": "#fff2cc",
       "color-dark": "#725c1d",
       "mice": ["monster_of_the_meteor", "dawn_guardian"]
@@ -190,7 +190,7 @@
     {
       "name": "Living Garden",
       "id": "m1000team-living-garden",
-      "icon": "/items/bait/large/6aae69535c9c12bdaf818b883e7cdf2b.png",
+      "icon": "https://i.mouse.rip/upscaled/d465d351ec79e8089757dd7b57e85119.png",
       "color": "#e6d5b8",
       "color-dark": "#6a5025",
       "mice": ["twisted_carmine", "shattered_carmine", "carmine"]
@@ -198,7 +198,7 @@
     {
       "name": "Lost City",
       "id": "m1000team-lost-city",
-      "icon": "/items/bait/large/b088026b83aec9be3f9216c45acec1d5.png",
+      "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
       "color": "#c37aa1",
       "color-dark": "#622c49",
       "mice": ["dark_magi", "cursed_librarian"]
@@ -206,7 +206,7 @@
     {
       "name": "Sand Dunes",
       "id": "m1000team-sand-dunes",
-      "icon": "/items/bait/large/b088026b83aec9be3f9216c45acec1d5.png",
+      "icon": "https://i.mouse.rip/upscaled/ce9d5ae545b3a25d1ae9577853e8a6e0.png",
       "color": "#fce5cd",
       "color-dark": "#72481d",
       "mice": ["king_grub", "king_scarab"]
@@ -222,7 +222,7 @@
     {
       "name": "Dracano",
       "id": "m1000team-dracano",
-      "icon": "/items/bait/large/7b474ae8c3f0e5bab2009487f6edbd3a.png",
+      "icon": "https://i.mouse.rip/upscaled/a2c33e3908f19ffab038cb3643ae2915.png",
       "color": "#cf9e64",
       "color-dark": "#6d4b22",
       "mice": ["dragon", "draconic_warden", "whelpling"]
@@ -230,7 +230,7 @@
     {
       "name": "Tribal Isles",
       "id": "m1000team-tribal-isles",
-      "icon": "/items/bait/large/be8756dabb02f29b4f1b8835e2353ed4.png",
+      "icon": "https://i.mouse.rip/upscaled/d825364d9c8556bf43efcece51048dc2.png",
       "color": "#a4c0c1",
       "color-dark": "#325b5d",
       "mice": [
@@ -266,7 +266,7 @@
     {
       "name": "Acolyte Realm",
       "id": "m1000team-acolyte-realm",
-      "icon": "/items/bait/large/5de48a221f54512fbe18177f57bc4614.png",
+      "icon": "https://i.mouse.rip/upscaled/4d36162beb73e286fbcce46a0b09606d.png",
       "color": "#cc8282",
       "color-dark": "#652929",
       "mice": ["acolyte", "chrono"]

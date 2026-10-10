@@ -120,7 +120,6 @@
     {
       "name": "Forbidden Grove",
       "id": "ti-forbidden-grove",
-      "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#a4c2f4",
       "color-dark": "#1c4587",
       "mice": ["black_widow"]

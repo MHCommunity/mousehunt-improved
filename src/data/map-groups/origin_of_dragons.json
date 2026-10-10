@@ -227,7 +227,7 @@
     {
       "name": "Corky & Friends",
       "id": "corky-friends",
-      "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
+      "icon": "/items/crafting_items/large/df9677b546c356c680e1cd4ddc91d3df.png",
       "color": "#f4c47e",
       "color-dark": "#73562b",
       "mice": [
@@ -275,7 +275,7 @@
     {
       "name": "Pressure Set",
       "id": "pressure-set",
-      "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
+      "icon": "/items/stats/large/2e96a70fc48a10dd640b7fccbb2ccbca.png",
       "color": "#dcb8ff",
       "color-dark": "#552e7a",
       "mice": [

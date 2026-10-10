@@ -9,14 +9,14 @@
       "mice": ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"]
     },
     {
-      "name": "Furoma Rift: Training Grounds",
+      "name": "Training Grounds",
       "id": "furoma-rift-outside",
       "color": "#e5a571",
       "color-dark": "#7a502e",
       "mice": ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"]
     },
     {
-      "name": "Furoma Rift: Pagoda",
+      "name": "Pagoda",
       "id": "furoma-rift-inside",
       "color": "#cb7136",
       "color-dark": "#7a4c2e",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "name": "BW Rift: Ancient Lab",
+      "name": "Ancient Lab",
       "id": "bris-ancient-lab-split",
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#eaf2d3",
@@ -42,7 +42,7 @@
       "mice": ["rift_golem", "rift_scavenger", "rift_spider"]
     },
     {
-      "name": "BW Rift: Gearworks",
+      "name": "Gearworks",
       "id": "bris-gearworks-split",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#a0dcff",
@@ -50,7 +50,7 @@
       "mice": ["rift_keeper", "rift_keepers_assistant", "rift_terror_knight"]
     },
     {
-      "name": "BW Rift: Timewarp",
+      "name": "Timewarp",
       "id": "bris-timewarp-split",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#fce5cd",
@@ -58,7 +58,7 @@
       "mice": ["rift_chrono", "rift_wight"]
     },
     {
-      "name": "BW Rift: Acolyte",
+      "name": "Acolyte",
       "id": "bris-acolyte-split",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#e3b5e8",
@@ -66,7 +66,7 @@
       "mice": ["rift_acolyte", "rift_reaper"]
     },
     {
-      "name": "BW Rift: Runic Laboratory",
+      "name": "Runic Laboratory",
       "id": "bris-runic-laboratory-split",
       "icon": "/items/bait/large/a7c9ed8c6f30ddf29c6cac2d501aba87.png",
       "color": "#b6d7a8",
@@ -74,7 +74,7 @@
       "mice": ["rift_sorcerer", "rift_spectre"]
     },
     {
-      "name": "BW Rift: Hidden Treasury",
+      "name": "Hidden Treasury",
       "id": "bris-hidden-treasury-split",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ffe599",
@@ -82,7 +82,7 @@
       "mice": ["rift_gorgon", "rift_lich"]
     },
     {
-      "name": "BW Rift: Entrance",
+      "name": "Entrance",
       "id": "bris-entrance-split",
       "icon": "/items/bait/large/c9000f11e8f27bce7975ae47f13f1767.png",
       "color": "#ea9999",
@@ -90,7 +90,7 @@
       "mice": ["rift_gargoyle"]
     },
     {
-      "name": "BW Rift: Furnace Room",
+      "name": "Furnace Room",
       "id": "bris-furnace-room-split",
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#a4c2f4",
@@ -98,7 +98,7 @@
       "mice": ["rift_skeleton"]
     },
     {
-      "name": "BW Rift: Frozen Alcove",
+      "name": "Frozen Alcove",
       "id": "bris-frozen-alcove-split",
       "icon": "https://i.mouse.rip/upscaled/33655af0578327d745a198a8d1c6514a.png",
       "color": "#d5a6bd",

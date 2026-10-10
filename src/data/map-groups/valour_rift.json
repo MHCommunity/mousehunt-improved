@@ -72,7 +72,7 @@
       "mice": ["rift_gaunt_monster", "rift_gaunt_final_eclipse"]
     },
     {
-      "name": "Any Non-Eclipse Floor",
+      "name": "Non-Eclipse Floors",
       "id": "vrift-other",
       "color": "#b6d7a8",
       "color-dark": "#3f652f",

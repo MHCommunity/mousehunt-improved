@@ -40,7 +40,7 @@
     {
       "name": "Gnawnia Rift Boss",
       "id": "gnaw-gnawnia-rift-boss",
-      "icon": "/items/bait/large/a3aa774ed0ca1524d516320743c2d134.png",
+      "icon": "https://i.mouse.rip/upscaled/7a7bf830a310f72e64d98358428dfff0.png",
       "color": "#e69138",
       "color-dark": "#7e480f",
       "mice": ["rift_field"]

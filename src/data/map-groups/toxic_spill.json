@@ -9,39 +9,85 @@
   ],
   "categories": [
     {
-      "name": "Low-tier Mice",
+      "name": "Low Pollution",
+      "subtitle": "Hero to Duke",
       "id": "ts-low-pollution",
+      "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
       "color": "#d9ead3",
       "color-dark": "#3b612e",
-      "mice": ["swamp_runner", "sludge", "spore", "monster_tail", "mutated_siblings", "bog_beast"]
+      "mice": [
+        { "mouse": "swamp_runner", "subcategory": "hero-rancid" },
+        { "mouse": "mutated_siblings", "subcategory": "hero-rancid" },
+        { "mouse": "sludge", "subcategory": "hero-rancid" },
+        { "mouse": "spore", "subcategory": "knight-rancid" },
+        { "mouse": "monster_tail", "subcategory": "knight-rancid" },
+        { "mouse": "bog_beast", "subcategory": "knight-rancid" },
+        { "mouse": "gelatinous_octahedron", "subcategory": "baron-rancid" }
+      ]
     },
     {
-      "name": "Mid-tier Mice",
+      "name": "Mid Pollution",
+      "subtitle": "Every level, but Rancid only works from Lord or Count up",
       "id": "ts-mid-pollution",
+      "icon": "/items/bait/large/b406410d7c4e8f26cf1b0dd6819d0d5d.png",
       "color": "#b6d7a8",
       "color-dark": "#3d622d",
-      "mice": ["plague_hag", "sludge_soaker", "gelatinous_octahedron", "scrap_metal_monster", "tentacle", "telekinetic_mutant", "biohazard", "mutant_ninja"]
+      "mice": [
+        { "mouse": "plague_hag", "subcategory": "baron-rancid" },
+        { "mouse": "sludge_soaker", "subcategory": "baron-rancid" },
+        { "mouse": "scrap_metal_monster", "subcategory": "baron-rancid" },
+        { "mouse": "tentacle", "subcategory": "count-rancid" },
+        { "mouse": "biohazard", "subcategory": "count-rancid" },
+        { "mouse": "telekinetic_mutant", "subcategory": "count-rancid" },
+        { "mouse": "mutant_ninja", "subcategory": "count-rancid" }
+      ]
     },
     {
-      "name": "High-tier Mice",
+      "name": "High Pollution",
+      "subtitle": "Every level with Magical, Rancid only works from Duke up",
       "id": "ts-high-pollution",
+      "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#a2c4c9",
       "color-dark": "#32575d",
-      "mice": ["toxic_warrior", "slimefist", "outbreak_assassin", "mutant_mongrel", "sludge_swimmer"]
+      "mice": [
+        { "mouse": "toxic_warrior", "subcategory": "duke-rancid" },
+        { "mouse": "slimefist", "subcategory": "duke-rancid" },
+        { "mouse": "outbreak_assassin", "subcategory": "duke-rancid" },
+        { "mouse": "mutant_mongrel", "subcategory": "duke-rancid" },
+        { "mouse": "sludge_swimmer", "subcategory": "grand-duke-magical" },
+        { "mouse": "menace", "subcategory": "grand-duke-magical" }
+      ]
     },
     {
-      "name": "All-tier Mice",
-      "id": "ts-any-pollution",
-      "color": "#c9daf8",
-      "color-dark": "#1d3c72",
-      "mice": ["hazmat", "lab_technician"]
-    },
-    {
-      "name": "Bosses",
-      "id": "ts-highest-pollution",
+      "name": "Archduke Only",
+      "subtitle": "Magical Rancid Radioactive Blue",
+      "id": "ts-archduke",
+      "icon": "/items/bait/large/fa0f8c7dbad44c1fc7e4761862897380.png",
       "color": "#fde671",
       "color-dark": "#72641d",
-      "mice": ["menace", "behemoth"]
+      "mice": ["behemoth"]
+    },
+    {
+      "name": "Charm Required",
+      "subtitle": "Every level, either cheese",
+      "id": "ts-charm",
+      "icon": "https://i.mouse.rip/upscaled/e9f1d5f0bb9d29b9db313cd837bb8028.png",
+      "color": "#c9daf8",
+      "color-dark": "#1d3c72",
+      "mice": [
+        { "mouse": "lab_technician", "subcategory": "rotten-charm" },
+        { "mouse": "hazmat", "subcategory": "super-rotten-charm" }
+      ]
     }
+  ],
+  "subcategories": [
+    { "id": "hero-rancid", "name": "Best at Hero · Rancid Radioactive Blue" },
+    { "id": "knight-rancid", "name": "Best at Knight · Rancid Radioactive Blue" },
+    { "id": "baron-rancid", "name": "Best at Baron · Rancid Radioactive Blue" },
+    { "id": "count-rancid", "name": "Best at Count · Rancid Radioactive Blue" },
+    { "id": "duke-rancid", "name": "Best at Duke · Rancid Radioactive Blue" },
+    { "id": "grand-duke-magical", "name": "Best at Grand Duke · Magical Rancid Radioactive Blue" },
+    { "id": "rotten-charm", "name": "Rotten or Super Rotten Charm" },
+    { "id": "super-rotten-charm", "name": "Super Rotten Charm" }
   ]
 }
