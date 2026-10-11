@@ -558,9 +558,8 @@ const init = async () => {
  */
 export default {
   id: 'location-dashboard',
-  name: 'Location Dashboard',
   type: 'locations',
-  default: true,
-  description: 'See your location HUD info in a dashboard, available from the top menu.',
+  // Shown and hidden with Custom Menu rather than turned on and off.
+  alwaysLoad: true,
   load: init,
 };

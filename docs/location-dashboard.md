@@ -1,6 +1,6 @@
-# [Location Dashboard](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-location-dashboard)
+# Location Dashboard
 
-Adds a "Dashboard" menu to the top menu bar that will show you the important details of each location.
+Adds a "Dashboard" menu to the top menu bar that will show you the important details of each location. Hide or move it with the top menu editor.
 
 ## Supported Locations
 

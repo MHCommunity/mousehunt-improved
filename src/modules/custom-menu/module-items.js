@@ -133,15 +133,6 @@ const moduleItems = [
     needs: 'Needs Journal Privacy turned on.',
   },
   {
-    id: 'location-dashboard',
-    name: 'Dashboard',
-    icon: 'https://i.mouse.rip/icons/chart.png',
-    module: 'location-dashboard',
-    defaultStyle: 'icon-text',
-    moduleDefault: true,
-    needs: 'Needs Location Dashboard turned on.',
-  },
-  {
     id: 'favorite-setups',
     name: 'Favorite Setups',
     icon: starIcon,
@@ -173,8 +164,9 @@ const moduleItems = [
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png',
     module: 'hide-page-elements',
     defaultStyle: 'icon-text',
+    moduleDefault: true,
     setting: { key: 'hide-page-elements.hide-sidebar', default: true },
-    needs: 'Needs Hide Page Elements turned on, with the sidebar moved to the top menu.',
+    needs: 'Needs "Hide sidebar" turned on in Hide Page Elements.',
   },
   ...linkItems,
 ];
