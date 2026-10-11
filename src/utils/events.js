@@ -720,11 +720,17 @@ const addNavigationListeners = () => {
  * @param {Function} callback The callback to run when the module is activated.
  */
 const onActivation = (module, callback) => {
-  onEvent('mh-improved-settings-changed', ({ key, value }) => {
-    if (key === module && value) {
-      callback();
-    }
-  });
+  // Every wrapper shares this source, so the module and callback keep the duplicate check apart.
+  onEvent(
+    'mh-improved-settings-changed',
+    ({ key, value }) => {
+      if (key === module && value) {
+        callback();
+      }
+    },
+    false,
+    `${module}-${callback.toString()}`
+  );
 };
 
 /**
@@ -734,11 +740,17 @@ const onActivation = (module, callback) => {
  * @param {Function} callback The callback to run when the module is deactivated.
  */
 const onDeactivation = (module, callback) => {
-  onEvent('mh-improved-settings-changed', ({ key, value }) => {
-    if (key === module && !value) {
-      callback();
-    }
-  });
+  // Every wrapper shares this source, so the module and callback keep the duplicate check apart.
+  onEvent(
+    'mh-improved-settings-changed',
+    ({ key, value }) => {
+      if (key === module && !value) {
+        callback();
+      }
+    },
+    false,
+    `${module}-${callback.toString()}`
+  );
 };
 
 /**
