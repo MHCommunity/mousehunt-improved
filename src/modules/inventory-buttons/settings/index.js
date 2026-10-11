@@ -4,6 +4,12 @@
  * @return {Array} The settings for the module.
  */
 export default async () => {
+  const allButOneOptions = [
+    { name: 'Off', value: 'off' },
+    { name: 'Show', value: 'show' },
+    { name: 'Show, and lock the other open buttons', value: 'only' },
+  ];
+
   return [
     {
       id: 'inventory-buttons.open-one',
@@ -17,13 +23,13 @@ export default async () => {
     },
     {
       id: 'inventory-buttons.open-all-but-one',
-      title: 'Show "Open All But One" button',
-      default: false,
-    },
-    {
-      id: 'inventory-buttons.only-open-extras',
-      title: 'Only allow "Open All But One"',
-      default: false,
+      title: '"Open All But One" button',
+      default: [allButOneOptions[0]],
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options: allButOneOptions,
+      },
     },
   ];
 };

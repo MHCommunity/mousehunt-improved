@@ -6,5 +6,4 @@ Adds "One", "All But One", and "All" buttons to convertible items in your invent
 
 - **"Open One" button**: Adds an "Open One" button. (Enabled by default)
 - **"Open All" button**: Adds an "Open All" button. (Enabled by default)
-- **"Open All But One" button**: Adds an "Open All But One" button, useful for keeping one of an item for collection purposes.
-- **Lock opening items unless you have more than one**: Prevents accidentally opening an item you only have one of.
+- **"Open All But One" button**: Adds an "Open All But One" button, useful for keeping one of an item for collection purposes. Choose "Show, and lock the other open buttons" to make it the only way to open convertibles, so you never open your last one.

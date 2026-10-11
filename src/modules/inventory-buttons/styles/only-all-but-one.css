@@ -1,0 +1,4 @@
+.inventoryPage-item.convertible .inventoryPage-item-content-action .inventoryPage-item-button:not([data-item-action="all-but-one"]) {
+  pointer-events: none;
+  filter: grayscale(1);
+}

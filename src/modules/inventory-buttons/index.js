@@ -2,9 +2,16 @@ import { addStyles, getSetting, onNavigation, parseNumber } from '@utils';
 
 import settings from './settings';
 
-import onlyOpenMultipleStyles from './styles/only-open-multiple.css';
+import onlyAllButOneStyles from './styles/only-all-but-one.css';
 
 let isOpening = false;
+
+/**
+ * Get the "Open All But One" button setting.
+ *
+ * @return {string} 'off', 'show', or 'only'.
+ */
+const getAllButOneMode = () => getSetting('inventory-buttons.open-all-but-one-0', 'off');
 
 /**
  * Open a convertible directly, without going through the item view.
@@ -132,7 +139,7 @@ const addOpenButtons = () => {
       makeNewButton('One');
     }
 
-    if (getSetting('inventory-buttons.open-all-but-one', false) && quantity.textContent !== '1') {
+    if ('off' !== getAllButOneMode() && quantity.textContent !== '1') {
       makeNewButton('All But One');
     }
 
@@ -165,11 +172,12 @@ const addClickListener = () => {
  * Initialize the module.
  */
 const init = () => {
-  if (getSetting('inventory-buttons.only-open-extras', false)) {
-    addStyles(onlyOpenMultipleStyles, 'inventory-buttons');
+  const allButOneMode = getAllButOneMode();
+  if ('only' === allButOneMode) {
+    addStyles(onlyAllButOneStyles, 'inventory-buttons');
   }
 
-  if (getSetting('inventory-buttons.open-one', true) || getSetting('inventory-buttons.open-all-but-one', false) || getSetting('inventory-buttons.open-all', true)) {
+  if (getSetting('inventory-buttons.open-one', true) || 'off' !== allButOneMode || getSetting('inventory-buttons.open-all', true)) {
     addClickListener();
 
     onNavigation(addOpenButtons, {
