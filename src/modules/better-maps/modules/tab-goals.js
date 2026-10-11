@@ -1,4 +1,4 @@
-import { addMHCTData, debuglog, doRequest, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
+import { addMHCTData, debuglog, doRequest, escapeHtml, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';
@@ -167,7 +167,7 @@ const addClassesToGroups = (mapData) => {
       replacementTitle.append(image);
     }
 
-    const nameLink = makeElement('a', 'mh-ui-goals-group-completed-title', hunter.name);
+    const nameLink = makeElement('a', 'mh-ui-goals-group-completed-title', escapeHtml(hunter.name));
     nameLink.setAttribute('data-snuid', hunter.sn_user_id);
     nameLink.addEventListener('click', (e) => {
       e.preventDefault();

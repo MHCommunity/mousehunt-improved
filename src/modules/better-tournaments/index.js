@@ -1,4 +1,4 @@
-import { addEvent, addStyles, doRequest, getFlag, makeElement, onEvent, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
+import { addEvent, addStyles, doRequest, escapeHtml, getFlag, makeElement, onEvent, onNavigation, onRequest, sessionGet, sessionSet } from '@utils';
 
 import { applyCachedTournamentName, getTournamentId, getTournamentListingDates, parseTournamentMinutes, parseTournamentRank } from './helpers';
 import styles from './styles.css';
@@ -212,7 +212,7 @@ const updateTournamentHud = async (skipCache = false) => {
 
         teamWrapper.append(icon);
 
-        makeElement('div', 'scoreName', scoreboard.name, teamWrapper);
+        makeElement('div', 'scoreName', escapeHtml(scoreboard.name), teamWrapper);
 
         scoreRow.append(teamWrapper);
 
@@ -274,7 +274,7 @@ const updateTournamentHud = async (skipCache = false) => {
           image.src = member.profile_pic ?? 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
           memberRow.append(image);
 
-          makeElement('div', 'memberName', member.name ?? '', memberRow);
+          makeElement('div', 'memberName', escapeHtml(member.name), memberRow);
         }
 
         memberHover.append(memberRow);

@@ -46,6 +46,20 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
 };
 
 /**
+ * Escape a player-supplied string (names, team names) for use in markup.
+ *
+ * Leaves `&` alone so names the game already sends entity-encoded still render
+ * the same; escaping the rest is enough to stop tags or attribute breakouts.
+ *
+ * @param {*} value The value to escape.
+ *
+ * @return {string} The escaped string.
+ */
+const escapeHtml = (value = '') => {
+  return `${value ?? ''}`.replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+};
+
+/**
  * Make an element, append it to a parent, and return the new element.
  *
  * (makeElement returns the parent when given one, which is easy to trip over here.)
@@ -703,6 +717,7 @@ const updateTrapStatsDisplay = (selector, pbStats) => {
 
 export {
   createPopup,
+  escapeHtml,
   make,
   makeButton,
   makeElement,

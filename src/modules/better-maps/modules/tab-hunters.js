@@ -1,4 +1,4 @@
-import { makeElement, mapper } from '@utils';
+import { escapeHtml, makeElement, mapper } from '@utils';
 
 /**
  * Make the loading markup for the hunters.
@@ -70,13 +70,13 @@ const makeUserTable = async (hunters, id, title, appendTo, mapData = {}) => {
       <div class="treasureMapView-allyCell image" data-snuid="${hunter.sn_user_id}">
         <div class="treasureMapView-hunter" data-snuid="${hunter.sn_user_id}">
           <div class="treasureMapView-hunter-image-wrapper">
-            <img src="${hunter.profile_pic}" class="treasureMapView-hunter-image" alt="${hunter.name}" title="${hunter.name}" />
+            <img src="${hunter.profile_pic}" class="treasureMapView-hunter-image" alt="${escapeHtml(hunter.name)}" title="${escapeHtml(hunter.name)}" />
           </div>
         </div>
       </div>
       <div class="treasureMapView-allyCell name">
         <div class="treasureMapView-ally-name">
-        <a href="https://www.mousehuntgame.com/profile.php?snuid=${hunter.sn_user_id}">${hunter.name}</a>
+        <a href="https://www.mousehuntgame.com/profile.php?snuid=${hunter.sn_user_id}">${escapeHtml(hunter.name)}</a>
         </div>
         <a href="#" class="treasureMapView-ally-environment treasureMapView-travelButton" data-environment-id="${hunter.environment_id}">
         ${hunter.environment_name}
@@ -227,7 +227,7 @@ const updateJoinedHuntersList = async (mapData) => {
 
     const hunter = mapData.hunters.find((h) => h.name.trim() === name);
     if (hunter) {
-      nameEl.innerHTML = `<a href="https://www.mousehuntgame.com/profile.php?snuid=${hunter.sn_user_id}">${hunter.name}</a>`;
+      nameEl.innerHTML = `<a href="https://www.mousehuntgame.com/profile.php?snuid=${hunter.sn_user_id}">${escapeHtml(hunter.name)}</a>`;
     }
   }
 };
