@@ -47,6 +47,53 @@ const getTableCatchRate = (text) => {
   return Number.isNaN(percent) ? null : percent / 100;
 };
 
+const labelSelector = '.campPage-trap-trapEffectiveness.campPage-trap-statsContainer span';
+const barSelector = '.campPage-trap-trapEffectiveness.campPage-trap-statsContainer .campPage-trap-trapEffectivenessBar';
+
+let watchedTrap = null;
+let trapObserver = null;
+
+/**
+ * Check whether the game has rewritten the label or bar since we last changed them.
+ *
+ * @param {HTMLElement} text The Trap Effectiveness label.
+ * @param {HTMLElement} bar  The Trap Effectiveness bar.
+ *
+ * @return {boolean} Whether the game has.
+ */
+const isGameRewrite = (text, bar) => text.textContent !== text.dataset.mhuiLabel || !bar.classList.contains('mhui-tem-fill');
+
+/**
+ * Put our label back whenever the game rewrites it, which it does in place after every hunt and
+ * whenever the trap selector opens.
+ *
+ * @param {HTMLElement} text The Trap Effectiveness label.
+ */
+const watchTrap = (text) => {
+  const trap = text.closest('.trapSelectorView__trap');
+  if (!trap || trap === watchedTrap) {
+    return;
+  }
+
+  trapObserver?.disconnect();
+  watchedTrap = trap;
+
+  trapObserver = new MutationObserver(() => {
+    const currentText = document.querySelector(labelSelector);
+    const currentBar = document.querySelector(barSelector);
+    // Leave the game's "Loading..." up while a trap change is saving; the catch rates update after it.
+    if (!currentText || !currentBar || !currentText.dataset.mhuiLabel || 'Loading...' === currentText.textContent) {
+      return;
+    }
+
+    if (isGameRewrite(currentText, currentBar)) {
+      updateTrapEffectivenessText();
+    }
+  });
+
+  trapObserver.observe(trap, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class'] });
+};
+
 /**
  * Replace the game's Trap Effectiveness label and bar with a tier based on the overall catch rate.
  *
@@ -58,8 +105,8 @@ const updateTrapEffectivenessText = (overallCatchRate) => {
     lastOverallCatchRate = overallCatchRate;
   }
 
-  const text = document.querySelector('.campPage-trap-trapEffectiveness.campPage-trap-statsContainer span');
-  const bar = document.querySelector('.campPage-trap-trapEffectiveness.campPage-trap-statsContainer .campPage-trap-trapEffectivenessBar');
+  const text = document.querySelector(labelSelector);
+  const bar = document.querySelector(barSelector);
   if (!text || !bar) {
     return;
   }
@@ -67,23 +114,33 @@ const updateTrapEffectivenessText = (overallCatchRate) => {
   overallCatchRate = lastOverallCatchRate ?? getTableCatchRate(text);
 
   if (null === overallCatchRate || !getOverallTrapEffectiveness()) {
-    if (text.dataset.originalText) {
+    // Only put the game's label back if it hasn't since written a newer one.
+    if (text.dataset.mhuiLabel && text.textContent === text.dataset.mhuiLabel) {
       text.textContent = text.dataset.originalText;
-      delete text.dataset.originalText;
     }
 
-    if (undefined !== bar.dataset.originalClasses) {
+    if (bar.classList.contains('mhui-tem-fill')) {
       bar.className = bar.dataset.originalClasses;
-      delete bar.dataset.originalClasses;
     }
 
+    delete text.dataset.originalText;
+    delete text.dataset.mhuiLabel;
+    delete bar.dataset.originalClasses;
     bar.style.removeProperty('--mhui-tem-fill');
 
     return;
   }
 
-  text.dataset.originalText ??= text.textContent;
-  bar.dataset.originalClasses ??= bar.className;
+  watchTrap(text);
+
+  // Whatever the game last wrote is the label to restore if this is turned off.
+  if (text.textContent !== text.dataset.mhuiLabel) {
+    text.dataset.originalText = text.textContent;
+  }
+
+  if (!bar.classList.contains('mhui-tem-fill')) {
+    bar.dataset.originalClasses = bar.className;
+  }
 
   const percent = Math.max(0, Math.min(100, overallCatchRate * 100));
   // Rounded down, so it's only Guaranteed when it's sure.
@@ -92,8 +149,16 @@ const updateTrapEffectivenessText = (overallCatchRate) => {
   const tierClasses = new Set(trapEffectivenessTiers.map(([, , tierClass]) => tierClass));
   const baseClasses = bar.dataset.originalClasses.split(' ').filter((cls) => cls && !tierClasses.has(cls));
 
-  text.textContent = label;
-  bar.className = [...baseClasses, className, 'mhui-tem-fill'].join(' ');
+  text.dataset.mhuiLabel = label;
+  if (text.textContent !== label) {
+    text.textContent = label;
+  }
+
+  const barClasses = [...baseClasses, className, 'mhui-tem-fill'].join(' ');
+  if (bar.className !== barClasses) {
+    bar.className = barClasses;
+  }
+
   // The game's bar only fills in steps, so fill it to the catch rate instead.
   bar.style.setProperty('--mhui-tem-fill', `${percent}%`);
 };
