@@ -1,4 +1,4 @@
-import { addExternalStyles, addStyles, getData, getFlag, onDialogShow, onEvent, onNavigation, onRequest } from '@utils';
+import { addExternalStyles, addStyles, getData, getFlag, onEvent, onNavigation } from '@utils';
 
 import styles from './styles.css';
 import viewsStyles from './views.css';
@@ -57,6 +57,8 @@ const skipIds = new Set(['mh-improved-cre', 'mhhh_flast_message_div']);
 
 const skipElements = new Set(['head', 'title', 'optgroup', 'option']);
 
+const maxPendingImages = 200;
+
 /**
  * The ImageUpscaler class.
  */
@@ -65,18 +67,13 @@ class ImageUpscaler {
    * Create a new ImageUpscaler.
    */
   constructor() {
-    this.mapping = [];
-    this.unupscaledImages = new Set();
-    this.upscaledImages = new Set();
-    this.lastCheck = '';
-    this.isUpscaling = false;
-    this.observerOptions = {
-      childList: true,
-      subtree: true,
-    };
-    this.observer = null;
+    this.mapping = {};
+    // Every `src` we've seen, mapped to its upscaled URL or '' when it's left alone.
+    this.resolved = new Map();
+    this.pendingImages = new Set();
+    this.pendingFullScan = false;
     this.pendingFrame = null;
-    this.handleUpscalingImages = this.handleUpscalingImages.bind(this);
+    this.observer = null;
   }
 
   /**
@@ -105,59 +102,14 @@ class ImageUpscaler {
   }
 
   /**
-   * Get the mapped URL for an image.
-   *
-   * @param {string} strippedUrl The stripped URL.
-   *
-   * @return {string} The mapped URL.
-   */
-  getMappedUrl(strippedUrl) {
-    if (!strippedUrl) {
-      return '';
-    }
-
-    const mappedUrl = this.mapping[strippedUrl];
-    if (!mappedUrl) {
-      return '';
-    }
-
-    if (mappedUrl.includes('https://')) {
-      return mappedUrl;
-    }
-
-    if (mappedUrl) {
-      this.upscaledImages.add(mappedUrl);
-    }
-
-    return `https://www.mousehuntgame.com/images/${mappedUrl}`;
-  }
-
-  /**
-   * Build a hash of the current `src` of every image element.
-   *
-   * @param {NodeList} items The image elements.
-   *
-   * @return {string} The hash of the image sources.
-   */
-  hashImages(items) {
-    return [...items].map((item) => item.getAttribute('src') || '').join(',');
-  }
-
-  /**
    * Check if the URL should be skipped.
    *
-   * @param {string} url The URL to check.
+   * @param {string} url The stripped URL to check.
    *
    * @return {boolean} If the URL should be skipped.
    */
   shouldSkipUrl(url) {
-    if (
-      this.unupscaledImages.has(url) || // Don't re-upscale images that have already been upscaled.
-      this.upscaledImages.has(url) ||
-      url.startsWith('https://www.gravatar.com') || // Skip some external images.
-      url.startsWith('https://graph.facebook.com') ||
-      url.startsWith('https://i.mouse.rip')
-    ) {
+    if (url.startsWith('https://www.gravatar.com') || url.startsWith('https://graph.facebook.com') || url.startsWith('https://i.mouse.rip')) {
       return true;
     }
 
@@ -174,40 +126,97 @@ class ImageUpscaler {
   }
 
   /**
-   * Upscale the image elements.
+   * Get the upscaled URL for an image source.
+   *
+   * @param {string} src The image's current `src`.
+   *
+   * @return {string} The upscaled URL, or '' if the image should be left alone.
    */
-  upscaleImageElements() {
-    const images = document.querySelectorAll('img');
-    if (!images) {
+  resolve(src) {
+    if (!src) {
+      return '';
+    }
+
+    if (this.resolved.has(src)) {
+      return this.resolved.get(src);
+    }
+
+    const strippedUrl = this.stripUrl(src);
+    let mappedUrl = '';
+    if (strippedUrl && !this.shouldSkipUrl(strippedUrl)) {
+      const mapped = this.mapping[strippedUrl];
+      if (mapped) {
+        mappedUrl = mapped.includes('https://') ? mapped : `https://www.mousehuntgame.com/images/${mapped}`;
+      }
+    }
+
+    this.resolved.set(src, mappedUrl === src ? '' : mappedUrl);
+    if (mappedUrl) {
+      // Already upscaled, so seeing it again is a no-op.
+      this.resolved.set(mappedUrl, '');
+    }
+
+    return this.resolved.get(src);
+  }
+
+  /**
+   * Upscale a single image element.
+   *
+   * @param {HTMLImageElement} image The image element.
+   */
+  upscaleImage(image) {
+    const mappedUrl = this.resolve(image.getAttribute('src'));
+    if (mappedUrl) {
+      image.setAttribute('src', mappedUrl);
+    }
+  }
+
+  /**
+   * Upscale every image on the page.
+   */
+  upscaleAllImages() {
+    document.querySelectorAll('img').forEach((image) => this.upscaleImage(image));
+  }
+
+  /**
+   * Upscale the images queued by the observer.
+   */
+  processPending() {
+    this.pendingFrame = null;
+
+    if (this.pendingFullScan) {
+      this.pendingFullScan = false;
+      this.pendingImages.clear();
+      this.upscaleAllImages();
       return;
     }
 
-    // Skip if nothing has changed since the last pass. We compare against the
-    // hash left over from the previous *completed* pass (which reflects the
-    // post-upscale srcs), so a DOM that reverts to un-upscaled srcs — e.g. the
-    // game re-rendering a journal entry back to its original image — is
-    // correctly treated as new work rather than a no-op.
-    if (this.lastCheck === this.hashImages(images)) {
-      return;
+    for (const node of this.pendingImages) {
+      if ('IMG' === node.nodeName) {
+        this.upscaleImage(node);
+      } else {
+        node.querySelectorAll('img').forEach((image) => this.upscaleImage(image));
+      }
     }
 
-    images.forEach((image) => {
-      const originalUrl = image.getAttribute('src');
-      const strippedUrl = this.stripUrl(originalUrl);
+    this.pendingImages.clear();
+  }
 
-      if (this.shouldSkipUrl(strippedUrl)) {
-        return;
-      }
+  /**
+   * Queue a pass for the next frame.
+   */
+  schedule() {
+    if (!this.pendingFrame) {
+      this.pendingFrame = requestAnimationFrame(() => this.processPending());
+    }
+  }
 
-      const mappedUrl = this.getMappedUrl(strippedUrl);
-      if (mappedUrl && originalUrl !== mappedUrl) {
-        image.setAttribute('src', mappedUrl);
-      }
-    });
-
-    // Record the post-upscale state so the next pass dedupes against the
-    // swapped srcs, not the originals.
-    this.lastCheck = this.hashImages(images);
+  /**
+   * Queue a pass over the whole page.
+   */
+  scheduleFullScan() {
+    this.pendingFullScan = true;
+    this.schedule();
   }
 
   /**
@@ -236,76 +245,69 @@ class ImageUpscaler {
   }
 
   /**
-   * Start the observer.
+   * Queue the images added or changed by a batch of mutations.
+   *
+   * @param {MutationRecord[]} mutations The mutations.
    */
-  startObserver() {
-    if (this.observer) {
-      this.observer.disconnect();
+  handleMutations(mutations) {
+    // A full scan is already queued, so there's nothing to track.
+    if (this.pendingFullScan) {
+      return;
     }
 
-    this.observer = new MutationObserver((mutations) => {
-      // Only skip the batch if everything in it can be ignored, so images added alongside a timer
-      // tick still get upscaled.
-      if (mutations.every((mutation) => this.isSkippableMutation(mutation)) || this.pendingFrame) {
-        return;
+    let queued = false;
+
+    for (const mutation of mutations) {
+      if ('attributes' === mutation.type) {
+        this.pendingImages.add(mutation.target);
+        queued = true;
+        continue;
       }
 
-      // Coalesce bursts of mutations into a single pass per frame, rather than scanning every image
-      // for each batch.
-      this.pendingFrame = requestAnimationFrame(() => {
-        this.pendingFrame = null;
-        this.upscaleImageElements();
-      });
+      if (this.isSkippableMutation(mutation)) {
+        continue;
+      }
+
+      for (const node of mutation.addedNodes) {
+        if (Node.ELEMENT_NODE === node.nodeType) {
+          this.pendingImages.add(node);
+          queued = true;
+        }
+      }
+    }
+
+    if (!queued) {
+      return;
+    }
+
+    // Frames don't run in background tabs, so rather than holding on to every
+    // added node until the tab is shown again, fall back to one full scan.
+    if (this.pendingImages.size > maxPendingImages) {
+      this.pendingImages.clear();
+      this.pendingFullScan = true;
+    }
+
+    this.schedule();
+  }
+
+  /**
+   * Start upscaling: upscale what's on the page now, then watch for new images.
+   */
+  async start() {
+    this.mapping = (await getData('upscaled-images')) || {};
+    if (!Object.keys(this.mapping).length) {
+      return;
+    }
+
+    this.upscaleAllImages();
+
+    this.observer = new MutationObserver((mutations) => this.handleMutations(mutations));
+    this.observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['src'],
     });
-
-    this.observer.observe(document.body, this.observerOptions);
-  }
-
-  /**
-   * Upscale the images.
-   */
-  async upscaleImages() {
-    if (this.isUpscaling) {
-      return;
-    }
-
-    this.isUpscaling = true;
-
-    // Always clear the flag, otherwise one failure would stop upscaling for the rest of the session.
-    try {
-      await this.fetchMapping();
-
-      this.upscaleImageElements();
-
-      this.startObserver();
-    } finally {
-      this.isUpscaling = false;
-    }
-  }
-
-  /**
-   * Fetch the mapping for the upscaled images.
-   */
-  async fetchMapping() {
-    // This runs on every request, so only fetch the mapping until we have it.
-    if (this.mapping && Object.keys(this.mapping).length) {
-      return;
-    }
-
-    this.mapping = await getData('upscaled-images');
-  }
-
-  /**
-   * Handle upscaling images.
-   */
-  async handleUpscalingImages() {
-    try {
-      if (!this.isUpscaling) {
-        await this.upscaleImages(document.querySelector('body'));
-      }
-    } catch (error) {
-      console.error('Failed to handle upscaling images:', error); // eslint-disable-line no-console
-    }
   }
 }
 
@@ -340,19 +342,15 @@ const init = async () => {
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
+  const imageUpscaler = new ImageUpscaler();
   try {
-    await getData('upscaled-images');
+    await imageUpscaler.start();
   } catch (error) {
-    console.error('Failed to preload upscaled images:', error); // eslint-disable-line no-console
+    console.error('Failed to start image upscaling:', error); // eslint-disable-line no-console
   }
 
-  imageUpscaler = new ImageUpscaler();
-  imageUpscaler.handleUpscalingImages();
-
-  onRequest('*', imageUpscaler.handleUpscalingImages, true, [], true);
-
-  onEvent('mh-improved-init', imageUpscaler.handleUpscalingImages);
-  onDialogShow('all', imageUpscaler.handleUpscalingImages);
+  // The observer catches new images, but give everything a once-over after all the modules load.
+  onEvent('mh-improved-init', () => imageUpscaler.scheduleFullScan());
 
   if (!getFlag('no-image-upscaling-journal-themes')) {
     addJournalThemeStyles();
