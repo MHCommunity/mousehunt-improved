@@ -433,6 +433,10 @@ const updateMathButtonText = (buttonText, e) => {
  * @param {KeyboardEvent} e The keyboard event.
  */
 const onMathButtonKey = (e) => {
+  if ('Shift' !== e.key) {
+    return;
+  }
+
   document.querySelectorAll('.mh-improved-math-button > span').forEach((buttonText) => {
     updateMathButtonText(buttonText, e);
   });
