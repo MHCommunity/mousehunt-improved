@@ -503,7 +503,7 @@ const getHeaders = () => {
  * @param {boolean} retry Whether to retry setting the value.
  */
 const sessionSet = (key, value, retry = false) => {
-  if (getSetting('debug.no-cache')) {
+  if (getSetting('debug.disable-cache')) {
     return;
   }
 
@@ -531,7 +531,7 @@ const sessionSet = (key, value, retry = false) => {
  * @return {Object} The session value.
  */
 const sessionGet = (key, defaultValue = false) => {
-  if (getSetting('debug.no-cache')) {
+  if (getSetting('debug.disable-cache')) {
     return defaultValue;
   }
 

@@ -1,5 +1,6 @@
 import { makeElement } from './elements';
 import { onNavigation } from './events';
+import { getSetting } from './settings';
 
 /**
  * Extract the type/id encoded in a journal link, from either its `onclick`
@@ -135,6 +136,10 @@ const createHoverCard = ({ wrapperId, hrefParam, fetchData, render, loadingText 
 
       if (timeoutId) {
         clearTimeout(timeoutId);
+      }
+
+      if (getSetting('debug.hover-popups', false)) {
+        return;
       }
 
       hide();

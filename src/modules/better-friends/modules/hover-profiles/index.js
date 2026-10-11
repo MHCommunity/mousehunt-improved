@@ -218,7 +218,7 @@ const scheduleShow = (fn) => {
 };
 
 const scheduleHide = () => {
-  if (getSetting('debug.hover-profiles', false)) {
+  if (getSetting('debug.hover-popups', false)) {
     return;
   }
 
