@@ -1044,7 +1044,8 @@ const makeSetupRow = async (setup, environments) => {
   }
 
   const info = makeElement('div', 'info');
-  const name = makeElement('div', 'name', setup.name || 'Unnamed setup');
+  const name = makeElement('div', 'name');
+  name.textContent = setup.name || 'Unnamed setup';
   name.title = setup.name || '';
   info.append(name);
   const meta = makeSetupMeta(setup, environments);
@@ -1552,7 +1553,7 @@ const getNameOfCurrentSetup = async () => {
 const updateFavoriteSetupName = async () => {
   const label = document.querySelector('.mh-improved-favorite-setups-button-label');
   if (label) {
-    label.innerHTML = (await getNameOfCurrentSetup()) || '';
+    label.textContent = (await getNameOfCurrentSetup()) || '';
   }
 };
 
@@ -1578,7 +1579,7 @@ const addFavoriteSetupsButton = async () => {
   makeElement('div', ['mh-improved-favorite-setups-button-text'], 'Favorite Setups', button);
   const label = makeElement('div', ['mh-improved-favorite-setups-button-label']);
 
-  label.innerHTML = await getNameOfCurrentSetup();
+  label.textContent = await getNameOfCurrentSetup();
   button.append(label);
 
   button.addEventListener('click', toggleFavoriteSetups);
