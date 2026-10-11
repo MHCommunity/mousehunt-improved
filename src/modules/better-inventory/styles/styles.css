@@ -576,6 +576,10 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   margin-right: 5px;
 }
 
+.inventoryPage-item.small {
+  cursor: pointer;
+}
+
 .inventoryPage-item.small .inventoryPage-item-margin {
   border-color: #ccc;
   border-radius: 5px;
