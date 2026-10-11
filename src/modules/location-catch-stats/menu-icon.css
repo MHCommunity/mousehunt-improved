@@ -25,16 +25,6 @@
   opacity: 1;
 }
 
-.mh-catch-stats-menu-count {
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.mh-catch-stats-menu-count:empty {
-  display: none;
-}
-
 .mh-catch-stats-menu-complete .mh-catch-stats-menu-count {
   color: #3a8a2f;
 }
