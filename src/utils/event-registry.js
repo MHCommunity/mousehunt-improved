@@ -68,7 +68,15 @@ const onEvent = (event, callback, remove = false, idPart = '') => {
 
   eventsAdded[id] = true;
 
-  eventRegistry.addEventListener(event, lifecycleCallback.callback, null, remove);
+  // A one-shot listener is gone once it fires, so let it be registered again.
+  const listener = remove
+    ? (...args) => {
+        delete eventsAdded[id];
+        return lifecycleCallback.callback(...args);
+      }
+    : lifecycleCallback.callback;
+
+  eventRegistry.addEventListener(event, listener, null, remove);
 };
 
 /**

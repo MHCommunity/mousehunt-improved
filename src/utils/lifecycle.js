@@ -40,6 +40,25 @@ const runInLifecycle = (lifecycle, callback, register = true) => {
 };
 
 /**
+ * Run setup work outside any lifecycle, for shared callbacks that must keep
+ * running no matter which module happened to trigger their registration.
+ *
+ * @param {Function} callback The setup work to run.
+ *
+ * @return {*} The callback result.
+ */
+const runOutsideLifecycle = (callback) => {
+  const previousLifecycle = currentLifecycle;
+  currentLifecycle = null;
+
+  try {
+    return callback();
+  } finally {
+    currentLifecycle = previousLifecycle;
+  }
+};
+
+/**
  * Prepare a callback registered while a lifecycle is being initialized.
  *
  * @param {Function} callback The callback to guard.
@@ -69,4 +88,4 @@ const prepareLifecycleCallback = (callback, type) => {
   };
 };
 
-export { createLifecycle, prepareLifecycleCallback, runInLifecycle };
+export { createLifecycle, prepareLifecycleCallback, runInLifecycle, runOutsideLifecycle };

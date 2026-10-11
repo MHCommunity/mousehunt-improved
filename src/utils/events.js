@@ -9,6 +9,24 @@ const requestCallbacks = {};
 let onRequestHolder = false;
 
 /**
+ * Run a shared hook's callback so a throw doesn't stop the callbacks after it.
+ *
+ * The error is rethrown on its own so it still shows in the console and error reporting.
+ *
+ * @param {Function} callback The callback.
+ * @param {...*}     args     The arguments to pass.
+ */
+const runHookCallback = (callback, ...args) => {
+  try {
+    callback(...args);
+  } catch (error) {
+    setTimeout(() => {
+      throw error;
+    });
+  }
+};
+
+/**
  * Normalize a request URL for matching.
  *
  * @param {string|null} url The URL to normalize.
@@ -91,7 +109,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
                 }
 
                 if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
-                  item.callback(response, this._data);
+                  runHookCallback(item.callback, response, this._data);
                 }
               });
             }
@@ -450,7 +468,7 @@ const onDialogHide = (callback, overlay = null) => {
       // `lastDialog` is the raw dialog type ('treasureMapPopup') while `item.overlay` has
       // been normalized ('map'), so these can't be compared directly.
       if ('all' === item.overlay || dialogMatchesOverlay(lastDialog, item.overlay)) {
-        item.callback();
+        runHookCallback(item.callback);
       }
     });
 
@@ -649,43 +667,48 @@ const addNavigationListeners = () => {
   eventRegistry.addEventListener('set_page', (e) => {
     const tabs = e?.data?.tabs || {};
 
-    const currentTab = Object.keys(tabs).find((key) => tabs[key].is_active_tab);
+    // `tabs` is an array on some pages and an object keyed by tab type on others.
+    const currentTab = Object.values(tabs).find((tab) => tab?.is_active_tab);
     const forceCurrentTab = currentTab?.type;
 
     callbacks.forEach(({ callback, page, tab, subtab, bypassMatch }) => {
-      if (bypassMatch) {
-        callback();
-        return;
-      }
-
-      if (!subtab) {
-        if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
+      runHookCallback(() => {
+        if (bypassMatch) {
           callback();
+          return;
         }
 
-        return;
-      }
+        if (!subtab) {
+          if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
+            callback();
+          }
 
-      if (currentTab?.subtabs && currentTab?.subtabs.length > 0) {
-        const forceSubtab = currentTab.subtabs.find((searchTab) => searchTab.is_active_subtab).subtab_type;
-
-        if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceSubtab)) {
-          callback();
+          return;
         }
-      }
+
+        if (currentTab?.subtabs && currentTab?.subtabs.length > 0) {
+          const forceSubtab = currentTab.subtabs.find((searchTab) => searchTab.is_active_subtab)?.subtab_type;
+
+          if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceSubtab)) {
+            callback();
+          }
+        }
+      });
     });
   });
 
   eventRegistry.addEventListener('set_tab', (e) => {
     callbacks.forEach(({ callback, page, tab, subtab, bypassMatch }) => {
-      if (bypassMatch) {
-        callback();
-        return;
-      }
+      runHookCallback(() => {
+        if (bypassMatch) {
+          callback();
+          return;
+        }
 
-      if (isCurrentPage(page, tab, subtab, getCurrentPage(), e.page_arguments.tab, e.page_arguments.sub_tab)) {
-        callback();
-      }
+        if (isCurrentPage(page, tab, subtab, getCurrentPage(), e?.page_arguments?.tab, e?.page_arguments?.sub_tab)) {
+          callback();
+        }
+      });
     });
   });
 };

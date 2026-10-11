@@ -3,6 +3,7 @@ import { onNavigation, onTravel } from './events';
 import { debuglog } from './debug';
 import { getCurrentPage } from './page-current';
 import { getFlag } from './flags';
+import { runOutsideLifecycle } from './lifecycle';
 
 /**
  * Check to make sure we have the required global functions we need.
@@ -85,7 +86,42 @@ const isOverlayVisible = () => {
   return typeof activejsDialog !== 'undefined' && activejsDialog?.isVisible();
 };
 
-const bodyClasses = { added: [], removed: [] };
+const bodyClasses = { added: new Set(), removed: new Set() };
+let bodyClassListenersAdded = false;
+
+/**
+ * Put back every persistent body class, since the game resets the body's classes on navigation and travel.
+ */
+const reapplyBodyClasses = () => {
+  if (bodyClasses.added.size) {
+    document.body.classList.add(...bodyClasses.added);
+  }
+};
+
+/**
+ * Register the shared navigation and travel listeners that keep persistent body classes applied.
+ */
+const addBodyClassListeners = () => {
+  if (bodyClassListenersAdded) {
+    return;
+  }
+
+  bodyClassListenersAdded = true;
+
+  // Registered once for every caller, so they mustn't belong to whichever module got here first.
+  runOutsideLifecycle(() => {
+    onNavigation(reapplyBodyClasses);
+    onTravel(null, {
+      /**
+       * Callback to add the classes after travel.
+       */
+      callback: () => {
+        setTimeout(reapplyBodyClasses, 500);
+      },
+    });
+  });
+};
+
 /**
  * Add a body class that persists across navigation.
  *
@@ -93,43 +129,13 @@ const bodyClasses = { added: [], removed: [] };
  * @param {boolean} force     Whether to force the class to be added.
  */
 const addBodyClass = (className, force = false) => {
-  const alreadyAdded = bodyClasses.added.includes(className);
-  const alreadyRemoved = bodyClasses.removed.includes(className);
-
-  if (alreadyRemoved || alreadyAdded) {
-    if (force) {
-      if (!alreadyAdded) {
-        bodyClasses.added.push(className);
-      }
-
-      document.body.classList.add(className);
-    }
-
+  if (!force && (bodyClasses.added.has(className) || bodyClasses.removed.has(className))) {
     return;
   }
 
-  bodyClasses.added.push(className);
-
-  /**
-   * Helper function to add the class to the body.
-   */
-  const addClass = () => {
-    // Don't bring back a class that has since been removed with removeBodyClass().
-    if (bodyClasses.added.includes(className)) {
-      document.body.classList.add(className);
-    }
-  };
-
-  addClass();
-  onNavigation(addClass);
-  onTravel(null, {
-    /**
-     * Callback to add the class after travel.
-     */
-    callback: () => {
-      setTimeout(addClass, 500);
-    },
-  });
+  bodyClasses.added.add(className);
+  document.body.classList.add(className);
+  addBodyClassListeners();
 };
 
 /**
@@ -138,8 +144,8 @@ const addBodyClass = (className, force = false) => {
  * @param {string} className Class to remove.
  */
 const removeBodyClass = (className) => {
-  bodyClasses.added = bodyClasses.added.filter((c) => c !== className);
-  bodyClasses.removed.push(className);
+  bodyClasses.added.delete(className);
+  bodyClasses.removed.add(className);
   document.body.classList.remove(className);
 };
 
@@ -149,8 +155,11 @@ const removeBodyClass = (className) => {
  * @param {string} prefix The prefix to remove.
  */
 const removeBodyClassByPrefix = (prefix) => {
-  bodyClasses.added = bodyClasses.added.filter((c) => !c.startsWith(prefix));
-  bodyClasses.removed.push(prefix);
+  for (const className of bodyClasses.added) {
+    if (className.startsWith(prefix)) {
+      bodyClasses.added.delete(className);
+    }
+  }
 
   [...document.body.classList].forEach((className) => {
     if (className.startsWith(prefix)) {
@@ -211,8 +220,14 @@ const getTradableItems = async (valueKey = 'all', { removeHidden = false } = {})
   }));
 };
 
-const requests = {};
-let lastRequest = 0;
+// In-flight and just-finished requests, keyed by url and form data. Entries
+// are dropped shortly after they settle so responses aren't kept around.
+const requests = new Map();
+const requestReuseWindow = 350;
+const requestSpacing = 100;
+const requestTimeout = 30000;
+let nextRequestAt = 0;
+
 /**
  * POST a request to the server and return the response.
  *
@@ -243,55 +258,51 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
     return;
   }
 
-  // Make sure we don't make too many requests by waiting a bit if we just made one.
-  const now = Date.now();
-  if (now - lastRequest < 100) {
-    await sleep(100 - (now - lastRequest));
-
-    lastRequest = Date.now();
-  }
-
   const requestKey = Object.keys(formData).length ? `${url}-${JSON.stringify(formData)}` : url;
-  const timeRequested = Date.now();
-  debuglog('utils-data', `Making request: ${requestKey} at ${timeRequested}`);
 
-  if (requests[requestKey] && !skipChecks) {
-    debuglog('utils-data', `Request already in progress: ${requestKey}`);
-
-    if (requests[requestKey].in_progress) {
-      return new Promise((resolve) => {
-        const timeout = setTimeout(async () => {
-          debuglog('utils-data', `Request timed out: ${requestKey}, starting new request`);
-
-          clearInterval(interval);
-          const newRequest = await doRequest(url, formData, true);
-          resolve(newRequest);
-        }, 2500);
-
-        const interval = setInterval(() => {
-          debuglog('utils-data', `Checking if request is complete: ${requestKey}`);
-
-          if (!requests[requestKey].in_progress) {
-            debuglog('utils-data', `Returning saved response: ${requestKey}`);
-
-            clearInterval(interval);
-            clearTimeout(timeout);
-            resolve(requests[requestKey].response);
-          }
-        }, 100);
-      });
-    } else if (requests[requestKey].time_requested > timeRequested - 350) {
-      debuglog('utils-data', `Request already completed: ${requestKey}`);
-      return requests[requestKey].response;
-    }
+  // Share a request that's still running or that just finished.
+  const existing = requests.get(requestKey);
+  if (existing && !skipChecks) {
+    debuglog('utils-data', `Reusing request: ${requestKey}`);
+    return existing.promise;
   }
 
-  debuglog('utils-data', `Starting request: ${requestKey}`);
+  const entry = { promise: sendRequest(url, formData, skipOpts) };
+  requests.set(requestKey, entry);
 
-  requests[requestKey] = {
-    in_progress: true,
-    time_requested: timeRequested,
-  };
+  entry.promise.then((data) => {
+    // Failed requests can be retried right away, successful ones are shared briefly.
+    setTimeout(
+      () => {
+        if (requests.get(requestKey) === entry) {
+          requests.delete(requestKey);
+        }
+      },
+      false === data ? 0 : requestReuseWindow
+    );
+  });
+
+  return entry.promise;
+};
+
+/**
+ * Send a request to the server, spacing requests out so we don't flood it.
+ *
+ * @param {string} url      The url to post to, not including the base url.
+ * @param {Object} formData The form data to post.
+ * @param {Object} skipOpts Options to skip certain form data.
+ *
+ * @return {Promise<Object|string|false>} The response, or false on failure.
+ */
+const sendRequest = async (url, formData, skipOpts) => {
+  const now = Date.now();
+  const wait = nextRequestAt - now;
+  nextRequestAt = Math.max(now, nextRequestAt) + requestSpacing;
+  if (wait > 0) {
+    await sleep(wait);
+  }
+
+  debuglog('utils-data', `Starting request: ${url}`, formData);
 
   // Build the form for the request.
   const form = new FormData();
@@ -327,6 +338,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
         'Content-Type': 'application/x-www-form-urlencoded',
         'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
       },
+      signal: AbortSignal.timeout(requestTimeout),
     });
   } catch (error) {
     console.error(`Error fetching ${url}:`, error); // eslint-disable-line no-console
@@ -334,24 +346,13 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
     return false;
   }
 
-  // Wait for the response and return it.
-  let data;
-
   try {
-    data = await (skipOpts.skipJson ? response.text() : response.json());
+    return await (skipOpts.skipJson ? response.text() : response.json());
   } catch (error) {
     console.error(`Error parsing response for ${url}:`, error, url, formData, response); // eslint-disable-line no-console
 
     return false;
   }
-
-  // Store the request in the requests object.
-  requests[requestKey] = {
-    time_requested: timeRequested,
-    response: data,
-  };
-
-  return data;
 };
 
 /**

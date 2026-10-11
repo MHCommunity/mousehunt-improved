@@ -42,7 +42,7 @@ const getTypeFromLink = (link, hrefParam) => {
  */
 const createHoverCard = ({ wrapperId, hrefParam, fetchData, render, loadingText = 'Loading...', delay = 500 }) => {
   let wrapper;
-  const listeners = new Map();
+  const listeners = new WeakMap();
 
   /**
    * Show the loading popup, positioned relative to the hovered element.
