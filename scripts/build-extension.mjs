@@ -41,6 +41,10 @@ const buildExtension = async (platform, watch = false) => {
     ...baseOptions,
     metafile: true,
     sourcemap: true,
+    // Whitespace only: renaming identifiers would make different callbacks stringify the same,
+    // which breaks the `callback.toString()` de-duplication in the event helpers. The userscript
+    // stays unminified for Greasy Fork.
+    minifyWhitespace: true,
     outfile: `dist/${platform}/main.js`,
     plugins: [
       ...baseOptions.plugins,

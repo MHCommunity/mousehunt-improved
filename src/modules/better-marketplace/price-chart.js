@@ -1,7 +1,4 @@
-import Highcharts from 'highcharts';
-import 'highcharts/modules/stock'; // eslint-disable-line import/no-unassigned-import, sort-imports
-
-import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeCollapsible, makeElement } from '@utils';
+import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, loadHighcharts, makeCollapsible, makeElement } from '@utils';
 
 /**
  * Price history charts for the marketplace item view, using data from
@@ -11,6 +8,8 @@ import { cacheGet, cacheSet, debuglog, getSetting, isDarkMode, makeCollapsible, 
 const apiDomain = 'api.markethunt.win';
 const dayInMs = 24 * 60 * 60 * 1000;
 
+// Loaded the first time a chart is shown.
+let Highcharts = null;
 let priceChart = null;
 let stockChart = null;
 let zoomLabelHidden = false;
@@ -35,7 +34,7 @@ const utcDateToMillis = (dateStr) => {
  */
 const fetchMarkethunt = async (path) => {
   try {
-    const response = await fetch(`https://${apiDomain}/${path}?plugin_ver=mhi-${mhImprovedVersion}`);
+    const response = await fetch(`https://${apiDomain}/${path}?plugin_ver=mhi-${mhImprovedVersion}`, { signal: AbortSignal.timeout(10000) });
     if (!response.ok) {
       return null;
     }
@@ -801,9 +800,17 @@ const showActiveChart = (itemId, area) => {
  * @param {string|number} itemId The item ID being shown.
  */
 const addPriceChart = async (itemId) => {
-  const item = document.querySelector('.marketplaceView-item[data-item-id]');
+  let item = document.querySelector('.marketplaceView-item[data-item-id]');
+  if (!item) {
+    return;
+  }
+
+  Highcharts = await loadHighcharts({ stock: true });
+
+  // The item view may have changed while Highcharts loaded.
+  item = document.querySelector('.marketplaceView-item[data-item-id]');
   const description = item?.querySelector(':scope > .marketplaceView-item-description');
-  if (!item || !description) {
+  if (!item || !description || item.dataset.itemId !== String(itemId)) {
     return;
   }
 

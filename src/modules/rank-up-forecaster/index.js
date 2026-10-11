@@ -239,7 +239,9 @@ const hydratePopup = (targetRankId, forecastData) => {
 
   const chartContainer = document.querySelector('#rank-up-forecaster-chart');
   if (chartContainer) {
-    renderForecastChart(chartContainer, forecastData);
+    renderForecastChart(chartContainer, forecastData).catch((error) => {
+      console.error('Error rendering the rank-up forecast chart:', error); // eslint-disable-line no-console
+    });
   }
 };
 

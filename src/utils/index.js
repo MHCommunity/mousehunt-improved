@@ -11,6 +11,7 @@ export * from './event-registry';
 export * from './feature-manifest';
 export * from './flags';
 export * from './global';
+export * from './highcharts';
 export * from './horn';
 export * from './hover-card';
 export * from './humanizer';

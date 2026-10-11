@@ -1,4 +1,4 @@
-import Highcharts from 'highcharts';
+import { loadHighcharts } from '@utils';
 
 import { shortNumber } from './format';
 
@@ -52,11 +52,16 @@ const buildProjectionSeries = (model, anchor, horizon, target, index) => {
  * @param {Element} container    The element to render the chart into.
  * @param {Object}  forecastData The result of getForecasts().
  *
- * @return {Object|null} The Highcharts chart instance.
+ * @return {Promise<Object|null>} The Highcharts chart instance.
  */
-const renderForecastChart = (container, forecastData) => {
+const renderForecastChart = async (container, forecastData) => {
   const { samples, forecasts, consensus, targetRank } = forecastData;
   if (!container || samples.length < 2) {
+    return null;
+  }
+
+  const Highcharts = await loadHighcharts();
+  if (!container.isConnected) {
     return null;
   }
 
