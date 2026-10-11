@@ -76,7 +76,6 @@
   "upgraded_rune_shark_weapon": ["sos"],
   "winter_hunt_iceberg_weapon": ["sab", "sab3000"],
   "wolfsbane_weapon": ["idct", "ict"],
-
   "cerulean_chrome_base": ["cb", "ccb", "cerulean chrome"],
   "clockwork_base": ["cwb", "cb"],
   "condemned_base": ["cb", "charm"],
@@ -91,11 +90,10 @@
   "papyrus_base": ["papy"],
   "polar_base": ["pol"],
   "rift_mist_diffuser_base": ["rmdb", "charm"],
-  "skelloton_base": ["sb", "brain bits"],
+  "skelloton_base": ["brain bits"],
   "spellbook_base": ["sbb"],
   "tenth_birthday_2018_cake_base": ["ten layer", "charm"],
   "valour_rift_prestige_base": ["pb"],
-
   "baitkeep_trinket": ["bk", "bkc"],
   "champion_trinket": ["champ"],
   "cherry_trinket": ["cc", "funnel"],
@@ -119,7 +117,6 @@
   "ultimate_party_trinket": ["upac"],
   "ultimate_trinket": ["uc"],
   "wicked_gnarly_trinket": ["sc", "funnel"],
-
   "apprentice_ambert_cheese": ["aa"],
   "aurora_bocconcini_cheese": ["ab", "abc"],
   "beanster_cheese": ["bc"],
@@ -163,7 +160,6 @@
   "vanilla_stilton_cheese": ["vs"],
   "vengeful_vanilla_stilton_cheese": ["vv", "vvs"],
   "white_cheddar_cheese": ["wc"],
-
   "cave_nightshade_crafting_item": ["ns"],
   "chrome_celestial_dissonance_kit_crafting_item": ["ccdt"],
   "chrome_dragon_slayer_cannon_kit_crafting_item": ["cdsc"],
