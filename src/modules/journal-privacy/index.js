@@ -1,6 +1,16 @@
-import { addBodyClass, addIconToMenu, addStyles, getSetting, isMenuItemHidden, makeElement, onEvent, onJournalEntriesProcessed, onModuleToggle, removeBodyClass } from '@utils';
-
-import settings from './settings';
+import {
+  addBodyClass,
+  addIconToMenu,
+  addStyles,
+  getFlag,
+  getSetting,
+  isMenuItemHidden,
+  makeElement,
+  onEvent,
+  onJournalEntriesProcessed,
+  onModuleToggle,
+  removeBodyClass,
+} from '@utils';
 
 import iconStyles from './styles/icon.css';
 import styles from './styles/styles.css';
@@ -171,7 +181,7 @@ const syncPrivacyState = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([getSetting('journal-privacy.transparent', false) ? stylesTransparent : styles, iconStyles], MODULE_ID);
+  addStyles([getFlag('journal-privacy-transparent') ? stylesTransparent : styles, iconStyles], MODULE_ID);
 
   syncPrivacyState();
 
@@ -202,5 +212,4 @@ export default {
   description: 'Hide player names in the journal.',
   liveToggle: true,
   load: init,
-  settings,
 };

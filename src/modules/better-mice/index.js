@@ -426,7 +426,7 @@ const updateMouseView = async () => {
     }
   }
 
-  if (getSetting('better-mice.show-loot', true)) {
+  if (!getFlag('better-mice-no-loot')) {
     addLoot(mouseId, mouseView);
   }
 

@@ -111,6 +111,23 @@ const migrateCollapsedSections = () => {
   localStorage.removeItem(planKey);
 };
 
+/**
+ * The two "Open All But One" toggles are one picker now.
+ */
+const migrateOpenAllButOne = () => {
+  const showKey = 'inventory-buttons.open-all-but-one';
+  const onlyKey = 'inventory-buttons.only-open-extras';
+
+  if (true === getSetting(onlyKey, false)) {
+    saveSetting(`${showKey}-0`, 'only');
+  } else if (true === getSetting(showKey, false)) {
+    saveSetting(`${showKey}-0`, 'show');
+  }
+
+  deleteSetting(showKey);
+  deleteSetting(onlyKey);
+};
+
 export default {
   version: '0.103.0',
   update: async () => {
@@ -119,11 +136,13 @@ export default {
     migrateReverseDailyDraw();
     migrateFabledMaxTitle();
     migrateCollapsedSections();
+    migrateOpenAllButOne();
 
     replaceSettingsWithFlags([
       ['better-trap-selector.larger-skin-images', 'better-trap-selector-no-larger-skin-images', 'Show the small skin images in the trap selector'],
       ['better-trap-selector.show-unowned-skins', 'better-trap-selector-no-unowned-skins', "Don't show unowned skins in the trap selector"],
       ['better-trap-selector.larger-codices', 'custom-trap-selector-no-larger-codices', 'Show the small codex images in the trap selector'],
+      ['journal-privacy.transparent', 'journal-privacy-transparent', 'Hide names in the journal instead of blurring them', true],
     ]);
   },
 };

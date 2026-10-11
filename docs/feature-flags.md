@@ -19,6 +19,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 ### Module Flags
 
+#### Better Item Details
+
+|Flag|Description|
+|---|---|
+|`better-item-view-no-droppers`|Hides which mice drop the item in the item view.|
+
 #### Better Journal
 
 |Flag|Description|
@@ -58,6 +64,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |Flag|Description|
 |---|---|
 |`better-mice-no-new-ar-widths`|Reverts the column widths of the attraction rate table to the old widths.|
+|`better-mice-no-loot`|Hides what the mouse drops in the mouse view.|
 
 #### Better UI
 
@@ -106,6 +113,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |Flag|Description|
 |---|---|
 |`no-image-upscaling-journal-themes`|Skips loading the upscaled journal theme images.|
+
+#### Journal Privacy
+
+|Flag|Description|
+|---|---|
+|`journal-privacy-transparent`|Hides player names by removing the text, rather than blurring it.|
 
 #### Better UI Userscript Integrations
 

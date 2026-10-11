@@ -11,11 +11,6 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-mice.show-loot',
-      title: 'Show loot',
-      default: true,
-    },
-    {
       id: 'better-mice.show-mouse-hover',
       title: 'Show mouse details when hovering in the journal',
       default: true,

@@ -4,6 +4,7 @@ import {
   formatNumber,
   getArForMouse,
   getData,
+  getFlag,
   getSetting,
   loadFeatures,
   makeCollapsible,
@@ -493,7 +494,7 @@ const updateItemView = async () => {
     showDropRates(itemId, itemView);
   }
 
-  if (getSetting('better-item-view.show-droppers', true)) {
+  if (!getFlag('better-item-view-no-droppers')) {
     addItemDroppers(itemId, itemView);
   }
 
