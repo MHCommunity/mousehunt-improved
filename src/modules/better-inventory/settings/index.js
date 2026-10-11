@@ -16,14 +16,10 @@ export default async () => {
       default: true,
     },
     {
-      id: 'better-inventory.sort-inventory',
-      title: 'Sort inventory alphabetically',
-      default: true,
-    },
-    {
       id: 'better-inventory.favorites',
       title: 'Add Favorites tab',
-      description: 'Star items in your inventory to collect them in one tab.',
+      description:
+        'Star items in your inventory to collect them in one tab. Starred weapons, bases, and charms also show as trap selector favorites, so you can have more than five of each.',
       default: false,
       badge: 'Beta',
     },

@@ -25,6 +25,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |---|---|
 |`better-item-view-no-droppers`|Hides which mice drop the item in the item view.|
 
+#### Better Inventory
+
+|Flag|Description|
+|---|---|
+|`better-inventory-no-sort`|Keeps the game's inventory order instead of sorting items alphabetically.|
+
 #### Better Journal
 
 |Flag|Description|
@@ -160,6 +166,7 @@ You can force-disable modules using the `no-<module-id>` feature flag. This is t
 
 |Flag|Module|
 |---|---|
+|`no-enhanced-search`|Disables Item Abbreviation Search.|
 |`no-global-styles`|Disables added global styles. _Warning: This may cause issues with other modules._|
 |`no-highlight-users`|Disables the added badge on MouseHunt Improved developer and contributor hunter profiles.|
 |`no-links`|Disables the added links to the Support and Kingdom menus.|

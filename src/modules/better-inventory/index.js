@@ -7,6 +7,7 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   getData,
+  getFlag,
   getSetting,
   loadFeatures,
   makeElement,
@@ -360,7 +361,7 @@ const main = async () => {
 
   loadFeatures(featureManifest);
 
-  if (getSetting('better-inventory.sort-inventory', true)) {
+  if (!getFlag('better-inventory-no-sort')) {
     addResortInventory();
   }
 };
