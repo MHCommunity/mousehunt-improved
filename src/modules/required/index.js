@@ -9,7 +9,6 @@ import {
   observeJournalEntries,
   onDialogShow,
   onEvent,
-  onNavigation,
   onRequest,
   onTravel,
 } from '@utils';
@@ -200,9 +199,8 @@ const init = async () => {
   onRequest('users/session.php', refreshOnLogin);
   onRequest('pages/preferences.php', clearTimezoneOnSave);
 
-  onNavigation(addSettingsTab, {
-    page: 'preferences',
-  });
+  // Adds the tab now if we're on Preferences, and again whenever we navigate there.
+  addSettingsTab();
 };
 
 /**

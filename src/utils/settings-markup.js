@@ -37,6 +37,49 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
   setTimeout(() => node.parentNode.parentNode.classList.remove('completed'), 1000);
 };
 
+// Settings tabs we add to the Preferences page, which the game doesn't know about, and their names.
+const settingsTabIds = new Map();
+let isSettingsTabNavigationAllowed = false;
+
+/**
+ * Let the game navigate straight to one of our settings tabs.
+ *
+ * Going to Preferences with `tab` set to one of ours (setPage, or the back button) makes the game
+ * show a tab it has no data for, which throws before `set_page` fires. Our tab is only added on
+ * `set_page`, so it never shows up. Skip that throw for our tabs. Coming from another page,
+ * `set_page` then adds and opens the tab; when already on Preferences no event fires, so open it here.
+ */
+const allowSettingsTabNavigation = () => {
+  const pageUtil = hg?.utils?.PageUtil;
+  if (isSettingsTabNavigationAllowed || 'function' !== typeof pageUtil?.showPageTabDOM) {
+    return;
+  }
+
+  isSettingsTabNavigationAllowed = true;
+
+  const original = pageUtil.showPageTabDOM;
+  pageUtil.showPageTabDOM = function (pageArguments, ...args) {
+    if (!settingsTabIds.has(pageArguments?.tab)) {
+      return Reflect.apply(original, this, [pageArguments, ...args]);
+    }
+
+    try {
+      return Reflect.apply(original, this, [pageArguments, ...args]);
+    } catch {
+      // The tab isn't in the game's page data, which is expected for ours.
+      setTimeout(() => {
+        const identifier = pageArguments.tab;
+        addSettingsTabOnce(identifier, settingsTabIds.get(identifier));
+
+        const tab = document.querySelector(`#${identifier}`);
+        if (tab && !tab.classList.contains('active')) {
+          tab.click();
+        }
+      });
+    }
+  };
+};
+
 /**
  * Make the settings tab.
  *
@@ -46,6 +89,9 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
  * @return {string} The identifier.
  */
 const addSettingsTab = (identifier = 'mousehunt-improved-settings', name = 'MH Improved') => {
+  settingsTabIds.set(identifier, name);
+  allowSettingsTabNavigation();
+
   addSettingsTabOnce(identifier, name);
   onNavigation(() => addSettingsTabOnce(identifier, name), {
     page: 'preferences',
@@ -112,6 +158,9 @@ const addSettingsTabOnce = (identifier = 'mousehunt-improved-settings', name = '
   }
 };
 
+// Latest options for each setting row, keyed by setting id.
+const settingOptions = new Map();
+
 /**
  * Add a setting to the preferences page, both on page load and when the page changes.
  *
@@ -131,9 +180,18 @@ const addSettingsTabOnce = (identifier = 'mousehunt-improved-settings', name = '
  * @return {Object} The setting.
  */
 const addSetting = (options) => {
-  onNavigation(() => addSettingOnce(options), {
-    page: 'preferences',
-  });
+  // The settings tab rebuilds its rows each time it's opened, so only register the
+  // navigation listener once per setting and have it use the latest options.
+  const settingKey = options.id ?? options;
+  const isRegistered = settingOptions.has(settingKey);
+  settingOptions.set(settingKey, options);
+
+  if (!isRegistered) {
+    onNavigation(() => addSettingOnce(settingOptions.get(settingKey)), {
+      page: 'preferences',
+    });
+  }
+
   return addSettingOnce(options);
 };
 
