@@ -168,14 +168,24 @@ const getSamples = async () => {
   return sortSamples(await getRecordsByType('wisdom-sample'));
 };
 
-const getLatestSample = async () => {
-  const samples = await getSamples();
-  return samples.at(-1) || null;
-};
-
 const getMeta = async () => {
   const meta = await dbGet(DATABASE, 'meta');
   return meta?.data || {};
+};
+
+// The newest sample is kept in meta so each hunt doesn't read every stored record.
+const getLatestSample = async () => {
+  const meta = await getMeta();
+  if (meta.latestSample) {
+    return meta.latestSample;
+  }
+
+  const latest = (await getSamples()).at(-1) || null;
+  if (latest) {
+    await setMeta({ latestSample: latest });
+  }
+
+  return latest;
 };
 
 const setMeta = async (meta) => {
@@ -278,7 +288,8 @@ const migrateLegacyData = async () => {
     });
   }
 
-  await setMeta({ legacyMigratedAt: importedAt });
+  // The imported sample may be newer than the one in meta, so the next read finds it again.
+  await setMeta({ legacyMigratedAt: importedAt, latestSample: null });
   return true;
 };
 
@@ -324,6 +335,18 @@ const saveLocationSegment = async (previous, sample) => {
 const recordSample = async (source = 'automatic', options = {}) => {
   const { forceWisdomUpdate = false, totalTurns = null } = options;
   const now = Date.now();
+  const { lastSampleAt, latestSample } = await getMeta();
+
+  // Most hunts land inside the interval, so answer from meta without reading the samples.
+  if (lastSampleAt && latestSample && now - lastSampleAt < MIN_SAMPLE_INTERVAL) {
+    return {
+      saved: false,
+      reason: 'interval',
+      sample: latestSample,
+      nextSampleAt: lastSampleAt + MIN_SAMPLE_INTERVAL,
+    };
+  }
+
   const latest = await getLatestSample();
 
   if (latest && now - latest.timestamp < MIN_SAMPLE_INTERVAL) {
@@ -367,7 +390,7 @@ const recordSample = async (source = 'automatic', options = {}) => {
 
   await dbSet(DATABASE, sample);
   await saveLocationSegment(latest, sample);
-  await setMeta({ lastSampleAt: now });
+  await setMeta({ lastSampleAt: now, latestSample: sample });
 
   return {
     saved: true,
