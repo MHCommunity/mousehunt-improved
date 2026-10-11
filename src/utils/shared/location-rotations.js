@@ -26,9 +26,9 @@ const rotations = {
     epoch: 1294680060,
     stages: [
       { name: 'Low Tide', length: 16 * 60 },
-      { name: 'Mid Tide', length: 60, note: 'coming in' },
+      { name: 'Mid Tide', length: 60, note: 'rising' },
       { name: 'High Tide', length: 40 },
-      { name: 'Mid Tide', length: 60, note: 'going out' },
+      { name: 'Mid Tide', length: 60, note: 'falling' },
     ],
   },
   seasonal_garden: {
@@ -79,8 +79,8 @@ const rotations = {
 const rotationLocations = Object.keys(rotations);
 
 /**
- * Get the stage a location is in now, and the next occurrence of each other stage, in the
- * order they happen.
+ * Get the stage a location is in now, and every stage after it through one full rotation, in
+ * the order they happen.
  *
  * @param {string} location The location ID, eg. `balacks_cove`.
  *
@@ -109,24 +109,19 @@ const getLocationRotation = (location) => {
   const current = stages[index];
   const minutesLeft = stageStart + current.length - minutesIntoRotation;
 
-  // Walk the rest of the rotation, keeping the first time we come across each stage.
+  // Walk the rest of the rotation, ending on the current stage coming round again.
   const upcoming = [];
-  const seen = new Set();
   let minutes = minutesLeft;
 
   for (let offset = 1; offset <= stages.length; offset += 1) {
     const stage = stages[(index + offset) % stages.length];
 
-    if (!seen.has(stage.name)) {
-      seen.add(stage.name);
-
-      upcoming.push({
-        ...stage,
-        minutes,
-        isSameLevel: stage.name === current.name,
-        isRepeat: stage === current,
-      });
-    }
+    upcoming.push({
+      ...stage,
+      minutes,
+      isSameLevel: stage.name === current.name,
+      isRepeat: stage === current,
+    });
 
     minutes += stage.length;
   }

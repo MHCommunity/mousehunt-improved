@@ -22,7 +22,7 @@ const getRotations = () => {
 };
 
 /**
- * Get the label for a stage, eg. 'Mid Tide (coming in)' or 'Low Tide again'.
+ * Get the label for a stage, eg. 'Mid Tide (rising)' or 'Low Tide again'.
  *
  * @param {Object} stage The stage.
  *
