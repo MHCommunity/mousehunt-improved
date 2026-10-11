@@ -1,6 +1,6 @@
 # Location Dashboard
 
-Adds a "Dashboard" menu to the top menu bar that will show you the important details of each location. Hide or move it with the top menu editor.
+Adds a "Dashboard" menu to the top menu bar that will show you the important details of each location. Hide or move it with [Custom Menu](./custom-menu.md).
 
 ## Supported Locations
 

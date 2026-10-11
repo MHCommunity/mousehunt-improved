@@ -7,6 +7,7 @@ Makes the Travel page more useful.
 - **Auto-Zoom Map**: Automatically zooms the map out to show more locations at once.
 - **Simple Travel Tab**: Adds a tab with a full list of locations (no map) for quick travel—can be set as your default.
 - **Alphabetical Location List**: Optionally show an alphabetical list of locations in the Simple Travel tab.
+- **Cursed and Twisted Names**: While you're in the Living Garden, Lost City, or Sand Dunes and the curse is active, the Travel dropdown shows them as Twisted Garden, Cursed City, and Sand Crypts. You can also search the Travel Window by those names.
 - **Region Quick Travel**: Adds a list of other locations in the same region to the Travel dropdown for fast switching.
 - **Travel Reminders**: When traveling to certain locations (like Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest), shows reminders about active effects (Champion's Fire, Wild Tonic, Bottled Wind, Condensed Creativity).
 - **Relic Hunter Highlight**: Highlights the Relic Hunter's location on the map and Simple Travel page.

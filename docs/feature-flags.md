@@ -114,6 +114,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |`cre-show-trap-highlight`|Shows a catch rate indicator above the trap view.|
 |`cre-live-attraction-rates`|Uses live MHCT attraction rates instead of MouseHunt Improved's data.|
 
+#### Custom Menu
+
+|Flag|Description|
+|---|---|
+|`quick-items-menu-full-aura-time`|Shows full aura times on pinned items, like "1h 12m", instead of the shortened "1h".|
+
 #### Image Upscaling & Transparency
 
 |Flag|Description|
@@ -147,13 +153,6 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 See [Debug Logging](./debug-logging.md) for configuration options.
 
-### Favorite Setups
-
-|Flag|Description|
-|---|---|
-|`favorite-setups-limit-location-favorites`|Limits the number of location favorites to 3 per location.|
-|`favorite-setups-no-location-favorites`|Stops showing setups for your current location at the top.|
-
 #### Location HUDs
 
 |Flag|Description|
@@ -170,7 +169,6 @@ You can force-disable modules using the `no-<module-id>` feature flag. This is t
 |`no-global-styles`|Disables added global styles. _Warning: This may cause issues with other modules._|
 |`no-highlight-users`|Disables the added badge on MouseHunt Improved developer and contributor hunter profiles.|
 |`no-links`|Disables the added links to the Support and Kingdom menus.|
-|`no-update-migration`|Disables migrating settings from old options to new options on update. _Warning: This may cause issues with other modules._|
 |`no-update-notifications`|Disables update notifications.|
 
 ### Load Modules

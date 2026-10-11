@@ -55,7 +55,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Shield Goes to Camp](docs/shield-goes-to-camp.md)**: Click the shield to go to the Camp page if you’re not already there, otherwise, it will take you to your Hunter Profile.
 - **[Taller Windows](docs/taller-windows.md)**: Make popup and dialog windows taller.
 - **[TEM Crowns](docs/tem-crowns.md)**: Add crowns and catches to the Trap Effectiveness Meter.
-- **[Location Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill.
+- **[Location Timers](docs/timers.md)**: Add a Timers item to the Camp menu with countdowns for the Forbidden Grove, Balack's Cove, Seasonal Garden, and Toxic Spill, with every upcoming stage.
 - **[Ultimate Checkmark](docs/ultimate-checkmark.md)**: Add more items to collect on your Hunter profile.
 - **[Unique Loot Count](docs/unique-loot-count.md)**: Show the number of unique loot items in the progress log.
 - **[Wisdom in Stat Bar](docs/wisdom-in-stat-bar.md)**: Show wisdom in the stat bar.
@@ -66,6 +66,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Custom Camp Background](docs/custom-camp-background.md)**: Set a custom background for the Camp page.
 - **[Custom Horn](docs/custom-horn.md)**: Customize the horn with event or color themes.
 - **[Custom HUD Background](docs/custom-hud.md)**: Change the marbled HUD background.
+- **[Custom Menu](docs/custom-menu.md)**: Rearrange and hide top menu items, and add shortcuts, toggles, and pinned items.
 - **[Custom Shield](docs/custom-shield.md)**: Change the shield to an event shield, color, title shield, or silly shield.
 - **[Custom Trap Selector](docs/custom-trap-selector.md)**: Rearrange and hide the blocks under your trap, like the trap effectiveness, auras, catch rates, and codex.
 - **[Custom CSS Styles](docs/custom-styles.md)**: Apply your own CSS.
