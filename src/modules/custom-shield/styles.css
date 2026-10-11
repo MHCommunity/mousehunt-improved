@@ -356,15 +356,6 @@
   animation: mh-improved-shield-hue-rotate 30s infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mousehunt-improved-lgs-reminder-new.color-rainbow,
-  .huntersHornView__timer--default.color-rainbow,
-  .huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,
-  .mousehuntHud-shield.golden.color-rainbow {
-    animation: none;
-  }
-}
-
 .mh-improved-custom-shield-item-preview .mousehuntHud-shield.pride {
   left: -4px;
 }
