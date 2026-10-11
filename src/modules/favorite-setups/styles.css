@@ -198,6 +198,19 @@
   white-space: nowrap;
 }
 
+/* Show the whole name on hover, over the item images. */
+.mh-improved-favorite-setups-blueprint-container .meta .location:hover {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  padding: 2px 5px;
+  margin: -2px -5px;
+  overflow: visible;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+}
+
 .mh-improved-favorite-setups-blueprint-container .meta > :not(.location) {
   flex: none;
 }
@@ -314,7 +327,7 @@
 .mh-improved-favorite-setups-blueprint-container .row.editing {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   align-items: stretch;
   padding: 8px;
   background: #fbf8f1;
@@ -441,7 +454,7 @@
 
 .mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(n + 3) .editor-label {
   grid-row: 4;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(n + 3) .mhui-item-picker-trigger {
@@ -517,6 +530,8 @@
   display: flex;
   gap: 6px;
   align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #e6d8c3;
 }
 
 .mh-improved-favorite-setups-blueprint-container .editor-move {
@@ -540,7 +555,8 @@
 
 .mh-improved-favorite-setups-blueprint-container .editor-move .action.disabled {
   pointer-events: none;
-  opacity: 0.5;
+  box-shadow: none;
+  opacity: 0.35;
 }
 
 /* Native Dark Mode */
@@ -571,6 +587,11 @@
   background: var(--d-selected);
 }
 
+.mh-dark .mh-improved-favorite-setups-blueprint-container .meta .location:hover {
+  color: var(--d-text);
+  background: var(--d-surface-page);
+}
+
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row {
   background: var(--d-surface-inset);
   border-color: var(--d-border);
@@ -582,6 +603,10 @@
 
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row.editing {
   border-color: var(--d-interactive);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .editor-actions {
+  border-color: var(--d-border);
 }
 
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row.here {
