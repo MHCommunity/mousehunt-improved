@@ -259,6 +259,46 @@ const fetchDataVersions = async () => {
 // not mutate what they get back.
 const loadedData = new Map();
 
+// The version of each cached dataset, so the update check can compare versions
+// without reading every dataset out of IndexedDB.
+const cachedVersionsKey = 'data-cached-versions';
+let cachedVersionsWrite = Promise.resolve();
+
+/**
+ * Save a dataset's version in the version map.
+ *
+ * @param {string} key     The data file.
+ * @param {string} version The cached version.
+ */
+const saveCachedVersion = async (key, version) => {
+  try {
+    const cachedVersions = await cacheGetNoExpiration(cachedVersionsKey, {});
+    if (cachedVersions[key] !== version) {
+      await cacheSetNoExpiration(cachedVersionsKey, { ...cachedVersions, [key]: version });
+    }
+  } catch (error) {
+    debuglog('utils-data', `Unable to record the cached version for ${key}`, error);
+  }
+};
+
+/**
+ * Remember which version of a dataset is cached.
+ *
+ * Writes are queued so parallel downloads don't overwrite each other's entries.
+ *
+ * @param {string} key     The data file.
+ * @param {string} version The cached version.
+ *
+ * @return {Promise<void>}
+ */
+const recordCachedVersion = (key, version) => {
+  if (version) {
+    cachedVersionsWrite = cachedVersionsWrite.then(() => saveCachedVersion(key, version));
+  }
+
+  return cachedVersionsWrite;
+};
+
 /**
  * Store freshly fetched data in the cache.
  *
@@ -273,6 +313,7 @@ const storeFetchedData = async (key, data, expectedVersion) => {
   }
 
   await cacheSet(key, data, null, expectedVersion);
+  await recordCachedVersion(key, expectedVersion);
 };
 
 /**
@@ -406,15 +447,24 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
   }
 
   const changedFiles = new Set();
+  const cachedVersions = await cacheGetNoExpiration(cachedVersionsKey, {});
 
   for (const file of validDataFiles) {
+    const serverVersion = versions?.[file];
+
+    // Most files are unchanged, so check the small version map before reading the dataset itself.
+    if (serverVersion && cachedVersions[file] === serverVersion) {
+      await cacheSetExpiration(file);
+      continue;
+    }
+
     const cached = await dbGet('cache', file);
     const cachedData = cached?.data?.value || null;
     const cachedVersion = cached?.data?.version || null;
-    const serverVersion = versions?.[file];
 
     if (serverVersion && cachedVersion === serverVersion && hasValidData(cachedData)) {
       await cacheSetExpiration(file);
+      await recordCachedVersion(file, serverVersion);
       continue;
     }
 
