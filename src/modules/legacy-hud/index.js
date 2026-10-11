@@ -1,4 +1,4 @@
-import { addStyles, getSetting, getUserTitle, makeElement } from '@utils';
+import { addStyles, getSetting, escapeHtml, getUserTitle, makeElement } from '@utils';
 
 import settings from './settings';
 
@@ -130,7 +130,7 @@ const getLegacyHudHtml = () => {
           <span class="hudstatlabel">Team:</span>
           <span id="hud_team">
             <a href="https://www.mousehuntgame.com/team.php?team_id=${user?.team?.id}" class="hud_team_name hudstatvalue" onclick="app.pages.TeamPage.showUserTeamPage(); return false;">
-              ${user?.team?.name}
+              ${escapeHtml(user?.team?.name)}
             </a>
             <div class="corkboardUpdate ${user?.team?.new_chat ? 'active' : ''}"></div>
           </span>

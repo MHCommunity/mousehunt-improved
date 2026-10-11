@@ -637,7 +637,7 @@ const addInfoToCompletedMap = async (mapData) => {
   maptainImage.style.backgroundImage = `url(${maptain.profile_pic})`;
   maptainWrapper.append(maptainImage);
 
-  const maptainText = makeElement('a', 'mh-ui-completed-info-text', maptain.name);
+  const maptainText = makeElement('a', 'mh-ui-completed-info-text', escapeHtml(maptain.name));
   maptainText.href = `https://www.mousehuntgame.com/profile.php?snuid=${maptain.sn_user_id}`;
   maptainWrapper.append(maptainText);
 
@@ -653,7 +653,7 @@ const addInfoToCompletedMap = async (mapData) => {
     dusterImage.style.backgroundImage = `url(${duster.profile_pic})`;
     dusterWrapper.append(dusterImage);
 
-    const dusterText = makeElement('a', 'mh-ui-completed-info-text', duster.name);
+    const dusterText = makeElement('a', 'mh-ui-completed-info-text', escapeHtml(duster.name));
     dusterText.href = `https://www.mousehuntgame.com/profile.php?snuid=${duster.sn_user_id}`;
     dusterWrapper.append(dusterText);
 
