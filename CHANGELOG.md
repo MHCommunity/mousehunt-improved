@@ -17,6 +17,7 @@
 - Custom Menu: Added a refresh button for pinned item quantities, and the Lucky Golden Shield timer to pinned SB+ supply packs
 - Better Maps: Added a field to send SUPER|brie+ to the Maptain from the map sidebar
 - Better Shops: Added the total cost and sell value for the quantity you enter
+- Favorite Setups: Redesigned the setups list and editor. Setups can now be saved for a location or a whole region
 - Better Mice: Redesigned the mouse view, with your catches, crown, gold, points, minlucks, and a wiki link
 - Better Item Details: Tidied the sidebar
 - Max Title: Added Max Title, combining the three Fabled title experiments: custom text, a random title, or the progress bar
@@ -46,8 +47,8 @@
 - Journal Privacy: Moved hiding names to the `journal-privacy-transparent` feature flag
 - Better Send Supplies: Spaced out rapid quick sends, and added arrow and scroll wheel stepping to the quantity
 - Better Marketplace: Made whole rows clickable in the listings and history tabs
-- Favorite Setups: Fixed the stat comparisons in the item picker
 - Location Dashboard: Updated progress after location actions, not just hunts
+- Location timers: Listed every upcoming stage in order, and labelled Balack's Cove's mid tides rising and falling
 - Location HUDs - Cerulean Skyport: Fixed large intel counts overlapping the progress bar, and the ledger opening after travelling
 - Location HUDs - Halloween: Fixed the Spooky Shuffle tracker showing last year's cards
 - Location HUDs - Burroughs Rift: Fixed the HUD sometimes not loading
