@@ -40,22 +40,26 @@ const parseEncodedValue = (value) => {
   return value;
 };
 
+// The last parsed settings for each identifier, reused until the stored JSON changes.
+const settingsCache = new Map();
+
 /**
- * Get the saved settings.
+ * Read and parse the stored settings, reusing the last parse when nothing has changed.
  *
- * @param {string}  key          The key to get.
- * @param {boolean} defaultValue The default value.
- * @param {string}  identifier   The identifier for the settings.
+ * Callers must not mutate the returned object; getSettingDirect hands out copies.
+ *
+ * @param {string} identifier The identifier for the settings.
  *
  * @return {Object} The saved settings.
  */
-const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehunt-improved-settings') => {
-  if (isSafeMode()) {
-    return defaultValue;
+const readSettings = (identifier) => {
+  const raw = localStorage.getItem(identifier);
+  const cached = settingsCache.get(identifier);
+  if (cached && cached.raw === raw) {
+    return cached.settings;
   }
 
-  // Grab the local storage data.
-  let settings = safeJsonParse(localStorage.getItem(identifier), {}, (error) => {
+  let settings = safeJsonParse(raw, {}, (error) => {
     console.error('Error parsing settings:', error); // eslint-disable-line no-console
   });
 
@@ -76,9 +80,45 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     }
   }
 
+  settingsCache.set(identifier, { raw, settings });
+
+  return settings;
+};
+
+/**
+ * Decode a stored setting value, copying objects so callers can't change the cached settings.
+ *
+ * @param {*} value The stored value.
+ *
+ * @return {*} The value to hand back.
+ */
+const copySettingValue = (value) => {
+  if (value && 'object' === typeof value) {
+    return structuredClone(value);
+  }
+
+  return parseEncodedValue(value);
+};
+
+/**
+ * Get the saved settings.
+ *
+ * @param {string}  key          The key to get.
+ * @param {boolean} defaultValue The default value.
+ * @param {string}  identifier   The identifier for the settings.
+ *
+ * @return {Object} The saved settings.
+ */
+const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehunt-improved-settings') => {
+  if (isSafeMode()) {
+    return defaultValue;
+  }
+
+  const settings = readSettings(identifier);
+
   // If we didn't get a key passed in, we want all the settings.
   if (!key) {
-    return settings;
+    return structuredClone(settings);
   }
 
   // If the key contains a period, then it's a group and key, otherwise it's just a key.
@@ -87,7 +127,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
       return defaultValue;
     }
 
-    return parseEncodedValue(settings[key]);
+    return copySettingValue(settings[key]);
   }
 
   const groupAndKey = getGroupAndKey(key);
@@ -97,7 +137,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
       return defaultValue;
     }
 
-    return parseEncodedValue(settings[groupAndKey.key]);
+    return copySettingValue(settings[groupAndKey.key]);
   }
 
   const groupSettings = settings[groupAndKey.group] || {};
@@ -106,7 +146,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     return defaultValue;
   }
 
-  return parseEncodedValue(groupSettings[groupAndKey.key]);
+  return copySettingValue(groupSettings[groupAndKey.key]);
 };
 
 /**
