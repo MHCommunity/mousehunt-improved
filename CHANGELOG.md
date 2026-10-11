@@ -4,29 +4,66 @@
 
 ### Added
 
+- Catch Rate & Minluck: Added attraction rates, so you can see which mice you're likely to attract, not just whether you can catch them. The rates come from real hunt data and match your exact setup: your location's current stage at more than 40 locations (like your Sunken City zone, Valour Rift floor, or Fort Rox phase), your cheese, and your charm, when a charm changes what shows up. Bosses are handled too: Ancient City district bosses only count while they're awake, and a Bountiful Beanstalk castle giant shows as the only mouse when you reach it. When the data doesn't cover your stage and cheese, the rates come from MHCT instead
+- Catch Rate & Minluck: Added an Overall row with your real chance to catch whatever shows up next, from each mouse's catch rate weighted by how often it's attracted. The list updates on its own when your stage changes, the columns can be sorted, and there's a refresh button
+- Custom Trap Selector: Added Custom Trap Selector, to reorder and hide the blocks under your trap: trap stats, trap effectiveness, auras, Favorite Setups, catch rates, and the codex. Drag them in a live preview, or use the arrows and toggles. Your existing codex and aura settings carry over
+- Catch Rate & Minluck: Added an option in Custom Trap Selector to base the trap effectiveness rating on your overall catch rate
+- Better Item Details: Added which mice drop the item, with drop chances from MHCT
+- Better Mice: Added what the mouse drops to the mouse view, with a location picker
+- Location HUDs - Spring Egg Hunt: Added an Egg Hunt Helper that tracks which eggs you've found and shows where to find the rest. Open it from the HUD or the Camp menu, or add it to the top menu with Custom Menu to use it all year
+- Custom Menu: Added Favorite Setups, Journal Logs, Keyboard Shortcuts, and Egg Hunt Helper items for the top menu. Favorite Setups arms a saved setup from any page, and Journal Logs can show the countdown to your next log
+- Location Catch Stats: Added a top menu item, through Custom Menu, that shows how many mice at your location you haven't caught yet
+- Custom Menu: Added an Info bar section to the editor, to move items in and out of the bar with Hunters Online and Friends Online
+- Custom Menu: Added tap controls to the editor for touch screens, and buttons to move items left and right
+- Custom Menu: Added a toggle that hides and shows the location HUD
+- Custom Menu: Added a button to refresh pinned item quantities in the editor, and the Lucky Golden Shield timer to pinned SB+ supply packs
+- Better Maps: Added a field to send SUPER|brie+ to the Maptain from the map sidebar
 - Better Shops: Showed the total gold cost, sell value, and item costs for the quantity you enter, and flagged when you can't afford it
 - Better Mice: Redesigned the mouse view, with your catches and crown in the title, gold, points, and wisdom pills, minlucks for every power type, and a wiki link under the description
-- Better Item View: Tidied the sidebar to just the tradable and giveable checklist and a wiki link, and moved your quantity under the picture
-- Custom Menu: Added a toggle that hides and shows the location HUD
-- Custom Menu: Added a button to refresh pinned item quantities in the editor
-- Custom Menu: Added the Lucky Golden Shield timer to pinned SB+ supply packs
-- Better Maps: Grouped the "found these mice" lists into one collapsible section in the Goals tab
-- Better Maps: Made locations collapsible in the Sorted tab, and sorted by location by default
-- Beta Features: Added Dark Mode Palette Test to try different Dark Mode color palettes
+- Better Item Details: Tidied the sidebar to the tradable and giveable checklist, item stats, and a wiki link, with your quantity under the picture
+- Max Title: Added Max Title, which combines the three Fabled title experiments. Show custom text, a random title, or the completed progress bar in place of your max title
+- Dark Mode Color Schemes: Added dark and light color schemes, and theme presets that also set a matching background, shield, horn, and HUD (Experimental)
+- Dark Mode: Added a Beta option to tint journal entries with darker shades of the game's event and location colors
+- Better UI: Popups that open above or below where you're looking now scroll into view
+- Added a notice when a newer version of MouseHunt Improved is available
 
 ### Fixed and Updated
 
-- Dark Mode: Refreshed the colors, with blue links in place of purple, and made screens without their own dark styles come out dark
-- Custom Menu: Fixed opening a pinned convertible not showing the new journal entries
-- Custom Menu: Hid the quantity for pinned items you have none of, and checked for new ones sooner
-- Better Send Supplies: Spaced out quick sends so rapid clicks don't send too fast
-- Better Maps: Updated the Toxic Spill map groups to sort mice by pollution level and the rank they're best at
+- Collapsible sections now remember whether they're collapsed everywhere they show up and across page loads, including item drop rates and contents, mouse attraction rates, King's Crowns, Skyport Star Tracker, map shops, and Marketplace charts
+- Settings: Moved Beta options out of Experiments and into their own modules' settings, with a badge next to unfinished options. The Floating Islands airship randomizer is now a Beta option in the Location HUD settings
+- Settings: Clarified setting labels and kept the setting you changed visible above the refresh banner
+- Better Maps: Moved locations with every mouse found into a Completed group in the Goals tab, and grouped the "found these mice" lists into one collapsible section
+- Better Maps: Showed minlucks in place of weaknesses in the Goals tab mouse popups, and used the same popup in the Sorted tab
+- Better Maps: Made locations collapsible in the Sorted tab, sorted by location by default, and added new sort controls
+- Better Maps: Attraction rates now always show, and the Show/Hide AR button is gone. Bring it back with the `better-maps-ar-toggle` feature flag
+- Better Maps: Moved mice without a good setup below the setups in the Plan tab
+- Better Maps: Updated Halloween maps to use the latest Halloween attraction rates
+- Better Maps: Updated the map groups, sorting Toxic Spill mice by pollution level and the rank they're best at, adding mice to the Birthday, Naughty, Nice, Lantern Lighter, and Lunar New Year maps, and refreshing group names and icons
 - Better Maps: Fixed rare maps not matching their map groups in the Sorted tab
 - Better Maps: Removed the MHCT and Wiki links from the mouse and item details on maps
-- Better Marketplace: Made the whole row open the item in the listings and history tabs
+- Better Trap Selector: Fixed toggles like "See more friends" undoing themselves after going to the camp page without a page reload
+- Better Trap Selector: Larger skin images and unowned skins are always on, and can be turned off with feature flags. The codex options moved to Custom Trap Selector
+- Show Auras: Moved the auras into Custom Trap Selector, where you can show, hide, and lay them out
+- Better Travel: Used the Cursed City, Sand Crypts, and Twisted Garden names in the travel menu while they're cursed or twisted, and matched them when searching the Travel Window
+- Custom Menu: Fixed opening a pinned convertible not showing the new journal entries
+- Custom Menu: Hid the quantity for pinned items you have none of, checked for new ones sooner, and shortened aura timers, like 3.5d or 6.5h
+- Hide Page Elements: Removed the Hunters Online and Friends Online bar option, since they're Custom Menu items now. If you hid the bar, they stay hidden
+- Better UI: Moved Reverse Daily Draw order to the `better-ui-reverse-daily-draw` feature flag, and fixed the active tab not being highlighted in the daily reward popup
+- Inventory Buttons: Combined the "Open All But One" options into one picker, and fixed locking the other open buttons, which left Open One clickable
+- Journal Privacy: Moved hiding names instead of blurring them to the `journal-privacy-transparent` feature flag
+- Better Send Supplies: Spaced out quick sends so rapid clicks don't send too fast, and added arrow and scroll wheel stepping to the quantity
+- Better Marketplace: Made the whole row open the item in the listings and history tabs, and kept the price chart above the Markethunt chart
+- Favorite Setups: Fixed the stat comparisons in the item picker, and kept the picker's Continue button on screen
+- Location Dashboard: Updated location progress after location actions, like repairing the Mousoleum wall, not just after a hunt
 - Location HUDs - Cerulean Skyport: Fixed intel counts over 99 overlapping the progress bar in the raid picker, and fixed the ledger opening from the airship after travelling
+- Location HUDs - Halloween: Fixed the Spooky Shuffle tracker showing cards from last year's unfinished game
+- Location HUDs - Burroughs Rift: Fixed the HUD sometimes not loading
+- Better Journal: Cut off long mouse names in the progress log popup
+- Better Mice: Fixed the catch totals showing 0, and sorting by catches, misses, or weight, on the mouse stats pages
+- Dark Mode: Refreshed the colors, with blue links in place of purple, and made screens without their own dark styles come out dark
+- Updated the close buttons and the error popup to match across the game
 - Fixed the item page link for items without an inventory tab, like stat items
-- Minor style tweaks across Better Maps, Better Inventory, Better Journal, Location Catch Stats, and other modules
+- Minor style tweaks across Better Maps, Better Inventory, Better Journal, Better Marketplace, Location HUDs, tournaments, the memory games, and Dark Mode
 
 ## Version 0.102.0
 

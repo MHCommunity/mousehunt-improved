@@ -627,7 +627,7 @@ const init = () => {
  */
 export default {
   id: 'catch-rate-estimate',
-  name: 'Catch Rate & Minluck',
+  name: 'Catch Rate & Minlucks',
   type: 'hunting-traps',
   default: true,
   description: 'Show minluck and catch rate estimates on the Camp page.',

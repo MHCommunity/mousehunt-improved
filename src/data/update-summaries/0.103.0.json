@@ -1,25 +1,33 @@
 {
   "version": "0.103.0",
-  "summary": "Shops now show the total cost for the quantity you enter, the mouse view has a fresh new look, and Dark Mode got a color refresh. Happy hunting!",
+  "summary": "Catch Rate & Minlucks now shows attraction rates, accurately calculated based on your setup, location, and location stage. Rearrange and hide the blocks under your trap with the new Custom Trap Selector, item and mouse popups now show more data, and more things are now able to be pinned to the top menu! Happy hunting!",
   "details": [
     {
       "title": "New",
       "items": [
-        "Better Shops: See the total gold cost and item costs for the quantity you enter",
-        "Better Mice: A redesigned mouse view, with your catches, crown, minlucks, and rewards up front",
-        "Better Item View: A tidier sidebar, with your quantity under the picture",
-        "Custom Menu: Hide and show the location HUD from the top menu",
-        "Better Maps: Collapse the found mice in the Goals tab and locations in the Sorted tab"
+        "Catch Rate & Minlucks: See which mice you're likely to attract, from real hunt data for your exact stage, cheese, and charm",
+        "Catch Rate & Minlucks: An overall catch rate for whatever shows up next, which updates as your stage changes",
+        "Custom Trap Selector: Rearrange and hide the blocks under your trap",
+        "Better Item Details and Better Mice: See which mice drop an item, and what a mouse drops",
+        "Spring Egg Hunt: A new Egg Hunt Helper to track down every egg",
+        "Custom Menu: Add Favorite Setups, Journal Logs, Keyboard Shortcuts, and your uncaught mice count to the top menu",
+        "Better Maps: Send SUPER|brie+ to the Maptain right from the map",
+        "Better Shops: See the total cost for the quantity you enter",
+        "Better Mice: A redesigned mouse view",
+        "Max Title: Show custom text, a random title, or the progress bar in place of your Fabled title",
+        "Dark Mode Color Schemes: Try new dark and light color schemes (Experimental)"
       ]
     },
     {
       "title": "Fixed and Updated",
       "items": [
-        "Dark Mode: Refreshed colors, with blue links in place of purple",
+        "Collapsed sections stay collapsed across the game",
+        "Beta options are now in each module's settings",
+        "Better Maps: Completed locations are grouped together, and attraction rates always show",
+        "Better Travel: Cursed and twisted location names in the travel menu",
         "Custom Menu: Opening pinned convertibles now shows the new journal entries",
-        "Better Maps: Toxic Spill maps sorted by pollution level",
-        "Better Marketplace: Click anywhere on a row in your listings and history to open the item",
-        "Location HUDs - Cerulean Skyport: Fixed large intel counts in the raid picker"
+        "Dark Mode: Refreshed colors, with blue links in place of purple",
+        "Lots of smaller fixes and style tweaks"
       ]
     }
   ]

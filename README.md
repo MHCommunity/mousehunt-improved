@@ -28,7 +28,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Tournaments](docs/better-tournaments.md)**: Update the Tournaments UI to show information on hover and make various small interface tweaks.
 - **[Better Trap Selector](docs/better-trap-selector.md)**: Add quick filters and sorting, special effect markers, skin and codex options, and correct base stats and counts to the trap selector.
 - **[Better Travel](docs/better-travel.md)**: Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.
-- **[Catch Rate & Minluck](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
+- **[Catch Rate & Minlucks](docs/catch-rate-estimator-and-minlucks.md)**: Display Minluck and catch rate estimates on the Camp page.
 - **[Dark Mode](docs/dark-mode.md)**: Enable the dark mode.
 - **[MHCT Dark Mode Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Updates and tweaks to the MHCT/Dark Mode Extension dark mode.
 - **[Data Export](docs/data-exporters.md)**: Export data from the game.
