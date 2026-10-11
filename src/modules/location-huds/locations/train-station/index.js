@@ -1,6 +1,7 @@
 import { addHudStyles, getSetting, saveSetting } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const TRAIN_BOARD_MINIMIZED_SETTING = 'location-huds.train-station-board-minimized';
 
@@ -19,7 +20,7 @@ const persistTrainBoardState = () => {
 
   if (!toggle.dataset.mhiTrainBoardStateListener) {
     toggle.dataset.mhiTrainBoardStateListener = 'true';
-    toggle.addEventListener('click', () => {
+    addHudListener(toggle, 'click', () => {
       setTimeout(() => {
         saveSetting(TRAIN_BOARD_MINIMIZED_SETTING, hud.classList.contains('expanded'));
       });

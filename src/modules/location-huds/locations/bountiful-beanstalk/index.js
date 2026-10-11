@@ -6,6 +6,7 @@ import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-op
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import smallInvStyles from './small-inv.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Expand the room data when clicked and keep it open.
@@ -23,7 +24,7 @@ const keepRoomDataToggled = async () => {
     isSetOpen = false;
   }
 
-  roomData.addEventListener('click', (e) => {
+  addHudListener(roomData, 'click', (e) => {
     e.preventDefault();
 
     if (isSetOpen) {
@@ -47,7 +48,7 @@ const keepTooltipToggled = async () => {
     return;
   }
 
-  tooltip.addEventListener('click', (e) => {
+  addHudListener(tooltip, 'click', (e) => {
     e.preventDefault();
 
     tooltip.classList.toggle('mh-improved-tooltip-stay-open');
@@ -64,7 +65,7 @@ const funTime = async () => {
   }
 
   let isRotating = false;
-  meter.addEventListener('click', () => {
+  addHudListener(meter, 'click', () => {
     if (isRotating) {
       return;
     }
@@ -117,7 +118,7 @@ const toggleFuelWithIcon = async () => {
     return;
   }
 
-  icon.addEventListener('click', () => {
+  addHudListener(icon, 'click', () => {
     button.click();
   });
 };
@@ -199,7 +200,7 @@ const addQuickHarpToggleButton = async () => {
     toggleElements();
   }
 
-  newToggleButton.addEventListener('click', async (e) => {
+  addHudListener(newToggleButton, 'click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
 

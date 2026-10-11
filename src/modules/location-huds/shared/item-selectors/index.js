@@ -1,6 +1,7 @@
 import { addStyles, formatNumber, getCurrentLocation, getSetting, getUserItems, make, onRequest, replaceOrAppend, sessionGet, sessionSet } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../hud-listener';
 
 const selectorStates = new Map();
 
@@ -97,7 +98,7 @@ const addItemSelector = (location, itemTypes, { hudSelector = null } = {}) => {
       const control = make('div', ['townOfGnawniaHUD-bait', `mh-ui-cheese-selector-${item.type}`], '', container);
       control.setAttribute('data-item-type', item.type);
       control.setAttribute('data-item-classification', item.classification);
-      control.addEventListener('click', () => {
+      addHudListener(control, 'click', () => {
         if ('weapon' === item.classification) {
           toggleWeapon(control, item, weapons, location, state, isEnabled);
         } else if (control.isConnected && isEnabled()) {

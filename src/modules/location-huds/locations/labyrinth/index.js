@@ -1,6 +1,7 @@
 import { addHudStyles, getCurrentLocation, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Highlight doors based on the best clue.
@@ -67,7 +68,7 @@ const scrambleGems = () => {
   // remove the onclick attribute
   gems.forEach((gem) => {
     gem.removeAttribute('onclick');
-    gem.addEventListener('click', () => {
+    addHudListener(gem, 'click', () => {
       gems.forEach((g) => {
         hg.views.HeadsUpDisplayLabyrinthView.labyrinthScrambleGem(g, 2);
       });
@@ -264,7 +265,7 @@ const minigame = async () => {
 
   tiles.forEach((tile) => {
     if ([...tile.classList].includes('active')) {
-      tile.addEventListener('click', () => {
+      addHudListener(tile, 'click', () => {
         let delay = 0;
         tiles.forEach((t) => {
           setTimeout(highlightTileForMinigame, delay, t);

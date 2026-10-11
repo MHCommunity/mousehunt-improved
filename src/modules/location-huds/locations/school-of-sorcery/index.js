@@ -3,6 +3,7 @@ import { addHudStyles, getSetting, makeElement, onRequest, onTurn, showHornMessa
 import cleanChalkboard from './clean-chalkboard.css';
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const highlightIfHighest = () => {
   const transcripts = user?.quests?.QuestSchoolOfSorcery?.transcript_data;
@@ -46,7 +47,7 @@ const highlightIfHighest = () => {
   highestMarker.src = 'https://www.mousehuntgame.com/images/ui/hud/rift_valour/upgrade_arrow.png';
   highestMarker.alt = '';
   highestMarker.setAttribute('title', 'New record for your highest in this course!');
-  highestMarker.addEventListener('click', () => {
+  addHudListener(highestMarker, 'click', () => {
     const transcriptButton = document.querySelector('.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton');
     if (transcriptButton) {
       transcriptButton.click();

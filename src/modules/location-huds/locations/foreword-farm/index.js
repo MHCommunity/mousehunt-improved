@@ -4,6 +4,7 @@ import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-op
 
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const addMultiplePlantButtons = async () => {
   await waitForElement('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
@@ -25,7 +26,7 @@ const addMultiplePlantButtons = async () => {
     } else {
       newButton.classList.remove('disabled');
     }
-    newButton.addEventListener('click', async (event) => {
+    addHudListener(newButton, 'click', async (event) => {
       if (button.classList.contains('disabled') || button.classList.contains('busy')) {
         return;
       }

@@ -4,6 +4,7 @@ import { getItemDroppers } from '@utils/shared/loot';
 import ways from './ways';
 
 import styles from './styles.css';
+import addHudListener from '../../../../shared/hud-listener';
 
 let state = null;
 
@@ -37,7 +38,7 @@ const makeText = (tag, classes, text, appendTo = null) => {
 const makeLink = (classes, text, onClick, appendTo = null) => {
   const link = makeText('a', classes, text, appendTo);
   link.href = '#';
-  link.addEventListener('click', (e) => {
+  addHudListener(link, 'click', (e) => {
     e.preventDefault();
     onClick(e);
   });
@@ -275,7 +276,7 @@ const makeLeftHeader = () => {
   search.type = 'search';
   search.placeholder = 'Search eggs...';
   search.value = state.search;
-  search.addEventListener('input', () => {
+  addHudListener(search, 'input', () => {
     state.search = search.value;
     filterList();
   });
@@ -324,8 +325,8 @@ const makeEggList = () => {
     makeText('span', 'mh-egg-helper-egg-name', egg.name, row);
     makeText('span', 'mh-egg-helper-find-egg', 'View Details →', row);
 
-    row.addEventListener('click', () => showEggDetails(egg.type));
-    row.addEventListener('keydown', (e) => {
+    addHudListener(row, 'click', () => showEggDetails(egg.type));
+    addHudListener(row, 'keydown', (e) => {
       if ('Enter' === e.key) {
         showEggDetails(egg.type);
       }

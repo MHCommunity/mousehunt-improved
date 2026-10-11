@@ -1,6 +1,7 @@
 import { addStyles, getCurrentPage, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../../shared/hud-listener';
 
 let startY, initialTranslateY;
 
@@ -60,7 +61,7 @@ const dragMap = async (args) => {
     map.style.transform = `translateY(${newTranslateY}px)`;
   };
 
-  map.addEventListener('mousedown', (event) => {
+  addHudListener(map, 'mousedown', (event) => {
     startY = event.clientY;
     const style = window.getComputedStyle(map);
     const matrix = new WebKitCSSMatrix(style.transform);
@@ -71,11 +72,11 @@ const dragMap = async (args) => {
     map.addEventListener('mousemove', onDrag);
   });
 
-  map.addEventListener('mouseup', () => {
+  addHudListener(map, 'mouseup', () => {
     map.removeEventListener('mousemove', onDrag);
   });
 
-  map.addEventListener('wheel', (event) => {
+  addHudListener(map, 'wheel', (event) => {
     event.preventDefault();
 
     map.style.transition = 'none';
@@ -94,7 +95,7 @@ const dragMap = async (args) => {
     map.style.transform = `translateY(${newTranslateY}px)`;
   });
 
-  map.addEventListener('mouseleave', () => {
+  addHudListener(map, 'mouseleave', () => {
     map.style.transition = 'transform 1s ease-in-out';
   });
 };
@@ -122,7 +123,7 @@ const triggerFireworks = () => {
   statsContainer.append(launchButton);
 
   let isAnimating = false;
-  launchButton.addEventListener('click', () => {
+  addHudListener(launchButton, 'click', () => {
     launchButton.classList.add('launched');
     fireworks.classList.add('launch-the-fireworks');
     if (isAnimating) {

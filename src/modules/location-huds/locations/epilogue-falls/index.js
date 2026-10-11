@@ -4,6 +4,7 @@ import folkloreForest from '../../shared/folklore-forest';
 
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const highlightBarrelHealth = async () => {
   const healthContainer = document.querySelector('.headsUpDisplayEpilogueFallsView__barrelHealthContainer');
@@ -38,7 +39,7 @@ const updateBarrelCraftDialog = async () => {
     return;
   }
 
-  craftButton.addEventListener('click', () => {
+  addHudListener(craftButton, 'click', () => {
     user.quests.QuestEpilogueFalls?.barrels.forEach((barrel) => {
       if (!barrel.can_craft && barrel?.cost?.length) {
         barrel.cost.forEach((ingredient) => {

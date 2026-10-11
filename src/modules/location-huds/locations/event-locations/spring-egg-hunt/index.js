@@ -4,6 +4,7 @@ import { updateDateDates } from '../shared';
 import { openEggHelper } from './egg-helper';
 
 import styles from './styles.css';
+import addHudListener from '../../../shared/hud-listener';
 
 /**
  * Add a button to highlight missing eggs.
@@ -25,7 +26,7 @@ const addUnfoundEggHighlight = () => {
   }
 
   const highlightEl = makeElement('a', 'springHuntHUD-unfoundEggHighlight', 'Highlight missing');
-  highlightEl.addEventListener('click', () => {
+  addHudListener(highlightEl, 'click', () => {
     if (tabContent.classList.contains('highlight')) {
       tabContent.classList.remove('highlight');
       highlightEl.innerText = 'Highlight missing';
@@ -40,7 +41,7 @@ const addUnfoundEggHighlight = () => {
   stats.append(links);
 
   const helperEl = makeElement('a', 'springHuntHUD-openEggHelper', 'Egg Hunt Helper');
-  helperEl.addEventListener('click', openEggHelper);
+  addHudListener(helperEl, 'click', openEggHelper);
 
   links.append(helperEl);
 };
@@ -75,7 +76,7 @@ const rightclickToFlag = () => {
 
   // Add an event listener to each space and if it is right-clicked, toggle the class on the parent.
   spaces.forEach((space) => {
-    space.addEventListener('contextmenu', async (e) => {
+    addHudListener(space, 'contextmenu', async (e) => {
       const cell = space.querySelector('a');
       if (!cell) {
         return;

@@ -2,6 +2,7 @@ import { addHudStyles, makeElement, onNavigation, onRequest, onTurn, showHornMes
 import { startMemoryGame } from '@utils/shared/memory-game';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const types = {
   y: 'Paladin Weapon Master', // Fealty
@@ -147,7 +148,7 @@ const addMinigame = () => {
   startGame.title = 'Play Zokor Memory Challenge';
   baitWarning.parentNode.insertBefore(startGame, baitWarning);
 
-  startGame.addEventListener('click', () => {
+  addHudListener(startGame, 'click', () => {
     startMemoryGame({
       title: 'Zokor Memory Challenge',
       items: [

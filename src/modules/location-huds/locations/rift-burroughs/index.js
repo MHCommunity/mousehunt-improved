@@ -1,6 +1,7 @@
 import { addHudStyles, getData, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 let areaMice;
 
@@ -22,7 +23,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
   }
 
   const mTitle = makeElement('a', 'mouse-type-title', title);
-  mTitle.addEventListener('click', () => {
+  addHudListener(mTitle, 'click', () => {
     let id = 1426; // magical string.
     if ('terra' === type) {
       id = 1551;
@@ -41,7 +42,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
   mice.forEach((mouse) => {
     const mouseWrapper = makeElement('div', 'mouse-type-mouse');
     const mouseLink = makeElement('a', 'mouse-type-mouse-link');
-    mouseLink.addEventListener('click', (e) => {
+    addHudListener(mouseLink, 'click', (e) => {
       hg.views.MouseView.show(mouse.id);
       e.preventDefault();
     });
@@ -102,7 +103,7 @@ const hud = () => {
     mist.classList.add('locked');
   }
 
-  mist.addEventListener('click', (e) => {
+  addHudListener(mist, 'click', (e) => {
     hg.views.HeadsUpDisplayRiftBurroughsView.toggleMist(e.target);
   });
 

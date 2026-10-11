@@ -1,6 +1,7 @@
 import { addStyles, debuglog, doRequest, makeElement, onDialogShow, onRequest, sessionGet, sessionSet, sleep, waitForElement } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../hud-listener';
 
 const airshipPartTypes = ['hull', 'sail', 'balloon'];
 const airshipPartsCacheKey = 'fi-airship-parts';
@@ -169,7 +170,7 @@ const makeRandomizeButton = ({ text, title, callback }) => {
 
   button.append(document.createTextNode(text));
 
-  button.addEventListener('click', async (event) => {
+  addHudListener(button, 'click', async (event) => {
     event.preventDefault();
 
     if (button.classList.contains('busy')) {
@@ -262,7 +263,7 @@ const addHoverPreview = async () => {
 
   container.setAttribute('data-mh-improved-hover-preview', 'true');
 
-  container.addEventListener('mouseover', (event) => {
+  addHudListener(container, 'mouseover', (event) => {
     const part = event.target.closest('.floatingIslandsWorkshop-part');
 
     // Moving between elements inside the same part shouldn't restart the delay.
@@ -293,7 +294,7 @@ const addHoverPreview = async () => {
     }, 350);
   });
 
-  container.addEventListener('mouseleave', () => {
+  addHudListener(container, 'mouseleave', () => {
     clearHoverPreview();
     hoverPreviewPart = null;
   });
@@ -317,7 +318,7 @@ const fixStabilizerLabel = async () => {
     // Remove the game's inline handler so the toggle doesn't fire twice.
     label.removeAttribute('onclick');
 
-    label.addEventListener('click', (event) => {
+    addHudListener(label, 'click', (event) => {
       event.preventDefault();
 
       if (label.classList.contains('busy')) {

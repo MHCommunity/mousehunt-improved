@@ -1,6 +1,7 @@
 import { addHudStyles, getUserItems, makeElement } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Update the HUD images.
@@ -154,7 +155,7 @@ const addMoreCharms = async () => {
 
   const charms = document.querySelectorAll('.sunkenCityHud .sunkenCharms a');
   charms.forEach((charm) => {
-    charm.addEventListener('click', () => {
+    addHudListener(charm, 'click', () => {
       const active = document.querySelectorAll('.sunkenCityHud .sunkenCharms a.active');
       active.forEach((item) => {
         item.classList.remove('active');

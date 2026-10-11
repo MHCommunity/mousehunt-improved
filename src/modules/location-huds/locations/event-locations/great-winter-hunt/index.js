@@ -14,6 +14,7 @@ import {
 } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../../shared/hud-listener';
 
 /**
  * Update the footer with the possible golems that can be made.
@@ -149,7 +150,7 @@ const updateGolemPopup = () => {
     const golems = document.querySelectorAll('.greatWinterHuntGolemManagerDialogView__golem');
     if (golems) {
       golems.forEach((golem) => {
-        golem.addEventListener('click', () => {
+        addHudListener(golem, 'click', () => {
           eventRegistry.doEvent('golem-switch-in-dialog');
         });
       });
@@ -170,7 +171,7 @@ const golemDance = () => {
     return;
   }
 
-  trigger.addEventListener('click', () => {
+  addHudListener(trigger, 'click', () => {
     const golems = document.querySelectorAll('.headsUpDisplayWinterHuntRegionView__golem .winterHuntGolemView');
     if (!golems) {
       return;
@@ -293,7 +294,7 @@ const adventCalendarPopup = () => {
   });
 
   toggleBtn.setAttribute('data-enabled', 'false');
-  toggleBtn.addEventListener('click', () => {
+  addHudListener(toggleBtn, 'click', () => {
     const popup = document.querySelector('#overlayPopup');
     if (!popup) {
       return;
@@ -361,7 +362,7 @@ const giftingPopup = () => {
   sorted.forEach((gift) => {
     giftContainer.append(gift);
 
-    gift.addEventListener('click', () => {
+    addHudListener(gift, 'click', () => {
       const maxQty = document.querySelector('.giftConfirmContainer .quantity')?.textContent || 1_000_000;
       const input = document.querySelector('#sendQuantity');
       if (input) {

@@ -1,4 +1,5 @@
 import { getSetting, makeElement, makeMhButton, onDialogHide, onDialogShow, onRequest, onTurn, saveSetting } from '@utils';
+import addHudListener from '../hud-listener';
 
 /**
  * Save the hidden state of an upgrade.
@@ -170,7 +171,7 @@ const addToggle = (upgradeBlock) => {
     appendTo: action || upgradeBlock,
   });
 
-  togglebutton.addEventListener('click', () => {
+  addHudListener(togglebutton, 'click', () => {
     isBlockToggled = !isBlockToggled;
     saveHidden(blockId, isBlockToggled);
 
@@ -226,7 +227,7 @@ const addCloseToWarning = () => {
 
   const closeButton = makeElement('div', ['mhui-close-button', 'mh-improved-close'], '✕');
   warning.append(closeButton);
-  closeButton.addEventListener('click', () => {
+  addHudListener(closeButton, 'click', () => {
     warning.classList.remove('active');
   });
 };

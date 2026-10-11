@@ -6,6 +6,7 @@ import simulate from './simulator';
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import simulatorStyles from './simulator-styles.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * @typedef {import('./simulator').EncySimOptions} EncySimOptions
@@ -200,7 +201,7 @@ const doSimulation = (selector) => {
     return;
   }
 
-  simPopup.addEventListener('click', triggerSimPopup);
+  addHudListener(simPopup, 'click', triggerSimPopup);
 };
 
 /**
@@ -233,7 +234,7 @@ const addSimulatorIcon = () => {
 
   simLink.append(tooltip);
 
-  simLink.addEventListener('click', triggerSimPopup);
+  addHudListener(simLink, 'click', triggerSimPopup);
 
   bookHud.append(simLink);
 };

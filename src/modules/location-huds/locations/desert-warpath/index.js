@@ -2,6 +2,7 @@ import { addHudStyles, getFlag, makeElement, onRequest, onTrapChange, onTurn, sh
 import { getFieryWarpathWave } from '@utils/shared/fiery-warpath';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 let engaged = false;
 
@@ -22,7 +23,7 @@ const addMissiles = () => {
   const trigger = makeElement('div', ['warpathHud-missle-activate', 'warpathHUD-missile']); /* cspell: disable-line */
   container.append(trigger);
 
-  trigger.addEventListener('click', () => {
+  addHudListener(trigger, 'click', () => {
     engaged = !engaged;
 
     if (engaged) {
@@ -73,7 +74,7 @@ const addMissiles = () => {
     }, 700);
   };
 
-  container.addEventListener('click', launchMissile);
+  addHudListener(container, 'click', launchMissile);
 };
 
 const updateCommandBar = () => {

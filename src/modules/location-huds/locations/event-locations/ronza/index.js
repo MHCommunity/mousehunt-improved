@@ -1,6 +1,7 @@
 import { addOnboardingMessage, addStyles, getSetting, makeElement, saveSetting } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../../shared/hud-listener';
 
 const addToggleListener = (wrapper) => {
   const container = document.querySelector('.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer');
@@ -16,7 +17,7 @@ const addToggleListener = (wrapper) => {
     wrapper.classList.add('headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview');
   }
 
-  container.addEventListener('click', (e) => {
+  addHudListener(container, 'click', (e) => {
     // Only toggle if the click is on the container itself.
     if (e.target !== container) {
       return;

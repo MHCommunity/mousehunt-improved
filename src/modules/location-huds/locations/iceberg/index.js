@@ -2,6 +2,7 @@ import { addHudStyles, formatNumber, getCurrentLocation, getSetting, getUserItem
 
 import bobIceberg from './styles/bob-iceberg.css';
 import styles from './styles/styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Get the sections of the iceberg.
@@ -424,7 +425,7 @@ const makeTooltipSticky = () => {
     huntInfo.classList.add('mh-improved-stick-iceberg-tooltip');
   }
 
-  huntInfo.addEventListener('click', () => {
+  addHudListener(huntInfo, 'click', () => {
     isStuck = !isStuck;
     huntInfo.classList.toggle('mh-improved-stick-iceberg-tooltip');
     saveSetting('location-huds.iceberg-sticky-tooltip', isStuck);

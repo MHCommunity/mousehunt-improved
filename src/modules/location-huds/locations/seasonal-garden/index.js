@@ -1,6 +1,7 @@
 import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Make the progress bar draggable.
@@ -18,7 +19,7 @@ const makeProgressDraggable = () => {
 
   const originalWidth = progressBarMarker.style.width;
   let timeout = null;
-  progressBar.addEventListener('click', (e) => {
+  addHudListener(progressBar, 'click', (e) => {
     const rect = progressBar.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const width = rect.width;
@@ -53,7 +54,7 @@ const changeBarColor = () => {
     return;
   }
 
-  trigger.addEventListener('click', () => {
+  addHudListener(trigger, 'click', () => {
     // add a hue-rotate filter to the bar with a random hue
     const hue = Math.round(Math.random() * 360);
     bar.style.filter = `hue-rotate(${hue}deg)`;

@@ -1,6 +1,7 @@
 import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const phaseLengths = {
   stage_one: {
@@ -259,7 +260,7 @@ const addBaitClickHandlers = () => {
     item.dataset.mhuiBaitClick = 'true';
     item.classList.add('mh-frox-bait-clickable');
 
-    item.addEventListener('click', (event) => {
+    addHudListener(item, 'click', (event) => {
       // Let the existing buttons/links in the tooltip (Buy, Arm) handle their
       // own clicks.
       if (event.target.closest('a, .mousehuntActionButton')) {

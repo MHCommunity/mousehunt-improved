@@ -1,6 +1,7 @@
 import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 let start;
 
@@ -27,7 +28,7 @@ const spinNeedle = () => {
 
   let timeout;
   let spins = 1;
-  speed.addEventListener('click', () => {
+  addHudListener(speed, 'click', () => {
     needle.style.transition = 'transform 0.4s';
     needle.style.transform = `rotate(${start + 360 * spins}deg)`;
 

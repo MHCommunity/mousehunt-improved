@@ -1,6 +1,7 @@
 import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Initialize the module.
@@ -10,7 +11,7 @@ export default async () => {
 
   const plankContainer = document.querySelector('.mousoleumHUD-plankContainer');
   if (plankContainer) {
-    plankContainer.addEventListener('click', () => {
+    addHudListener(plankContainer, 'click', () => {
       hg.views.HeadsUpDisplayMousoleumView.spawnShards(Math.floor(Math.random() * 20));
     });
   }

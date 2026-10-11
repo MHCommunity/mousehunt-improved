@@ -5,6 +5,7 @@ import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-op
 
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 const addQuickReinforce = () => {
   setTimeout(addQuickReinforceReal, 300);
@@ -53,7 +54,7 @@ const addQuickReinforceReal = () => {
 
   button.innerText = canAffordReinforces > 0 ? `Max (+${canAffordReinforces})` : 'Max';
 
-  button.addEventListener('click', async () => {
+  addHudListener(button, 'click', async () => {
     if (button.classList.contains('draconicDepthsCavernView__reinforceCavernButton--disabled')) {
       return;
     }

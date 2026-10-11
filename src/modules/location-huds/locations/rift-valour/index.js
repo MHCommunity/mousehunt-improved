@@ -5,6 +5,7 @@ import styles from './styles.css';
 
 import getQuestData from './quest-data';
 import simulate from './simulator';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Display the results of the simulation.
@@ -84,7 +85,7 @@ const doSimulation = (selector) => {
     return;
   }
 
-  simPopup.addEventListener('click', () => {
+  addHudListener(simPopup, 'click', () => {
     const data = simulate(false);
     const popup = createPopup({
       title: 'Valour Rift Run Simulation',
@@ -157,7 +158,7 @@ const modifyPlayerIcon = () => {
   }
 
   let timeout;
-  playerIcon.addEventListener('click', (event) => {
+  addHudListener(playerIcon, 'click', (event) => {
     // If they're holding shift, then instead of spinning, change the size
     if (event.shiftKey) {
       playerIcon.classList.toggle('mh-improved-player-large');

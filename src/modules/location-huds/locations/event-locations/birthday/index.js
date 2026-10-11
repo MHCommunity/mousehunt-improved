@@ -3,6 +3,37 @@ import { addHudStyles, makeElement, onDialogShow, setMultipleTimeout } from '@ut
 import { updateDateDates, updateDateTooltip } from '../shared';
 
 import styles from './styles.css';
+import addHudListener from '../../../shared/hud-listener';
+
+// The hat being dragged, if any. One pair of document listeners serves every popup.
+let hatDrag = null;
+let hasHatDragListeners = false;
+
+/**
+ * Add the document listeners that move the hat while it's dragged.
+ */
+const addHatDragListeners = () => {
+  if (hasHatDragListeners) {
+    return;
+  }
+
+  hasHatDragListeners = true;
+
+  document.addEventListener('mousemove', (event) => {
+    if (!hatDrag) {
+      return;
+    }
+
+    const newPosition = hatDrag.initialHatX + event.clientX - hatDrag.initialMouseX;
+    if (newPosition >= 25 && newPosition <= 415) {
+      hatDrag.hat.style.left = `${newPosition}px`;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    hatDrag = null;
+  });
+};
 
 /**
  * Update the hud.
@@ -23,40 +54,21 @@ const changeColors = () => {
     can.style.filter = `hue-rotate(${hue}deg)`;
   };
 
-  can.addEventListener('click', updateColor);
+  addHudListener(can, 'click', updateColor);
   updateColor();
   popup.append(can);
 
   const hat = makeElement('div', 'vending-machine-hat');
 
-  // Get the hat element
-  let initialMouseX = 0;
-  let initialHatX = 0;
-
-  // Flag to check if dragging is happening
-  let isDragging = false;
-
-  // Add event listeners
-  hat.addEventListener('mousedown', (event) => {
-    isDragging = true;
-    initialMouseX = event.clientX;
-    initialHatX = Number.parseInt(window.getComputedStyle(hat).left, 10);
+  addHudListener(hat, 'mousedown', (event) => {
+    hatDrag = {
+      hat,
+      initialMouseX: event.clientX,
+      initialHatX: Number.parseInt(window.getComputedStyle(hat).left, 10),
+    };
   });
 
-  document.addEventListener('mousemove', (event) => {
-    if (isDragging) {
-      const deltaX = event.clientX - initialMouseX;
-      const newPosition = initialHatX + deltaX;
-
-      if (newPosition >= 25 && newPosition <= 415) {
-        hat.style.left = `${newPosition}px`;
-      }
-    }
-  });
-
-  document.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
+  addHatDragListeners();
 
   popup.append(hat);
 };

@@ -1,6 +1,7 @@
 import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
+import addHudListener from '../../shared/hud-listener';
 
 /**
  * Add click event to charms to equip them.
@@ -15,7 +16,7 @@ const clickCharmsToEquip = () => {
 
   charms.forEach((charm) => {
     const charmClass = [...charm.classList].find((c) => c !== 'curse' && c !== 'active');
-    charm.addEventListener('click', () => {
+    addHudListener(charm, 'click', () => {
       if (charmClass in charmMap) {
         hg.utils.TrapControl.armItem(charmMap[charmClass], 'trinket');
         hg.utils.TrapControl.go();
