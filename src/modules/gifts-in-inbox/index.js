@@ -343,6 +343,7 @@ const fetchRewardLinks = async () => {
       const response = await fetch('https://api.mouse.rip/gift-links', {
         credentials: 'omit',
         cache: 'no-store',
+        signal: AbortSignal.timeout(10000),
       });
 
       if (!response.ok) {

@@ -119,21 +119,34 @@ const getGeneratedName = async (setup) => {
     };
   }
 
-  const response = await fetch('https://api.mouse.rip/setup-namer', {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify({
-      location: setup.location || getCurrentLocation(),
-      power_type: getPowerTypeId(setup.power_type || user.trap_power_type_name.toLowerCase()),
-      id: setup.id,
-      bait: setup.bait_id,
-      base: setup.base_id,
-      weapon: setup.weapon_id,
-      trinket: setup.trinket_id,
-    }),
-  });
+  try {
+    const response = await fetch('https://api.mouse.rip/setup-namer', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({
+        location: setup.location || getCurrentLocation(),
+        power_type: getPowerTypeId(setup.power_type || user.trap_power_type_name.toLowerCase()),
+        id: setup.id,
+        bait: setup.bait_id,
+        base: setup.base_id,
+        weapon: setup.weapon_id,
+        trinket: setup.trinket_id,
+      }),
+      signal: AbortSignal.timeout(10000),
+    });
 
-  return await response.json();
+    if (!response.ok) {
+      throw new Error(`Setup namer returned ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    debuglog('favorite-setups', 'Unable to generate a setup name', error);
+
+    return {
+      name: user.environment_name || 'Unnamed Setup',
+    };
+  }
 };
 
 /**

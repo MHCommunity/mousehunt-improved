@@ -18,7 +18,7 @@ const getRelicHunterLocation = async () => {
   }
 
   try {
-    const data = await fetch('https://api.mouse.rip/relic-hunter', { headers: getHeaders() });
+    const data = await fetch('https://api.mouse.rip/relic-hunter', { headers: getHeaders(), signal: AbortSignal.timeout(10000) });
     if (!data.ok) {
       throw new Error(`Error fetching Relic Hunter location: ${data.statusText}`);
     }
