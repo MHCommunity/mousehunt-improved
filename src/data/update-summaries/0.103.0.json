@@ -1,30 +1,33 @@
 {
   "version": "0.103.0",
-  "summary": "Catch Rate & Minlucks now shows attraction rates for your exact stage, cheese, and charm. Rearrange the blocks under your trap with the new Custom Trap Selector, see more in item and mouse popups, and pin more to the top menu. Happy hunting!",
+  "summary": "Catch Rate & Minlucks now shows attraction rates and an overall catch rate for your current setup. There's also a new Custom Trap Selector to rearrange and hide the blocks under your trap, and a bunch more you can add to the top menu. Favorite Setups has an updated interface, with setups being able to be set for specific locations or regions and a nicer editing experience. Mice and item popups are also slightly redesigned and show more info. Happy hunting!",
   "details": [
     {
       "title": "New",
       "items": [
-        "Catch Rate & Minlucks: Attraction rates for your stage, cheese, and charm, plus an overall catch rate",
-        "Custom Trap Selector: Rearrange and hide the blocks under your trap",
-        "Better Item Details and Better Mice: See which mice drop an item, and what a mouse drops",
-        "Spring Egg Hunt: An Egg Hunt Helper to track down every egg",
-        "Custom Menu: Pin Favorite Setups, Journal Logs, Keyboard Shortcuts, and your uncaught mice count",
-        "Better Maps: Send SUPER|brie+ to the Maptain from the map",
-        "Better Shops: See the total cost for the quantity you enter",
-        "Favorite Setups: A redesigned list and editor, and setups for a whole region",
-        "Better Mice: A redesigned mouse view",
-        "Max Title: Custom text, a random title, or the progress bar in place of your Fabled title",
-        "Dark Mode Color Schemes: New dark and light color schemes (Experimental)"
+        "Better Item Details: See which mice drop an item and their drop chances",
+        "Better Maps: Added a Beta option to quick send SUPER|brie+ to the Maptain from the map sidebar",
+        "Better Mice: See what a mouse drops, and your catch count and crown in the redesigned mouse view",
+        "Better Shops: Costs now update as you enter a quantity",
+        "Catch Rate & Minlucks: Added attraction rates, sortable columns, and an overall catch rate",
+        "Custom Menu: Added Favorite Setups, Journal Logs, and Keyboard Shortcuts as top menu options",
+        "Custom Menu: Added a HUD toggle, Spring Egg Hunt Helper, and uncaught mice at your location as top menu options",
+        "Custom Menu: You can now customize the Info bar, and the editor is easier to use on mobile",
+        "Custom Trap Selector: Reorder and hide the blocks under your trap",
+        "Dark Mode: Added a Beta option to tint journal entries with event and location colors",
+        "Dark Mode Color Schemes: Added an experimental option for choosing dark and light color schemes presets with matching Horn/Shield/HUD colors",
+        "Favorite Setups: Redesigned the list and editor, and setups can now be saved for a whole region"
       ]
     },
     {
       "title": "Fixed and Updated",
       "items": [
-        "Collapsed sections stay collapsed",
-        "Beta options are now in each module's settings",
-        "Better Maps: Completed locations are grouped, and attraction rates always show",
-        "Dark Mode: Refreshed colors",
+        "Better Maps: Completed goals are grouped in the Goals tab, and attraction rates show by default",
+        "Better Marketplace: Click a row in the listings or history tabs to open the item",
+        "Better UI: Dialogs now scroll into view if they open offscreen",
+        "Item Abbreviation Search is now on for everyone, so searching \"ESB\" finds Empowered SUPER|brie+",
+        "Collapsed sections now stay collapsed across views and page loads",
+        "MouseHunt Improved now loads more reliably when something fails to load",
         "Lots of smaller fixes and style tweaks"
       ]
     }
