@@ -782,6 +782,13 @@
   display: block;
 }
 
+.mhui-item-picker-note {
+  flex: none;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--mhui-settings-muted);
+}
+
 /* Swatches and previews */
 .mhui-item-picker.has-previews .mhui-item-picker-popover {
   width: 320px;

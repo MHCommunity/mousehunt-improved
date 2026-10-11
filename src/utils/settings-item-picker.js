@@ -161,7 +161,7 @@ const makeIcon = (option, preview) => {
  * With swatches or a preview callback, the picker also shows a larger preview of the highlighted option.
  *
  * @param {Object}   args             The arguments.
- * @param {Array}    args.options     The setting options ({ name, value, image, css, disabled }).
+ * @param {Array}    args.options     The setting options ({ name, value, image, css, disabled, note }).
  * @param {string}   args.value       The selected value.
  * @param {Function} args.onChange    Called with the new value when an option is picked.
  * @param {string}   args.placeholder The search placeholder.
@@ -263,6 +263,11 @@ const makeItemPicker = ({ options, value, onChange, placeholder = 'Search itemsâ
       // Shown while searching, when the group headers are hidden.
       if (item.parent) {
         makeElement('span', 'mhui-item-picker-path', item.parent.path.join(' â€º '), row);
+      }
+
+      // A short detail, like a quantity, at the end of the row.
+      if (item.note) {
+        makeElement('span', 'mhui-item-picker-note', item.note, row);
       }
 
       if (item.disabled) {
