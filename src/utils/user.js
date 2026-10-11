@@ -374,7 +374,11 @@ const getUserTitleShield = (titleId = null) => {
  */
 const getUserData = async (fields = [], userId = 'me') => {
   const queryParams = fields.join(',');
-  const data = await fetch(`https://www.mousehuntgame.com/api/get/user/${userId}/${queryParams}`);
+  const data = await fetch(`https://www.mousehuntgame.com/api/get/user/${userId}/${queryParams}`, { signal: AbortSignal.timeout(10000) });
+  if (!data.ok) {
+    throw new Error(`Failed to get user data: ${data.status}`);
+  }
+
   return data.json();
 };
 
