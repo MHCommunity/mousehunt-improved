@@ -331,6 +331,9 @@ const addIconToMenu = (opts) => {
   icon.id = settings.id;
   if (settings.href) {
     icon.href = settings.href;
+  }
+
+  if (settings.title) {
     icon.title = settings.title;
   }
 
@@ -414,6 +417,17 @@ const addHeaderMenuTab = (tab, opts = {}) => {
   if (opts.id) {
     tab.dataset.mhMenuId = opts.id;
     tab.dataset.mhMenuName = opts.name || opts.id;
+
+    // The name is the only way to tell what an icon-only tab is.
+    if (!tab.title && opts.name) {
+      tab.title = opts.name;
+    }
+
+    // Keep the tooltip on the tab itself, not everything in its dropdown.
+    const dropdown = tab.querySelector(':scope > .dropdownContent');
+    if (dropdown && !dropdown.hasAttribute('title')) {
+      dropdown.title = '';
+    }
 
     if (opts.icon) {
       tab.dataset.mhMenuIcon = opts.icon;

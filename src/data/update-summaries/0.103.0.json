@@ -1,32 +1,29 @@
 {
   "version": "0.103.0",
-  "summary": "Catch Rate & Minlucks now shows attraction rates, accurately calculated based on your setup, location, and location stage. Rearrange and hide the blocks under your trap with the new Custom Trap Selector, item and mouse popups now show more data, and more things are now able to be pinned to the top menu! Happy hunting!",
+  "summary": "Catch Rate & Minlucks now shows attraction rates for your exact stage, cheese, and charm. Rearrange the blocks under your trap with the new Custom Trap Selector, see more in item and mouse popups, and pin more to the top menu. Happy hunting!",
   "details": [
     {
       "title": "New",
       "items": [
-        "Catch Rate & Minlucks: See which mice you're likely to attract, from real hunt data for your exact stage, cheese, and charm",
-        "Catch Rate & Minlucks: An overall catch rate for whatever shows up next, which updates as your stage changes",
+        "Catch Rate & Minlucks: Attraction rates for your stage, cheese, and charm, plus an overall catch rate",
         "Custom Trap Selector: Rearrange and hide the blocks under your trap",
         "Better Item Details and Better Mice: See which mice drop an item, and what a mouse drops",
-        "Spring Egg Hunt: A new Egg Hunt Helper to track down every egg",
-        "Custom Menu: Add Favorite Setups, Journal Logs, Keyboard Shortcuts, and your uncaught mice count to the top menu",
-        "Better Maps: Send SUPER|brie+ to the Maptain right from the map",
+        "Spring Egg Hunt: An Egg Hunt Helper to track down every egg",
+        "Custom Menu: Pin Favorite Setups, Journal Logs, Keyboard Shortcuts, and your uncaught mice count",
+        "Better Maps: Send SUPER|brie+ to the Maptain from the map",
         "Better Shops: See the total cost for the quantity you enter",
         "Better Mice: A redesigned mouse view",
-        "Max Title: Show custom text, a random title, or the progress bar in place of your Fabled title",
-        "Dark Mode Color Schemes: Try new dark and light color schemes (Experimental)"
+        "Max Title: Custom text, a random title, or the progress bar in place of your Fabled title",
+        "Dark Mode Color Schemes: New dark and light color schemes (Experimental)"
       ]
     },
     {
       "title": "Fixed and Updated",
       "items": [
-        "Collapsed sections stay collapsed across the game",
+        "Collapsed sections stay collapsed",
         "Beta options are now in each module's settings",
-        "Better Maps: Completed locations are grouped together, and attraction rates always show",
-        "Better Travel: Cursed and twisted location names in the travel menu",
-        "Custom Menu: Opening pinned convertibles now shows the new journal entries",
-        "Dark Mode: Refreshed colors, with blue links in place of purple",
+        "Better Maps: Completed locations are grouped, and attraction rates always show",
+        "Dark Mode: Refreshed colors",
         "Lots of smaller fixes and style tweaks"
       ]
     }

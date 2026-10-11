@@ -1143,8 +1143,9 @@ input.treasureMapView-block-search-text {
   align-items: stretch;
 }
 
+/* inline-flex keeps the right block beside it when the wrapper isn't flex, like on completed maps. */
 .treasureMapView-leftBlock:has(> .mh-ui-goals-block) {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
 }
 
