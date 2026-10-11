@@ -235,6 +235,7 @@
   font-weight: 400;
   line-height: 1.2;
   color: var(--mhui-menu-muted);
+  text-shadow: none;
   white-space: nowrap;
   pointer-events: none;
   transform: translateX(-50%);
@@ -328,6 +329,7 @@
 }
 
 .mhui-menu-editor-options-row {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
@@ -336,8 +338,14 @@
   padding: 8px 12px;
 }
 
-.mhui-menu-editor-options-row + .mhui-menu-editor-options-row {
-  border-top: 1px solid var(--mhui-menu-border);
+/* Dashed and inset from the edges, like the trap selector editor's. */
+.mhui-menu-editor-options-row + .mhui-menu-editor-options-row::before {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  left: 12px;
+  content: "";
+  border-top: 1px dashed var(--mhui-menu-border);
 }
 
 .mhui-menu-editor-options-label {
@@ -651,19 +659,16 @@
 /* The info bar in the editor, tucked under the right end of the menu like the real one. */
 .mhui-menu-editor-infobar {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
   align-self: flex-end;
   max-width: 100%;
-  padding: 0 6px 0 12px;
   margin-top: -12px;
-  background: var(--mhui-menu-popover);
-  border: 1px solid var(--mhui-menu-border);
-  border-top: none;
-  border-radius: 0 0 0 10px;
 }
 
+/* Beside the bar rather than in it, so it doesn't look like one of the items. */
 .mhui-menu-editor-infobar-label {
+  flex: none;
   font-size: 10px;
   color: var(--mhui-menu-muted);
 }
@@ -673,6 +678,11 @@
   justify-content: flex-end;
   min-width: 40px;
   min-height: 22px;
+  padding: 0 6px 0 12px;
+  background: var(--mhui-menu-popover);
+  border: 1px solid var(--mhui-menu-border);
+  border-top: none;
+  border-radius: 0 0 0 10px;
 }
 
 #overlayPopup .mhui-menu-editor .mhui-menu-editor-info > .menuItem {

@@ -3,6 +3,7 @@
   --mhui-trap-editor-border: #ccc;
   --mhui-trap-editor-row: #f6f3eb;
   --mhui-trap-editor-accent: #4caf50;
+  --mhui-trap-editor-button: #fff;
 
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr);
@@ -24,15 +25,16 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .mhui-trap-editor-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
-  padding: 4px 8px;
+  min-height: 32px;
+  padding: 6px 10px 6px 8px;
   touch-action: none;
   cursor: grab;
   user-select: none;
@@ -46,34 +48,57 @@
 }
 
 .mhui-trap-editor-name {
-  flex: 1;
   font-weight: 600;
 }
 
-.mhui-trap-editor-row.hidden-block .mhui-trap-editor-name {
+.mhui-trap-editor-row:hover {
+  border-color: var(--mhui-trap-editor-muted);
+}
+
+/* Hidden blocks are still listed so they can be turned back on, but look switched off. */
+.mhui-trap-editor-row.hidden-block {
+  background: transparent;
+  border-style: dashed;
+}
+
+.mhui-trap-editor-row.hidden-block :is(.mhui-trap-editor-name, .mhui-trap-editor-handle) {
   color: var(--mhui-trap-editor-muted);
-  text-decoration: line-through;
+}
+
+.mhui-trap-editor-moves {
+  display: flex;
+  margin-left: auto;
+  overflow: hidden;
+  border: 1px solid var(--mhui-trap-editor-border);
+  border-radius: 4px;
 }
 
 .mhui-trap-editor-move {
-  padding: 2px 8px;
+  width: 26px;
+  height: 22px;
+  padding: 0;
   font-family: inherit;
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1;
   color: inherit;
   cursor: pointer;
-  background: transparent;
-  border: 1px solid var(--mhui-trap-editor-border);
-  border-radius: 3px;
+  background: var(--mhui-trap-editor-button);
+  border: none;
 }
 
-.mhui-trap-editor-move:disabled {
-  cursor: default;
-  opacity: 0.35;
+.mhui-trap-editor-move + .mhui-trap-editor-move {
+  border-left: 1px solid var(--mhui-trap-editor-border);
 }
 
 .mhui-trap-editor-move:not(:disabled):hover {
-  border-color: var(--mhui-trap-editor-muted);
+  background: rgb(76 175 80 / 15%);
+}
+
+.mhui-trap-editor-move:disabled {
+  color: var(--mhui-trap-editor-muted);
+  cursor: default;
+  background: transparent;
+  opacity: 0.4;
 }
 
 .mhui-trap-editor-toggle {
@@ -200,6 +225,9 @@
   gap: 6px;
   align-items: center;
   justify-content: flex-end;
+  padding-top: 6px;
+  margin-top: 2px;
+  border-top: 1px dashed var(--mhui-trap-editor-border);
 }
 
 .mhui-trap-editor-options-label {
@@ -290,6 +318,7 @@
   --mhui-trap-editor-muted: var(--d-text-muted);
   --mhui-trap-editor-border: var(--d-border);
   --mhui-trap-editor-row: var(--d-surface-inset);
+  --mhui-trap-editor-button: var(--d-button);
 }
 
 .mh-dark #overlayPopup.mh-improved-custom-trap-selector-popup .title {

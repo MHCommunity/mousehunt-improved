@@ -283,8 +283,9 @@ const openTrapSelectorEditor = (applyLayout) => {
         save();
       };
 
-      row.append(makeMoveButton('up', 0 === index, () => swap(index - 1)));
-      row.append(makeMoveButton('down', layout.length - 1 === index, () => swap(index + 1)));
+      const moves = make('span', 'mhui-trap-editor-moves', '', row);
+      moves.append(makeMoveButton('up', 0 === index, () => swap(index - 1)));
+      moves.append(makeMoveButton('down', layout.length - 1 === index, () => swap(index + 1)));
 
       const toggle = make('label', 'mhui-trap-editor-toggle', '', row);
       const checkbox = make('input', '', '', toggle);
