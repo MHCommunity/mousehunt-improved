@@ -134,6 +134,9 @@ const isCacheExpired = async (key) => {
   return expiration < Date.now();
 };
 
+// How long to wait on api.mouse.rip before giving up on a request.
+const fetchTimeout = 10000;
+
 /**
  * Fetch the data for the given key.
  *
@@ -147,6 +150,7 @@ const fetchData = async (key, retries = 0) => {
     const data = await fetch(`https://api.mouse.rip/${key}?v=${mhImprovedVersion || 'unknown'}`, {
       method: 'GET',
       headers: getHeaders(),
+      signal: AbortSignal.timeout(fetchTimeout),
     });
 
     if (!data.ok) {
@@ -184,6 +188,7 @@ const fetchMouseRip = async (path, { json = true } = {}) => {
     const response = await fetch(`https://api.mouse.rip/${path}`, {
       method: 'GET',
       headers: getHeaders(),
+      signal: AbortSignal.timeout(fetchTimeout),
     });
 
     if (!response.ok) {
@@ -247,18 +252,6 @@ const fetchDataVersions = async () => {
   }
 
   return versions;
-};
-
-/**
- * Get the version stored atomically with a cached dataset.
- *
- * @param {string} key Data-file key.
- *
- * @return {Promise<string|null>} The stored version.
- */
-const getCachedDataVersion = async (key) => {
-  const cached = await dbGet('cache', key);
-  return cached?.data?.version || null;
 };
 
 /**
@@ -370,8 +363,9 @@ const updateCaches = async (all = false, downloadOnVersionFailure = true) => {
   const changedFiles = new Set();
 
   for (const file of validDataFiles) {
-    const cachedData = await cacheGetNoExpiration(file, null);
-    const cachedVersion = await getCachedDataVersion(file);
+    const cached = await dbGet('cache', file);
+    const cachedData = cached?.data?.value || null;
+    const cachedVersion = cached?.data?.version || null;
     const serverVersion = versions?.[file];
 
     if (serverVersion && cachedVersion === serverVersion && hasValidData(cachedData)) {
@@ -474,12 +468,11 @@ const sessionSet = (key, value, retry = false) => {
   try {
     sessionStorage.setItem(storageKey, stringified);
   } catch (error) {
+    // Session values are only short-lived caches, so make room by dropping ours
+    // rather than wiping the IndexedDB caches that live alongside them.
     if ('QuotaExceededError' === error.name && !retry) {
-      void clearCaches()
-        .catch(() => {})
-        .finally(() => {
-          sessionSet(key, value, true);
-        });
+      sessionsDelete('mh-improved');
+      sessionSet(key, value, true);
     }
   }
 };

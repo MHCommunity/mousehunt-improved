@@ -676,6 +676,26 @@ const dbGetAll = async (databaseName) => {
 };
 
 /**
+ * Get every key in the given IndexedDB database, without reading the values.
+ *
+ * @param {string} databaseName The name of the database to get the keys from.
+ *
+ * @return {Promise<Array>} Promise that resolves with the keys, or an empty array if unavailable.
+ */
+const dbGetAllKeys = async (databaseName) => {
+  return dbOperation(
+    databaseName,
+    'readonly',
+    (objectStore, setResult, setError) => {
+      const request = objectStore.getAllKeys();
+      request.onsuccess = (event) => setResult(event.target.result);
+      handleRequestError(request, setError);
+    },
+    []
+  );
+};
+
+/**
  * Get the count of items in the given IndexedDB database.
  *
  * @param {string} databaseName The name of the database to get the count from.
@@ -710,4 +730,4 @@ const dbDeleteAll = async (databaseName) => {
   });
 };
 
-export { database, databaseDelete, dbGet, dbSet, dbDelete, dbGetAll, dbGetCount, dbDeleteAll };
+export { database, databaseDelete, dbGet, dbSet, dbDelete, dbGetAll, dbGetAllKeys, dbGetCount, dbDeleteAll };

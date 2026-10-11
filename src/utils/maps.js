@@ -1,4 +1,5 @@
-import { cacheGet, cacheGetNoExpiration, cacheSet, cacheSetNoExpiration, getData, getHeaders } from './data';
+import { cacheDelete, cacheGet, cacheGetNoExpiration, cacheSet, cacheSetNoExpiration, getData, getHeaders } from './data';
+import { dbDelete, dbGetAllKeys } from './db';
 import { doRequest } from './utils';
 import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
@@ -99,27 +100,83 @@ const setMapData = async (mapId, theMapData) => {
 };
 
 const setExtraMapData = async (mapId, theMapData) => {
-  const catchDates = await cacheGetNoExpiration(`map-catches-${mapId}`);
-  const newCatchDates = catchDates || {};
+  const catchDates = (await cacheGetNoExpiration(`map-catches-${mapId}`)) || {};
 
+  let hasNewCatches = false;
   const goalTypes = theMapData.is_scavenger_hunt ? 'item' : 'mouse';
   theMapData.hunters.forEach((hunter) => {
     if (hunter.completed_goal_ids && hunter.completed_goal_ids[goalTypes]) {
       hunter.completed_goal_ids[goalTypes].forEach((goalId) => {
         if (!catchDates[goalId]) {
-          newCatchDates[goalId] = new Date().toISOString();
+          catchDates[goalId] = new Date().toISOString();
+          hasNewCatches = true;
         }
       });
     }
   });
 
-  if (newCatchDates !== catchDates) {
-    await Promise.all([cacheSetNoExpiration(`map-catches-${mapId}`, newCatchDates), cacheSetNoExpiration(`map-catches-last-update-${mapId}`, Date.now())]);
+  if (hasNewCatches) {
+    await Promise.all([cacheSetNoExpiration(`map-catches-${mapId}`, catchDates), cacheSetNoExpiration(`map-catches-last-update-${mapId}`, Date.now())]);
   }
 
   const start = await cacheGetNoExpiration(`map-start-${mapId}`);
   if (!start) {
     await cacheSetNoExpiration(`map-start-${mapId}`, Date.now());
+  }
+};
+
+/**
+ * Remove saved data for old maps: the catch dates and start time for maps that
+ * haven't changed in a day (other than the current map), and cached map data
+ * that has expired. Runs at most once a day.
+ */
+const pruneMapCaches = async () => {
+  const dayInMs = 24 * 60 * 60 * 1000;
+  const now = Date.now();
+
+  const lastPruned = await cacheGetNoExpiration('map-caches-last-pruned', 0);
+  if (now - lastPruned < dayInMs) {
+    return;
+  }
+
+  await cacheSetNoExpiration('map-caches-last-pruned', now);
+
+  const currentMapId = `${user?.quests?.QuestRelicHunter?.default_map_id || ''}`;
+  const keys = await dbGetAllKeys('cache');
+
+  const extraDataMapIds = new Set();
+  const expirationKeys = [];
+  for (const key of keys) {
+    if ('string' !== typeof key) {
+      continue;
+    }
+
+    const extraMatch = key.match(/^map-(?:start|catches-last-update|catches)-(.+)$/);
+    if (extraMatch) {
+      extraDataMapIds.add(extraMatch[1]);
+    } else if (/^expiration-map-(?!last$)/.test(key)) {
+      expirationKeys.push(key);
+    }
+  }
+
+  for (const mapId of extraDataMapIds) {
+    if (mapId === currentMapId) {
+      continue;
+    }
+
+    const [start, lastUpdate] = await Promise.all([cacheGetNoExpiration(`map-start-${mapId}`, 0), cacheGetNoExpiration(`map-catches-last-update-${mapId}`, 0)]);
+    if (now - Math.max(Number(start) || 0, Number(lastUpdate) || 0) < dayInMs) {
+      continue;
+    }
+
+    await Promise.all([dbDelete('cache', `map-start-${mapId}`), dbDelete('cache', `map-catches-${mapId}`), dbDelete('cache', `map-catches-last-update-${mapId}`)]);
+  }
+
+  for (const expirationKey of expirationKeys) {
+    const expiration = await cacheGetNoExpiration(expirationKey, 0);
+    if (expiration && expiration < now) {
+      await cacheDelete(expirationKey.replace(/^expiration-/, ''));
+    }
   }
 };
 
@@ -514,13 +571,13 @@ const fetchArForMouse = async (id, type, cacheKey, filter = '') => {
   }
 
   try {
-    mhctData = await fetch(url, { headers: getHeaders() });
+    mhctData = await fetch(url, { headers: getHeaders(), signal: AbortSignal.timeout(10000) });
   } catch (error) {
     console.error('Error fetching MHCT data:', error); // eslint-disable-line no-console
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     try {
-      mhctData = await fetch(url, { headers: getHeaders() });
+      mhctData = await fetch(url, { headers: getHeaders(), signal: AbortSignal.timeout(10000) });
     } catch (errorRetry) {
       console.error('Error fetching MHCT data:', errorRetry); // eslint-disable-line no-console
       return [];
@@ -774,6 +831,7 @@ const addMapPreviewListeners = () => {
 
 export {
   mapper,
+  pruneMapCaches,
   mapData,
   mapModel,
   getMapData,

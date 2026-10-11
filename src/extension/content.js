@@ -1,3 +1,10 @@
+/**
+ * Show the body again once the script has loaded, or failed to, so the page is never left blank.
+ */
+const showBody = () => {
+  document.body.style.visibility = 'visible';
+};
+
 const injectMain = () => {
   // Hide the body, load the script, then show the body again to avoid flickering.
   document.body.style.visibility = 'hidden';
@@ -7,14 +14,11 @@ const injectMain = () => {
   injectedScript.setAttribute('type', 'text/javascript');
   injectedScript.setAttribute('src', chrome.runtime.getURL('main.js'));
   injectedScript.setAttribute('data-baseurl', chrome.runtime.getURL('/'));
-  document.body.append(injectedScript);
 
-  /**
-   * Wait for the script to load, then show the body again.
-   */
-  injectedScript.onload = () => {
-    document.body.style.visibility = 'visible';
-  };
+  injectedScript.onload = showBody;
+  injectedScript.onerror = showBody;
+
+  document.body.append(injectedScript);
 };
 
 /**

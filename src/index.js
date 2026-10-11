@@ -17,6 +17,7 @@ import {
   loadLiveModule,
   maybeDoMaintenance,
   onNavigation,
+  pruneMapCaches,
   registerLiveModule,
   setGlobal,
   showLoadingError,
@@ -98,6 +99,8 @@ const getCategoriesWithModules = () => {
  * Load all the modules.
  *
  * @param {Array} categoriesWithModules Categories with modules to load.
+ *
+ * @return {Promise<Array>} The modules that failed to load, with their errors.
  */
 const loadModules = async (categoriesWithModules = getCategoriesWithModules()) => {
   // Don't load if already loaded.
@@ -158,16 +161,15 @@ const loadModules = async (categoriesWithModules = getCategoriesWithModules()) =
   // Wait for all modules to load.
   await Promise.all(load);
 
-  if (moduleErrors.length > 0) {
-    if (getSetting('error-reporting', true)) {
-      moduleErrors.forEach(({ error }) => Sentry.captureException(error));
-    }
-
-    throw moduleErrors[0].error;
+  // A broken module is reported but doesn't stop the rest from finishing.
+  if (moduleErrors.length > 0 && getSetting('error-reporting', true)) {
+    moduleErrors.forEach(({ error }) => Sentry.captureException(error));
   }
 
   // Add the loaded modules to the global scope.
   setGlobal('modules', allLoadedModules);
+
+  return moduleErrors;
 };
 
 /**
@@ -250,20 +252,11 @@ const init = async () => {
     }
   }
 
-  // Check the small version map before modules read cached data. This runs at
-  // most once every three hours and downloads datasets only when they changed.
-  try {
-    await checkForDataUpdates();
-  } catch (error) {
-    // Data freshness checks must never prevent the extension from loading.
-    debuglog('utils-data', 'Unable to check for updated data files', error);
-  }
-
   // Time to load the modules.
   try {
     const categoriesWithModules = getCategoriesWithModules();
 
-    await loadModules(categoriesWithModules);
+    const moduleErrors = (await loadModules(categoriesWithModules)) || [];
 
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
@@ -290,6 +283,17 @@ const init = async () => {
 
     doEvent('mh-improved-init', mhImprovedVersion);
 
+    // Check for updated data files once everything has loaded, so a slow API
+    // never holds up the page. Runs at most once every three hours and only
+    // downloads datasets that changed; they're picked up on the next load.
+    checkForDataUpdates().catch((error) => {
+      debuglog('utils-data', 'Unable to check for updated data files', error);
+    });
+
+    pruneMapCaches().catch((error) => {
+      debuglog('utils-data', 'Unable to prune old map data', error);
+    });
+
     // Add the settings for each module.
     onNavigation(
       async () => {
@@ -302,6 +306,15 @@ const init = async () => {
         tab: 'mousehunt-improved-settings',
       }
     );
+
+    if (moduleErrors.length > 0) {
+      const { module, error } = moduleErrors[0];
+      if (error instanceof Error) {
+        error.message = `"${module.name || module.id}" module: ${error.message}`;
+      }
+
+      showLoadingError(error);
+    }
   } catch (error) {
     showLoadingError(error);
   }
