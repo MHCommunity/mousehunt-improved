@@ -2,6 +2,7 @@ import {
   addIconToMenu,
   addStyles,
   clearCaches,
+  clearSettingsCache,
   createPopup,
   dataSet,
   dbDeleteAll,
@@ -253,6 +254,7 @@ const addExportSettings = (append) => {
 
       localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
       localStorage.setItem('mousehunt-improved-settings', JSON.stringify(newSettings));
+      clearSettingsCache('mousehunt-improved-settings');
 
       showSuccessMessage({
         message: 'Settings saved. Refreshing…',

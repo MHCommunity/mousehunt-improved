@@ -40,25 +40,57 @@ const parseEncodedValue = (value) => {
   return value;
 };
 
-// The last parsed settings for each identifier, reused until the stored JSON changes.
+// The parsed settings for each identifier. Writes here keep it current; other writes clear it.
 const settingsCache = new Map();
 
 /**
- * Read and parse the stored settings, reusing the last parse when nothing has changed.
+ * Forget the parsed settings so the next read comes from localStorage.
  *
- * Callers must not mutate the returned object; getSettingDirect hands out copies.
+ * Call this after writing the settings to localStorage directly.
+ *
+ * @param {string|null} identifier The identifier for the settings, or null for all of them.
+ */
+const clearSettingsCache = (identifier = null) => {
+  if (identifier) {
+    settingsCache.delete(identifier);
+  } else {
+    settingsCache.clear();
+  }
+};
+
+// Another tab changed localStorage (a null key means it was cleared).
+window.addEventListener('storage', (event) => {
+  clearSettingsCache(event.key);
+});
+
+/**
+ * Save the settings to localStorage and keep the parsed copy.
+ *
+ * @param {string} identifier The identifier for the settings.
+ * @param {Object} settings   The settings to save.
+ */
+const writeSettings = (identifier, settings) => {
+  localStorage.setItem(identifier, JSON.stringify(settings));
+  settingsCache.set(identifier, settings);
+};
+
+/**
+ * Read and parse the stored settings, reusing the last parse.
+ *
+ * Callers must not mutate the returned object; getSettingDirect hands out copies,
+ * and writeSettings replaces it.
  *
  * @param {string} identifier The identifier for the settings.
  *
  * @return {Object} The saved settings.
  */
 const readSettings = (identifier) => {
-  const raw = localStorage.getItem(identifier);
   const cached = settingsCache.get(identifier);
-  if (cached && cached.raw === raw) {
-    return cached.settings;
+  if (cached) {
+    return cached;
   }
 
+  const raw = localStorage.getItem(identifier);
   let settings = safeJsonParse(raw, {}, (error) => {
     console.error('Error parsing settings:', error); // eslint-disable-line no-console
   });
@@ -80,7 +112,7 @@ const readSettings = (identifier) => {
     }
   }
 
-  settingsCache.set(identifier, { raw, settings });
+  settingsCache.set(identifier, settings);
 
   return settings;
 };
@@ -176,7 +208,7 @@ const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings
     settings[key] = value;
   }
 
-  localStorage.setItem(identifier, JSON.stringify(settings));
+  writeSettings(identifier, settings);
 };
 
 /**
@@ -241,7 +273,7 @@ const deleteSetting = (key) => {
     delete settings[key];
   }
 
-  localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
+  writeSettings('mousehunt-improved-settings', settings);
 };
 
 /**
@@ -338,4 +370,16 @@ const getMultiSelectSetting = (key, defaultValue = []) => {
   return Array.from({ length: getMultiSelectCount(key, defaultValue) }, (_, slot) => getSetting(`${key}-${slot}`, defaultValue[slot] ?? 'none'));
 };
 
-export { parseEncodedValue, getSettingDirect, saveSettingDirect, getSetting, saveSetting, migrateSetting, getSettings, deleteSetting, getMultiSelectCount, getMultiSelectSetting };
+export {
+  parseEncodedValue,
+  clearSettingsCache,
+  getSettingDirect,
+  saveSettingDirect,
+  getSetting,
+  saveSetting,
+  migrateSetting,
+  getSettings,
+  deleteSetting,
+  getMultiSelectCount,
+  getMultiSelectSetting,
+};

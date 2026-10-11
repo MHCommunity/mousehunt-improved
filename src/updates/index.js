@@ -1,4 +1,18 @@
-import { addBodyClass, addStyles, createPopup, debuglog, doEvent, getFlag, getSetting, onEvent, saveSetting, setGlobal, showLoadingPopup, updateCaches } from '@utils';
+import {
+  addBodyClass,
+  addStyles,
+  clearSettingsCache,
+  createPopup,
+  debuglog,
+  doEvent,
+  getFlag,
+  getSetting,
+  onEvent,
+  saveSetting,
+  setGlobal,
+  showLoadingPopup,
+  updateCaches,
+} from '@utils';
 
 import errorPopupStyles from './error-popup.css';
 
@@ -28,6 +42,7 @@ const restoreSettingsBackup = () => {
   const backedUpSettings = localStorage.getItem('mousehunt-improved-settings-backup');
   if (backedUpSettings) {
     localStorage.setItem('mousehunt-improved-settings', backedUpSettings);
+    clearSettingsCache('mousehunt-improved-settings');
   }
 };
 
