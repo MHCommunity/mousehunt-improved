@@ -128,6 +128,68 @@ const migrateOpenAllButOne = () => {
   deleteSetting(onlyKey);
 };
 
+/**
+ * Hide Page Elements, Hover Delays, Hunter ID Shortcuts, and Convertible Opening Buttons can't be turned
+ * off anymore, so anyone who had one off has each of its options turned off instead.
+ */
+const migrateAlwaysOnModules = () => {
+  const modules = {
+    'hide-page-elements': {
+      'hide-page-elements.hide-sidebar': false,
+      'hide-page-elements.hide-ads': false,
+      'hide-page-elements.hide-share': false,
+      'hide-page-elements.hide-news-ticker': false,
+      'hide-page-elements.hide-footer': false,
+      'hide-page-elements.hide-daily-draw': false,
+      'hide-page-elements.hide-daily-reward-popup': false,
+    },
+    'hover-delays': {
+      'hover-delays.menus': false,
+      'hover-delays.tooltips': false,
+    },
+    'hunter-id-shortcuts': {
+      'hunter-id-shortcuts.copy-mode-0': 'off',
+      'hunter-id-shortcuts.paste': false,
+    },
+    'inventory-buttons': {
+      'inventory-buttons.open-one': false,
+      'inventory-buttons.open-all': false,
+      'inventory-buttons.open-all-but-one-0': 'off',
+    },
+  };
+
+  for (const [id, offSettings] of Object.entries(modules)) {
+    if (false === getSetting(id, true)) {
+      for (const [key, value] of Object.entries(offSettings)) {
+        saveSetting(key, value);
+      }
+    }
+
+    deleteSetting(id);
+  }
+};
+
+/**
+ * Location Dashboard can't be turned off anymore, so anyone who had it off has its menu item hidden in
+ * Custom Menu instead.
+ */
+const migrateLocationDashboard = () => {
+  const id = 'location-dashboard';
+
+  if (false === getSetting(id, true)) {
+    const layout = getSetting('custom-menu.layout', null) || {};
+    // A layout that was never changed hides the default items, so they stay hidden.
+    const hidden = Array.isArray(layout.hidden) ? layout.hidden : defaultHiddenMenuItems;
+
+    saveSetting('custom-menu.layout', {
+      ...layout,
+      hidden: [...hidden.filter((item) => item !== id), id],
+    });
+  }
+
+  deleteSetting(id);
+};
+
 export default {
   version: '0.103.0',
   update: async () => {
@@ -137,11 +199,16 @@ export default {
     migrateFabledMaxTitle();
     migrateCollapsedSections();
     migrateOpenAllButOne();
+    migrateAlwaysOnModules();
+    migrateLocationDashboard();
+    // Item Abbreviation Search is always on now, unless it's turned off with a flag.
+    deleteSetting('enhanced-search');
 
     replaceSettingsWithFlags([
       ['better-trap-selector.larger-skin-images', 'better-trap-selector-no-larger-skin-images', 'Show the small skin images in the trap selector'],
       ['better-trap-selector.show-unowned-skins', 'better-trap-selector-no-unowned-skins', "Don't show unowned skins in the trap selector"],
       ['better-trap-selector.larger-codices', 'custom-trap-selector-no-larger-codices', 'Show the small codex images in the trap selector'],
+      ['better-inventory.sort-inventory', 'better-inventory-no-sort', "Don't sort the inventory alphabetically"],
       ['journal-privacy.transparent', 'journal-privacy-transparent', 'Hide names in the journal instead of blurring them', true],
     ]);
   },
