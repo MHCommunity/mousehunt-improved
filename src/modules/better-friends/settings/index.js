@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-friends.hover-profiles',
-      title: 'Show a mini profile when hovering over a name',
+      title: 'Show profiles on hover',
       default: true,
     },
     {
@@ -24,8 +24,7 @@ export default async () => {
     },
     {
       id: 'better-friends.friends-on-maps',
-      title: 'Add an On Maps tab to the Friends page',
-      description: 'See which of your friends are on a map, and open it.',
+      title: 'Add "On Maps" tab to Friends page',
       default: false,
     },
   ];

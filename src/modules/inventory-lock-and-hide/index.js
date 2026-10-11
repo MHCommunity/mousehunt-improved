@@ -658,6 +658,6 @@ export default {
   name: 'Inventory Locking & Hiding',
   type: 'inventory-shops',
   default: true,
-  description: 'Lock and hide items in your inventory, and hide items in the trap selector.',
+  description: 'Lock and hide items in your inventory and hide items in the trap selector.',
   load: init,
 };

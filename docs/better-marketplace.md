@@ -31,4 +31,4 @@ selling items.
 - **Add a "Filter by trap" dropdown to the Skins category**: Narrows skins to a single base trap. (Enabled by default)
 - **Add quick undercut/overbid price links**: One-click price adjustments on the item listing view. (Enabled by default)
 - **Add quick quantity buttons (1, 10, 100, 10%, All But One, All) to the order form**: Hold Shift to subtract instead. (Enabled by default)
-- **Quick sell**: Adds quick sell buttons to sell items directly.
+- **Add Quick Sell**: Sell an item at the best buy price right from its page, with a box for how many to sell.

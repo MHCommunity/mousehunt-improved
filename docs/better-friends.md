@@ -12,10 +12,10 @@ Makes it easier to see and keep up with other hunters.
 
 ## Options
 
-- **Show a mini profile when hovering over a name**
+- **Show profiles on hover**
 - **Show emotes on corkboards**
 - **Add the Egg Master icon to profiles**
-- **Add an On Maps tab to the Friends page**: Off by default.
+- **Add "On Maps" tab to Friends page**: Off by default.
 
 ## Emotes
 

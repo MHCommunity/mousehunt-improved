@@ -38,7 +38,8 @@ export default async () => {
     },
     {
       id: 'better-marketplace.quick-sell',
-      title: 'Use quick sell',
+      title: 'Add Quick Sell',
+      description: 'Sell an item at the best buy price right from its page, with a box for how many to sell.',
       default: false,
     },
   ];
