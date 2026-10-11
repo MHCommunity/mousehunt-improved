@@ -617,10 +617,15 @@ const addShowMouseToNewJournalEntries = () => {
   });
 };
 
-let copyListener;
+let isCopyListenerAdded = false;
 const copyKingsCrowns = () => {
-  copyListener?.remove();
-  copyListener = document.addEventListener('copy', (e) => {
+  // One listener covers every visit; it does nothing when no crowns are on the page.
+  if (isCopyListenerAdded) {
+    return;
+  }
+
+  isCopyListenerAdded = true;
+  document.addEventListener('copy', (e) => {
     if (window.getSelection && window.getSelection().toString().length > 0) {
       return;
     }
