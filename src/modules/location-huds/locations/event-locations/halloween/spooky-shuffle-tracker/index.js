@@ -37,8 +37,9 @@ const renderSavedCard = (card) => {
   cardFront.style.background = 'url(https://www.mousehuntgame.com/images/ui/events/spooky_shuffle/game/shuffle_cards.png) 0 100% no-repeat';
   cardFront.classList.add('mh-spooky-shuffle-card-front');
   if (card.is_revealed) {
-    flipper.style.background = `url(${card.thumb})  5px 5px / 74px no-repeat`;
-    flipper.style.transition = 'background-position none';
+    flipper.style.background = `url(${card.thumb}) 5px 5px / 74px no-repeat`;
+    // The game transitions everything on the flipper; only animate the flip, so the image appears at once.
+    flipper.style.transitionProperty = 'transform';
   }
 
   if (card.is_matched) {
