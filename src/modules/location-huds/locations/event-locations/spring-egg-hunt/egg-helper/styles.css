@@ -1,412 +1,486 @@
-.mh-egg-helper {
-  --mh-egg-helper-border: #ccc;
-  --mh-egg-helper-muted: #666;
-  --mh-egg-helper-surface: #f6f3eb;
-  --mh-egg-helper-hover: #fff;
-  --mh-egg-helper-selected: #e3eefc;
-  --mh-egg-helper-accent: #3b5998;
-  --mh-egg-helper-found: #2c672c;
-  --mh-egg-helper-missing: #a33;
+#overlayPopup.mh-egg-helper-popup {
+  position: relative;
+  width: 744px;
+  padding: 0;
+  margin: 0 auto;
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 12px;
+  /* Center the pages and buttons (about 100px to 780px down the book), after the 50px the game puts
+     above popups. The slime above the pages is the part that gets cut off on short screens. */
+  margin-top: clamp(-150px, calc((100vh - 680px) / 2 - 150px), 0px);
+}
+
+#overlayPopup.mh-egg-helper-popup .jsDialogContainer .suffix {
+  display: none;
+}
+
+#overlayPopup.mh-egg-helper-popup .jsDialogContainer .prefix,
+#overlayPopup.mh-egg-helper-popup .jsDialogContainer .content,
+#overlayPopup.mh-egg-helper-popup .jsDialog.background {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#overlayPopup.mh-egg-helper-popup .jsDialog.top,
+#overlayPopup.mh-egg-helper-popup .jsDialog.bottom {
+  position: absolute;
+  top: 105px;
+  left: 1px;
+  display: block;
+  width: 125px;
+  height: 105px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/dialog/top_left.png?asset_cache_version=2);
+}
+
+#overlayPopup.mh-egg-helper-popup .jsDialog.bottom::after {
+  position: absolute;
+  top: 1px;
+  right: -621px;
+  z-index: 1;
+  width: 138px;
+  height: 106px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/dialog/top_right.png?asset_cache_version=2);
+}
+
+#overlayPopup.mh-egg-helper-popup .jsDialog.bottom::before {
+  position: absolute;
+  bottom: -566px;
+  left: -8px;
+  width: 55px;
+  height: 54px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/dialog/bottom_left.png?asset_cache_version=2);
+}
+
+#overlayPopup.mh-egg-helper-popup #jsDialogClose {
+  top: 118px;
+  right: 16px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/dialog/close_button.png?asset_cache_version=2) !important;
+  background-position-y: 100%;
+}
+
+#overlayPopup.mh-egg-helper-popup #jsDialogClose:hover,
+#overlayPopup.mh-egg-helper-popup #jsDialogClose:focus {
+  background-position-y: 50%;
+}
+
+#overlayPopup.mh-egg-helper-popup #jsDialogClose:active {
+  background-position-y: 100%;
+}
+
+.mh-dark #overlayPopup.mh-egg-helper-popup .jsDialogContainer {
+  background: transparent;
+}
+
+.mh-egg-helper {
+  position: relative;
+  width: 744px;
+  height: 822px;
+  color: #000;
+  background: url(https://i.mouse.rip/book-wrapper.png) 50% 0 no-repeat;
+}
+
+.mh-egg-helper .hidden {
+  display: none !important;
 }
 
 .mh-egg-helper-loading {
-  padding: 40px;
+  position: absolute;
+  top: 380px;
+  right: 0;
+  left: 0;
   font-size: 14px;
+  color: #916728;
   text-align: center;
 }
 
-.mh-egg-helper-header {
+.mh-egg-helper a {
+  color: #3b5998;
+}
+
+/* Left page. */
+.mh-egg-helper-left-header {
+  position: absolute;
+  top: 155px;
+  left: 40px;
   display: flex;
-  gap: 10px;
   align-items: center;
   justify-content: space-between;
-  padding-right: 30px;
+  width: 305px;
+  padding-bottom: 1em;
+  box-shadow: 0 5px 4px -5px #d2a155;
 }
 
-.mh-egg-helper-title {
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
+/* Stays parchment in Native Dark Mode, like the rest of the book. */
+#overlayPopup.mh-egg-helper-popup .mh-egg-helper-search {
+  box-sizing: border-box;
+  width: 160px;
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #674e29;
+  background-color: #f7e3a9;
+  border: 1px solid #e1c07f;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 0 5px #e8d7a4 inset;
 }
 
-.mh-egg-helper-title h2 {
-  margin: 0;
-  font-size: 20px;
+#overlayPopup.mh-egg-helper-popup .mh-egg-helper-search:is(:hover, :focus) {
+  border-color: #b0833d;
 }
 
-.mh-egg-helper-progress,
-.mh-egg-helper-muted {
-  color: var(--mh-egg-helper-muted);
+#overlayPopup.mh-egg-helper-popup .mh-egg-helper-search::placeholder {
+  font-style: italic;
+  color: #b58e51;
 }
 
-.mh-egg-helper-actions {
-  display: flex;
-  gap: 6px;
+.mh-egg-helper a.mh-egg-helper-filter {
+  color: #b0833d;
 }
 
-.mh-egg-helper-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  align-items: center;
+.mh-egg-helper a.mh-egg-helper-filter:hover {
+  color: #7b581f;
+  text-decoration: none;
 }
 
-.mh-egg-helper-search {
-  flex: 1 1 200px;
-  padding: 5px 8px;
-  font-size: 13px;
+.mh-egg-helper-tool img {
+  width: 30px;
+  height: 30px;
+  filter: opacity(0.8);
+  mix-blend-mode: luminosity;
 }
 
-.mh-egg-helper-category-select {
-  padding: 4px;
+.mh-egg-helper-tool:hover img,
+.mh-egg-helper-tool:focus img {
+  filter: opacity(1);
+  mix-blend-mode: multiply;
 }
 
-.mh-egg-helper-checkbox {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.mh-egg-helper-checkbox input {
-  margin: 0;
-}
-
-.mh-egg-helper-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 10px;
-  height: min(560px, 65vh);
-}
-
-.mh-egg-helper-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
-  grid-auto-rows: min-content;
-  gap: 6px;
-  padding: 6px;
-  overflow-y: auto;
-  background: var(--mh-egg-helper-surface);
-  border: 1px solid var(--mh-egg-helper-border);
-  border-radius: 6px;
+.mh-egg-helper-eggs {
+  position: absolute;
+  top: 200px;
+  left: 40px;
+  width: 315px;
+  height: 480px;
+  overflow: auto;
 }
 
 .mh-egg-helper-egg {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
   align-items: center;
-  padding: 4px 2px;
-  font: inherit;
-  font-size: 11px;
-  line-height: 1.2;
-  color: inherit;
-  text-align: center;
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 6px;
+  justify-content: space-evenly;
+  padding: 5px;
 }
 
-.mh-egg-helper-egg:hover {
-  background: var(--mh-egg-helper-hover);
-  border-color: var(--mh-egg-helper-accent);
+.mh-egg-helper-egg img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
-.mh-egg-helper-egg[aria-pressed="true"] {
-  background: var(--mh-egg-helper-selected);
-  border-color: var(--mh-egg-helper-accent);
+.mh-egg-helper-egg-name {
+  flex: 1;
+  color: #8c5909;
 }
 
-.mh-egg-helper-egg-image {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
+.mh-egg-helper-egg.unfound img {
+  mix-blend-mode: luminosity;
+  opacity: 0.5;
+}
+
+.mh-egg-helper-egg.found .mh-egg-helper-egg-name {
+  color: #2c672c;
 }
 
 .mh-egg-helper-egg.found::after {
   position: absolute;
-  top: 2px;
-  right: 6px;
-  width: 16px;
-  height: 16px;
+  bottom: 5px;
+  left: 0;
+  width: 25px;
+  height: 25px;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/icons/checkmark_greenglow.png) center / contain no-repeat;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2);
+  filter: drop-shadow(5px -1px 5px #19e718);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.mh-egg-helper-egg.missing .mh-egg-helper-egg-image {
-  filter: grayscale(1);
-  opacity: 0.55;
+.mh-egg-helper-egg:hover,
+.mh-egg-helper-egg:focus {
+  cursor: pointer;
+  background-color: #f7e3a9;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: inset 1px 1px 3px 1px #f7e3a9;
 }
 
-.mh-egg-helper-egg.missing:is(:hover, [aria-pressed="true"]) .mh-egg-helper-egg-image {
-  filter: none;
-  opacity: 1;
+.mh-egg-helper-find-egg {
+  display: none;
+  padding: 5px 0;
+  color: #916728;
 }
 
-.mh-egg-helper-empty {
-  grid-column: 1 / -1;
-  padding: 30px 10px;
-  color: var(--mh-egg-helper-muted);
+.mh-egg-helper-egg:hover .mh-egg-helper-find-egg,
+.mh-egg-helper-egg:focus .mh-egg-helper-find-egg {
+  display: inline-block;
+}
+
+.mh-egg-helper-no-eggs {
+  display: inline-block;
+  width: 100%;
+  margin-top: 2em;
+  color: #cdab6f;
   text-align: center;
 }
 
+/* Right page. */
+.mh-egg-helper-welcome,
 .mh-egg-helper-details {
-  padding: 10px 12px;
-  overflow-y: auto;
-  border: 1px solid var(--mh-egg-helper-border);
-  border-radius: 6px;
+  position: absolute;
+  top: 155px;
+  left: 385px;
+  width: 335px;
 }
 
-.mh-egg-helper-details p {
-  margin: 0 0 8px;
-  line-height: 1.4;
+.mh-egg-helper-welcome {
+  height: 526px;
+  overflow: hidden;
 }
 
-.mh-egg-helper-overview-title {
-  margin: 0 0 4px;
-  font-size: 16px;
+.mh-egg-helper-right-header {
+  box-sizing: border-box;
+  width: 326px;
+  height: 75px;
+  padding: 10px 20px 7px 14px;
+  text-align: center;
+  background: url(https://i.mouse.rip/book-header.png) 0 0 no-repeat;
+  box-shadow: 0 5px 4px -5px #d2a155;
+}
+
+.mh-egg-helper-right-header-text {
+  max-width: 180px;
+  margin: 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mh-egg-helper-right-header-text h2 {
+  font-size: 1.25em;
+}
+
+.mh-egg-helper-right-subheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 0.75em;
+  font-size: 10px;
+  font-style: italic;
 }
 
 .mh-egg-helper-categories {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 10px;
+  position: absolute;
+  top: 80px;
+  left: 5px;
+  width: 325px;
+  height: 429px;
+  padding-top: 5px;
+  overflow: auto;
 }
 
 .mh-egg-helper-category {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 7px 8px;
-  font: inherit;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-  background: var(--mh-egg-helper-surface);
-  border: 1px solid var(--mh-egg-helper-border);
-  border-radius: 6px;
+  margin-bottom: 2em;
 }
 
-.mh-egg-helper-category:hover {
-  background: var(--mh-egg-helper-hover);
-  border-color: var(--mh-egg-helper-accent);
+.mh-egg-helper-category-title {
+  font-size: 1.75em;
+  color: #996f2e;
+  text-align: center;
 }
 
-.mh-egg-helper-category[aria-pressed="true"] {
-  background: var(--mh-egg-helper-selected);
-  border-color: var(--mh-egg-helper-accent);
-}
-
-.mh-egg-helper-category-top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-}
-
-.mh-egg-helper-category-name {
-  font-weight: 700;
-}
-
-.mh-egg-helper-bar {
-  height: 6px;
-  overflow: hidden;
-  background: var(--mh-egg-helper-border);
-  border-radius: 3px;
-}
-
-.mh-egg-helper-bar-fill {
-  height: 100%;
-  background: var(--mh-egg-helper-found);
-}
-
-.mh-egg-helper-back {
-  padding: 0;
-  margin-bottom: 8px;
-  font: inherit;
-  color: var(--mh-egg-helper-accent);
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-.mh-egg-helper-back:hover {
-  text-decoration: underline;
-}
-
-.mh-egg-helper-detail-header {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.mh-egg-helper-detail-image {
-  flex: none;
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-}
-
-.mh-egg-helper-detail-title {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.mh-egg-helper-detail-title h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.mh-egg-helper-status {
-  font-weight: 700;
-}
-
-.mh-egg-helper-status.found {
-  color: var(--mh-egg-helper-found);
-}
-
-.mh-egg-helper-status.missing {
-  color: var(--mh-egg-helper-missing);
-}
-
-.mh-egg-helper-hint {
+.mh-egg-helper-category-subtitle {
+  padding: 1em;
+  font-size: 10px;
   font-style: italic;
-  color: var(--mh-egg-helper-muted);
+  font-weight: 400;
+  line-height: 15px;
+  text-align: center;
 }
 
-.mh-egg-helper-section {
-  padding-top: 8px;
-  margin-top: 10px;
-  border-top: 1px solid var(--mh-egg-helper-border);
-}
-
-.mh-egg-helper-section-title {
-  margin: 0 0 6px;
-  font-size: 13px;
-}
-
-.mh-egg-helper-locations {
+.mh-egg-helper-category-eggs {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  align-items: center;
+  justify-content: center;
 }
 
-.mh-egg-helper-location {
-  padding: 3px 7px;
-  font: inherit;
-  font-size: 11px;
-  color: inherit;
-  cursor: pointer;
-  background: var(--mh-egg-helper-surface);
-  border: 1px solid var(--mh-egg-helper-border);
-  border-radius: 10px;
+.mh-egg-helper-category-egg {
+  transition: 0.125s;
 }
 
-.mh-egg-helper-location:not(:disabled):hover {
-  background: var(--mh-egg-helper-hover);
-  border-color: var(--mh-egg-helper-accent);
+.mh-egg-helper-category-egg img {
+  width: 50px;
+  height: 50px;
 }
 
-.mh-egg-helper-location:disabled {
-  cursor: default;
-  opacity: 0.6;
+.mh-egg-helper-category-egg.unfound {
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
 }
 
-.mh-egg-helper-location.current {
-  font-weight: 700;
+.mh-egg-helper-category-egg:hover,
+.mh-egg-helper-category-egg:focus {
+  mix-blend-mode: initial;
   opacity: 1;
+  transform: scale(1.1);
 }
 
-.mh-egg-helper-droppers {
-  display: flex;
-  flex-direction: column;
+.mh-egg-helper-mode {
+  padding: 1em 1em 10px;
+  margin: 0 10px 10px;
+  font-size: 10px;
+  font-style: italic;
+  line-height: 15px;
+  text-align: center;
+  border-top: 1px solid #e1c07f;
 }
 
-.mh-egg-helper-dropper {
+.mh-egg-helper-mode p {
+  margin-bottom: 0.5em;
+}
+
+.mh-egg-helper .mh-egg-helper-mode a {
+  font-size: 11px;
+  font-style: normal;
+  color: #b0833d;
+}
+
+.mh-egg-helper .mh-egg-helper-mode a:hover {
+  color: #7b581f;
+}
+
+.mh-egg-helper-right-content {
+  height: 429px;
+  padding-top: 10px;
+  overflow: hidden auto;
+}
+
+.mh-egg-helper-right-description {
   display: grid;
-  grid-template-areas:
-    "name rate"
-    "location rate";
-  grid-template-columns: minmax(0, 1fr) auto;
-  column-gap: 8px;
-  padding: 4px 0;
-  border-bottom: 1px solid var(--mh-egg-helper-border);
+  grid-template-columns: 1fr 4fr;
+  gap: 1.25em;
+  align-items: center;
+  max-width: 300px;
 }
 
-.mh-egg-helper-dropper[hidden] {
+.mh-egg-helper-right-thumb {
+  width: 80px;
+  height: 80px;
+}
+
+.mh-egg-helper-right-short-text p {
+  font-size: 11px;
+  font-style: italic;
+  line-height: 15px;
+}
+
+.mh-egg-helper-right-text {
+  margin: 2em;
+}
+
+.mh-egg-helper-acquire {
+  position: relative;
+  padding: 10px;
+  margin-top: 20px;
+  background: #f7e3a9;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #e8d7a4 inset;
+}
+
+.mh-egg-helper-acquire:empty {
   display: none;
 }
 
-.mh-egg-helper-dropper-name {
-  grid-area: name;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.mh-egg-helper-acquire-header {
+  font-size: 12px;
+  font-style: italic;
+  color: #916728;
 }
 
-.mh-egg-helper-dropper-rate {
-  grid-area: rate;
-  align-self: center;
+.mh-egg-helper-acquire-text {
+  padding: 10px;
+  font-size: 13px;
+  line-height: 21px;
+}
+
+.mh-egg-helper-drop-rate {
+  margin-left: 0.25em;
+  font-size: 0.9em;
+  font-style: italic;
+  color: #423726;
+}
+
+.mh-egg-helper-collected {
+  margin-top: 1.75em;
+  font-size: 10px;
+  color: #957f58;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.mh-egg-helper .mh-egg-helper-collected a {
+  color: #481313;
+}
+
+/* Scrollbars. */
+.mh-egg-helper :is(.mh-egg-helper-eggs, .mh-egg-helper-categories, .mh-egg-helper-right-content) {
+  scrollbar-color: #e1c07f transparent;
+  scrollbar-width: thin;
+}
+
+/* Buttons. */
+.mh-egg-helper a.mh-egg-helper-button {
+  position: absolute;
+  bottom: 50px;
+  width: 168px;
+  height: 63px;
+  font-size: 17px;
   font-weight: 700;
+  line-height: 51px;
+  color: #d7eecb;
+  text-align: center;
+  text-shadow: 1px 1px 2px #1a2502;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/dialog/continue_button_frame.png?asset_cache_version=2);
+  background-position: 0 100%;
 }
 
-.mh-egg-helper-dropper-location {
-  grid-area: location;
-  font-size: 11px;
-  color: var(--mh-egg-helper-muted);
+.mh-egg-helper a.mh-egg-helper-button:hover,
+.mh-egg-helper a.mh-egg-helper-button:focus {
+  text-decoration: none;
+  background-position: 0 50%;
 }
 
-.mh-egg-helper-more {
-  padding: 0;
-  margin: 6px 0;
-  font: inherit;
-  color: var(--mh-egg-helper-accent);
-  cursor: pointer;
-  background: none;
-  border: none;
+.mh-egg-helper a.mh-egg-helper-close {
+  left: 138px;
 }
 
-.mh-egg-helper-section > .mh-egg-helper-muted:last-child {
-  margin-top: 6px;
-  font-size: 11px;
+.mh-egg-helper a.mh-egg-helper-back {
+  left: 438px;
 }
 
-@media (width <= 760px) {
-  .mh-egg-helper-body {
-    grid-template-columns: 1fr;
-    height: auto;
+@media (prefers-reduced-motion: reduce) {
+  .mh-egg-helper-category-egg {
+    transition: none;
   }
-
-  .mh-egg-helper-list {
-    max-height: 45vh;
-  }
-}
-
-.mh-dark .mh-egg-helper {
-  --mh-egg-helper-border: var(--d-border);
-  --mh-egg-helper-muted: var(--d-text-muted);
-  --mh-egg-helper-surface: var(--d-surface-inset);
-  --mh-egg-helper-hover: var(--d-hover);
-  --mh-egg-helper-selected: var(--d-selected);
-  --mh-egg-helper-accent: var(--d-interactive);
-  --mh-egg-helper-found: var(--d-green);
-  --mh-egg-helper-missing: var(--d-red-light);
-}
-
-.mh-dark .mh-egg-helper :is(.mh-egg-helper-egg, .mh-egg-helper-category, .mh-egg-helper-location:not(:disabled)):hover,
-.mh-dark .mh-egg-helper :is(.mh-egg-helper-egg, .mh-egg-helper-category)[aria-pressed="true"] {
-  color: var(--d-hover-text);
-}
-
-.mh-dark .mh-egg-helper :is(.mh-egg-helper-back, .mh-egg-helper-more) {
-  color: var(--d-link);
 }
