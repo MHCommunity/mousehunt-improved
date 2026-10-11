@@ -250,6 +250,21 @@ const parseGiftCredentials = (url) => {
 };
 
 /**
+ * Keep a URL from the API only if it's https, so a `javascript:` link can't end up in an href.
+ *
+ * @param {string} url The URL to check.
+ *
+ * @return {string} The URL, or an empty string if it isn't https.
+ */
+const safeUrl = (url) => {
+  try {
+    return 'https:' === new URL(url).protocol ? url : '';
+  } catch {
+    return '';
+  }
+};
+
+/**
  * Normalize a gift link from the API into a flat shape, handling both the
  * nested (`parsed`/`gift`) and legacy flat shapes.
  *
@@ -260,7 +275,7 @@ const parseGiftCredentials = (url) => {
 const normalizeLink = (link) => {
   const parsed = link.parsed || {};
   const gift = link.gift || {};
-  const expandedUrl = gift.url || gift.expandedUrl || link.expandedUrl;
+  const expandedUrl = safeUrl(gift.url || gift.expandedUrl || link.expandedUrl);
 
   // The API provides the id/hash directly, but fall back to parsing them out of
   // the claim URL for older shapes.
@@ -268,12 +283,12 @@ const normalizeLink = (link) => {
 
   return {
     code: parsed.code || link.code,
-    url: parsed.url || link.url,
+    url: safeUrl(parsed.url || link.url),
     reward: parsed.reward || link.reward,
     finder: parsed.finder || link.finder,
     finderName: parsed.finderName || link.finderName,
     giftName: gift.name || link.giftName,
-    giftImage: gift.image || link.giftImage,
+    giftImage: safeUrl(gift.image || link.giftImage),
     quantity: gift.quantity ?? link.quantity,
     expiresAt: gift.expiresAt ?? link.expiresAt,
     expandedUrl,
@@ -293,7 +308,7 @@ const getCache = () => {
   try {
     const cache = lsGet(CACHE_KEY, {});
     return {
-      links: Array.isArray(cache.links) ? cache.links : [],
+      links: Array.isArray(cache.links) ? cache.links.filter((link) => link && 'object' === typeof link).map((link) => normalizeLink(link)) : [],
       attemptedAt: Number(cache.attemptedAt) || 0,
     };
   } catch (error) {
