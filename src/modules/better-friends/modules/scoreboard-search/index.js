@@ -1,4 +1,4 @@
-import { addStyles, doRequest, getData, makeElement, onNavigation } from '@utils';
+import { addStyles, doRequest, escapeHtml, getData, makeElement, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -107,29 +107,30 @@ const main = async () => {
       search: friendName.getAttribute('data-text'),
     });
 
-    const data = response?.scoreboard_page?.rows;
-    if (!data || !data.length) {
+    // The search matches any name containing the text, so pick out this hunter's row.
+    const rows = response?.scoreboard_page?.rows || [];
+    const userId = friendName.closest('[data-user-id]')?.getAttribute('data-user-id');
+    const score = rows.find((row) => (userId ? `${row.user_id}` === userId : row.name === friendName.getAttribute('data-text')));
+    if (!score) {
       results.innerHTML = '<div class="mh-improved-scoreboard-no-results">No results found.</div>';
       return;
     }
-
-    const score = data[0];
 
     results.innerHTML = `<table class="scoreboardTableView">
     <tr class="scoreboardTableView-row viewer highlight">
       <td class="scoreboardTableView-row-rank scoreboardTableView-column ">
         <div class="tournament-team-rank">
-          ${score.rank}
+          ${escapeHtml(score.rank)}
         </div>
       </td>
       <td class="scoreboardTableView-row-name scoreboardTableView-column">
-        <a href="profile.php?snuid=${user.sn_user_id}" onclick="hg.utils.PageUtil.showHunterProfile('${user.sn_user_id}'); return false;">
-          <div class="scoreboardTableView-titleIcon" style="background-image: url(${user.title_icon});"></div>
-          ${score.name}
+        <a href="profile.php?snuid=${escapeHtml(score.sn_user_id)}" onclick="hg.utils.PageUtil.showHunterProfile('${escapeHtml(score.sn_user_id)}'); return false;">
+          <div class="scoreboardTableView-titleIcon" style="background-image: url(${escapeHtml(score.title_icon)});"></div>
+          ${escapeHtml(score.name)}
         </a>
       </td>
       <td class="scoreboardTableView-row-score scoreboardTableView-column">
-        ${score.points_formatted}
+        ${escapeHtml(score.points_formatted)}
       </td>
     </tr></table>`;
 
