@@ -30,6 +30,18 @@
 .mhui-settings-loading-image {
   display: block;
   max-width: 100%;
+  animation: mhui-settings-loading-show 0s 0.5s both;
+}
+
+/* Only show the loader when loading is slow, so a normal load goes straight to the settings. */
+@keyframes mhui-settings-loading-show {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
 }
 
 /* Header */

@@ -256,7 +256,24 @@ const init = async () => {
   try {
     const categoriesWithModules = getCategoriesWithModules();
 
-    const moduleErrors = (await loadModules(categoriesWithModules)) || [];
+    // Start the modules first, so the settings module is listening before its rows are added.
+    const modulesLoaded = loadModules(categoriesWithModules);
+
+    // The settings only need the module definitions, so build them while the modules load rather
+    // than after, which would leave the page on its loading indicator until the slowest one is done.
+    onNavigation(
+      async () => {
+        for (const module of categoriesWithModules) {
+          await addSettingForModule(module);
+        }
+      },
+      {
+        page: 'preferences',
+        tab: 'mousehunt-improved-settings',
+      }
+    );
+
+    const moduleErrors = (await modulesLoaded) || [];
 
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
@@ -293,19 +310,6 @@ const init = async () => {
     pruneMapCaches().catch((error) => {
       debuglog('utils-data', 'Unable to prune old map data', error);
     });
-
-    // Add the settings for each module.
-    onNavigation(
-      async () => {
-        for (const module of categoriesWithModules) {
-          await addSettingForModule(module);
-        }
-      },
-      {
-        page: 'preferences',
-        tab: 'mousehunt-improved-settings',
-      }
-    );
 
     if (moduleErrors.length > 0) {
       const { module, error } = moduleErrors[0];
