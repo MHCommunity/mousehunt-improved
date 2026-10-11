@@ -38,7 +38,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[FLRT Helper](docs/flrt-helper.md)**: Add a "Return to Maptain" button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.
 - **[Gift Links in Inbox](docs/gifts-in-inbox.md)**: Collect recent gift links in an inbox tab and claim them quickly.
 - **[Hover Delays](docs/hover-delays.md)**: Add a short delay before menus and tooltips open. Hold Shift to show tooltips right away.
-- **[Hunter ID Shortcuts](docs/hunter-id-shortcuts.md)**: Copy your Hunter ID from your profile picture, and paste a Hunter ID or profile link anywhere to open that hunter’s profile.
+- **[Hunter ID Shortcuts](docs/hunter-id-shortcuts.md)**: Copy your Hunter ID from your profile picture on the left of the HUD stats bar, and paste a Hunter ID or profile link anywhere to open that hunter’s profile.
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: Update all images to use higher resolution versions with transparent backgrounds.
 - **[Inventory Locking & Hiding](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory. Also hide items in the trap browser.
 - **[Convertible Opening Buttons](docs/inventory-open-buttons.md)**: Adds "One", "All But One", and "All" buttons to convertible items in your inventory.

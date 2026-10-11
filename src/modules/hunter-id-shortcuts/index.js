@@ -32,8 +32,9 @@ export default {
   id: 'hunter-id-shortcuts',
   name: 'Hunter ID Shortcuts',
   type: 'friends-gifts',
-  default: true,
-  description: 'Copy your Hunter ID from your profile picture, and paste a Hunter ID anywhere to open that hunter’s profile.',
+  alwaysLoad: true,
+  groupSettings: true,
+  description: 'Copy your Hunter ID from your profile picture on the left of the HUD stats bar, and paste a Hunter ID anywhere to open that hunter’s profile.',
   load: init,
   settings,
 };

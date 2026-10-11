@@ -195,8 +195,9 @@ export default {
   id: 'inventory-buttons',
   name: 'Convertible Opening Buttons',
   type: 'inventory-shops',
-  default: true,
-  description: 'Add "Open One", "Open All But One", and "Open All" buttons to convertibles in your inventory.',
+  alwaysLoad: true,
+  groupSettings: true,
+  description: 'Choose which opening buttons to add to convertibles in your inventory.',
   load: init,
   settings,
 };

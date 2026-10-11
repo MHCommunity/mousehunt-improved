@@ -11,7 +11,7 @@ export default async () => {
   return [
     {
       id: 'hide-page-elements.hide',
-      title: 'Hidden elements',
+      title: 'Hide page elements',
       default: [],
       live: true,
       settings: {

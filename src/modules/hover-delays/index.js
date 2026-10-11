@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, getSetting, isModuleEnabled, onEvent, onModuleToggle, removeBodyClass } from '@utils';
+import { addBodyClass, addStyles, getSetting, onEvent, removeBodyClass } from '@utils';
 
 import settings from './settings';
 
@@ -13,7 +13,7 @@ const delays = ['menus', 'tooltips'];
 const updateBodyClasses = () => {
   for (const delay of delays) {
     const className = `mhui-delay-${delay}`;
-    if (isModuleEnabled('hover-delays') && getSetting(`hover-delays.${delay}`, true)) {
+    if (getSetting(`hover-delays.${delay}`, true)) {
       addBodyClass(className, true);
     } else if (document.body.classList.contains(className)) {
       removeBodyClass(className);
@@ -32,11 +32,6 @@ const init = () => {
     if (key?.startsWith('hover-delays.')) {
       updateBodyClasses();
     }
-  });
-
-  onModuleToggle('hover-delays', {
-    enable: updateBodyClasses,
-    disable: updateBodyClasses,
   });
 
   // Show tooltips right away while Shift is held.
@@ -60,9 +55,9 @@ export default {
   id: 'hover-delays',
   name: 'Hover Delays',
   type: 'interface',
-  default: true,
+  alwaysLoad: true,
+  groupSettings: true,
   description: 'Add a short delay before menus and tooltips open, so they don’t pop up as you move the mouse past them.',
-  liveToggle: true,
   load: init,
   settings,
 };

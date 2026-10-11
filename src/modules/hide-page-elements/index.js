@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, getSetting, isModuleEnabled, onEvent, onModuleToggle, removeBodyClass } from '@utils';
+import { addBodyClass, addStyles, getSetting, onEvent, removeBodyClass } from '@utils';
 
 import elements from './elements';
 import hideDailyDraw from './daily-draw';
@@ -19,7 +19,7 @@ const styles = imported;
 const isHidden = (id) => {
   const element = elements.find((item) => item.id === id);
 
-  return isModuleEnabled('hide-page-elements') && Boolean(getSetting(`hide-page-elements.hide-${id}`, element?.default ?? false));
+  return Boolean(getSetting(`hide-page-elements.hide-${id}`, element?.default ?? false));
 };
 
 /**
@@ -59,11 +59,6 @@ const init = () => {
     }
   });
 
-  onModuleToggle('hide-page-elements', {
-    enable: update,
-    disable: update,
-  });
-
   if ('undefined' !== typeof SocialFramework && 'function' === typeof SocialFramework.isFriendStreamPostsEnabled) {
     const original = SocialFramework.isFriendStreamPostsEnabled;
     SocialFramework.isFriendStreamPostsEnabled = function (...args) {
@@ -82,9 +77,7 @@ export default {
   id: 'hide-page-elements',
   name: 'Hide Page Elements',
   type: 'personalization',
-  default: true,
-  description: '',
-  liveToggle: true,
+  alwaysLoad: true,
   load: init,
   settings,
 };

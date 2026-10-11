@@ -142,7 +142,7 @@ const isCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null,
  * @return {boolean} Whether the sidebar is hidden.
  */
 const isSidebarHidden = () => {
-  return Boolean(getSetting('hide-page-elements', true) && getSetting('hide-page-elements.hide-sidebar', true));
+  return Boolean(getSetting('hide-page-elements.hide-sidebar', true));
 };
 
 export { getCurrentTab, getCurrentSubtab, getCurrentDialog, isCurrentPage, isSidebarHidden, setPage, setTab };

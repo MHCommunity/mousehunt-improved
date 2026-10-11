@@ -1055,6 +1055,20 @@ const addSettingForModule = async (module) => {
         badge: submodule.badge,
         module,
       });
+    } else if (submodule.alwaysLoad && submodule.groupSettings) {
+      // A heading row without a toggle, so the settings still sit together under the module's name.
+      moduleSettingRow = await addSetting({
+        name: submodule.name,
+        id: submodule.id,
+        group: submodule.group,
+        description: submodule.description,
+        badge: submodule.badge,
+        module,
+        subSettings: { type: 'blank' },
+      });
+
+      // Sub-settings only show under an active row.
+      moduleSettingRow?.classList.add('active');
     }
 
     if (submodule.settings) {
