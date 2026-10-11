@@ -221,14 +221,12 @@ const addKingsCrownsToMicePage = async () => {
  * @return {number} The weight in ounces.
  */
 const parseImperialWeight = (weightText) => {
-  // Imperial.
-  const lbsSplit = weightText.innerText.split('lb.');
-  const lbs = lbsSplit.length > 1 ? lbsSplit[0] : 0;
+  // Imperial, like "2 lb. 10 oz.", "2 lb.", or "10 oz.".
+  const text = weightText.textContent.replaceAll(',', '');
+  const lbs = Number.parseInt(text.match(/(\d+)\s*lb/)?.[1]) || 0;
+  const oz = Number.parseInt(text.match(/(\d+)\s*oz/)?.[1]) || 0;
 
-  const ozSplit = weightText.innerText.split('oz.');
-  const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
-
-  return Number.parseInt(lbs) * 16 + Number.parseInt(oz);
+  return lbs * 16 + oz;
 };
 
 /**
@@ -251,16 +249,16 @@ const getSetRowValue = (row, type) => {
   // for weight, we need to parse the text to get the number
   if (type === 'average_weight' || type === 'heaviest_catch') {
     // Check if it contains 'lb' or 'oz', then we can parse it as imperial. if it contains 'kg', then we can parse it as metric.
-    if (valueText?.innerText && (valueText.innerText.includes('lb') || valueText.innerText.includes('oz'))) {
+    if (valueText?.textContent && (valueText.textContent.includes('lb') || valueText.textContent.includes('oz'))) {
       value = parseImperialWeight(valueText);
-    } else if (valueText?.innerText && valueText.innerText.includes('kg')) {
+    } else if (valueText?.textContent && valueText.textContent.includes('kg')) {
       // If we have kilograms, then we can just remove the kg and parse it as a number.
-      value = valueText?.innerText.replace('kg.', '');
+      value = valueText?.textContent.replace('kg.', '');
     } else {
       value = 0;
     }
   } else {
-    value = valueText.innerText ? valueText?.innerText.replaceAll(',', '') || 0 : 0;
+    value = valueText.textContent ? valueText?.textContent.replaceAll(',', '') || 0 : 0;
   }
 
   row.setAttribute(`data-sort-value-${type}`, value);
@@ -309,8 +307,8 @@ const sortStats = (type, reverse = false) => {
         return 0;
       }
 
-      const aName = aNameEl.innerText;
-      const bName = bNameEl.innerText;
+      const aName = aNameEl.textContent.trim();
+      const bName = bNameEl.textContent.trim();
       if (aName === bName) {
         return 0;
       }
@@ -439,7 +437,7 @@ const addSortingToCat = async (cat, retries = 0) => {
       return;
     }
 
-    const value = catches.innerText ? catches.innerText.replaceAll(',', '') || 0 : 0;
+    const value = catches.textContent ? catches.textContent.replaceAll(',', '') || 0 : 0;
 
     // set a crown class on the row.
     if (value >= 2500) {
