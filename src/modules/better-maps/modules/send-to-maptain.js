@@ -23,7 +23,7 @@ const getSuperBrieQuantity = async () => {
  * @param {Object} mapData The map data.
  */
 const addSendToMaptain = async (mapData) => {
-  if (!getSetting('better-maps.send-to-maptain', true)) {
+  if (!getSetting('better-maps.send-to-maptain', false)) {
     return;
   }
 

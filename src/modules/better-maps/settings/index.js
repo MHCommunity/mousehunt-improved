@@ -34,8 +34,10 @@ export default async () => {
     },
     {
       id: 'better-maps.send-to-maptain',
-      title: 'Show SUPER|brie+ sender for the Maptain',
-      default: true,
+      title: 'Quick send SUPER|brie+ to the Maptain',
+      description: "Adds a send field to the map sidebar on maps you've joined but don't own.",
+      default: false,
+      badge: 'Beta',
     },
     {
       id: 'better-maps.plan-tab',
