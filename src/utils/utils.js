@@ -206,7 +206,7 @@ const getTradableItems = async (valueKey = 'all', { removeHidden = false } = {})
     tradableItems = await removeMarketplaceHiddenItems(tradableItems);
   }
 
-  tradableItems.sort((a, b) => a.name.localeCompare(b.name));
+  tradableItems = tradableItems.toSorted((a, b) => a.name.localeCompare(b.name));
 
   if ('all' === valueKey) {
     return tradableItems;

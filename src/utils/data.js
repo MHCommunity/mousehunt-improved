@@ -254,26 +254,44 @@ const fetchDataVersions = async () => {
   return versions;
 };
 
+// Data shared by every caller for the rest of the page load, so large files
+// like items are only read from IndexedDB and held in memory once. Callers must
+// not mutate what they get back.
+const loadedData = new Map();
+
 /**
- * Get the data for the given key.
+ * Store freshly fetched data in the cache.
+ *
+ * @param {string}       key             Key to store the data under.
+ * @param {Object|Array} data            The data.
+ * @param {string}       expectedVersion Version expected after a successful fetch.
+ */
+const storeFetchedData = async (key, data, expectedVersion) => {
+  if (!expectedVersion) {
+    const versions = await cacheGetNoExpiration('data-versions', {});
+    expectedVersion = versions[key] || null;
+  }
+
+  await cacheSet(key, data, null, expectedVersion);
+};
+
+/**
+ * Load the data for the given key from the cache, falling back to the API.
+ *
+ * Expired data is kept until a fresh copy downloads, so an api.mouse.rip
+ * outage serves the old data instead of an empty object.
  *
  * @param {string}  key             Key to get the data for.
  * @param {boolean} force           Whether to force fetching the data.
  * @param {string}  expectedVersion Version expected after a successful fetch.
  *
- * @return {Object} The data.
+ * @return {Promise<Object|Array>} The data.
  */
-const getData = async (key, force = false, expectedVersion = null) => {
-  if (!isValidDataFile(key)) {
-    console.error(`Invalid data file requested: ${key}`); // eslint-disable-line no-console
-    return {};
-  }
+const loadData = async (key, force, expectedVersion) => {
+  const cachedData = force ? null : await cacheGetNoExpiration(key, null);
 
-  if (!force) {
-    const cachedData = await cacheGet(key, false);
-    if (hasValidData(cachedData)) {
-      return cachedData;
-    }
+  if (!force && hasValidData(cachedData) && !(await isCacheExpired(key))) {
+    return cachedData;
   }
 
   debuglog('utils-data', `Fetching data for ${key}…`);
@@ -281,13 +299,7 @@ const getData = async (key, force = false, expectedVersion = null) => {
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (hasValidData(data)) {
-    if (!expectedVersion) {
-      const versions = await cacheGetNoExpiration('data-versions', {});
-      expectedVersion = versions[key] || null;
-    }
-
-    await cacheSet(key, data, null, expectedVersion);
-
+    await storeFetchedData(key, data, expectedVersion);
     return data;
   }
 
@@ -296,17 +308,48 @@ const getData = async (key, force = false, expectedVersion = null) => {
 
   const retryData = await fetchData(key);
   if (hasValidData(retryData)) {
-    if (!expectedVersion) {
-      const versions = await cacheGetNoExpiration('data-versions', {});
-      expectedVersion = versions[key] || null;
-    }
-
-    await cacheSet(key, retryData, null, expectedVersion);
+    await storeFetchedData(key, retryData, expectedVersion);
     return retryData;
   }
 
-  return {};
+  const staleData = cachedData ?? (await cacheGetNoExpiration(key, null));
+
+  return hasValidData(staleData) ? staleData : {};
 };
+
+/**
+ * Get the data for the given key.
+ *
+ * @param {string}  key             Key to get the data for.
+ * @param {boolean} force           Whether to force fetching the data.
+ * @param {string}  expectedVersion Version expected after a successful fetch.
+ *
+ * @return {Promise<Object|Array>} The data. Shared between callers, so don't mutate it.
+ */
+const getData = async (key, force = false, expectedVersion = null) => {
+  if (!isValidDataFile(key)) {
+    console.error(`Invalid data file requested: ${key}`); // eslint-disable-line no-console
+    return {};
+  }
+
+  if (!force && loadedData.has(key)) {
+    return loadedData.get(key);
+  }
+
+  const loading = loadData(key, force, expectedVersion).then((data) => {
+    // Don't hold on to a failed load, so the next caller tries again.
+    if (!hasValidData(data) && loadedData.get(key) === loading) {
+      loadedData.delete(key);
+    }
+
+    return data;
+  });
+
+  loadedData.set(key, loading);
+
+  return loading;
+};
+
 /**
  * Clear all the caches.
  */
@@ -322,6 +365,8 @@ const clearCaches = async () => {
       sessionStorage.removeItem(key);
     }
   }
+
+  loadedData.clear();
 
   // delete all the entries in the IndexedDB databases
   await dbDeleteAll('cache');
