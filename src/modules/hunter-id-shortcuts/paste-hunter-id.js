@@ -1,4 +1,20 @@
 /**
+ * Check if the text is an https URL on www.mousehuntgame.com.
+ *
+ * @param {string} text The text to check.
+ *
+ * @return {boolean} Whether it's a game URL.
+ */
+const isGameUrl = (text) => {
+  try {
+    const url = new URL(text);
+    return 'https:' === url.protocol && 'www.mousehuntgame.com' === url.hostname;
+  } catch {
+    return false;
+  }
+};
+
+/**
  * Process a pasted string to see if it's a hunter ID, and if so, redirect to that hunter's profile.
  *
  * @param {string} text The pasted text.
@@ -23,10 +39,8 @@ const maybeRedirectToHunterProfile = (text) => {
     return;
   }
 
-  // if the text contains 'https://www.mousehuntgame.com/', then it's a full URL
-  // and we should just redirect to that URL.
-  const url = text.match(/https:\/\/www.mousehuntgame.com/);
-  if (url) {
+  // If it's a full mousehuntgame.com URL, go straight there.
+  if (isGameUrl(text)) {
     window.location.href = text;
     return;
   }
