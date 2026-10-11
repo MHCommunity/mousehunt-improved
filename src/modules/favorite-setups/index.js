@@ -4,28 +4,31 @@ import {
   addStyles,
   cacheGet,
   cacheSet,
-  createPopup,
   debuglog,
   doRequest,
   getCurrentLocation,
   getCurrentLocationName,
   getCurrentPage,
   getData,
-  getFlag,
   getHeaders,
   getSetting,
   getUserData,
+  groupItemOptions,
   makeElement,
   makeMhButton,
   onEvent,
   onNavigation,
   onRequest,
+  onTravel,
   saveSetting,
   sessionDelete,
   sessionGet,
   sessionSet,
   toggleBlueprint,
+  travelTo,
 } from '@utils';
+
+import { makeItemPicker } from '../../utils/settings-item-picker';
 
 import styles from './styles.css';
 
@@ -40,7 +43,8 @@ import settings from './settings';
  * @property {string | null}       weapon_id  The weapon item ID.
  * @property {string | null}       trinket_id The trinket item ID.
  * @property {string | null}       power_type The power type of the setup.
- * @property {string | undefined}  location   The location of the setup.
+ * @property {string | undefined}  location   The location the setup is for.
+ * @property {string | undefined}  region     The region the setup is for, when it's for a whole region.
  * @property {boolean | undefined} is_mobile  Whether the setup is a mobile setup.
  */
 
@@ -209,18 +213,7 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
             updatedSetups[setupIndex] = normalizedSetup;
             saveSetting('favorite-setups.setups', updatedSetups);
 
-            // Update the UI if the container is visible
-            const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-            if (container) {
-              // Find and update the specific setup row
-              const setupRow = container.querySelector(`[data-setup-id="${normalizedSetup.id}"]`);
-              if (setupRow) {
-                const label = setupRow.querySelector('.label');
-                if (label && !setupRow.classList.contains('editing')) {
-                  label.textContent = normalizedSetup.name;
-                }
-              }
-            }
+            updateSetupRowName(normalizedSetup);
 
             updateFavoriteSetupName();
           }
@@ -236,22 +229,25 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
           updatedSetups[setupIndex] = normalizedSetup;
           saveSetting('favorite-setups.setups', updatedSetups);
 
-          // Update the UI
-          const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-          if (container) {
-            const setupRow = container.querySelector(`[data-setup-id="${normalizedSetup.id}"]`);
-            if (setupRow) {
-              const label = setupRow.querySelector('.label');
-              if (label && !setupRow.classList.contains('editing')) {
-                label.textContent = normalizedSetup.name;
-              }
-            }
-          }
+          updateSetupRowName(normalizedSetup);
         }
       });
   }
 
   return normalizedSetup;
+};
+
+/**
+ * Show a setup's new name in the list, unless it's being edited.
+ *
+ * @param {FavoriteSetup} setup The setup.
+ */
+const updateSetupRowName = (setup) => {
+  const name = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row.setup[data-setup-id="${setup.id}"] .name`);
+  if (name) {
+    name.textContent = setup.name;
+    name.title = setup.name;
+  }
 };
 
 /**
@@ -309,8 +305,6 @@ const addImage = async (type, id, appendTo) => {
   wrapper.setAttribute('data-item-id', id || '');
   wrapper.setAttribute('data-item-type', type);
 
-  wrapper.setAttribute('title', `Click to change ${type}`);
-
   const item = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-image']);
 
   if (!itemThumbs) {
@@ -325,33 +319,6 @@ const addImage = async (type, id, appendTo) => {
 
   wrapper.append(item);
   appendTo.append(wrapper);
-};
-
-/**
- * Map the cheese effect to a number.
- *
- * @param {string} textValue The text value to map.
- *
- * @return {number} The mapped value.
- */
-const getCheeseEffect = (textValue) => {
-  const data = {
-    'Uber Fresh': 13,
-    'Ultimately Fresh': 12,
-    'Insanely Fresh': 11,
-    'Extremely Fresh': 10,
-    'Very Fresh': 9,
-    Fresh: 8,
-    'No Effect': 7,
-    Stale: 6,
-    'Very Stale': 5,
-    'Extremely Stale': 4,
-    'Insanely Stale': 3,
-    'Ultimately Stale': 2,
-    'Uber Stale': 1,
-  };
-
-  return data[textValue];
 };
 
 /**
@@ -508,202 +475,27 @@ const highlightMissingItems = async (rows) => {
       if (itemId && !armable.has(itemId.toString())) {
         missing.push(itemType);
         image.classList.add('missing-item');
-        image.setAttribute('title', `You don't have this ${itemType} anymore. Click to change ${itemType}`);
+        image.setAttribute('title', `You don't have this ${'trinket' === itemType ? 'charm' : itemType} anymore`);
       } else {
         image.classList.remove('missing-item');
-        image.setAttribute('title', `Click to change ${itemType}`);
+        image.removeAttribute('title');
       }
     });
 
     row.classList.toggle('has-missing-items', missing.length > 0);
 
-    const armButton = row.querySelector('.action.arm');
-    if (armButton) {
+    if (row.classList.contains('setup')) {
       const blocking = missing.filter((type) => !optionalItemTypes.includes(type));
-      let title = '';
+      const names = missing.map((type) => ('trinket' === type ? 'charm' : type));
+      let title = 'Arm this setup';
       if (blocking.length) {
-        title = `You don't have the ${missing.join(', ')} for this setup anymore.`;
+        title = `You don't have the ${names.join(', ')} for this setup anymore.`;
       } else if (missing.length) {
-        const names = missing.map((type) => ('trinket' === type ? 'charm' : type)).join(' or ');
-        title = `You don't have the ${names} for this setup anymore, so it will be armed without it.`;
+        title = `You don't have the ${names.join(' or ')} for this setup anymore, so it will be armed without it.`;
       }
 
-      armButton.setAttribute('title', title);
+      row.setAttribute('title', title);
     }
-  });
-};
-
-/**
- * Highlight any items that the user no longer has in every setup row in a container.
- *
- * @param {Element} container The container with the setup rows.
- */
-const highlightMissingItemsInContainer = async (container) => {
-  await highlightMissingItems(container.querySelectorAll('.row[data-setup-id]:not([data-setup-id="current"])'));
-};
-
-/**
- * Make the component picker for editing a setup.
- *
- * @param {string}   setupId   The setup ID.
- * @param {string}   type      The type of item.
- * @param {string}   currentId The current item ID.
- * @param {Function} callback  The callback to run when an item is selected.
- */
-const makeImagePicker = async (setupId, type, currentId, callback) => {
-  const components = await getTrapComponents();
-
-  const items = components.filter((item) => item.classification === type);
-
-  // Stats are compared against the component of this type that's armed right now.
-  const armed = items.find((item) => item.item_id === Number(user[`${type}_item_id`]));
-
-  let content = '<div class="mh-improved-favorite-setups-component-picker-popup">';
-  content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
-  content += '<div class="mh-improved-favorite-setups-component-picker-popup-search">';
-  content += '<input type="text" placeholder="Search" id="mh-improved-favorite-setups-component-picker-popup-search-input" />';
-  content +=
-    '<div class="mh-improved-favorites-setups-component-picker-popup-use-current mousehuntActionButton" title="Use current item"><span>Use currently armed item</span></div>';
-  content += '</div>';
-  content += `<div class="mh-improved-favorite-setups-component-picker-popup-body-items ${type}">`;
-  for (const item of items) {
-    /**
-     * Get the markup for a stat row.
-     *
-     * @param {string} stat      The stat to get the row for.
-     * @param {string} title     The title of the stat.
-     * @param {string} formatted The formatted value of the stat.
-     *
-     * @return {string} The stat row markup.
-     */
-    const getStatRow = (stat, title, formatted) => {
-      let compareClass = '';
-      if (armed && armed.item_id !== item.item_id) {
-        const value = 'cheese_effect' === stat ? getCheeseEffect(item[stat]) : Number(item[stat]);
-        const armedValue = 'cheese_effect' === stat ? getCheeseEffect(armed[stat]) : Number(armed[stat]);
-
-        if (value > armedValue) {
-          compareClass = 'better';
-        } else if (value < armedValue) {
-          compareClass = 'worse';
-        }
-      }
-
-      // The game's stat icon styles use powerBonus rather than the API's power_bonus.
-      const statClass = 'power_bonus' === stat ? 'powerBonus' : stat;
-
-      return `<div class="campPage-trap-itemBrowser-item-stat ${statClass} ${compareClass}" title="${title}">
-        <div class="value"><span>${formatted}</span></div>
-      </div>`;
-    };
-
-    content += `<div class="campPage-trap-itemBrowser-item loaded ${type}" data-item-id="${item.item_id}">`;
-    content += ' <div class="campPage-trap-itemBrowser-item-leftBar">';
-    content += `  <a href="#"><div class="campPage-trap-itemBrowser-item-image" style="background-image:url(${item.thumbnail});"></div></a>`;
-    content += `  <a href="#" class="campPage-trap-itemBrowser-item-armButton save-button" data-item-id="${item.item_id}" data-item-classification="${type}" data-item-image="${item.thumbnail}" data-the-power-type="${item.power_type_image_name}">Use</a>`;
-    content += ' </div>';
-    content += ' <div class="campPage-trap-itemBrowser-item-content">';
-    content += ` <div class="campPage-trap-itemBrowser-item-name">${item.name}</div>`;
-
-    // Keep the power type or quantity and stats on one line so the cards aren't so tall.
-    content += '<div class="mh-improved-favorite-setups-item-details">';
-    if (item.power_type) {
-      content += `<div class="campPage-trap-itemBrowser-item-powerType ${item.power_type}"></div>`;
-    }
-
-    if ('bait' === type || 'trinket' === type) {
-      content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${Number.parseInt(item.quantity).toLocaleString()}</span><span class="label">Quantity</span></div>`;
-    }
-
-    if (item.has_stats) {
-      content += '<div class="campPage-trap-itemBrowser-item-statContainer">';
-      content += item.has_power ? getStatRow('power', 'Power', item.power_formatted) : '';
-      content += item.has_power_bonus ? getStatRow('power_bonus', 'Power Bonus', item.power_bonus_formatted) : '';
-      content += item.has_attraction_bonus ? getStatRow('attraction_bonus', 'Attraction Bonus', item.attraction_bonus_formatted) : '';
-      content += item.has_luck ? getStatRow('luck', 'Luck', item.luck_formatted) : '';
-      content += getStatRow('cheese_effect', 'Cheese Effect', item.cheese_effect);
-      content += '</div>';
-    }
-
-    content += '</div>';
-
-    content += '<div class="campPage-trap-itemBrowser-item-description shortDescription">';
-    content += item.consume_method ? `<div class="campPage-trap-itemBrowser-item-description-consumeMethod"><b>Consumed on:</b> ${item.consume_method}</div>` : '';
-
-    content += '</div>';
-    content += '</div>';
-    content += '</div>';
-  }
-  content += '</div>';
-  content += '</div>';
-  content += '</div>';
-
-  const popup = createPopup({
-    id: 'mh-improved-favorite-setups-component-picker',
-    title: '',
-    content,
-    className: 'mh-improved-favorite-setups-component-picker',
-  });
-
-  // popup.setIsModal(true);
-  popup.show();
-
-  const saveButtons = document.querySelectorAll('.campPage-trap-itemBrowser-item-armButton.save-button');
-  saveButtons.forEach((saveButton) => {
-    saveButton.addEventListener('click', async (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      callback(
-        saveButton.getAttribute('data-item-id'),
-        saveButton.getAttribute('data-item-classification'),
-        saveButton.getAttribute('data-item-image'),
-        saveButton.getAttribute('data-the-power-type')
-      );
-      popup.hide();
-    });
-  });
-
-  const searchInput = document.querySelector('#mh-improved-favorite-setups-component-picker-popup-search-input');
-
-  if (!searchInput) {
-    return;
-  }
-
-  searchInput.focus();
-
-  searchInput.addEventListener('keyup', () => {
-    const filter = searchInput.value.toLowerCase();
-    const searchItems = document.querySelectorAll('.campPage-trap-itemBrowser-item');
-    searchItems.forEach((item) => {
-      const name = item.querySelector('.campPage-trap-itemBrowser-item-name');
-      if (name.textContent.toLowerCase().includes(filter)) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
-  });
-
-  const useCurrentItemButton = document.querySelector('.mh-improved-favorites-setups-component-picker-popup-use-current');
-  useCurrentItemButton.addEventListener('click', () => {
-    const item = document.querySelector(`.campPage-trap-itemBrowser-item[data-item-id="${user[`${type}_item_id`]}"]`);
-    if (!item) {
-      return;
-    }
-
-    const saveButton = item.querySelector('.campPage-trap-itemBrowser-item-armButton.save-button');
-    if (!saveButton) {
-      return;
-    }
-
-    callback(
-      saveButton.getAttribute('data-item-id'),
-      saveButton.getAttribute('data-item-classification'),
-      saveButton.getAttribute('data-item-image'),
-      saveButton.getAttribute('data-the-power-type')
-    );
-    popup.hide();
   });
 };
 
@@ -813,82 +605,224 @@ const armSetup = async (setup) => {
 };
 
 /**
+ * Regions in the order the travel page lists them.
+ */
+const regions = [
+  { id: 'gnawnia', name: 'Gnawnia' },
+  { id: 'valour', name: 'Valour' },
+  { id: 'whisker_woods', name: 'Whisker Woods' },
+  { id: 'burroughs', name: 'Burroughs' },
+  { id: 'furoma', name: 'Furoma' },
+  { id: 'bristle_woods', name: 'Bristle Woods' },
+  { id: 'tribal_isles', name: 'Tribal Isles' },
+  { id: 'varmint_valley', name: 'Varmint Valley' },
+  { id: 'desert', name: 'Sandtail Desert' },
+  { id: 'rodentia', name: 'Rodentia' },
+  { id: 'queso_canyon', name: 'Queso Canyon' },
+  { id: 'zokor_zone', name: 'Hollow Heights' },
+  { id: 'folklore_forest', name: 'Folklore Forest' },
+  { id: 'riftopia', name: 'Rift Plane' },
+];
+
+let environmentsCache;
+
+/**
+ * Get every location, including event ones.
+ *
+ * @return {Promise<Array>} The locations.
+ */
+const getEnvironments = async () => {
+  if (!environmentsCache) {
+    const [regular, events] = await Promise.all([getData('environments'), getData('environments-events')]);
+    environmentsCache = [...(regular || []), ...(events || []).map((environment) => ({ ...environment, isEvent: true }))];
+  }
+
+  return environmentsCache;
+};
+
+/**
+ * Get the region that a location is in.
+ *
+ * @param {string} location     The location ID.
+ * @param {Array}  environments The locations.
+ *
+ * @return {string} The region ID, or an empty string.
+ */
+const getRegionForLocation = (location, environments) => {
+  return environments.find((environment) => environment.id === location)?.region || '';
+};
+
+/**
+ * Check whether a setup is for a location. Setups for a whole region count for every location in
+ * it, and setups without a location count everywhere.
+ *
+ * @param {FavoriteSetup} setup    The setup.
+ * @param {string}        location The location ID.
+ * @param {string}        region   The region ID of the location.
+ *
+ * @return {boolean} Whether the setup is for the location.
+ */
+const isSetupForLocation = (setup, location, region) => {
+  if (setup.location) {
+    return setup.location === location;
+  }
+
+  if (setup.region) {
+    return setup.region === region;
+  }
+
+  return true;
+};
+
+/**
+ * Get the label for where a setup is used.
+ *
+ * @param {FavoriteSetup} setup        The setup.
+ * @param {Array}         environments The locations.
+ *
+ * @return {string} The label.
+ */
+const getSetupLocationLabel = (setup, environments) => {
+  if (setup.location) {
+    return environments.find((environment) => environment.id === setup.location)?.name || setup.location;
+  }
+
+  if (setup.region) {
+    return `All of ${regions.find((region) => region.id === setup.region)?.name || setup.region}`;
+  }
+
+  return 'All locations';
+};
+
+/**
+ * Add an option to a select or option group.
+ *
+ * @param {Element} parent The group or select to add to.
+ * @param {string}  value  The option value.
+ * @param {string}  label  The option label.
+ */
+const addOption = (parent, value, label) => {
+  const option = makeElement('option', '', label);
+  option.value = value;
+  parent.append(option);
+};
+
+/**
+ * Make the location picker for the setup editor.
+ *
+ * @param {FavoriteSetup} setup        The setup being edited.
+ * @param {Array}         environments The locations.
+ *
+ * @return {HTMLSelectElement} The picker.
+ */
+const makeLocationSelect = (setup, environments) => {
+  const select = makeElement('select', 'setup-location-input');
+
+  addOption(select, '', 'All locations');
+
+  for (const region of regions) {
+    const group = makeElement('optgroup');
+    group.label = region.name;
+    addOption(group, `region:${region.id}`, `All of ${region.name}`);
+
+    environments
+      .filter((environment) => environment.region === region.id && !environment.isEvent)
+      .toSorted((a, b) => (a.order || 0) - (b.order || 0))
+      .forEach((environment) => addOption(group, `location:${environment.id}`, environment.name));
+
+    select.append(group);
+  }
+
+  const events = environments.filter((environment) => environment.isEvent);
+  if (events.length) {
+    const group = makeElement('optgroup');
+    group.label = 'Event locations';
+    events.forEach((environment) => addOption(group, `location:${environment.id}`, environment.name));
+    select.append(group);
+  }
+
+  if (setup.location) {
+    select.value = `location:${setup.location}`;
+  } else if (setup.region) {
+    select.value = `region:${setup.region}`;
+  }
+
+  // An unknown location would otherwise silently become "All locations".
+  if (setup.location && select.value !== `location:${setup.location}`) {
+    addOption(select, `location:${setup.location}`, setup.location);
+    select.value = `location:${setup.location}`;
+  }
+
+  return select;
+};
+
+/**
+ * The setup being edited in the list, if any. Edits go into the draft until they're saved.
+ */
+const editState = {
+  id: null,
+  draft: null,
+};
+
+/**
  * Make the setups sortable with drag and drop.
  *
- * @param {Element} container The container element with the setup rows.
+ * @param {Element} wrapper The element with the setup rows.
  */
-const makeSortable = (container) => {
+const makeSortable = (wrapper) => {
   let draggedElement = null;
-  let placeholder = null;
+  const placeholder = makeElement('div', 'placeholder');
 
-  const rows = container.querySelectorAll('.row-wrapper .row:not([data-setup-id="current"])');
-
-  rows.forEach((row) => {
-    // Skip location favorites as they can't be reordered - they're shortcuts
-    if (row.classList.contains('location-favorite') || row.classList.contains('mobile-setup')) {
-      return;
-    }
-
+  wrapper.querySelectorAll('.row.draggable').forEach((row) => {
     row.draggable = true;
-    row.classList.add('draggable');
 
-    row.addEventListener('dragstart', (e) => {
+    row.addEventListener('dragstart', (event) => {
       draggedElement = row;
       row.classList.add('dragging');
-
-      // Create placeholder
-      placeholder = makeElement('div', ['row', 'placeholder']);
-      makeElement('div', 'placeholder-text', 'Drop here', placeholder);
-
-      e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/html', row.outerHTML);
+      placeholder.style.height = `${row.offsetHeight}px`;
+      event.dataTransfer.effectAllowed = 'move';
     });
 
     row.addEventListener('dragend', () => {
       row.classList.remove('dragging');
-      if (placeholder && placeholder.parentNode) {
-        placeholder.remove();
-      }
+      placeholder.remove();
       draggedElement = null;
-      placeholder = null;
     });
 
-    row.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-
-      if (draggedElement && row !== draggedElement && !row.classList.contains('location-favorite')) {
-        // Remove placeholder from its current position if it exists
-        if (placeholder && placeholder.parentNode) {
-          placeholder.remove();
-        }
-
-        const rect = row.getBoundingClientRect();
-        const midpoint = rect.top + rect.height / 2;
-
-        if (e.clientY < midpoint) {
-          row.parentNode.insertBefore(placeholder, row);
-        } else {
-          row.parentNode.insertBefore(placeholder, row.nextSibling);
-        }
+    row.addEventListener('dragover', (event) => {
+      if (!draggedElement || row === draggedElement) {
+        return;
       }
-    });
 
-    row.addEventListener('drop', async (e) => {
-      e.preventDefault();
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
 
-      if (draggedElement && placeholder && placeholder.parentNode) {
-        // Insert the dragged element where the placeholder is
-        placeholder.parentNode.insertBefore(draggedElement, placeholder);
-        placeholder.remove();
-
-        // Update the order in storage
-        await updateSetupOrder(container);
+      const rect = row.getBoundingClientRect();
+      if (event.clientY < rect.top + rect.height / 2) {
+        row.before(placeholder);
+      } else {
+        row.after(placeholder);
       }
     });
   });
 
-  const firstDraggable = container.querySelector('.row-wrapper .row.draggable');
+  wrapper.addEventListener('dragover', (event) => {
+    if (draggedElement) {
+      event.preventDefault();
+    }
+  });
+
+  wrapper.addEventListener('drop', async (event) => {
+    if (!draggedElement || !placeholder.parentNode) {
+      return;
+    }
+
+    event.preventDefault();
+    placeholder.replaceWith(draggedElement);
+    await updateSetupOrder(wrapper);
+  });
+
+  const firstDraggable = wrapper.querySelector('.row.draggable');
   if (firstDraggable) {
     addOnboardingTip({
       step: 'favorite-setups-reorder',
@@ -898,528 +832,668 @@ const makeSortable = (container) => {
       dismissOnAnchorClick: false,
     });
   }
-
-  // Add dragover to main container
-  container.addEventListener('dragover', (e) => {
-    e.preventDefault();
-
-    if (
-      draggedElement &&
-      !draggedElement.classList.contains('location-favorite') && // If we're dragging over empty space in the main container
-      e.target === container
-    ) {
-      if (placeholder && placeholder.parentNode) {
-        placeholder.remove();
-      }
-
-      // Find the last draggable setup row (excluding location favorites)
-      const lastDraggableRow = container.querySelector('.row.draggable:not(.dragging):not(.location-favorite):last-of-type');
-      if (lastDraggableRow) {
-        lastDraggableRow.parentNode.insertBefore(placeholder, lastDraggableRow.nextSibling);
-      } else {
-        // If no suitable row found, append to container
-        container.append(placeholder);
-      }
-    }
-  });
-
-  container.addEventListener('drop', async (e) => {
-    e.preventDefault();
-
-    if (draggedElement && placeholder && placeholder.parentNode && !draggedElement.classList.contains('location-favorite')) {
-      placeholder.parentNode.insertBefore(draggedElement, placeholder);
-      placeholder.remove();
-      await updateSetupOrder(container);
-    }
-  });
 };
 
 /**
- * Update the setup order based on the current DOM order.
+ * Save the order of the setups in the list. When only some setups are shown, they're reordered
+ * among the places they already had so the hidden ones don't move.
  *
- * @param {Element} container The container with the setup rows.
+ * @param {Element} wrapper The element with the setup rows.
  */
-const updateSetupOrder = async (container) => {
-  const setups = await getFavoriteSetups(false);
+const updateSetupOrder = async (wrapper) => {
+  const setups = removeMobileSetups(await getFavoriteSetups(false));
   if (!setups.length) {
     return;
   }
 
-  // Get all draggable rows (including mobile setups) in their new order
-  const draggableRows = container.querySelectorAll('.row:not([data-setup-id="current"]):not(.location-favorite)');
-  const orderedIds = [...draggableRows].map((row) => row.getAttribute('data-setup-id'));
+  const orderedIds = [...wrapper.querySelectorAll('.row[data-setup-id]')].map((row) => row.getAttribute('data-setup-id')).filter((id) => setups.some((setup) => setup?.id === id));
 
-  const newOrder = orderedIds.map((setupId) => setups.find((s) => s?.id === setupId)).filter(Boolean);
+  const shownIds = new Set(orderedIds);
+  const byId = new Map(setups.map((setup) => [setup?.id, setup]));
+  let next = 0;
+  const reordered = setups.map((setup) => {
+    if (!shownIds.has(setup?.id)) {
+      return setup;
+    }
 
-  // Keep any saved setups that aren't on screen, like ones saved from another tab after this list
-  // was opened, so reordering can never drop them.
-  const notShown = setups.filter((s) => !orderedIds.includes(s?.id));
+    const id = orderedIds[next];
+    next += 1;
+    return byId.get(id);
+  });
 
-  saveSetting('favorite-setups.setups', removeMobileSetups([...newOrder, ...notShown]));
+  // Never save a list that lost setups along the way.
+  if (reordered.some((setup) => !setup) || reordered.length !== setups.length) {
+    return;
+  }
+
+  saveSetting('favorite-setups.setups', reordered);
 };
 
 /**
- * Make a single favorite setup row.
+ * Get the favorite setups list, if it's open.
  *
- * @param {Object}  setup     The setup to make a row for.
- * @param {boolean} isCurrent Whether the setup is the current setup.
- *
- * @return {Promise<Element|boolean>} The setup row element.
+ * @return {HTMLElement|null} The list container.
  */
-const makeBlueprintRow = async (setup, isCurrent = false) => {
-  if (!setup) {
-    return false;
+const getListContainer = () => document.querySelector('.mh-improved-favorite-setups-blueprint-container');
+
+/**
+ * Scroll the list so a row is visible, without scrolling the page.
+ *
+ * @param {HTMLElement} row The row.
+ */
+const scrollRowIntoList = (row) => {
+  const list = row.closest('.content');
+  if (!list) {
+    return;
   }
 
-  const setupContainer = makeElement('div', ['row']);
-  setupContainer.setAttribute('data-setup-id', setup.id);
+  const rowRect = row.getBoundingClientRect();
+  const listRect = list.getBoundingClientRect();
+  if (rowRect.top < listRect.top) {
+    list.scrollTop -= listRect.top - rowRect.top;
+  } else if (rowRect.bottom > listRect.bottom) {
+    list.scrollTop += Math.min(rowRect.bottom - listRect.bottom, rowRect.top - listRect.top);
+  }
+};
 
-  // Add drag handle for non-current and non-location-favorite setups
-  if (!(isCurrent || setup?.isLocationFavorite || setup?.is_mobile)) {
-    const dragHandle = makeElement('div', ['drag-handle']);
-    dragHandle.innerHTML = '⋮⋮';
-    dragHandle.setAttribute('title', 'Drag to reorder');
-    setupContainer.append(dragHandle);
+/**
+ * Briefly highlight a setup row.
+ *
+ * @param {string} setupId   The setup ID.
+ * @param {string} className The highlight class.
+ */
+const flashRow = (setupId, className = 'flash') => {
+  const row = getListContainer()?.querySelector(`.row[data-setup-id="${setupId}"]`);
+  if (!row) {
+    return;
   }
 
-  const controls = makeElement('div', ['controls']);
-  makeElement('div', ['label'], setup?.name || '', controls);
+  row.classList.add(className);
+  scrollRowIntoList(row);
+  setTimeout(() => row.classList.remove(className), 1000);
+};
+
+/**
+ * Make the line under a setup's name with its power type and location.
+ *
+ * @param {FavoriteSetup} setup        The setup.
+ * @param {Array}         environments The locations.
+ * @param {boolean}       canTravel    Whether the location should link to traveling there.
+ *
+ * @return {HTMLElement} The meta line.
+ */
+const makeSetupMeta = (setup, environments, canTravel = true) => {
+  const meta = makeElement('div', 'meta');
+
+  if (setup.power_type) {
+    const powerTypeName = setup.power_type.charAt(0).toUpperCase() + setup.power_type.slice(1);
+    const icon = makeElement('img', 'power-type-icon');
+    icon.src = `https://www.mousehuntgame.com/images/powertypes/${setup.power_type}.png`;
+    icon.alt = powerTypeName;
+    icon.title = powerTypeName;
+    meta.append(icon);
+  }
+
+  if (setup.is_mobile) {
+    makeElement('span', 'location', 'Mobile', meta);
+    return meta;
+  }
+
+  const label = getSetupLocationLabel(setup, environments);
+  const environment = environments.find((e) => e.id === setup.location);
+  if (canTravel && environment && setup.location !== getCurrentLocation()) {
+    const link = makeElement('a', ['location', 'location-link'], label);
+    link.href = '#';
+    link.title = `${label}: click to travel there`;
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      travelTo(setup.location);
+    });
+    meta.append(link);
+  } else {
+    makeElement('span', 'location', label, meta).title = label;
+  }
+
+  return meta;
+};
+
+/**
+ * Add the bait, base, weapon, and charm images for a setup.
+ *
+ * @param {FavoriteSetup} setup    The setup.
+ * @param {Element}       appendTo The element to add them to.
+ */
+const addSetupImages = async (setup, appendTo) => {
+  for (const type of ['bait', 'base', 'weapon', 'trinket']) {
+    await addImage(type, setup[`${type}_id`], appendTo);
+  }
+};
+
+/**
+ * Make the row for the current setup, with a button to save it.
+ *
+ * @param {Array} environments The locations.
+ *
+ * @return {Promise<HTMLElement>} The row.
+ */
+const makeCurrentSetupRow = async (environments) => {
+  const setup = getCurrentSetup();
+  const row = makeElement('div', ['row', 'current-setup']);
+  row.setAttribute('data-setup-id', 'current');
+
+  const info = makeElement('div', 'info');
+  makeElement('div', 'name', 'Current setup', info);
+  const meta = makeSetupMeta(setup, environments, false);
+  info.append(meta);
+  row.append(info);
+
+  const items = makeElement('div', 'items');
+  await addSetupImages(setup, items);
+  row.append(items);
 
   let hasHighlighted = false;
-  const buttonWrapper = makeElement('div', ['button-wrapper']);
-  if (isCurrent) {
-    buttonWrapper.append(
-      makeMhButton({
-        text: 'Save',
-        className: ['action', 'save', 'lightBlue'],
-        /**
-         * Save the current setup as a favorite setup.
-         */
-        callback: async () => {
-          // Save the current setup, using the current location as the name.
-          let currentSetup = getCurrentSetup();
-
-          // if the setup already exists, then just alert the user.
-          const setups = await getFavoriteSetups();
-
-          if (setups.length) {
-            // check if the setup has a matching bait, base, weapon, and trinket.
-            const existingSetup = setups.find((s) => {
-              return (
-                s?.bait_id === currentSetup.bait_id &&
-                s?.base_id === currentSetup.base_id &&
-                s?.weapon_id === currentSetup.weapon_id &&
-                s?.trinket_id === currentSetup.trinket_id &&
-                s?.location === currentSetup.location
-              );
-            });
-
-            if (existingSetup && !hasHighlighted) {
-              // flash both the shortcut and main list rows
-              const rows = document.querySelectorAll(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${existingSetup.id}"]`);
-              rows.forEach((row) => {
-                row.classList.add('flash');
-                setTimeout(() => row.classList.remove('flash'), 1000);
-              });
-
-              hasHighlighted = true;
-              // allow clicking save a second time to bypass the highlight for 2 seconds.
-              setTimeout(() => {
-                hasHighlighted = false;
-              }, 2000);
-
-              return;
-            }
-          }
-
-          // Generate a random name for the setup.
-          currentSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
-
-          currentSetup = await saveFavoriteSetup(currentSetup, true);
-
-          // append the new setup to the list.
-          const setupRow = await makeBlueprintRow(currentSetup);
-
-          // If there are mobile rows, then insert the new row before the first.
-          const mobileRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content .row.mobile-setup');
-          if (mobileRow) {
-            mobileRow.before(setupRow);
-          } else {
-            const content = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
-            content.append(setupRow);
-          }
-
-          updateFavoriteSetupName();
-        },
-      })
-    );
-  } else {
-    const armButton = makeMhButton({
-      text: 'Arm',
-      className: ['action', 'arm'],
+  meta.prepend(
+    makeMhButton({
+      text: 'Save',
+      size: 'small',
+      className: ['action', 'save', 'lightBlue'],
+      title: 'Save the current setup',
       /**
-       * Arm the setup.
+       * Save the current setup, or point out the saved one if it's already saved.
        */
       callback: async () => {
-        armButton.classList.add('loading');
-
-        // Arm the setup.
-        const setupId = setupContainer.getAttribute('data-setup-id');
-        debuglog('favorite-setups', `Arming setup ${setupId}`);
-
-        // get the setup.
+        const current = getCurrentSetup();
         const setups = await getFavoriteSetups();
-        if (!setups.length) {
-          return;
-        }
 
-        if (!setupId) {
-          return;
-        }
+        const existing = setups.find((s) => {
+          return (
+            s?.bait_id === current.bait_id &&
+            s?.base_id === current.base_id &&
+            s?.weapon_id === current.weapon_id &&
+            s?.trinket_id === current.trinket_id &&
+            s?.location === current.location
+          );
+        });
 
-        const index = setups.findIndex((s) => s?.id && s.id === setupId);
-
-        const thisSetup = setups[index];
-        if (!thisSetup) {
-          return;
-        }
-
-        if (!(await armSetup(thisSetup))) {
-          await highlightMissingItems([setupContainer]);
-
-          setupContainer.classList.add('flash-error');
-          setTimeout(() => setupContainer.classList.remove('flash-error'), 1000);
-
-          armButton.classList.remove('loading');
+        // Clicking again within a couple of seconds saves it anyway.
+        if (existing && !hasHighlighted) {
+          flashRow(existing.id);
+          hasHighlighted = true;
+          setTimeout(() => {
+            hasHighlighted = false;
+          }, 2000);
 
           return;
         }
 
-        const currentSetupRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="current"]');
-        if (currentSetupRow) {
-          const newRow = await makeBlueprintRow(getCurrentSetup(), true);
-          if (newRow) {
-            currentSetupRow.replaceWith(newRow);
-          }
-        }
+        current.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
+        await saveFavoriteSetup(current, true);
 
-        armButton.classList.remove('loading');
-
+        await renderSetupList();
+        flashRow(current.id);
         updateFavoriteSetupName();
       },
+    })
+  );
+
+  return row;
+};
+
+/**
+ * Make the row for a saved setup.
+ *
+ * @param {FavoriteSetup} setup        The setup.
+ * @param {Array}         environments The locations.
+ *
+ * @return {Promise<HTMLElement>} The row.
+ */
+const makeSetupRow = async (setup, environments) => {
+  const row = makeElement('div', ['row', 'setup']);
+  row.setAttribute('data-setup-id', setup.id);
+
+  const isArmed = isArmedSetup(setup);
+  row.classList.toggle('armed', isArmed);
+  if (setup.is_mobile) {
+    row.classList.add('mobile-setup');
+  } else {
+    row.classList.add('draggable');
+    const handle = makeElement('div', 'drag-handle', '⋮⋮');
+    handle.title = 'Drag to reorder';
+    row.append(handle);
+  }
+
+  const info = makeElement('div', 'info');
+  const name = makeElement('div', 'name', setup.name || 'Unnamed setup', info);
+  name.title = setup.name || '';
+  const meta = makeSetupMeta(setup, environments);
+  info.append(meta);
+  row.append(info);
+
+  const items = makeElement('div', 'items');
+  await addSetupImages(setup, items);
+  row.append(items);
+
+  const actions = makeElement('span', 'actions');
+  const armButton = makeMhButton({
+    text: isArmed ? 'Armed' : 'Arm',
+    className: isArmed ? ['action', 'arm', 'selected'] : ['action', 'arm'],
+    /**
+     * Arm the setup.
+     */
+    callback: async () => {
+      if (isArmed || armButton.classList.contains('busy')) {
+        return;
+      }
+
+      debuglog('favorite-setups', `Arming setup ${setup.id}`);
+      armButton.classList.add('busy');
+      const armed = await armSetup(setup);
+      armButton.classList.remove('busy');
+
+      if (!armed) {
+        await highlightMissingItems([row]);
+        flashRow(setup.id, 'flash-error');
+        return;
+      }
+
+      updateFavoriteSetupName();
+      await renderSetupList();
+    },
+  });
+  actions.append(armButton);
+
+  // Mobile favorites are managed in the app.
+  if (!setup.is_mobile) {
+    const edit = makeElement('button', 'edit-button');
+    edit.type = 'button';
+    edit.title = 'Edit setup';
+    edit.setAttribute('aria-label', `Edit ${setup.name || 'setup'}`);
+    edit.addEventListener('click', () => {
+      editState.id = setup.id;
+      editState.draft = { ...setup };
+      renderSetupList();
+    });
+    actions.append(edit);
+  }
+
+  meta.prepend(actions);
+
+  return row;
+};
+
+/**
+ * Stop editing without saving.
+ */
+const cancelEditing = () => {
+  editState.id = null;
+  editState.draft = null;
+  renderSetupList();
+};
+
+/**
+ * Save the setup being edited.
+ */
+const saveEditing = async () => {
+  const draft = editState.draft;
+  if (!draft) {
+    return;
+  }
+
+  draft.name = draft.name?.trim() || 'Unnamed setup';
+  debuglog('favorite-setups', `Saving setup ${draft.id}`);
+
+  const setups = removeMobileSetups(await getFavoriteSetups(false));
+  const index = setups.findIndex((s) => s?.id === draft.id);
+
+  // Add it back if it was deleted from another tab while it was being edited.
+  if (-1 === index) {
+    setups.push(draft);
+  } else {
+    setups[index] = draft;
+  }
+
+  saveSetting('favorite-setups.setups', setups);
+
+  editState.id = null;
+  editState.draft = null;
+
+  updateFavoriteSetupName();
+  await renderSetupList();
+  flashRow(draft.id);
+};
+
+/**
+ * Get the IDs of the reorderable setups in the list, in order.
+ *
+ * @return {string[]} The setup IDs.
+ */
+const getListedSetupIds = () => {
+  return [...(getListContainer()?.querySelectorAll('.row-wrapper .row[data-setup-id]:not(.mobile-setup)') || [])].map((row) => row.getAttribute('data-setup-id'));
+};
+
+/**
+ * Move the setup being edited past its neighbor in the list. In a filtered list, the neighbor is
+ * the next setup that's shown, and the two swap places.
+ *
+ * @param {number} direction -1 to move up, 1 to move down.
+ */
+const moveEditing = async (direction) => {
+  const draft = editState.draft;
+  if (!draft) {
+    return;
+  }
+
+  const listed = getListedSetupIds();
+  const neighborId = listed[listed.indexOf(draft.id) + direction];
+  if (!neighborId) {
+    return;
+  }
+
+  const setups = removeMobileSetups(await getFavoriteSetups(false));
+  const index = setups.findIndex((s) => s?.id === draft.id);
+  const neighborIndex = setups.findIndex((s) => s?.id === neighborId);
+  if (-1 === index || -1 === neighborIndex) {
+    return;
+  }
+
+  [setups[index], setups[neighborIndex]] = [setups[neighborIndex], setups[index]];
+  saveSetting('favorite-setups.setups', setups);
+
+  await renderSetupList();
+};
+
+/**
+ * Delete the setup being edited.
+ */
+const deleteEditing = async () => {
+  const draft = editState.draft;
+  if (!draft) {
+    return;
+  }
+
+  const confirmed = confirm(`Delete ${draft.name || 'this setup'}?`); // eslint-disable-line no-alert
+  if (!confirmed) {
+    return;
+  }
+
+  debuglog('favorite-setups', `Deleting setup ${draft.id}`);
+
+  const setups = removeMobileSetups(await getFavoriteSetups(false));
+  saveSetting(
+    'favorite-setups.setups',
+    setups.filter((s) => s?.id !== draft.id)
+  );
+
+  editState.id = null;
+  editState.draft = null;
+
+  updateFavoriteSetupName();
+  await renderSetupList();
+};
+
+let allItems;
+
+/**
+ * Get an item's name, from the trap components or, for items that aren't owned anymore, the
+ * item data.
+ *
+ * @param {string} itemId The item ID.
+ *
+ * @return {Promise<string>} The item name, or an empty string.
+ */
+const getItemName = async (itemId) => {
+  const components = await getTrapComponents();
+  const component = components.find((item) => String(item.item_id) === String(itemId));
+  if (component?.name) {
+    return component.name;
+  }
+
+  if (!allItems) {
+    allItems = (await getData('items')) || [];
+  }
+
+  return allItems.find((item) => String(item.id) === String(itemId))?.name || '';
+};
+
+/**
+ * Weapon power types, by item ID, for the weapons in the item pickers.
+ */
+const powerTypes = new Map();
+
+/**
+ * Get the item picker options for a type of item: the ones the user has, plus the setup's current
+ * item if they don't have it anymore. Bait and charms can be left empty.
+ *
+ * @param {string} type      The type of item.
+ * @param {string} currentId The setup's item ID.
+ *
+ * @return {Promise<Array>} The options.
+ */
+const getItemOptions = async (type, currentId) => {
+  const components = await getTrapComponents();
+
+  const options = components
+    .filter((item) => item.classification === type)
+    .map((item) => {
+      if (item.power_type_image_name) {
+        powerTypes.set(String(item.item_id), item.power_type_image_name);
+      }
+
+      const quantity = optionalItemTypes.includes(type) ? Number.parseInt(item.quantity, 10) : Number.NaN;
+
+      return {
+        name: item.name,
+        value: String(item.item_id),
+        type: item.type,
+        image: item.thumbnail,
+        classification: type,
+        note: Number.isNaN(quantity) ? '' : quantity.toLocaleString(),
+      };
     });
 
-    buttonWrapper.append(armButton);
+  if (currentId && !options.some((option) => option.value === String(currentId))) {
+    if (!itemThumbs) {
+      itemThumbs = await getData('item-thumbnails');
+    }
 
-    let editClickables = [];
-    buttonWrapper.append(
-      makeMhButton({
-        text: 'Edit',
-        className: ['action', 'edit-setup'],
-        /**
-         * Edit the setup.
-         */
-        callback: () => {
-          const setupId = setupContainer.getAttribute('data-setup-id');
-          debuglog('favorite-setups', `Editing setup ${setupId}`);
-
-          setupContainer.classList.add('editing');
-
-          // Update the setup title to be an input.
-          const title = setupContainer.querySelector('.label');
-
-          const randomTitleButton = makeElement('a', 'random-title');
-          randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
-
-          randomTitleButton.addEventListener('click', async (e) => {
-            e.preventDefault();
-
-            e.target.classList.add('loading');
-
-            const setupNameData = await getGeneratedName(setup);
-
-            if (setupNameData.name) {
-              title.querySelector('input').value = setupNameData.name;
-            }
-
-            e.target.classList.remove('loading');
-          });
-
-          const titleInput = makeElement('input', 'setup-title-input');
-          titleInput.setAttribute('type', 'text');
-          titleInput.setAttribute('name', 'setup-title');
-          titleInput.value = title.textContent;
-          title.textContent = '';
-          title.append(titleInput);
-          title.prepend(randomTitleButton);
-
-          const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
-          powerTypeInput.setAttribute('type', 'hidden');
-          powerTypeInput.setAttribute('name', 'power-type');
-          powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
-          title.append(powerTypeInput);
-
-          // Update the setup images to be clickable.
-          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-          images.forEach((image) => {
-            image.classList.add('clickable');
-            const eventListenerClickable = image.addEventListener('click', async () => {
-              image.classList.add('loading');
-
-              // Handle image click
-              const itemType = image.getAttribute('data-item-type');
-              const itemId = image.getAttribute('data-item-id');
-              const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-              await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
-                if (itemType !== newItemType) {
-                  return;
-                }
-
-                // eslint-disable-next-line eqeqeq
-                if (itemId == newItemId) {
-                  return;
-                }
-
-                image.setAttribute('data-new-item-id', newItemId);
-                image.setAttribute('data-new-item-image', newItemImageUrl);
-                image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
-
-                if (newItemPowerType && 'undefined' !== newItemPowerType) {
-                  const ptInput = setupContainer.querySelector('.power-type-input');
-                  ptInput.setAttribute('data-power-type', newItemPowerType);
-                }
-
-                imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
-              });
-
-              image.classList.remove('loading');
-            });
-
-            editClickables.push({ image, event: eventListenerClickable });
-          });
-        },
-      })
-    );
-
-    /**
-     * Stop editing the setup.
-     */
-    const stopEditing = () => {
-      // Remove the event listeners from the images.
-      editClickables.forEach(({ image, event }) => {
-        image.removeEventListener('click', event);
-        image.classList.remove('clickable');
-      });
-
-      editClickables = [];
-    };
-
-    buttonWrapper.append(
-      makeMhButton({
-        text: 'Save',
-        className: ['action', 'save-setup'],
-        /**
-         * Save the edited setup.
-         */
-        callback: async () => {
-          const setupId = setupContainer.getAttribute('data-setup-id');
-          debuglog('favorite-setups', `Saving setup ${setupId}`);
-
-          setupContainer.classList.remove('editing');
-          // When save is clicked, save the changes.
-
-          const newSetup = setup;
-
-          const title = setupContainer.querySelector('.label');
-          const titleInput = title.querySelector('input');
-          setup.name = titleInput.value;
-
-          const powerTypeInput = setupContainer.querySelector('.power-type-input');
-          if (powerTypeInput) {
-            const lastPowerType = setup.power_type;
-            const newPowerType = powerTypeInput.getAttribute('data-the-power-type');
-
-            if (newPowerType && lastPowerType !== newPowerType) {
-              setup.power_type = newPowerType;
-
-              const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
-              if (powerTypeImage) {
-                const lastPowerTypeClass = lastPowerType ? getPowerTypeId(lastPowerType) : 'hidden';
-                const newPowerTypeClass = newPowerType ? getPowerTypeId(newPowerType) : 'hidden';
-
-                powerTypeImage.classList.remove(lastPowerTypeClass);
-                powerTypeImage.classList.add(newPowerTypeClass);
-                powerTypeImage.classList.remove('hidden');
-              }
-            }
-          }
-
-          // if there are any items with a new-item-id, then update the setup.
-          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-          images.forEach((image) => {
-            const newItemId = image.getAttribute('data-new-item-id');
-            if (!newItemId) {
-              return;
-            }
-
-            const itemType = image.getAttribute('data-item-type');
-
-            // update the setup.
-            newSetup[`${itemType}_id`] = newItemId;
-            image.setAttribute('data-item-id', newItemId);
-
-            // remove the new-item-id attribute.
-            image.removeAttribute('data-new-item-id');
-            image.removeAttribute('data-new-item-image');
-            image.removeAttribute('data-old-image-url');
-          });
-
-          // Update the setup title to be a div.
-          title.textContent = newSetup.name;
-          titleInput.remove();
-
-          let setups = await getFavoriteSetups();
-          if (!setups.length) {
-            setups = [];
-          }
-
-          const index = setups.findIndex((s) => s?.id && s.id === setupId);
-
-          // replace the setup in the list, or add it back if it was removed from another tab.
-          if (-1 === index) {
-            setups.push(newSetup);
-          } else {
-            setups[index] = newSetup;
-          }
-          saveSetting('favorite-setups.setups', removeMobileSetups(setups));
-
-          if (setupId.startsWith('mobile-')) {
-            const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
-            await setMobileFavourite(mobileIndex, newSetup);
-          }
-
-          updateFavoriteSetupName();
-
-          await highlightMissingItems([setupContainer]);
-
-          stopEditing();
-        },
-      })
-    );
-
-    buttonWrapper.append(
-      makeMhButton({
-        text: 'Cancel',
-        className: ['action', 'cancel-setup'],
-        /**
-         * Cancel editing the setup.
-         */
-        callback: () => {
-          setupContainer.classList.remove('editing');
-          // When cancel is clicked, revert the changes.
-
-          // title.
-          const titleInput = setupContainer.querySelector('.label input');
-          const title = setupContainer.querySelector('.label');
-          title.textContent = setup.name;
-          titleInput.remove();
-
-          // check for any new-item-id attributes.
-          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-          images.forEach((image) => {
-            const newItemId = image.getAttribute('data-new-item-id');
-            if (!newItemId) {
-              return;
-            }
-
-            // reset the image background.
-            const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-            imageDisplay.style.backgroundImage = image.getAttribute('data-old-image-url');
-
-            // remove the new-item-id attribute.
-            image.removeAttribute('data-new-item-id');
-            image.removeAttribute('data-new-item-image');
-            image.removeAttribute('data-old-image-url');
-          });
-
-          stopEditing();
-        },
-      })
-    );
-
-    buttonWrapper.append(
-      makeMhButton({
-        text: 'Delete',
-        className: ['action', 'delete', 'danger'],
-        /**
-         * Delete the setup.
-         */
-        callback: async () => {
-          const setupId = setupContainer.getAttribute('data-setup-id');
-          debuglog('favorite-setups', `Deleting setup ${setupId}`);
-
-          // show a confirmation dialog.
-          const confirmed = confirm('Are you sure you want to delete this setup?'); // eslint-disable-line no-alert
-          if (!confirmed) {
-            return;
-          }
-
-          // remove the setup from the list.
-          let setups = await getFavoriteSetups();
-          if (!setups.length) {
-            setups = [];
-          }
-
-          if (setupId.startsWith('mobile-')) {
-            const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
-            await deleteMobileFavourite(mobileIndex);
-
-            const newContainer = await makeBlueprintRow({
-              id: `mobile-${mobileIndex}`,
-              is_mobile: true,
-            });
-            setupContainer.replaceWith(newContainer);
-          } else {
-            // If it's already gone (deleted from another tab), only remove the rows. Splicing -1
-            // would delete the last setup instead.
-            const index = setups.findIndex((s) => s?.id && s.id === setupId);
-            if (-1 !== index) {
-              setups.splice(index, 1);
-              saveSetting('favorite-setups.setups', removeMobileSetups(setups));
-            }
-
-            // Remove all instances of this setup (both shortcut and main list)
-            const allInstances = document.querySelectorAll(`.row[data-setup-id="${setupId}"]`);
-            allInstances.forEach((instance) => {
-              instance.remove();
-            });
-          }
-        },
-      })
-    );
+    options.unshift({
+      name: (await getItemName(currentId)) || 'Unknown item',
+      value: String(currentId),
+      image: itemThumbs?.find((thumb) => thumb.id == currentId)?.thumb, // eslint-disable-line eqeqeq
+      disabled: true,
+    });
   }
 
-  controls.append(buttonWrapper);
-  setupContainer.append(controls);
+  const grouped = await groupItemOptions(options);
 
-  const powerTypeId = getPowerTypeId(setup?.power_type);
-  const powertype = makeElement('div', ['campPage-trap-itemBrowser-item-powerType', powerTypeId]);
-  if (!powerTypeId) {
-    powertype.classList.add('hidden');
+  return optionalItemTypes.includes(type) ? [{ name: 'None', value: 'none' }, ...grouped] : grouped;
+};
+
+/**
+ * Make the editor for the setup being edited.
+ *
+ * @param {Array} environments The locations.
+ *
+ * @return {Promise<HTMLElement>} The editor row.
+ */
+const makeEditorRow = async (environments) => {
+  const draft = editState.draft;
+  const row = makeElement('div', ['row', 'editing']);
+  row.setAttribute('data-setup-id', draft.id);
+
+  const nameField = makeElement('div', 'editor-name');
+  const nameInput = makeElement('input', 'setup-title-input');
+  nameInput.type = 'text';
+  nameInput.value = draft.name || '';
+  nameInput.placeholder = 'Setup name';
+  nameInput.maxLength = 60;
+  nameInput.setAttribute('aria-label', 'Setup name');
+  nameInput.addEventListener('input', () => {
+    draft.name = nameInput.value;
+  });
+  nameInput.addEventListener('keydown', (event) => {
+    if ('Enter' === event.key) {
+      event.preventDefault();
+      saveEditing();
+    } else if ('Escape' === event.key) {
+      event.preventDefault();
+      cancelEditing();
+    }
+  });
+  nameField.append(nameInput);
+
+  if (getSetting('favorite-setups.use-generated-names', true)) {
+    const randomTitleButton = makeElement('a', 'random-title');
+    randomTitleButton.href = '#';
+    randomTitleButton.title = 'Generate a name';
+    randomTitleButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+      randomTitleButton.classList.add('loading');
+      const generated = await getGeneratedName(draft);
+      randomTitleButton.classList.remove('loading');
+
+      if (generated?.name) {
+        nameInput.value = generated.name.slice(0, nameInput.maxLength);
+        draft.name = nameInput.value;
+      }
+    });
+    nameField.append(randomTitleButton);
   }
 
-  setupContainer.append(powertype);
+  row.append(nameField);
 
-  await addImage('bait', setup.bait_id, setupContainer);
-  await addImage('base', setup.base_id, setupContainer);
-  await addImage('weapon', setup.weapon_id, setupContainer);
-  await addImage('trinket', setup.trinket_id, setupContainer);
+  const locationField = makeElement('label', 'editor-field');
+  makeElement('span', 'editor-label', 'Location', locationField);
+  const select = makeLocationSelect(draft, environments);
+  select.addEventListener('change', () => {
+    const [kind, id] = select.value.split(':');
+    draft.location = 'location' === kind ? id : '';
+    draft.region = 'region' === kind ? id : '';
+  });
+  locationField.append(select);
+  row.append(locationField);
 
-  if (setup?.is_mobile) {
-    setupContainer.classList.add('mobile-setup');
+  const items = makeElement('div', 'editor-items');
+  const labels = { weapon: 'Weapon', base: 'Base', bait: 'Bait', trinket: 'Charm' };
+  for (const [type, label] of Object.entries(labels)) {
+    const field = makeElement('div', ['editor-field', 'editor-item']);
+    makeElement('span', 'editor-label', label, field);
+
+    const picker = makeItemPicker({
+      options: await getItemOptions(type, draft[`${type}_id`]),
+      value: draft[`${type}_id`] || 'none',
+      placeholder: `Search ${label.toLowerCase()}s…`,
+      onChange: (value) => {
+        draft[`${type}_id`] = 'none' === value ? '' : value;
+        if ('weapon' === type) {
+          draft.power_type = powerTypes.get(value) || draft.power_type;
+        }
+      },
+    });
+    field.append(picker);
+
+    items.append(field);
   }
 
-  return setupContainer;
+  row.append(items);
+
+  const actions = makeElement('div', 'editor-actions');
+  const move = makeElement('div', 'editor-move');
+  for (const [className, title, direction] of [
+    ['move-up', 'Move up', -1],
+    ['move-down', 'Move down', 1],
+  ]) {
+    const button = makeMhButton({ text: '', className: ['action', className], title, callback: () => moveEditing(direction) });
+    button.setAttribute('aria-label', title);
+    move.append(button);
+  }
+
+  actions.append(
+    makeMhButton({ text: 'Delete', className: ['action', 'delete', 'danger'], callback: deleteEditing }),
+    move,
+    makeMhButton({ text: 'Cancel', className: ['action', 'cancel-setup'], callback: cancelEditing }),
+    makeMhButton({ text: 'Save', className: ['action', 'save-setup', 'lightBlue'], callback: saveEditing })
+  );
+  row.append(actions);
+
+  return row;
+};
+
+/**
+ * Fill the favorite setups list, keeping its scroll position.
+ */
+const renderSetupList = async () => {
+  const container = getListContainer();
+  if (!container) {
+    return;
+  }
+
+  const allEnvironments = await getEnvironments();
+  const location = getCurrentLocation();
+  const region = getRegionForLocation(location, allEnvironments);
+  const showAll = getSetting('favorite-setups.show-all-locations', false);
+  const locationName = allEnvironments.find((environment) => environment.id === location)?.name || getCurrentLocationName();
+
+  const hereButton = container.querySelector('.view-toggle .here');
+  hereButton.textContent = locationName;
+  hereButton.title = `Setups for ${locationName}`;
+  hereButton.classList.toggle('active', !showAll);
+  hereButton.setAttribute('aria-pressed', String(!showAll));
+  const allButton = container.querySelector('.view-toggle .all');
+  allButton.classList.toggle('active', showAll);
+  allButton.setAttribute('aria-pressed', String(showAll));
+
+  const setups = (await getFavoriteSetups()).filter((setup) => setup?.id && (!setup.is_mobile || setup.weapon_id || setup.base_id));
+
+  // Mobile favorites don't have a location, so they're only in the full list. The setup being
+  // edited stays on screen even if its location was changed.
+  const shown = showAll ? setups : setups.filter((setup) => setup.id === editState.id || (!setup.is_mobile && isSetupForLocation(setup, location, region)));
+
+  const children = [await makeCurrentSetupRow(allEnvironments)];
+  const wrapper = makeElement('div', 'row-wrapper');
+
+  for (const setup of shown) {
+    if (setup.id === editState.id) {
+      wrapper.append(await makeEditorRow(allEnvironments));
+      continue;
+    }
+
+    const row = await makeSetupRow(setup, allEnvironments);
+
+    // In the full list, tint the setups for where the hunter is.
+    row.classList.toggle('here', showAll && !setup.is_mobile && isSetupForLocation(setup, location, region));
+    wrapper.append(row);
+  }
+
+  if (!shown.length) {
+    makeElement('div', 'empty', showAll ? 'No setups saved yet' : `No setups for ${locationName} yet`, wrapper);
+  }
+
+  children.push(wrapper);
+
+  const body = container.querySelector('.content');
+  const scrollTop = body.scrollTop;
+  body.replaceChildren(...children);
+  body.scrollTop = scrollTop;
+
+  makeSortable(wrapper);
+
+  const editor = wrapper.querySelector('.row.editing');
+  if (editor) {
+    const listed = getListedSetupIds();
+    const position = listed.indexOf(editState.id);
+    editor.querySelector('.move-up')?.classList.toggle('disabled', position <= 0);
+    editor.querySelector('.move-down')?.classList.toggle('disabled', -1 === position || position >= listed.length - 1);
+
+    scrollRowIntoList(editor);
+    const input = editor.querySelector('.setup-title-input');
+    if (input && !document.querySelector('#overlayPopup.mh-improved-favorite-setups-component-picker:not(.hidden)')) {
+      input.focus({ preventScroll: true });
+    }
+  }
+
+  highlightMissingItems(wrapper.querySelectorAll('.row.setup'));
 };
 
 /**
@@ -1428,83 +1502,39 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
  * @return {Promise<HTMLElement>} The favorite setups container.
  */
 const makeBlueprintContainer = async () => {
-  const existing = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-  if (existing) {
-    existing.remove();
-  }
+  getListContainer()?.remove();
+
+  editState.id = null;
+  editState.draft = null;
 
   const container = makeElement('div', 'mh-improved-favorite-setups-blueprint-container');
 
-  const header = makeElement('div', ['header']);
-  makeElement('b', ['title'], 'Favorite Setups', header);
+  const header = makeElement('div', 'header');
+  makeElement('b', 'title', 'Favorite Setups', header);
 
-  container.append(header);
-
-  const body = makeElement('div', ['content']);
-
-  const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
-  body.append(currentSetupRow);
-
-  const setups = await getFavoriteSetups();
-  if (setups.length) {
-    // Find location favorites and display them as shortcuts at the top
-    let locationFavorites = [];
-
-    if (!getFlag('favorite-setups-no-location-favorites')) {
-      // Get the current location from the user data
-      locationFavorites = setups.filter((setup) => setup && setup.id && setup.location && setup.location === getCurrentLocation());
-
-      if (getFlag('favorite-setups-limit-location-favorites')) {
-        locationFavorites = locationFavorites.slice(0, 3);
-      }
-    }
-
-    if (locationFavorites.length) {
-      const locationWrapper = makeElement('div', ['location-favorites']);
-
-      for (const setup of locationFavorites) {
-        const setupContainer = await makeBlueprintRow({
-          id: `location-favorite-${setup.id}`,
-          ...setup,
-          isLocationFavorite: true,
-        });
-        setupContainer.classList.add('location-favorite');
-        locationWrapper.append(setupContainer);
-      }
-
-      body.append(locationWrapper);
-    }
-
-    const rowWrapper = makeElement('div', ['row-wrapper']);
-
-    // Display ALL setups (including location favorites and mobile) in their saved order
-    for (const setup of setups) {
-      if (!setup || !setup.id) {
-        continue;
-      }
-
-      const setupContainer = await makeBlueprintRow(setup);
-
-      if (setup.id.startsWith('mobile-')) {
-        setupContainer.classList.add('mobile-setup');
-      }
-
-      rowWrapper.append(setupContainer);
-    }
-
-    body.append(rowWrapper);
+  const toggle = makeElement('div', 'view-toggle');
+  toggle.setAttribute('role', 'group');
+  toggle.setAttribute('aria-label', 'Show setups for');
+  for (const [className, label, showAll] of [
+    ['here', getCurrentLocationName(), false],
+    ['all', 'All', true],
+  ]) {
+    const button = makeElement('button', className, label);
+    button.type = 'button';
+    button.addEventListener('click', () => {
+      saveSetting('favorite-setups.show-all-locations', showAll);
+      renderSetupList();
+    });
+    toggle.append(button);
   }
 
-  container.append(body);
+  header.append(toggle);
+  container.append(header);
+  container.append(makeElement('div', 'content'));
 
-  // Initialize drag and drop functionality
-  makeSortable(body);
-
-  // Flag any items that we don't have anymore. Items can be gained in ways we don't watch for
-  // (crafting from a HUD, buying, etc.), so always start with a fresh list. This isn't awaited so
-  // that the container can be shown right away, since it needs to make a request for the components.
+  // Items can be gained in ways we don't watch for (crafting from a HUD, buying, etc.), so always
+  // start with a fresh list for flagging missing items.
   clearTrapComponents();
-  highlightMissingItemsInContainer(body);
 
   return container;
 };
@@ -1543,55 +1573,6 @@ const updateFavoriteSetupName = async () => {
   if (label) {
     label.innerHTML = (await getNameOfCurrentSetup()) || '';
   }
-};
-
-/**
- * Send a setup to the mobile app.
- * @param {number}        slot  The slot to send the setup to.
- * @param {FavoriteSetup} setup The setup to send.
- * @return {Promise<Object>} The response from the server.
- */
-const setMobileFavourite = async (slot, setup) => {
-  const response = await postMobileTrapAction('set', {
-    slot,
-    weapon_id: setup.weapon_id ?? '',
-    base_id: setup.base_id ?? '',
-    trinket_id: setup.trinket_id ?? '',
-    skin_id: '',
-    bait_id: setup.bait_id ?? '',
-    name: setup.name.slice(0, 20) ?? '',
-    is_current_favourite: false,
-  });
-
-  return response;
-};
-
-/**
- * Delete a mobile favourite setup.
- * @param {*} slot The slot to delete.
- * @return {Promise<Object>} The response from the server.
- */
-const deleteMobileFavourite = async (slot) => {
-  const response = await postMobileTrapAction('delete', {
-    slot,
-  });
-
-  return response;
-};
-
-/**
- * Send a favorite setup action.
- * @param {string} action The action to send.
- * @param {Object} data   The data to send.
- * @return {Promise<Object>} The user data.
- */
-const postMobileTrapAction = async (action, data) => {
-  const response = await doRequest('api/action/trapfavourite', {
-    ...data,
-    action,
-  });
-
-  return response.user;
 };
 
 /**
@@ -1643,6 +1624,16 @@ const addFavoriteSetupsButton = async () => {
 const toggleFavoriteSetups = async () => {
   const content = await makeBlueprintContainer();
   toggleBlueprint('favorite-setups', content);
+  await renderSetupList();
+
+  const blueprint = document.querySelector('.trapSelectorView__blueprint.mh-improved-blueprint--active');
+  if (blueprint && getListContainer()) {
+    const reduceMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top: blueprint.getBoundingClientRect().top + window.scrollY - 10,
+      behavior: reduceMotion ? 'auto' : 'smooth',
+    });
+  }
 };
 
 const starIcon = `data:image/svg+xml,${encodeURIComponent(
@@ -1658,7 +1649,8 @@ const starIcon = `data:image/svg+xml,${encodeURIComponent(
 const getMenuSetups = async () => {
   const setups = (await getFavoriteSetups(false)).filter((setup) => setup?.id);
   const location = getCurrentLocation();
-  const here = setups.filter((setup) => setup.location && setup.location === location);
+  const region = getRegionForLocation(location, await getEnvironments());
+  const here = setups.filter((setup) => !setup.is_mobile && isSetupForLocation(setup, location, region));
 
   if (getSetting('favorite-setups.menu-location-only', false)) {
     return here;
@@ -1700,7 +1692,6 @@ const renderMenuDropdown = async (tab, content) => {
     row.href = '#';
     row.textContent = setup.name || 'Unnamed setup';
     row.classList.toggle('armed', isArmedSetup(setup));
-    row.classList.toggle('here', Boolean(setup.location) && setup.location === getCurrentLocation());
 
     row.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -1801,6 +1792,9 @@ const init = async () => {
   onRequest('users/changetrap.php', clearTrapComponents);
 
   addMenuDropdown();
+
+  // Location-only views and travel links depend on where the hunter is.
+  onTravel(null, { callback: renderSetupList });
 
   onEvent('mh-improved-toggle-favorite-setups', toggleFavoriteSetups);
 };

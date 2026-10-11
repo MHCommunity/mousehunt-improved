@@ -35,425 +35,8 @@
   background-color: #494949;
 }
 
-.mh-improved-favorite-setups-blueprint-container {
-  position: absolute;
-  inset: 0;
-  color: #4e300b;
-}
-
-.mh-improved-favorite-setups-blueprint-container .header {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #8e6642;
-  text-align: center;
-}
-
-.mh-improved-favorite-setups-blueprint-container .content {
-  position: absolute;
-  inset: 35px 5px 10px;
-  overflow-y: auto;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row {
-  display: grid;
-  grid-template-columns: 1fr 30px repeat(4, 45px);
-  align-items: center;
-  height: auto;
-  min-height: 50px;
-  padding: 3px;
-  margin-bottom: 7px;
-  background: #fff;
-  border: 1px solid #ceb7a6;
-  border-radius: 5px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .location-favorites {
-  padding: 10px 0;
-  margin: 10px 0;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.location-favorite {
-  position: relative;
-  background-color: #fdfacf;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.location-favorite:last-child {
-  margin-bottom: 0;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row .campPage-trap-itemBrowser-favorite-item-image {
-  width: 100%;
-  height: 45px;
-  border-radius: 0;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing {
-  grid-template-columns: 1fr repeat(4, 40px);
-  align-items: start;
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 50px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .button-wrapper {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  justify-content: center;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item {
-  width: 100%;
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls .label {
-  padding: 0;
-  font-size: 12px;
-  text-align: center;
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls .action {
-  padding: 4px 6px;
-  font-size: 11px;
-  font-weight: 400;
-  line-height: inherit;
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls .action.arm {
-  padding: 4px 10px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .edit {
-  position: absolute;
-  right: 10px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls .delete,
-.mh-improved-favorite-setups-blueprint-container .editing .controls .delete,
-.mh-improved-favorite-setups-blueprint-container .editing .controls .edit-setup,
-.mh-improved-favorite-setups-blueprint-container.editing .controls .edit-setup,
-.mh-improved-favorite-setups-blueprint-container .controls .save-setup,
-.mh-improved-favorite-setups-blueprint-container .controls .cancel-setup,
-.mh-improved-favorite-setups-blueprint-container.editing .controls .arm,
-.mh-improved-favorite-setups-blueprint-container .editing .controls .arm {
-  display: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .editing .controls .delete,
-.mh-improved-favorite-setups-blueprint-container .editing .controls .save-setup,
-.mh-improved-favorite-setups-blueprint-container .editing .controls .cancel-setup {
-  display: block;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.flash {
-  background-color: #b9ffb9;
-}
-
-.mh-dark .mh-improved-favorite-setups-blueprint-container .row.flash {
-  background-color: var(--d-green-dark);
-}
-
-.mh-improved-favorite-setups-blueprint-container .controls input {
-  width: 150px;
-  padding: 3px;
-}
-
-.row.editing .campPage-trap-itemBrowser-favorite-item::after {
-  position: absolute;
-  right: 5px;
-  bottom: -8px;
-  left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 0;
-  content: "edit";
-  background-color: rgb(238 238 238 / 93%);
-  border: 1px solid #585858;
-  border-radius: 5px;
-}
-
-.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item::after {
-  background-color: var(--d-button);
-  border-color: var(--d-border);
-}
-
-.row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: #ccc;
-}
-
-.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: var(--d-hover);
-}
-
-.mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-favorite-item:hover .campPage-trap-itemBrowser-favorite-item-image {
-  opacity: 0.8;
-}
-
-.mh-improved-favorite-setups-component-picker-popup-body-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 8px;
-}
-
-.mh-improved-favorite-setups-component-picker .prefix,
-.mh-improved-favorite-setups-component-picker .content {
-  background-color: #f6f3eb;
-}
-
-/* The item cards are panels, so the popup sits on the page surface to keep them distinct. */
-.mh-dark #overlayPopup.mh-improved-favorite-setups-component-picker .jsDialogContainer {
-  --d-popup-bg: var(--d-surface-page);
-  --d-input-bg: var(--d-bg);
-}
-
-/* Leave room for the popup frame and footer so the Continue button stays on screen. */
-.mh-improved-favorite-setups-component-picker .content .content {
-  max-height: calc(100vh - 160px);
-  overflow: auto;
-}
-
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item {
-  display: flex;
-  gap: 8px;
-  width: auto;
-  min-height: unset;
-  padding: 5px;
-  margin-bottom: 0;
-}
-
-/* Search hides items with .hidden, which the display: flex above would otherwise override. */
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item.hidden {
-  display: none;
-}
-
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-leftBar {
-  flex: 0 0 55px;
-  width: auto;
-}
-
-/* The game sizes this against the trap selector's full-width rows; inside the
-flex card its 100% height stretches the whole grid row. */
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-powerType {
-  width: auto;
-  height: auto;
-}
-
-.mh-improved-favorite-setups-component-picker-popup-search {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.mh-improved-favorite-setups-component-picker-popup-search input {
-  width: 350px;
-  padding: 10px;
-}
-
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-description {
-  margin-left: 0;
-}
-
-a.random-title::after {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  z-index: 1;
-  box-sizing: border-box;
-  display: block;
-  width: 18px;
-  height: 18px;
-  content: "";
-  background-color: #ccc;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 15px;
-  border-radius: 20%;
-}
-
-.mh-dark a.random-title::after {
-  background-color: var(--d-button);
-}
-
-a.random-title:hover::after {
-  background-color: #ddd;
-}
-
-.mh-dark a.random-title:hover::after {
-  background-color: var(--d-hover);
-}
-
-a.random-title.loading::after {
-  animation: mh-improved-glow 1s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  a.random-title.loading::after {
-    animation: none;
-  }
-}
-
-.mh-improved-favorite-setups-blueprint-container .editing .controls .label {
-  position: relative;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row .mh-improved-favorite-setups-power-type-wrapper .campPage-trap-itemBrowser-favorite-item-image {
-  width: 25px;
-  height: 25px;
-  opacity: 0.8;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .mh-improved-favorite-setups-item-details {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-top: 5px;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .mh-improved-favorite-setups-item-details .campPage-trap-itemBrowser-item-quantity {
-  flex: 0 0 auto;
-  float: none;
-  width: auto;
-  height: auto;
-  margin: 0;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .mh-improved-favorite-setups-item-details .campPage-trap-itemBrowser-item-powerType {
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  float: none;
-  min-width: 50px;
-  margin: 0;
-  font-size: 10px;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .mh-improved-favorite-setups-item-details .campPage-trap-itemBrowser-item-powerType::before {
-  width: 22px;
-  height: 22px;
-  margin: 0 auto 3px;
-  background-size: contain;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .mh-improved-favorite-setups-item-details .campPage-trap-itemBrowser-item-powerType::after {
-  display: block;
-  margin: 0;
-  text-align: center;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-statContainer {
-  display: flex;
-  flex: 1;
-  width: auto;
-  min-width: 0;
-  margin-top: 0;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-stat {
-  flex: 1 1 0;
-  float: none;
-  width: auto;
-  background-position: center bottom;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-stat .value {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-}
-
-.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-content {
-  flex: 1;
-  width: auto;
-  min-width: 0;
-}
-
-.mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-item-powerType {
-  display: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType.hidden {
-  visibility: hidden;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::before {
-  box-sizing: border-box;
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
-  border: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row:hover .controls .action.arm {
-  outline: 2px solid #eab35d;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing .campPage-trap-itemBrowser-favorite-item-image {
-  height: 40px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down::after,
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 18px;
-  height: 18px;
-  content: "";
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.4;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up::after {
-  position: absolute;
-  right: 13px;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down::after {
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down:hover::after,
-.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up:hover::after {
-  opacity: 1;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row:last-child .move-down {
-  display: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row:nth-child(2) .move-up {
-  display: none;
-}
-
 .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover {
   background-color: #fdfaf2;
-}
-
-.mh-dark-mode .pageFrameView .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::after {
-  color: #000;
 }
 
 .mh-dark-mode .mh-improved-favorite-setups-button-label {
@@ -464,137 +47,607 @@ a.random-title.loading::after {
   color: #ebebeb;
 }
 
-.mh-improved-favorite-setups-blueprint-container .editing .controls .action {
-  padding: 2px 6px;
-}
+.mh-improved-favorite-setups-blueprint-container {
+  --mh-fs-icon-pencil: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" /><path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" /></svg>'); /* stylelint-disable-line */
+  --mh-fs-icon-sparkle: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+  --mh-fs-icon-up: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+  --mh-fs-icon-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
 
-.mh-improved-favorite-setups-blueprint-container .location-favorite .controls .edit-setup {
-  display: none;
-}
-
-.campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after {
   position: absolute;
   inset: 0;
-  content: "";
-  background:
-    center / 15px no-repeat url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif),
-    center / contain repeat url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png);
-}
-
-.row .campPage-trap-itemBrowser-favorite-item {
-  pointer-events: none;
-}
-
-.row.editing .campPage-trap-itemBrowser-favorite-item.clickable {
-  pointer-events: auto;
-}
-
-.row.mobile-setup {
-  background-color: #d1ebed;
-}
-
-.mh-dark .row.mobile-setup {
-  background-color: var(--d-cyan-dark);
-}
-
-.row.mobile-setup .edit-setup {
-  display: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.draggable {
-  position: relative;
-  cursor: move;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::after {
-  font-size: 9px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.dragging {
-  opacity: 0.5;
-  transform: scale(0.95);
-}
-
-.mh-improved-favorite-setups-blueprint-container .drag-handle {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  padding: 5px;
-  font-size: 14px;
-  color: #666;
-  cursor: grab;
-  user-select: none;
-  transform: translateY(-50%);
-}
-
-.mh-dark .mh-improved-favorite-setups-blueprint-container .drag-handle {
-  color: var(--d-text-muted);
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.editing .drag-handle {
-  display: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .drag-handle:active {
-  cursor: grabbing;
-}
-
-.mh-improved-favorite-setups-blueprint-container .placeholder {
   display: flex;
+  flex-direction: column;
+  color: #4e300b;
+}
+
+.mh-improved-favorite-setups-blueprint-container .header {
+  display: flex;
+  gap: 8px;
   align-items: center;
-  justify-content: center;
-  height: 50px;
-  margin: 5px 0;
-  background:
-    linear-gradient(45deg, #f0f0f0 25%, transparent 25%) center,
-    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-  background-size: 10px 10px;
-  border: 2px dashed #ccc;
+  justify-content: space-between;
+  padding: 8px 10px 6px;
 }
 
-.mh-dark .mh-improved-favorite-setups-blueprint-container .placeholder {
-  background:
-    linear-gradient(45deg, var(--d-alt) 25%, transparent 25%) center,
-    linear-gradient(-45deg, var(--d-alt) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--d-alt) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--d-alt) 75%);
-  background-size: 10px 10px;
-  border-color: var(--d-action);
+.mh-improved-favorite-setups-blueprint-container .header .title {
+  font-size: 13px;
+  white-space: nowrap;
 }
 
-.mh-improved-favorite-setups-blueprint-container .placeholder-text {
-  font-style: italic;
-  color: #999;
+.mh-improved-favorite-setups-blueprint-container .view-toggle {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #c8b9a5;
+  border-radius: 4px;
 }
 
-.mh-improved-favorite-setups-blueprint-container .row.has-missing-items {
-  border-color: #c14b4b;
+.mh-improved-favorite-setups-blueprint-container .view-toggle button {
+  max-width: 130px;
+  padding: 3px 8px;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.3;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: none;
 }
 
-.mh-dark .mh-improved-favorite-setups-blueprint-container .row.has-missing-items {
-  border-color: var(--d-red-dark);
+.mh-improved-favorite-setups-blueprint-container .view-toggle button + button {
+  border-left: 1px solid #c8b9a5;
 }
 
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item.missing-item .campPage-trap-itemBrowser-favorite-item-image {
-  background-color: #ffdada;
-  filter: grayscale(90%);
-  border: 2px solid #c14b4b;
-  border-radius: 3px;
+.mh-improved-favorite-setups-blueprint-container .view-toggle button:hover {
+  background: #f6efe2;
 }
 
-.mh-dark .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item.missing-item .campPage-trap-itemBrowser-favorite-item-image {
-  background-color: var(--d-red-darker);
-  border-color: var(--d-red-dark);
+.mh-improved-favorite-setups-blueprint-container .view-toggle button.active {
+  font-weight: 700;
+  background: #ead9b9;
+}
+
+.mh-improved-favorite-setups-blueprint-container .content {
+  flex: 1;
+  min-height: 0;
+  padding: 0 6px 8px;
+  overflow-y: auto;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 6px 5px 12px;
+  background: #fff;
+  border: 1px solid #ceb7a6;
+  border-radius: 5px;
+  transition:
+    background-color 0.3s,
+    border-color 0.15s;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.current-setup {
+  padding-left: 8px;
+  margin-bottom: 8px;
+  background: #f1ebdd;
+  border-style: dashed;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.here {
+  background: #fdfacf;
+  border-color: #dcc68c;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.flash {
+  background-color: #b9ffb9;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.flash-error {
   background-color: #ffdada;
 }
 
+.mh-improved-favorite-setups-blueprint-container .info {
+  min-width: 0;
+}
+
+.mh-improved-favorite-setups-blueprint-container .name {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+}
+
+.mh-improved-favorite-setups-blueprint-container .meta {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #8e6642;
+}
+
+.mh-improved-favorite-setups-blueprint-container .power-type-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .meta .location {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-improved-favorite-setups-blueprint-container .meta > :not(.location) {
+  flex: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .location-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .location-link:hover {
+  color: #3b5998;
+  text-decoration: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .actions {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .actions .action.arm {
+  min-width: 30px;
+  text-align: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .items {
+  display: flex;
+  gap: 2px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item-frame {
+  display: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item.missing-item .campPage-trap-itemBrowser-favorite-item-image {
+  background-color: #ffdada;
+  filter: grayscale(90%);
+  outline: 2px solid #c14b4b;
+  outline-offset: -2px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.has-missing-items {
+  border-color: #c14b4b;
+}
+
+.mh-improved-favorite-setups-blueprint-container .edit-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: #8e6642;
+  cursor: pointer;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .edit-button::before {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: auto;
+  content: "";
+  background-color: currentcolor;
+  mask: var(--mh-fs-icon-pencil) center / contain no-repeat;
+}
+
+.mh-improved-favorite-setups-blueprint-container .edit-button:hover,
+.mh-improved-favorite-setups-blueprint-container .edit-button:focus-visible {
+  color: #4e300b;
+}
+
+.mh-improved-favorite-setups-blueprint-container .drag-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  font-size: 10px;
+  color: #b9a58a;
+  letter-spacing: -2px;
+  cursor: grab;
+  user-select: none;
+  opacity: 0;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row:hover .drag-handle {
+  opacity: 1;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.dragging {
+  opacity: 0.4;
+}
+
+.mh-improved-favorite-setups-blueprint-container .placeholder {
+  box-sizing: border-box;
+  border: 2px dashed #c8b9a5;
+  border-radius: 5px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .empty {
+  padding: 20px 10px;
+  font-style: italic;
+  color: #8e6642;
+  text-align: center;
+}
+
+/* Editor */
+.mh-improved-favorite-setups-blueprint-container .row.editing {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  padding: 8px;
+  background: #fbf8f1;
+  border-color: #c39a5a;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-name {
+  position: relative;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-name input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px 30px 5px 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mh-improved-favorite-setups-blueprint-container a.random-title {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  color: #4e300b;
+  background: #f6f3eb;
+  border: 1px solid #ceb7a6;
+  border-radius: 4px;
+  transform: translateY(-50%);
+}
+
+.mh-improved-favorite-setups-blueprint-container a.random-title::after {
+  position: absolute;
+  inset: 3px;
+  content: "";
+  background-color: currentcolor;
+  mask: var(--mh-fs-icon-sparkle) center / contain no-repeat;
+}
+
+.mh-improved-favorite-setups-blueprint-container a.random-title:hover {
+  background: #fff;
+  border-color: #c39a5a;
+}
+
+.mh-improved-favorite-setups-blueprint-container a.random-title.loading {
+  animation: mh-improved-glow 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-improved-favorite-setups-blueprint-container a.random-title.loading {
+    animation: none;
+  }
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-label {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-field select {
+  width: 100%;
+  padding: 4px;
+  font-size: 12px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items {
+  /* The picker's colors come from the settings page, so give it the editor's. */
+  --mhui-settings-text: inherit;
+  --mhui-settings-muted: #8e6642;
+  --mhui-settings-border: #ceb7a6;
+  --mhui-settings-card: #fffdf7;
+  --mhui-settings-select: #fff;
+  --mhui-settings-match: #fff6d5;
+  --mhui-settings-accent: #c39a5a;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 6px;
+}
+
+/*
+ * Lay the labels, fields, and lists out on one grid, so an open list fills the row under its pair
+ * of fields and the fields themselves don't move.
+ */
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item,
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item > .mhui-item-picker {
+  display: contents;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items .editor-label {
+  margin-bottom: 3px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(odd) :is(.editor-label, .mhui-item-picker-trigger) {
+  grid-column: 1;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(even) :is(.editor-label, .mhui-item-picker-trigger) {
+  grid-column: 2;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items .mhui-item-picker-popover {
+  grid-column: 1 / -1;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(-n + 2) .editor-label {
+  grid-row: 1;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(-n + 2) .mhui-item-picker-trigger {
+  grid-row: 2;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(-n + 2) .mhui-item-picker-popover {
+  grid-row: 3;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(n + 3) .editor-label {
+  grid-row: 4;
+  margin-top: 6px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(n + 3) .mhui-item-picker-trigger {
+  grid-row: 5;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-items > .editor-item:nth-child(n + 3) .mhui-item-picker-popover {
+  grid-row: 6;
+}
+
+.mh-improved-favorite-setups-blueprint-container .mhui-item-picker-trigger {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+  min-height: 28px;
+  padding: 2px 6px 2px 3px;
+  font-family: inherit;
+  font-size: 12px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #ceb7a6;
+  border-radius: 3px;
+}
+
+/* The list scrolls, so open the picker inline rather than as a popover it would clip. */
+.mh-improved-favorite-setups-blueprint-container .mhui-item-picker-popover {
+  position: static;
+  width: auto;
+  max-width: none;
+  margin-top: 3px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+}
+
+.mh-improved-favorite-setups-blueprint-container .mhui-item-picker-list {
+  max-height: 220px !important;
+}
+
+.mh-improved-favorite-setups-blueprint-container input.mhui-item-picker-search {
+  box-sizing: border-box;
+  width: 100%;
+  height: 26px;
+  padding: 0 8px;
+  margin: 0 0 6px;
+  font-size: 12px;
+  border: 1px solid #ceb7a6;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .editor-items {
+  --mhui-settings-muted: var(--d-text-muted);
+  --mhui-settings-border: var(--d-hover);
+  --mhui-settings-card: var(--d);
+  --mhui-settings-select: var(--d-surface-inset);
+  --mhui-settings-match: var(--d-yellow-darker);
+  --mhui-settings-accent: var(--d-interactive);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container :is(.mhui-item-picker-trigger, input.mhui-item-picker-search) {
+  color: var(--d-text);
+  background: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .mhui-item-picker-trigger:hover {
+  border-color: var(--d-interactive);
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-move {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  justify-content: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-move .action span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: currentcolor;
+  mask: var(--mh-fs-icon-up) center / contain no-repeat;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-move .move-down span {
+  mask-image: var(--mh-fs-icon-down);
+}
+
+.mh-improved-favorite-setups-blueprint-container .editor-move .action.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Native Dark Mode */
+.mh-dark .mh-improved-favorite-setups-blueprint-container {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .view-toggle {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .view-toggle button {
+  color: var(--d-text);
+  background: var(--d-tab);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .view-toggle button + button {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .view-toggle button:hover {
+  color: var(--d-hover-text);
+  background: var(--d-hover);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .view-toggle button.active {
+  color: var(--d-selected-text);
+  background: var(--d-selected);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row {
+  background: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.current-setup {
+  background: var(--d-surface-page);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.editing {
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.here {
+  background: var(--d-yellow-darker);
+  border-color: var(--d-yellow-dark);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.flash {
+  background-color: var(--d-green-dark);
+}
+
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row.flash-error {
   background-color: var(--d-red-darker);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.has-missing-items {
+  border-color: var(--d-red-dark);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item.missing-item .campPage-trap-itemBrowser-favorite-item-image {
+  background-color: var(--d-red-darker);
+  outline-color: var(--d-red-dark);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container :is(.meta, .empty, .editor-label, .drag-handle, .edit-button) {
+  color: var(--d-text-muted);
+}
+
+/* Muted text is under 4.5:1 on the yellow tint. */
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row.here .meta {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .location-link:hover {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .edit-button:hover,
+.mh-dark .mh-improved-favorite-setups-blueprint-container .edit-button:focus-visible {
+  color: var(--d-white);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container a.random-title {
+  color: var(--d-text);
+  background: var(--d-button);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container a.random-title:hover {
+  color: var(--d-hover-text);
+  background: var(--d-hover);
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .placeholder {
+  border-color: var(--d-border);
 }
 
 .mousehuntHeaderView .menuItem.mh-improved-favorite-setups-menu .dropdownContent {

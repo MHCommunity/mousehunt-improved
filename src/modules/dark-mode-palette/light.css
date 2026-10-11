@@ -16,7 +16,6 @@ body.mh-dark.mh-palette-light {
 /* Undo the dark-only image filters (inverted icons, dimmed images). */
 body.mh-dark.mh-palette-light .mouseView-imageContainer .mouseView-image[data-mh-mouse]::after,
 body.mh-dark.mh-palette-light .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[data-mh-mouse]::after,
-body.mh-dark.mh-palette-light a.random-title::after,
 body.mh-dark.mh-palette-light #friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon,
 body.mh-dark.mh-palette-light .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon,
 body.mh-dark.mh-palette-light .itemView-header-classification-link::before,

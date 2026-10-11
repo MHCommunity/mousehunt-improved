@@ -277,14 +277,6 @@
   box-shadow: 1px 1px 1px var(--d-red);
 }
 
-.mh-dark a.random-title::after {
-  filter: invert(1);
-}
-
-.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: var(--d-hover);
-}
-
 .mh-dark .campPage-trap-trapStat .math {
   background-color: var(--d-surface-inset);
   border-color: var(--d-border);

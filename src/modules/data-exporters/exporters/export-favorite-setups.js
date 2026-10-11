@@ -10,12 +10,13 @@ import { exportPopup } from '../utils';
 const fetch = async () => {
   const setups = getSetting('favorite-setups.setups', []);
 
-  // resort the setups so that they are { id, name, location, weapon_id, base_id, trinket_id, bait_id, power_type } and add default values
+  // resort the setups so that they are { id, name, location, region, weapon_id, base_id, trinket_id, bait_id, power_type } and add default values
   return setups.map((setup) => {
     return {
       id: setup.id || 0,
       name: setup.name || '',
       location: setup.location || '',
+      region: setup.region || '',
       bait_id: setup.bait_id || 0,
       base_id: setup.base_id || 0,
       trinket_id: setup.trinket_id || 0,
