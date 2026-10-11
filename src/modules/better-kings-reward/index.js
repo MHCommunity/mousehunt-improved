@@ -3,16 +3,6 @@ import { addStyles, onRequest, setMultipleTimeout } from '@utils';
 import styles from './styles.css';
 
 /**
- * Initiates the King's Reward.
- */
-const initiateKingsReward = () => {
-  const reward = document.querySelector('.huntersHornMessageView huntersHornMessageView--puzzle .huntersHornMessageView__action');
-  if (reward) {
-    reward.click();
-  }
-};
-
-/**
  * Starts the King's Reward and focuses the puzzle input.
  */
 const startKingsReward = () => {
@@ -49,7 +39,6 @@ const continueOnKingsReward = (req) => {
 const init = () => {
   addStyles(styles, 'better-kings-reward');
 
-  onRequest('turns/activeturn.php', initiateKingsReward, true);
   onRequest('users/puzzle.php', continueOnKingsReward, true);
 
   onRequest('*', startKingsReward);

@@ -127,7 +127,7 @@ const addReminders = () => {
       }
 
       reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/4f5d55c1eff77474c7363f0e52d03e49.png';
-      reminderOpts.action = hg.views.HeadsUpDisplayFolkloreForestRegionView.toggleFuel;
+      reminderOpts.action = hg.views?.HeadsUpDisplayFolkloreForestRegionView?.toggleFuel;
       break;
     case 'winter_hunt_grove':
     case 'winter_hunt_workshop':
@@ -139,7 +139,7 @@ const addReminders = () => {
       if (user.quests?.QuestCinnamonTreeGrove?.is_fuel_enabled || user.quests?.QuestGolemWorkshop?.is_fuel_enabled || user.quests?.QuestIceFortress?.is_fuel_enabled) {
         reminderOpts.text = 'Festive Spirit is active.';
         reminderOpts.button = 'Deactivate';
-      } else if ('winter_hunt_forest' === getCurrentLocation()) {
+      } else {
         reminderOpts.text = 'Festive Spirit is <strong>not</strong> active.';
         reminderOpts.button = 'Activate';
       }
