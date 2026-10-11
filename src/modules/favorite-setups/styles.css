@@ -202,16 +202,6 @@
   flex: none;
 }
 
-.mh-improved-favorite-setups-blueprint-container .location-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.mh-improved-favorite-setups-blueprint-container .location-link:hover {
-  color: #3b5998;
-  text-decoration: none;
-}
-
 .mh-improved-favorite-setups-blueprint-container .actions {
   display: inline-flex;
   gap: 2px;
@@ -623,10 +613,6 @@
 /* Muted text is under 4.5:1 on the yellow tint. */
 .mh-dark .mh-improved-favorite-setups-blueprint-container .row.here .meta {
   color: var(--d-text);
-}
-
-.mh-dark .mh-improved-favorite-setups-blueprint-container .location-link:hover {
-  color: var(--d-link);
 }
 
 .mh-dark .mh-improved-favorite-setups-blueprint-container .edit-button:hover,

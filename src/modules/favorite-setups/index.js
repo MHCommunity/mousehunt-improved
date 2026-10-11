@@ -25,7 +25,6 @@ import {
   sessionGet,
   sessionSet,
   toggleBlueprint,
-  travelTo,
 } from '@utils';
 
 import { makeItemPicker } from '../../utils/settings-item-picker';
@@ -494,7 +493,9 @@ const highlightMissingItems = async (rows) => {
         title = `You don't have the ${names.join(' or ')} for this setup anymore, so it will be armed without it.`;
       }
 
-      row.setAttribute('title', title);
+      // Where the setup is for isn't shown in the row, so it goes in the tooltip.
+      const location = row.getAttribute('data-location-label');
+      row.setAttribute('title', location ? `${title}\n${location}` : title);
     }
   });
 };
@@ -914,15 +915,13 @@ const flashRow = (setupId, className = 'flash') => {
 };
 
 /**
- * Make the line under a setup's name with its power type and location.
+ * Make the line under a setup's name with its power type.
  *
- * @param {FavoriteSetup} setup        The setup.
- * @param {Array}         environments The locations.
- * @param {boolean}       canTravel    Whether the location should link to traveling there.
+ * @param {FavoriteSetup} setup The setup.
  *
  * @return {HTMLElement} The meta line.
  */
-const makeSetupMeta = (setup, environments, canTravel = true) => {
+const makeSetupMeta = (setup) => {
   const meta = makeElement('div', 'meta');
 
   if (setup.power_type) {
@@ -936,23 +935,6 @@ const makeSetupMeta = (setup, environments, canTravel = true) => {
 
   if (setup.is_mobile) {
     makeElement('span', 'location', 'Mobile', meta);
-    return meta;
-  }
-
-  const label = getSetupLocationLabel(setup, environments);
-  const environment = environments.find((e) => e.id === setup.location);
-  if (canTravel && environment && setup.location !== getCurrentLocation()) {
-    const link = makeElement('a', ['location', 'location-link'], label);
-    link.href = '#';
-    link.title = `${label}: click to travel there`;
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      travelTo(setup.location);
-    });
-    meta.append(link);
-  } else {
-    makeElement('span', 'location', label, meta).title = label;
   }
 
   return meta;
@@ -973,18 +955,16 @@ const addSetupImages = async (setup, appendTo) => {
 /**
  * Make the row for the current setup, with a button to save it.
  *
- * @param {Array} environments The locations.
- *
  * @return {Promise<HTMLElement>} The row.
  */
-const makeCurrentSetupRow = async (environments) => {
+const makeCurrentSetupRow = async () => {
   const setup = getCurrentSetup();
   const row = makeElement('div', ['row', 'current-setup']);
   row.setAttribute('data-setup-id', 'current');
 
   const info = makeElement('div', 'info');
   makeElement('div', 'name', 'Current setup', info);
-  const meta = makeSetupMeta(setup, environments, false);
+  const meta = makeSetupMeta(setup);
   info.append(meta);
   row.append(info);
 
@@ -1066,8 +1046,11 @@ const makeSetupRow = async (setup, environments) => {
   const info = makeElement('div', 'info');
   const name = makeElement('div', 'name', setup.name || 'Unnamed setup', info);
   name.title = setup.name || '';
-  const meta = makeSetupMeta(setup, environments);
+  const meta = makeSetupMeta(setup);
   info.append(meta);
+  if (!setup.is_mobile) {
+    row.setAttribute('data-location-label', getSetupLocationLabel(setup, environments));
+  }
   row.append(info);
 
   const items = makeElement('div', 'items');
@@ -1450,7 +1433,7 @@ const renderSetupList = async () => {
   // edited stays on screen even if its location was changed.
   const shown = showAll ? setups : setups.filter((setup) => setup.id === editState.id || (!setup.is_mobile && isSetupForLocation(setup, location, region)));
 
-  const children = [await makeCurrentSetupRow(allEnvironments)];
+  const children = [await makeCurrentSetupRow()];
   const wrapper = makeElement('div', 'row-wrapper');
 
   for (const setup of shown) {
