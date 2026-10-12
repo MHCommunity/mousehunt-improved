@@ -246,16 +246,20 @@ const getRateClasses = (rate, minluck) => {
     return classes;
   }
 
-  // The same colors as the Trap Effectiveness bar's tiers.
-  if (rate >= 0.8) {
+  // Green is only for a sure catch, and anything else from 80% is left uncolored. Below that, the
+  // same colors as the Trap Effectiveness bar's tiers.
+  const isMinlucked = user.trap_luck >= minluck;
+  if (rate >= 1 || isMinlucked) {
     classes.push('mh-improved-cre-data-good');
+  } else if (rate >= 0.8) {
+    // Uncolored.
   } else if (rate >= 0.4) {
     classes.push('mh-improved-cre-data-okay');
   } else {
     classes.push('mh-improved-cre-data-bad');
   }
 
-  if (user.trap_luck >= minluck) {
+  if (isMinlucked) {
     classes.push('mh-improved-cre-data-minlucked');
   }
 

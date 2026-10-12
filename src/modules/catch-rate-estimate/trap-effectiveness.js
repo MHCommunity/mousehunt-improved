@@ -10,11 +10,11 @@ let lastOverallCatchRate = null;
  *
  * @return {boolean} Whether it does.
  */
-const getOverallTrapEffectiveness = () => getSetting(settingKey, false);
+const getOverallTrapEffectiveness = () => getSetting(settingKey, true);
 
 // Most setups land between 70% and 100%, so the tiers are closer together there, and only a sure
 // catch is Guaranteed. The classes color the bar like the game's tiers, which the catch rates
-// table matches: green from 80%, yellow from 40%, and red below that.
+// table matches below 80%: yellow from 40% and red below that. The table keeps green for a sure catch.
 const trapEffectivenessTiers = [
   [100, 'Guaranteed', 'excellent'],
   [95, 'Excellent', 'excellent'],

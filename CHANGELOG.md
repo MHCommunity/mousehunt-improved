@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.103.1
+
+- Catch Rate & Minlucks: Catch rates are now back to being green only for a guaranteed catch
+- Catch Rate & Minlucks: The Trap Effectiveness meter now uses your actual catch rate by default
+
 ## Version 0.103.0
 
 ### Added

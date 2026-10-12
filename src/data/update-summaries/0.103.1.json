@@ -1,0 +1,13 @@
+{
+  "version": "0.103.1",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Catch Rate & Minlucks: Catch rates are now back to being green only for a guaranteed catch",
+        "Catch Rate & Minlucks: The Trap Effectiveness meter now uses your actual catch rate by default"
+      ]
+    }
+  ]
+}
