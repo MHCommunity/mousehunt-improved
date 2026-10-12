@@ -32,7 +32,8 @@ const getSkyMapMice = () => {
   return goals.filter((goal) => !completedGoals.includes(goal.unique_id) && toHighlight.has(goal.type));
 };
 
-const tileSelector = '.floatingIslandsAdventureBoardSkyMap-islandModContainer .floatingIslandsAdventureBoardSkyMap-islandMod';
+const gridSelector = '.floatingIslandsAdventureBoardSkyMap-islandModContainer';
+const tileSelector = `${gridSelector} .floatingIslandsAdventureBoardSkyMap-islandMod`;
 const edgeSelector = '.floatingIslandsAdventureBoardSkyMap-powerTypes .floatingIslandsHUD-powerType';
 const paragonCacheSelector = '.paragon_cache_a, .paragon_cache_b, .paragon_cache_c, .paragon_cache_d';
 
@@ -270,6 +271,22 @@ const highlightSkyMap = async () => {
  * After a reroll, wait for the game to redraw the sky map before marking it up again.
  */
 const redrawAfterReroll = async () => {
+  const grid = document.querySelector(gridSelector);
+
+  // The game waits for both the response and spinOut's animationend before it
+  // replaces the grid. A cancelled or suppressed animation can leave a successful
+  // reroll invisible. Let the normal 400ms animation finish, then unblock that
+  // same view if it is still waiting. This never sends another reroll request.
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  if ('floating_islands' !== getCurrentLocation() || !grid?.isConnected || grid !== document.querySelector(gridSelector)) {
+    return;
+  }
+
+  if (grid.classList.contains('spinOut')) {
+    grid.dispatchEvent(new Event('animationend'));
+  }
+
   for (let attempt = 0; attempt < 30; attempt++) {
     const signature = getGridSignature();
     if (signature && (signature !== lastGridSignature || !document.querySelector('.mh-sky-map-badge, .lowlight-for-map'))) {
