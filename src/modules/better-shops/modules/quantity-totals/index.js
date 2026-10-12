@@ -48,7 +48,8 @@ const updateTotals = (container, input) => {
     sell.textContent = quantity > 0 ? `Sells for ${formatGold(refundValue * quantity)}` : '';
   }
 
-  container.querySelectorAll('.itemPurchaseView-action-itemCost-table-row').forEach((row) => {
+  // Requirements (adventures, owned items) aren't used up, so they don't scale with quantity.
+  container.querySelectorAll('.itemPurchaseView-action-itemCost.consumed .itemPurchaseView-action-itemCost-table-row').forEach((row) => {
     const cost = row.querySelector('.itemPurchaseView-action-itemCost-table-cell.cost');
     const owned = row.querySelector('.itemPurchaseView-action-itemCost-owned');
     if (!cost || !owned) {

@@ -1,0 +1,13 @@
+{
+  "version": "0.103.2",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Better Shops: Fixed requirements, like Adventure completion, increasing with the quantity, and limited the quantity field and buttons to an item's purchase limit",
+        "Location HUDs - Floating Islands: Fixed the Sky Map sometimes not updating after a reroll"
+      ]
+    }
+  ]
+}

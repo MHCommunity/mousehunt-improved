@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.103.2
+
+- Better Shops: Fixed requirements, like Adventure completion, increasing with the quantity, and limited the quantity field and buttons to an item's purchase limit
+- Location HUDs - Floating Islands: Fixed the Sky Map sometimes not updating after a reroll
+
 ## Version 0.103.1
 
 - Catch Rate & Minlucks: Catch rates are now back to being green only for a guaranteed catch

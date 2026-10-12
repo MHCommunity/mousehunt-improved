@@ -5,16 +5,17 @@ import { makeElement, makeMathButtons, makeMhButton } from '@utils';
  *
  * @param {Element} block  The shop block.
  * @param {Element} input  The input field.
- * @param {number}  maxQty The maximum quantity.
+ * @param {number}  maxQty The most that can be afforded, used by the Max button.
+ * @param {number}  limit  The purchase limit for the +/- buttons, so costs can be previewed past what's affordable.
  */
-export default async (block, input, maxQty) => {
+export default async (block, input, maxQty, limit = Infinity) => {
   // if max qty has a comma, remove it
   maxQty = `${maxQty}`.replaceAll(',', '');
 
   // Only rebuild the buttons if the max changed, since each math button adds window listeners.
   const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
   if (existingButtons) {
-    if (existingButtons.dataset.maxQty === maxQty) {
+    if (existingButtons.dataset.maxQty === maxQty && existingButtons.dataset.limit === `${limit}`) {
       return;
     }
 
@@ -23,11 +24,12 @@ export default async (block, input, maxQty) => {
 
   const buyControls = makeElement('div', ['mh-improved-shop-buy-controls']);
   buyControls.dataset.maxQty = maxQty;
+  buyControls.dataset.limit = `${limit}`;
 
   makeMathButtons([1, 10, 50, 100, 1000], {
     appendTo: buyControls,
     input,
-    maxQty,
+    maxQty: Number(limit),
     classNames: ['mh-improved-shop-qty', 'tiny', 'lightBlue'],
   });
 

@@ -37,6 +37,24 @@ const updateInputField = async () => {
 
     input.setAttribute('placeholder', maxQty);
 
+    // Cap the arrows, scroll wheel, and typed values at the item's inventory limit.
+    const container = block.closest('.itemPurchaseView-container');
+    const inventoryMax = Number.parseInt(container?.dataset.maxInventoryQuantity, 10);
+    if (inventoryMax > 0) {
+      input.max = Math.max(inventoryMax - (Number.parseInt(container.dataset.numOwned, 10) || 0), 0);
+    }
+
+    if (input.max && input.dataset.mhiShopMax !== 'true') {
+      input.dataset.mhiShopMax = 'true';
+
+      input.addEventListener('input', () => {
+        const max = Number.parseInt(input.max, 10) || 0;
+        if (Number.parseInt(input.value, 10) > max) {
+          input.value = max;
+        }
+      });
+    }
+
     // listen for the enter key when the input is focused
     const buyButton = block.querySelector('.itemPurchaseView-action-form-button.buy');
     if (buyButton && input.dataset.mhiShopEnter !== 'true') {
@@ -61,11 +79,10 @@ const updateInputField = async () => {
     qtyTotals(block, input);
 
     if (addQuantityButtons) {
-      const container = block.closest('.itemPurchaseView-container');
       if (!container || container.classList.contains('lil_jill') || container.classList.contains('big_jack')) {
         return;
       }
-      qtyButtons(block, input, maxQty);
+      qtyButtons(block, input, maxQty, input.max || Infinity);
     }
   });
 };
