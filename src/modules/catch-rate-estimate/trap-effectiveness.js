@@ -10,7 +10,7 @@ let lastOverallCatchRate = null;
  *
  * @return {boolean} Whether it does.
  */
-const getOverallTrapEffectiveness = () => getSetting(settingKey, true);
+const getOverallTrapEffectiveness = () => getSetting(settingKey, false);
 
 // Most setups land between 70% and 100%, so the tiers are closer together there, and only a sure
 // catch is Guaranteed. The classes color the bar like the game's tiers, which the catch rates
@@ -52,6 +52,8 @@ const barSelector = '.campPage-trap-trapEffectiveness.campPage-trap-statsContain
 
 let watchedTrap = null;
 let trapObserver = null;
+let quickRewrites = 0;
+let lastRewriteAt = 0;
 
 /**
  * Check whether the game has rewritten the label or bar since we last changed them.
@@ -77,6 +79,7 @@ const watchTrap = (text) => {
 
   trapObserver?.disconnect();
   watchedTrap = trap;
+  quickRewrites = 0;
 
   trapObserver = new MutationObserver(() => {
     const currentText = document.querySelector(labelSelector);
@@ -86,9 +89,21 @@ const watchTrap = (text) => {
       return;
     }
 
-    if (isGameRewrite(currentText, currentBar)) {
-      updateTrapEffectivenessText();
+    if (!isGameRewrite(currentText, currentBar)) {
+      return;
     }
+
+    // Something else, like another script, is writing the label too. Writing it back each time
+    // loops forever and freezes the page, so give up on this trap after a second quick rewrite.
+    const now = Date.now();
+    quickRewrites = now - lastRewriteAt < 1000 ? quickRewrites + 1 : 1;
+    lastRewriteAt = now;
+    if (quickRewrites > 2) {
+      trapObserver.disconnect();
+      return;
+    }
+
+    updateTrapEffectivenessText();
   });
 
   trapObserver.observe(trap, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class'] });

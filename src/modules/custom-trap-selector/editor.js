@@ -400,7 +400,7 @@ const openTrapSelectorEditor = (applyLayout) => {
       resetLayout();
       setAuraLayout('grid');
       setAuraIconsOnly(false);
-      setOverallTrapEffectiveness(true);
+      setOverallTrapEffectiveness(false);
       applyLayout();
       layout = getLayout();
       render();

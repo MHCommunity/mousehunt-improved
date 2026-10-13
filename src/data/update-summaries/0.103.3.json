@@ -1,0 +1,13 @@
+{
+  "version": "0.103.3",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Catch Rate & Minlucks: Fixed the page freezing on load for some players",
+        "Catch Rate & Minlucks: The Trap Effectiveness meter shows the game's rating again by default. You can switch it to your catch rate in the Custom Trap Selector"
+      ]
+    }
+  ]
+}

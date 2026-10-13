@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.103.3
+
+- Catch Rate & Minlucks: Fixed the page freezing on load for some players
+- Catch Rate & Minlucks: The Trap Effectiveness meter shows the game's rating again by default
+
 ## Version 0.103.2
 
 - Better Shops: Fixed requirements, like Adventure completion, increasing with the quantity, and limited the quantity field and buttons to an item's purchase limit
