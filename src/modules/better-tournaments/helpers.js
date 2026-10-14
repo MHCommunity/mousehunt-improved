@@ -32,8 +32,8 @@ const applyCachedTournamentName = (link, names) => {
     return false;
   }
 
-  if (link.innerText !== name) {
-    link.innerText = name;
+  if (link.textContent !== name) {
+    link.textContent = name;
   }
 
   return true;
