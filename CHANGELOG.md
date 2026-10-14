@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.103.4
+
+- Fixed the game sometimes freezing on a white page while loading during a tournament
+
 ## Version 0.103.3
 
 - Catch Rate & Minlucks: Fixed the page freezing on load for some players

@@ -1,0 +1,10 @@
+{
+  "version": "0.103.4",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Fixed the game sometimes freezing on a white page while loading during a tournament"]
+    }
+  ]
+}

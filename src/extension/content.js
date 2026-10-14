@@ -1,22 +1,9 @@
-/**
- * Show the body again once the script has loaded, or failed to, so the page is never left blank.
- */
-const showBody = () => {
-  document.body.style.visibility = 'visible';
-};
-
 const injectMain = () => {
-  // Hide the body, load the script, then show the body again to avoid flickering.
-  document.body.style.visibility = 'hidden';
-
   const injectedScript = document.createElement('script');
   injectedScript.setAttribute('id', 'mousehunt-improved-script');
   injectedScript.setAttribute('type', 'text/javascript');
   injectedScript.setAttribute('src', chrome.runtime.getURL('main.js'));
   injectedScript.setAttribute('data-baseurl', chrome.runtime.getURL('/'));
-
-  injectedScript.onload = showBody;
-  injectedScript.onerror = showBody;
 
   document.body.append(injectedScript);
 };
