@@ -19,14 +19,15 @@ import { getStage } from '@utils/shared/stages';
 import { getAttractionRates } from './attraction-rates';
 import { getCatchRate, getMiceEffectiveness, getMinluck, getMouseEffectiveness, getMousePower } from './data';
 import { addRefreshTriggers, saveRenderedStage } from './refresh-triggers';
-import { updateTrapEffectivenessText } from './trap-effectiveness';
+import { getTrapEffectivenessContext, initTrapEffectiveness, updateTrapEffectivenessText } from './trap-effectiveness';
 
 import styles from './styles.css';
 
-let lastStats = '';
+let lastStatsContext = null;
 let sortState = { key: null, direction: 'asc' };
 let effectiveness = null;
 let isUpdating = false;
+let updatePending = false;
 
 let trapPower;
 let trapPowerBoost;
@@ -71,6 +72,7 @@ const updateStats = () => {
     }
   });
 
+  trapAuras = [];
   const trapAurasList = document.querySelectorAll('.trapImageView-trapAura.mousehuntTooltipParent.active');
   if (trapAurasList && trapAurasList.length > 0) {
     trapAuras = [...trapAurasList].map((aura) => [...aura.classList].find((cls) => cls.startsWith('Quest')));
@@ -81,12 +83,16 @@ const updateStats = () => {
  * Update the mice effectiveness and cache the results.
  *
  * @param {string}         location     The current location.
- * @param {string|boolean} currentStats The current stats string or false to skip caching.
+ * @param {string}         currentStats The current stats string.
+ * @param {string}         context      The context captured before fetching effectiveness.
  *
  * @return {Promise<Object>} The mice effectiveness.
  */
-const updateMiceEffectiveness = async (location, currentStats = false) => {
+const updateMiceEffectiveness = async (location, currentStats, context) => {
   effectiveness = await getMiceEffectiveness();
+  if (context !== getTrapEffectivenessContext()) {
+    return effectiveness;
+  }
   cacheSet('cre-location', location, 24 * 60 * 60 * 1000); // Cache for 24 hours.
   cacheSet('cre-stats', currentStats, 24 * 60 * 60 * 1000); // Cache for 24 hours.
   cacheSet('cre-effectiveness', effectiveness, 24 * 60 * 60 * 1000); // Cache for 24 hours.
@@ -105,10 +111,13 @@ const updateMinLucks = async (useCachedData = false) => {
   }
 
   if (isUpdating) {
+    updatePending = true;
     return;
   }
 
   isUpdating = true;
+  const context = getTrapEffectivenessContext();
+  updateTrapEffectivenessText();
 
   let minluckList = document.querySelector('#mh-improved-cre');
   if (minluckList) {
@@ -149,13 +158,19 @@ const updateMinLucks = async (useCachedData = false) => {
     if (useCachedData) {
       const cachedLocation = await cacheGet('cre-location');
       const cachedStats = await cacheGet('cre-stats');
-      effectiveness = await (cachedLocation !== location || cachedStats !== currentStats ? updateMiceEffectiveness(location, currentStats) : cacheGet('cre-effectiveness'));
+      effectiveness = await (cachedLocation !== location || cachedStats !== currentStats
+        ? updateMiceEffectiveness(location, currentStats, context)
+        : cacheGet('cre-effectiveness'));
     } else {
-      effectiveness = await updateMiceEffectiveness(location, currentStats);
+      effectiveness = await updateMiceEffectiveness(location, currentStats, context);
     }
 
-    if (currentStats !== lastStats) {
-      lastStats = currentStats;
+    if (context !== getTrapEffectivenessContext()) {
+      return;
+    }
+
+    if (context !== lastStatsContext) {
+      lastStatsContext = context;
 
       updateStats();
     }
@@ -173,7 +188,7 @@ const updateMinLucks = async (useCachedData = false) => {
         };
       });
 
-    await renderList(miceIds);
+    await renderList(miceIds, context);
   } catch (error) {
     debuglog('cre', 'Error updating minluck list', error);
     minluckList.classList.add('cre-loading-failed');
@@ -181,6 +196,11 @@ const updateMinLucks = async (useCachedData = false) => {
     isUpdating = false;
     if (minluckList) {
       minluckList.classList.remove('cre-refreshing');
+    }
+
+    if (updatePending || context !== getTrapEffectivenessContext()) {
+      updatePending = false;
+      updateMinLucks(false);
     }
   }
 };
@@ -435,9 +455,10 @@ const renderRows = (tbody, rows, hasAttractionRates) => {
 /**
  * Render the minluck list.
  *
- * @param {Promise<Array>} list The list of mice.
+ * @param {Array}  list    The list of mice.
+ * @param {string} context The context captured before calculating the rate.
  */
-const renderList = async (list) => {
+const renderList = async (list, context) => {
   let minluckList = document.querySelector('#mh-improved-cre');
   if (!minluckList) {
     minluckList = makeElement('div', 'campPage-trap-trapEffectiveness');
@@ -454,13 +475,6 @@ const renderList = async (list) => {
   const attractionRates = await getAttractionRates(list);
   const hasAttractionRates = attractionRates.size > 0;
   const stageLabel = getStage().label;
-
-  const existing = document.querySelector('#mh-improved-cre-table');
-  if (existing) {
-    existing.remove();
-  }
-
-  minluckList.classList.remove('cre-loading');
 
   const table = makeElement('table');
   table.id = 'mh-improved-cre-table';
@@ -569,9 +583,18 @@ const renderList = async (list) => {
     });
   }
 
+  if ('camp' !== getCurrentPage() || context !== getTrapEffectivenessContext() || !minluckList.isConnected) {
+    return;
+  }
+
+  document.querySelector('#mh-improved-cre-table')?.remove();
+  minluckList.classList.remove('cre-loading');
+
   if (rows.length === 0) {
     makeElement('span', 'mh-improved-cre-no-mice', 'No mice found.', table);
     minluckList.append(table);
+    updateTrapEffectivenessText(null, context);
+    saveRenderedStage();
     doEvent('mh-improved-cre-list-rendered');
     return;
   }
@@ -589,7 +612,7 @@ const renderList = async (list) => {
   minluckList.append(table);
 
   updateTrapView(rows, overallCatchRate);
-  updateTrapEffectivenessText(overallCatchRate);
+  updateTrapEffectivenessText(overallCatchRate, context);
   saveRenderedStage();
 
   doEvent('mh-improved-cre-list-rendered');
@@ -599,6 +622,8 @@ const renderList = async (list) => {
  * Main function.
  */
 const main = async () => {
+  initTrapEffectiveness(() => updateMinLucks(false));
+
   onNavigation(
     () => {
       updateMinLucks(true);
