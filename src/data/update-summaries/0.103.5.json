@@ -1,0 +1,10 @@
+{
+  "version": "0.103.5",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Gloomy Greenwood: Fixed the Apothecary shop layout and the reward popup staying open over the shop"]
+    }
+  ]
+}

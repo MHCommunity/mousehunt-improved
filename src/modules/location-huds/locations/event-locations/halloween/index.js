@@ -23,6 +23,35 @@ const unDisableCheese = () => {
   });
 };
 
+let shopReplaced = false;
+
+/**
+ * Close the HUD's item dialog when its "View Apothecary Shop" button opens the shop,
+ * otherwise the dialog stays open on top of the shop popup.
+ */
+const closeDialogOnShopOpen = () => {
+  const recipeView = hg?.views?.HalloweenBoilingCauldronRecipeView;
+  if (shopReplaced || !recipeView?.showShop) {
+    return;
+  }
+
+  shopReplaced = true;
+
+  const _original = recipeView.showShop;
+
+  /**
+   * Replacement for the showShop function.
+   *
+   * @param {any} args Arguments passed to the original function.
+   *
+   * @return {any} The original function's return value.
+   */
+  recipeView.showShop = (...args) => {
+    hg.views.HeadsUpDisplayHalloweenBoilingCauldronView?.hideDialog?.();
+    return _original(...args);
+  };
+};
+
 /**
  * Always active.
  */
@@ -36,6 +65,7 @@ const halloweenGlobal = async () => {
 const halloweenLocation = async () => {
   addHudStyles(styles);
   unDisableCheese();
+  closeDialogOnShopOpen();
   onRequest('*', unDisableCheese);
 };
 

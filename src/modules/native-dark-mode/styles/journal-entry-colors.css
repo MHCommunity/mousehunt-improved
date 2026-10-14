@@ -623,4 +623,12 @@ body.mh-dark.mh-dark-entry-colors .journal .content .entry.wild_tonic_remote_pum
   box-shadow: inset 0 0 12px var(--d-entry-glow);
 }
 
+/* Incense gets a deeper orange than the strong tier. */
+body.mh-dark.mh-dark-entry-colors:not(.mh-palette-light) .journal .content .entry.gloomyGreenwood-incense {
+  --d-entry-incense-l: 0.29;
+  --d-entry-incense-c: 0.06;
+
+  background-color: oklch(from var(--d-entry-orange-hue) var(--d-entry-incense-l) var(--d-entry-incense-c) h);
+}
+
 /* stylelint-disable stylistic/max-line-length */

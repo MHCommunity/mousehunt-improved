@@ -133,8 +133,9 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table-row {
   display: flex;
+  gap: 4px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: auto;
   height: 50px;
   padding: 0;
@@ -155,14 +156,17 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table-cell a {
-  padding: 20px 6px 20px 29px;
+  padding: 20px 2px 20px 29px;
   font-size: 13px;
   background-position: -10px 50%;
   background-size: 42px;
 }
 
+/* Better Shops stretches the cost across the row, which pushes the extract off the card. */
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.cost {
-  width: 20%;
+  width: auto;
+  min-width: 0;
+  padding: 0 2px 0 0 !important;
   font-size: 17px;
   font-weight: 400;
   text-shadow: 1px 1px 1px #788c59;
@@ -170,6 +174,15 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 
 .mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.cost {
   text-shadow: 1px 1px 1px #000;
+}
+
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.owned {
+  padding: 0;
+}
+
+.mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell a,
+.mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.owned {
+  color: var(--d-text);
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-content-container {

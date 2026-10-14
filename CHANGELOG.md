@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.103.5
+
+- Location HUDs - Gloomy Greenwood: Fixed the Apothecary shop layout and the reward popup staying open over the shop
+- Minor style tweaks
+
 ## Version 0.103.4
 
 - Fixed the game sometimes freezing on a white page while loading during a tournament
