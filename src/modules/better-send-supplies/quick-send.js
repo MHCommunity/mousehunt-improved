@@ -64,7 +64,6 @@ const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, c
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
       },
       signal: aborter.signal,
     });

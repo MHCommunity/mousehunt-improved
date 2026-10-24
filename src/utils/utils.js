@@ -336,7 +336,6 @@ const sendRequest = async (url, formData, skipOpts) => {
       body: requestBody,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
       },
       signal: AbortSignal.timeout(requestTimeout),
     });
