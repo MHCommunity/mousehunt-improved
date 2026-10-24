@@ -212,3 +212,19 @@
   background-position: 98% 10px;
   background-size: 110px;
 }
+
+.mh-dark #overlayPopup .contactUsForm .description .text {
+  color: var(--d-text);
+  background-color: var(--d-surface-inset);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark #overlayPopup .contactUsForm .description .text b {
+  color: var(--d-white);
+}
+
+.mh-dark #overlayPopup .contactUsForm .thankyou {
+  color: var(--d-text);
+  background-color: var(--d-popup-bg, var(--d-surface-panel));
+}
