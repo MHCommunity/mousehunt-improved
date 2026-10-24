@@ -237,6 +237,47 @@ const showResult = (result, item, quantity, data) => {
 };
 
 /**
+ * Get the journal entries newer than the given entry, in the shape of a response's journal_markup.
+ *
+ * The convertible response never includes journal entries, so they're read from the journal's
+ * first page instead and handed to the game to show like any other new entry.
+ *
+ * @param {number} lastReadId The newest entry the journal already has.
+ *
+ * @return {Promise<Array>} The new entries.
+ */
+const getNewJournalMarkup = async (lastReadId) => {
+  const data = await doRequest('managers/ajax/pages/journal.php', { page: 1, size: 'jsingle', owner: user.user_id }, true);
+  const entriesString = data?.journal_page?.entries_string;
+  if (!entriesString) {
+    return [];
+  }
+
+  const doc = new DOMParser().parseFromString(entriesString, 'text/html');
+
+  return [...doc.querySelectorAll('.entry[data-entry-id]')]
+    .filter((entry) => Number.parseInt(entry.dataset.entryId, 10) > lastReadId)
+    .map((entry) => {
+      const id = Number.parseInt(entry.dataset.entryId, 10);
+      const image = entry.querySelector('.journalimage img');
+
+      return {
+        render_data: {
+          entry_id: id,
+          // Only used to sort, and ids go up with time.
+          entry_timestamp: id,
+          css_class: entry.className,
+          mouse_type: entry.dataset.mouseType || '',
+          image: image ? { href: entry.querySelector('.journalimage a')?.getAttribute('href') || '', val: image.getAttribute('src') } : '',
+          entry_date: (entry.querySelector('.journaldate')?.textContent || '').replace(/\s*-\s*$/, ''),
+          environment: entry.querySelector('.journalenvironment')?.innerHTML || '',
+          text: entry.querySelector('.journaltext')?.innerHTML || '',
+        },
+      };
+    });
+};
+
+/**
  * Show an error message in the dropdown.
  *
  * @param {HTMLElement} result  The element to show it in.
@@ -538,8 +579,7 @@ const createEntry = (itemType, tab) => {
     tab.result.textContent = '';
     render();
 
-    // The game's useConvertible doesn't send the last read journal entry, so
-    // the response has no new journal entries for the journal to show.
+    const lastReadId = Number.parseInt(lastReadJournalEntryId, 10) || 0;
     const data = await doRequest('managers/ajax/users/useconvertible.php', { item_type: item.type, item_qty: quantity }, true);
     isOpening = false;
 
@@ -547,6 +587,15 @@ const createEntry = (itemType, tab) => {
       showError(tab.result, data?.error || data?.message || 'Something went wrong. Please try again.');
       render();
       return;
+    }
+
+    if (lastReadId && !data.journal_markup?.length) {
+      data.journal_markup = await getNewJournalMarkup(lastReadId);
+
+      // Without this, the game resets the last read entry to 0 when it shows the entries.
+      if (data.journal_markup.length) {
+        data.last_read_journal_entry_id = Math.max(...data.journal_markup.map((entry) => entry.render_data.entry_id));
+      }
     }
 
     // Let the game update the journal, inventory, and HUD like its own request would.
