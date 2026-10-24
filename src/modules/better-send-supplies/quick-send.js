@@ -2,6 +2,7 @@ import {
   addStyles,
   clamp,
   debug,
+  doRequest,
   getTradableItems,
   makeElement,
   makeMhButton,
@@ -55,40 +56,26 @@ const positionPanel = (panel, anchor) => {
 };
 
 const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, container }) => {
-  const url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
-
   button.classList.add('disabled');
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
-      },
-      signal: aborter.signal,
-    });
+  // Skip the request reuse so that two identical sends both go through.
+  const response = await doRequest(
+    'managers/ajax/users/supplytransfer.php',
+    {
+      item: itemType,
+      item_quantity: qty,
+      receiver: snuid,
+    },
+    true
+  );
 
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
+  if (aborter.signal.aborted) {
+    return false;
+  }
 
-    const data = await res.json();
-    if (!data.success) {
-      throw new Error('API success=false');
-    }
+  button.classList.remove('disabled');
 
-    showSuccessMessage({
-      message: `Sent ${qty} ${itemName}!`,
-      append: container,
-      classname: 'mh-ui-quick-send-success',
-    });
-
-    return true;
-  } catch {
-    if (aborter.signal.aborted) {
-      return false;
-    }
+  if (!response?.success) {
     showErrorMessage({
       message: 'There was an error sending supplies',
       append: container,
@@ -96,11 +83,15 @@ const sendSupplies = async ({ aborter, snuid, qty, itemType, itemName, button, c
     });
 
     return false;
-  } finally {
-    if (!aborter.signal.aborted) {
-      button.classList.remove('disabled');
-    }
   }
+
+  showSuccessMessage({
+    message: `Sent ${qty} ${itemName}!`,
+    append: container,
+    classname: 'mh-ui-quick-send-success',
+  });
+
+  return true;
 };
 
 const makeItemTile = ({ name, type, image }, onSelect) => {
