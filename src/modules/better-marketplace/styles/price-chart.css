@@ -21,6 +21,15 @@
   border-bottom: none;
 }
 
+.mhui-marketplace-chart-toolbar-start {
+  display: flex;
+  align-items: flex-end;
+}
+
+.mhui-marketplace-chart-toolbar-start .mhui-marketplace-chart-toggle {
+  align-self: center;
+}
+
 .mhui-marketplace-chart-tabs {
   display: flex;
   gap: 2px;
@@ -66,6 +75,45 @@
   padding-bottom: 5px;
 }
 
+.mhui-marketplace-chart-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.mhui-marketplace-chart-stats:empty {
+  display: none;
+}
+
+.mhui-marketplace-chart-stat {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.mhui-marketplace-chart-stat-label {
+  color: #6b7580;
+}
+
+.mh-dark .mhui-marketplace-chart-stat-label {
+  color: var(--d-text-muted);
+}
+
+.mhui-marketplace-chart-stat-value {
+  font-weight: 700;
+}
+
+.mhui-marketplace-chart-stat-detail {
+  color: #98a1aa;
+}
+
+.mh-dark .mhui-marketplace-chart-stat-detail {
+  color: var(--d-text-muted);
+}
+
+.mhui-marketplace-chart-collapsed .mhui-marketplace-chart-stats,
 .mhui-marketplace-chart-collapsed .mhui-marketplace-chart-charts {
   display: none;
 }

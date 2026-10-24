@@ -98,6 +98,84 @@ const getColors = () => {
 };
 
 /**
+ * Format an SB price with fewer decimals the larger it is.
+ *
+ * @param {number} value The SB price.
+ *
+ * @return {string} The formatted price.
+ */
+const formatSbPrice = (value) => {
+  let digits = 3;
+  if (value >= 1000) {
+    digits = 0;
+  } else if (value >= 100) {
+    digits = 1;
+  } else if (value >= 10) {
+    digits = 2;
+  }
+
+  return value.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+};
+
+/**
+ * Abbreviate a large gold value (1,850,000,000 -> "1.85B gold").
+ *
+ * @param {number} value The gold value.
+ *
+ * @return {string} The abbreviated value.
+ */
+const formatCompactGold = (value) => {
+  return `${value.toLocaleString('en-US', { notation: 'compact', maximumFractionDigits: 2 })} gold`;
+};
+
+/**
+ * Show the latest price and trade volume above the charts.
+ *
+ * @param {Element} area       The chart area element.
+ * @param {Array}   marketData The daily market data, oldest first.
+ */
+const renderStats = (area, marketData) => {
+  const stats = area.querySelector('.mhui-marketplace-chart-stats');
+  const latest = marketData.at(-1);
+  if (!stats || !latest) {
+    return;
+  }
+
+  const price = Number(latest.price) || 0;
+  const sbPrice = Number(latest.sb_price) || 0;
+  const volume = Number(latest.volume) || 0;
+
+  const weekStart = utcDateToMillis(latest.date) - 7 * dayInMs;
+  let weekVolume = 0;
+  let weekGold = 0;
+  marketData.forEach((dataPoint) => {
+    if (utcDateToMillis(dataPoint.date) <= weekStart) {
+      return;
+    }
+
+    const dayVolume = Number(dataPoint.volume) || 0;
+    weekVolume += dayVolume;
+    weekGold += dayVolume * (Number(dataPoint.price) || 0);
+  });
+
+  const addStat = (label, value, detail) => {
+    const stat = makeElement('div', 'mhui-marketplace-chart-stat');
+    makeElement('span', 'mhui-marketplace-chart-stat-label', label, stat);
+    makeElement('span', 'mhui-marketplace-chart-stat-value', value, stat);
+    if (detail) {
+      makeElement('span', 'mhui-marketplace-chart-stat-detail', detail, stat);
+    }
+
+    stats.append(stat);
+  };
+
+  stats.innerHTML = '';
+  addStat('Average price', `${price.toLocaleString()}g`, sbPrice > 0 ? `${formatSbPrice(sbPrice)} SB` : '');
+  addStat('Trade volume', volume.toLocaleString(), formatCompactGold(volume * price));
+  addStat('7-day trade volume', weekVolume.toLocaleString(), formatCompactGold(weekGold));
+};
+
+/**
  * Convert the Markethunt events to Highcharts plot bands.
  *
  * @param {Array}       events       The events.
@@ -513,16 +591,7 @@ const renderPriceChart = (itemId, container, marketData, plotBands, colors) => {
              * @return {string} The tooltip markup.
              */
             pointFormatter() {
-              let digits = 3;
-              if (this.y >= 1000) {
-                digits = 0;
-              } else if (this.y >= 100) {
-                digits = 1;
-              } else if (this.y >= 10) {
-                digits = 2;
-              }
-
-              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits })} SB</b><br/>`;
+              return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${formatSbPrice(this.y)} SB</b><br/>`;
             },
           },
           visible: false,
@@ -769,6 +838,8 @@ const showPriceChart = async (itemId, area) => {
     return;
   }
 
+  renderStats(area, response.market_data);
+
   const colors = getColors();
   priceChart = renderPriceChart(
     itemId,
@@ -838,15 +909,18 @@ const addPriceChart = async (itemId) => {
   }
 
   area.innerHTML = `<div class="mhui-marketplace-chart-toolbar">
-    <div class="mhui-marketplace-chart-tabs">
-      <a href="#" class="active" data-chart="price">Price history</a>
-      <a href="#" data-chart="stock">Bid &amp; ask</a>
+    <div class="mhui-marketplace-chart-toolbar-start">
+      <a href="#" class="mhui-marketplace-chart-toggle" role="button"></a>
+      <div class="mhui-marketplace-chart-tabs">
+        <a href="#" class="active" data-chart="price">Price history</a>
+        <a href="#" data-chart="stock">Bid &amp; ask</a>
+      </div>
     </div>
     <div class="mhui-marketplace-chart-toolbar-actions">
       <a class="mhui-marketplace-chart-source" href="https://markethunt.win/index.php?item_id=${Number(itemId)}" target="_blank" rel="noopener noreferrer">View on Markethunt →</a>
-      <a href="#" class="mhui-marketplace-chart-toggle" role="button"></a>
     </div>
   </div>
+  <div class="mhui-marketplace-chart-stats"></div>
   <div class="mhui-marketplace-chart-charts">
     <div class="mhui-marketplace-chart-price"></div>
     <div class="mhui-marketplace-chart-stock"></div>
