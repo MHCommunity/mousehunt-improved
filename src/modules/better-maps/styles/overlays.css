@@ -13,3 +13,7 @@
 .treasureMapDialogView {
   left: 49%;
 }
+
+.treasureMapDialogView.confirm.medium {
+  position: fixed;
+}
