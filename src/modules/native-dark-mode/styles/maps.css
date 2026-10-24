@@ -656,3 +656,50 @@
   --mhui-empty-hunter-hover-border: var(--d-interactive);
   --mhui-empty-hunter-hover-plus: color-mix(in srgb, var(--d-interactive) 50%, var(--d-white));
 }
+
+.mh-dark .treasureMapInviteSettingsView-block:last-child,
+.mh-dark .treasureMapInviteSettingsView-setting {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapDialogView a.treasureMapInviteSettingsView-setting {
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapDialogView a.treasureMapInviteSettingsView-setting:hover {
+  color: var(--d-hover-text);
+  background-color: var(--d-hover);
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .treasureMapDialogView a.treasureMapInviteSettingsView-setting.selected {
+  color: var(--d-selected-text);
+  background-color: var(--d-selected);
+}
+
+.mh-dark .treasureMapDialogView a.treasureMapInviteSettingsView-setting.selected:hover {
+  border-color: var(--d-interactive);
+}
+
+.mh-dark .treasureMapInviteSettingsView-setting.disabled {
+  background-color: var(--d-surface-inset);
+}
+
+.mh-dark .treasureMapInviteSettingsView-setting-status {
+  background-color: var(--d-button);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapInviteSettingsView-listing-visibility::before {
+  color: var(--d-red-light);
+}
+
+.mh-dark .treasureMapInviteSettingsView-listing-visibility.disabled,
+.mh-dark .treasureMapInviteSettingsView-listing-visibility.disabled::before {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapInviteSettingsView-listing-visibility.active,
+.mh-dark .treasureMapInviteSettingsView-listing-visibility.active::before {
+  color: var(--d-green-light);
+}
