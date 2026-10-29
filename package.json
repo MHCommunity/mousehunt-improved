@@ -57,28 +57,28 @@
     "release": "./scripts/release"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.10",
-    "@sentry/browser": "^10.78.0",
+    "@babel/runtime": "^8.0.8",
+    "@sentry/browser": "^11.9.0",
     "highcharts": "^13.1.1"
   },
   "devDependencies": {
     "@sentry/cli": "^3.8.2",
     "@sprout2000/esbuild-copy-plugin": "^1.1.19",
-    "archiver": "^7.0.1",
-    "chalk": "^5.6.2",
-    "chrome-webstore-upload-cli": "^3.5.0",
-    "concurrently": "^9.2.5",
-    "del-cli": "^7.0.0",
-    "esbuild": "^0.27.7",
+    "archiver": "^8.0.0",
+    "chalk": "^6.0.1",
+    "chrome-webstore-upload-cli": "^4.0.2",
+    "concurrently": "^10.0.6",
+    "del-cli": "^8.0.1",
+    "esbuild": "^0.28.2",
     "fast-glob": "^3.3.3",
     "json-minify": "^1.0.0",
-    "markdownlint-cli2": "^0.23.3",
+    "markdownlint-cli2": "^0.24.0",
     "node-fetch": "^3.3.2",
     "ora": "^9.4.1",
-    "oxfmt": "^0.59.0",
+    "oxfmt": "^0.74.0",
     "oxlint": "^1.90.0",
     "prettier": "^3.9.10",
-    "pretty-ms": "^9.3.1",
+    "pretty-ms": "^10.0.0",
     "stylelint": "15.11.0",
     "stylelint-config-recess-order": "^4.6.0",
     "stylelint-config-recommended": "13.0.0",
@@ -86,7 +86,7 @@
     "stylelint-order": "6.0.3",
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
-    "web-ext": "^9.4.0",
+    "web-ext": "^10.8.0",
     "yargs": "17.7.2"
   }
 }
