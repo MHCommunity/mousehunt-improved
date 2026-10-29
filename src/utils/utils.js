@@ -336,7 +336,8 @@ const sendRequest = async (url, formData, skipOpts) => {
       body: requestBody,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
+        // Temporarily off by default; opt back in with the 'requested-by-header' flag.
+        ...(getFlag('requested-by-header') ? { 'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}` } : {}),
       },
       signal: AbortSignal.timeout(requestTimeout),
     });
