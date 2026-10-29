@@ -260,7 +260,7 @@ const render = () => {
   list.innerHTML = '';
 
   if (!catches) {
-    progress.textContent = "Couldn't load catch data — tap ⟳ to retry.";
+    progress.textContent = "Couldn't load catch data. Tap ⟳ to retry.";
     return;
   }
 

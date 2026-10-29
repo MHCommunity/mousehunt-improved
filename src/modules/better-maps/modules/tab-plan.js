@@ -666,7 +666,7 @@ const renderPlan = (container, mice, rates, findEnvironment) => {
   const body = make('div', 'plan-body', '', container);
 
   if (plan.setups.length === 0) {
-    make('div', 'plan-empty', 'Nothing to plan — every remaining mouse is a guaranteed attraction or has no data.', body);
+    make('div', 'plan-empty', 'Nothing to plan. Every remaining mouse is a guaranteed attraction or has no data.', body);
     if (hardStrip) {
       container.append(hardStrip);
     }

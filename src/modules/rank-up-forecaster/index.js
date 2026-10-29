@@ -32,7 +32,7 @@ const buildHero = (forecastData) => {
       <strong class="rank-up-forecaster-eta-rank">${targetRank.name}</strong>
       <span class="rank-up-forecaster-eta-date">on ${formatDate(consensus.targetTimestamp)}</span>
       <span class="rank-up-forecaster-eta-sub">(about ${formatDuration(consensus.daysRemaining)} away)</span>
-      ${consensus.confidence === 'low' ? '<span class="rank-up-forecaster-confidence-low">Rough estimate — not enough steady data yet</span>' : ''}
+      ${consensus.confidence === 'low' ? '<span class="rank-up-forecaster-confidence-low">Rough estimate, not enough steady data yet</span>' : ''}
     </div>`;
   } else {
     headline = `<div class="rank-up-forecaster-eta">

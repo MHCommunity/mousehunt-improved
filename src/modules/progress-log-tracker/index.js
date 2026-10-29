@@ -594,7 +594,7 @@ const makeTableMarkup = () => {
   const rows = cachedLogs
     .map((log) => {
       const dateClass = log.estimated ? 'mh-jlt-open mh-jlt-estimated' : 'mh-jlt-open';
-      const dateTitle = log.estimated ? ' title="This date is an estimate — the journal only shows a time of day."' : '';
+      const dateTitle = log.estimated ? ' title="This date is an estimate. The journal only shows a time of day."' : '';
 
       let row = '<tr>';
       row += `<td><a href="#" class="${dateClass}" data-log-id="${log.id}"${dateTitle}>${formatDate(log.timestamp)}</a></td>`;
