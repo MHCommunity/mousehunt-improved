@@ -1,0 +1,15 @@
+{
+  "version": "0.104.0",
+  "summary": "The current errors with Catch Rate Estimator, sending supplies, and other features are fixed. Happy hunting!",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Marketplace: Price charts now show the average price, daily trade volume, and 7-day trade volume",
+        "Custom Menu: New journal entries now show after opening convertibles from your pinned items",
+        "Maps: Confirm dialogs no longer move when you scroll",
+        "Dark Mode: Map invite settings and the Contact Us form are now dark"
+      ]
+    }
+  ]
+}

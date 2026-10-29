@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.104.0
+
+- Fixed the errors with Catch Rate Estimator, sending supplies, and other features
+- Better Marketplace: Added the average price, trade volume, and 7-day trade volume above the price charts
+- Custom Menu: New journal entries now show after opening convertibles from pinned items
+- Better Maps: Removed the Maptain and Duster info from completed maps
+- Better Maps: Fixed map confirm dialogs moving when scrolling
+- Dark Mode: Added dark mode styles for map invite settings and the Contact Us form
+- Minor style tweaks
+
 ## Version 0.103.5
 
 - Location HUDs - Gloomy Greenwood: Fixed the Apothecary shop layout and the reward popup staying open over the shop
