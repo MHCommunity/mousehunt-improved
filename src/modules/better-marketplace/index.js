@@ -25,6 +25,7 @@ import { makeMarkethuntChartCollapsible } from './markethunt';
 import settings from './settings';
 
 import extras from './styles/extras.css';
+import hideStats from './styles/hide-stats.css';
 import priceChartStyles from './styles/price-chart.css';
 import quickSellStyles from './styles/quick-sell.css';
 import smallImages from './styles/small-images.css';
@@ -678,6 +679,7 @@ const init = () => {
       styles,
       extras,
       getSetting('better-marketplace.small-images') ? smallImages : '',
+      getSetting('better-marketplace.hide-stats') ? hideStats : '',
       getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
       getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
       getSetting('better-marketplace.price-history-chart', true) ? priceChartStyles : '',

@@ -16,6 +16,11 @@ export default async () => {
       default: false,
     },
     {
+      id: 'better-marketplace.hide-stats',
+      title: 'Hide the High Value, Frequently Traded, and In Demand lists',
+      default: false,
+    },
+    {
       id: 'better-marketplace.trend-numbers',
       title: 'Show percentage next to price trend arrows',
       default: true,

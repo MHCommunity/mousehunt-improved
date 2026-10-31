@@ -23,6 +23,7 @@ selling items.
 
 - **Default to showing all items in search**: Automatically checks 'Search all items' when opening the search.
 - **Smaller images**: Makes item images smaller in the Browse tab for a more compact view.
+- **Hide the High Value, Frequently Traded, and In Demand lists**: Removes the three stats tables at the bottom of the Marketplace home.
 - **Show price change percentages next to trend icons**: Display the exact
   percentage change next to the trend arrows for better price tracking.
 - **Show Markethunt price history charts** (Beta): Adds the interactive price history charts to item views.
