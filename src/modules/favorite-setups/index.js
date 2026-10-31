@@ -62,7 +62,12 @@ const getFavoriteSetups = async (makeRequest = true) => {
     let mobileFavorites = await cacheGet('mobile-trap-favorites');
     if (!mobileFavorites && makeRequest) {
       const userData = await getUserData(['trap_favourite']);
-      mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
+      const weaponPowerTypes = await getWeaponPowerTypes();
+
+      // The game only stores item IDs for mobile favorites, so look up each weapon's power type.
+      mobileFavorites = (userData?.trap_favourite?.favourite_traps || []).map((favorite) => {
+        return favorite ? { ...favorite, power_type: weaponPowerTypes.get(String(favorite.weapon_id)) || null } : favorite;
+      });
 
       await cacheSet('mobile-trap-favorites', mobileFavorites, 24 * 60 * 60 * 1000); // Cache for 1 day.
     }
@@ -79,7 +84,7 @@ const getFavoriteSetups = async (makeRequest = true) => {
           base_id: favorite?.base_id,
           weapon_id: favorite?.weapon_id,
           trinket_id: favorite?.trinket_id,
-          power_type: null, // TODO: add this.
+          power_type: favorite?.power_type || null,
           is_mobile: true,
         };
 
@@ -390,6 +395,17 @@ const getTrapComponents = async () => {
   }
 
   return componentsRequest;
+};
+
+/**
+ * Get the power type of each weapon the user owns, by item ID.
+ *
+ * @return {Promise<Map<string, string>>} Power type names by weapon item ID.
+ */
+const getWeaponPowerTypes = async () => {
+  const components = await getTrapComponents();
+
+  return new Map(components.filter((item) => 'weapon' === item.classification && item.power_type_image_name).map((item) => [String(item.item_id), item.power_type_image_name]));
 };
 
 /**
