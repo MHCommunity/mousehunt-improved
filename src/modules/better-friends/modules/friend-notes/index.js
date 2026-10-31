@@ -123,7 +123,7 @@ const decorateFriendRows = (root = document) => {
 };
 
 /**
- * Show the note in the hover profile and let the panel grow to fit it.
+ * Show the note under the hover profile as its own bar.
  */
 const decorateHoverProfile = () => {
   const panel = document.querySelector('#friend-data-wrapper');
@@ -131,12 +131,59 @@ const decorateHoverProfile = () => {
     return;
   }
 
+  panel.querySelectorAll('.mh-friend-note-hover').forEach((el) => el.remove());
+
   const row = panel.querySelector('.friendsPage-friendRow');
-  if (row) {
-    decorateFriendRow(row);
+  const note = row ? getNote(getRowSnuid(row)) : '';
+  if (!note) {
+    return;
   }
 
-  panel.classList.toggle('mh-has-friend-note', Boolean(row?.classList.contains('mh-has-friend-note')));
+  // The clamp goes on an inner element so the bar's padding doesn't show a sliver of a fourth line.
+  const bar = makeElement('div', 'mh-friend-note-hover');
+  const text = makeElement('div', 'mh-friend-note-hover-text');
+  text.textContent = note;
+  bar.title = note;
+  bar.append(text);
+  panel.append(bar);
+};
+
+/**
+ * Add the hunter's note to a Quick Send panel opened from a map hunter.
+ *
+ * @param {HTMLElement} panel The Quick Send panel.
+ */
+const decorateQuickSendPanel = (panel) => {
+  if (!panel.classList.contains('quickSendWrapper-map') || panel.querySelector('.mh-friend-note-quick-send')) {
+    return;
+  }
+
+  const note = getNote(panel.dataset.snuid);
+  if (!note) {
+    return;
+  }
+
+  const bar = makeElement('div', 'mh-friend-note-quick-send');
+  bar.textContent = note;
+  bar.title = note;
+  panel.append(bar);
+};
+
+/**
+ * Watch for Quick Send panels, which are added to the body when a hunter is hovered.
+ */
+const watchQuickSendPanels = () => {
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node instanceof Element && node.classList.contains('quickSendWrapper')) {
+          decorateQuickSendPanel(node);
+        }
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true });
 };
 
 let friendsObserver = null;
@@ -436,6 +483,7 @@ export default () => {
   });
 
   onEvent('profile_hover', decorateHoverProfile);
+  watchQuickSendPanels();
 };
 
 export { getNote, setNote };

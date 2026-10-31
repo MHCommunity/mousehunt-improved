@@ -100,15 +100,63 @@
   content: "Note:";
 }
 
-#friend-data-wrapper.mh-has-friend-note {
+/* Hover profile: the note sits in its own bar under the profile, so the panel becomes a plain wrapper. */
+#friend-data-wrapper:has(.mh-friend-note-hover) {
   height: auto;
-  min-height: 125px;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
-#friend-data-wrapper .mh-friend-note-row {
-  width: 240px;
-  padding: 0 0 4px;
-  margin: -4px 0 0 -10px;
+#friend-data-wrapper:has(.mh-friend-note-hover) .friendsPage-friendRow {
+  height: 125px;
+  background: linear-gradient(#decebb 5%, #f0eddf 50%);
+  border: 1px solid #9a8872;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px -1px #5e5e5e;
+}
+
+#friend-data-wrapper .mh-friend-note-hover {
+  box-sizing: border-box;
+  padding: 6px 12px;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5c4a35;
+  background: linear-gradient(#decebb 5%, #f0eddf 50%);
+  border: 1px solid #9a8872;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px -1px #5e5e5e;
+}
+
+#friend-data-wrapper .mh-friend-note-hover-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+}
+
+/* Map hover: the note sits at the bottom of the Quick Send panel. */
+.quickSendWrapper .mh-friend-note-quick-send {
+  display: -webkit-box;
+  max-width: 220px;
+  padding: 6px 4px 0;
+  margin: 7px -4px 0;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  font-size: 11px;
+  line-height: 14px;
+  color: #333;
+  text-align: left;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  border-top: 1px solid #ccc;
+}
+
+.mh-dark .quickSendWrapper .mh-friend-note-quick-send {
+  color: var(--d-text);
+  border-top-color: var(--d-border);
 }
 
 /* Dark mode. */
@@ -126,6 +174,20 @@
 .mh-dark .mh-friend-note-label,
 .mh-dark .mh-friend-note-row {
   color: var(--d-text-muted);
+}
+
+.mh-dark #friend-data-wrapper:has(.mh-friend-note-hover) {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.mh-dark #friend-data-wrapper:has(.mh-friend-note-hover) .friendsPage-friendRow,
+.mh-dark #friend-data-wrapper .mh-friend-note-hover {
+  color: var(--d-text);
+  background: var(--d-surface-popover);
+  border: 1px solid var(--d-border);
+  box-shadow: 0 1px 5px -1px var(--d-action);
 }
 
 .mh-dark .mh-friend-note-input {

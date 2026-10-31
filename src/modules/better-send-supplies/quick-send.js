@@ -131,6 +131,9 @@ const buildPanel = async (btn, snuid) => {
   wrapper.setAttribute('role', 'dialog');
   wrapper.setAttribute('aria-label', 'Quick Send Supplies');
   wrapper.setAttribute('data-snuid', snuid);
+  if (btn.classList.contains('treasureMapView-hunter-wrapper')) {
+    wrapper.classList.add('quickSendWrapper-map');
+  }
   wrapper.tabIndex = -1;
 
   const itemsWrapper = makeElement('div', 'itemsWrapper');
