@@ -609,6 +609,11 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .userSelector-table .userSelector-groupHeadingCount,
+.mh-dark .userSelector-userList-group-title-userCount {
+  color: var(--d-text-muted);
+}
+
 .mh-dark a.treasureMapView-showCancelInvitesButton {
   color: var(--d-link);
 }

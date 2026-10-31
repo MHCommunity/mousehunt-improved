@@ -2,6 +2,7 @@ import { isSidebarHidden } from '@utils';
 
 import catchDates from './modules/catch-dates';
 import draggableHighlight from './modules/draggable-highlight';
+import inviteDialog from './modules/invite-dialog';
 import sidebar from './modules/sidebar';
 
 const featureManifest = [
@@ -9,6 +10,7 @@ const featureManifest = [
   { id: 'sidebar', setting: 'better-maps.show-sidebar-goals', default: true, condition: () => !isSidebarHidden(), load: sidebar },
   { id: 'catch-dates', setting: 'better-maps.catch-dates', default: false, load: catchDates },
   { id: 'draggable-highlight', setting: 'better-maps.draggable-highlight', default: false, load: draggableHighlight },
+  { id: 'invite-dialog', load: inviteDialog },
 ];
 
 export default featureManifest;

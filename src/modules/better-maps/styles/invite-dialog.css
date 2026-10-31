@@ -1,0 +1,17 @@
+.mh-ui-invite-quick-select {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mh-ui-invite-quick-select .mousehuntActionButton {
+  display: block;
+  line-height: normal;
+  text-align: center;
+}
+
+.mh-ui-invite-quick-select .mousehuntActionButton.busy {
+  pointer-events: none;
+  opacity: 0.6;
+}
