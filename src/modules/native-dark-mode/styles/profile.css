@@ -39,13 +39,12 @@
 .mh-dark input.messageBoardView-message-submit,
 .mh-dark input.messageBoardView-message-submit[type="submit"],
 .mh-dark .hunterInfoView-wrapper .friendsProfileView-container a.friendsProfileView-randomFriend {
-  color: var(--d-text-dark);
-  text-shadow: none;
-  background-color: var(--d-orange);
-  border-color: var(--d-border);
-  box-shadow:
-    0 -5px 8px -2px var(--d-orange-dark) inset,
-    1px 1px 1px var(--d-alt);
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  background-color: #f4e830;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 -5px 8px -2px var(--d-gold) inset;
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header {
@@ -80,6 +79,10 @@
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container .teamEmblemView {
   border-color: var(--d-border);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-NoTeamImage {
+  display: none;
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats .hunterInfoView-idCardBlock-stats-item-desc {

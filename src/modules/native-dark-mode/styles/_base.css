@@ -70,7 +70,7 @@ body.mh-dark {
 /*
  * Form controls. Text fields are in inputs.css; selects look like fields, and plain buttons
  * (not the game's image-based .mousehuntActionButton) get a raised grey look.
- * Message-board submit buttons keep their orange treatment from profile.css.
+ * Message-board submit buttons get the gold game-button treatment from profile.css.
  */
 .mh-dark select {
   color: var(--d-input-text);
