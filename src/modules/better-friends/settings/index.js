@@ -27,5 +27,11 @@ export default async () => {
       title: 'Add "On Maps" tab to Friends page',
       default: false,
     },
+    {
+      id: 'better-friends.friend-notes',
+      title: 'Add notes to hunters',
+      description: 'Keep a private note on any hunter from their profile. Notes show on their profile and hover profile, and the Friends page search matches them.',
+      default: true,
+    },
   ];
 };

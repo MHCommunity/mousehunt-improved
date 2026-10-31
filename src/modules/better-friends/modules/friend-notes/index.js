@@ -1,0 +1,405 @@
+import { addStyles, getCurrentPage, getSetting, makeElement, makeMhButton, onEvent, onNavigation, onRequest, saveSetting } from '@utils';
+
+import styles from './styles.css';
+
+const SETTING_KEY = 'better-friends.notes';
+const MAX_NOTE_LENGTH = 500;
+
+/**
+ * Get every saved note, keyed by snuid.
+ *
+ * @return {Object} The saved notes.
+ */
+const getNotes = () => {
+  const notes = getSetting(SETTING_KEY, {});
+  return notes && 'object' === typeof notes ? notes : {};
+};
+
+/**
+ * Get the note for a hunter.
+ *
+ * @param {string} snuid The hunter's snuid.
+ *
+ * @return {string} The note, or an empty string.
+ */
+const getNote = (snuid) => {
+  if (!snuid) {
+    return '';
+  }
+
+  const entry = getNotes()[String(snuid)];
+  return entry && 'string' === typeof entry.note ? entry.note : '';
+};
+
+/**
+ * Save or remove the note for a hunter.
+ *
+ * @param {string} snuid         The hunter's snuid.
+ * @param {string} note          The note text. An empty note removes the entry.
+ * @param {Object} meta          Details about the hunter, kept for reference.
+ * @param {string} meta.name     The hunter's name.
+ * @param {string} meta.hunterId The hunter's ID.
+ */
+const setNote = (snuid, note, { name = '', hunterId = '' } = {}) => {
+  const notes = getNotes();
+  const key = String(snuid);
+  const text = String(note || '')
+    .trim()
+    .slice(0, MAX_NOTE_LENGTH);
+
+  if (text) {
+    notes[key] = { note: text, name, hunterId, updated: Date.now() };
+  } else {
+    delete notes[key];
+  }
+
+  saveSetting(SETTING_KEY, notes);
+};
+
+/**
+ * Pull the snuid out of a rendered friend row.
+ *
+ * @param {HTMLElement} row The friend row.
+ *
+ * @return {string|null} The snuid.
+ */
+const getRowSnuid = (row) => {
+  const buttons = row.querySelector('[data-recipient-snuid]');
+  if (buttons?.dataset.recipientSnuid) {
+    return buttons.dataset.recipientSnuid;
+  }
+
+  const link = row.querySelector('a[href*="snuid="]');
+  if (!link) {
+    return null;
+  }
+
+  try {
+    return new URL(link.getAttribute('href'), location.origin).searchParams.get('snuid');
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Show a hunter's note on a friend row, or take it off if the note is gone.
+ *
+ * @param {HTMLElement} row The friend row.
+ */
+const decorateFriendRow = (row) => {
+  const snuid = getRowSnuid(row);
+  const note = getNote(snuid);
+  const existing = row.querySelector('.mh-friend-note-row');
+
+  row.classList.toggle('mh-has-friend-note', Boolean(note));
+
+  if (!note) {
+    existing?.remove();
+    return;
+  }
+
+  const noteRow = existing || makeElement('div', 'mh-friend-note-row');
+  noteRow.textContent = note;
+  noteRow.title = note;
+
+  if (!existing) {
+    const content = row.querySelector('.friendsPage-friendRow-content') || row;
+    const stats = content.querySelector('.friendsPage-friendRow-statsContainer');
+    if (stats) {
+      stats.before(noteRow);
+    } else {
+      content.append(noteRow);
+    }
+  }
+};
+
+/**
+ * Decorate the friend rows inside a container.
+ *
+ * @param {HTMLElement|Document} root The container to look in.
+ */
+const decorateFriendRows = (root = document) => {
+  root.querySelectorAll('.friendsPage-friendList-content .friendsPage-friendRow').forEach(decorateFriendRow);
+};
+
+/**
+ * Show the note in the hover profile and let the panel grow to fit it.
+ */
+const decorateHoverProfile = () => {
+  const panel = document.querySelector('#friend-data-wrapper');
+  if (!panel) {
+    return;
+  }
+
+  const row = panel.querySelector('.friendsPage-friendRow');
+  if (row) {
+    decorateFriendRow(row);
+  }
+
+  panel.classList.toggle('mh-has-friend-note', Boolean(row?.classList.contains('mh-has-friend-note')));
+};
+
+let friendsObserver = null;
+let friendsDecorateTimer = 0;
+
+/**
+ * Keep the Friends page rows decorated as the game re-renders them when sorting, filtering, or paging.
+ */
+const watchFriendsPage = () => {
+  friendsObserver?.disconnect();
+  friendsObserver = null;
+
+  decorateFriendRows();
+
+  // The search box may already be built if the friend list loaded before we did.
+  patchFriendSearch();
+
+  const container = document.querySelector('#mousehuntContainer');
+  if (!container) {
+    return;
+  }
+
+  friendsObserver = new MutationObserver((mutations) => {
+    const hasRows = mutations.some((mutation) =>
+      [...mutation.addedNodes].some((node) => node instanceof Element && (node.classList.contains('friendsPage-friendRow') || node.querySelector('.friendsPage-friendRow')))
+    );
+
+    if (!hasRows) {
+      return;
+    }
+
+    clearTimeout(friendsDecorateTimer);
+    friendsDecorateTimer = setTimeout(() => decorateFriendRows(), 0);
+  });
+
+  friendsObserver.observe(container, { childList: true, subtree: true });
+};
+
+/**
+ * Stop watching the Friends page once it's gone.
+ */
+const unwatchFriendsPage = () => {
+  if ('friends' === getCurrentPage()) {
+    return;
+  }
+
+  friendsObserver?.disconnect();
+  friendsObserver = null;
+};
+
+/**
+ * Teach the Friends page search to match notes too.
+ *
+ * The game rebuilds the search box each time it loads the sortable friend list, so this runs after each load
+ * and again when the page opens, in case the list loaded first.
+ *
+ * @param {number} attempt The retry count while the game finishes building the search box.
+ */
+const patchFriendSearch = (attempt = 0) => {
+  if ('undefined' === typeof $) {
+    return;
+  }
+
+  const selects = document.querySelectorAll('.friendsPage-friendListContainer select[data-filter-type="snuid"]');
+  let needsRetry = false;
+
+  selects.forEach((select) => {
+    const select2 = $(select).data('select2');
+    if (!select2?.opts) {
+      needsRetry = true;
+      return;
+    }
+
+    const opts = select2.opts;
+    if (opts.mhFriendNotes) {
+      return;
+    }
+
+    const originalMatcher = opts.matcher;
+
+    /**
+     * Match on the hunter's name like the game does, or on their note.
+     *
+     * @param {string} term   The search term.
+     * @param {string} text   The option text.
+     * @param {Object} option The option element.
+     *
+     * @return {boolean} Whether the option matches.
+     */
+    opts.matcher = (term, text, option) => {
+      if ('function' === typeof originalMatcher && originalMatcher(term, text, option)) {
+        return true;
+      }
+
+      const snuid = option?.val ? option.val() : option?.value;
+      const note = getNote(snuid);
+      return Boolean(note) && note.toLowerCase().includes(String(term || '').toLowerCase());
+    };
+
+    opts.mhFriendNotes = true;
+  });
+
+  if (needsRetry && attempt < 20) {
+    setTimeout(() => patchFriendSearch(attempt + 1), 250);
+  }
+};
+
+/**
+ * Get the snuid of the hunter whose profile is open.
+ *
+ * @return {string|null} The snuid, or null on our own profile.
+ */
+const getProfileSnuid = () => {
+  if (document.querySelector('.friendsProfileView-selfStats')) {
+    return null;
+  }
+
+  const action = document.querySelector('.hunterInfoView-friendsBlock [data-recipient-snuid]');
+  if (action?.dataset.recipientSnuid) {
+    return action.dataset.recipientSnuid;
+  }
+
+  const fromUrl = new URLSearchParams(location.search).get('snuid');
+  if (fromUrl && fromUrl !== user?.sn_user_id) {
+    return fromUrl;
+  }
+
+  return null;
+};
+
+/**
+ * Render the note block on a hunter's profile.
+ *
+ * @param {HTMLElement} block   The note block.
+ * @param {string}      snuid   The hunter's snuid.
+ * @param {Object}      meta    Details about the hunter.
+ * @param {boolean}     editing Whether to show the editor.
+ */
+const renderProfileNote = (block, snuid, meta, editing = false) => {
+  const note = getNote(snuid);
+  block.innerHTML = '';
+  block.classList.toggle('mh-friend-note-empty', !note && !editing);
+  block.classList.toggle('mh-friend-note-editing', editing);
+
+  if (editing) {
+    const textarea = makeElement('textarea', 'mh-friend-note-input');
+    textarea.value = note;
+    textarea.maxLength = MAX_NOTE_LENGTH;
+    textarea.rows = 3;
+    textarea.placeholder = 'Only you can see this note';
+    block.append(textarea);
+
+    const actions = makeElement('div', 'mh-friend-note-actions');
+    block.append(actions);
+
+    /**
+     * Save the note and go back to showing it.
+     */
+    const save = () => {
+      setNote(snuid, textarea.value, meta);
+      renderProfileNote(block, snuid, meta);
+    };
+
+    makeMhButton({ text: 'Save', size: 'tiny', className: 'mh-friend-note-save', callback: save, appendTo: actions });
+
+    const cancel = makeElement('a', 'mh-friend-note-cancel', 'Cancel');
+    cancel.href = '#';
+    cancel.addEventListener('click', (event) => {
+      event.preventDefault();
+      renderProfileNote(block, snuid, meta);
+    });
+    actions.append(cancel);
+
+    if (note) {
+      const remove = makeElement('a', 'mh-friend-note-remove', 'Remove');
+      remove.href = '#';
+      remove.addEventListener('click', (event) => {
+        event.preventDefault();
+        setNote(snuid, '', meta);
+        renderProfileNote(block, snuid, meta);
+      });
+      actions.append(remove);
+    }
+
+    textarea.addEventListener('keydown', (event) => {
+      if ('Enter' === event.key && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        save();
+      } else if ('Escape' === event.key) {
+        event.preventDefault();
+        renderProfileNote(block, snuid, meta);
+      }
+    });
+
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    return;
+  }
+
+  const header = makeElement('div', 'mh-friend-note-header');
+  makeElement('span', 'mh-friend-note-label', 'Note', header);
+
+  const edit = makeElement('a', 'mh-friend-note-edit', note ? 'Edit' : 'Add a note');
+  edit.href = '#';
+  edit.addEventListener('click', (event) => {
+    event.preventDefault();
+    renderProfileNote(block, snuid, meta, true);
+  });
+  header.append(edit);
+  block.append(header);
+
+  if (note) {
+    // The note is free text, so add it as text rather than HTML.
+    const text = makeElement('div', 'mh-friend-note-text');
+    text.textContent = note;
+    block.append(text);
+  }
+};
+
+/**
+ * Add the note block under the ID card on a hunter's profile.
+ */
+const addProfileNote = () => {
+  document.querySelectorAll('.mh-friend-note').forEach((el) => el.remove());
+
+  const idCard = document.querySelector('.hunterInfoView-left .hunterInfoView-idCardBlock');
+  if (!idCard) {
+    return;
+  }
+
+  const snuid = getProfileSnuid();
+  if (!snuid) {
+    return;
+  }
+
+  const meta = {
+    name: idCard.querySelector('.friendsPage-friendRow-titleBar-name')?.textContent.trim() || '',
+    hunterId: idCard.dataset.userId || '',
+  };
+
+  const block = makeElement('div', 'mh-friend-note');
+  renderProfileNote(block, snuid, meta);
+  idCard.after(block);
+};
+
+/**
+ * Initialize the feature.
+ */
+export default () => {
+  addStyles(styles, 'friend-notes');
+
+  onNavigation(addProfileNote, { page: 'hunterprofile' });
+
+  onNavigation(watchFriendsPage, { page: 'friends' });
+  onNavigation(unwatchFriendsPage, { onLoad: false });
+
+  onRequest('pages/friends.php', (response, data) => {
+    if ('get_sortable_friend_data' === data?.action) {
+      setTimeout(() => patchFriendSearch(), 0);
+    }
+  });
+
+  onEvent('profile_hover', decorateHoverProfile);
+};
+
+export { getNote, setNote };

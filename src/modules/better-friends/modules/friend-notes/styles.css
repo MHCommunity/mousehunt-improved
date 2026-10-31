@@ -1,0 +1,129 @@
+/* Profile note block, under the ID card. It lines up with the game's blocks, which have 5px side margins. */
+.mh-friend-note {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  margin: 10px 5px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #4a3b2a;
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid #c8b89f;
+  border-radius: 8px;
+}
+
+.mh-friend-note-empty {
+  padding: 4px 12px;
+  background: none;
+  border-color: transparent;
+}
+
+.mh-friend-note-header {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.mh-friend-note-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b5a44;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mh-friend-note-empty .mh-friend-note-label {
+  display: none;
+}
+
+.mh-friend-note-edit,
+.mh-friend-note-cancel,
+.mh-friend-note-remove {
+  font-size: 11px;
+}
+
+.mh-friend-note-text {
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.mh-friend-note-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 8px;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  resize: vertical;
+  background: #fff;
+  border: 1px solid #c8b89f;
+  border-radius: 4px;
+}
+
+.mh-friend-note-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.mh-friend-note-actions .mousehuntActionButton {
+  margin: 0;
+}
+
+.mh-friend-note-remove {
+  margin-left: auto;
+}
+
+/* Friend rows on the Friends page and in the hover profile. */
+.mh-friend-note-row {
+  max-width: 100%;
+  padding: 2px 0 4px 5px;
+  margin-top: -2px;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 14px;
+  color: #5c4a35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mh-friend-note-row::before {
+  margin-right: 4px;
+  font-weight: 700;
+  content: "Note:";
+}
+
+#friend-data-wrapper.mh-has-friend-note {
+  height: auto;
+  min-height: 125px;
+}
+
+#friend-data-wrapper .mh-friend-note-row {
+  width: 240px;
+  padding: 0 0 4px;
+  margin: -4px 0 0 -10px;
+}
+
+/* Dark mode. */
+.mh-dark .mh-friend-note {
+  color: var(--d-text);
+  background: var(--d-surface-inset);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-friend-note-empty {
+  background: none;
+  border-color: transparent;
+}
+
+.mh-dark .mh-friend-note-label,
+.mh-dark .mh-friend-note-row {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-friend-note-input {
+  color: var(--d-text);
+  background: var(--d-input-bg);
+  border-color: var(--d-border);
+}

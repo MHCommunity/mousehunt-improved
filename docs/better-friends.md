@@ -9,6 +9,7 @@ Makes it easier to see and keep up with other hunters.
 - **Egg Master Icon**: Shows the Egg Master icon on the profiles of hunters who are Egg Masters.
 - **On Maps Tab**: Adds an On Maps tab to the Friends page that lists which of your friends are on a map, with a button to open it.
 - **Scoreboard Search**: Adds a Scoreboards tab to hunter profiles to look up that hunter on any scoreboard. Scoreboards are grouped into sections so larger lists are easier to scan.
+- **Hunter Notes**: Keep a private note on any hunter, like "doesn't help on maps" or "this is John", from their profile. The note shows on their profile, in their hover profile, and on the Friends page, where the search box also matches note text.
 
 ## Options
 
@@ -16,6 +17,7 @@ Makes it easier to see and keep up with other hunters.
 - **Show emotes on corkboards**
 - **Add the Egg Master icon to profiles**
 - **Add "On Maps" tab to Friends page**: Off by default.
+- **Add notes to hunters**
 
 ## Emotes
 
