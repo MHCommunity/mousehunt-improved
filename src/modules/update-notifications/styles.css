@@ -12,6 +12,7 @@
   font-size: 12px;
   line-height: 1.4;
   color: #1f3a27;
+  cursor: pointer;
   background: linear-gradient(320deg, #e1fae9 0%, #b0f5c6 100%);
   border: 1px solid #6e7d73;
   border-radius: 8px;
@@ -21,6 +22,10 @@
     opacity 0.3s ease-out,
     transform 0.3s ease-out;
   transform: translateY(20px);
+}
+
+.mh-improved-update-available:hover {
+  box-shadow: 0 6px 18px rgb(0 0 0 / 45%);
 }
 
 .mh-improved-update-available-visible {

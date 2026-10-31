@@ -210,7 +210,12 @@ const showUpdateSummary = async (from = '0.0.0', force = false, previewFlags = n
 const showUpdateAvailable = (version) => {
   document.querySelector('.mh-improved-update-available')?.remove();
 
-  const isUserscript = 'userscript' === mhImprovedPlatform;
+  const storeUrls = {
+    chrome: 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm',
+    firefox: 'https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/',
+    userscript: 'https://greasyfork.org/scripts/465139-mousehunt-improved',
+  };
+  const storeUrl = storeUrls[mhImprovedPlatform] || storeUrls.chrome;
 
   const notice = makeElement('div', 'mh-improved-update-available');
   notice.setAttribute('role', 'status');
@@ -222,14 +227,7 @@ const showUpdateAvailable = (version) => {
 
   const content = makeElement('div', 'mh-improved-update-available-content');
   makeElement('div', 'mh-improved-update-available-title', 'MouseHunt Improved update available', content);
-  makeElement(
-    'div',
-    'mh-improved-update-available-text',
-    isUserscript
-      ? `Get version ${version} from <a href="https://greasyfork.org/scripts/465139-mousehunt-improved" target="_blank" rel="noopener noreferrer">Greasy Fork</a>.`
-      : `Restart your browser to get version ${version}.`,
-    content
-  );
+  makeElement('div', 'mh-improved-update-available-text', `<a href="${storeUrl}" target="_blank" rel="noopener noreferrer">Update to version ${version} &rarr;</a>`, content);
   notice.append(content);
 
   const dismiss = () => {
@@ -238,7 +236,18 @@ const showUpdateAvailable = (version) => {
     setTimeout(() => notice.remove(), 300);
   };
 
-  content.querySelector('a')?.addEventListener('click', dismiss);
+  // The whole card opens the store; the link inside keeps middle-click and keyboard access.
+  notice.addEventListener('click', (event) => {
+    if (event.target.closest('.mh-improved-update-available-close')) {
+      return;
+    }
+
+    if (!event.target.closest('a')) {
+      window.open(storeUrl, '_blank', 'noopener');
+    }
+
+    dismiss();
+  });
 
   const close = makeElement('button', 'mh-improved-update-available-close', '×');
   close.type = 'button';
