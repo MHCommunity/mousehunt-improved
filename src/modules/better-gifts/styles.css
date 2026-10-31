@@ -568,3 +568,21 @@ input[type="text"].giftSelectorView-friendRow-returnQuantity {
   right: 5px;
   z-index: 15;
 }
+
+.giftSelectorView-tabContent:is([data-tab="send_free_gifts"], [data-tab="send_paid_gifts"]) .giftSelectorView-hiddenFriendsContainer:not(.mh-gift-show-inactive) .giftSelectorView-friend.mh-gift-inactive {
+  display: none;
+}
+
+.giftSelectorView-friend-group.mh-gift-inactive-note .giftSelectorView-friend-group-title {
+  padding: 8px 3px 4px;
+  color: #666;
+  text-align: center;
+}
+
+.giftSelectorView-tabContent[data-tab="friends"] .mh-gift-inactive-note {
+  display: none;
+}
+
+.mh-dark .giftSelectorView-friend-group.mh-gift-inactive-note .giftSelectorView-friend-group-title {
+  color: var(--d-text-muted);
+}

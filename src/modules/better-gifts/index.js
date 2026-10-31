@@ -11,6 +11,7 @@ import {
   replaceInTemplateWhileEnabled,
 } from '@utils';
 
+import hideInactiveFriends from './inactive-friends';
 import settings from './settings';
 import styles from './styles.css';
 
@@ -361,7 +362,8 @@ const addSendButton = (className, text, selector, buttonContainer) => {
   }
 
   sendButton.addEventListener('click', (event) => {
-    const friends = document.querySelectorAll(selector);
+    // Skip friends hidden by the search box or the inactive filter.
+    const friends = [...document.querySelectorAll(selector)].filter((friend) => null !== friend.offsetParent);
     if (!friends.length) {
       return;
     }
@@ -556,6 +558,7 @@ const main = () => {
 
   addRandomSendButton();
   addGiftSwitcher();
+  hideInactiveFriends();
   fixTypo();
   lineBreakGiftFooter();
 

@@ -55,6 +55,13 @@ export default async () => {
 
   return [
     {
+      id: 'better-gifts.hide-inactive-friends',
+      live: true,
+      title: 'Hide inactive friends',
+      description: "Leave friends who haven't played in a month out of the gift selector and random picks.",
+      default: true,
+    },
+    {
       id: 'better-gifts.send-order',
       live: true,
       title: 'Gift order',

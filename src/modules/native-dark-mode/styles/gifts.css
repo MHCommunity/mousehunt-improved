@@ -287,3 +287,7 @@
 .mh-dark .giftSelectorView-content-viewState.selectFriends .giftSelectorView-friend.complete .giftSelectorView-friend-padding {
   background-color: var(--d-green-dark);
 }
+
+.mh-dark .giftSelectorView-empty {
+  color: var(--d-text);
+}
