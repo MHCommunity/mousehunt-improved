@@ -350,10 +350,6 @@
   color: var(--d-text);
 }
 
-.mh-dark .mh-improved-map-listing-last-active {
-  color: var(--d-text-muted);
-}
-
 .mh-dark .treasureMapRootView-header {
   background: var(--d-surface-panel);
 }
@@ -702,4 +698,20 @@
 .mh-dark .treasureMapInviteSettingsView-listing-visibility.active,
 .mh-dark .treasureMapInviteSettingsView-listing-visibility.active::before {
   color: var(--d-green-light);
+}
+
+/* The hunter tooltip on maps is its own view, not a .mousehuntTooltip. */
+.mh-dark .treasureMapTooltipView {
+  color: var(--d-text);
+  background: var(--d-surface-popover);
+  border-color: var(--d-border);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 50%);
+}
+
+.mh-dark .treasureMapTooltipView.active::before {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .treasureMapTooltipView.active::after {
+  border-top-color: var(--d-surface-popover);
 }
