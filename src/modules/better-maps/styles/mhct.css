@@ -154,14 +154,14 @@
   border-bottom-left-radius: 6px;
 }
 
-.mhct-show-more {
+.mhct-row.mhct-show-more {
   display: block;
   color: #3b5998;
   text-align: center;
   cursor: pointer;
 }
 
-.mhct-show-more:hover {
+.mhct-row.mhct-show-more:hover {
   text-decoration: underline;
 }
 
