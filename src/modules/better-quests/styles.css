@@ -279,3 +279,13 @@ ul.mh-ui-assignment-details-task-list {
 #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .content {
   padding: 10px 10px 0;
 }
+
+.mh-m400-bait {
+  margin-top: 2px;
+  font-size: 10px;
+  color: #666;
+}
+
+.mh-dark .mh-m400-bait {
+  color: var(--d-text-muted);
+}

@@ -10,6 +10,8 @@ Enhances the quests and assignments system with more information and shortcuts f
   the M400 and M400 Bait Research assignments.
 - **Linked M400 Objectives**: Mice named in M400 and M400 Bait Research
   assignment goals get hover cards and open the mouse view when clicked.
+- **M400 Bait Suggestions**: Each open M400 objective that names a mouse shows
+  the bait with the best MHCT attraction rate for it in that location.
 - **Concise Progress Display**: Makes task progress displays shorter and easier to read.
 
 The M400 helper can be turned off with a [feature flag](./feature-flags.md#better-quests).
