@@ -63,8 +63,8 @@
 .mh-dark .mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
   color: var(--d-hover-text);
   background-color: var(--d-hover);
-  border-color: var(--d-action);
-  box-shadow: inset 0 0 0 1px var(--d-interactive);
+  border-color: var(--d-interactive);
+  box-shadow: none;
 }
 
 .mh-dark .mouseListView-categoryContent-filter-option {

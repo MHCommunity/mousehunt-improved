@@ -367,6 +367,11 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   box-shadow: none;
 }
 
+/* Keep the square thumbnail off the row's rounded left corners. */
+.mouseListView-categoryContent-subgroup-mouse.stats:not(.header) .mouseListView-categoryContent-subgroup-mouse-margin {
+  padding-left: 4px;
+}
+
 .mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
   border-color: #cdcdcd;
   box-shadow: none;
