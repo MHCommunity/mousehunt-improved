@@ -397,8 +397,14 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const environments = await getData('environments');
   const environmentsEvent = await getData('environments-events');
 
-  const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
-  mhctJson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
+  /**
+   * Make a row for one location, bait and rate.
+   *
+   * @param {Object} mhct The MHCT row.
+   *
+   * @return {HTMLElement} The row.
+   */
+  const makeMhctRow = (mhct) => {
     const mhctRow = makeElement('div', 'mhct-row');
     const location = makeElement('div', 'mhct-location');
 
@@ -459,8 +465,23 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       });
     }
 
-    mhctDiv.append(mhctRow);
-  });
+    return mhctRow;
+  };
+
+  const amountOfLocationsToShow = 5;
+  mhctJson.slice(0, amountOfLocationsToShow).forEach((mhct) => mhctDiv.append(makeMhctRow(mhct)));
+
+  const remaining = mhctJson.slice(amountOfLocationsToShow);
+  if (remaining.length) {
+    const showMore = makeElement('div', ['mhct-row', 'mhct-show-more'], `Show ${remaining.length} more`);
+    showMore.addEventListener('click', (event) => {
+      event.stopPropagation();
+      remaining.forEach((mhct) => showMore.before(makeMhctRow(mhct)));
+      showMore.remove();
+    });
+
+    mhctDiv.append(showMore);
+  }
 
   appendTo.append(mhctDiv);
 };

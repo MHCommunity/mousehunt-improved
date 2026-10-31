@@ -153,3 +153,18 @@
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
+
+.mhct-show-more {
+  display: block;
+  color: #3b5998;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mhct-show-more:hover {
+  text-decoration: underline;
+}
+
+.mh-dark .mhct-show-more {
+  color: var(--d-link);
+}
