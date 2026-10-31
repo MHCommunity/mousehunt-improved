@@ -17,6 +17,27 @@ import {
 
 import styles from './styles.css';
 
+const recentMonths = 6;
+
+/**
+ * Format an entry timestamp as a short date, only showing the year for older entries.
+ *
+ * @param {number} timestamp The entry timestamp in milliseconds.
+ *
+ * @return {string} The formatted date.
+ */
+const formatTimestamp = (timestamp) => {
+  const date = new Date(timestamp);
+  const cutoff = new Date();
+  cutoff.setMonth(cutoff.getMonth() - recentMonths);
+
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    ...(date < cutoff ? { year: 'numeric' } : {}),
+  });
+};
+
 /**
  * Make the markup for the journal entries.
  *
@@ -68,14 +89,7 @@ const makeEntriesMarkup = (entries) => {
         html += `<div class="journalimage">${entry.image}</div>`;
       }
 
-      let timestamp = '';
-      if (entry.timestamp) {
-        timestamp = new Date(entry.timestamp).toLocaleString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-        });
-      }
+      const timestamp = entry.timestamp ? formatTimestamp(entry.timestamp) : '';
 
       html += `<div class="journalbody">
         <div class="journalactions"></div>
