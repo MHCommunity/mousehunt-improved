@@ -11,12 +11,6 @@
   border-radius: 8px;
 }
 
-.mh-friend-note-empty {
-  padding: 4px 12px;
-  background: none;
-  border-color: transparent;
-}
-
 .mh-friend-note-header {
   display: flex;
   gap: 10px;
@@ -31,8 +25,20 @@
   letter-spacing: 0.04em;
 }
 
-.mh-friend-note-empty .mh-friend-note-label {
-  display: none;
+/* "Add a note" pill, next to the Hunter ID in the ID card header. */
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-secondaryHeader a.mh-friend-note-add {
+  display: inline-block;
+  padding: 1px 7px;
+  margin-right: 6px;
+  font-size: 11px;
+  color: #87270e;
+  vertical-align: middle;
+  background-color: #ece9d8;
+  border-radius: 10px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-secondaryHeader a.mh-friend-note-add:hover {
+  text-decoration: underline;
 }
 
 .mh-friend-note-edit,
@@ -112,9 +118,9 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .mh-friend-note-empty {
-  background: none;
-  border-color: transparent;
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-secondaryHeader a.mh-friend-note-add {
+  color: var(--d-link);
+  background-color: var(--d-surface-page);
 }
 
 .mh-dark .mh-friend-note-label,

@@ -268,100 +268,103 @@ const getProfileSnuid = () => {
 };
 
 /**
- * Render the note block on a hunter's profile.
+ * Render the note editor into the note block.
  *
- * @param {HTMLElement} block   The note block.
- * @param {string}      snuid   The hunter's snuid.
- * @param {Object}      meta    Details about the hunter.
- * @param {boolean}     editing Whether to show the editor.
+ * @param {HTMLElement} block    The note block.
+ * @param {string}      snuid    The hunter's snuid.
+ * @param {Object}      meta     Details about the hunter.
+ * @param {Function}    rerender Re-render the profile's note, with `true` to keep editing.
  */
-const renderProfileNote = (block, snuid, meta, editing = false) => {
+const renderNoteEditor = (block, snuid, meta, rerender) => {
   const note = getNote(snuid);
-  block.innerHTML = '';
-  block.classList.toggle('mh-friend-note-empty', !note && !editing);
-  block.classList.toggle('mh-friend-note-editing', editing);
+  block.classList.add('mh-friend-note-editing');
 
-  if (editing) {
-    const textarea = makeElement('textarea', 'mh-friend-note-input');
-    textarea.value = note;
-    textarea.maxLength = MAX_NOTE_LENGTH;
-    textarea.rows = 3;
-    textarea.placeholder = 'Only you can see this note';
-    block.append(textarea);
+  const textarea = makeElement('textarea', 'mh-friend-note-input');
+  textarea.value = note;
+  textarea.maxLength = MAX_NOTE_LENGTH;
+  textarea.rows = 3;
+  textarea.placeholder = 'Only you can see this note';
+  block.append(textarea);
 
-    const actions = makeElement('div', 'mh-friend-note-actions');
-    block.append(actions);
+  const actions = makeElement('div', 'mh-friend-note-actions');
+  block.append(actions);
 
-    /**
-     * Save the note and go back to showing it.
-     */
-    const save = () => {
-      setNote(snuid, textarea.value, meta);
-      renderProfileNote(block, snuid, meta);
-    };
+  /**
+   * Save the note and go back to showing it.
+   */
+  const save = () => {
+    setNote(snuid, textarea.value, meta);
+    rerender();
+  };
 
-    makeMhButton({ text: 'Save', size: 'tiny', className: 'mh-friend-note-save', callback: save, appendTo: actions });
+  makeMhButton({ text: 'Save', size: 'tiny', className: 'mh-friend-note-save', callback: save, appendTo: actions });
 
-    const cancel = makeElement('a', 'mh-friend-note-cancel', 'Cancel');
-    cancel.href = '#';
-    cancel.addEventListener('click', (event) => {
+  const cancel = makeElement('a', 'mh-friend-note-cancel', 'Cancel');
+  cancel.href = '#';
+  cancel.addEventListener('click', (event) => {
+    event.preventDefault();
+    rerender();
+  });
+  actions.append(cancel);
+
+  if (note) {
+    const remove = makeElement('a', 'mh-friend-note-remove', 'Remove');
+    remove.href = '#';
+    remove.addEventListener('click', (event) => {
       event.preventDefault();
-      renderProfileNote(block, snuid, meta);
+      setNote(snuid, '', meta);
+      rerender();
     });
-    actions.append(cancel);
-
-    if (note) {
-      const remove = makeElement('a', 'mh-friend-note-remove', 'Remove');
-      remove.href = '#';
-      remove.addEventListener('click', (event) => {
-        event.preventDefault();
-        setNote(snuid, '', meta);
-        renderProfileNote(block, snuid, meta);
-      });
-      actions.append(remove);
-    }
-
-    textarea.addEventListener('keydown', (event) => {
-      if ('Enter' === event.key && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        save();
-      } else if ('Escape' === event.key) {
-        event.preventDefault();
-        renderProfileNote(block, snuid, meta);
-      }
-    });
-
-    textarea.focus();
-    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
-    return;
+    actions.append(remove);
   }
 
+  textarea.addEventListener('keydown', (event) => {
+    if ('Enter' === event.key && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      save();
+    } else if ('Escape' === event.key) {
+      event.preventDefault();
+      rerender();
+    }
+  });
+
+  textarea.focus();
+  textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+};
+
+/**
+ * Render the saved note into the note block.
+ *
+ * @param {HTMLElement} block    The note block.
+ * @param {string}      note     The note.
+ * @param {Function}    rerender Re-render the profile's note, with `true` to start editing.
+ */
+const renderNoteView = (block, note, rerender) => {
   const header = makeElement('div', 'mh-friend-note-header');
   makeElement('span', 'mh-friend-note-label', 'Note', header);
 
-  const edit = makeElement('a', 'mh-friend-note-edit', note ? 'Edit' : 'Add a note');
+  const edit = makeElement('a', 'mh-friend-note-edit', 'Edit');
   edit.href = '#';
   edit.addEventListener('click', (event) => {
     event.preventDefault();
-    renderProfileNote(block, snuid, meta, true);
+    rerender(true);
   });
   header.append(edit);
   block.append(header);
 
-  if (note) {
-    // The note is free text, so add it as text rather than HTML.
-    const text = makeElement('div', 'mh-friend-note-text');
-    text.textContent = note;
-    block.append(text);
-  }
+  // The note is free text, so add it as text rather than HTML.
+  const text = makeElement('div', 'mh-friend-note-text');
+  text.textContent = note;
+  block.append(text);
 };
 
 /**
- * Add the note block under the ID card on a hunter's profile.
+ * Add the note to a hunter's profile.
+ *
+ * A saved note shows in a block under the ID card. Without one, there's just an "Add a note"
+ * pill next to the Hunter ID, and the block only appears while editing.
  */
 const addProfileNote = () => {
-  document.querySelectorAll('.mh-friend-note').forEach((el) => el.remove());
-
   const idCard = document.querySelector('.hunterInfoView-left .hunterInfoView-idCardBlock');
   if (!idCard) {
     return;
@@ -377,9 +380,42 @@ const addProfileNote = () => {
     hunterId: idCard.dataset.userId || '',
   };
 
-  const block = makeElement('div', 'mh-friend-note');
-  renderProfileNote(block, snuid, meta);
-  idCard.after(block);
+  /**
+   * Render the note's current state.
+   *
+   * @param {boolean} editing Whether to show the editor.
+   */
+  const render = (editing = false) => {
+    document.querySelectorAll('.mh-friend-note, .mh-friend-note-add').forEach((el) => el.remove());
+
+    const note = getNote(snuid);
+    if (!note && !editing) {
+      const add = makeElement('a', 'mh-friend-note-add', 'Add a note');
+      add.href = '#';
+      add.addEventListener('click', (event) => {
+        event.preventDefault();
+        render(true);
+      });
+
+      const header = idCard.querySelector('.hunterInfoView-idCardBlock-secondaryHeader');
+      if (header) {
+        header.prepend(add);
+      }
+
+      return;
+    }
+
+    const block = makeElement('div', 'mh-friend-note');
+    if (editing) {
+      renderNoteEditor(block, snuid, meta, render);
+    } else {
+      renderNoteView(block, note, render);
+    }
+
+    idCard.after(block);
+  };
+
+  render();
 };
 
 /**
