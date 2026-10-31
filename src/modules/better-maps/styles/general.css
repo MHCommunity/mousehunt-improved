@@ -833,16 +833,6 @@ input.treasureMapView-block-search-text {
   width: unset !important;
 }
 
-.mh-improved-map-listing-last-active-wrapper {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.mh-improved-map-listing-full {
-  opacity: 0.5;
-}
-
 .treasureMapPopup-mapInvite .treasureMapInventoryView-scrollCase {
   padding: 0;
   margin: 5px 0;
