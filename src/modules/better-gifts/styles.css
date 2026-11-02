@@ -586,3 +586,24 @@ input[type="text"].giftSelectorView-friendRow-returnQuantity {
 .mh-dark .giftSelectorView-friend-group.mh-gift-inactive-note .giftSelectorView-friend-group-title {
   color: var(--d-text-muted);
 }
+
+.mh-gift-friend-sort {
+  float: right;
+  font-style: normal;
+}
+
+.mh-gift-friend-sort-option.active {
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.giftSelectorView-confirmOverlay.active {
+  transition: opacity 0.3s ease;
+}
+
+.giftSelectorView-confirmOverlay.active.mh-gift-results-closing {
+  pointer-events: none;
+  opacity: 0;
+}

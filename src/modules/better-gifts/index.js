@@ -11,6 +11,7 @@ import {
   replaceInTemplateWhileEnabled,
 } from '@utils';
 
+import autoCloseResults from './auto-close-results';
 import hideInactiveFriends from './inactive-friends';
 import settings from './settings';
 import styles from './styles.css';
@@ -104,13 +105,10 @@ const claimGifts = async (send = false, retries = 0) => {
     }
   }
 
-  setTimeout(() => {
-    // hit the confirm button.
-    const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
-    if (confirm) {
-      setTimeout(() => hg.views.GiftSelectorView.submitConfirm(), 250, confirm);
-    }
-  }, 500);
+  // Selecting gifts updates the game's state right away, so submit straight after.
+  if (document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small')) {
+    hg.views.GiftSelectorView.submitConfirm();
+  }
 };
 
 /**
@@ -559,6 +557,7 @@ const main = () => {
   addRandomSendButton();
   addGiftSwitcher();
   hideInactiveFriends();
+  autoCloseResults();
   fixTypo();
   lineBreakGiftFooter();
 

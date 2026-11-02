@@ -1,33 +1,120 @@
-import { getSetting, makeElement, overrideWhileEnabled } from '@utils';
+import { getSetting, makeElement, overrideWhileEnabled, saveSetting } from '@utils';
 
 const MODULE_ID = 'better-gifts';
 const SETTING_ID = 'better-gifts.hide-inactive-friends';
+const SORT_SETTING_ID = 'better-gifts.friend-sort';
 const INACTIVE_AFTER_DAYS = 30;
 
+const SORT_OPTIONS = [
+  { id: 'name', label: 'name' },
+  { id: 'active', label: 'last active' },
+];
+
 let inactiveSnuids = new Set();
+let lastActiveBySnuid = new Map();
 let showInactive = false;
 
 /**
- * Whether a friend's last activity is more than a month ago.
+ * Get when a friend was last active.
  *
- * The date comes back from the game as "YYYY-MM-DD HH:MM:SS". Friends without a date are kept.
+ * The date comes back from the game as "YYYY-MM-DD HH:MM:SS".
  *
  * @param {Object} friend The friend data.
  *
- * @return {boolean} Whether the friend is inactive.
+ * @return {number|null} The timestamp, or null when the game didn't send a usable date.
  */
-const isInactive = (friend) => {
+const getLastActive = (friend) => {
   const date = friend?.last_active_date;
   if (!date) {
-    return false;
+    return null;
   }
 
   const lastActive = new Date(String(date).replace(' ', 'T')).getTime();
-  if (Number.isNaN(lastActive)) {
-    return false;
+  return Number.isNaN(lastActive) ? null : lastActive;
+};
+
+/**
+ * Whether a friend's last activity is more than a month ago. Friends without a date are kept.
+ *
+ * @param {number|null} lastActive The friend's last active timestamp.
+ *
+ * @return {boolean} Whether the friend is inactive.
+ */
+const isInactive = (lastActive) => null !== lastActive && Date.now() - lastActive > INACTIVE_AFTER_DAYS * 24 * 60 * 60 * 1000;
+
+/**
+ * Get the current sort for the All Friends group.
+ *
+ * @return {string} The sort ID.
+ */
+const getSort = () => {
+  const sort = getSetting(SORT_SETTING_ID, 'name');
+  return SORT_OPTIONS.some((option) => option.id === sort) ? sort : 'name';
+};
+
+/**
+ * Reorder the All Friends tiles in place, so the game's grid is untouched.
+ *
+ * @param {HTMLElement} list The friend list container.
+ */
+const sortAllFriends = (list) => {
+  // The game appends the tiles straight to the group, after the title and the empty-state box.
+  const group = list.querySelector('.giftSelectorView-friend-group.default');
+  if (!group) {
+    return;
   }
 
-  return Date.now() - lastActive > INACTIVE_AFTER_DAYS * 24 * 60 * 60 * 1000;
+  const friends = [...group.querySelectorAll(':scope > .giftSelectorView-friend')];
+
+  // Remember the game's own order (by name) so it can be restored.
+  friends.forEach((friend, index) => {
+    if (!friend.dataset.mhOrder) {
+      friend.dataset.mhOrder = index;
+    }
+  });
+
+  const byName = (a, b) => Number(a.dataset.mhOrder) - Number(b.dataset.mhOrder);
+  const byActive = (a, b) => {
+    const diff = (lastActiveBySnuid.get(String(b.dataset.snuid)) ?? 0) - (lastActiveBySnuid.get(String(a.dataset.snuid)) ?? 0);
+    return diff || byName(a, b);
+  };
+
+  friends.sort('active' === getSort() ? byActive : byName);
+  group.append(...friends);
+};
+
+/**
+ * Add the sort links to the All Friends title.
+ *
+ * @param {HTMLElement} list The friend list container.
+ */
+const addSortLinks = (list) => {
+  const title = list.querySelector('.giftSelectorView-friend-group.default .giftSelectorView-friend-group-title');
+  if (!title) {
+    return;
+  }
+
+  let wrapper = title.querySelector('.mh-gift-friend-sort');
+  if (!wrapper) {
+    wrapper = makeElement('span', 'mh-gift-friend-sort', 'Sort by ');
+    SORT_OPTIONS.forEach((option, index) => {
+      if (index) {
+        wrapper.append(' · ');
+      }
+
+      const link = makeElement('a', 'mh-gift-friend-sort-option', option.label);
+      link.href = '#';
+      link.dataset.sort = option.id;
+      wrapper.append(link);
+    });
+
+    title.append(wrapper);
+  }
+
+  const sort = getSort();
+  wrapper.querySelectorAll('.mh-gift-friend-sort-option').forEach((link) => {
+    link.classList.toggle('active', link.dataset.sort === sort);
+  });
 };
 
 /**
@@ -59,6 +146,9 @@ const applyToList = () => {
 
   list.classList.toggle('mh-gift-show-inactive', showInactive);
 
+  addSortLinks(list);
+  sortAllFriends(list);
+
   let note = list.querySelector('.mh-gift-inactive-note');
   if (!count) {
     note?.remove();
@@ -73,18 +163,28 @@ const applyToList = () => {
   const friends = 1 === count ? 'friend' : 'friends';
   const title = note.querySelector('.giftSelectorView-friend-group-title');
   title.textContent = showInactive ? `Showing ${count} inactive ${friends}. ` : `${count} inactive ${friends} hidden. `;
-  makeElement('a', 'mh-gift-inactive-toggle', showInactive ? 'Hide' : 'Show', title).href = '#';
+  const toggle = makeElement('a', 'mh-gift-inactive-toggle', showInactive ? 'Hide' : 'Show');
+  toggle.href = '#';
+  title.append(toggle);
 
   // The game appends each group as it finishes rendering, so move the note back to the end.
   list.append(note);
 };
 
 /**
- * Flip between hiding and showing the inactive friends.
+ * Handle the show/hide link and the sort links.
  *
  * @param {Event} event The click event.
  */
-const onToggleClick = (event) => {
+const onListClick = (event) => {
+  const sortLink = event.target.closest('.mh-gift-friend-sort-option');
+  if (sortLink) {
+    event.preventDefault();
+    saveSetting(SORT_SETTING_ID, sortLink.dataset.sort);
+    applyToList();
+    return;
+  }
+
   if (!event.target.closest('.mh-gift-inactive-toggle')) {
     return;
   }
@@ -123,7 +223,7 @@ const hideInactiveFriends = () => {
   });
 
   /**
-   * Remember which friends are inactive. The friend the selector was opened for is never hidden.
+   * Remember when each friend was last active. The friend the selector was opened for is never hidden.
    *
    * @param {Function} original      The game's formatFriendData.
    * @param {Array}    rawFriendData The friends to group.
@@ -134,13 +234,15 @@ const hideInactiveFriends = () => {
     const groups = original.call(view, rawFriendData);
 
     inactiveSnuids = new Set();
+    lastActiveBySnuid = new Map();
     for (const group of groups) {
-      if ('highlighted' === group.type) {
-        continue;
-      }
-
       for (const friend of group.friends) {
-        if (isInactive(friend)) {
+        const lastActive = getLastActive(friend);
+        if (null !== lastActive) {
+          lastActiveBySnuid.set(String(friend.snuid), lastActive);
+        }
+
+        if ('highlighted' !== group.type && isInactive(lastActive)) {
           inactiveSnuids.add(String(friend.snuid));
         }
       }
@@ -176,7 +278,7 @@ const hideInactiveFriends = () => {
     return original.apply(view, args);
   });
 
-  document.addEventListener('click', onToggleClick);
+  document.addEventListener('click', onListClick);
 };
 
 export default hideInactiveFriends;
