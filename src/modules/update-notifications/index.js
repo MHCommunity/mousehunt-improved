@@ -226,8 +226,8 @@ const showUpdateAvailable = (version) => {
   notice.append(image);
 
   const content = makeElement('div', 'mh-improved-update-available-content');
-  makeElement('div', 'mh-improved-update-available-title', 'MouseHunt Improved update available', content);
-  makeElement('div', 'mh-improved-update-available-text', `<a href="${storeUrl}" target="_blank" rel="noopener noreferrer">Update to version ${version} &rarr;</a>`, content);
+  makeElement('div', 'mh-improved-update-available-title', 'MouseHunt Improved', content);
+  makeElement('div', 'mh-improved-update-available-text', `<a href="${storeUrl}" target="_blank" rel="noopener noreferrer">Update to v${version} &rarr;</a>`, content);
   notice.append(content);
 
   const dismiss = () => {
