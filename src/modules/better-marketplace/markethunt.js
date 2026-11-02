@@ -1,5 +1,7 @@
 import { makeCollapsible, makeElement, waitForElement } from '@utils';
 
+import { keepDescriptionHeaderInPlace } from './description';
+
 /**
  * Add a collapse toggle to the chart the Markethunt userscript adds to item views.
  *
@@ -26,6 +28,8 @@ const makeMarkethuntChartCollapsible = async (isCurrent) => {
   if (priceChart) {
     header.before(priceChart);
   }
+
+  keepDescriptionHeaderInPlace();
 
   makeCollapsible({
     key: 'marketplace.markethunt-chart',

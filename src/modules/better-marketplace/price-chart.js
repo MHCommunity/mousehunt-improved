@@ -962,7 +962,8 @@ const addPriceChart = async (itemId) => {
 
   // Keep our chart above the Markethunt userscript's chart if it's already there.
   const markethuntChart = item.querySelector(':scope > .mhui-markethunt-chart-header, :scope > #chartArea');
-  (markethuntChart || description).before(area);
+  const descriptionHeader = item.querySelector(':scope > .mhui-marketplace-description-header');
+  (markethuntChart || descriptionHeader || description).before(area);
 
   // Set up once it's on the page, as expanding draws the chart.
   collapsible = makeCollapsible({

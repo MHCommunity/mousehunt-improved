@@ -4,11 +4,14 @@ import {
   debounce,
   formatGold,
   formatNumber,
+  getArForMouse,
   getData,
   getItemLinks,
   getSetting,
   makeElement,
+  makeLink,
   makeMhButton,
+  mhctRedirectUrl,
   onOverlayChange,
   onRequest,
   parseNumber,
@@ -21,6 +24,7 @@ import { addPriceChart } from './price-chart';
 import { calculateQuickSell } from './pricing';
 import { createMarketplaceRuntime } from './runtime';
 import { enhanceItemView } from './listing';
+import { makeDescriptionCollapsible } from './description';
 import { makeMarkethuntChartCollapsible } from './markethunt';
 import settings from './settings';
 
@@ -297,10 +301,12 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   let itemName = document.querySelector('.marketplaceView-item-titleName');
   itemName = itemName ? itemName.textContent.trim() : '';
 
-  const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getItemLinks(itemName, itemId));
+  const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getItemLinks(itemName, itemId, { mhct: false }));
   actions.insertBefore(buttons, actions.firstChild);
 
-  const decorations = [enhanceItemView(itemId, isCurrent)];
+  makeDescriptionCollapsible();
+
+  const decorations = [enhanceItemView(itemId, isCurrent), addMhctButton(itemId, buttons, isCurrent)];
 
   // Not awaited: the Markethunt userscript may never add its chart.
   makeMarkethuntChartCollapsible(isCurrent);
@@ -314,6 +320,24 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   }
 
   await Promise.all(decorations);
+};
+
+/**
+ * Add the MHCT button to the item title, but only for items MHCT has data for.
+ *
+ * Baskets, gift boxes and the like are never looted, so their MHCT page is empty.
+ *
+ * @param {number|string} itemId    The item id.
+ * @param {HTMLElement}   buttons   The title action buttons wrapper.
+ * @param {Function}      isCurrent Whether this render is still current.
+ */
+const addMhctButton = async (itemId, buttons, isCurrent) => {
+  const rates = await getArForMouse(itemId, 'item');
+  if (!Array.isArray(rates) || !rates.length || !buttons.isConnected || (isCurrent && !isCurrent())) {
+    return;
+  }
+
+  buttons.insertAdjacentHTML('afterbegin', makeLink('MHCT', mhctRedirectUrl(itemId, { item: true })));
 };
 
 /**
@@ -464,7 +488,9 @@ const getBestSellQuantity = () => {
 };
 
 const addQuickSellButton = async (itemId, isCurrent) => {
-  const actions = document.querySelector('.marketplaceView-item-table .marketplaceView-item-viewActions');
+  // It takes the place of the character guide box in the right column, falling back to under the buy and sell buttons.
+  const rightView = document.querySelector('.marketplaceView-item-rightBlock .marketplaceView-item-state.view');
+  const actions = rightView || document.querySelector('.marketplaceView-item-table .marketplaceView-item-viewActions');
   if (!actions) {
     return;
   }
@@ -472,10 +498,8 @@ const addQuickSellButton = async (itemId, isCurrent) => {
   // Remove the whole wrapper, not just the button — the wrapper holds the quantity
   // input and the info row, so removing only the button leaves those behind and the
   // next decoration pass appends a second set (along with a duplicate input ID).
-  const existing = actions.querySelector('.mhui-marketplace-quick-sell-wrapper');
-  if (existing) {
-    existing.remove();
-  }
+  document.querySelectorAll('.mhui-marketplace-quick-sell-wrapper').forEach((existing) => existing.remove());
+  rightView?.classList.remove('mhui-marketplace-has-quick-sell');
 
   await waitForElement('.marketplaceView-table .bestPrice');
 
@@ -568,6 +592,7 @@ const addQuickSellButton = async (itemId, isCurrent) => {
   });
 
   actions.append(quickSellWrapper);
+  rightView?.classList.add('mhui-marketplace-has-quick-sell');
 };
 
 const addRelistButtonToCancelled = async () => {

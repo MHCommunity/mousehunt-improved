@@ -29,3 +29,12 @@ input.mhui-marketplace-quick-sell-quantity {
   line-height: 1.2;
   white-space: normal;
 }
+
+.mhui-marketplace-has-quick-sell .mousehuntCharacterGuideBox {
+  display: none;
+}
+
+.mhui-marketplace-has-quick-sell .mhui-marketplace-quick-sell-wrapper {
+  right: 20px;
+  margin: 15px 0 0;
+}

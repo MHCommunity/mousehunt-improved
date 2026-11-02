@@ -285,7 +285,8 @@ td.marketplaceView-table-name {
   text-decoration: none;
 }
 
-.mhui-markethunt-chart-header {
+.mhui-markethunt-chart-header,
+.mhui-marketplace-description-header {
   display: flex;
   align-items: center;
   padding: 5px 20px;
@@ -332,4 +333,25 @@ td.marketplaceView-table-name {
   clip-path: inset(50%);
   pointer-events: none;
   visibility: hidden;
+}
+
+.mh-dark .mhui-marketplace-description-header {
+  margin-top: -1px;
+  color: var(--d-text-muted);
+  background-color: var(--d-surface-inset);
+  border-top: 1px solid var(--d-border);
+  border-bottom: 1px solid var(--d-border);
+}
+
+.mh-dark .mhui-marketplace-description-header.collapsed {
+  margin-bottom: 10px;
+}
+
+/* Stack the collapsed Markethunt header right on top of the description header. */
+.mh-dark .mhui-markethunt-chart-header.collapsed:has(~ .mhui-marketplace-description-header) {
+  margin-bottom: 0;
+}
+
+.mhui-marketplace-description-collapsed {
+  display: none !important;
 }
