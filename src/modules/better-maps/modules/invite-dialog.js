@@ -234,7 +234,7 @@ const addQuickSelectButtons = (container, selector, selectionCallback) => {
   const makeButton = (text, pick) => {
     return makeMhButton({
       text,
-      size: 'small',
+      size: '',
       className: 'mh-ui-invite-quick-select-button',
       callback: async (event) => {
         event.preventDefault();

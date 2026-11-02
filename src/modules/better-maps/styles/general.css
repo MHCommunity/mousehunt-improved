@@ -258,6 +258,8 @@ label.userSelectorView-filter-label {
 }
 
 .treasureMapDialogView-userSelector-selectedUserList-content {
+  max-height: 325px;
+  overflow-y: auto;
   counter-reset: sent left;
 }
 

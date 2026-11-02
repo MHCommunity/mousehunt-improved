@@ -5,10 +5,11 @@
   margin-top: 20px;
 }
 
+/* Same shape as the dialog's Invite Friends button. */
 .mh-ui-invite-quick-select .mousehuntActionButton {
   display: block;
+  padding: 10px 8px;
   line-height: normal;
-  text-align: center;
 }
 
 .mh-ui-invite-quick-select .mousehuntActionButton.busy {
