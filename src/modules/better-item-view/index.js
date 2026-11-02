@@ -379,7 +379,7 @@ const addConvertibleContents = async (itemId, itemView) => {
   const title = makeElement('div', 'ar-title', 'Possible contents');
   header.append(title);
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
-  link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
+  link.href = `https://www.mhct.win/converter.php?item=${itemId}`;
   link.target = '_blank';
   header.append(link);
   section.append(header);
