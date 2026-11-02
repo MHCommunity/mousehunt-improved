@@ -2,6 +2,24 @@
   position: relative;
 }
 
+/* The header has no padding of its own on the left, so give the caret room off the edge. */
+[data-mh-crown-collapsible] .mouseCrownsView-group-header > .mh-ui-caret {
+  margin: 0 4px 0 6px;
+  border-top-width: 7px;
+  border-right-width: 5px;
+  border-left-width: 5px;
+  opacity: 0.6;
+}
+
+[data-mh-crown-collapsible] .mouseCrownsView-group-header:hover > .mh-ui-caret {
+  opacity: 1;
+}
+
+/* In dark mode the tier headers stay light, so match the caret to their dark title text. */
+.mh-dark [data-mh-crown-collapsible]:not(.favourite) .mouseCrownsView-group-header > .mh-ui-caret {
+  color: var(--d-alt);
+}
+
 [data-mh-crown-collapsed] .mouseCrownsView-group-header {
   padding-bottom: 0;
   margin-bottom: 0;
