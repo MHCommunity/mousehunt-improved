@@ -1,0 +1,16 @@
+/*
+ * The popup sits inside the backdrop, so the backdrop is only pinned along with the popup.
+ * Popups too tall for the window keep the game's positioning and scroll with the page.
+ */
+body.mh-improved-fixed-popup #overlayBg.active {
+  position: fixed;
+}
+
+/* The game animates an inline top based on the scroll position, so override it while pinned. */
+body.mh-improved-fixed-popup #overlayPopup {
+  position: fixed;
+  top: var(--mh-improved-fixed-popup-top, 50px) !important;
+  right: 0;
+  left: 0;
+  margin: 0 auto !important;
+}
