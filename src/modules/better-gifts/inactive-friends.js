@@ -52,6 +52,16 @@ const getSort = () => {
 };
 
 /**
+ * Compare two friend tiles by the game's own (name) order.
+ *
+ * @param {HTMLElement} a The first friend tile.
+ * @param {HTMLElement} b The second friend tile.
+ *
+ * @return {number} The sort order.
+ */
+const byName = (a, b) => Number(a.dataset.mhOrder) - Number(b.dataset.mhOrder);
+
+/**
  * Reorder the All Friends tiles in place, so the game's grid is untouched.
  *
  * @param {HTMLElement} list The friend list container.
@@ -72,7 +82,6 @@ const sortAllFriends = (list) => {
     }
   });
 
-  const byName = (a, b) => Number(a.dataset.mhOrder) - Number(b.dataset.mhOrder);
   const byActive = (a, b) => {
     const diff = (lastActiveBySnuid.get(String(b.dataset.snuid)) ?? 0) - (lastActiveBySnuid.get(String(a.dataset.snuid)) ?? 0);
     return diff || byName(a, b);
