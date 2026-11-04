@@ -13,43 +13,53 @@ const findMouse = (allMice, name) => {
 };
 
 /**
- * Show the best bait for the mouse in each open objective, from MHCT attraction rates.
+ * Reserve a line under each open objective that names a mouse, before any data loads, so the
+ * objectives don't shift once the bait suggestions arrive. Marking the task also keeps an
+ * overlapping run from adding a second line.
  *
- * @param {Object} locations The M400 locations data, keyed by environment ID.
+ * @return {Array} The tasks waiting for a suggestion, with the mouse name and the reserved line.
  */
-const addBaitSuggestions = async (locations) => {
+const reserveBaitLines = () => {
   const tasks = document.querySelectorAll('.mh-m400-quest .campPage-quests-objective-container:not(.locked, .complete) .campPage-quests-objective-task');
-  if (!tasks.length) {
-    return;
-  }
-
-  const allMice = await getData('mice');
-  if (!allMice) {
-    return;
-  }
-
+  const pending = [];
   for (const task of tasks) {
-    // Mark the task before awaiting, so an overlapping run doesn't add a second suggestion.
-    if (task.dataset.mhM400Bait) {
+    const match = task.dataset.mhM400Bait ? null : task.innerText.match(/from (.+?) Mice/);
+    if (!match) {
       continue;
     }
 
     task.dataset.mhM400Bait = 'pending';
+    const suggestion = makeElement('div', 'mh-m400-bait');
+    task.after(suggestion);
+    pending.push({ task, name: match[1], suggestion });
+  }
 
-    const match = task.innerText.match(/from (.+?) Mice/);
-    const mouse = match ? findMouse(allMice, match[1]) : null;
+  return pending;
+};
+
+/**
+ * Fill the reserved lines with the best bait for each mouse, from MHCT attraction rates.
+ *
+ * @param {Array}  pending   The tasks from reserveBaitLines.
+ * @param {Object} locations The M400 locations data, keyed by environment ID.
+ */
+const addBaitSuggestions = async (pending, locations) => {
+  if (!pending.length) {
+    return;
+  }
+
+  const allMice = await getData('mice');
+  for (const { task, name, suggestion } of pending) {
+    const mouse = allMice ? findMouse(allMice, name) : null;
     const rates = mouse ? await getArForMouse(mouse.type, 'mouse') : null;
-    if (!Array.isArray(rates) || !rates.length) {
-      delete task.dataset.mhM400Bait;
-      continue;
-    }
 
     // Prefer the rates for the objective's location, falling back to the best anywhere.
-    const locationName = Object.values(locations).find((names) => names.includes(match[1]))?.[0];
-    const inLocation = rates.filter((rate) => rate.location === locationName);
-    const best = [...(inLocation.length ? inLocation : rates)].sort((a, b) => b.rate - a.rate)[0];
+    const locationName = Object.values(locations || {}).find((names) => names.includes(name))?.[0];
+    const inLocation = Array.isArray(rates) ? rates.filter((rate) => rate.location === locationName) : [];
+    const best = [...(inLocation.length ? inLocation : rates || [])].sort((a, b) => b.rate - a.rate)[0];
     if (!best?.cheese) {
-      delete task.dataset.mhM400Bait;
+      // Keep the empty line rather than shifting the objectives back up.
+      task.dataset.mhM400Bait = 'none';
       continue;
     }
 
@@ -62,9 +72,8 @@ const addBaitSuggestions = async (locations) => {
       details.push(best.stage);
     }
 
-    const suggestion = makeElement('div', 'mh-m400-bait', `Best bait: ${best.cheese} (${details.join(', ')})`);
-    suggestion.title = 'Attraction rate from MHCT';
-    task.after(suggestion);
+    suggestion.textContent = `${best.cheese} (${details.join(', ')})`;
+    suggestion.title = 'Best bait, by MHCT attraction rate';
     task.dataset.mhM400Bait = 'done';
   }
 };
@@ -201,10 +210,12 @@ const main = async () => {
     }
   });
 
+  const pendingBait = reserveBaitLines();
+
   await linkMiceInObjectives();
 
   const locations = await getData('m400-locations');
-  addBaitSuggestions(locations);
+  addBaitSuggestions(pendingBait, locations);
 
   // get the first task that doesn't have the 'locked' or 'complete' class.
   const next = [...allTasks].find((task) => {

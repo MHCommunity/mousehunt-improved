@@ -281,8 +281,10 @@ ul.mh-ui-assignment-details-task-list {
 }
 
 .mh-m400-bait {
+  min-height: 12px;
   margin-top: 2px;
   font-size: 10px;
+  line-height: 12px;
   color: #666;
 }
 
