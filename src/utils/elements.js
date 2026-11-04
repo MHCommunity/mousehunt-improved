@@ -21,7 +21,7 @@ import { getUserSetupDetails } from './user';
  * document.body.append(myElement);
  * ```
  *
- * @return {HTMLElement} The created element or the element it was appended to if appendTo is provided.
+ * @return {HTMLElement} The created element.
  */
 const makeElement = (tag, classes = '', text = '', appendTo = null) => {
   const element = document.createElement(tag);
@@ -39,7 +39,6 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
 
   if (appendTo) {
     appendTo.append(element);
-    return appendTo;
   }
 
   return element;
@@ -62,7 +61,7 @@ const escapeHtml = (value = '') => {
 /**
  * Make an element, append it to a parent, and return the new element.
  *
- * (makeElement returns the parent when given one, which is easy to trip over here.)
+ * Same as makeElement, but drops empty entries from a classes array.
  *
  * @param {string}      tag      The tag name.
  * @param {string|Array} classes Classes for the element.
