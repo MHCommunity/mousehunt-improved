@@ -1,4 +1,5 @@
 import { getArEl, getFlag, makeMhButton, mapper } from '@utils';
+import { getMapScope } from '../utils';
 
 /**
  * Add AR data to the map.
@@ -192,7 +193,7 @@ const addArToggle = async (tab = 'goals') => {
     return;
   }
 
-  const wrapper = document.querySelector('.treasureMapRootView-subTabRow');
+  const wrapper = getMapScope().querySelector('.treasureMapRootView-subTabRow');
   if (!wrapper) {
     isAdding = false;
     return;

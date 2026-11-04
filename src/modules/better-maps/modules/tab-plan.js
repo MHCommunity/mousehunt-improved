@@ -1,5 +1,6 @@
 import { getArForMouse, getCurrentLocation, getData, getSetting, lsGet, lsSet, make, makeCollapsible, makeMhButton, mapData, showTravelConfirmationNoDetails } from '@utils';
 
+import { getMapScope } from '../utils';
 import { getMouseDataForMap } from './tab-sorted';
 
 // Tuning for the plan. Rates are percentages.
@@ -746,12 +747,13 @@ const processPlanTabClick = async () => {
     return;
   }
 
-  const activeTab = document.querySelector('.treasureMapRootView-subTab.active');
+  const scope = getMapScope();
+  const activeTab = scope.querySelector('.treasureMapRootView-subTab.active');
   if (activeTab) {
     activeTab.classList.remove('active');
   }
 
-  const planTab = document.querySelector('.treasureMapRootView-subTab.plan-map-tab');
+  const planTab = scope.querySelector('.treasureMapRootView-subTab.plan-map-tab');
   if (planTab) {
     planTab.classList.add('active');
   }
@@ -810,7 +812,7 @@ const addPlanMapTab = () => {
     return false;
   }
 
-  const mapTabs = document.querySelector('.treasureMapRootView-subTabContainer');
+  const mapTabs = getMapScope().querySelector('.treasureMapRootView-subTabContainer');
   if (!mapTabs || mapTabs.querySelector('.plan-map-tab')) {
     return false;
   }

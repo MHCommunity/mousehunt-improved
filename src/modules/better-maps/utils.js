@@ -79,4 +79,23 @@ const refreshMap = async () => {
   return newMapData;
 };
 
-export { refreshMap, getCompletedGoals };
+/**
+ * Get the element holding the map view that's on screen.
+ *
+ * A map preview opens in a dialog overlay on top of the invites or community view, and that
+ * view has its own sub-tab row (Friends / Favourites / Team / Public) earlier in the DOM. Tab
+ * lookups have to be scoped to the map being shown, or they land in the listing's tabs.
+ *
+ * @return {Element} The preview dialog content, the map root, or the document.
+ */
+const getMapScope = () => {
+  const root = document.querySelector('.treasureMapRootView');
+  const preview = root?.querySelector('.treasureMapDialogView-overlay.active .treasureMapDialogView-content');
+  if (preview?.querySelector('.treasureMapView')) {
+    return preview;
+  }
+
+  return root || document;
+};
+
+export { refreshMap, getCompletedGoals, getMapScope };

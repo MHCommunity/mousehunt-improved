@@ -1,6 +1,7 @@
 import { getArEl, getData, getHighestArForMouse, getLocationsForMouse, getMapData, make, makeCollapsible, makeElement, mapData, mapModel, showTravelConfirmation } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
+import { getMapScope } from '../utils';
 import doHighlighting from './highlighting';
 import { makeGoalHighlight } from './goal-highlight';
 
@@ -771,7 +772,7 @@ const makeScavengerSortedPage = async (isNormal, target, allMice = [], initialSo
   // Sit in the tab row, next to the tabs.
   document.querySelectorAll('.mh-ui-sorted-sort').forEach((panel) => panel.remove());
 
-  const tabRow = document.querySelector('.treasureMapRootView-subTabRow');
+  const tabRow = getMapScope().querySelector('.treasureMapRootView-subTabRow');
   const sortedContainer = target.closest('#sorted-mice-container');
   if (tabRow) {
     tabRow.append(sortPanel);
@@ -915,12 +916,13 @@ const processSortedTabClick = async (force = false) => {
   // environment can leave its highlight popup stranded on top of the sorted mice.
   clearNativeHighlight();
 
-  const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
+  const scope = getMapScope();
+  const currentlyActive = scope.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
   if (currentlyActive && !force && `${renderedMapId}` === `${currentMapData.map_id}`) {
     return;
   }
 
-  const otherTabs = document.querySelectorAll('.treasureMapRootView-subTab:not(.sorted-map-tab)');
+  const otherTabs = scope.querySelectorAll('.treasureMapRootView-subTab:not(.sorted-map-tab)');
   if (otherTabs) {
     otherTabs.forEach((tab) => {
       // remove the event listener, then add it back.
@@ -930,12 +932,12 @@ const processSortedTabClick = async (force = false) => {
   }
 
   // First, remove the active class from the other tab, and add it to this one.
-  const activeTab = document.querySelector('.treasureMapRootView-subTab.active');
+  const activeTab = scope.querySelector('.treasureMapRootView-subTab.active');
   if (activeTab) {
     activeTab.classList.remove('active');
   }
 
-  const sortedTab = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab');
+  const sortedTab = scope.querySelector('.treasureMapRootView-subTab.sorted-map-tab');
   if (sortedTab) {
     sortedTab.classList.add('active');
   }
@@ -997,7 +999,7 @@ const processSortedTabClick = async (force = false) => {
  * @return {boolean} Whether the tab was added.
  */
 const addSortedMapTab = async () => {
-  const mapTabs = document.querySelector('.treasureMapRootView-subTabContainer');
+  const mapTabs = getMapScope().querySelector('.treasureMapRootView-subTabContainer');
   if (!mapTabs || mapTabs.length <= 0) {
     return false;
   }
