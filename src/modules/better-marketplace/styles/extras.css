@@ -1,13 +1,8 @@
-/* Kept in the layout (so switching tabs doesn't shift things) but hidden. */
-.mhui-hidden {
-  visibility: hidden;
-}
-
 .mhui-marketplace-total-value {
-  padding-top: 4px;
-  font-weight: 600;
+  padding: 8px 5px;
+  font-style: italic;
   color: #333;
-  white-space: pre-line;
+  text-align: left;
 }
 
 .mh-dark .mhui-marketplace-total-value {

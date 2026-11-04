@@ -127,50 +127,40 @@ const ensureFilterWrapper = () => {
   let wrapper = filterContainer.querySelector('.mhui-marketplace-filters');
   if (!wrapper) {
     wrapper = makeElement('div', 'mhui-marketplace-filters');
-
-    // Keep the filters inline with the checkboxes, above the (block) totals
-    // readout, so they don't get pushed onto their own line.
-    const total = filterContainer.querySelector('.mhui-marketplace-total-value');
-    if (total) {
-      total.before(wrapper);
-    } else {
-      filterContainer.append(wrapper);
-    }
+    filterContainer.append(wrapper);
   }
 
   return wrapper;
 };
 
 /**
- * Show the total estimated value of the current tab in the filter container.
- * The element is always kept in the DOM (hidden when there's nothing to show)
- * so switching between tabs with and without a value doesn't shift the layout.
+ * Show the total estimated value of the current tab below the browse table.
  *
  * @param {number} totalBuy  The total buy value.
  * @param {number} totalSell The total sell value.
  */
 const addTotalsReadout = (totalBuy, totalSell) => {
-  const filterContainer = document.querySelector('.marketplaceView-browse-filterContainer');
-  if (!filterContainer) {
+  const table = document.querySelector('.marketplaceView-browse-content .marketplaceView-table');
+  if (!table) {
     return;
   }
 
-  let total = filterContainer.querySelector('.mhui-marketplace-total-value');
-  if (!total) {
-    total = makeElement('div', 'mhui-marketplace-total-value');
-    filterContainer.append(total);
+  let total = document.querySelector('.mhui-marketplace-total-value');
+  if (totalBuy <= 0) {
+    total?.remove();
+    return;
   }
 
-  if (totalBuy > 0) {
-    total.title = `${formatGold(totalBuy)} (Buy)\n${formatGold(totalSell)} (Sell)`;
-    total.textContent = `Estimated value of owned items: ${formatGold(totalBuy)}`;
-    total.classList.remove('mhui-hidden');
-  } else {
-    total.classList.add('mhui-hidden');
-    if (!total.textContent) {
-      total.textContent = 'Estimated value of owned items: 0 gold';
-    }
+  if (!total) {
+    total = makeElement('div', 'mhui-marketplace-total-value');
   }
+
+  if (table.nextElementSibling !== total) {
+    table.after(total);
+  }
+
+  total.title = `${formatGold(totalBuy)} (Buy)\n${formatGold(totalSell)} (Sell)`;
+  total.textContent = `Estimated value of owned items: ${formatGold(totalBuy)}`;
 };
 
 /**
