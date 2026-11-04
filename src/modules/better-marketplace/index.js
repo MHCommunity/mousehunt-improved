@@ -4,14 +4,12 @@ import {
   debounce,
   formatGold,
   formatNumber,
-  getArForMouse,
   getData,
-  getItemLinks,
   getSetting,
   makeElement,
-  makeLink,
   makeMhButton,
-  mhctRedirectUrl,
+  onDialogHide,
+  onDialogShow,
   onOverlayChange,
   onRequest,
   parseNumber,
@@ -293,20 +291,11 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
     return;
   }
 
-  const existing = document.querySelector('.mh-improved-marketplace-item-title-actions');
-  if (existing) {
-    existing.remove();
-  }
-
-  let itemName = document.querySelector('.marketplaceView-item-titleName');
-  itemName = itemName ? itemName.textContent.trim() : '';
-
-  const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getItemLinks(itemName, itemId, { mhct: false }));
-  actions.insertBefore(buttons, actions.firstChild);
+  makeItemNameClickable(itemId);
 
   makeDescriptionCollapsible();
 
-  const decorations = [enhanceItemView(itemId, isCurrent), addMhctButton(itemId, buttons, isCurrent)];
+  const decorations = [enhanceItemView(itemId, isCurrent)];
 
   // Not awaited: the Markethunt userscript may never add its chart.
   makeMarkethuntChartCollapsible(isCurrent);
@@ -322,22 +311,96 @@ const enhanceItemSession = async ({ itemId, isCurrent }) => {
   await Promise.all(decorations);
 };
 
+let pendingRestore = null;
+
 /**
- * Add the MHCT button to the item title, but only for items MHCT has data for.
+ * Get the current marketplace item state, so it can be restored later.
  *
- * Baskets, gift boxes and the like are never looted, so their MHCT page is empty.
+ * @param {number|string} itemId The item id.
  *
- * @param {number|string} itemId    The item id.
- * @param {HTMLElement}   buttons   The title action buttons wrapper.
- * @param {Function}      isCurrent Whether this render is still current.
+ * @return {Object} The item id, order type, quantity and price.
  */
-const addMhctButton = async (itemId, buttons, isCurrent) => {
-  const rates = await getArForMouse(itemId, 'item');
-  if (!Array.isArray(rates) || !rates.length || !buttons.isConnected || (isCurrent && !isCurrent())) {
+const getItemState = (itemId) => {
+  const item = document.querySelector('.marketplaceView-item');
+  let action = 'view';
+  if (item?.classList.contains('buy')) {
+    action = 'buy';
+  } else if (item?.classList.contains('sell')) {
+    action = 'sell';
+  }
+
+  const quantity = document.querySelector('.marketplaceView-item-quantity')?.value;
+  const price = document.querySelector('.marketplaceView-item-unitPriceWithTariff')?.value;
+
+  return {
+    itemId,
+    action,
+    quantity: quantity ? parseNumber(quantity) : false,
+    price: price ? parseNumber(price) : false,
+  };
+};
+
+/**
+ * Make the item name open the item view, coming back to the marketplace when it's closed.
+ *
+ * @param {number|string} itemId The item id.
+ */
+const makeItemNameClickable = (itemId) => {
+  const name = document.querySelector('.marketplaceView-item-titleName');
+  if (!name) {
     return;
   }
 
-  buttons.insertAdjacentHTML('afterbegin', makeLink('MHCT', mhctRedirectUrl(itemId, { item: true })));
+  name.classList.add('mhui-marketplace-item-title-link');
+  name.title = 'View item';
+  name.tabIndex = 0;
+  name.setAttribute('role', 'button');
+
+  if (name.dataset.mhuiItemViewBound) {
+    name.dataset.mhuiItemId = itemId;
+    return;
+  }
+
+  name.dataset.mhuiItemViewBound = 'true';
+  name.dataset.mhuiItemId = itemId;
+
+  const openItemView = () => {
+    const currentItemId = name.dataset.mhuiItemId;
+    pendingRestore = getItemState(currentItemId);
+    hg.views.ItemView.show(currentItemId);
+  };
+
+  name.addEventListener('click', openItemView);
+  name.addEventListener('keydown', (event) => {
+    if ('Enter' !== event.key && ' ' !== event.key) {
+      return;
+    }
+
+    event.preventDefault();
+    openItemView();
+  });
+};
+
+/**
+ * Reopen the marketplace where it was when the item view opened from it closes.
+ */
+const restoreAfterItemView = () => {
+  if (!pendingRestore) {
+    return;
+  }
+
+  const { itemId, action, quantity, price } = pendingRestore;
+  pendingRestore = null;
+  setTimeout(() => hg.views.MarketplaceView.showItem(itemId, action, quantity, price, true), 0);
+};
+
+/**
+ * Forget the pending restore once a different dialog takes over from the item view.
+ */
+const clearRestoreOnOtherDialog = () => {
+  if (pendingRestore && !window.mhutils?.lastDialog?.overlay?.includes('itemViewPopup')) {
+    pendingRestore = null;
+  }
 };
 
 /**
@@ -720,6 +783,9 @@ const init = () => {
   });
   marketplaceRuntime.register('history', linkItemNames);
   marketplaceRuntime.install(hg?.views?.MarketplaceView);
+
+  onDialogShow('all', clearRestoreOnOtherDialog);
+  onDialogHide(restoreAfterItemView, 'item');
 
   onOverlayChange({
     marketplace: {

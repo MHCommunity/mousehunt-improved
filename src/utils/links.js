@@ -1,4 +1,4 @@
-import { makeElement, makeLink } from './elements';
+import { makeElement } from './elements';
 import { doEvent } from './event-registry';
 import { getSetting } from './settings';
 
@@ -27,20 +27,6 @@ const wikiUrl = (name, encode = true) => {
  */
 const mhctRedirectUrl = (id, { item = false } = {}) => {
   return `https://api.mouse.rip/mhct-redirect${item ? '-item' : ''}/${id}`;
-};
-
-/**
- * Build the MHCT + Wiki link markup for an item.
- *
- * @param {string}        name          The item name.
- * @param {string|number} id            The item id.
- * @param {Object}        [opts]        The options.
- * @param {boolean}       [opts.mhct]   Whether to include the MHCT link.
- *
- * @return {string} The link markup.
- */
-const getItemLinks = (name, id, { mhct = true } = {}) => {
-  return (mhct ? makeLink('MHCT', mhctRedirectUrl(id, { item: true }), true) : '') + makeLink('Wiki', wikiUrl(name), true);
 };
 
 /**
@@ -572,7 +558,6 @@ const getExtensionLinkText = () => {
 export {
   wikiUrl,
   mhctRedirectUrl,
-  getItemLinks,
   addItemToGameInfoBar,
   addSubmenuItem,
   addSubmenuDivider,

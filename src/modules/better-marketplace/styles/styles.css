@@ -114,12 +114,13 @@ tr.open td.marketplaceView-table-name {
   justify-content: flex-start;
 }
 
-.mh-improved-marketplace-item-title-actions {
-  display: inline-flex;
-  flex-grow: 1;
-  gap: 5px;
-  justify-content: end;
-  margin-right: 5px;
+.mhui-marketplace-item-title-link {
+  cursor: pointer;
+}
+
+.mhui-marketplace-item-title-link:hover,
+.mhui-marketplace-item-title-link:focus-visible {
+  text-decoration: underline;
 }
 
 .marketplaceView-item.view .mousehuntCharacterGuideBox .mousehuntCharacterGuideBox-content {
@@ -133,9 +134,8 @@ tr.open td.marketplaceView-table-name {
 
 .marketplaceView-table-chartImage {
   position: absolute;
-  top: 0;
-  right: -30px;
-  bottom: 0;
+  top: 5px;
+  right: -2px;
   height: 49px;
   pointer-events: none;
   opacity: 0.5;
@@ -147,6 +147,7 @@ tr:hover .marketplaceView-table-chartImage {
 
 td.marketplaceView-table-name {
   position: relative;
+  overflow: hidden;
 }
 
 .marketplaceView-header-search-dropdown .select2-search {
