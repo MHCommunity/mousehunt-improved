@@ -1,7 +1,6 @@
-import { getSetting, makeElement, overrideWhileEnabled, saveSetting } from '@utils';
+import { getFlag, getSetting, makeElement, overrideWhileEnabled, saveSetting } from '@utils';
 
 const MODULE_ID = 'better-gifts';
-const SETTING_ID = 'better-gifts.hide-inactive-friends';
 const SORT_SETTING_ID = 'better-gifts.friend-sort';
 const INACTIVE_AFTER_DAYS = 30;
 
@@ -133,7 +132,7 @@ const applyToList = () => {
     return;
   }
 
-  const enabled = getSetting(SETTING_ID, true);
+  const enabled = !getFlag('better-gifts-show-inactive-friends');
   let count = 0;
 
   list.querySelectorAll('.giftSelectorView-friend[data-snuid]').forEach((friend) => {

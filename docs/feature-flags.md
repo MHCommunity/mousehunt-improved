@@ -19,6 +19,12 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 
 ### Module Flags
 
+#### Better Gifts
+
+|Flag|Description|
+|---|---|
+|`better-gifts-show-inactive-friends`|Keeps friends who haven't played in a month in the gift selector and random picks.|
+
 #### Better Item Details
 
 |Flag|Description|
