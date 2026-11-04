@@ -6,4 +6,5 @@ Beta options for a specific module live in that module's settings, marked with a
 
 ## Available Experiments
 
+- **Fixed popups**: Keeps popups centered in the window while you scroll, unless they are too tall to fit
 - **Memory Matching Game**: A memory matching game, found under the Camp submenu
