@@ -12,7 +12,31 @@
   line-height: normal;
 }
 
-.mh-ui-invite-quick-select .mousehuntActionButton.busy {
+.mh-ui-invite-quick-select .mousehuntActionButton.busy,
+.mh-ui-invite-quick-select .mousehuntActionButton.disabled {
   pointer-events: none;
   opacity: 0.6;
+}
+
+.mh-ui-invite-batch-label {
+  width: 100%;
+  margin: 4px 2px 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: left;
+  opacity: 0.7;
+}
+
+.mh-ui-invite-batch-label:first-child {
+  margin-top: 0;
+}
+
+.mh-ui-invite-batch-label[data-status="sent"] {
+  color: #4caf50;
+  opacity: 1;
+}
+
+.mh-ui-invite-batch-label[data-status="failed"] {
+  color: #e53935;
+  opacity: 1;
 }

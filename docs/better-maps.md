@@ -16,7 +16,7 @@ Enhances the map interface with additional functionality and improved organizati
   support for newer maps such as Corsair Chaser.
 - **Map Solver Links**: Adds MHCT Map Helper and Tsitu's Map Solver links to the Goals tab.
 - **Cleaner Community Maps**: Hides old and inactive maps in the Community Maps listing.
-- **Easier Invites**: The invite dialog has no selection limit (large selections are sent in batches), and adds buttons to select random available friends or hunters in your location, online ones first.
+- **Easier Invites**: The invite dialog lets you select up to 60 hunters, shown and sent as invites of up to 12 a few seconds apart, and adds buttons to select random available friends or hunters in your location, online ones first.
 - The solver links and Community Maps cleanup can be turned off with [feature flags](./feature-flags.md#better-maps).
 
 ## Options

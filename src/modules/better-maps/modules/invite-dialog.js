@@ -1,8 +1,20 @@
-import { makeElement, makeMhButton } from '@utils';
+import { doRequest, makeElement, makeMhButton, sleep } from '@utils';
 
 /** The game caps the invite dialog's selection at this many hunters; we send invites in batches of it. */
 const DEFAULT_BATCH_SIZE = 12;
 let batchSize = DEFAULT_BATCH_SIZE;
+
+/** How many hunters can be selected at once, five batches. */
+const MAX_SELECTED = 60;
+
+/** How long to wait between batches, as the server turns down invites sent too quickly. */
+const BATCH_DELAY = 1500;
+
+/** How long to wait before retrying a batch the server turned down. */
+const RETRY_DELAYS = [3000, 6000];
+
+/** The open invite dialog's content, for showing the batches and send progress. */
+let dialogContent = null;
 
 /**
  * Split a list into batches.
@@ -39,6 +51,35 @@ const shuffle = (items) => {
 };
 
 /**
+ * Send one batch of invites, retrying when the server turns it down.
+ *
+ * @param {string}   mapId  The map ID.
+ * @param {string[]} snuids The hunters to invite.
+ *
+ * @return {Promise<Object|false>} The response, or false if every attempt failed.
+ */
+const sendBatch = async (mapId, snuids) => {
+  const params = { action: 'send_invites', map_id: mapId };
+  snuids.forEach((snuid, index) => {
+    params[`snuids[${index}]`] = snuid;
+  });
+
+  let response = false;
+  for (let attempt = 0; attempt <= RETRY_DELAYS.length; attempt++) {
+    if (attempt > 0) {
+      await sleep(RETRY_DELAYS[attempt - 1]);
+    }
+
+    response = await doRequest('managers/ajax/users/treasuremap_v2.php', params, true);
+    if (response?.success) {
+      return response;
+    }
+  }
+
+  return response;
+};
+
+/**
  * Send invites in batches when more hunters are selected than the game sends at once.
  */
 const sendInvitesInBatches = () => {
@@ -49,12 +90,12 @@ const sendInvitesInBatches = () => {
   }
 
   /**
-   * Send the invites, splitting a large selection into batches.
+   * Send the invites, splitting a large selection into batches sent a little apart.
    *
    * @param {string}   mapId           The map ID.
    * @param {string[]} snuids          The hunters to invite.
    * @param {Function} successCallback Called with the merged responses once every batch is sent.
-   * @param {Function} errorCallback   Called when a batch request fails.
+   * @param {Function} errorCallback   Called when every batch failed.
    *
    * @return {*} Whatever the game returns for a single send.
    */
@@ -67,45 +108,112 @@ const sendInvitesInBatches = () => {
     const merged = { success: false, user_interactions: {} };
     let lastError = null;
 
-    /**
-     * Send one batch, then the next. A batch the server turns down doesn't stop the rest.
-     *
-     * @param {number} index The batch to send.
-     */
-    const sendBatch = (index) => {
-      if (index >= batches.length) {
-        if (merged.success && successCallback) {
-          successCallback(merged);
-        } else if (!merged.success && errorCallback) {
-          errorCallback(lastError);
+    (async () => {
+      for (const [index, batch] of batches.entries()) {
+        if (index > 0) {
+          await sleep(BATCH_DELAY);
         }
 
-        return;
+        showBatchStatus(index, 'sending');
+        const data = await sendBatch(mapId, batch);
+        showBatchStatus(index, data?.success ? 'sent' : 'failed');
+        if (data?.success) {
+          eventRegistry.doEvent('ajax_response', data);
+          Object.assign(merged, data, {
+            success: true,
+            user_interactions: { ...merged.user_interactions, ...data.user_interactions },
+          });
+        } else {
+          lastError = data || null;
+        }
       }
 
-      originalSendInvites.call(
-        this,
-        mapId,
-        batches[index],
-        (data) => {
-          if (data?.success) {
-            Object.assign(merged, data, {
-              success: true,
-              user_interactions: { ...merged.user_interactions, ...data.user_interactions },
-            });
-          }
-
-          sendBatch(index + 1);
-        },
-        (error) => {
-          lastError = error;
-          sendBatch(index + 1);
+      if (merged.success) {
+        if (merged.treasure_map) {
+          eventRegistry.doEvent('treasure_map_update', merged.treasure_map);
         }
-      );
-    };
 
-    sendBatch(0);
+        successCallback?.(merged);
+      } else {
+        // Let the hunter try again.
+        dialogContent?.querySelector('.treasureMapDialogView-continueButton')?.classList.remove('busy');
+        errorCallback?.(lastError);
+      }
+    })();
   };
+};
+
+/**
+ * Show how a batch is going on its label in the selected hunters list.
+ *
+ * @param {number} index  The batch.
+ * @param {string} status The status: sending, sent, or failed.
+ */
+const showBatchStatus = (index, status) => {
+  const label = dialogContent?.querySelectorAll('.mh-ui-invite-batch-label')[index];
+  if (!label) {
+    return;
+  }
+
+  const text = { sending: 'sending…', sent: 'sent', failed: 'not sent' }[status];
+  label.textContent = `Invite ${index + 1} · ${text}`;
+  label.dataset.status = status;
+};
+
+/**
+ * Split the selected hunters into the invites they'll be sent in, and say how many on the submit button.
+ *
+ * @param {Element} list The selected hunters list.
+ */
+const showBatches = (list) => {
+  list.querySelectorAll('.mh-ui-invite-batch-label').forEach((label) => label.remove());
+
+  const slots = [...list.querySelectorAll('.treasureMapDialogView-userSelector-selectedUser')];
+  const selected = slots.filter((slot) => !slot.classList.contains('empty')).length;
+  const batches = Math.ceil(selected / batchSize);
+
+  const label = dialogContent?.querySelector('.treasureMapDialogView-continueButton span');
+  if (label) {
+    label.dataset.mhOriginalLabel ??= label.textContent;
+    label.textContent = batches > 1 ? `Send ${batches} Invites` : label.dataset.mhOriginalLabel;
+  }
+
+  const title = list.parentElement?.querySelector('.treasureMapDialogView-userSelector-selectedUserList-title');
+  if (title) {
+    title.textContent = `Selected: ${selected}/${MAX_SELECTED}`;
+  }
+
+  dialogContent?.querySelectorAll('.mh-ui-invite-quick-select-button').forEach((button) => {
+    button.classList.toggle('disabled', selected >= MAX_SELECTED);
+  });
+
+  if (batches < 2) {
+    return;
+  }
+
+  for (let index = 0; index < slots.length; index += batchSize) {
+    slots[index].before(makeElement('div', 'mh-ui-invite-batch-label', `Invite ${index / batchSize + 1}`));
+  }
+};
+
+/**
+ * Keep the selected hunters split into batches as the game redraws them.
+ *
+ * @param {Element} container The dialog content.
+ */
+const watchSelectedHunters = (container) => {
+  const list = container.querySelector('.treasureMapDialogView-userSelector-selectedUserList-content');
+  if (!list) {
+    return;
+  }
+
+  const observer = new MutationObserver(() => {
+    observer.disconnect();
+    showBatches(list);
+    observer.observe(list, { childList: true });
+  });
+
+  observer.observe(list, { childList: true });
 };
 
 /**
@@ -211,7 +319,8 @@ const addQuickSelectButtons = (container, selector, selectionCallback) => {
    * @param {string[]} snuids The hunters to add.
    */
   const select = (snuids) => {
-    const chosen = snuids.slice(0, batchSize);
+    const room = MAX_SELECTED - selector.getNumSelectedUsers();
+    const chosen = snuids.slice(0, Math.min(batchSize, room));
     if (0 === chosen.length) {
       return;
     }
@@ -263,7 +372,7 @@ const addQuickSelectButtons = (container, selector, selectionCallback) => {
 };
 
 /**
- * Wrap the game's invite dialog view to lift the selection limit and add the quick-select buttons.
+ * Wrap the game's invite dialog view to raise the selection limit and add the quick-select buttons.
  */
 const enhanceInviteDialog = () => {
   const OriginalView = hg?.views?.TreasureMapUserSelectorView;
@@ -281,6 +390,7 @@ const enhanceInviteDialog = () => {
   const TreasureMapUserSelectorView = function (...args) {
     const view = new OriginalView(...args);
     let isInviteDialog = false;
+    let limitRaised = false;
     let selectionCallback = null;
 
     // The invite dialog is the one that offers the favourite friends checkbox; the approve requests dialog keeps its limit.
@@ -319,19 +429,24 @@ const enhanceInviteDialog = () => {
       }
 
       const selector = view.getUserSelector();
-      const gameLimit = selector.getMaxSelectedUsers();
-      if (gameLimit > 0) {
-        batchSize = gameLimit;
-      }
+      if (!limitRaised) {
+        limitRaised = true;
+        const gameLimit = selector.getMaxSelectedUsers();
+        if (gameLimit > 0) {
+          batchSize = gameLimit;
+        }
 
-      selector.setMaxSelectedUsers(null);
-      // The selected grid pads itself to this many slots: at least a full batch, then whole rows of four.
-      selector.getMaxSelectedUsers = () => Math.max(batchSize, Math.ceil(selector.getNumSelectedUsers() / 4) * 4);
+        selector.setMaxSelectedUsers(MAX_SELECTED);
+        // The selected grid pads itself to this many slots: enough to fill the last batch.
+        selector.getMaxSelectedUsers = () => Math.max(batchSize, Math.ceil(selector.getNumSelectedUsers() / batchSize) * batchSize);
+      }
 
       const container = originalGetContent.apply(this, arguments);
       const element = container?.[0] ?? container;
       if (element instanceof Element) {
+        dialogContent = element;
         addQuickSelectButtons(element, selector, selectionCallback);
+        watchSelectedHunters(element);
       }
 
       return container;
