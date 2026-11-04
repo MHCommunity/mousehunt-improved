@@ -95,6 +95,22 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
   width: 198px;
 }
 
+.mh-halloween-brew-estimate {
+  position: absolute;
+  top: 234px;
+  left: 50%;
+  z-index: 2;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #435032;
+  border: 2px solid #f2b345;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
+
 .itemPurchaseView-container.apothecary .itemPurchaseView-content-name {
   display: block;
   padding-top: 3px;
