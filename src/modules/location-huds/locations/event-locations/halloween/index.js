@@ -89,13 +89,15 @@ const getRootBrewHunts = (quest) => {
 
 /**
  * Show how many hunts the remaining roots will take to brew, under the shutdown notice.
+ * Skipped once the final shutdown phase adds the Instant Alchemy Workbench in its spot.
  */
 const addRootBrewEstimate = () => {
   const quest = user?.quests?.QuestHalloweenBoilingCauldron;
   const hud = document.querySelector('.halloweenBoilingCauldronHUD');
   const existing = hud?.querySelector('.mh-halloween-brew-estimate');
 
-  const hunts = quest?.is_shutdown ? getRootBrewHunts(quest) : 0;
+  const hasWorkbench = hud?.querySelector('.halloweenBoilingCauldronHUD-final-shutdown-convert-ingredients-button');
+  const hunts = quest?.is_shutdown && !hasWorkbench ? getRootBrewHunts(quest) : 0;
   if (!hud || !hunts) {
     existing?.remove();
     return;
