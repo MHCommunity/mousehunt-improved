@@ -374,9 +374,6 @@ const renderNoteEditor = (block, snuid, meta, rerender) => {
       rerender();
     }
   });
-
-  textarea.focus();
-  textarea.setSelectionRange(textarea.value.length, textarea.value.length);
 };
 
 /**
@@ -460,6 +457,13 @@ const addProfileNote = () => {
     }
 
     idCard.after(block);
+
+    // Focus once the editor is in the page, so typing goes to the note instead of keyboard shortcuts.
+    const textarea = block.querySelector('.mh-friend-note-input');
+    if (textarea) {
+      textarea.focus();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    }
   };
 
   render();
