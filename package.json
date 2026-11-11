@@ -57,7 +57,7 @@
     "release": "./scripts/release"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.10",
+    "@babel/runtime": "^7.29.13",
     "@sentry/browser": "^10.78.0",
     "highcharts": "^13.1.1"
   },
@@ -76,7 +76,7 @@
     "node-fetch": "^3.3.2",
     "ora": "^9.4.1",
     "oxfmt": "^0.59.0",
-    "oxlint": "^1.90.0",
+    "oxlint": "^1.93.0",
     "prettier": "^3.9.10",
     "pretty-ms": "^9.3.1",
     "stylelint": "15.11.0",
