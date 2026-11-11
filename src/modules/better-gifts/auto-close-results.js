@@ -1,7 +1,6 @@
-import { getSetting, overrideWhileEnabled } from '@utils';
+import { getFlag, overrideWhileEnabled } from '@utils';
 
 const MODULE_ID = 'better-gifts';
-const SETTING_ID = 'better-gifts.auto-close-results';
 const CLOSE_AFTER_MS = 2000;
 const FADE_MS = 300;
 
@@ -79,7 +78,7 @@ const autoCloseResults = () => {
 
     // Leave the panel up when the server reports a problem with any of the gifts.
     const hasProblem = /error|fail|unable|could not|couldn't|not enough|limit/i.test(String(responseHtml ?? ''));
-    if (getSetting(SETTING_ID, true) && !hasProblem) {
+    if (!getFlag('better-gifts-keep-results') && !hasProblem) {
       scheduleClose();
     }
 

@@ -55,13 +55,6 @@ export default async () => {
 
   return [
     {
-      id: 'better-gifts.auto-close-results',
-      live: true,
-      title: 'Close gift results automatically',
-      description: 'Fade out the "Done!" panel a couple of seconds after sending or claiming gifts.',
-      default: true,
-    },
-    {
       id: 'better-gifts.send-order',
       live: true,
       title: 'Gift order',

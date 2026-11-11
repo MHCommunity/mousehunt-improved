@@ -1,5 +1,33 @@
 # Changelog
 
+## Version 0.105.0
+
+### Added
+
+- Better Friends: Added private notes on hunters, shown on their profile, hover profile, Friends page, and map Quick Send panels, with Friends page search matching note text
+- Better Maps: Raised the invite dialog's selection limit to 60 hunters, sent as invites of up to 12 a few seconds apart and grouped by invite in the selected list, and added buttons to select random friends or active hunters in your location
+- Better Maps: Added a show more link to the MHCT attraction rate lists
+- Better Marketplace: Added an option to hide the High Value, Frequently Traded, and In Demand lists
+- Better Gifts: Friends who haven't played in a month are left out of the gift selector and random picks, with a Show link to see them. Turn it off with the `better-gifts-show-inactive-friends` feature flag
+- Better Gifts: Added a sort by name or last active to the All Friends list in the gift selector
+- Better Gifts: The "Done!" panel now fades out a couple of seconds after sending or claiming gifts, staying open while hovered or when a gift couldn't be sent. Turn it off with the `better-gifts-keep-results` feature flag
+- Better Quests: Added the best bait for each open M400 objective, using MHCT attraction rates
+- Location HUDs - Halloween: Added how many hunts your remaining Mousedrake Roots will take to brew, shown once the cauldrons are shutting down
+- Experiments: Added Fixed popups, which keeps popups centered in the window while you scroll unless they are too tall to fit
+
+### Fixed and Updated
+
+- Better Journal: Journal history entries now only show the year when older than six months
+- Favorite Setups: Fixed mobile favorites missing their power type
+- Better Marketplace: The item name now opens the item view, and the marketplace comes back where it was when the item view closes. This replaces the Wiki link next to the name
+- Better Marketplace: Moved the estimated value of owned items below the browse table
+- Better Maps: Fixed the Sorted and Plan tabs landing in the wrong tab row when a map preview is open over the invites or community list
+- Better Mice: Cleaned up the mice stats row borders and thumbnail spacing
+- Dark Mode: Added styles for the map hunter tooltip, invite dialog group counts, and the empty gift selector
+- Dark Mode: Profile buttons now use the gold game button style and the no-team image is hidden
+- The update available notice now opens the store page for your browser when clicked
+- Minor style tweaks
+
 ## Version 0.104.0
 
 - Fixed the errors with Catch Rate Estimator, sending supplies, and other features

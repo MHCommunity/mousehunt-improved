@@ -1,0 +1,23 @@
+{
+  "version": "0.105.0",
+  "summary": "You can now keep private notes on hunters: look for the \"Add a note\" link on a profile, and your note shows on their hover profile and the Friends page too. Map invites are easier, with up to 60 hunters per selection and new buttons to grab random friends or active hunters nearby. M400 assignments now show the best bait for each mouse, and you can hide the High Value, Frequently Traded, and In Demand lists on the Marketplace home. Happy hunting!",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Friends: There is now an \"Add a note\" link on hunter profiles. A saved note shows on their profile, their hover profile, and the Friends page, where the search box also matches note text",
+        "Maps: The invite dialog lets you select up to 60 hunters, sent as several invites of up to 12, and has new \"Select random friends\" and \"Select active nearby\" buttons",
+        "Maps: MHCT attraction rate lists are shorter, with a \"Show more\" link to see the rest",
+        "Marketplace: New option to hide the High Value, Frequently Traded, and In Demand lists on the Marketplace home",
+        "Gifts: Friends who haven't played in a month are left out of the gift selector and random picks. There's a \"Show\" link under the list if you need them",
+        "Gifts: The All Friends list in the gift selector has a \"Sort by\" option for name or last active, and the \"Done!\" panel closes itself a couple of seconds after sending or claiming gifts",
+        "Quests: Each open M400 objective now shows the bait that attracts that mouse most often, with its attraction rate",
+        "Halloween: Once the cauldrons start shutting down, the HUD shows how many hunts your remaining Mousedrake Roots will take to brew",
+        "Marketplace: Clicking an item's name now opens its item view, and closing it brings you back to the marketplace",
+        "Experiments: New \"Fixed popups\" experiment keeps popups centered in the window while you scroll",
+        "Favorite Setups: Favorites saved in the mobile app now show their power type",
+        "Fixed a few journal, mice, profile, and dark mode style issues"
+      ]
+    }
+  ]
+}

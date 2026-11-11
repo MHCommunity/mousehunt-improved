@@ -24,6 +24,7 @@ You can also temporarily enable any flag for a single page load with the `?flag=
 |Flag|Description|
 |---|---|
 |`better-gifts-show-inactive-friends`|Keeps friends who haven't played in a month in the gift selector and random picks.|
+|`better-gifts-keep-results`|Leaves the "Done!" panel open after sending or claiming gifts instead of fading it out after a couple of seconds.|
 
 #### Better Item Details
 
