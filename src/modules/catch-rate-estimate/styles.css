@@ -63,14 +63,12 @@
   margin-left: 2px;
   font-size: 8px;
   vertical-align: middle;
-}
-
-#mh-improved-cre .mh-improved-cre-sorted-asc::after {
   content: "▲";
 }
 
+/* Flip the same glyph so both arrows are the same size. */
 #mh-improved-cre .mh-improved-cre-sorted-desc::after {
-  content: "▼";
+  transform: rotate(180deg);
 }
 
 #mh-improved-cre table th {
