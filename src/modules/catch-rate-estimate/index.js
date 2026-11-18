@@ -503,10 +503,13 @@ const renderList = async (list, context) => {
       e.preventDefault();
       e.stopPropagation();
 
-      if (sortState.key === column.key) {
+      if (sortState.key !== column.key) {
+        sortState = { key: column.key, direction: defaultSortDirections[column.key] };
+      } else if (sortState.direction === defaultSortDirections[column.key]) {
         sortState = { key: column.key, direction: 'asc' === sortState.direction ? 'desc' : 'asc' };
       } else {
-        sortState = { key: column.key, direction: defaultSortDirections[column.key] };
+        // Third click goes back to the default, unsorted order.
+        sortState = { key: null, direction: 'asc' };
       }
 
       renderRows(tbody, rows, hasAttractionRates);
