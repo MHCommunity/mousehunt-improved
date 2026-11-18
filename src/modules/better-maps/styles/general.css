@@ -1100,6 +1100,7 @@ input.treasureMapView-block-search-text {
 
 /* Other scripts add their own elements here; give them a row of their own instead of squeezing the blocks. */
 .treasureMapView-blockWrapper > div:has(> .treasureMapView-leftBlock > .mh-ui-goals-block):has(> .treasureMapView-rightBlock > .mh-ui-environments-block) > :not(.treasureMapView-leftBlock, .treasureMapView-rightBlock, .treasureMapView-highlight) { /* stylelint-disable-line prettier/prettier */
+  box-sizing: border-box;
   flex: 0 0 100%;
 }
 

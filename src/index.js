@@ -197,11 +197,14 @@ const showDuplicateInstallNotice = (running) => {
 
   const runningName = getPlatformName(running.platform);
   const thisName = getPlatformName(mhImprovedPlatform);
-  const installs = runningName === thisName ? `two copies of the ${thisName}` : `the ${runningName} (v${running.version}) and the ${thisName} (v${mhImprovedVersion})`;
+  const message =
+    runningName === thisName
+      ? `You have two copies of the ${thisName}. Remove one of them.`
+      : `You have the ${runningName} (v${running.version}) and the ${thisName} (v${mhImprovedVersion}). Only the ${runningName} is running. Remove the other one; the browser extension is recommended.`;
 
   const popup = createPopup({
     title: 'MouseHunt Improved is installed twice',
-    content: `<p>You have ${installs}. Only the ${runningName} (v${running.version}) is running. Remove the other one; the browser extension is recommended.</p>
+    content: `<p>${message}</p>
       <button class="mh-improved-duplicate-install-dismiss mousehuntActionButton small gray"><span>Don't show this again</span></button>`,
     className: 'mh-improved-duplicate-install-popup',
   });
