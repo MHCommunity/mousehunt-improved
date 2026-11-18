@@ -40,7 +40,8 @@ const parseEncodedValue = (value) => {
   return value;
 };
 
-// The parsed settings for each identifier. Writes here keep it current; other writes clear it.
+// The parsed settings for each identifier, for reads. Writes here keep it current and always
+// re-read storage first; other writes clear it.
 const settingsCache = new Map();
 
 /**
@@ -193,7 +194,9 @@ const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings
     return;
   }
 
-  // Grab all the settings, set the new one, and save them.
+  // Start from what's stored, not the cached parse: another copy of the script in this page
+  // (extension plus userscript) can have saved since, and storage events don't fire for it.
+  clearSettingsCache(identifier);
   const settings = getSettingDirect(null, {}, identifier);
 
   const groupAndKey = getGroupAndKey(key);
