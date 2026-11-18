@@ -4,6 +4,7 @@ import {
   cacheSet,
   debuglog,
   doEvent,
+  getActiveAuraTypes,
   getCurrentLocation,
   getCurrentPage,
   getFlag,
@@ -13,6 +14,7 @@ import {
   onRequest,
   onTravel,
   parseNumber,
+  trackAuras,
 } from '@utils';
 import { getStage } from '@utils/shared/stages';
 
@@ -72,11 +74,7 @@ const updateStats = () => {
     }
   });
 
-  trapAuras = [];
-  const trapAurasList = document.querySelectorAll('.trapImageView-trapAura.mousehuntTooltipParent.active');
-  if (trapAurasList && trapAurasList.length > 0) {
-    trapAuras = [...trapAurasList].map((aura) => [...aura.classList].find((cls) => cls.startsWith('Quest')));
-  }
+  trapAuras = getActiveAuraTypes();
 };
 
 /**
@@ -622,6 +620,7 @@ const renderList = async (list, context) => {
  * Main function.
  */
 const main = async () => {
+  trackAuras();
   initTrapEffectiveness(() => updateMinLucks(false));
 
   onNavigation(

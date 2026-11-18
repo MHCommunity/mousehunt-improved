@@ -1,4 +1,4 @@
-import { addEvent, getCurrentPage, getSetting, onNavigation, saveSetting } from '@utils';
+import { addEvent, getActiveAuraTypes, getCurrentPage, getSetting, onNavigation, saveSetting } from '@utils';
 import { getStage } from '@utils/shared/stages';
 
 // Set in the Custom Trap Selector editor, on the trap effectiveness block.
@@ -74,7 +74,7 @@ const getTrapEffectivenessContext = () => {
     user.trap_power_type_name,
     user.trap_attraction_bonus,
     user.trap_cheese_effect,
-    [...document.querySelectorAll('.trapImageView-trapAura.mousehuntTooltipParent.active')].map((aura) => [...aura.classList].find((cls) => cls.startsWith('Quest'))),
+    getActiveAuraTypes(),
     stage.dataEnvironment,
     stage.data,
     stage.live,
