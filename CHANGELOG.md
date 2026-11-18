@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.105.1
+
+- Fixed settings getting overwritten when both the browser extension and the userscript are installed. Only one copy now runs, and a popup asks you to remove the other
+- Better Maps: Fixed the goals and environments blocks getting squeezed when another script adds to the map. Anything it adds now goes on its own row
+- Minor style tweaks
+
 ## Version 0.105.0
 
 ### Added

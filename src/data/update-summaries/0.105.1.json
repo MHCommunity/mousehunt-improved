@@ -1,0 +1,10 @@
+{
+  "version": "0.105.1",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Improved how settings are saved and loaded", "Maps: Fixed the goals and environments lists getting squeezed when another script adds to the map"]
+    }
+  ]
+}
