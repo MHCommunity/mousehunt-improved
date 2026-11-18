@@ -1094,7 +1094,13 @@ input.treasureMapView-block-search-text {
    environments scroll inside it when there are more of them. */
 .treasureMapView-blockWrapper > div:has(> .treasureMapView-leftBlock > .mh-ui-goals-block):has(> .treasureMapView-rightBlock > .mh-ui-environments-block) {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
+}
+
+/* Other scripts add their own elements here; give them a row of their own instead of squeezing the blocks. */
+.treasureMapView-blockWrapper > div:has(> .treasureMapView-leftBlock > .mh-ui-goals-block):has(> .treasureMapView-rightBlock > .mh-ui-environments-block) > :not(.treasureMapView-leftBlock, .treasureMapView-rightBlock, .treasureMapView-highlight) {
+  flex: 0 0 100%;
 }
 
 /* inline-flex keeps the right block beside it when the wrapper isn't flex, like on completed maps. */
