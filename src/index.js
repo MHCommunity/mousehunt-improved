@@ -3,6 +3,7 @@ import * as Sentry from '@sentry/browser';
 import {
   addSettingForModule,
   checkForDataUpdates,
+  createPopup,
   debug,
   debuglog,
   doEvent,
@@ -173,6 +174,45 @@ const loadModules = async (categoriesWithModules = getCategoriesWithModules()) =
 };
 
 /**
+ * Get the name of a build for the duplicate install notice.
+ *
+ * @param {string} platform The build's platform.
+ *
+ * @return {string} The name.
+ */
+const getPlatformName = (platform) => ('userscript' === platform ? 'userscript' : 'browser extension');
+
+/**
+ * Tell the player that MouseHunt Improved is installed twice, unless they've dismissed it.
+ *
+ * @param {Object} running          The copy that's already running.
+ * @param {string} running.version  Its version.
+ * @param {string} running.platform Its platform.
+ */
+const showDuplicateInstallNotice = (running) => {
+  const dismissedKey = 'mousehunt-improved-duplicate-install-dismissed';
+  if ('dismissed' === localStorage.getItem(dismissedKey)) {
+    return;
+  }
+
+  const runningName = getPlatformName(running.platform);
+  const thisName = getPlatformName(mhImprovedPlatform);
+  const installs = runningName === thisName ? `two copies of the ${thisName}` : `the ${runningName} (v${running.version}) and the ${thisName} (v${mhImprovedVersion})`;
+
+  const popup = createPopup({
+    title: 'MouseHunt Improved is installed twice',
+    content: `<p>You have ${installs}. Only the ${runningName} (v${running.version}) is running. Remove the other one; the browser extension is recommended.</p>
+      <button class="mh-improved-duplicate-install-dismiss mousehuntActionButton small gray"><span>Don't show this again</span></button>`,
+    className: 'mh-improved-duplicate-install-popup',
+  });
+
+  document.querySelector('.mh-improved-duplicate-install-dismiss')?.addEventListener('click', () => {
+    localStorage.setItem(dismissedKey, 'dismissed');
+    popup?.hide();
+  });
+};
+
+/**
  * Initialize the script.
  */
 const init = async () => {
@@ -200,6 +240,17 @@ const init = async () => {
     debug('Event registry not found.');
     return;
   }
+
+  // Only one copy runs per page. A second copy (the extension and the userscript both installed)
+  // would run the updates and write settings alongside the first, so it stops before touching storage.
+  const running = getGlobal('running');
+  if (running) {
+    debug(`Already running v${running.version}-${running.platform}, exiting.`);
+    showDuplicateInstallNotice(running);
+    return;
+  }
+
+  setGlobal('running', { version: mhImprovedVersion, platform: mhImprovedPlatform });
 
   excludeFromUserscript: if (getSetting('error-reporting', true)) {
     const injectedScript = document.querySelector('#mousehunt-improved-script');
