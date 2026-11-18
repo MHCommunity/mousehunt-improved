@@ -1,4 +1,4 @@
-import { addStyles, getCurrentPage, humanizeTime, makeElement, onNavigation, parseMouseHuntDate } from '@utils';
+import { addStyles, getActiveAuras, getCurrentPage, humanizeTime, makeElement, onAurasChange, onNavigation } from '@utils';
 
 import { isBlockHidden } from '@/custom-trap-selector/blocks';
 
@@ -50,16 +50,22 @@ const expiryWarningThresholds = {
  *
  * @return {number} The threshold in seconds.
  */
-const getExpiryWarningThreshold = (aura) => {
-  const auraClass = Object.keys(expiryWarningThresholds).find((c) => aura.element.classList.contains(c));
-  return auraClass ? expiryWarningThresholds[auraClass] : 60 * 60 * 24;
-};
+const getExpiryWarningThreshold = (aura) => expiryWarningThresholds[aura.type] ?? 60 * 60 * 24;
 
 /**
  * Add the expiry warning.
  */
 const addExpiryWarning = () => {
-  const soon = aurasExpiry.filter((aura) => aura.remaining < getExpiryWarningThreshold(aura));
+  // Clear the last warning, since an aura may have been renewed since.
+  for (const element of document.querySelectorAll('.trapImageView-trapAura.expiring-soon')) {
+    element.classList.remove('expiring-soon');
+    element.style.removeProperty('--mhui-aura-offset-x');
+    element.style.removeProperty('--mhui-aura-offset-y');
+  }
+
+  // Only auras with an icon on the trap image can be flagged there.
+  const onTrap = aurasExpiry.filter((aura) => aura.element);
+  const soon = onTrap.filter((aura) => null !== aura.remaining && aura.remaining < getExpiryWarningThreshold(aura));
   if (!soon.length) {
     return;
   }
@@ -67,7 +73,7 @@ const addExpiryWarning = () => {
   // Expiring auras stay visible on the trap image while the rest are hidden
   // until hover, so shift them up into the first slots instead of leaving
   // them floating in their usual spot.
-  const slots = aurasExpiry.map((aura) => aura.element);
+  const slots = onTrap.map((aura) => aura.element);
   soon.forEach((aura, index) => {
     aura.element.classList.add('expiring-soon');
 
@@ -97,38 +103,31 @@ const addTrapBlock = () => {
   auraTrapBlock.id = 'mh-improved-aura-view';
 
   aurasExpiry.forEach((aura) => {
-    const auraKey = `mh-aura-${aura.type.toLowerCase().replaceAll(/[ !'(),.]/g, '-')}`;
-    const existingAura = auraTrapBlock.querySelector(`[id="${auraKey}"]`);
-    if (existingAura) {
-      return;
-    }
+    const auraEl = makeElement('div', ['aura', 'mousehuntTooltipParent', aura.type]);
+    auraEl.id = `mh-aura-${aura.type.toLowerCase()}`;
 
-    const auraClasses = aura.element.classList;
-
-    const questClass = [...auraClasses].find((c) => c.startsWith('Quest') || c.startsWith('Event') || c.startsWith('Mini'));
-    const auraEl = makeElement('div', ['aura', 'mousehuntTooltipParent', questClass]);
-
-    auraEl.id = auraKey;
-
-    const expiryText = getExpiryFormatted(aura.expiry);
-    const remaining = getExpiryRemainingFormatted(aura.remaining * 1000);
+    const hasExpiry = null !== aura.expiry;
+    const expiryText = hasExpiry ? getExpiryFormatted(aura.expiry) : '';
+    const remaining = hasExpiry ? getExpiryRemainingFormatted(aura.remaining * 1000) : '';
 
     const tooltip = makeElement('div', ['mousehuntTooltip', 'noEvents']);
     const tooltipContent = makeElement('div', 'mousehuntTooltipContent');
-    makeElement('div', 'mousehuntTooltipContentTitle', `${aura.type} Aura`, tooltipContent);
-    makeElement('div', 'mousehuntTooltipContentTime', `Expires on ${expiryText}`, tooltipContent);
-    makeElement('div', 'mousehuntTooltipContentTime', `${remaining} remaining`, tooltipContent);
+    makeElement('div', 'mousehuntTooltipContentTitle', `${aura.name} Aura`, tooltipContent);
+    if (hasExpiry) {
+      makeElement('div', 'mousehuntTooltipContentTime', `Expires on ${expiryText}`, tooltipContent);
+      makeElement('div', 'mousehuntTooltipContentTime', `${remaining} remaining`, tooltipContent);
+    }
     tooltip.append(tooltipContent);
 
     auraEl.append(tooltip);
 
+    // The game's icon classes, or the ones it would use when the aura isn't on the trap image.
     const auraImage = makeElement('div', 'image');
-
-    auraImage.classList.add(...auraClasses);
-    auraImage.classList.remove('mousehuntTooltipParent');
+    auraImage.classList.add(...(aura.element ? aura.element.classList : ['trapImageView-trapAura', aura.type, 'active']));
+    auraImage.classList.remove('mousehuntTooltipParent', 'expiring-soon');
     auraEl.append(auraImage);
 
-    makeElement('div', 'type', aura.type, auraEl);
+    makeElement('div', 'type', aura.name, auraEl);
 
     const times = makeElement('div', 'times');
     makeElement('div', 'expiry', expiryText, times);
@@ -151,57 +150,25 @@ const addTrapBlock = () => {
   }
 };
 
+let aurasExpiry = [];
+
 /**
- * Get the auras.
+ * Read the auras and redraw the auras block and the expiry warning.
  */
-const getAuras = async () => {
+const refresh = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
   }
 
-  const auras = document.querySelectorAll('.trapSelectorView .trapImageView-trapAuraContainer .trapImageView-trapAura.active');
-  if (!auras.length) {
-    aurasExpiry = [];
-    return;
+  aurasExpiry = await getActiveAuras();
+
+  // The block is still added when it's hidden, so showing it in Custom Trap Selector is instant.
+  if (!isBlockHidden('auras')) {
+    addExpiryWarning();
   }
 
-  const parsedAuras = await Promise.all(
-    [...auras].map(async (aura) => {
-      const typeEl = aura.querySelector('.trapImageView-tooltip-trapAura-title');
-      if (!typeEl) {
-        return null;
-      }
-
-      const type = typeEl.textContent.replaceAll('You have the ', '').replaceAll('Aura!', '').trim();
-      const expiryEl = aura.querySelector('.trapImageView-tooltip-trapAura-expiry span');
-
-      if (!expiryEl || !type) {
-        return null;
-      }
-
-      const expiryText = expiryEl.textContent.replaceAll('  ', ' ').trim();
-      const expiry = await parseMouseHuntDate(expiryText);
-      if (null === expiry) {
-        return null;
-      }
-
-      // get the difference in seconds
-      const remaining = Math.max(0, Math.floor((expiry - Date.now()) / 1000));
-
-      return {
-        type,
-        remaining,
-        expiry,
-        expiryText: expiryText.replace('(Local Time)', '').trim(),
-        element: aura,
-      };
-    })
-  );
-
-  aurasExpiry = parsedAuras.filter(Boolean);
+  addTrapBlock();
 };
-
-let aurasExpiry = [];
 
 /**
  * Initialize the module.
@@ -210,20 +177,10 @@ const init = async () => {
   addStyles(styles, 'show-auras');
   applyAuraLayout();
 
-  onNavigation(
-    () => {
-      setTimeout(async () => {
-        await getAuras();
-        // The block is still added when it's hidden, so showing it in Custom Trap Selector is instant.
-        if (!isBlockHidden('auras')) {
-          addExpiryWarning();
-        }
+  onNavigation(() => setTimeout(refresh, 1000), { page: 'camp' });
 
-        addTrapBlock();
-      }, 1000);
-    },
-    { page: 'camp' }
-  );
+  // A trap change, hunt, or new aura sends the aura data; wait for the game to redraw the trap first.
+  onAurasChange(() => setTimeout(refresh, 250));
 };
 
 /**
