@@ -1008,6 +1008,11 @@ input.treasureMapView-block-search-text {
   border-left: none;
 }
 
+.treasureMapView.poster .treasureMapView-goals-group-goal-padding .treasureMapView-goals-group-goal-image {
+  background-position: 50% 0;
+  background-size: cover;
+}
+
 .treasureMapView.poster .treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-name {
   background: #949494;
   box-shadow:
