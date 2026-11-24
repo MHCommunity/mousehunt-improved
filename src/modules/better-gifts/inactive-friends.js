@@ -289,4 +289,13 @@ const hideInactiveFriends = () => {
   document.addEventListener('click', onListClick);
 };
 
+/**
+ * Get when a friend was last active, from the friend list the selector loaded.
+ *
+ * @param {string|number} snuid The friend's snuid.
+ *
+ * @return {number} The timestamp, or 0 when it's unknown.
+ */
+export const getLastActiveTime = (snuid) => lastActiveBySnuid.get(String(snuid)) ?? 0;
+
 export default hideInactiveFriends;

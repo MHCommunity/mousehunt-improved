@@ -12,7 +12,7 @@ import {
 } from '@utils';
 
 import autoCloseResults from './auto-close-results';
-import hideInactiveFriends from './inactive-friends';
+import hideInactiveFriends, { getLastActiveTime } from './inactive-friends';
 import settings from './settings';
 import styles from './styles.css';
 
@@ -382,6 +382,10 @@ const addSendButton = (className, text, selector, buttonContainer) => {
 
     if ('faves' === className) {
       pickFriends(friends, false);
+    } else if ('recent' === className) {
+      // Most recently active first; the sort is stable, so ties keep the list order.
+      friends.sort((a, b) => getLastActiveTime(b.dataset.snuid) - getLastActiveTime(a.dataset.snuid));
+      pickFriends(friends, false);
     } else {
       pickFriends(friends);
     }
@@ -408,13 +412,14 @@ const addRandomSendButton = () => {
       return false;
     }
 
-    addSendButton('random', 'Select Random Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
+    addSendButton('random', 'Random Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
     addSendButton(
       'faves',
-      'Select Frequent Gifters',
+      'Frequent Gifters',
       '.giftSelectorView-tabContent.active .giftSelectorView-friend-group.favorite .giftSelectorView-friend:not(.disabled, .selected)',
       title
     );
+    addSendButton('recent', 'Recent Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
 
     return true;
   });
@@ -566,6 +571,54 @@ const main = () => {
 };
 
 /**
+ * Clicking the "return N more free gifts" count on the claim tab jumps straight to picking friends for the Gift of the Day.
+ */
+const linkReturnCountToGiftOfTheDay = () => {
+  document.addEventListener('click', (e) => {
+    if (!isModuleEnabled(MODULE_ID)) {
+      return;
+    }
+
+    const limit = e.target.closest?.('.giftSelectorView-tabContent[data-tab="claim_free_gifts"] .giftSelectorView-numSendActionsRemaining');
+    if (!limit || !(Number.parseInt(limit.textContent, 10) > 0)) {
+      return;
+    }
+
+    const view = hg?.views?.GiftSelectorView;
+    if (!view?.showTab || !view?.selectGift) {
+      return;
+    }
+
+    e.preventDefault();
+
+    view.showTab('send_free_gifts', 'selectGift');
+    const gift = view.getActiveTabDOM()?.[0]?.querySelector('.giftSelectorView-gift.gift_of_the_day.sendable');
+    if (!gift) {
+      return;
+    }
+
+    view.selectGift(gift);
+
+    // The friend list renders a moment after the first visit to the tab, so wait for it before picking.
+    const startedAt = Date.now();
+    const clickRecentFriends = () => {
+      if (!document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-friend')) {
+        if (Date.now() - startedAt < 2000) {
+          setTimeout(clickRecentFriends, 50);
+        }
+
+        return;
+      }
+
+      // A disabled button would clear the selection instead of picking friends.
+      document.querySelector('.giftSelectorView-tabContent.active .mh-gift-buttons-send-recent:not(.disabled)')?.click();
+    };
+
+    clickRecentFriends();
+  });
+};
+
+/**
  * Make the top-menu 'Gifts' button open the gift selector directly.
  */
 const setupGiftButtonOpensGiftSelector = () => {
@@ -601,6 +654,7 @@ const init = () => {
   addStyles(styles, MODULE_ID);
   main();
   setupGiftButtonOpensGiftSelector();
+  linkReturnCountToGiftOfTheDay();
 
   onModuleToggle(MODULE_ID, {
     enable: makeButtons,

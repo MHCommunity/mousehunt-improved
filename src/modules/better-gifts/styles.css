@@ -47,7 +47,8 @@
 }
 
 .mh-gift-buttons-send-random,
-.mh-gift-buttons-send-faves {
+.mh-gift-buttons-send-faves,
+.mh-gift-buttons-send-recent {
   margin-top: -2px;
   margin-left: 10px;
 }
@@ -606,4 +607,12 @@ input[type="text"].giftSelectorView-friendRow-returnQuantity {
 .giftSelectorView-confirmOverlay.active.mh-gift-results-closing {
   pointer-events: none;
   opacity: 0;
+}
+
+.giftSelectorView-tabContent[data-tab="claim_free_gifts"] .giftSelectorView-numSendActionsRemaining:not(.error) {
+  cursor: pointer;
+}
+
+.giftSelectorView-tabContent[data-tab="claim_free_gifts"] .giftSelectorView-numSendActionsRemaining:not(.error):hover {
+  text-decoration: underline;
 }
