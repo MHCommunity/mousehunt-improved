@@ -317,7 +317,7 @@ const getOverallCatchRate = (rows) => {
   const overall = weighted.reduce((total, row) => total + row.attractionRate * row.catchRateValue, 0);
 
   // Round off floating point error, so all guaranteed catches add up to exactly 100%.
-  return Math.min(1, Math.round(overall * 1_000_000) / 1_000_000);
+  return Math.min(1, Math.round(overall * 1_000_000_000) / 1_000_000_000);
 };
 
 /**
@@ -340,8 +340,9 @@ const makeOverallRow = (rows, overallCatchRate) => {
   const maxMinluck = Math.max(...rows.map((mouseRow) => Number(mouseRow.minluck) || 0));
   makeElement('td', getRateClasses(overallCatchRate, maxMinluck), maxMinluck, row);
 
-  // Up to 2 decimals, without trailing zeros.
-  makeElement('td', getRateClasses(overallCatchRate, maxMinluck), `${Number((overallCatchRate * 100).toFixed(2))}%`, row);
+  // Up to 2 decimals, without trailing zeros, and capped at 99.99% so only a sure catch shows 100%.
+  const overallPercent = overallCatchRate >= 1 ? 100 : Math.min(99.99, Number((overallCatchRate * 100).toFixed(2)));
+  makeElement('td', getRateClasses(overallCatchRate, maxMinluck), `${overallPercent}%`, row);
 
   return row;
 };

@@ -236,11 +236,12 @@ const getMinluck = async (options) => {
  * @return {string} The percentage.
  */
 const getPercent = (rate) => {
-  if (rate === 1) {
+  if (rate >= 1) {
     return '100%';
   }
 
-  return `${Math.max(0, rate * 100).toFixed(2)}%`;
+  // Cap at 99.99%, so only a sure catch shows 100%.
+  return `${Math.min(99.99, Math.max(0, rate * 100)).toFixed(2)}%`;
 };
 
 const kingScarabThresholds = [0, 30, 40, 50];
