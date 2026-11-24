@@ -364,8 +364,8 @@ const addQuickSelectButtons = (container, selector, selectionCallback) => {
 
   const wrapper = makeElement('div', 'mh-ui-invite-quick-select');
   wrapper.append(
-    makeButton('Select random friends', (available) => shuffle(available)),
-    makeButton('Select active nearby', (available) => getActiveNearbyHunters(available))
+    makeButton('Random friends', (available) => shuffle(available)),
+    makeButton('Active nearby', (available) => getActiveNearbyHunters(available))
   );
 
   actions.append(wrapper);
