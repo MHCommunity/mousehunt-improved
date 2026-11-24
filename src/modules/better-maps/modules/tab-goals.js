@@ -1,4 +1,4 @@
-import { addMHCTData, debuglog, doRequest, escapeHtml, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage } from '@utils';
+import { addMHCTData, debuglog, doRequest, escapeHtml, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage, waitForElement } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';
@@ -543,6 +543,61 @@ const moveAuras = async () => {
   mapName.append(aurasWrapper);
 };
 
+/**
+ * Add a refresh button next to the map name that reloads the map.
+ *
+ * @param {Object} mapData The map data.
+ */
+const addRefreshButton = (mapData) => {
+  const mapView = document.querySelector('.treasureMapView');
+  if (!mapView || mapView.classList.contains('mh-ui-map-preview') || !mapData?.map_id) {
+    return;
+  }
+
+  const mapName = mapView.querySelector('.treasureMapView-mapName');
+  if (!mapName || mapName.querySelector('.mh-ui-map-refresh-button')) {
+    return;
+  }
+
+  const refreshButton = makeElement('a', 'mh-ui-map-refresh-button');
+  refreshButton.title = 'Refresh';
+  refreshButton.href = '#';
+  refreshButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (refreshButton.classList.contains('loading')) {
+      return;
+    }
+
+    refreshButton.classList.add('loading');
+
+    // Re-showing the map always lands on Goals, so go back to the tab that was open.
+    const activeTab = document.querySelector('.treasureMapRootView-subTab.active')?.getAttribute('data-type');
+
+    hg.controllers.TreasureMapController.clearMapCache();
+    hg.controllers.TreasureMapController.showMap(mapData.map_id);
+
+    if (!activeTab || 'show_goals' === activeTab) {
+      return;
+    }
+
+    for (let attempts = 0; attempts < 30 && refreshButton.isConnected; attempts++) {
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+
+    const tab = await waitForElement(`.treasureMapRootView-subTab[data-type="${activeTab}"]`);
+    if (tab && !tab.classList.contains('active')) {
+      tab.click();
+    }
+  });
+
+  const nameText = mapName.querySelector('.mh-ui-map-name');
+  if (nameText) {
+    nameText.after(refreshButton);
+  } else {
+    mapName.append(refreshButton);
+  }
+};
+
 const addMapSolverLinks = async (mapData) => {
   // Rebuild rather than bail so the links don't keep completed goals after a refresh.
   const existing = document.querySelector('.mh-ui-map-solver-links');
@@ -617,7 +672,8 @@ const showGoalsTab = async (mapData) => {
   addSendToMaptain(mapData);
   addSidebarToggle();
   addPreviewClass();
-  moveAuras();
+  await moveAuras();
+  addRefreshButton(mapData);
 
   if (!getFlag('better-maps-no-solver-links')) {
     addMapSolverLinks(mapData);

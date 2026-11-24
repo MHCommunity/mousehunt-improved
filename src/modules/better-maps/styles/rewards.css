@@ -130,6 +130,38 @@
   margin-left: 10px;
 }
 
+.mh-ui-map-refresh-button {
+  align-self: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.treasureMapView-mapName:hover .mh-ui-map-refresh-button,
+.mh-ui-map-refresh-button:focus-visible,
+.mh-ui-map-refresh-button.loading {
+  opacity: 0.5;
+}
+
+.treasureMapView-mapName .mh-ui-map-refresh-button:hover {
+  background-color: #ddd;
+  opacity: 0.9;
+}
+
+.mh-ui-map-refresh-button.loading {
+  animation: mh-improved-spin 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-ui-map-refresh-button.loading {
+    animation: none;
+  }
+}
+
 .mh-ui-map-name-auras .treasureMapView-mapMenu-auraIcon {
   width: 25px;
   height: 25px;
