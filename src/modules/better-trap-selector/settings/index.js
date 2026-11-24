@@ -28,10 +28,5 @@ export default async () => {
       description: 'Prestige, Hailstone, Denture, and Printing Press bases.',
       default: true,
     },
-    {
-      id: 'better-trap-selector.base-item-counters',
-      title: 'Show toothlet and printing paper counts',
-      default: true,
-    },
   ];
 };

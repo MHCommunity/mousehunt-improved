@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 0.106.0
+
+- Better Gifts: Added a Recent Friends button that picks your most recently active friends
+- Better Gifts: Clicking the "return N more free gifts" count opens the Gift of the Day with recent friends picked
+- Better Maps: Added a refresh button next to the map name that keeps you on your current tab
+- Better Maps: Fixed mouse images and catch dates on Wanted posters
+- Catch Rate & Minlucks: 100% is now only shown for a guaranteed catch
+- Catch Rate & Minlucks: A third click on a column header resets the sort
+- Shortened the quick select button labels in the gift selector and map invite dialog
+- Better Trap Selector: Removed the toothlet and printing paper counts, since the game shows them now
+- Minor style tweaks
+
 ## Version 0.105.1
 
 - Fixed settings getting overwritten when both the browser extension and the userscript are installed. Only one copy now runs, and a popup asks you to remove the other

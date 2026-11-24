@@ -1,6 +1,5 @@
 import { addStyles, getFlag } from '@utils';
 
-import baseItemCounters from './modules/base-item-counters';
 import hideTooltips from './modules/hide-tooltips';
 import largerSkinImages from './modules/larger-skin-images';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
@@ -27,7 +26,6 @@ const featureManifest = [
     load: () => addStyles(trapGradientBackgroundStyles, 'better-trap-selector-trap-gradient-background'),
   },
   { id: 'real-base-stats', setting: 'better-trap-selector.real-base-stats', default: true, load: realBaseStats },
-  { id: 'base-item-counters', setting: 'better-trap-selector.base-item-counters', default: true, load: baseItemCounters },
 ];
 
 export default featureManifest;

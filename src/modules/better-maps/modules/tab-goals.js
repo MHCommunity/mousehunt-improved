@@ -1,4 +1,17 @@
-import { addMHCTData, debuglog, doRequest, escapeHtml, getFlag, makeCollapsible, makeElement, makeMhButton, sessionGet, sessionSet, showErrorMessage, waitForElement } from '@utils';
+import {
+  addMHCTData,
+  debuglog,
+  doRequest,
+  escapeHtml,
+  getFlag,
+  makeCollapsible,
+  makeElement,
+  makeMhButton,
+  sessionGet,
+  sessionSet,
+  showErrorMessage,
+  waitForElement,
+} from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import { getCompletedGoals } from '../utils';

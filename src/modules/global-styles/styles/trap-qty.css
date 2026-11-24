@@ -47,11 +47,3 @@
   left: -1px;
   border: 1px solid #4e2e0b;
 }
-
-.campPage-trap-itemBrowser-favorite-item-image-quantity.base-quantity {
-  background-color: rgb(255 255 255 / 75%);
-}
-
-.mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity.base-quantity {
-  background-color: var(--d-surface-panel);
-}

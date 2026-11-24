@@ -1,0 +1,18 @@
+{
+  "version": "0.106.0",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": [
+        "Gifts: New \"Recent Friends\" button picks your most recently active friends",
+        "Gifts: Click the \"return N more free gifts\" count to pick recent friends for the Gift of the Day",
+        "Maps: Refresh button next to the map name",
+        "Maps: Fixed mouse images and catch dates on Wanted posters",
+        "Catch Rate & Minlucks: 100% now means a guaranteed catch",
+        "Catch Rate & Minlucks: A third click on a column header resets the sort",
+        "Trap Selector: Removed our toothlet and printing paper counts now that the game shows them"
+      ]
+    }
+  ]
+}
