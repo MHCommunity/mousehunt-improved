@@ -1,0 +1,10 @@
+{
+  "version": "0.106.1",
+  "summary": "",
+  "details": [
+    {
+      "title": "",
+      "items": ["Dark Mode: Fixed the toothlet and printing paper counts on the trap selector"]
+    }
+  ]
+}

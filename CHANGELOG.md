@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.106.1
+
+- Native Dark Mode: Fixed the toothlet and printing paper counts on the trap selector
+
 ## Version 0.106.0
 
 - Better Gifts: Added a Recent Friends button that picks your most recently active friends

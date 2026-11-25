@@ -71,6 +71,18 @@
   box-shadow: -1px -1px 1px var(--d-bg) inset;
 }
 
+.mh-dark .trapSelectorView__armedBaseResourceContainer {
+  color: var(--d-text);
+  background-color: var(--d-surface-panel);
+  border-color: var(--d-border);
+  box-shadow: -1px -1px 1px var(--d-bg) inset;
+}
+
+.mh-dark .trapSelectorView__armedBaseResourceQuanitity {
+  color: var(--d-text);
+  text-shadow: none;
+}
+
 .mh-dark .trapSelectorView__weaponSkinGroup.trapSelectorView__armedItemBorder {
   background-color: transparent;
 }
